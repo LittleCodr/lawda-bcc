@@ -45,6 +45,15 @@ export async function POST(req: Request) {
     });
   } catch (error: any) {
     console.error("Error creating Cashfree order:", error?.response?.data || error);
+
+    const errorData = error?.response?.data;
+    if (errorData?.type === "invalid_request_error" || errorData?.code === "customer_details.customer_phone_invalid") {
+      return NextResponse.json(
+        { error: errorData.message || "Invalid request details provided" },
+        { status: 400 }
+      );
+    }
+
     return NextResponse.json(
       { error: "Failed to create order", details: error?.response?.data || error.message },
       { status: 500 }

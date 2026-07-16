@@ -127,7 +127,7 @@ export default function CheckoutPage() {
   const shipping = subtotal >= 999 ? 0 : 99;
   let finalTotal = subtotal - discount + shipping;
   
-  if ((user?.email || formData.email) === "littlecodr@gmail.com") {
+  if (user?.email === "littlecodr@gmail.com") {
     finalTotal = 1; // test environment bypass
   }
 

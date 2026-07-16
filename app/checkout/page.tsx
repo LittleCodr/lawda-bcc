@@ -207,8 +207,7 @@ export default function CheckoutPage() {
 
       // 3. Initiate Cashfree Checkout
       cashfree.checkout({
-        paymentSessionId: data.payment_session_id,
-        returnUrl: `${window.location.origin}/checkout/success?order_id=${data.order_id}`
+        paymentSessionId: data.payment_session_id
       });
 
     } catch (error) {

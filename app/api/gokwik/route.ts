@@ -5,8 +5,9 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { amount, email, items, shipping, discount, couponCode, subtotal } = body;
 
-    const appId = process.env.NEXT_PUBLIC_GOKWIK_APP_ID || "";
-    const appSecret = process.env.GOKWIK_APP_SECRET || "";
+    const appId = process.env.NEXT_PUBLIC_GOKWIK_APP_ID;
+    const appSecret = process.env.GOKWIK_APP_SECRET;
+    const merchantId = process.env.NEXT_PUBLIC_GOKWIK_MERCHANT_ID; // 19pkt8nylu4e
 
     if (!appId || !appSecret) {
       console.error("GoKwik API credentials are missing in environment variables");
@@ -14,8 +15,7 @@ export async function POST(req: Request) {
     }
 
     // GoKwik API Endpoint for checkout initiation
-    // This will be replaced with the exact production or sandbox endpoint provided by GoKwik
-    const gokwikEndpoint = "https://api.gokwik.co/v2/order/create"; 
+    const gokwikEndpoint = "https://api.gokwik.co/v3/order/create"; 
 
     // Build the payload for GoKwik Checkout
     const payload = {
@@ -37,13 +37,13 @@ export async function POST(req: Request) {
       })),
       discount: discount || 0,
       subtotal: subtotal || 0,
+      // You can append other requirements for GoKwik V3 payload
     };
 
     console.log("Creating GoKwik Checkout Order with payload:", payload);
 
-    // Make the request to GoKwik API
-    // Uncomment and adapt when the exact endpoint and headers are confirmed
     /*
+    // Live API Call when payload is strictly confirmed
     const response = await fetch(gokwikEndpoint, {
       method: "POST",
       headers: {

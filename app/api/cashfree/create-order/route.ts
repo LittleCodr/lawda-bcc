@@ -33,6 +33,7 @@ export async function POST(req: Request) {
       },
       order_meta: {
         return_url: `${origin}/checkout/success?order_id=${orderId}`,
+        notify_url: `${origin}/api/cashfree/webhook`,
       },
       order_note: "Order from Octopus Perfumes"
     };

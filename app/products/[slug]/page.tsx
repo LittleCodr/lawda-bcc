@@ -57,7 +57,7 @@ export default async function ProductPage({
     "@context": "https://schema.org",
     "@type": "Product",
     name: `${product.name} - Octopus Perfumes`,
-    image: product.images.hero,
+    image: `https://buyoctopusperfume.in${product.images.hero}`,
     description: `${product.tagline} Inspired by ${product.inspiredBy}. ${product.gender}. 50ML Eau de Parfum by Octopus Perfumes (Harsh Beniwal).`,
     sku: product.sku,
     brand: {
@@ -66,11 +66,12 @@ export default async function ProductPage({
     },
     offers: {
       "@type": "Offer",
-      url: `https://www.octopusperfumes.in/products/${product.slug}`,
+      url: `https://buyoctopusperfume.in/products/${product.slug}`,
       priceCurrency: "INR",
       price: product.price,
       priceValidUntil: "2027-12-31",
       availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
       seller: {
         "@type": "Organization",
         name: "Octopus Lifestyle Private Limited",
@@ -92,11 +93,40 @@ export default async function ProductPage({
     ],
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://buyoctopusperfume.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Products",
+        "item": "https://buyoctopusperfume.in/collections/all"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": product.name,
+        "item": `https://buyoctopusperfume.in/products/${product.slug}`
+      }
+    ]
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       <div className="mx-auto max-w-[1440px] px-5 md:px-10 py-8 md:py-14">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">

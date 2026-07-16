@@ -64,9 +64,15 @@ const websiteJsonLd = {
   url: "https://buyoctopusperfume.in",
   description:
     "Shop Octopus Perfumes by Harsh Beniwal. This is the ONLY official Harsh Beniwal perfume website. Nine long-lasting Eau de Parfums crafted for India at sensible prices.",
+  publisher: {
+    "@id": "https://buyoctopusperfume.in/#organization"
+  },
   potentialAction: {
     "@type": "SearchAction",
-    target: "https://buyoctopusperfume.in/collections/all?q={search_term_string}",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://buyoctopusperfume.in/collections/all?q={search_term_string}"
+    },
     "query-input": "required name=search_term_string",
   },
 };
@@ -74,22 +80,34 @@ const websiteJsonLd = {
 const orgJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://buyoctopusperfume.in/#organization",
   name: "Octopus Perfumes by Harsh Beniwal",
   alternateName: "Octopus Lifestyle Private Limited",
   url: "https://buyoctopusperfume.in",
-  logo: "https://buyoctopusperfume.in/logo.png",
-  sameAs: ["https://instagram.com/buyoctopus", "https://instagram.com/harshbeniwal", "https://youtube.com/harshbeniwal"],
+  logo: {
+    "@type": "ImageObject",
+    url: "https://buyoctopusperfume.in/logo.png",
+    width: "512",
+    height: "512"
+  },
+  sameAs: [
+    "https://instagram.com/buyoctopus", 
+    "https://instagram.com/harshbeniwal", 
+    "https://youtube.com/harshbeniwal",
+    "https://www.facebook.com/harshbeniwal"
+  ],
   founder: {
     "@type": "Person",
     name: "Harsh Beniwal",
     url: "https://instagram.com/harshbeniwal"
   },
   description:
-    "The official luxury fragrance brand created by Harsh Beniwal.",
+    "The official luxury fragrance brand created by Harsh Beniwal. Buy 50ML Eau de Parfums for India.",
   contactPoint: {
     "@type": "ContactPoint",
     email: "support@buyoctopusperfume.in",
     contactType: "customer support",
+    availableLanguage: ["English", "Hindi"]
   },
 };
 

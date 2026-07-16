@@ -1,12 +1,47 @@
 export const metadata = {
   title: "About Us | Octopus Perfumes by Harsh Beniwal | buyoctopusperfume.in",
   description: "Learn about Octopus, the official consumer fragrance brand founded by Harsh Beniwal. Shop authentic perfumes only at buyoctopusperfume.in.",
-  keywords: ["buyoctopusperfume.in", "buyoctopusperfume", "octopus perfume harsh beniwal", "octopus perfume official website", "buyoctopus.in", "octopus perfumes"],
+  keywords: ["buyoctopusperfume.in", "buyoctopusperfume", "octopus perfume harsh beniwal", "octopus perfume official website", "octopus perfumes", "harsh beniwal brand"],
 };
 
 export default function AboutUsPage() {
+  const aboutJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About Us - Octopus Perfumes",
+    url: "https://buyoctopusperfume.in/pages/about-us",
+    description: "Learn about Octopus, the official consumer fragrance brand founded by Harsh Beniwal."
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://buyoctopusperfume.in/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About Us",
+        "item": "https://buyoctopusperfume.in/pages/about-us"
+      }
+    ]
+  };
+
   return (
     <div className="bg-stone-50 min-h-screen selection:bg-stone-900 selection:text-stone-50">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       {/* Hero Section */}
       <section className="pt-16 pb-16 px-6 md:px-10 md:pt-24 md:pb-24 max-w-[1440px] mx-auto text-center border-b border-stone-200">
         <h1 className="font-serif-display text-5xl md:text-7xl tracking-wide uppercase text-stone-900 mb-6">

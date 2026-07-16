@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { products } from '@/lib/products'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.octopusperfumes.in'
+  const baseUrl = 'https://buyoctopusperfume.in'
   
   // Static routes
   const routes = [

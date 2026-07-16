@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://www.octopusperfumes.in/sitemap.xml',
+    sitemap: 'https://buyoctopusperfume.in/sitemap.xml',
   }
 }

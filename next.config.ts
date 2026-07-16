@@ -20,6 +20,32 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.octopusperfumes.in',
+          },
+        ],
+        destination: 'https://buyoctopusperfume.in/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'octopusperfumes.in',
+          },
+        ],
+        destination: 'https://buyoctopusperfume.in/:path*',
+        permanent: true,
+      }
+    ]
+  },
 };
 
 export default nextConfig;

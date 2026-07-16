@@ -5,21 +5,19 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { amount, email, items, shipping, discount, couponCode, subtotal } = body;
 
-    const apiKey = process.env.NEXT_PUBLIC_SHIPROCKET_API_KEY || "W086BqViUgVvQrAZ";
-    const secretKey = process.env.SHIPROCKET_SECRET_KEY || "cliizkwZXdj8iMeK8Tq0bvMucjK6Cm0e";
+    const appId = process.env.NEXT_PUBLIC_GOKWIK_APP_ID || "";
+    const appSecret = process.env.GOKWIK_APP_SECRET || "";
 
-    if (!apiKey || !secretKey) {
-      console.error("Shiprocket API keys are missing in environment variables");
+    if (!appId || !appSecret) {
+      console.error("GoKwik API credentials are missing in environment variables");
       return NextResponse.json({ error: "Server configuration error" }, { status: 500 });
     }
 
-    // TODO: Update this URL to the exact Shiprocket Fastrr API endpoint 
-    // depending on the exact headless checkout flow (e.g. creating an order vs getting a checkout session).
-    // Using a standard placeholder for headless checkout session creation.
-    const shiprocketEndpoint = "https://headless.fastrr.com/api/v1/orders";
+    // GoKwik API Endpoint for checkout initiation
+    // This will be replaced with the exact production or sandbox endpoint provided by GoKwik
+    const gokwikEndpoint = "https://api.gokwik.co/v2/order/create"; 
 
-    // Build the payload for Shiprocket Checkout
-    // Structure may vary based on actual Fastrr API documentation
+    // Build the payload for GoKwik Checkout
     const payload = {
       order_id: `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`,
       order_amount: amount,
@@ -41,17 +39,17 @@ export async function POST(req: Request) {
       subtotal: subtotal || 0,
     };
 
-    console.log("Creating Shiprocket Checkout Order with payload:", payload);
+    console.log("Creating GoKwik Checkout Order with payload:", payload);
 
-    // Make the request to Shiprocket Fastrr API
-    // Uncomment and adapt when the exact endpoint is confirmed
+    // Make the request to GoKwik API
+    // Uncomment and adapt when the exact endpoint and headers are confirmed
     /*
-    const response = await fetch(shiprocketEndpoint, {
+    const response = await fetch(gokwikEndpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "x-api-secret": secretKey,
+        "app-id": appId,
+        "app-secret": appSecret,
       },
       body: JSON.stringify(payload),
     });
@@ -59,30 +57,30 @@ export async function POST(req: Request) {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("Shiprocket API error:", data);
+      console.error("GoKwik API error:", data);
       return NextResponse.json(
-        { error: "Failed to create order with Shiprocket", details: data },
+        { error: "Failed to create order with GoKwik", details: data },
         { status: response.status }
       );
     }
     
     return NextResponse.json({ 
-      orderId: data.order_id, 
-      shiprocketOrderId: data.shiprocket_order_id,
-      checkoutUrl: data.checkout_url 
+      orderId: payload.order_id, 
+      gokwikOrderId: data.gokwik_order_id,
+      checkoutUrl: data.payment_link 
     });
     */
 
     // MOCK RESPONSE for now until exact API is confirmed
     return NextResponse.json({
       orderId: payload.order_id,
-      shiprocketOrderId: "SR-MOCK-" + Date.now(),
+      gokwikOrderId: "GK-MOCK-" + Date.now(),
       checkoutUrl: null, // If it returns a URL, we'd redirect
       success: true,
     });
 
   } catch (error) {
-    console.error("Error creating Shiprocket order:", error);
+    console.error("Error creating GoKwik order:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }

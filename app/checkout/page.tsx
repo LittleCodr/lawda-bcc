@@ -122,8 +122,8 @@ export default function CheckoutPage() {
     }
 
     try {
-      // 1. Create order on backend via Shiprocket
-      const res = await fetch("/api/shiprocket", {
+      // 1. Create order on backend via GoKwik
+      const res = await fetch("/api/gokwik", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -145,9 +145,9 @@ export default function CheckoutPage() {
         throw new Error(data.error || "Failed to create order");
       }
 
-      // 2. Handle Shiprocket Response
+      // 2. Handle GoKwik Response
       if (data.checkoutUrl) {
-        // Redirect to Fastrr Hosted Checkout if provided
+        // Redirect to GoKwik Hosted Checkout if provided
         window.location.href = data.checkoutUrl;
         return;
       }
@@ -176,7 +176,7 @@ export default function CheckoutPage() {
             state: formData.state,
             zip: formData.zip,
           },
-          shiprocketOrderId: data.shiprocketOrderId,
+          gokwikOrderId: data.gokwikOrderId,
           status: "Processing",
           createdAt: serverTimestamp(),
         };

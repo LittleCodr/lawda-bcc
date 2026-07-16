@@ -12,12 +12,7 @@ import { formatINR } from "@/lib/products";
 import { db } from "@/lib/firebase";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 
-// Declare Razorpay globally for TS
-declare global {
-  interface Window {
-    Razorpay: any;
-  }
-}
+
 
 export default function CheckoutPage() {
   const { items, subtotal, discount, applyCoupon, removeCoupon, couponCode, emptyCart } = useCart();
@@ -127,13 +122,21 @@ export default function CheckoutPage() {
     }
 
     try {
-      // 1. Create order on backend
-      const res = await fetch("/api/razorpay", {
+      // 1. Create order on backend via Shiprocket
+      const res = await fetch("/api/shiprocket", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ amount: finalTotal, email: formData.email }),
+        body: JSON.stringify({ 
+          amount: finalTotal, 
+          email: formData.email,
+          items,
+          shipping: formData,
+          discount,
+          couponCode,
+          subtotal
+        }),
       });
 
       const data = await res.json();
@@ -142,106 +145,77 @@ export default function CheckoutPage() {
         throw new Error(data.error || "Failed to create order");
       }
 
-      // 2. Initialize Razorpay Checkout
-      if (!window.Razorpay) {
-        showToast("Razorpay SDK failed to load. Please check your internet connection.", "error");
-        setLoading(false);
+      // 2. Handle Shiprocket Response
+      if (data.checkoutUrl) {
+        // Redirect to Fastrr Hosted Checkout if provided
+        window.location.href = data.checkoutUrl;
         return;
       }
 
-      const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-        name: "Octopus Perfumes",
-        description: "Order Payment",
-        image: "/logo.png",
-        order_id: data.orderId,
-        handler: async function (response: any) {
-          try {
-            // 3. Log order to Firestore
-            const orderId = data.orderId;
-            const orderData = {
-              items: items.map((item) => ({
-                slug: item.slug,
-                name: item.name,
-                price: item.price,
-                quantity: item.quantity,
-                image: item.image,
-              })),
-              total: finalTotal,
-              discount,
-              couponCode,
-              subtotal,
-              shipping: {
-                name: formData.name,
-                email: formData.email,
-                phone: formData.phone,
-                address: formData.address,
-                city: formData.city,
-                state: formData.state,
-                zip: formData.zip,
-              },
-              razorpayOrderId: response.razorpay_order_id,
-              razorpayPaymentId: response.razorpay_payment_id,
-              razorpaySignature: response.razorpay_signature,
-              status: "Processing",
-              createdAt: serverTimestamp(),
-            };
+      // 3. Log order to Firestore and proceed to success
+      try {
+        const orderId = data.orderId || `ORD-${Date.now()}`;
+        const orderData = {
+          items: items.map((item) => ({
+            slug: item.slug,
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+            image: item.image,
+          })),
+          total: finalTotal,
+          discount,
+          couponCode,
+          subtotal,
+          shipping: {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            address: formData.address,
+            city: formData.city,
+            state: formData.state,
+            zip: formData.zip,
+          },
+          shiprocketOrderId: data.shiprocketOrderId,
+          status: "Processing",
+          createdAt: serverTimestamp(),
+        };
 
-            const orderDoc = doc(db, "users", user.uid, "orders", orderId);
-            await setDoc(orderDoc, orderData);
+        const orderDoc = doc(db, "users", user.uid, "orders", orderId);
+        await setDoc(orderDoc, orderData);
 
-            // Also log user profile info
-            const userDoc = doc(db, "users", user.uid);
-            await setDoc(
-              userDoc,
-              {
-                email: user.email || formData.email,
-                displayName: user.displayName || formData.name,
-                phone: formData.phone,
-                lastOrderAt: serverTimestamp(),
-                address: formData.address,
-                city: formData.city,
-                state: formData.state,
-                zip: formData.zip,
-              },
-              { merge: true }
-            );
-          } catch (firestoreError) {
-            console.error("Firestore logging error:", firestoreError);
-          }
+        // Also log user profile info
+        const userDoc = doc(db, "users", user.uid);
+        await setDoc(
+          userDoc,
+          {
+            email: user.email || formData.email,
+            displayName: user.displayName || formData.name,
+            phone: formData.phone,
+            lastOrderAt: serverTimestamp(),
+            address: formData.address,
+            city: formData.city,
+            state: formData.state,
+            zip: formData.zip,
+          },
+          { merge: true }
+        );
+      } catch (firestoreError) {
+        console.error("Firestore logging error:", firestoreError);
+      }
 
-          emptyCart();
-          router.push("/checkout/success");
-        },
-        prefill: {
-          name: formData.name,
-          email: formData.email,
-          contact: formData.phone,
-        },
-        theme: {
-          color: "#1A1A1A",
-        },
-      };
-
-      const rzp = new window.Razorpay(options);
-      
-      rzp.on("payment.failed", function (response: any) {
-        console.error("Payment Failed:", response.error);
-        showToast(`Payment Failed: ${response.error.description}`, "error");
-        setLoading(false);
-      });
-
-      rzp.open();
+      emptyCart();
+      router.push("/checkout/success");
     } catch (error) {
       console.error(error);
-      showToast("Something went wrong. Please try again.", "error");
+      showToast("Something went wrong with checkout. Please try again.", "error");
       setLoading(false);
     }
   };
 
   return (
     <>
-      <Script src="https://checkout.razorpay.com/v1/checkout.js" />
+
       
       {/* Toast Notification */}
       <AnimatePresence>

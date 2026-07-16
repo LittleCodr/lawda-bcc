@@ -29,8 +29,7 @@ type Order = {
     zip: string;
     phone: string;
   };
-  razorpayOrderId: string;
-  razorpayPaymentId: string;
+  shiprocketOrderId?: string;
 };
 
 type UserProfile = {
@@ -150,7 +149,7 @@ export default function AccountPage() {
     // Order Info
     doc.text(`Order ID: ${order.id}`, 120, 32);
     doc.text(`Date: ${order.createdAt}`, 120, 38);
-    doc.text(`Payment ID: ${order.razorpayPaymentId || "N/A"}`, 120, 44);
+    doc.text(`Ref ID: ${order.shiprocketOrderId || "N/A"}`, 120, 44);
     doc.text(`Status: ${order.status || "Completed"}`, 120, 50);
     
     // Customer Info

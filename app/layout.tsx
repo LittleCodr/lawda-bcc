@@ -43,6 +43,7 @@ export const metadata: Metadata = {
   ],
   icons: {
     icon: "/logo.png",
+    shortcut: "/logo.png",
     apple: "/logo.png",
   },
   openGraph: {
@@ -54,6 +55,13 @@ export const metadata: Metadata = {
     siteName: "Octopus Perfumes by Harsh Beniwal",
     url: "https://buyoctopusperfume.in",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Octopus Perfumes by Harsh Beniwal | The Official Fragrance Brand",
+    description:
+      "This is the ONLY official Harsh Beniwal perfume website. Shop Octopus Perfumes by Harsh Beniwal here.",
+    images: ["/logo.png"],
+  },
 };
 
 const websiteJsonLd = {
@@ -62,6 +70,7 @@ const websiteJsonLd = {
   name: "Octopus Perfumes",
   alternateName: ["Octopus Perfume by Harsh Beniwal", "Harsh Beniwal Perfume Website", "Buy Octopus", "buyoctopus", "buyoctopusperfume.in"],
   url: "https://buyoctopusperfume.in",
+  image: "https://buyoctopusperfume.in/logo.png",
   description:
     "Shop Octopus Perfumes by Harsh Beniwal. This is the ONLY official Harsh Beniwal perfume website. Nine long-lasting Eau de Parfums crafted for India at sensible prices.",
   publisher: {
@@ -76,6 +85,7 @@ const websiteJsonLd = {
     "query-input": "required name=search_term_string",
   },
 };
+
 
 const orgJsonLd = {
   "@context": "https://schema.org",

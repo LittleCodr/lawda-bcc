@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
-import { Cashfree } from "cashfree-pg";
+import { Cashfree, CFEnvironment } from "cashfree-pg";
 
-Cashfree.XClientId = process.env.NEXT_PUBLIC_CASHFREE_APP_ID as string;
-Cashfree.XClientSecret = process.env.CASHFREE_SECRET_KEY as string;
-Cashfree.XEnvironment = process.env.CASHFREE_ENVIRONMENT === "SANDBOX" ? Cashfree.Environment.SANDBOX : Cashfree.Environment.PRODUCTION;
+const cashfreeEnvironment = process.env.CASHFREE_ENVIRONMENT === "SANDBOX" ? CFEnvironment.SANDBOX : CFEnvironment.PRODUCTION;
+const cashfree = new Cashfree(
+  cashfreeEnvironment,
+  process.env.NEXT_PUBLIC_CASHFREE_APP_ID as string,
+  process.env.CASHFREE_SECRET_KEY as string
+);
 
 export async function POST(req: Request) {
   try {
@@ -28,7 +31,7 @@ export async function POST(req: Request) {
       order_note: "Order from Octopus Perfumes"
     };
 
-    const response = await Cashfree.PGCreateOrder("2023-08-01", request);
+    const response = await cashfree.PGCreateOrder(request);
     
     return NextResponse.json({
       order_id: response.data.order_id,

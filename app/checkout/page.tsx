@@ -11,7 +11,7 @@ import { useAuth } from "@/lib/auth-context";
 import { formatINR } from "@/lib/products";
 import { db } from "@/lib/firebase";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
-
+import { load } from "@cashfreepayments/cashfree-js";
 
 
 export default function CheckoutPage() {
@@ -122,8 +122,15 @@ export default function CheckoutPage() {
     }
 
     try {
-      // 1. Create order on backend via GoKwik
-      const res = await fetch("/api/gokwik", {
+      let cashfree: any;
+      try {
+        cashfree = await load({ mode: process.env.NEXT_PUBLIC_CASHFREE_ENVIRONMENT === "SANDBOX" ? "sandbox" : "production" });
+      } catch (err) {
+        throw new Error("Failed to load Cashfree SDK");
+      }
+
+      // 1. Create order on backend via Cashfree
+      const res = await fetch("/api/cashfree/create-order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -131,6 +138,8 @@ export default function CheckoutPage() {
         body: JSON.stringify({ 
           amount: finalTotal, 
           email: formData.email,
+          phone: formData.phone,
+          name: formData.name,
           items,
           shipping: formData,
           discount,
@@ -145,16 +154,9 @@ export default function CheckoutPage() {
         throw new Error(data.error || "Failed to create order");
       }
 
-      // 2. Handle GoKwik Response
-      if (data.checkoutUrl) {
-        // Redirect to GoKwik Hosted Checkout if provided
-        window.location.href = data.checkoutUrl;
-        return;
-      }
-
-      // 3. Log order to Firestore and proceed to success
+      // 2. Log order to Firestore and proceed to success
       try {
-        const orderId = data.orderId || `ORD-${Date.now()}`;
+        const orderId = data.order_id;
         const orderData = {
           items: items.map((item) => ({
             slug: item.slug,
@@ -176,7 +178,6 @@ export default function CheckoutPage() {
             state: formData.state,
             zip: formData.zip,
           },
-          gokwikOrderId: data.gokwikOrderId,
           status: "Processing",
           createdAt: serverTimestamp(),
         };
@@ -204,8 +205,12 @@ export default function CheckoutPage() {
         console.error("Firestore logging error:", firestoreError);
       }
 
-      emptyCart();
-      router.push("/checkout/success");
+      // 3. Initiate Cashfree Checkout
+      cashfree.checkout({
+        paymentSessionId: data.payment_session_id,
+        returnUrl: `${window.location.origin}/checkout/success?order_id=${data.order_id}`
+      });
+
     } catch (error) {
       console.error(error);
       showToast("Something went wrong with checkout. Please try again.", "error");

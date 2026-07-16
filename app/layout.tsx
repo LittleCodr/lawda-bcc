@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import Marquee from "@/components/Marquee";
 import CartDrawer from "@/components/CartDrawer";
 import LiveSalesPopups from "@/components/LiveSalesPopups";
-import { AlertTriangle } from "lucide-react";
+
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -133,14 +133,7 @@ export default function RootLayout({
           <CartProvider>
             <Marquee />
             
-            {/* Global Fake Website Ticker */}
-            <div className="bg-red-50 border-y border-red-100 py-3 px-6 flex items-center justify-center gap-3 text-red-700 shadow-sm relative z-50">
-              <AlertTriangle className="shrink-0" size={18} />
-              <p className="text-[10px] md:text-xs font-bold uppercase tracking-wider text-center text-balance leading-relaxed">
-                WARNING: buyoctopus.com is a FAKE website. Do NOT buy from there! <br className="md:hidden" />
-                <span className="underline decoration-red-300 underline-offset-4">buyoctopusperfume.in</span> is the ONLY OFFICIAL website.
-              </p>
-            </div>
+
 
             <Navbar />
             <main className="flex-1">{children}</main>

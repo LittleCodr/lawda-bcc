@@ -13,6 +13,11 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { amount, email, items, shipping, phone, name } = body;
 
+    const host = req.headers.get("x-forwarded-host") || req.headers.get("host") || "www.buyoctopusperfume.in";
+    const protocol = req.headers.get("x-forwarded-proto") || "https";
+    const secureProtocol = process.env.CASHFREE_ENVIRONMENT === "SANDBOX" && host.includes("localhost") ? "http" : "https";
+    const origin = `${secureProtocol}://${host}`;
+
     const orderId = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
     const request = {
@@ -26,7 +31,7 @@ export async function POST(req: Request) {
         customer_name: name || "Customer"
       },
       order_meta: {
-        return_url: `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/checkout/success?order_id=${orderId}`,
+        return_url: `${origin}/checkout/success?order_id=${orderId}`,
       },
       order_note: "Order from Octopus Perfumes"
     };

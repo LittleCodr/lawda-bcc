@@ -33,27 +33,27 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
   }, [isHovered, allImages.length]);
 
   const badge = index % 3 === 0 
-    ? { icon: <Flame size={11} />, label: "Selling Fast", style: "bg-rose-500 text-white" }
+    ? { icon: <Flame size={12} />, label: "Selling Fast", style: "bg-red-50 text-red-600 border-red-100" }
     : index % 3 === 1 
-    ? { icon: <Hourglass size={11} />, label: `Only ${(index % 5) + 2} Left`, style: "bg-ink text-paper" }
-    : { icon: <Star size={11} className="fill-current" />, label: "Bestseller", style: "bg-gold text-white" };
+    ? { icon: <Hourglass size={12} />, label: `Only ${(index % 5) + 2} Left`, style: "bg-stone-100 text-stone-700 border-stone-200" }
+    : { icon: <Star size={12} className="fill-current" />, label: "Bestseller", style: "bg-yellow-50 text-yellow-700 border-yellow-200" };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.7, delay: (index % 4) * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      className="group flex flex-col"
+      transition={{ duration: 0.7, delay: (index % 4) * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="group flex flex-col bg-white rounded-2xl p-3 shadow-sm hover:shadow-xl border border-stone-100 transition-all duration-500"
     >
-      <Link href={`/products/${product.slug}`} className="block relative">
+      <Link href={`/products/${product.slug}`} className="block relative overflow-hidden rounded-xl bg-stone-50">
         <div 
-          className="relative aspect-[3/4] overflow-hidden bg-neutral-100"
+          className="relative aspect-[4/5] w-full"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
           {/* Badge */}
-          <span className={`absolute top-3 left-3 z-10 ${badge.style} text-[9px] tracking-[0.15em] uppercase px-2.5 py-1 flex items-center gap-1.5 font-bold`}>
+          <span className={`absolute top-3 left-3 z-10 border ${badge.style} text-[10px] tracking-widest uppercase px-3 py-1.5 flex items-center gap-1.5 font-semibold rounded-full shadow-sm`}>
             {badge.icon} {badge.label}
           </span>
 
@@ -73,36 +73,40 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
           ))}
 
           {/* Hover overlay with quick-add */}
-          <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out z-10">
+          <div className="absolute inset-x-2 bottom-2 translate-y-[120%] group-hover:translate-y-0 transition-transform duration-500 ease-out z-10">
             <button
               onClick={(e) => {
                 e.preventDefault();
                 addItem(product);
               }}
-              className="w-full bg-ink/90 backdrop-blur-sm text-paper py-4 text-[10px] font-bold tracking-[0.25em] uppercase flex items-center justify-center gap-2 hover:bg-gold transition-colors duration-300"
+              className="w-full bg-white/95 backdrop-blur-md text-stone-900 py-3.5 rounded-lg text-[11px] font-bold tracking-[0.2em] uppercase flex items-center justify-center gap-2 hover:bg-gold hover:text-white transition-colors duration-300 shadow-lg border border-white/20"
             >
               <ShoppingBag size={14} />
-              Quick Add — {formatINR(product.price)}
+              Quick Add
             </button>
           </div>
 
           {/* Bottom gradient on hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl" />
         </div>
       </Link>
 
-      {/* Product Info - left-aligned, minimal */}
-      <div className="mt-4 flex flex-col gap-1">
-        <p className="text-[9px] tracking-[0.3em] uppercase text-ink/40 font-medium">
+      {/* Product Info */}
+      <div className="mt-5 px-1 flex flex-col gap-1.5 pb-2">
+        <p className="text-[10px] tracking-[0.2em] uppercase text-stone-400 font-medium">
           Inspired by {product.inspiredBy}
         </p>
-        <div className="flex items-baseline justify-between gap-2">
+        <div className="flex items-start justify-between gap-3 mt-1">
           <Link href={`/products/${product.slug}`}>
-            <h3 className="font-serif-display text-xl md:text-2xl text-ink group-hover:text-gold transition-colors duration-300">{product.name}</h3>
+            <h3 className="font-serif-display text-xl sm:text-2xl text-stone-800 group-hover:text-gold transition-colors duration-300 leading-tight">
+              {product.name}
+            </h3>
           </Link>
-          <span className="text-sm font-semibold text-ink/80 tracking-wide">{formatINR(product.price)}</span>
+          <span className="text-[15px] font-semibold text-stone-900 tracking-wide bg-stone-50 px-2 py-1 rounded-md">
+            {formatINR(product.price)}
+          </span>
         </div>
-        <p className="text-[10px] tracking-[0.15em] uppercase text-ink/50 font-medium">{product.gender}</p>
+        <p className="text-[11px] tracking-[0.1em] uppercase text-stone-500 font-medium mt-1">{product.gender}</p>
       </div>
     </motion.div>
   );

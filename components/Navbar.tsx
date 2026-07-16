@@ -36,26 +36,30 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 w-full z-40 transition-all duration-500 ${
-        scrolled ? "glass-nav py-2 shadow-sm" : "bg-transparent py-4"
+      className={`sticky top-0 w-full z-40 transition-all duration-300 ${
+        scrolled 
+          ? "bg-white/80 backdrop-blur-lg border-b border-stone-200 py-3 shadow-sm" 
+          : "bg-white/50 backdrop-blur-md py-4 border-b border-stone-100"
       }`}
     >
-      <div className="mx-auto max-w-[1440px] px-5 md:px-10 flex items-center justify-between">
+      <div className="mx-auto max-w-[1440px] px-6 md:px-12 flex items-center justify-between">
         <div className="flex-1 relative z-10">
           <button
-            className="md:hidden p-2 -ml-2 text-ink/80 hover:text-ink"
+            className="md:hidden p-2 -ml-2 text-stone-800 hover:text-gold transition-colors"
             aria-label="Open menu"
             onClick={() => setMobileOpen(true)}
           >
-            <Menu size={22} strokeWidth={1.5} />
+            <Menu size={24} strokeWidth={1.5} />
           </button>
 
-          <nav className="hidden md:flex items-center gap-10">
+          <nav className="hidden md:flex items-center gap-12">
             {NAV_LINKS.map((l) => (
-              <Link
+               <Link
                 key={l.href}
                 href={l.href}
-                className="text-[10px] tracking-[0.25em] uppercase text-ink/70 hover:text-gold transition-colors font-medium"
+                className={`text-xs tracking-[0.2em] uppercase font-medium transition-colors ${
+                  scrolled ? "text-stone-600 hover:text-gold" : "text-stone-800 hover:text-gold"
+                }`}
               >
                 {l.label}
               </Link>
@@ -65,17 +69,21 @@ export default function Navbar() {
 
         <Link
           href="/"
-          className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 sm:gap-3 group z-0"
+          className="absolute left-1/2 -translate-x-1/2 flex items-center gap-3 group z-0"
         >
-          <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-ink/10 group-hover:border-gold/50 transition-colors">
+          <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden shadow-sm group-hover:shadow-md transition-shadow">
              <Image src="/logo.png" alt="Octopus" fill className="object-cover" />
           </div>
-          <span className="font-serif-display text-xl sm:text-2xl md:text-3xl tracking-[0.15em] sm:tracking-[0.2em] uppercase text-ink">
+          <span className={`font-serif-display text-2xl sm:text-3xl tracking-[0.15em] uppercase transition-colors ${
+            scrolled ? "text-stone-900" : "text-stone-900"
+          }`}>
             Octopus
           </span>
         </Link>
 
-        <div className="flex items-center gap-4 sm:gap-5 flex-1 justify-end text-ink/80 relative z-10">
+        <div className={`flex items-center gap-5 sm:gap-6 flex-1 justify-end relative z-10 transition-colors ${
+          scrolled ? "text-stone-700" : "text-stone-800"
+        }`}>
           <button
             aria-label="Search"
             className="p-2 hover:text-gold transition-colors"
@@ -94,13 +102,13 @@ export default function Navbar() {
             
             {user && (
               <div className="absolute right-0 top-full pt-4 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-50">
-                <div className="glass-panel overflow-hidden shadow-lg rounded-xl">
-                  <div className="p-5 border-b border-ink/5 bg-ink/5">
-                    <p className="text-sm font-medium text-ink truncate">{user.displayName || "My Account"}</p>
-                    <p className="text-xs text-ink/60 truncate mt-1">{user.email}</p>
+                <div className="bg-white/90 backdrop-blur-xl border border-stone-200 overflow-hidden shadow-xl rounded-2xl">
+                  <div className="p-5 border-b border-stone-100 bg-stone-50/50">
+                    <p className="text-sm font-medium text-stone-900 truncate">{user.displayName || "My Account"}</p>
+                    <p className="text-xs text-stone-500 truncate mt-1">{user.email}</p>
                   </div>
                   <div className="flex flex-col py-2">
-                    <Link href="/account" className="px-5 py-3 text-xs uppercase tracking-[0.2em] hover:bg-ink/5 text-ink/80 hover:text-ink transition-colors flex justify-between items-center group/link">
+                    <Link href="/account" className="px-5 py-3 text-xs uppercase tracking-[0.2em] hover:bg-stone-50 text-stone-600 hover:text-stone-900 transition-colors flex justify-between items-center group/link">
                       <span>View Profile</span>
                       <span className="opacity-0 group-hover/link:opacity-100 transition-opacity text-gold">→</span>
                     </Link>
@@ -116,7 +124,7 @@ export default function Navbar() {
           >
             <ShoppingBag size={20} strokeWidth={1.5} />
             {count > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-gold text-white font-bold text-[9px] flex items-center justify-center shadow-sm">
+              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-stone-900 text-white font-bold text-[9px] flex items-center justify-center shadow-md">
                 {count}
               </span>
             )}
@@ -125,23 +133,23 @@ export default function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="fixed inset-0 z-50 bg-paper/95 backdrop-blur-xl flex flex-col md:hidden">
-          <div className="h-[76px] flex items-center justify-between px-5 border-b border-ink/10">
+        <div className="fixed inset-0 z-50 bg-white/95 backdrop-blur-2xl flex flex-col md:hidden">
+          <div className="h-[76px] flex items-center justify-between px-6 border-b border-stone-200/50">
             <div className="flex items-center gap-3">
-              <Image src="/logo.png" alt="Octopus" width={32} height={32} className="rounded-full border border-ink/10" />
-              <span className="font-serif-display text-2xl uppercase text-ink tracking-[0.1em]">Octopus</span>
+              <Image src="/logo.png" alt="Octopus" width={32} height={32} className="rounded-full shadow-sm" />
+              <span className="font-serif-display text-2xl uppercase text-stone-900 tracking-[0.1em]">Octopus</span>
             </div>
-            <button onClick={() => setMobileOpen(false)} aria-label="Close menu" className="p-2 text-ink hover:text-gold transition-colors">
+            <button onClick={() => setMobileOpen(false)} aria-label="Close menu" className="p-2 text-stone-800 hover:text-gold transition-colors">
               <X size={24} strokeWidth={1.5} />
             </button>
           </div>
           <nav className="flex flex-col gap-2 p-8">
             {NAV_LINKS.map((l) => (
-              <Link
+               <Link
                 key={l.href}
                 href={l.href}
                 onClick={() => setMobileOpen(false)}
-                className="py-5 text-xl font-serif-display text-ink/80 hover:text-gold border-b border-ink/5 transition-colors"
+                className="py-6 text-2xl font-serif-display text-stone-800 hover:text-gold border-b border-stone-100 transition-colors"
               >
                 {l.label}
               </Link>
@@ -149,7 +157,7 @@ export default function Navbar() {
             <Link
               href={user ? "/account" : "/auth"}
               onClick={() => setMobileOpen(false)}
-              className="py-5 text-xl font-serif-display text-ink/80 hover:text-gold border-b border-ink/5 transition-colors"
+              className="py-6 text-2xl font-serif-display text-stone-800 hover:text-gold border-b border-stone-100 transition-colors"
             >
               {user ? "My Account" : "Sign In"}
             </Link>
@@ -158,42 +166,42 @@ export default function Navbar() {
       )}
 
       {searchOpen && (
-        <div className="fixed inset-0 z-50 bg-ink/30 backdrop-blur-md flex items-start justify-center pt-24 px-4" onClick={() => setSearchOpen(false)}>
+        <div className="fixed inset-0 z-50 bg-stone-900/20 backdrop-blur-md flex items-start justify-center pt-24 px-4" onClick={() => setSearchOpen(false)}>
           <div
-            className="w-full max-w-2xl glass-panel rounded-2xl p-6 shadow-xl border border-ink/5"
+            className="w-full max-w-2xl bg-white rounded-3xl p-6 shadow-2xl border border-stone-100"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center gap-4 border-b border-ink/10 pb-4">
-              <Search size={22} strokeWidth={1.5} className="text-gold" />
+            <div className="flex items-center gap-4 border-b border-stone-100 pb-4">
+              <Search size={22} strokeWidth={1.5} className="text-stone-400" />
               <input
                 autoFocus
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search the collection..."
-                className="w-full bg-transparent outline-none text-ink text-lg tracking-wide placeholder:text-ink/30"
+                className="w-full bg-transparent outline-none text-stone-900 text-lg font-medium placeholder:text-stone-400 placeholder:font-normal"
               />
-              <button onClick={() => setSearchOpen(false)} aria-label="Close search" className="text-ink/50 hover:text-ink transition-colors">
+              <button onClick={() => setSearchOpen(false)} aria-label="Close search" className="text-stone-400 hover:text-stone-900 transition-colors">
                 <X size={22} strokeWidth={1.5} />
               </button>
             </div>
             {results.length > 0 && (
-              <ul className="mt-4 max-h-[60vh] overflow-y-auto no-scrollbar divide-y divide-ink/5">
+              <ul className="mt-4 max-h-[60vh] overflow-y-auto no-scrollbar divide-y divide-stone-50">
                 {results.map((p) => (
                   <li key={p.slug}>
-                    <Link
+                     <Link
                       href={`/products/${p.slug}`}
                       onClick={() => setSearchOpen(false)}
-                      className="flex items-center justify-between py-4 group hover:bg-ink/5 -mx-4 px-4 rounded-lg transition-colors"
+                      className="flex items-center justify-between py-4 group hover:bg-stone-50 -mx-4 px-4 rounded-xl transition-colors"
                     >
-                      <span className="text-ink/90 group-hover:text-gold font-medium tracking-wider">{p.name}</span>
-                      <span className="text-ink/50 text-sm tracking-widest">{formatINR(p.price)}</span>
+                      <span className="text-stone-700 group-hover:text-stone-900 font-medium">{p.name}</span>
+                      <span className="text-stone-500 text-sm tracking-widest">{formatINR(p.price)}</span>
                     </Link>
                   </li>
                 ))}
               </ul>
             )}
             {query.trim() && results.length === 0 && (
-              <p className="mt-8 text-center text-ink/40 tracking-widest text-sm uppercase">No fragrances found.</p>
+              <p className="mt-8 text-center text-stone-400 tracking-widest text-sm uppercase">No fragrances found.</p>
             )}
           </div>
         </div>

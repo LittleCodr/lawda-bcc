@@ -65,13 +65,13 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="relative z-10 bg-white/90 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl w-full max-w-sm text-center"
         >
-          <p className="text-gold text-[10px] tracking-[0.4em] uppercase mb-3 font-bold">Harsh Beniwal Brand</p>
+          <p className="text-gold text-[10px] tracking-[0.4em] uppercase mb-3 font-bold">By Harsh Beniwal · Est. 2025</p>
           <h1 className="font-serif-display text-stone-900 text-4xl leading-[1.15] mb-4">
             The Art of<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-600">Fragrance</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-600">Fine Fragrance</span>
           </h1>
           <p className="text-stone-600 text-sm mb-6 leading-relaxed">
-            Nine signature Eau de Parfums, crafted in India. Exceptional scent.
+            Nine luxury Eau de Parfums, crafted in India for the Indian connoisseur.
           </p>
           <Link
             href="#shop"
@@ -102,7 +102,7 @@ export default function Hero() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-yellow-600">Perfumes</span>
             </h1>
             <p className="text-stone-600 text-base xl:text-lg max-w-md mb-12 leading-relaxed">
-              Discover the official luxury fragrance brand by Harsh Beniwal. Nine signature Eau de Parfums designed to leave a lasting impression.
+              The official luxury fragrance brand by Harsh Beniwal. Nine signature Eau de Parfums — crafted to leave lasting impressions at honest prices.
             </p>
             <div className="flex items-center gap-6">
               <Link

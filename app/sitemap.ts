@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { products } from '@/lib/products'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://buyoctopusperfume.in'
+  const baseUrl = 'https://octopusperfumes.in'
   
   // Static routes
   const routes = [
@@ -18,10 +18,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1 : 0.8,
+    priority: route === '' ? 1 : route === '/collections/all' ? 0.9 : 0.6,
   }))
 
-  // Dynamic product routes
+  // Dynamic product routes — higher priority since these are money pages
   const productRoutes = products.map((product) => ({
     url: `${baseUrl}/products/${product.slug}`,
     lastModified: new Date(),

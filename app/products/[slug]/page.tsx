@@ -5,7 +5,8 @@ import { getProductBySlug, products } from "@/lib/products";
 import AddToCartPanel from "@/components/AddToCartPanel";
 import { Accordion } from "@/components/Accordion";
 import ProductCard from "@/components/ProductCard";
-import { Eye, ShieldCheck, RefreshCw, Banknote, Tag, Flame } from "lucide-react";
+import { ShieldCheck, RefreshCw, Banknote, Tag, Flame } from "lucide-react";
+import LiveViewerCount from "@/components/LiveViewerCount";
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -20,20 +21,27 @@ export async function generateMetadata({
   const product = getProductBySlug(slug);
   if (!product) return {};
   return {
-    title: `${product.name} - Octopus Perfumes by Harsh Beniwal`,
-    description: `Buy ${product.name} by Octopus Perfumes (Harsh Beniwal). ${product.tagline} Inspired by ${product.inspiredBy}. ${product.gender}. 50ML Eau de Parfum - now 50% off.`,
+    title: `${product.name} Perfume by Octopus | Harsh Beniwal | Buy Online`,
+    description: `Buy ${product.name} by Octopus Perfumes (Harsh Beniwal). ${product.tagline} Inspired by ${product.inspiredBy}. ${product.gender}. 50ML Eau de Parfum. Only at octopusperfumes.in`,
     keywords: [
       `${product.name} octopus perfume`,
+      `${product.name} perfume`,
       "octopus perfumes",
       "octopus perfume by harsh beniwal",
       "harsh beniwal perfume website",
+      "octopusperfumes.in",
       `buy ${product.name} perfume`,
+      `octopus ${product.name.toLowerCase()}`,
       product.inspiredBy,
     ],
+    alternates: {
+      canonical: `https://octopusperfumes.in/products/${slug}`,
+    },
     openGraph: {
-      title: `${product.name} - Octopus Perfumes`,
-      description: product.tagline,
+      title: `${product.name} - Octopus Perfumes by Harsh Beniwal`,
+      description: `${product.tagline} ${product.gender}. 50ML EDP.`,
       images: [product.images.hero],
+      url: `https://octopusperfumes.in/products/${slug}`,
     },
   };
 }
@@ -57,7 +65,7 @@ export default async function ProductPage({
     "@context": "https://schema.org",
     "@type": "Product",
     name: `${product.name} - Octopus Perfumes`,
-    image: `https://buyoctopusperfume.in${product.images.hero}`,
+    image: `https://octopusperfumes.in${product.images.hero}`,
     description: `${product.tagline} Inspired by ${product.inspiredBy}. ${product.gender}. 50ML Eau de Parfum by Octopus Perfumes (Harsh Beniwal).`,
     sku: product.sku,
     brand: {
@@ -66,7 +74,7 @@ export default async function ProductPage({
     },
     offers: {
       "@type": "Offer",
-      url: `https://buyoctopusperfume.in/products/${product.slug}`,
+      url: `https://octopusperfumes.in/products/${product.slug}`,
       priceCurrency: "INR",
       price: product.price,
       priceValidUntil: "2027-12-31",
@@ -101,19 +109,19 @@ export default async function ProductPage({
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://buyoctopusperfume.in/"
+        "item": "https://octopusperfumes.in/"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Products",
-        "item": "https://buyoctopusperfume.in/collections/all"
+        "item": "https://octopusperfumes.in/collections/all"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": product.name,
-        "item": `https://buyoctopusperfume.in/products/${product.slug}`
+        "item": `https://octopusperfumes.in/products/${product.slug}`
       }
     ]
   };
@@ -138,7 +146,7 @@ export default async function ProductPage({
               >
                 <Image
                   src={src}
-                  alt={`${product.name} ${i + 1}`}
+                  alt={`${product.name} Octopus Perfume by Harsh Beniwal - Image ${i + 1}`}
                   fill
                   priority={i === 0}
                   sizes="(max-width: 1024px) 50vw, 33vw"
@@ -156,13 +164,10 @@ export default async function ProductPage({
             <p className="text-xs tracking-[0.15em] uppercase text-muted mb-4">50 ML - Eau de Parfum</p>
             
             <div className="flex flex-wrap items-center gap-3 mb-6">
-              <div className="flex items-center gap-1.5 text-rose-600 bg-rose-50 border border-rose-100 px-3 py-1.5 w-fit rounded-sm">
-                <Eye size={14} className="animate-pulse" />
-                <p className="text-[11px] font-medium tracking-wide uppercase">{Math.floor(Math.random() * 50) + 20} people looking</p>
-              </div>
+              <LiveViewerCount />
               <div className="flex items-center gap-1.5 text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1.5 w-fit rounded-sm">
                 <Flame size={14} className="animate-pulse text-red-500" />
-                <p className="text-[11px] font-bold tracking-wide uppercase text-red-600">Selling Fast - Only {Math.floor(Math.random() * 5) + 3} left!</p>
+                <p className="text-[11px] font-bold tracking-wide uppercase text-red-600">Selling Fast - Limited Stock!</p>
               </div>
             </div>
 

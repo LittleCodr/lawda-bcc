@@ -1,7 +1,12 @@
-export const metadata = {
-  title: "About Us | Octopus Perfumes by Harsh Beniwal | buyoctopusperfume.in",
-  description: "Learn about Octopus, the official consumer fragrance brand founded by Harsh Beniwal. Shop authentic perfumes only at buyoctopusperfume.in.",
-  keywords: ["buyoctopusperfume.in", "buyoctopusperfume", "octopus perfume harsh beniwal", "octopus perfume official website", "octopus perfumes", "harsh beniwal brand"],
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us | Octopus Perfumes by Harsh Beniwal | octopusperfumes.in",
+  description: "Learn about Octopus, the official consumer fragrance brand founded by Harsh Beniwal. Shop authentic perfumes only at octopusperfumes.in. Made in India, for India.",
+  keywords: ["octopusperfumes.in", "octopus perfumes", "octopus perfume harsh beniwal", "octopus perfume official website", "harsh beniwal brand", "buyoctopusperfume"],
+  alternates: {
+    canonical: "https://octopusperfumes.in/pages/about-us",
+  },
 };
 
 export default function AboutUsPage() {
@@ -9,7 +14,7 @@ export default function AboutUsPage() {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     name: "About Us - Octopus Perfumes",
-    url: "https://buyoctopusperfume.in/pages/about-us",
+    url: "https://octopusperfumes.in/pages/about-us",
     description: "Learn about Octopus, the official consumer fragrance brand founded by Harsh Beniwal."
   };
 
@@ -21,13 +26,13 @@ export default function AboutUsPage() {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://buyoctopusperfume.in/"
+        "item": "https://octopusperfumes.in/"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "About Us",
-        "item": "https://buyoctopusperfume.in/pages/about-us"
+        "item": "https://octopusperfumes.in/pages/about-us"
       }
     ]
   };
@@ -48,7 +53,7 @@ export default function AboutUsPage() {
           About Us
         </h1>
         <p className="text-lg md:text-2xl text-stone-700 max-w-3xl mx-auto leading-relaxed">
-          Welcome to the ONLY official website of Octopus Perfumes (<span className="font-semibold text-stone-900">buyoctopusperfume.in</span>). 
+          Welcome to the ONLY official website of Octopus Perfumes (<span className="font-semibold text-stone-900">octopusperfumes.in</span>). 
           Octopus is a fine fragrance brand founded by Harsh Beniwal, focused on building high-quality perfumes at prices that make sense for India.
         </p>
       </section>

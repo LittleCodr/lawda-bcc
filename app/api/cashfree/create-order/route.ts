@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { amount, email, items, shipping, phone, name } = body;
 
-    const rawHost = req.headers.get("x-forwarded-host") || req.headers.get("host") || "buyoctopusperfume.in";
+    const rawHost = req.headers.get("x-forwarded-host") || req.headers.get("host") || "octopusperfumes.in";
     const host = rawHost.replace(/^www\./, "");
     const protocol = req.headers.get("x-forwarded-proto") || "https";
     const secureProtocol = process.env.CASHFREE_ENVIRONMENT === "SANDBOX" && host.includes("localhost") ? "http" : "https";

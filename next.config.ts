@@ -5,6 +5,16 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "octopusperfumes.in",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.octopusperfumes.in",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "buyoctopusperfume.in",
         pathname: "/**",
       },
@@ -22,6 +32,30 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Redirect old domain → new primary domain
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'buyoctopusperfume.in',
+          },
+        ],
+        destination: 'https://octopusperfumes.in/:path*',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.buyoctopusperfume.in',
+          },
+        ],
+        destination: 'https://octopusperfumes.in/:path*',
+        permanent: true,
+      },
+      // Redirect www → non-www (canonical)
       {
         source: '/:path*',
         has: [
@@ -30,24 +64,11 @@ const nextConfig: NextConfig = {
             value: 'www.octopusperfumes.in',
           },
         ],
-        destination: 'https://buyoctopusperfume.in/:path*',
+        destination: 'https://octopusperfumes.in/:path*',
         permanent: true,
       },
-      {
-        source: '/:path*',
-        has: [
-          {
-            type: 'host',
-            value: 'octopusperfumes.in',
-          },
-        ],
-        destination: 'https://buyoctopusperfume.in/:path*',
-        permanent: true,
-      }
     ]
   },
 };
 
 export default nextConfig;
-
-import('@opennextjs/cloudflare').then(m => m.initOpenNextCloudflareForDev());

@@ -226,6 +226,11 @@ export default function CheckoutPage() {
         surl: data.surl,
         furl: data.furl,
         hash: data.hash,
+        udf1: "",
+        udf2: "",
+        udf3: "",
+        udf4: "",
+        udf5: "",
       };
 
       for (const key in params) {

@@ -10,6 +10,7 @@ import { useAuth } from "@/lib/auth-context";
 import { formatINR } from "@/lib/products";
 import { db } from "@/lib/firebase";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { load } from "@cashfreepayments/cashfree-js";
 
 export default function CheckoutPage() {
   const { items, subtotal, discount, applyCoupon, removeCoupon, couponCode } = useCart();
@@ -134,8 +135,15 @@ export default function CheckoutPage() {
     setLoading(true);
 
     try {
-      // 1. Get hash from backend
-      const res = await fetch("/api/payu/hash", {
+      let cashfree: any;
+      try {
+        cashfree = await load({ mode: process.env.NEXT_PUBLIC_CASHFREE_ENVIRONMENT === "SANDBOX" ? "sandbox" : "production" });
+      } catch (err) {
+        throw new Error("Failed to load Cashfree SDK");
+      }
+
+      // 1. Create order on backend via Cashfree
+      const res = await fetch("/api/cashfree/create-order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -145,7 +153,6 @@ export default function CheckoutPage() {
           email: formData.email,
           phone: formData.phone,
           name: formData.name,
-          userId: user.uid,
           items,
           shipping: formData,
           discount,
@@ -157,12 +164,12 @@ export default function CheckoutPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || "Failed to generate payment hash");
+        throw new Error(data.error || "Failed to create order");
       }
 
       // 2. Log order to Firestore
       try {
-        const orderId = data.txnid;
+        const orderId = data.order_id;
         const orderData = {
           items: items.map((item) => ({
             slug: item.slug,
@@ -210,39 +217,10 @@ export default function CheckoutPage() {
         console.error("Firestore logging error:", firestoreError);
       }
 
-      // 3. Initiate PayU Checkout via form post
-      const form = document.createElement("form");
-      form.method = "POST";
-      form.action = data.action;
-
-      const params: Record<string, string> = {
-        key: data.key,
-        txnid: data.txnid,
-        amount: data.amount,
-        productinfo: data.productinfo,
-        firstname: data.firstname,
-        email: data.email,
-        phone: data.phone,
-        surl: data.surl,
-        furl: data.furl,
-        hash: data.hash,
-        udf1: data.udf1,
-        udf2: data.udf2,
-        udf3: data.udf3,
-        udf4: data.udf4,
-        udf5: data.udf5,
-      };
-
-      for (const key in params) {
-        const hiddenField = document.createElement("input");
-        hiddenField.type = "hidden";
-        hiddenField.name = key;
-        hiddenField.value = params[key];
-        form.appendChild(hiddenField);
-      }
-
-      document.body.appendChild(form);
-      form.submit();
+      // 3. Initiate Cashfree Checkout
+      cashfree.checkout({
+        paymentSessionId: data.payment_session_id
+      });
 
     } catch (error: any) {
       console.error(error);

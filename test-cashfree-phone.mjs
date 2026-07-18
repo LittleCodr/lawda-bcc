@@ -19,9 +19,9 @@ async function test() {
         customer_name: "Customer"
       },
       order_meta: {
-        return_url: `https://buyoctopusperfume.in/checkout/success?order_id=test`,
+        return_url: `https://octopusperfume.in/checkout/success?order_id=test`,
       },
-      order_note: "Order from Octopus Perfumes"
+      order_note: "Order from Octopus Perfume"
     };
 
     console.log("Sending request", request);

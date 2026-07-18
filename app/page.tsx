@@ -29,7 +29,7 @@ export default function Home() {
           <p className="text-[11px] tracking-[0.3em] uppercase text-white/50 mb-8 font-semibold">From the Desk of Harsh Beniwal</p>
           <p className="font-serif-display text-3xl md:text-5xl leading-tight text-balance mb-12 text-white/90">
             "I set out to create luxury-grade fragrances at honest prices — built specifically for
-            India, cutting out every unnecessary middleman. octopusperfumes.in is the only official place to buy them."
+            India, cutting out every unnecessary middleman. octopusperfume.in is the only official place to buy them."
           </p>
           <div className="flex flex-col items-center gap-4">
             <div className="w-12 h-[1px] bg-gold" />
@@ -43,7 +43,7 @@ export default function Home() {
           {[
             { title: "Powerful Projection", body: "Engineered to be noticed — these fragrances fill a room, not just your collar." },
             { title: "All-Day Longevity", body: "50ML Eau de Parfum concentration designed to carry you from morning meetings to midnight plans." },
-            { title: "Crafted in India, for India", body: "Manufactured in Sonipat, Haryana — premium ingredients, zero middleman markups. Shop only at octopusperfumes.in" },
+            { title: "Crafted in India, for India", body: "Manufactured in Sonipat, Haryana — premium ingredients, zero middleman markups. Shop only at octopusperfume.in" },
           ].map((f) => (
             <div key={f.title} className="flex flex-col items-center gap-4 pt-12 md:pt-0 md:px-8 first:pt-0">
               <div className="w-10 h-10 rounded-full bg-stone-50 flex items-center justify-center mb-2">

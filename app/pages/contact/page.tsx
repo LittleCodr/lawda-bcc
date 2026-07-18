@@ -21,8 +21,8 @@ export default function ContactPage() {
         </p>
 
         <p className="text-[11px] tracking-[0.2em] uppercase text-muted mb-4">Email Us</p>
-        <a href="mailto:support@octopusperfumes.in" className="text-sm underline">
-          support@octopusperfumes.in
+        <a href="mailto:support@octopusperfume.in" className="text-sm underline">
+          support@octopusperfume.in
         </a>
 
         <p className="text-[11px] tracking-[0.2em] uppercase text-muted mb-4 mt-8">Follow Us</p>

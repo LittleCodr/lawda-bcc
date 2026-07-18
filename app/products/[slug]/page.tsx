@@ -22,26 +22,26 @@ export async function generateMetadata({
   if (!product) return {};
   return {
     title: `${product.name} Perfume by Octopus | Harsh Beniwal | Buy Online`,
-    description: `Buy ${product.name} by Octopus Perfumes (Harsh Beniwal). ${product.tagline} Inspired by ${product.inspiredBy}. ${product.gender}. 50ML Eau de Parfum. Only at octopusperfumes.in`,
+    description: `Buy ${product.name} by Octopus Perfume (Harsh Beniwal). ${product.tagline} Inspired by ${product.inspiredBy}. ${product.gender}. 50ML Eau de Parfum. Only at octopusperfume.in`,
     keywords: [
       `${product.name} octopus perfume`,
       `${product.name} perfume`,
-      "octopus perfumes",
+      "octopus perfume",
       "octopus perfume by harsh beniwal",
       "harsh beniwal perfume website",
-      "octopusperfumes.in",
+      "octopusperfume.in",
       `buy ${product.name} perfume`,
       `octopus ${product.name.toLowerCase()}`,
       product.inspiredBy,
     ],
     alternates: {
-      canonical: `https://octopusperfumes.in/products/${slug}`,
+      canonical: `https://octopusperfume.in/products/${slug}`,
     },
     openGraph: {
-      title: `${product.name} - Octopus Perfumes by Harsh Beniwal`,
+      title: `${product.name} - Octopus Perfume by Harsh Beniwal`,
       description: `${product.tagline} ${product.gender}. 50ML EDP.`,
       images: [product.images.hero],
-      url: `https://octopusperfumes.in/products/${slug}`,
+      url: `https://octopusperfume.in/products/${slug}`,
     },
   };
 }
@@ -64,17 +64,17 @@ export default async function ProductPage({
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
-    name: `${product.name} - Octopus Perfumes`,
-    image: `https://octopusperfumes.in${product.images.hero}`,
-    description: `${product.tagline} Inspired by ${product.inspiredBy}. ${product.gender}. 50ML Eau de Parfum by Octopus Perfumes (Harsh Beniwal).`,
+    name: `${product.name} - Octopus Perfume`,
+    image: `https://octopusperfume.in${product.images.hero}`,
+    description: `${product.tagline} Inspired by ${product.inspiredBy}. ${product.gender}. 50ML Eau de Parfum by Octopus Perfume (Harsh Beniwal).`,
     sku: product.sku,
     brand: {
       "@type": "Brand",
-      name: "Octopus Perfumes by Harsh Beniwal",
+      name: "Octopus Perfume by Harsh Beniwal",
     },
     offers: {
       "@type": "Offer",
-      url: `https://octopusperfumes.in/products/${product.slug}`,
+      url: `https://octopusperfume.in/products/${product.slug}`,
       priceCurrency: "INR",
       price: product.price,
       priceValidUntil: "2027-12-31",
@@ -109,19 +109,19 @@ export default async function ProductPage({
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://octopusperfumes.in/"
+        "item": "https://octopusperfume.in/"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Products",
-        "item": "https://octopusperfumes.in/collections/all"
+        "item": "https://octopusperfume.in/collections/all"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": product.name,
-        "item": `https://octopusperfumes.in/products/${product.slug}`
+        "item": `https://octopusperfume.in/products/${product.slug}`
       }
     ]
   };

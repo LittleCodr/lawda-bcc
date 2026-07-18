@@ -5,6 +5,16 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "octopusperfume.in",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.octopusperfume.in",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "octopusperfumes.in",
         pathname: "/**",
       },
@@ -41,7 +51,7 @@ const nextConfig: NextConfig = {
             value: 'buyoctopusperfume.in',
           },
         ],
-        destination: 'https://octopusperfumes.in/:path*',
+        destination: 'https://octopusperfume.in/:path*',
         permanent: true,
       },
       {
@@ -52,10 +62,20 @@ const nextConfig: NextConfig = {
             value: 'www.buyoctopusperfume.in',
           },
         ],
-        destination: 'https://octopusperfumes.in/:path*',
+        destination: 'https://octopusperfume.in/:path*',
         permanent: true,
       },
-      // Redirect www → non-www (canonical)
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'octopusperfumes.in',
+          },
+        ],
+        destination: 'https://octopusperfume.in/:path*',
+        permanent: true,
+      },
       {
         source: '/:path*',
         has: [
@@ -64,7 +84,19 @@ const nextConfig: NextConfig = {
             value: 'www.octopusperfumes.in',
           },
         ],
-        destination: 'https://octopusperfumes.in/:path*',
+        destination: 'https://octopusperfume.in/:path*',
+        permanent: true,
+      },
+      // Redirect www → non-www (canonical)
+      {
+        source: '/:path*',
+        has: [
+          {
+            type: 'host',
+            value: 'www.octopusperfume.in',
+          },
+        ],
+        destination: 'https://octopusperfume.in/:path*',
         permanent: true,
       },
     ]

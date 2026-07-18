@@ -3,11 +3,11 @@ import ProductCard from "@/components/ProductCard";
 import { products } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "Shop All Perfumes | Octopus Perfumes by Harsh Beniwal",
-  description: "Browse the complete Octopus Perfumes collection by Harsh Beniwal. 9 luxury Eau de Parfums — Darling, Mirage, Outlaw, Overlord, Paradox, Promised, Rhapsody, Somersault & Your Move. Free shipping across India.",
-  keywords: ["octopus perfumes", "buy octopus perfume", "harsh beniwal perfume", "octopus all perfumes", "octopusperfumes.in", "octopus collection"],
+  title: "Shop All Perfumes | Octopus Perfume by Harsh Beniwal",
+  description: "Browse the complete Octopus Perfume collection by Harsh Beniwal. 9 luxury Eau de Parfums — Darling, Mirage, Outlaw, Overlord, Paradox, Promised, Rhapsody, Somersault & Your Move. Free shipping across India.",
+  keywords: ["octopus perfume", "buy octopus perfume", "harsh beniwal perfume", "octopus all perfumes", "octopusperfume.in", "octopus collection"],
   alternates: {
-    canonical: "https://octopusperfumes.in/collections/all",
+    canonical: "https://octopusperfume.in/collections/all",
   },
 };
 
@@ -15,15 +15,15 @@ export default function CollectionsAllPage() {
   const collectionJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "All Octopus Perfumes",
-    description: "The complete collection of Eau de Parfums by Octopus Perfumes (Harsh Beniwal)",
-    url: "https://octopusperfumes.in/collections/all",
+    name: "All Octopus Perfume",
+    description: "The complete collection of Eau de Parfums by Octopus Perfume (Harsh Beniwal)",
+    url: "https://octopusperfume.in/collections/all",
     numberOfItems: products.length,
     itemListElement: products.map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,
       name: p.name,
-      url: `https://octopusperfumes.in/products/${p.slug}`,
+      url: `https://octopusperfume.in/products/${p.slug}`,
     })),
   };
 

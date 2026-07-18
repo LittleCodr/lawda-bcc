@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Privacy Policy | Octopus Perfumes",
+  title: "Privacy Policy | Octopus Perfume",
   description: "Privacy Policy for Octopus Lifestyle Private Limited.",
 };
 
@@ -138,8 +138,8 @@ export default function PrivacyPolicyPage() {
             <p className="text-ink/80 leading-relaxed mb-4">
               For any questions, concerns or grievances relating to this Privacy Policy or the handling of personal information, users may contact:
             </p>
-            <a href="mailto:support@octopusperfumes.in" className="inline-block text-ink font-bold hover:opacity-70 transition-opacity border-b border-ink">
-              support@octopusperfumes.in
+            <a href="mailto:support@octopusperfume.in" className="inline-block text-ink font-bold hover:opacity-70 transition-opacity border-b border-ink">
+              support@octopusperfume.in
             </a>
           </section>
         </div>

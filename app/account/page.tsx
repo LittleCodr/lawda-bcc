@@ -144,7 +144,7 @@ export default function AccountPage() {
     doc.text("Octopus Lifestyle Private Limited", 14, 32);
     doc.text("1401, 14th Floor, Emaar Palm Spring Plaza", 14, 38);
     doc.text("Sector 54, Gurgaon, Haryana – 122011", 14, 44);
-    doc.text("Email: support@octopusperfumes.in", 14, 50);
+    doc.text("Email: support@octopusperfume.in", 14, 50);
     
     // Order Info
     doc.text(`Order ID: ${order.id}`, 120, 32);

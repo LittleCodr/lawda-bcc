@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Terms & Conditions | Octopus Perfumes",
+  title: "Terms & Conditions | Octopus Perfume",
   description: "Terms and Conditions for Octopus Lifestyle Private Limited.",
 };
 

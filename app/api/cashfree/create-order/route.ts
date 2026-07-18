@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { amount, email, items, shipping, phone, name } = body;
 
-    const rawHost = req.headers.get("x-forwarded-host") || req.headers.get("host") || "octopusperfumes.in";
+    const rawHost = req.headers.get("x-forwarded-host") || req.headers.get("host") || "octopusperfume.in";
     const host = rawHost.replace(/^www\./, "");
     const protocol = req.headers.get("x-forwarded-proto") || "https";
     const secureProtocol = process.env.CASHFREE_ENVIRONMENT === "SANDBOX" && host.includes("localhost") ? "http" : "https";
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
         return_url: `${origin}/checkout/success?order_id=${orderId}`,
         notify_url: `${origin}/api/cashfree/webhook`,
       },
-      order_note: "Order from Octopus Perfumes"
+      order_note: "Order from Octopus Perfume"
     };
 
     const response = await cashfree.PGCreateOrder(request);

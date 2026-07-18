@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Shipping Policy | Octopus Perfumes",
+  title: "Shipping Policy | Octopus Perfume",
   description: "Shipping policy for Octopus Lifestyle Private Limited.",
 };
 

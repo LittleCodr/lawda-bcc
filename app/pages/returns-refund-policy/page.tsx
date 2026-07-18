@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Returns & Refund Policy | Octopus Perfumes",
+  title: "Returns & Refund Policy | Octopus Perfume",
   description: "Returns and refund policy for Octopus Lifestyle Private Limited.",
 };
 
@@ -28,7 +28,7 @@ export default function ReturnsRefundPolicyPage() {
               WHAT SHOULD I DO IF I RECEIVE A DAMAGED, DEFECTIVE, OR INCORRECT PRODUCT?
             </h2>
             <p className="text-ink/80 leading-relaxed mb-4">
-              If you receive a damaged, defective, or wrong item, please contact us within 24 hours of receiving your order. Ensure you include an unboxing video and pictures of the product along with the original packaging. Email us at <a href="mailto:support@octopusperfumes.in" className="font-bold border-b border-ink">support@octopusperfumes.in</a>, and we will resolve the issue promptly.
+              If you receive a damaged, defective, or wrong item, please contact us within 24 hours of receiving your order. Ensure you include an unboxing video and pictures of the product along with the original packaging. Email us at <a href="mailto:support@octopusperfume.in" className="font-bold border-b border-ink">support@octopusperfume.in</a>, and we will resolve the issue promptly.
             </p>
           </section>
 

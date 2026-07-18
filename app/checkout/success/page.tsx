@@ -25,7 +25,7 @@ function SuccessContent() {
 
     const verifyPayment = async () => {
       try {
-        const res = await fetch("/api/cashfree/verify", {
+        const res = await fetch("/api/payu/verify", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ orderId }),

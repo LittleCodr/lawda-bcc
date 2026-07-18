@@ -9,8 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@cashfreepayments/cashfree-js": "^1.0.7",
-    "cashfree-pg": "^6.0.4",
     "clsx": "^2.1.1",
     "firebase": "^12.16.0",
     "framer-motion": "^12.42.2",

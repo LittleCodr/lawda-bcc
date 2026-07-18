@@ -177,7 +177,7 @@ const faqJsonLd = {
       name: "Does Octopus Perfume offer Cash on Delivery?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes, Octopus Perfume offers Cash on Delivery (COD) as a payment option across India, along with UPI, credit/debit cards, and net banking via Cashfree payments."
+        text: "Yes, Octopus Perfume offers Cash on Delivery (COD) as a payment option across India, along with UPI, credit/debit cards, and net banking via PayU."
       }
     }
   ]

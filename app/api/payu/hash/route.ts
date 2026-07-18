@@ -4,10 +4,10 @@ import crypto from "crypto";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { amount, email, phone, name, userId, productinfo = "Octopus Perfume Order" } = body;
+    const { amount, email, phone, name, productinfo = "Octopus Perfume Order" } = body;
 
-    const key = process.env.PAYU_MERCHANT_KEY;
-    const salt = process.env.PAYU_MERCHANT_SALT;
+    const key = (process.env.PAYU_MERCHANT_KEY || "").trim();
+    const salt = (process.env.PAYU_MERCHANT_SALT || "").trim();
 
     if (!key || !salt) {
       throw new Error("PayU credentials missing. Did you restart the server?");
@@ -15,9 +15,11 @@ export async function POST(req: Request) {
 
     const txnid = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
     const amountStr = parseFloat(amount.toString()).toFixed(2);
+    const firstname = name ? name.trim() : "";
+    const emailStr = email ? email.trim() : "";
     
     // Hash sequence: key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT
-    const hashString = `${key}|${txnid}|${amountStr}|${productinfo}|${name}|${email}|${userId || ""}||||||||||${salt}`;
+    const hashString = `${key}|${txnid}|${amountStr}|${productinfo}|${firstname}|${emailStr}|||||||||||${salt}`;
     const hash = crypto.createHash("sha512").update(hashString).digest("hex");
 
     const host = req.headers.get("host");
@@ -29,10 +31,9 @@ export async function POST(req: Request) {
       txnid,
       amount: amountStr,
       productinfo,
-      firstname: name,
-      email,
+      firstname,
+      email: emailStr,
       phone,
-      udf1: userId || "",
       hash,
       surl: `${origin}/api/payu/redirect`,
       furl: `${origin}/api/payu/redirect`,

@@ -223,7 +223,6 @@ export default function CheckoutPage() {
         firstname: data.firstname,
         email: data.email,
         phone: data.phone,
-        udf1: data.udf1,
         surl: data.surl,
         furl: data.furl,
         hash: data.hash,

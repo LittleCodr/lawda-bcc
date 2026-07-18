@@ -14,12 +14,19 @@ export async function POST(req: Request) {
     }
 
     const txnid = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
-    const amountStr = parseFloat(amount.toString()).toFixed(2);
-    const firstname = name ? name.trim() : "";
-    const emailStr = email ? email.trim() : "";
+    
+    // PayU sometimes fails if amount has .00 or trailing decimals unnecessarily
+    const amountStr = Number.isInteger(Number(amount)) ? String(Number(amount)) : parseFloat(amount.toString()).toFixed(2);
+    
+    // Strip spaces and special characters from firstname to be safe
+    const firstname = name ? name.split(' ')[0].replace(/[^a-zA-Z0-9]/g, '') : "Customer";
+    
+    // Make productinfo completely safe (no spaces)
+    const safeProductInfo = "Perfume";
+    const emailStr = email ? email.trim() : "customer@octopusperfume.in";
     
     // Hash sequence: key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT
-    const hashString = `${key}|${txnid}|${amountStr}|${productinfo}|${firstname}|${emailStr}|||||||||||${salt}`;
+    const hashString = `${key}|${txnid}|${amountStr}|${safeProductInfo}|${firstname}|${emailStr}|||||||||||${salt}`;
     const hash = crypto.createHash("sha512").update(hashString).digest("hex");
 
     const host = req.headers.get("host");
@@ -30,7 +37,7 @@ export async function POST(req: Request) {
       key,
       txnid,
       amount: amountStr,
-      productinfo,
+      productinfo: safeProductInfo,
       firstname,
       email: emailStr,
       phone,

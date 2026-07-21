@@ -4,8 +4,8 @@ async function test() {
   try {
     const cashfree = new Cashfree(
       CFEnvironment.PRODUCTION,
-      "1258252b1855e020341c7bc75ce2528521",
-      "cfsk_ma_prod_0e14949ce7f312f36fa373401c3dbcf6_e07b63a7"
+      "1043957eedb784faed3eae463710505857410",
+      "cfsk_ma_prod_1909a390b7e5436186c65050378523326_2baedce9"
     );
 
     const request = {

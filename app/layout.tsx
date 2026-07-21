@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import Marquee from "@/components/Marquee";
 import CartDrawer from "@/components/CartDrawer";
 import LiveSalesPopups from "@/components/LiveSalesPopups";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 
 const playfair = Playfair_Display({
@@ -276,6 +277,7 @@ export default function RootLayout({
             <LiveSalesPopups />
           </CartProvider>
         </AuthProvider>
+        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
       </body>
     </html>
   );

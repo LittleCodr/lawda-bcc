@@ -1,6 +1,16 @@
 import Hero from "@/components/Hero";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/lib/products";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Octopus Perfume by Harsh Beniwal | Buy Online (Official Store)",
+  description: "Shop Octopus Perfume by Harsh Beniwal. This is the ONLY official website (octopusperfume.in). Buy premium, long-lasting luxury Eau de Parfums made in India.",
+  keywords: ["buy octopus perfume", "octopus perfume harsh beniwal", "octopus perfume official website", "buyoctopus", "octopusperfume.in", "buyoctopus.com alternative", "harsh beniwal real brand"],
+  alternates: {
+    canonical: "https://octopusperfume.in/",
+  },
+};
 
 export default function Home() {
   return (

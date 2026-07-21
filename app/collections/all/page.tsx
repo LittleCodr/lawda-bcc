@@ -3,9 +3,9 @@ import ProductCard from "@/components/ProductCard";
 import { products } from "@/lib/products";
 
 export const metadata: Metadata = {
-  title: "Shop All Perfumes | Octopus Perfume by Harsh Beniwal",
-  description: "Browse the complete Octopus Perfume collection by Harsh Beniwal. 9 luxury Eau de Parfums — Darling, Mirage, Outlaw, Overlord, Paradox, Promised, Rhapsody, Somersault & Your Move. Free shipping across India.",
-  keywords: ["octopus perfume", "buy octopus perfume", "harsh beniwal perfume", "octopus all perfumes", "octopusperfume.in", "octopus collection"],
+  title: "Shop All Perfumes | Octopus Perfume by Harsh Beniwal | Buy Online (Official)",
+  description: "Buy the complete Octopus Perfume collection by Harsh Beniwal. 9 luxury Eau de Parfums — Darling, Mirage, Outlaw, Overlord, Paradox, Promised, Rhapsody, Somersault & Your Move. Free shipping across India. Shop only at the official store octopusperfume.in.",
+  keywords: ["octopus perfume", "buy octopus perfume", "harsh beniwal perfume", "octopus all perfumes", "octopusperfume.in", "octopus collection", "buy octopus online", "harsh beniwal real website"],
   alternates: {
     canonical: "https://octopusperfume.in/collections/all",
   },

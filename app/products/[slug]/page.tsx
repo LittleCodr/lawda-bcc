@@ -20,16 +20,22 @@ export async function generateMetadata({
   const { slug } = await params;
   const product = getProductBySlug(slug);
   if (!product) return {};
+  const priceString = `₹${product.price.toLocaleString("en-IN")}`;
+  const notesString = `Top: ${product.notes.top} | Heart: ${product.notes.heart} | Base: ${product.notes.base}`;
+  const goodToKnowString = product.goodToKnow.join(" • ");
+
   return {
-    title: `${product.name} Perfume by Octopus | Harsh Beniwal | Buy Online`,
-    description: `Buy ${product.name} by Octopus Perfume (Harsh Beniwal). ${product.tagline} Inspired by ${product.inspiredBy}. ${product.gender}. 50ML Eau de Parfum. Only at octopusperfume.in`,
+    title: `Octopus ${product.name} Perfume – Buy Online | Harsh Beniwal Official`,
+    description: `${priceString} ; Good to know: ${goodToKnowString} ; Key Notes: ${notesString}. Shop ${product.name} Eau de Parfum by Harsh Beniwal, inspired by ${product.inspiredBy}.`,
     keywords: [
+      `octopus ${product.name.toLowerCase()} perfume`,
       `${product.name} octopus perfume`,
       `${product.name} perfume`,
       "octopus perfume",
       "octopus perfume by harsh beniwal",
       "harsh beniwal perfume website",
       "octopusperfume.in",
+      `buy octopus ${product.name.toLowerCase()} perfume`,
       `buy ${product.name} perfume`,
       `octopus ${product.name.toLowerCase()}`,
       product.inspiredBy,
@@ -38,8 +44,8 @@ export async function generateMetadata({
       canonical: `https://octopusperfume.in/products/${slug}`,
     },
     openGraph: {
-      title: `${product.name} - Octopus Perfume by Harsh Beniwal`,
-      description: `${product.tagline} ${product.gender}. 50ML EDP.`,
+      title: `Octopus ${product.name} Perfume – Buy Online | Harsh Beniwal Official`,
+      description: `${priceString} ; Good to know: ${goodToKnowString} ; Key Notes: ${notesString}. Shop ${product.name} Eau de Parfum by Harsh Beniwal, inspired by ${product.inspiredBy}.`,
       images: [product.images.hero],
       url: `https://octopusperfume.in/products/${slug}`,
     },

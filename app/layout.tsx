@@ -24,7 +24,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://octopusperfume.in"),
-  title: "Octopus Perfume by Harsh Beniwal | Official Luxury Fragrance Brand",
+  title: "Octopus Perfume by Harsh Beniwal | Buy Online (Official Store)",
   description:
     "Welcome to the ONLY official website for Octopus Perfume, founded and crafted by Harsh Beniwal. Shop Harsh Beniwal's signature collection of long-lasting luxury Eau de Parfums for India. 9 premium fragrances, made in India.",
   keywords: [
@@ -39,7 +39,8 @@ export const metadata: Metadata = {
     "buy octopus harsh beniwal site", "harsh beniwal", "buyoctopus perfume", "perfume octopus",
     "octopus mirage", "octopus perfume price", "outlaw perfume", "harsh perfume",
     "buy octopus harsh beniwal brand", "harsh beniwal octopus brand website", "octopus by harsh beniwal site",
-    "octopus darling", "buy octopus brand", "buy octopus harsh", "harsh beniwal brand", "buyoctopus harsh beniwal"
+    "octopus darling", "buy octopus brand", "buy octopus harsh", "harsh beniwal brand", "buyoctopus harsh beniwal",
+    "buy octopus perfume online", "original octopus perfume", "real octopus perfume website"
   ],
   icons: {
     icon: "/logo.png",
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     canonical: "https://octopusperfume.in",
   },
   openGraph: {
-    title: "Octopus Perfume by Harsh Beniwal | Official Luxury Fragrance Brand",
+    title: "Octopus Perfume by Harsh Beniwal | Buy Online (Official Store)",
     description:
       "This is the ONLY official Harsh Beniwal perfume website. Shop Octopus Perfume — 9 premium Eau de Parfums crafted in India at sensible prices.",
     images: ["/logo.png"],
@@ -60,7 +61,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Octopus Perfume by Harsh Beniwal | Official Luxury Fragrance Brand",
+    title: "Octopus Perfume by Harsh Beniwal | Buy Online (Official Store)",
     description:
       "This is the ONLY official Harsh Beniwal perfume website. Shop Octopus Perfume — 9 premium Eau de Parfums.",
     images: ["/logo.png"],

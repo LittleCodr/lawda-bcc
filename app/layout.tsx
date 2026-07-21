@@ -104,16 +104,24 @@ const websiteJsonLd = {
 
 const orgJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": ["Organization", "HealthAndBeautyBusiness", "Store"],
   "@id": "https://octopusperfume.in/#organization",
   name: "Octopus Perfume by Harsh Beniwal",
-  alternateName: "Octopus Lifestyle Private Limited",
+  alternateName: ["Octopus Lifestyle Private Limited", "Buy Octopus", "Octopus Perfume Official"],
   url: "https://octopusperfume.in",
   logo: {
     "@type": "ImageObject",
     url: "https://octopusperfume.in/logo.png",
     width: "512",
     height: "512"
+  },
+  image: "https://octopusperfume.in/logo.png",
+  priceRange: "₹799 - ₹1899",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Gurgaon",
+    addressRegion: "Haryana",
+    addressCountry: "IN"
   },
   sameAs: [
     "https://instagram.com/buyoctopus", 

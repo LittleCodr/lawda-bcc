@@ -195,6 +195,48 @@ const faqJsonLd = {
   ]
 };
 
+const navigationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {
+      "@type": "SiteNavigationElement",
+      "position": 1,
+      "name": "Mirage",
+      "description": "Smoky incense and spicy saffron ignite the scent...",
+      "url": "https://octopusperfume.in/products/mirage"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "position": 2,
+      "name": "About Us",
+      "description": "Learn about the heritage of Octopus Perfume by Harsh Beniwal.",
+      "url": "https://octopusperfume.in/pages/about-us"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "position": 3,
+      "name": "Promised",
+      "description": "A golden thread of warm saffron and luminous...",
+      "url": "https://octopusperfume.in/products/promised"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "position": 4,
+      "name": "Outlaw",
+      "description": "A warm, aromatic brightness opens the scent...",
+      "url": "https://octopusperfume.in/products/outlaw"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "position": 5,
+      "name": "All Perfumes",
+      "description": "Shop the complete Octopus Perfume collection.",
+      "url": "https://octopusperfume.in/collections/all"
+    }
+  ]
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -214,6 +256,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(navigationJsonLd) }}
         />
         <link rel="canonical" href="https://octopusperfume.in" />
       </head>

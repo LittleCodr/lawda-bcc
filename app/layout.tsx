@@ -66,6 +66,9 @@ export const metadata: Metadata = {
       "This is the ONLY official Harsh Beniwal perfume website. Shop Octopus Perfume — 9 premium Eau de Parfums.",
     images: ["/logo.png"],
   },
+  verification: {
+    google: "7Mqtu2DoBFoj9G0LtfvCxHPJCIvCKFHyBqLfoVOSXrY",
+  },
   robots: {
     index: true,
     follow: true,

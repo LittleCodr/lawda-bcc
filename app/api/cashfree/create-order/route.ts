@@ -48,15 +48,18 @@ export async function POST(req: Request) {
     console.error("Error creating Cashfree order:", error?.response?.data || error);
 
     const errorData = error?.response?.data;
-    if (errorData?.type === "invalid_request_error" || errorData?.code === "customer_details.customer_phone_invalid") {
+    
+    // Check if Cashfree returned a specific error response
+    if (errorData) {
+      // Return 400 for Cashfree API errors to allow the frontend to display them
       return NextResponse.json(
-        { error: errorData.message || "Invalid request details provided" },
-        { status: 400 }
+        { error: errorData.message || "Failed to create order", details: errorData },
+        { status: 400 } // Use 400 instead of 500 so it can be handled as a validation/client configuration issue
       );
     }
 
     return NextResponse.json(
-      { error: "Failed to create order", details: error?.response?.data || error.message },
+      { error: "Internal Server Error", details: error.message },
       { status: 500 }
     );
   }

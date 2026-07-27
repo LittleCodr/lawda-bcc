@@ -102,9 +102,21 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
               {product.name}
             </h3>
           </Link>
-          <span className="text-[15px] font-semibold text-stone-900 tracking-wide bg-stone-50 px-2 py-1 rounded-md">
-            {formatINR(product.price)}
-          </span>
+          <div className="flex flex-col items-end">
+            <span className="text-[15px] font-semibold text-stone-900 tracking-wide bg-stone-50 px-2 py-1 rounded-md">
+              {formatINR(product.price)}
+            </span>
+            {product.compareAtPrice > product.price && (
+              <div className="flex items-center gap-1.5 mt-0.5">
+                <span className="text-[11px] text-stone-400 line-through">
+                  {formatINR(product.compareAtPrice)}
+                </span>
+                <span className="text-[10px] font-bold text-red-500 uppercase tracking-wider">
+                  {Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)}% OFF
+                </span>
+              </div>
+            )}
+          </div>
         </div>
         <p className="text-[11px] tracking-[0.1em] uppercase text-stone-500 font-medium mt-1">{product.gender}</p>
       </div>

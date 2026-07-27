@@ -23,7 +23,7 @@ export const products: Product[] = [
     scentStory: "The opening is a whisper of fresh iris petals and morning peony, carried by a cool breeze of lily-of-the-valley. As it evolves, the fragrance reveals a luscious core of damask rose intertwined with ripe stone fruits — golden apricot and blushing peach. The dry-down is pure indulgence: smooth sandalwood draped in sweet vanilla, warmed by the honeyed glow of benzoin and the nutty caress of tonka, all resting on a bed of powdery clean musk.",
     goodToKnow: ["Refined Sillage", "Exceptional 12+ Hour Wear", "Ideal for Rainy & Cool Weather"],
     notes: { top: "Citrus, Peony, Lily of the Valley, Iris", heart: "Rose, Apricot, Peach", base: "Vanilla, Musk, Tonka, Sandalwood, Benzoin" },
-    compareAtPrice: 849,
+    compareAtPrice: 2199,
     price: 849,
     images: {
       grid: "/images/products/1Darling_300x300_crop_center.webp",
@@ -42,7 +42,7 @@ export const products: Product[] = [
     scentStory: "The journey begins with tendrils of sacred incense and threads of crimson saffron, offset by a surprising burst of tart raspberry. The heart reveals a dramatic bouquet — opulent rose petals entwined with herbaceous geranium, all grounded by the rugged bark of silver birch. The finale is a meditation in warmth: benzoin's amber-kissed sweetness, the polished glow of amberwood, and the primal depth of rare agarwood.",
     goodToKnow: ["Refined Sillage", "Exceptional 12+ Hour Wear", "Made for Cold Weather Evenings"],
     notes: { top: "Raspberry, Bergamot, Grapefruit", heart: "Rose, Spices, Saffron", base: "Leather, Balsamic, Oud, Amber" },
-    compareAtPrice: 999,
+    compareAtPrice: 2499,
     price: 999,
     images: {
       grid: "/images/products/3Mirage_300x300_crop_center.webp",
@@ -62,7 +62,7 @@ export const products: Product[] = [
     scentStory: "A single note of green cardamom ignites the senses with aromatic precision. The heart unfolds with the intoxicating sweetness of jasmine sambac, layered over buttery-soft black leather that feels both daring and refined. Underneath, a foundation of rich patchouli mingles with the cool freshness of white moss, while golden amber adds a luminous, resinous warmth that clings to the skin for hours.",
     goodToKnow: ["Refined Sillage", "Exceptional 12+ Hour Wear", "Perfect for Monsoon Season"],
     notes: { top: "Cardamom", heart: "Jasmine, Violet Leaf", base: "Leather, Oakmoss, Patchouli" },
-    compareAtPrice: 1099,
+    compareAtPrice: 2799,
     price: 1099,
     images: {
       grid: "/images/products/4Outlaw_300x300_crop_center.webp",
@@ -81,7 +81,7 @@ export const products: Product[] = [
     scentStory: "An explosive burst of Italian bergamot and tangy citrus zest commands the opening. The composition deepens with French lavender weaving through the heart, accented by the tingling warmth of Sichuan pepper, earthy nutmeg, and the liquorice-like sweetness of star anise. The foundation is built on ambroxan's signature mineral muskiness, with Madagascar vanilla adding a rich, addictive sweetness that lingers well into the night.",
     goodToKnow: ["Refined Sillage", "Exceptional 12+ Hour Wear", "Perfect for Monsoon Season"],
     notes: { top: "Bergamot, Lemon, Pepper", heart: "Lavender, Pink Pepper, Patchouli", base: "Amber, Cedarwood, Labdanum" },
-    compareAtPrice: 1299,
+    compareAtPrice: 3199,
     price: 1299,
     images: {
       grid: "/images/products/6Overlord_300x300_crop_center.webp",
@@ -101,7 +101,7 @@ export const products: Product[] = [
     scentStory: "The curtain rises with a lavish accord of centifolia and Bulgarian rose — petal-rich, luminous, and deeply romantic. At its core, precious oud wood introduces a contemplative smokiness, quietly powerful and refined. The composition resolves into a base of oceanic ambergris, sharpened by the bite of black pepper and illuminated by the liquid gold of saffron threads.",
     goodToKnow: ["Refined Sillage", "Exceptional 12+ Hour Wear", "Perfect for Monsoon Season"],
     notes: { top: "Orange, Rose", heart: "Rose, Spices, Saffron, Geranium", base: "Musk, Sandalwood, Amber" },
-    compareAtPrice: 1399,
+    compareAtPrice: 3499,
     price: 1399,
     images: {
       grid: "/images/products/7Paradox_300x300_crop_center.webp",
@@ -121,7 +121,7 @@ export const products: Product[] = [
     scentStory: "Precious saffron threads and luminous jasmine petals paint a golden opening that feels almost celestial. The heart reveals the rich, glowing warmth of amberwood fused with the sun-baked mineral quality of ambergris and the ethereal lift of hedione. It resolves into a base of balsamic fir resin and aromatic cedar, kissed by crystalline sugar, grounded by forest-floor oakmoss, and finished with ambroxan's signature woody transparency.",
     goodToKnow: ["Refined Sillage", "Exceptional 12+ Hour Wear", "Perfect for Monsoon Season"],
     notes: { top: "Saffron, Jasmine, Tagette", heart: "Oakmoss, Caramel, Tonka Bean", base: "Musk, Amber, Cedarleaf" },
-    compareAtPrice: 1099,
+    compareAtPrice: 2799,
     price: 1099,
     images: {
       grid: "/images/products/5Promised_300x300_crop_center.webp",
@@ -141,7 +141,7 @@ export const products: Product[] = [
     scentStory: "The composition opens with sparkling lemon zest and the bittersweet elegance of neroli, punctuated by the gentle heat of pink peppercorn. A heart of dark rum swirls with the grassy earthiness of Java vetiver and the medicinal-herbal edge of clary sage. The base is a late-night reverie: cured tobacco leaf smoldering beneath a blanket of rich vanilla bean, anchored by the dark, resinous sweetness of styrax balsam.",
     goodToKnow: ["Refined Sillage", "Exceptional 12+ Hour Wear", "Perfect for Monsoon Season"],
     notes: { top: "Neroli, Lemon, Clary Sage", heart: "Spices, Vetiver", base: "Sandalwood, Musk, Amber, Wood" },
-    compareAtPrice: 799,
+    compareAtPrice: 1999,
     price: 799,
     images: {
       grid: "/images/products/10Rhapsody_300x300_crop_center.webp",
@@ -161,7 +161,7 @@ export const products: Product[] = [
     scentStory: "The scent erupts with the electric zest of citron, amplified by the crystalline brightness of Calabrian bergamot and the juicy sweetness of Sicilian orange. Tunisian neroli blooms at the heart with an intoxicating floral radiance, intertwined with the fiery kick of Nigerian ginger and the warm embrace of Ceylon cinnamon bark. The dry-down is meditative: Chinese black tea, the campfire smokiness of guaiac wood, the church-incense warmth of olibanum, and ambroxan's clean mineral depth.",
     goodToKnow: ["Refined Sillage", "Exceptional 12+ Hour Wear", "Perfect for Monsoon Season"],
     notes: { top: "Citron, Bergamot, Orange", heart: "Neroli, Ginger, Cinnamon", base: "Black Tea, Ambroxan, Guaiacwood, Olibanum" },
-    compareAtPrice: 1899,
+    compareAtPrice: 4499,
     price: 1899,
     images: {
       grid: "/images/products/8Somersault_300x300_crop_center.webp",
@@ -180,7 +180,7 @@ export const products: Product[] = [
     scentStory: "Rare oud wood anchors the opening with its unmistakable smoky intensity, flanked by the creamy warmth of Indian sandalwood and the grassy depth of Haitian vetiver. Polished rosewood adds a sophisticated sheen, while green cardamom and the electric tingle of Sichuan pepper bring controlled heat. The base is pure indulgence — tonka bean's caramelized sweetness, Madagascar vanilla's rich embrace, and golden amber's luminous depth create a finish that is both commanding and irresistible.",
     goodToKnow: ["Refined Sillage", "Exceptional 12+ Hour Wear", "Perfect for Monsoon Season"],
     notes: { top: "Oud, Cardamom, Sandalwood", heart: "Pink Pepper, Tonka Bean, Amber", base: "Vetiver, Rosewood, Musk" },
-    compareAtPrice: 1199,
+    compareAtPrice: 2999,
     price: 1199,
     images: {
       grid: "/images/products/9YourMove_300x300_crop_center.webp",

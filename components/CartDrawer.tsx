@@ -9,10 +9,10 @@ import { useCart } from "@/lib/cart-context";
 import { formatINR } from "@/lib/products";
 
 const TIERS = [
-  { threshold: 999, label: "Free Shipping", short: "Shipping" },
-  { threshold: 1499, label: "Free 10ml Spray", short: "Gift" },
-  { threshold: 2499, label: "15% Off (HARSH15)", short: "15%" },
-  { threshold: 3499, label: "20% Off (HARSH20)", short: "20%" },
+  { threshold: 999, label: "Free Shipping", short: "Ship" },
+  { threshold: 1499, label: "Free Gift", short: "Gift" },
+  { threshold: 2499, label: "20% OFF (FREEDOM)", short: "20%" },
+  { threshold: 3499, label: "25% OFF (FREEDOM)", short: "25%" },
 ];
 
 export default function CartDrawer() {
@@ -91,9 +91,13 @@ export default function CartDrawer() {
 
             <div className="px-6 py-4 border-b border-ink/10 shrink-0 bg-ink/5">
               {nextTier ? (
-                <p className="text-xs text-ink/70 flex items-center gap-1.5 mb-2">
-                  <Zap size={14} className="fill-amber-400 text-amber-400" /> Add <span className="font-bold text-ink">{formatINR(remaining)}</span> more to unlock <span className="font-bold">{nextTier.label}</span>!
-                </p>
+                <div className="bg-amber-100/50 border border-amber-300/50 p-2.5 rounded-lg mb-3 shadow-sm relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 bg-amber-400 h-full"></div>
+                  <p className="text-[11px] text-amber-900 font-bold uppercase tracking-wide flex items-center gap-1.5 animate-pulse">
+                    <Zap size={14} className="fill-amber-500 text-amber-500" /> 
+                    ALMOST THERE! Add {formatINR(remaining)} more to get {nextTier.label}!
+                  </p>
+                </div>
               ) : (
                 <p className="text-xs text-emerald-600 font-medium flex items-center gap-1.5 mb-2">
                   <Zap size={14} className="fill-emerald-600" /> You've unlocked all rewards!

@@ -453,6 +453,22 @@ export default function CheckoutPage() {
             <div className="bg-white/60 p-6 md:p-8 border border-ink/10 sticky top-24 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
               <h2 className="font-serif-display text-xl mb-6">Order Summary</h2>
 
+              {/* Upsell Prompt */}
+              {subtotal < 3499 && (
+                <div className="bg-amber-100/50 border border-amber-300/50 p-3 rounded-lg mb-6 shadow-sm relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 bg-amber-400 h-full"></div>
+                  <p className="text-xs text-amber-900 font-bold tracking-wide flex items-center gap-2">
+                    <Tag size={16} className="fill-amber-500 text-amber-500" /> 
+                    {subtotal < 2499 ? (
+                      <span>Add <strong className="text-ink">{formatINR(2499 - subtotal)}</strong> more to unlock <strong>20% OFF</strong>!</span>
+                    ) : (
+                      <span>Add <strong className="text-ink">{formatINR(3499 - subtotal)}</strong> more to unlock <strong>25% OFF</strong>!</span>
+                    )}
+                  </p>
+                  <p className="text-[10px] text-amber-800 mt-1 uppercase tracking-widest">Apply code FREEDOM</p>
+                </div>
+              )}
+
               {/* Coupon Code Section */}
               <div className="mb-6 pb-6 border-b border-ink/10">
                 {couponCode ? (

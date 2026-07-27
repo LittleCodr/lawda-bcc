@@ -14,9 +14,23 @@ export default function AddToCartPanel({ product }: { product: Product }) {
   return (
     <div className="flex flex-col gap-4">
       {/* Price */}
-      <div className="flex items-baseline gap-3">
-        <span className="text-3xl font-semibold text-ink tracking-tight">{formatINR(product.price)}</span>
-        <span className="text-[10px] tracking-[0.15em] uppercase text-ink/40">incl. taxes</span>
+      <div className="flex flex-col gap-1">
+        <div className="flex items-baseline gap-3">
+          <span className="text-3xl font-semibold text-ink tracking-tight">{formatINR(product.price)}</span>
+          {product.compareAtPrice > product.price && (
+            <span className="text-xl text-ink/40 line-through font-medium">
+              {formatINR(product.compareAtPrice)}
+            </span>
+          )}
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="text-[10px] tracking-[0.15em] uppercase text-ink/40">incl. taxes</span>
+          {product.compareAtPrice > product.price && (
+            <span className="text-[10px] font-bold text-red-500 uppercase tracking-widest bg-red-50 px-2 py-0.5 rounded-sm">
+              {Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)}% OFF
+            </span>
+          )}
+        </div>
       </div>
 
       {/* Quantity + Add to Cart Row */}

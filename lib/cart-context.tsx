@@ -112,7 +112,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const applyCoupon = useCallback((code: string) => {
     const codeUpper = code.toUpperCase();
-    if (["HARSH10", "HARSH15", "HARSH20"].includes(codeUpper)) {
+    if (["HARSH10", "HARSH15", "HARSH20", "FREEDOM"].includes(codeUpper)) {
       setCouponCode(codeUpper);
       return true;
     }
@@ -204,6 +204,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
   );
 
   const discountPercentage = useMemo(() => {
+    if (couponCode === "FREEDOM") {
+      if (subtotal >= 3499) return 25;
+      if (subtotal >= 2499) return 20;
+      return 15;
+    }
     if (couponCode === "HARSH20" && subtotal >= 3499) return 20;
     if ((couponCode === "HARSH20" || couponCode === "HARSH15") && subtotal >= 2499) return 15;
     if (couponCode) return 10;

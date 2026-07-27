@@ -9,7 +9,7 @@ import { useCart } from "@/lib/cart-context";
 import { useAuth } from "@/lib/auth-context";
 import { formatINR } from "@/lib/products";
 import { db } from "@/lib/firebase";
-import { doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { doc, setDoc, serverTimestamp, getDoc } from "firebase/firestore";
 
 export default function CheckoutPage() {
   const { items, subtotal, discount, applyCoupon, removeCoupon, couponCode } = useCart();
@@ -74,14 +74,40 @@ export default function CheckoutPage() {
     }
   }, [mounted, authLoading, user, router]);
 
-  // Pre-fill email from auth
+  // Pre-fill email and profile details from auth/db
   useEffect(() => {
-    if (user?.email) {
-      setFormData((prev) => ({ ...prev, email: user.email || "" }));
+    let mounted = true;
+    if (user) {
+      setFormData((prev) => ({ 
+        ...prev, 
+        email: prev.email || user.email || "",
+        name: prev.name || user.displayName || ""
+      }));
+
+      // Fetch saved profile details
+      const fetchProfile = async () => {
+        try {
+          const userRef = doc(db, "users", user.uid);
+          const userSnap = await getDoc(userRef);
+          if (userSnap.exists() && mounted) {
+            const data = userSnap.data();
+            const isAddressObj = typeof data.address === 'object' && data.address !== null;
+            setFormData(prev => ({
+              ...prev,
+              phone: prev.phone || data.phone || "",
+              address: prev.address || (isAddressObj ? (data.address.address || "") : (data.address || "")),
+              city: prev.city || data.city || (isAddressObj ? data.address.city : ""),
+              state: prev.state || data.state || (isAddressObj ? data.address.state : ""),
+              zip: prev.zip || data.zip || (isAddressObj ? data.address.zip : ""),
+            }));
+          }
+        } catch (err) {
+          console.error("Error fetching profile for checkout", err);
+        }
+      };
+      fetchProfile();
     }
-    if (user?.displayName) {
-      setFormData((prev) => ({ ...prev, name: user.displayName || "" }));
-    }
+    return () => { mounted = false; };
   }, [user]);
 
   if (!mounted || authLoading) return null;
@@ -135,6 +161,7 @@ export default function CheckoutPage() {
 
     try {
       // 1. Get hash from backend
+      const cartSummary = items.map(i => `${i.quantity}x ${i.name}`).join(", ");
       const res = await fetch("/api/payu/hash", {
         method: "POST",
         headers: {
@@ -145,6 +172,7 @@ export default function CheckoutPage() {
           email: formData.email,
           phone: formData.phone,
           name: formData.name,
+          cartSummary,
         }),
       });
 

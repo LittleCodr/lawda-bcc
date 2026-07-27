@@ -57,9 +57,9 @@ export async function POST(req: Request) {
         try {
           const amount = transaction.amt || transaction.transaction_amount || "Unknown";
           const customerName = transaction.firstname || "Unknown";
-          const customerEmail = transaction.email || "N/A";
-          const customerPhone = transaction.phone || "N/A";
-          const productInfo = transaction.productinfo || "N/A";
+          const customerEmail = transaction.udf1 || transaction.email || "N/A";
+          const customerPhone = transaction.udf2 || transaction.phone || "N/A";
+          const productInfo = transaction.udf3 || transaction.productinfo || "N/A";
           const paymentMode = transaction.mode || "Unknown";
           
           const message = `✅ *New Order Paid!*\n\n` +

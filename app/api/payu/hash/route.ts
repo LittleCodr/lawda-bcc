@@ -4,7 +4,7 @@ import crypto from "crypto";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { amount, email, phone, name } = body;
+    const { amount, email, phone, name, cartSummary } = body;
 
     const key = process.env.PAYU_MERCHANT_KEY || "";
     const salt = process.env.PAYU_MERCHANT_SALT || "";
@@ -26,14 +26,16 @@ export async function POST(req: Request) {
       ? name.trim().split(/\s+/)[0].replace(/[^a-zA-Z0-9]/g, "") || "Customer"
       : "Customer";
 
-    const productinfo = "OctopusPerfume";
     const emailStr = (email || "").trim() || "customer@octopusperfume.in";
     const phoneStr = (phone || "").trim() || "9999999999";
 
-    // Empty UDF fields — must be empty strings, never null/undefined
-    const udf1 = "";
-    const udf2 = "";
-    const udf3 = "";
+    const fullCart = cartSummary || "OctopusPerfume";
+    const productinfo = fullCart.length > 100 ? fullCart.substring(0, 97) + "..." : fullCart;
+
+    // Use UDF fields to guarantee we get this info back in the verify webhook/redirect
+    const udf1 = emailStr.substring(0, 255);
+    const udf2 = phoneStr.substring(0, 255);
+    const udf3 = fullCart.substring(0, 255);
     const udf4 = "";
     const udf5 = "";
 

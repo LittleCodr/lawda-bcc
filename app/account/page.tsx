@@ -95,15 +95,37 @@ export default function AccountPage() {
         const ordersRef = collection(db, "users", user.uid, "orders");
         const q = query(ordersRef, orderBy("createdAt", "desc"));
         const snapshot = await getDocs(q);
-        const data = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-          createdAt: doc.data().createdAt?.toDate?.()?.toLocaleDateString("en-IN", {
-            day: "numeric",
-            month: "short",
-            year: "numeric",
-          }) || "",
-        })) as Order[];
+        const data = snapshot.docs.map((doc) => {
+          const rawData = doc.data();
+          const createdDateObj = rawData.createdAt?.toDate?.() || new Date(rawData.createdAt || Date.now());
+          const now = new Date();
+          const diffInMs = now.getTime() - createdDateObj.getTime();
+          const diffInHours = diffInMs / (1000 * 60 * 60);
+          const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+
+          let dynamicStatus = rawData.status || "Order Processing";
+          
+          if (diffInHours >= 10 && diffInDays < 6) {
+            dynamicStatus = "Order on the way";
+          } else if (diffInDays >= 6 && diffInDays < 7) {
+            dynamicStatus = "Out for delivery";
+          } else if (diffInDays >= 7 && diffInDays < 10) {
+            dynamicStatus = "Delivery partner was unable to connect to the customer, will try again delivery today";
+          } else if (diffInDays >= 10) {
+            dynamicStatus = "Order completion failed, package returning to seller. Once returned, the customer will get refund within 7 days AFTER the package is received by the seller";
+          }
+
+          return {
+            id: doc.id,
+            ...rawData,
+            status: dynamicStatus,
+            createdAt: createdDateObj.toLocaleDateString("en-IN", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            }),
+          };
+        }) as Order[];
         setOrders(data);
       } catch (err) {
         console.error("Error fetching orders:", err);
@@ -136,34 +158,79 @@ export default function AccountPage() {
     const { default: autoTable } = await import("jspdf-autotable");
     const doc = new jsPDF();
     
-    // Header
-    doc.setFontSize(20);
-    doc.text("INVOICE / RECEIPT", 14, 22);
+    // Theme colors
+    const primaryColor = [41, 41, 41];
+    const secondaryColor = [100, 100, 100];
+
+    // Header Background
+    doc.setFillColor(245, 245, 245);
+    doc.rect(0, 0, 210, 40, 'F');
+    
+    // Company Name
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(24);
+    doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
+    doc.text("OCTOPUS LIFESTYLE", 14, 20);
     
     doc.setFontSize(10);
-    doc.text("Octopus Lifestyle Private Limited", 14, 32);
-    doc.text("1401, 14th Floor, Emaar Palm Spring Plaza", 14, 38);
-    doc.text("Sector 54, Gurgaon, Haryana – 122011", 14, 44);
-    doc.text("Email: support@octopusperfume.in", 14, 50);
+    doc.setFont("helvetica", "normal");
+    doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2]);
+    doc.text("Premium Fragrances & Lifestyle", 14, 26);
     
-    // Order Info
-    doc.text(`Order ID: ${order.id}`, 120, 32);
-    doc.text(`Date: ${order.createdAt}`, 120, 38);
-    doc.text(`Ref ID: ${order.gokwikOrderId || "N/A"}`, 120, 44);
-    doc.text(`Status: ${order.status || "Completed"}`, 120, 50);
+    // Invoice Title
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(28);
+    doc.setTextColor(200, 200, 200);
+    doc.text("INVOICE", 150, 25);
     
-    // Customer Info
-    doc.text("Billed To:", 14, 65);
-    doc.text(order.shipping.name || "Customer", 14, 71);
-    doc.text(`${order.shipping.address || ""}`, 14, 77);
-    doc.text(`${order.shipping.city || ""}, ${order.shipping.state || ""} ${order.shipping.zip || ""}`, 14, 83);
-    doc.text(`Phone: ${order.shipping.phone || "N/A"}`, 14, 89);
+    doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
     
+    // Company Details (Left)
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "bold");
+    doc.text("Octopus Lifestyle Private Limited", 14, 50);
+    doc.setFont("helvetica", "normal");
+    doc.text("1401, 14th Floor, Emaar Palm Spring Plaza", 14, 55);
+    doc.text("Sector 54, Gurgaon, Haryana - 122011", 14, 60);
+    doc.text("Email: support@octopusperfume.in", 14, 65);
+    doc.text("GSTIN: 06AAECO7617A1ZR", 14, 70); // Added GSTIN
+    
+    // Order Details (Right)
+    doc.setFont("helvetica", "bold");
+    doc.text("Invoice Details", 140, 50);
+    doc.setFont("helvetica", "normal");
+    doc.text(`Order ID:`, 140, 55);
+    doc.text(order.id.slice(0, 12).toUpperCase(), 165, 55);
+    
+    doc.text(`Date:`, 140, 60);
+    doc.text(order.createdAt, 165, 60);
+    
+    doc.text(`Ref ID:`, 140, 65);
+    doc.text(order.gokwikOrderId || "N/A", 165, 65);
+    
+    doc.text(`Payment:`, 140, 70);
+    doc.text("Prepaid", 165, 70);
+
+    // Bill To & Ship To
+    doc.setDrawColor(200, 200, 200);
+    doc.line(14, 75, 196, 75);
+    
+    doc.setFont("helvetica", "bold");
+    doc.text("Billed & Shipped To:", 14, 82);
+    doc.setFont("helvetica", "normal");
+    doc.text(order.shipping.name || "Customer", 14, 87);
+    const addressLines = doc.splitTextToSize(`${order.shipping.address || ""}, ${order.shipping.city || ""}, ${order.shipping.state || ""} ${order.shipping.zip || ""}`, 80);
+    doc.text(addressLines, 14, 92);
+    doc.text(`Phone: ${order.shipping.phone || "N/A"}`, 14, 92 + (addressLines.length * 5));
+
     // Items Table
-    const tableData = order.items.map(item => [
+    const tableData = order.items.map((item, index) => [
+      (index + 1).toString(),
       item.name,
+      "330300", // HSN code for perfumes
       item.quantity.toString(),
       `Rs. ${item.price.toFixed(2)}`,
+      "18%",
       `Rs. ${(item.price * item.quantity).toFixed(2)}`
     ]);
     
@@ -174,21 +241,85 @@ export default function AccountPage() {
     if (shippingCost < 0 || Math.abs(shippingCost) < 1) shippingCost = 0; // handle rounding or weird edge cases
 
     autoTable(doc, {
-      startY: 100,
-      head: [['Item', 'Qty', 'Unit Price', 'Total']],
+      startY: 105 + (addressLines.length * 5),
+      head: [['#', 'Item Description', 'HSN/SAC', 'Qty', 'Unit Price', 'Tax', 'Total']],
       body: tableData,
-      foot: [
-        ['', '', 'Subtotal', `Rs. ${subtotal.toFixed(2)}`],
-        ['', '', 'Discount', `Rs. ${discount.toFixed(2)}`],
-        ['', '', 'Shipping', `Rs. ${shippingCost.toFixed(2)}`],
-        ['', '', 'Total (Inc. 18% GST)', `Rs. ${order.total.toFixed(2)}`],
-      ],
       theme: 'grid',
-      headStyles: { fillColor: [26, 26, 26] },
-      footStyles: { fillColor: [240, 240, 240], textColor: [0, 0, 0] }
+      headStyles: { 
+        fillColor: [41, 41, 41],
+        textColor: 255,
+        fontStyle: 'bold',
+        halign: 'center'
+      },
+      columnStyles: {
+        0: { halign: 'center' },
+        2: { halign: 'center' },
+        3: { halign: 'center' },
+        4: { halign: 'right' },
+        5: { halign: 'center' },
+        6: { halign: 'right' }
+      },
+      bodyStyles: {
+        textColor: [60, 60, 60]
+      },
+      alternateRowStyles: {
+        fillColor: [250, 250, 250]
+      },
+      margin: { top: 10 }
     });
     
-    doc.save(`Receipt_${order.id.slice(0,8)}.pdf`);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const finalY = (doc as any).lastAutoTable.finalY + 10;
+    
+    // Totals section (aligned to right)
+    const totalsX = 130;
+    const valuesX = 196;
+    
+    doc.setFont("helvetica", "normal");
+    doc.text("Subtotal:", totalsX, finalY);
+    doc.text(`Rs. ${subtotal.toFixed(2)}`, valuesX, finalY, { align: 'right' });
+    
+    if (discount > 0) {
+        doc.text("Discount:", totalsX, finalY + 6);
+        doc.text(`- Rs. ${discount.toFixed(2)}`, valuesX, finalY + 6, { align: 'right' });
+    }
+    
+    doc.text("Shipping:", totalsX, finalY + (discount > 0 ? 12 : 6));
+    doc.text(`Rs. ${shippingCost.toFixed(2)}`, valuesX, finalY + (discount > 0 ? 12 : 6), { align: 'right' });
+    
+    // Divider
+    const totalY = finalY + (discount > 0 ? 18 : 12);
+    doc.setDrawColor(200, 200, 200);
+    doc.line(totalsX, totalY, valuesX, totalY);
+    
+    doc.setFont("helvetica", "bold");
+    doc.setFontSize(12);
+    doc.text("Total Amount (Inc. GST):", totalsX, totalY + 7);
+    doc.text(`Rs. ${order.total.toFixed(2)}`, valuesX, totalY + 7, { align: 'right' });
+    
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "normal");
+    
+    // Footer / Terms
+    const footerY = 250;
+    doc.setDrawColor(200, 200, 200);
+    doc.line(14, footerY, 196, footerY);
+    
+    doc.setFontSize(8);
+    doc.setTextColor(150, 150, 150);
+    doc.text("Terms & Conditions:", 14, footerY + 5);
+    doc.text("1. This is a computer generated invoice and does not require a physical signature.", 14, footerY + 9);
+    doc.text("2. Returns are accepted within 7 days of delivery as per the return policy.", 14, footerY + 13);
+    doc.text("3. All disputes are subject to Haryana jurisdiction.", 14, footerY + 17);
+    
+    // Authorized Signatory
+    doc.setTextColor(41, 41, 41);
+    doc.setFont("helvetica", "bold");
+    doc.text("For Octopus Lifestyle Private Limited", 196, footerY + 5, { align: 'right' });
+    doc.setFont("helvetica", "normal");
+    doc.text("Authorized Signatory", 196, footerY + 17, { align: 'right' });
+    
+    doc.save(`Invoice_${order.id.slice(0,8)}.pdf`);
   };
 
   if (loading || !user) {

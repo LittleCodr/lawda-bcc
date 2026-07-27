@@ -56,7 +56,22 @@ export async function POST(req: Request) {
         // Send Telegram notification
         try {
           const amount = transaction.amt || transaction.transaction_amount || "Unknown";
-          const message = `✅ *New Order Paid!*\n\n*Order ID:* \`${orderId}\`\n*Amount:* ₹${amount}`;
+          const customerName = transaction.firstname || "Unknown";
+          const customerEmail = transaction.email || "N/A";
+          const customerPhone = transaction.phone || "N/A";
+          const productInfo = transaction.productinfo || "N/A";
+          const paymentMode = transaction.mode || "Unknown";
+          
+          const message = `✅ *New Order Paid!*\n\n` +
+            `*Order ID:* \`${orderId}\`\n` +
+            `*Amount:* ₹${amount}\n` +
+            `*Payment Mode:* ${paymentMode}\n\n` +
+            `*Customer Details:*\n` +
+            `*Name:* ${customerName}\n` +
+            `*Email:* ${customerEmail}\n` +
+            `*Phone:* ${customerPhone}\n\n` +
+            `*Product Details:*\n` +
+            `${productInfo}`;
 
           await fetch(
             `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,

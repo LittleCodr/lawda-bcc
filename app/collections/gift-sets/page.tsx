@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import ProductCard from "@/components/ProductCard";
-import { products } from "@/lib/products";
+import { products, type Product } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "Gift Sets | Octopus Perfume by Harsh Beniwal",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function CollectionPage() {
-  const collectionProducts = [];
+  const collectionProducts: Product[] = [];
 
   const collectionJsonLd = {
     "@context": "https://schema.org",

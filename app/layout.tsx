@@ -247,14 +247,14 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth" className={`${playfair.variable} ${inter.variable} h-full antialiased`}>
       <head>
         {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-352132924"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18360959621"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'AW-352132924');
+              gtag('config', 'AW-18360959621');
             `,
           }}
         />

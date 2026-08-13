@@ -138,14 +138,14 @@ export default function Navbar() {
         </Link>
 
         {/* Right Side: Icons */}
-        <div className="flex items-center gap-6 sm:gap-8 flex-1 justify-end relative z-10 text-[#2d2d2d]">
+        <div className="flex items-center gap-4 sm:gap-8 flex-1 justify-end relative z-10 text-[#2d2d2d]">
           <button aria-label="Search" className="flex flex-col items-center gap-1 hover:text-[#800020] transition-colors group">
              <Search size={20} strokeWidth={1.5} className="group-hover:-translate-y-0.5 transition-transform" />
-             <span className="text-[10px] uppercase font-bold tracking-widest">Search</span>
+             <span className="hidden sm:block text-[10px] uppercase font-bold tracking-widest">Search</span>
           </button>
           <Link href="/account" aria-label="Account" className="flex flex-col items-center gap-1 hover:text-[#800020] transition-colors group">
              <User size={20} strokeWidth={1.5} className="group-hover:-translate-y-0.5 transition-transform" />
-             <span className="text-[10px] uppercase font-bold tracking-widest">Account</span>
+             <span className="hidden sm:block text-[10px] uppercase font-bold tracking-widest">Account</span>
           </Link>
           <button
             aria-label="Cart"
@@ -160,7 +160,7 @@ export default function Navbar() {
                 </span>
               )}
             </div>
-            <span className="text-[10px] uppercase font-bold tracking-widest">Cart</span>
+            <span className="hidden sm:block text-[10px] uppercase font-bold tracking-widest">Cart</span>
           </button>
         </div>
       </div>

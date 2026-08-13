@@ -4,7 +4,7 @@ import crypto from "crypto";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { amount, email, phone, name, cartSummary } = body;
+    const { amount, email, phone, name, cartSummary, txnid } = body;
 
     const key = process.env.PAYU_MERCHANT_KEY || "";
     const salt = process.env.PAYU_MERCHANT_SALT || "";
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const txnid = `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+    const txnIdToUse = txnid || `ORD-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
 
     // Normalize amount: always send as string with 2 decimal places
     const amountStr = parseFloat(String(amount)).toFixed(2);
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
     // key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5||||||SALT
     // Note: there are 5 extra empty pipes between udf5 and SALT (for udf6-udf10)
     const hashString = [
-      key, txnid, amountStr, productinfo, firstname, emailStr,
+      key, txnIdToUse, amountStr, productinfo, firstname, emailStr,
       udf1, udf2, udf3, udf4, udf5,
       "", "", "", "", "", // udf6-udf10 (always empty)
       salt
@@ -59,7 +59,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({
       key,
-      txnid,
+      txnid: txnIdToUse,
       amount: amountStr,
       productinfo,
       firstname,

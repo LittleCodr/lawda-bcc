@@ -7,8 +7,12 @@ import { useCartStore } from "@/lib/store";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
-  { href: "/collections/all", label: "Shop All" },
-  { href: "/pages/about-us", label: "About Us" },
+  { href: "/collections/personalised-jewellery", label: "Personalised" },
+  { href: "/collections/name-necklaces", label: "Necklaces" },
+  { href: "/collections/name-rings", label: "Rings" },
+  { href: "/collections/anklets", label: "Anklets" },
+  { href: "/collections/earrings", label: "Earrings" },
+  { href: "/collections/all", label: "Gifts" },
 ];
 
 export default function Navbar() {

@@ -51,6 +51,36 @@ export default async function Home() {
         </div>
       </section>
 
+      <section className="bg-stone-50 py-20 border-t border-stone-200">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-12 text-center">
+          <h2 className="font-serif text-3xl text-stone-900 uppercase tracking-widest mb-12">
+            The Perfect Gift
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+            {[
+              { name: "Personalised", slug: "personalised-jewellery", img: "/images/products/DSC07516copy.jpg" },
+              { name: "Name Necklaces", slug: "name-necklaces", img: "/images/products/Necklace2_3Variants_gold1.png" },
+              { name: "Anklets", slug: "anklets", img: "/images/products/Necklace3_3Variants_gold1.png" },
+              { name: "Earrings", slug: "earrings", img: "/images/products/gold2_67d409be-fa53-4c55-9bc1-e33b18f28e0f.jpg" }
+            ].map((cat) => (
+              <Link href={`/collections/${cat.slug}`} key={cat.slug} className="group flex flex-col items-center">
+                <div className="w-full aspect-square bg-white rounded-full overflow-hidden border border-stone-100 mb-6 relative">
+                  <Image 
+                    src={cat.img} 
+                    alt={cat.name} 
+                    fill 
+                    className="object-cover group-hover:scale-110 transition-transform duration-700 opacity-90 group-hover:opacity-100" 
+                  />
+                </div>
+                <h3 className="text-sm font-medium uppercase tracking-widest text-stone-900 group-hover:text-stone-500 transition-colors">
+                  {cat.name}
+                </h3>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-white mx-auto max-w-[1440px] px-6 md:px-12 py-24">
         <div className="text-center mb-16">
           <h2 className="font-serif text-3xl md:text-4xl text-stone-900 uppercase tracking-widest">

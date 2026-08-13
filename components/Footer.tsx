@@ -3,6 +3,15 @@
 import Link from "next/link";
 
 const POLICY_LINKS = [
+  { href: "/collections/personalised-jewellery", label: "Personalised Jewellery" },
+  { href: "/collections/name-necklaces", label: "Name Necklaces" },
+  { href: "/collections/name-rings", label: "Name Rings" },
+  { href: "/collections/anklets", label: "Anklets" },
+  { href: "/collections/earrings", label: "Earrings" },
+  { href: "/collections/all", label: "All Gifts" },
+];
+
+const SUPPORT_LINKS = [
   { href: "/pages/about-us", label: "About Us" },
   { href: "/pages/shipping-policy", label: "Shipping" },
   { href: "/pages/privacy-policy", label: "Privacy" },
@@ -24,10 +33,26 @@ export default function Footer() {
             </p>
           </div>
 
-          <div className="md:col-span-3 md:col-start-7">
-            <p className="text-xs tracking-widest uppercase text-stone-400 mb-8 font-medium">Discover</p>
+          <div className="md:col-span-2 md:col-start-6">
+            <p className="text-xs tracking-widest uppercase text-stone-400 mb-8 font-medium">Shop</p>
             <ul className="space-y-4">
               {POLICY_LINKS.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="text-sm text-stone-600 hover:text-stone-900 transition-colors flex items-center gap-2 group"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="md:col-span-2">
+            <p className="text-xs tracking-widest uppercase text-stone-400 mb-8 font-medium">Support</p>
+            <ul className="space-y-4">
+              {SUPPORT_LINKS.map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}

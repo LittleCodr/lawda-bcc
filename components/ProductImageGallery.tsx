@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 
@@ -14,8 +15,13 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [zoomStyle, setZoomStyle] = useState({});
   const [isHovering, setIsHovering] = useState(false);
+  const [mounted, setMounted] = useState(false);
   
   const imgRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Sync selectedImageId with currentIndex when it changes from the parent (e.g. via variant click)
   useEffect(() => {
@@ -111,23 +117,23 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
       )}
 
       {/* Lightbox Modal */}
-      {isLightboxOpen && (
-        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex flex-col items-center justify-center touch-none">
+      {isLightboxOpen && mounted && createPortal(
+        <div className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex flex-col items-center justify-center touch-none">
           <button 
-            className="absolute top-6 right-6 p-2 bg-white/10 rounded-full shadow-lg text-white hover:bg-white hover:text-black transition-colors z-50"
+            className="absolute top-6 right-6 p-2 bg-white/10 rounded-full shadow-lg text-white hover:bg-white hover:text-black transition-colors z-[110]"
             onClick={() => setIsLightboxOpen(false)}
           >
             <X size={24} />
           </button>
           
           <button 
-            className="absolute left-4 md:left-12 p-3 bg-white/10 hover:bg-white rounded-full shadow-lg text-white hover:text-black transition-colors z-50 backdrop-blur-sm"
+            className="absolute left-4 md:left-12 p-3 bg-white/10 hover:bg-white rounded-full shadow-lg text-white hover:text-black transition-colors z-[110] backdrop-blur-sm"
             onClick={handlePrev}
           >
             <ChevronLeft size={28} />
           </button>
 
-          <div className="relative w-full max-w-4xl h-[80vh] px-12 md:px-24">
+          <div className="relative w-full max-w-4xl h-[80vh] px-12 md:px-24 z-[105]">
             <Image 
               src={images[currentIndex].src} 
               alt={images[currentIndex].alt}
@@ -138,16 +144,17 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
           </div>
 
           <button 
-            className="absolute right-4 md:right-12 p-3 bg-white/10 hover:bg-white rounded-full shadow-lg text-white hover:text-black transition-colors z-50 backdrop-blur-sm"
+            className="absolute right-4 md:right-12 p-3 bg-white/10 hover:bg-white rounded-full shadow-lg text-white hover:text-black transition-colors z-[110] backdrop-blur-sm"
             onClick={handleNext}
           >
             <ChevronRight size={28} />
           </button>
 
-          <div className="absolute bottom-6 font-medium tracking-widest uppercase text-white text-sm bg-black/50 backdrop-blur-md px-6 py-2 rounded-full shadow-sm">
+          <div className="absolute bottom-6 font-medium tracking-widest uppercase text-white text-sm bg-black/50 backdrop-blur-md px-6 py-2 rounded-full shadow-sm z-[110]">
             {currentIndex + 1} / {images.length}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

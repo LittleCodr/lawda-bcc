@@ -16,12 +16,18 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
   const [zoomStyle, setZoomStyle] = useState({});
   const [isHovering, setIsHovering] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isImgLoading, setIsImgLoading] = useState(true);
   
   const imgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Reset loading state when the image changes
+  useEffect(() => {
+    setIsImgLoading(true);
+  }, [currentIndex]);
 
   // Sync selectedImageId with currentIndex when it changes from the parent (e.g. via variant click)
   useEffect(() => {
@@ -80,16 +86,22 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
         onClick={() => setIsLightboxOpen(true)}
       >
         <div 
-          className="absolute inset-0 transition-transform duration-200 ease-out"
+          className="absolute inset-0 transition-transform duration-200 ease-out bg-[#FDF8F5]"
           style={isHovering ? zoomStyle : { transformOrigin: "center center", transform: "scale(1)" }}
         >
+          {isImgLoading && (
+            <div className="absolute inset-0 flex items-center justify-center z-0">
+               <div className="w-8 h-8 border-2 border-[#E5B8B7] border-t-[#800020] rounded-full animate-spin"></div>
+            </div>
+          )}
           <Image 
             src={images[currentIndex].src} 
             alt={images[currentIndex].alt}
             fill
             priority
             sizes="(max-width: 768px) 100vw, 50vw"
-            className="object-cover" 
+            className={`object-cover z-10 transition-opacity duration-300 ${isImgLoading ? 'opacity-0' : 'opacity-100'}`} 
+            onLoad={() => setIsImgLoading(false)}
           />
         </div>
         

@@ -118,22 +118,28 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
 
       {/* Lightbox Modal */}
       {isLightboxOpen && mounted && createPortal(
-        <div className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex flex-col items-center justify-center touch-none">
+        <div 
+          className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex flex-col items-center justify-center touch-none"
+          onClick={() => setIsLightboxOpen(false)}
+        >
           <button 
             className="absolute top-6 right-6 p-2 bg-white/10 rounded-full shadow-lg text-white hover:bg-white hover:text-black transition-colors z-[110]"
-            onClick={() => setIsLightboxOpen(false)}
+            onClick={(e) => { e.stopPropagation(); setIsLightboxOpen(false); }}
           >
             <X size={24} />
           </button>
           
           <button 
             className="absolute left-4 md:left-12 p-3 bg-white/10 hover:bg-white rounded-full shadow-lg text-white hover:text-black transition-colors z-[110] backdrop-blur-sm"
-            onClick={handlePrev}
+            onClick={(e) => { e.stopPropagation(); handlePrev(e); }}
           >
             <ChevronLeft size={28} />
           </button>
 
-          <div className="relative w-full max-w-4xl h-[80vh] px-12 md:px-24 z-[105]">
+          <div 
+            className="relative w-full max-w-4xl h-[80vh] px-12 md:px-24 z-[105]"
+            onClick={(e) => e.stopPropagation()}
+          >
             <Image 
               src={images[currentIndex].src} 
               alt={images[currentIndex].alt}
@@ -145,12 +151,15 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
 
           <button 
             className="absolute right-4 md:right-12 p-3 bg-white/10 hover:bg-white rounded-full shadow-lg text-white hover:text-black transition-colors z-[110] backdrop-blur-sm"
-            onClick={handleNext}
+            onClick={(e) => { e.stopPropagation(); handleNext(e); }}
           >
             <ChevronRight size={28} />
           </button>
 
-          <div className="absolute bottom-6 font-medium tracking-widest uppercase text-white text-sm bg-black/50 backdrop-blur-md px-6 py-2 rounded-full shadow-sm z-[110]">
+          <div 
+            className="absolute bottom-6 font-medium tracking-widest uppercase text-white text-sm bg-black/50 backdrop-blur-md px-6 py-2 rounded-full shadow-sm z-[110]"
+            onClick={(e) => e.stopPropagation()}
+          >
             {currentIndex + 1} / {images.length}
           </div>
         </div>,

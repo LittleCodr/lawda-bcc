@@ -59,6 +59,7 @@ export const metadata: Metadata = {
 
 import CartDrawer from "@/components/CartDrawer";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
+import MetaPixel from "@/components/MetaPixel";
 
 import { AuthProvider } from "@/lib/auth-context";
 import { Suspense } from "react";
@@ -79,6 +80,7 @@ export default function RootLayout({
         <AuthProvider>
           <Suspense fallback={null}>
             <AnalyticsTracker />
+            <MetaPixel />
           </Suspense>
           
           <script

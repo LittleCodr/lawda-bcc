@@ -142,6 +142,18 @@ export default function CheckoutPage() {
 
     setLoading(true);
     try {
+      logAppEvent("add_payment_info", {
+        currency: "INR",
+        value: finalTotal,
+        payment_type: paymentMethod,
+        items: items.map((i) => ({
+          item_id: i.id,
+          item_name: i.title,
+          quantity: i.quantity,
+          price: i.price,
+        }))
+      });
+
       const orderId = `ORD-${Date.now()}`;
 
       const isCOD = paymentMethod === "cod";
@@ -221,8 +233,11 @@ export default function CheckoutPage() {
       document.body.appendChild(form);
       form.submit();
 
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error creating order:", error);
+      logAppEvent("payment_error", {
+        reason: error.message || "Unknown error generating hash"
+      });
       alert("There was an issue processing your order. Please try again.");
       setLoading(false);
     }

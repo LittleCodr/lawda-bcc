@@ -29,7 +29,62 @@ if (typeof window !== "undefined") {
 }
 
 export const logAppEvent = (eventName: string, eventParams?: any) => {
+  // 1. Google Analytics (Firebase)
   if (analytics) {
     logEvent(analytics, eventName, eventParams);
+  }
+
+  // 2. Meta Pixel Tracking
+  if (typeof window !== "undefined" && (window as any).fbq) {
+    const fbq = (window as any).fbq;
+    switch (eventName) {
+      case 'page_view':
+        fbq('track', 'PageView');
+        break;
+      case 'view_item':
+        fbq('track', 'ViewContent', {
+          content_ids: eventParams?.items?.map((i:any) => i.item_id) || [],
+          content_type: 'product',
+          value: eventParams?.value,
+          currency: eventParams?.currency || 'INR'
+        });
+        break;
+      case 'add_to_cart':
+        fbq('track', 'AddToCart', {
+          content_ids: eventParams?.items?.map((i:any) => i.item_id) || [],
+          content_type: 'product',
+          value: eventParams?.value,
+          currency: eventParams?.currency || 'INR'
+        });
+        break;
+      case 'begin_checkout':
+        fbq('track', 'InitiateCheckout', {
+          value: eventParams?.value,
+          currency: eventParams?.currency || 'INR',
+          num_items: eventParams?.items?.length || 1
+        });
+        break;
+      case 'add_payment_info':
+        fbq('track', 'AddPaymentInfo', {
+          value: eventParams?.value,
+          currency: eventParams?.currency || 'INR'
+        });
+        break;
+      case 'purchase':
+        fbq('track', 'Purchase', {
+          value: eventParams?.value,
+          currency: eventParams?.currency || 'INR',
+          content_ids: eventParams?.items?.map((i:any) => i.item_id) || []
+        });
+        break;
+      case 'payment_abort':
+      case 'checkout_drop':
+      case 'payment_error':
+        // Custom events for Meta Pixel
+        fbq('trackCustom', eventName, eventParams);
+        break;
+      default:
+        fbq('trackCustom', eventName, eventParams);
+    }
   }
 };

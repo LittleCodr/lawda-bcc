@@ -8,20 +8,40 @@ import { rakhiConfig } from "./rakhi-config";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  
-  if (rakhiConfig[slug]) {
-    return { 
-      title: `${rakhiConfig[slug].title} | Octopus`,
-      description: rakhiConfig[slug].description
-    };
-  }
+  const formattedSlug = slug === 'all' ? 'All Gifts' : slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  const title = rakhiConfig[slug] ? `${rakhiConfig[slug].title} | Octopus Gifts` : `${formattedSlug} | Octopus Gifts`;
+  const description = rakhiConfig[slug]?.description || `Shop ${formattedSlug.toLowerCase()} at Octopus Gifts. Personalized gifts for every relationship and budget.`;
+  const collectionUrl = `https://www.octopusperfume.in/collections/${slug}`;
 
-  if (slug === 'all') {
-    return { title: "All Personalized Gifts | Octopus" };
-  }
-
-  const formattedSlug = slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-  return { title: `${formattedSlug} | Octopus Gifts` };
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: collectionUrl,
+    },
+    openGraph: {
+      title,
+      description,
+      url: collectionUrl,
+      siteName: "Octopus Gifts",
+      images: [
+        {
+          url: "/logo.png",
+          width: 800,
+          height: 800,
+          alt: "Octopus Gifts Collections",
+        },
+      ],
+      locale: "en_IN",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/logo.png"],
+    },
+  };
 }
 
 export default async function CollectionPage(props: { 

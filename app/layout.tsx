@@ -6,10 +6,54 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.octopusperfume.in"),
-  title: "Personalized Gifts for Her & Him in India | Octopus",
+  title: "Personalized Gifts for Her & Him in India | Octopus Gifts",
   description: "Shop personalized gifts, custom jewelry, name necklaces, and couple gifts. Perfect for birthdays, anniversaries, and weddings. Free shipping across India.",
+  keywords: ["personalized gifts", "custom jewelry", "name necklace", "gifts for her", "gifts for him", "anniversary gifts", "wedding gifts india", "custom keychain", "octopus gifts"],
+  authors: [{ name: "Octopus Gifts" }],
+  creator: "Octopus Gifts",
+  publisher: "Octopus Gifts",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
+  openGraph: {
+    title: "Personalized Gifts for Her & Him in India | Octopus Gifts",
+    description: "Shop personalized gifts, custom jewelry, name necklaces, and couple gifts. Perfect for birthdays, anniversaries, and weddings. Free shipping across India.",
+    url: "https://www.octopusperfume.in",
+    siteName: "Octopus Gifts",
+    images: [
+      {
+        url: "/logo.png",
+        width: 800,
+        height: 600,
+        alt: "Octopus Gifts - Personalized Gifts",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Personalized Gifts for Her & Him in India | Octopus Gifts",
+    description: "Shop personalized gifts, custom jewelry, name necklaces, and couple gifts. Free shipping across India.",
+    images: ["/logo.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 

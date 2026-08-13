@@ -20,11 +20,40 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: "Product Not Found | Octopus Gifts" };
   }
 
-  const cleanDescription = product.body_html?.replace(/<[^>]+>/g, "").substring(0, 160) || "Buy personalized gifts at Octopus.";
+  const title = `${product.title} | Personalized Gift | Octopus Gifts`;
+  const cleanDescription = product.body_html?.replace(/<[^>]+>/g, "").substring(0, 160) || "Buy personalized gifts at Octopus Gifts.";
+  const imageUrl = product.images && product.images.length > 0 ? (product.images[0].local_src || product.images[0].src) : "/logo.png";
+  const absoluteImageUrl = imageUrl.startsWith("http") ? imageUrl : `https://www.octopusperfume.in${imageUrl}`;
+  const productUrl = `https://www.octopusperfume.in/products/${slug}`;
 
   return {
-    title: `${product.title} | Personalized Rakhi Gift | Octopus Gifts`,
+    title,
     description: cleanDescription,
+    alternates: {
+      canonical: productUrl,
+    },
+    openGraph: {
+      title,
+      description: cleanDescription,
+      url: productUrl,
+      siteName: "Octopus Gifts",
+      images: [
+        {
+          url: absoluteImageUrl,
+          width: 800,
+          height: 800,
+          alt: product.title,
+        },
+      ],
+      locale: "en_IN",
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: cleanDescription,
+      images: [absoluteImageUrl],
+    },
   };
 }
 

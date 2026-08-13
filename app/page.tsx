@@ -6,8 +6,34 @@ import type { Metadata } from "next";
 import { Gift, ShieldCheck, Truck, Award, Star, ArrowRight, Heart, Users, Gem, Wallet, RefreshCcw, CalendarClock, ChevronRight, Package, MessageSquare, Plus, Minus, Search, Edit3, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Personalized Rakhi Gifts for Sister & Brother | Gifts Under ₹499",
+  title: "Personalized Rakhi Gifts for Sister & Brother | Gifts Under ₹499 | Octopus Gifts",
   description: "Surprise your sister or brother with personalized Raksha Bandhan gifts, custom jewelry and gift boxes under ₹499 with fast delivery across India.",
+  keywords: ["rakhi gifts", "raksha bandhan gifts", "personalized gifts", "custom jewelry", "gifts for sister", "gifts for brother", "gifts under 499", "octopus gifts"],
+  alternates: {
+    canonical: "https://www.octopusperfume.in",
+  },
+  openGraph: {
+    title: "Personalized Rakhi Gifts for Sister & Brother | Octopus Gifts",
+    description: "Surprise your sister or brother with personalized Raksha Bandhan gifts, custom jewelry and gift boxes under ₹499 with fast delivery across India.",
+    url: "https://www.octopusperfume.in",
+    siteName: "Octopus Gifts",
+    images: [
+      {
+        url: "/images/products/name-necklace-rakhi-gift-11.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Personalized Rakhi Gifts",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Personalized Rakhi Gifts | Octopus Gifts",
+    description: "Surprise your sister or brother with personalized Raksha Bandhan gifts under ₹499.",
+    images: ["/images/products/name-necklace-rakhi-gift-11.jpg"],
+  },
 };
 
 export default async function Home() {

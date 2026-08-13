@@ -5,6 +5,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ChevronRight, Gift, ChevronDown, ChevronUp } from "lucide-react";
 import { rakhiConfig } from "./rakhi-config";
+import RakhiPopup from "./RakhiPopup";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -226,6 +227,35 @@ export default async function CollectionPage(props: {
               Showing {displayProducts.length > 0 ? startIndex + 1 : 0} - {Math.min(startIndex + PRODUCTS_PER_PAGE, totalProducts)} of {totalProducts} Products
             </p>
           </div>
+
+          {slug === 'rakhi-name-necklaces' && (
+            <>
+              <RakhiPopup />
+              <div className="mb-12 bg-gradient-to-br from-[#800020] to-[#c00030] rounded-2xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
+                <div className="absolute top-0 right-0 opacity-10 scale-150 -translate-y-1/4 translate-x-1/4">
+                  <Gift size={200} />
+                </div>
+                <div className="z-10 text-center md:text-left flex-1">
+                  <div className="inline-block bg-white/20 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4 border border-white/30 backdrop-blur-sm">
+                    🔥 Selling Out Fast
+                  </div>
+                  <h2 className="font-serif text-3xl md:text-5xl mb-4 leading-tight font-bold">
+                    Make Her Smile<br />This Rakhi.
+                  </h2>
+                  <p className="text-white/90 mb-6 text-lg">
+                    The ultimate personalized gift for your sister. Limited stock available at just ₹349.
+                  </p>
+                </div>
+                <div className="z-10 bg-white text-center p-6 md:p-8 rounded-xl shadow-xl w-full md:w-auto min-w-[280px]">
+                  <p className="text-[#800020] text-sm uppercase tracking-widest font-bold mb-2">Secret Brother Code</p>
+                  <p className="text-3xl font-black text-gray-900 tracking-widest select-all bg-[#FDF8F5] py-3 rounded-lg border-2 border-dashed border-[#800020] mb-4">
+                    ILYBEHENA
+                  </p>
+                  <p className="text-gray-600 text-sm font-bold">Use at checkout for extra ₹150 OFF!</p>
+                </div>
+              </div>
+            </>
+          )}
 
           {displayProducts.length > 0 ? (
             <>

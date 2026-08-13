@@ -391,6 +391,26 @@ export default function ProductUI({ product }: ProductUIProps) {
             </div>
           </div>
 
+          {/* Rakhi Special Promo */}
+          {isNamePersonalised && productTitleLower.includes('necklace') && (
+            <div className="bg-[#FFEAEA] border border-[#800020]/20 rounded-xl p-4 mb-6 relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-16 h-16 bg-[#800020]/5 rounded-bl-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500"></div>
+              <div className="flex items-start gap-4 relative z-10">
+                <div className="bg-white text-[#800020] p-2 rounded-lg shadow-sm">
+                  <Gift size={24} />
+                </div>
+                <div>
+                  <h4 className="text-[#800020] font-bold text-sm mb-1 uppercase tracking-widest flex items-center gap-2">
+                    ✨ Rakhi Special
+                  </h4>
+                  <p className="text-[#2d2d2d] text-xs font-medium leading-relaxed">
+                    Brother, use secret code <strong className="font-black text-[#800020] bg-white px-2 py-0.5 rounded border border-[#800020]/20">ILYBEHENA</strong> at checkout to get an extra <strong className="text-[#800020]">₹150 OFF</strong> on this necklace!
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Action Buttons */}
           <div className="flex gap-4 mb-6">
              <button

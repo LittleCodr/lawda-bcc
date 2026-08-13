@@ -27,11 +27,15 @@ export default function CheckoutPage() {
     zip: "",
   });
   const [fetchingPin, setFetchingPin] = useState(false);
+  const [promoCode, setPromoCode] = useState("");
+  const [promoApplied, setPromoApplied] = useState(false);
+  const [promoError, setPromoError] = useState("");
 
   const baseTotal = totalPrice();
   const deliveryFee = deliveryMethod === "premium" ? 300 : 0;
+  const discountAmount = promoApplied ? 150 : 0;
   const isAdmin = user?.email && ["littlecodr@gmail.com", "srijanrai966@gmail.com"].includes(user.email.toLowerCase());
-  const finalTotal = isAdmin ? 1 : baseTotal + deliveryFee;
+  const finalTotal = isAdmin ? 1 : Math.max(0, baseTotal + deliveryFee - discountAmount);
   const loggedBeginCheckout = useRef(false);
 
   useEffect(() => {
@@ -158,6 +162,8 @@ export default function CheckoutPage() {
         deliveryMethod: deliveryMethod,
         items: JSON.parse(JSON.stringify(items)),
         shippingDetails: formData,
+        promoCode: promoApplied ? "ILYBEHENA" : null,
+        discountAmount: discountAmount,
         createdAt: new Date(),
       });
 
@@ -365,12 +371,62 @@ export default function CheckoutPage() {
                 ))}
               </ul>
 
+              {/* Promo Code */}
+              <div className="mb-8">
+                <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2 font-bold">Promo Code</label>
+                <div className="flex gap-2">
+                  <input 
+                    type="text" 
+                    value={promoCode}
+                    onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
+                    disabled={promoApplied}
+                    placeholder="Enter code" 
+                    className="w-full border border-stone-300 px-4 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm uppercase"
+                  />
+                  {!promoApplied ? (
+                    <button 
+                      type="button"
+                      onClick={() => {
+                        if (promoCode === "ILYBEHENA") {
+                          setPromoApplied(true);
+                          setPromoError("");
+                        } else {
+                          setPromoError("Invalid or expired promo code.");
+                        }
+                      }}
+                      className="bg-stone-900 text-white px-6 text-xs uppercase tracking-widest font-bold hover:bg-[#800020] transition-colors"
+                    >
+                      Apply
+                    </button>
+                  ) : (
+                    <button 
+                      type="button"
+                      onClick={() => {
+                        setPromoApplied(false);
+                        setPromoCode("");
+                      }}
+                      className="bg-red-50 text-red-600 border border-red-200 px-6 text-xs uppercase tracking-widest font-bold hover:bg-red-100 transition-colors"
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
+                {promoError && <p className="text-red-500 text-xs mt-2">{promoError}</p>}
+                {promoApplied && <p className="text-emerald-600 font-bold text-xs mt-2 flex items-center gap-1"><CheckCircle2 size={12}/> Promo code applied successfully!</p>}
+              </div>
+
               {/* Totals */}
               <div className="border-t border-stone-200 pt-6 space-y-4">
                 <div className="flex justify-between text-sm text-stone-600">
                   <span>Subtotal</span>
-                  <span>₹{finalTotal}</span>
+                  <span>₹{baseTotal}</span>
                 </div>
+                {promoApplied && (
+                  <div className="flex justify-between text-sm font-bold text-emerald-600">
+                    <span>Discount (ILYBEHENA)</span>
+                    <span>-₹150</span>
+                  </div>
+                )}
                 <div className="flex justify-between text-sm text-stone-600">
                   <span>Shipping</span>
                   <span>{deliveryMethod === 'premium' ? '₹300' : 'Free'}</span>

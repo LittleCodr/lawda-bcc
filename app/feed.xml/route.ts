@@ -1,4 +1,4 @@
-import { products } from "@/lib/products";
+import productsData from "@/lib/data/products.json";
 
 export async function GET() {
   const DOMAIN = "https://octopusperfume.in";
@@ -9,19 +9,22 @@ export async function GET() {
     <title>Octopus Perfume</title>
     <link>${DOMAIN}</link>
     <description>Bespoke personalized gifting and premium perfumes in India.</description>
-    ${products.map((product) => `
+    ${(productsData as any[]).map((product) => {
+      const variant = product.variants && product.variants.length > 0 ? product.variants[0] : null;
+      return `
     <item>
-      <g:id>${product.sku || product.slug}</g:id>
-      <g:title><![CDATA[${product.name} | Octopus Perfume]]></g:title>
-      <g:description><![CDATA[${product.scentStory || product.tagline}]]></g:description>
-      <g:link>${DOMAIN}/collections/${product.slug}</g:link>
-      <g:image_link>${DOMAIN}${product.images.hero}</g:image_link>
+      <g:id>${product.id}</g:id>
+      <g:title><![CDATA[${product.title} | Octopus Perfume]]></g:title>
+      <g:description><![CDATA[${product.body_html ? product.body_html.replace(/<[^>]*>?/gm, '').substring(0, 500) : product.title}]]></g:description>
+      <g:link>${DOMAIN}/collections/${product.handle}</g:link>
+      <g:image_link>${product.images && product.images.length > 0 ? product.images[0].src : ''}</g:image_link>
       <g:condition>new</g:condition>
       <g:availability>in_stock</g:availability>
-      <g:price>${product.price}.00 INR</g:price>
-      <g:brand>Octopus Perfume</g:brand>
-      <g:gender>${product.gender.includes('Her') && product.gender.includes('Him') ? 'unisex' : product.gender.includes('Her') ? 'female' : 'male'}</g:gender>
-    </item>`).join('')}
+      <g:price>${variant ? variant.price : 0} INR</g:price>
+      <g:brand>${product.vendor || 'Octopus Perfume'}</g:brand>
+      <g:product_type><![CDATA[${product.product_type || 'Personalised Gifts'}]]></g:product_type>
+    </item>`;
+    }).join('')}
   </channel>
 </rss>`;
 

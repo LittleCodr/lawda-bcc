@@ -6,8 +6,8 @@ import type { Metadata } from "next";
 import { Gift, ShieldCheck, Truck, Award, Star, ArrowRight, Heart, Users, Gem, Watch, Wallet, Box, RefreshCcw, CalendarClock } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Personalized Gifts for Her & Him in India | Octopus",
-  description: "Shop personalized gifts, custom jewelry, name necklaces, and couple gifts. Perfect for birthdays, anniversaries, and weddings.",
+  title: "Personalized Gifts for Every Relationship in India | Octopus",
+  description: "Shop personalized gifts, custom jewelry, couple gifts, birthday gifts, anniversary gifts and Raksha Bandhan gifts with fast delivery across India.",
 };
 
 export default async function Home() {
@@ -25,30 +25,75 @@ export default async function Home() {
   // Use only first 8 products for featured section
   const featuredProducts = products.slice(0, 8);
 
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Octopus",
+    "url": "https://www.octopusperfume.in",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://www.octopusperfume.in/collections/all?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How long does delivery take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Delivery typically takes 2-5 days across India."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is gift wrapping available?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we offer premium gift wrapping to make your present extra special."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I personalize products?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! You can customize our jewelry and gifts with names, initials, dates, or special messages."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you deliver across India?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we provide fast and reliable delivery to all pin codes across India."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are your jewelry products anti tarnish?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, our personalized jewelry pieces are made from high-quality materials including gold-plated and stainless steel that are anti-tarnish and waterproof."
+        }
+      }
+    ]
+  };
+
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": "Octopus",
-            "url": "https://www.octopusperfume.in",
-            "potentialAction": {
-              "@type": "SearchAction",
-              "target": "https://www.octopusperfume.in/collections/all?q={search_term_string}",
-              "query-input": "required name=search_term_string"
-            }
-          })
-        }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       
       {/* Hero Section Container */}
       <section className="bg-white px-4 md:px-8 pt-4 pb-24">
         <div className="relative w-full h-auto min-h-[600px] md:h-[650px] bg-[#f9f2ed] rounded-[40px] overflow-visible flex items-center shadow-sm">
           
-          {/* Background Image Area (Right aligned mostly) */}
+          {/* Background Image Area */}
           <div className="absolute inset-0 w-full h-full rounded-[40px] overflow-hidden z-0">
              <Image 
                 src="/images/products/DSC07516copy.jpg" 
@@ -57,11 +102,10 @@ export default async function Home() {
                 className="object-cover object-right md:object-[60%_center] opacity-40 md:opacity-100"
                 priority
              />
-             {/* Gradient overlay for text readability on mobile */}
              <div className="absolute inset-0 bg-gradient-to-r from-[#f9f2ed] via-[#f9f2ed]/90 to-transparent md:w-2/3"></div>
           </div>
 
-          {/* "Make it Truly Yours" Badge - Right side floating */}
+          {/* "Make it Truly Yours" Badge */}
           <div className="hidden md:flex absolute top-24 right-24 z-20 w-36 h-36 bg-white/80 backdrop-blur-md rounded-full items-center justify-center border border-[#800020]/10 shadow-xl rotate-12 hover:rotate-0 transition-transform duration-500 flex-col gap-1">
              <span className="text-[10px] font-bold uppercase tracking-widest text-[#2d2d2d]">Make It</span>
              <span className="font-serif text-xl italic text-[#800020]">Truly Yours</span>
@@ -77,11 +121,11 @@ export default async function Home() {
 
             <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-[#800020] leading-[1.1] mb-2 tracking-tight drop-shadow-sm">
               Personalized Gifts <br />
-              <span className="italic font-light text-[#9e7662]">for every relationship</span>
+              <span className="italic font-light text-[#9e7662]">for every relationship in India</span>
             </h1>
 
-            <p className="text-gray-700 mt-6 max-w-md text-sm md:text-base leading-relaxed">
-              Name necklaces, rings, bracelets and custom keepsakes made just for your special people.
+            <p className="text-gray-700 mt-6 max-w-md text-sm md:text-base leading-relaxed font-medium">
+              Discover personalized name necklaces, engraved bracelets, couple gifts and custom keepsakes for birthdays, anniversaries, Raksha Bandhan and every special occasion.
             </p>
 
             {/* Feature Icons Grid */}
@@ -151,12 +195,12 @@ export default async function Home() {
 
           </div>
 
-          {/* Floating Categories Bar (Overlapping bottom of Hero) */}
-          <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] z-30 py-6 px-4 hidden lg:block">
+          {/* Floating Categories Bar */}
+          <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] z-30 py-6 px-4 hidden lg:block border border-gray-50">
             <div className="flex items-center justify-between divide-x divide-gray-100">
               {[
-                { icon: <Gift size={28} className="text-[#800020]" strokeWidth={1} />, title: "Birthday Gifts", href: "/collections/birthday-gift" },
-                { icon: <Heart size={28} className="text-[#800020]" strokeWidth={1} />, title: "Anniversary Gifts", href: "/collections/anniversary-gifts" },
+                { icon: <Gift size={28} className="text-[#800020]" strokeWidth={1} />, title: "Birthday Gifts", href: "/collections/birthday-gift-for-girlfriend" },
+                { icon: <Heart size={28} className="text-[#800020]" strokeWidth={1} />, title: "Anniversary Gifts", href: "/collections/anniversary-gifts-for-wife" },
                 { icon: <CalendarClock size={28} className="text-[#800020]" strokeWidth={1} />, title: "Raksha Bandhan", href: "/collections/rakhi-gifts", badge: "NEW" },
                 { icon: <Users size={28} className="text-[#800020]" strokeWidth={1} />, title: "Couple Gifts", href: "/collections/couple-gifts" },
                 { icon: <Gem size={28} className="text-[#800020]" strokeWidth={1} />, title: "Personalized Jewelry", href: "/collections/personalized-gifts" },
@@ -179,8 +223,8 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* Floating Trust Bar (Below Categories) */}
-        <div className="mx-auto max-w-6xl mt-24 mb-8 bg-[#fdfaf8] rounded-xl py-6 px-8 flex flex-wrap lg:flex-nowrap items-center justify-between gap-6">
+        {/* Floating Trust Bar */}
+        <div className="mx-auto max-w-6xl mt-24 mb-8 bg-[#fdfaf8] rounded-xl py-6 px-8 flex flex-wrap lg:flex-nowrap items-center justify-between gap-6 border border-orange-900/5">
           {[
             { icon: <Truck size={24} className="text-[#2d2d2d]" strokeWidth={1} />, title: "FREE SHIPPING", sub: "On all prepaid orders" },
             { icon: <CalendarClock size={24} className="text-[#2d2d2d]" strokeWidth={1} />, title: "DELIVERED WITH LOVE", sub: "2-5 days across India" },
@@ -198,8 +242,16 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* New Arrivals Preview */}
-      <section className="bg-white mx-auto max-w-[1440px] px-6 md:px-12 py-24 border-t border-gray-100 mt-12">
+      {/* Hidden SEO Text Block (Improves NLP intent mapping) */}
+      <section className="mx-auto max-w-4xl px-6 md:px-12 py-16 text-center text-[#2d2d2d]">
+        <h2 className="font-serif text-2xl text-[#800020] mb-4">Personalized Gifts for Every Occasion in India</h2>
+        <div className="text-sm md:text-base leading-relaxed opacity-80 text-justify">
+          At Octopus, we believe every relationship deserves to be celebrated with meaning. Whether you are searching for thoughtful <strong className="font-medium text-[#800020]">birthday gifts</strong>, romantic <strong className="font-medium text-[#800020]">anniversary gifts</strong>, or festive <strong className="font-medium text-[#800020]">Rakhi gifts</strong>, our collection of <strong className="font-medium text-[#800020]">personalized jewelry</strong> is crafted to turn memories into tangible keepsakes. From delicate 925 silver name necklaces for your girlfriend to engraved stainless steel couple gifts for your husband, we curate the perfect personalized gifts across India. Shop our highly affordable gifts under ₹999 or discover our premium custom keepsakes—all backed by our promise of fast delivery and premium anti-tarnish quality.
+        </div>
+      </section>
+
+      {/* New Arrivals / Best Sellers Preview */}
+      <section className="bg-white mx-auto max-w-[1440px] px-6 md:px-12 py-12 border-t border-gray-100">
         <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-6">
           <div className="text-left">
             <h2 className="font-serif text-3xl md:text-4xl text-[#800020] mb-3">
@@ -231,7 +283,6 @@ export default async function Home() {
                     <div className="w-full h-full flex items-center justify-center text-[#E5B8B7]">No Image</div>
                   )}
                   
-                  {/* Hover Overlay Button */}
                   <div className="absolute inset-0 bg-[#800020]/0 group-hover:bg-[#800020]/5 transition-colors duration-300 flex items-end justify-center p-6">
                     <span className="bg-white/90 backdrop-blur-sm text-[#800020] px-8 py-3 text-xs uppercase tracking-widest font-bold translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 shadow-lg rounded-sm">
                       View Gift
@@ -255,17 +306,6 @@ export default async function Home() {
             <p>Products are currently syncing. Please refresh in a moment.</p>
           </div>
         )}
-      </section>
-
-      <section className="bg-white py-32 border-t border-[#E5B8B7]/30">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="font-serif text-3xl md:text-5xl leading-relaxed text-[#800020]">
-            "A personalized gift is not just an item, it's a memory you can hold forever."
-          </p>
-          <div className="mt-10 text-xs uppercase tracking-widest font-bold text-[#2d2d2d]">
-            — Octopus
-          </div>
-        </div>
       </section>
     </>
   );

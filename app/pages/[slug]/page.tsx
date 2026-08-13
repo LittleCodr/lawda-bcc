@@ -31,7 +31,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
         </>
       );
       break;
-    case "terms-and-conditions":
+    case "terms-conditions":
       content = (
         <>
           <h2>1. Comprehensive Introduction and Acceptance of Terms</h2>
@@ -57,7 +57,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
         </>
       );
       break;
-    case "return-policy":
+    case "returns-refund-policy":
       content = (
         <>
           <h2>1. General Philosophy on Returns</h2>

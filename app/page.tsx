@@ -95,7 +95,7 @@ export default async function Home() {
         <div className="relative w-full h-auto min-h-[600px] md:h-[650px] bg-[#f9f2ed] rounded-[40px] overflow-visible flex items-center shadow-sm">
           <div className="absolute inset-0 w-full h-full rounded-[40px] overflow-hidden z-0">
              <Image 
-                src="/images/products/DSC07516copy.jpg" 
+                src="/images/products/name-necklace-rakhi-gift-11.jpg" 
                 alt="Personalized Gifts" 
                 fill 
                 className="object-cover object-right md:object-[60%_center] opacity-40 md:opacity-100"
@@ -148,13 +148,13 @@ export default async function Home() {
             <div className="flex items-center gap-4 mt-10 bg-white/60 backdrop-blur-sm p-3 pr-6 rounded-full inline-flex border border-white/40 shadow-sm">
               <div className="flex -space-x-2">
                 <div className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white overflow-hidden relative">
-                   <Image src="/images/products/DSC07516copy.jpg" alt="Customer" fill className="object-cover" />
+                   <Image src="/images/products/name-necklace-rakhi-gift-1.webp" alt="Customer" fill className="object-cover" />
                 </div>
                 <div className="w-8 h-8 rounded-full bg-gray-400 border-2 border-white overflow-hidden relative">
-                   <Image src="/images/products/gold2_67d409be-fa53-4c55-9bc1-e33b18f28e0f.jpg" alt="Customer" fill className="object-cover" />
+                   <Image src="/images/products/18k-cuff-bracelet-rakhi-gift-1.png" alt="Customer" fill className="object-cover" />
                 </div>
                 <div className="w-8 h-8 rounded-full bg-gray-500 border-2 border-white overflow-hidden relative">
-                   <Image src="/images/products/Necklace3_3Variants_gold1.png" alt="Customer" fill className="object-cover" />
+                   <Image src="/images/products/customized-bar-necklace-rakhi-gift-1.jpg" alt="Customer" fill className="object-cover" />
                 </div>
               </div>
               <div>
@@ -185,10 +185,10 @@ export default async function Home() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { title: "Birthdays", img: "/images/products/Necklace3_3Variants_gold1.png", link: "/collections/birthday-gifts" },
-              { title: "Anniversaries", img: "/images/products/gold2_67d409be-fa53-4c55-9bc1-e33b18f28e0f.jpg", link: "/collections/anniversary-gifts" },
-              { title: "Raksha Bandhan", img: "/images/products/DSC07516copy.jpg", link: "/collections/rakhi-gifts" },
-              { title: "Weddings", img: "/images/products/Necklace3_3Variants_gold1.png", link: "/collections/wedding-gifts" }
+              { title: "Birthdays", img: "/images/products/customized-bar-necklace-rakhi-gift-1.jpg", link: "/collections/birthday-gifts" },
+              { title: "Anniversaries", img: "/images/products/eternal-heart-necklace-1-rakhi-gift-4.jpg", link: "/collections/anniversary-gifts" },
+              { title: "Raksha Bandhan", img: "/images/products/customized-butterfly-name-ring-rakhi-gift-1.jpg", link: "/collections/rakhi-gifts" },
+              { title: "Weddings", img: "/images/products/18k-cuff-bracelet-rakhi-gift-11.jpg", link: "/collections/wedding-gifts" }
             ].map((occ, idx) => (
               <Link href={occ.link} key={idx} className="group block relative aspect-square overflow-hidden rounded-lg shadow-sm">
                 <Image src={occ.img} alt={occ.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
@@ -424,7 +424,7 @@ export default async function Home() {
       <section className="bg-white py-24 px-6 md:px-12">
         <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
-            <Image src="/images/products/gold2_67d409be-fa53-4c55-9bc1-e33b18f28e0f.jpg" alt="Premium Gift Wrapping" fill className="object-cover" />
+            <Image src="/images/products/Mirage_Hero_Octopus.webp" alt="Premium Gift Wrapping" fill className="object-cover" />
           </div>
           <div className="max-w-lg">
             <span className="text-[#800020] text-xs font-bold uppercase tracking-[0.2em] mb-4 block">The Perfect Presentation</span>

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Gift, ShieldCheck, Truck, Star } from "lucide-react";
 import { Menu, Search, ShoppingBag, X, ChevronDown, User } from "lucide-react";
 import { useCartStore } from "@/lib/store";
+import SearchModal from "./SearchModal";
 
 const NAV_MENU = [
   { 
@@ -51,6 +52,7 @@ export default function Navbar() {
   const { totalItems, setIsOpen } = useCartStore();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
 
   useEffect(() => {
@@ -139,7 +141,7 @@ export default function Navbar() {
 
         {/* Right Side: Icons */}
         <div className="flex items-center gap-4 sm:gap-8 flex-1 justify-end relative z-10 text-[#2d2d2d]">
-          <button aria-label="Search" className="flex flex-col items-center gap-1 hover:text-[#800020] transition-colors group">
+          <button aria-label="Search" onClick={() => setSearchOpen(true)} className="flex flex-col items-center gap-1 hover:text-[#800020] transition-colors group">
              <Search size={20} strokeWidth={1.5} className="group-hover:-translate-y-0.5 transition-transform" />
              <span className="hidden sm:block text-[10px] uppercase font-bold tracking-widest">Search</span>
           </button>
@@ -200,6 +202,8 @@ export default function Navbar() {
           </div>
         </div>
       )}
+
+      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
     </>
   );

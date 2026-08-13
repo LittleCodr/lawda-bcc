@@ -1,269 +1,118 @@
-import Image from "next/image";
+import fs from "fs";
+import path from "path";
 import { notFound } from "next/navigation";
-import type { Metadata } from "next";
-import { getProductBySlug, products } from "@/lib/products";
-import AddToCartPanel from "@/components/AddToCartPanel";
-import { Accordion } from "@/components/Accordion";
-import ProductCard from "@/components/ProductCard";
-import { ShieldCheck, RefreshCw, Banknote, Tag, Flame } from "lucide-react";
-import LiveViewerCount from "@/components/LiveViewerCount";
+import Image from "next/image";
+import ProductForm from "./ProductForm";
 
-export function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }));
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
-  if (!product) return {};
-  const priceString = `₹${product.price.toLocaleString("en-IN")}`;
-  const notesString = `Top: ${product.notes.top} | Heart: ${product.notes.heart} | Base: ${product.notes.base}`;
-  const goodToKnowString = product.goodToKnow.join(" • ");
+  
+  let product = null;
+  try {
+    const dataPath = path.join(process.cwd(), "lib", "data", "products.json");
+    if (fs.existsSync(dataPath)) {
+      const fileContent = fs.readFileSync(dataPath, "utf-8");
+      const products = JSON.parse(fileContent);
+      product = products.find((p: any) => p.handle === slug);
+    }
+  } catch (e) {}
+
+  if (!product) {
+    return { title: "Product Not Found | Everlasting" };
+  }
 
   return {
-    title: `Octopus ${product.name} Perfume – Buy Online | Harsh Beniwal Official`,
-    description: `${priceString} ; Good to know: ${goodToKnowString} ; Key Notes: ${notesString}. Shop ${product.name} Eau de Parfum by Harsh Beniwal, inspired by ${product.inspiredBy}.`,
-    keywords: [
-      `octopus ${product.name.toLowerCase()} perfume`,
-      `${product.name} octopus perfume`,
-      `${product.name} perfume`,
-      "octopus perfume",
-      "octopus perfume by harsh beniwal",
-      "harsh beniwal perfume website",
-      "octopusperfume.in",
-      `buy octopus ${product.name.toLowerCase()} perfume`,
-      `buy ${product.name} perfume`,
-      `octopus ${product.name.toLowerCase()}`,
-      product.inspiredBy,
-    ],
-    alternates: {
-      canonical: `https://octopusperfume.in/products/${slug}`,
-    },
-    openGraph: {
-      title: `Octopus ${product.name} Perfume – Buy Online | Harsh Beniwal Official`,
-      description: `${priceString} ; Good to know: ${goodToKnowString} ; Key Notes: ${notesString}. Shop ${product.name} Eau de Parfum by Harsh Beniwal, inspired by ${product.inspiredBy}.`,
-      images: [product.images.hero],
-      url: `https://octopusperfume.in/products/${slug}`,
-    },
+    title: `${product.title} | Everlasting`,
+    description: product.body_html?.replace(/<[^>]+>/g, "").substring(0, 160) || "Buy personalized jewelry at Everlasting.",
   };
 }
 
-export default async function ProductPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
-  if (!product) notFound();
+  
+  let product = null;
+  try {
+    const dataPath = path.join(process.cwd(), "lib", "data", "products.json");
+    if (fs.existsSync(dataPath)) {
+      const fileContent = fs.readFileSync(dataPath, "utf-8");
+      const products = JSON.parse(fileContent);
+      product = products.find((p: any) => p.handle === slug);
+    }
+  } catch (e) {}
 
-  const gallery = [product.images.hero, product.images.lifestyle, product.images.mood, product.images.box].filter(
-    Boolean
-  ) as string[];
+  if (!product) {
+    notFound();
+  }
 
-  const related = products.filter((p) => p.slug !== product.slug).slice(0, 4);
-
-  const productJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: `${product.name} - Octopus Perfume`,
-    image: `https://octopusperfume.in${product.images.hero}`,
-    description: `${product.tagline} Inspired by ${product.inspiredBy}. ${product.gender}. 50ML Eau de Parfum by Octopus Perfume (Harsh Beniwal).`,
-    sku: product.sku,
-    brand: {
-      "@type": "Brand",
-      name: "Octopus Perfume by Harsh Beniwal",
-    },
-    offers: {
-      "@type": "Offer",
-      url: `https://octopusperfume.in/products/${product.slug}`,
-      priceCurrency: "INR",
-      price: product.price,
-      priceValidUntil: "2027-12-31",
-      availability: "https://schema.org/InStock",
-      itemCondition: "https://schema.org/NewCondition",
-      seller: {
-        "@type": "Organization",
-        name: "Octopus Lifestyle Private Limited",
-      },
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.5",
-      reviewCount: "120",
-    },
-    category: "Eau de Parfum",
-    additionalProperty: [
-      { "@type": "PropertyValue", name: "Inspired By", value: product.inspiredBy },
-      { "@type": "PropertyValue", name: "Gender", value: product.gender },
-      { "@type": "PropertyValue", name: "Size", value: "50ML" },
-      { "@type": "PropertyValue", name: "Top Notes", value: product.notes.top },
-      { "@type": "PropertyValue", name: "Heart Notes", value: product.notes.heart },
-      { "@type": "PropertyValue", name: "Base Notes", value: product.notes.base },
-    ],
-  };
-
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://octopusperfume.in/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Products",
-        "item": "https://octopusperfume.in/collections/all"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": product.name,
-        "item": `https://octopusperfume.in/products/${product.slug}`
-      }
-    ]
-  };
+  // Use local images if downloaded, otherwise fallback to remote
+  const images = product.images?.map((img: any) => ({
+    src: img.local_src || img.src,
+    alt: product.title
+  })) || [];
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
-      <div className="mx-auto max-w-[1440px] px-5 md:px-10 py-8 md:py-14">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-          <div className="grid grid-cols-2 gap-3 md:gap-4 h-fit">
-            {gallery.map((src, i) => (
-              <div
-                key={src}
-                className={`relative bg-white overflow-hidden ${i === 0 ? "col-span-2 aspect-[4/3]" : "aspect-square"}`}
-              >
-                <Image
-                  src={src}
-                  alt={`${product.name} Octopus Perfume by Harsh Beniwal - Image ${i + 1}`}
-                  fill
-                  priority={i === 0}
-                  sizes="(max-width: 1024px) 50vw, 33vw"
-                  className="object-cover"
-                />
-              </div>
-            ))}
-          </div>
-
-          <div className="lg:sticky lg:top-24 h-fit">
-            <p className="text-[11px] tracking-[0.2em] uppercase text-muted mb-2">
-              Inspired by {product.inspiredBy} - {product.gender}
-            </p>
-            <h1 className="font-serif-display text-5xl md:text-6xl mb-1">{product.name}</h1>
-            <p className="text-xs tracking-[0.15em] uppercase text-muted mb-4">50 ML - Eau de Parfum</p>
-            
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <LiveViewerCount />
-              <div className="flex items-center gap-1.5 text-amber-700 bg-amber-50 border border-amber-200 px-3 py-1.5 w-fit rounded-sm">
-                <Flame size={14} className="animate-pulse text-red-500" />
-                <p className="text-[11px] font-bold tracking-wide uppercase text-red-600">Selling Fast - Limited Stock!</p>
-              </div>
-            </div>
-
-            <p className="text-sm text-ink/70 leading-relaxed mb-8 max-w-md">{product.tagline}</p>
-
-            <AddToCartPanel product={product} />
-
-            <div className="mt-6 bg-emerald-50 border border-emerald-200 p-4 rounded-sm">
-              <h3 className="text-[10px] font-bold uppercase tracking-widest text-emerald-800 mb-3 flex items-center gap-2">
-                <Tag size={14} /> Available Offers
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex gap-3 items-start text-sm text-emerald-900">
-                  <div className="bg-emerald-200 text-emerald-800 font-bold px-1.5 py-0.5 rounded text-[10px] mt-0.5 shrink-0">HARSH10</div>
-                  <p>Get <strong>10% OFF</strong> on your entire order. Use code at checkout.</p>
-                </li>
-                <li className="flex gap-3 items-start text-sm text-emerald-900">
-                  <div className="bg-emerald-200 text-emerald-800 font-bold px-1.5 py-0.5 rounded text-[10px] mt-0.5 shrink-0">GIFT</div>
-                  <p>Spend ₹1499+ and get a <strong>FREE 10ml Travel Spray</strong> instantly added to your bag!</p>
-                </li>
-                <li className="flex gap-3 items-start text-sm text-emerald-900">
-                  <div className="bg-emerald-200 text-emerald-800 font-bold px-1.5 py-0.5 rounded text-[10px] mt-0.5 shrink-0">HARSH15</div>
-                  <p>Buy 3+ bottles (Spend ₹2499+) and unlock <strong>15% OFF</strong>.</p>
-                </li>
-              </ul>
-            </div>
-
-            <div className="flex items-center justify-between gap-2 mt-6 py-4 border-y border-ink/10">
-              <div className="flex flex-col items-center gap-1.5 flex-1">
-                <ShieldCheck size={18} className="text-ink/60" />
-                <span className="text-[9px] uppercase tracking-wider text-ink/60 text-center font-medium">Secure Checkout</span>
-              </div>
-              <div className="flex flex-col items-center gap-1.5 flex-1 border-x border-ink/10">
-                <RefreshCw size={18} className="text-ink/60" />
-                <span className="text-[9px] uppercase tracking-wider text-ink/60 text-center font-medium">Easy Returns</span>
-              </div>
-              <div className="flex flex-col items-center gap-1.5 flex-1">
-                <Banknote size={18} className="text-ink/60" />
-                <span className="text-[9px] uppercase tracking-wider text-ink/60 text-center font-medium">COD Available</span>
-              </div>
-            </div>
-
-            <div className="mt-8">
-              <Accordion
-                items={[
-                  { title: "Scent Story", content: <p>{product.scentStory}</p> },
-                  {
-                    title: "Good to Know",
-                    content: (
-                      <ul className="space-y-1.5">
-                        {product.goodToKnow.map((g) => (
-                          <li key={g}>{g}</li>
-                        ))}
-                      </ul>
-                    ),
-                  },
-                  {
-                    title: "Key Notes",
-                    content: (
-                      <div className="space-y-3">
-                        <div>
-                          <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-1">Top</p>
-                          <p>{product.notes.top}</p>
-                        </div>
-                        <div>
-                          <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-1">Heart</p>
-                          <p>{product.notes.heart}</p>
-                        </div>
-                        <div>
-                          <p className="text-[10px] tracking-[0.2em] uppercase text-muted mb-1">Base</p>
-                          <p>{product.notes.base}</p>
-                        </div>
-                      </div>
-                    ),
-                  },
-                ]}
+    <div className="bg-white min-h-screen pt-24 pb-32">
+      <div className="mx-auto max-w-[1200px] px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+        {/* Image Gallery */}
+        <div className="flex flex-col gap-4 sticky top-32">
+          {images.length > 0 ? (
+            <div className="relative aspect-[4/5] bg-stone-50 w-full rounded-md overflow-hidden border border-stone-100">
+              <Image 
+                src={images[0].src} 
+                alt={images[0].alt}
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover" 
               />
+            </div>
+          ) : (
+            <div className="aspect-[4/5] bg-stone-50 w-full flex items-center justify-center rounded-md border border-stone-100">
+              <span className="text-stone-400">No Image</span>
+            </div>
+          )}
+          {images.length > 1 && (
+            <div className="grid grid-cols-4 gap-4">
+              {images.slice(1, 5).map((img: any, idx: number) => (
+                <div key={idx} className="relative aspect-[4/5] bg-stone-50 rounded-md overflow-hidden border border-stone-100">
+                  <Image src={img.src} alt={img.alt} fill className="object-cover" />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Product Details & Form */}
+        <div className="flex flex-col">
+          <h1 className="font-serif text-3xl md:text-5xl text-stone-900 mb-4">{product.title}</h1>
+          <p className="text-xl text-stone-600 mb-8 font-medium">
+            ₹{product.variants && product.variants.length > 0 ? product.variants[0].price : "0"}
+          </p>
+
+          <div 
+            className="prose prose-stone prose-sm mb-10 max-w-none text-stone-600"
+            dangerouslySetInnerHTML={{ __html: product.body_html || "" }} 
+          />
+
+          <ProductForm product={product} />
+
+          {/* Accordions / Features */}
+          <div className="mt-16 border-t border-stone-200 pt-8 space-y-6">
+            <div className="flex flex-col gap-2">
+              <h3 className="text-sm uppercase tracking-widest font-bold text-stone-900">Shipping</h3>
+              <p className="text-sm text-stone-500 leading-relaxed">
+                Free standard shipping on all orders. Personalized items take 3-5 business days to craft before shipping.
+              </p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <h3 className="text-sm uppercase tracking-widest font-bold text-stone-900">Materials</h3>
+              <p className="text-sm text-stone-500 leading-relaxed">
+                Made with high quality stainless steel and plated in 18k gold. Hypoallergenic and tarnish resistant.
+              </p>
             </div>
           </div>
         </div>
-
-        <section className="mt-24 md:mt-32">
-          <h2 className="font-serif-display text-3xl md:text-4xl text-center mb-12">You May Also Like</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-5 gap-y-14 md:gap-x-8">
-            {related.map((p, i) => (
-              <ProductCard key={p.slug} product={p} index={i} />
-            ))}
-          </div>
-        </section>
       </div>
-    </>
+    </div>
   );
 }

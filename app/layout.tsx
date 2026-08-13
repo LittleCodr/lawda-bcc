@@ -1,15 +1,9 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
-import { CartProvider } from "@/lib/cart-context";
-import { AuthProvider } from "@/lib/auth-context";
+// import { AuthProvider } from "@/lib/auth-context"; // Keep disabled if not needed
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Marquee from "@/components/Marquee";
-import CartDrawer from "@/components/CartDrawer";
-import LiveSalesPopups from "@/components/LiveSalesPopups";
-import { GoogleAnalytics } from '@next/third-parties/google';
-
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -24,219 +18,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://octopusperfume.in"),
-  title: "Octopus Perfume by Harsh Beniwal | Buy Online (Official Store)",
-  description:
-    "Welcome to the ONLY official website for Octopus Perfume, founded and crafted by Harsh Beniwal. Shop Harsh Beniwal's signature collection of long-lasting luxury Eau de Parfums for India. 9 premium fragrances, made in India.",
-  keywords: [
-    "octopusperfume.in", "octopus perfume", "octopus perfume", "buyoctopusperfume", "buy octopus perfume", "harsh beniwal perfume",
-    "octopus harsh beniwal", "octopus perfume harsh beniwal", "harsh beniwal perfume brand", "octopus fragrance",
-    "octupus perfume", "buy octopus harsh beniwal", "buyoctopus perfume", "octopus perfume by harsh beniwal",
-    "octopus rhapsody", "harsh beniwal octopus", "harsh beniwal octopus perfume", "buyoctopus.com", "octopus harsh",
-    "octopus by harsh beniwal", "octopus parfum", "octopus darling perfume", "buy octopus.com", "octopus.com harsh beniwal",
-    "octopus outlaw", "octopus perfume bottle", "octopus overload perfume", "buyoctopus.in", "buyoctopus harsh",
-    "octopusperfume.in", "buyoctopusperfume", "octopus harsh beniwal brand", "octopus website harsh beniwal",
-    "buy octopus by harsh beniwal", "octopus outlaw perfume", "octopus lifestyle private limited",
-    "buy octopus harsh beniwal site", "harsh beniwal", "buyoctopus perfume", "perfume octopus",
-    "octopus mirage", "octopus perfume price", "outlaw perfume", "harsh perfume",
-    "buy octopus harsh beniwal brand", "harsh beniwal octopus brand website", "octopus by harsh beniwal site",
-    "octopus darling", "buy octopus brand", "buy octopus harsh", "harsh beniwal brand", "buyoctopus harsh beniwal",
-    "buy octopus perfume online", "original octopus perfume", "real octopus perfume website"
-  ],
+  metadataBase: new URL("https://www.everlasting.shop"),
+  title: "Everlasting Shop | Personalized Jewelry & Accessories",
+  description: "Shop personalized jewelry, custom necklaces, rings, and more at Everlasting Shop.",
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
-  },
-  alternates: {
-    canonical: "https://octopusperfume.in",
-  },
-  openGraph: {
-    title: "Octopus Perfume by Harsh Beniwal | Buy Online (Official Store)",
-    description:
-      "This is the ONLY official Harsh Beniwal perfume website. Shop Octopus Perfume — 9 premium Eau de Parfums crafted in India at sensible prices.",
-    images: ["/logo.png"],
-    type: "website",
-    siteName: "Octopus Perfume by Harsh Beniwal",
-    url: "https://octopusperfume.in",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Octopus Perfume by Harsh Beniwal | Buy Online (Official Store)",
-    description:
-      "This is the ONLY official Harsh Beniwal perfume website. Shop Octopus Perfume — 9 premium Eau de Parfums.",
-    images: ["/logo.png"],
-  },
-  verification: {
-    google: "7Mqtu2DoBFoj9G0LtfvCxHPJCIvCKFHyBqLfoVOSXrY",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+    icon: "/favicon.ico",
   },
 };
 
-const websiteJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Octopus Perfume",
-  alternateName: ["Octopus Perfume by Harsh Beniwal", "Harsh Beniwal Perfume Website", "Buy Octopus", "buyoctopus", "octopusperfume.in", "octopusperfume.in"],
-  url: "https://octopusperfume.in",
-  image: "https://octopusperfume.in/logo.png",
-  description:
-    "Shop Octopus Perfume by Harsh Beniwal. This is the ONLY official Harsh Beniwal perfume website. Nine long-lasting Eau de Parfums crafted for India at sensible prices.",
-  publisher: {
-    "@id": "https://octopusperfume.in/#organization"
-  },
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: "https://octopusperfume.in/collections/all?q={search_term_string}"
-    },
-    "query-input": "required name=search_term_string",
-  },
-};
+import CartDrawer from "@/components/CartDrawer";
 
-
-const orgJsonLd = {
-  "@context": "https://schema.org",
-  "@type": ["Organization", "HealthAndBeautyBusiness", "Store"],
-  "@id": "https://octopusperfume.in/#organization",
-  name: "Octopus Perfume by Harsh Beniwal",
-  alternateName: ["Octopus Lifestyle Private Limited", "Buy Octopus", "Octopus Perfume Official"],
-  url: "https://octopusperfume.in",
-  logo: {
-    "@type": "ImageObject",
-    url: "https://octopusperfume.in/logo.png",
-    width: "512",
-    height: "512"
-  },
-  image: "https://octopusperfume.in/logo.png",
-  priceRange: "₹799 - ₹1899",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Gurgaon",
-    addressRegion: "Haryana",
-    addressCountry: "IN"
-  },
-  sameAs: [
-    "https://instagram.com/buyoctopus", 
-    "https://instagram.com/harshbeniwal", 
-    "https://youtube.com/harshbeniwal",
-    "https://www.facebook.com/harshbeniwal",
-    "https://github.com/LittleCodr/Perfume"
-  ],
-  founder: {
-    "@type": "Person",
-    name: "Harsh Beniwal",
-    url: "https://instagram.com/harshbeniwal"
-  },
-  description:
-    "The official luxury fragrance brand created by Harsh Beniwal. Buy 50ML Eau de Parfums for India.",
-  contactPoint: {
-    "@type": "ContactPoint",
-    email: "support@octopusperfume.in",
-    contactType: "customer support",
-    availableLanguage: ["English", "Hindi"]
-  },
-};
-
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Is octopusperfume.in the official Octopus Perfume website?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes, octopusperfume.in is the ONLY official website for Octopus Perfume by Harsh Beniwal. It is operated by Octopus Lifestyle Private Limited (CIN: U47722HR2025PTC133011). Beware of counterfeit or fake websites claiming to sell Octopus Perfume."
-      }
-    },
-    {
-      "@type": "Question",
-      name: "Who founded Octopus Perfume?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Octopus Perfume is founded by Harsh Beniwal, a popular Indian content creator. The brand is operated by Octopus Lifestyle Private Limited, based in Gurgaon, Haryana."
-      }
-    },
-    {
-      "@type": "Question",
-      name: "How many perfumes does Octopus have?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Octopus Perfume currently offers 9 signature Eau de Parfums: Darling, Mirage, Outlaw, Overlord, Paradox, Promised, Rhapsody, Somersault, and Your Move. All are 50ML bottles manufactured in Sonipat, Haryana."
-      }
-    },
-    {
-      "@type": "Question",
-      name: "What is the price range of Octopus Perfume?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Octopus Perfume range from ₹799 to ₹1899 for 50ML Eau de Parfum bottles. The brand focuses on delivering luxury-grade scents at sensible prices by eliminating traditional branding and distributor markups."
-      }
-    },
-    {
-      "@type": "Question",
-      name: "Does Octopus Perfume offer Cash on Delivery?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes, Octopus Perfume offers Cash on Delivery (COD) as a payment option across India, along with UPI, credit/debit cards, and net banking via Cashfree payments."
-      }
-    }
-  ]
-};
-
-const navigationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  "itemListElement": [
-    {
-      "@type": "SiteNavigationElement",
-      "position": 1,
-      "name": "Mirage",
-      "description": "Smoky incense and spicy saffron ignite the scent...",
-      "url": "https://octopusperfume.in/products/mirage"
-    },
-    {
-      "@type": "SiteNavigationElement",
-      "position": 2,
-      "name": "About Us",
-      "description": "Learn about the heritage of Octopus Perfume by Harsh Beniwal.",
-      "url": "https://octopusperfume.in/pages/about-us"
-    },
-    {
-      "@type": "SiteNavigationElement",
-      "position": 3,
-      "name": "Promised",
-      "description": "A golden thread of warm saffron and luminous...",
-      "url": "https://octopusperfume.in/products/promised"
-    },
-    {
-      "@type": "SiteNavigationElement",
-      "position": 4,
-      "name": "Outlaw",
-      "description": "A warm, aromatic brightness opens the scent...",
-      "url": "https://octopusperfume.in/products/outlaw"
-    },
-    {
-      "@type": "SiteNavigationElement",
-      "position": 5,
-      "name": "All Perfumes",
-      "description": "Shop the complete Octopus Perfume collection.",
-      "url": "https://octopusperfume.in/collections/all"
-    }
-  ]
-};
+import { AuthProvider } from "@/lib/auth-context";
 
 export default function RootLayout({
   children,
@@ -245,51 +37,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${playfair.variable} ${inter.variable} h-full antialiased`}>
-      <head>
-        {/* Google tag (gtag.js) */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18360959621"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'AW-18360959621');
-            `,
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(navigationJsonLd) }}
-        />
-        <link rel="canonical" href="https://octopusperfume.in" />
-      </head>
       <body className="min-h-full flex flex-col bg-stone-50 text-stone-900 font-sans">
         <AuthProvider>
-          <CartProvider>
-            <Marquee />
-
-
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-            <CartDrawer />
-            <LiveSalesPopups />
-          </CartProvider>
+          {/* Navbar */}
+          <Navbar />
+          
+          <main className="flex-1">{children}</main>
+          
+          {/* Footer */}
+          <Footer />
+          <CartDrawer />
         </AuthProvider>
-        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
       </body>
     </html>
   );

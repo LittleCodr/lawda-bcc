@@ -1,32 +1,65 @@
+import fs from "fs";
+import path from "path";
+import Link from "next/link";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { ChevronRight, ShieldCheck, Truck, RefreshCcw, Heart, Info, FileText, Lock, Box, Banknote, Calendar, CheckCircle2 } from "lucide-react";
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   return { title: `${slug.replace(/-/g, ' ').toUpperCase()} | Octopus Perfume` };
 }
 
+const SIDEBAR_LINKS = [
+  { slug: "about-us", title: "About Us", icon: <Info size={18} /> },
+  { slug: "shipping-policy", title: "Shipping Policy", icon: <Truck size={18} /> },
+  { slug: "returns-refund-policy", title: "Returns & Exchanges", icon: <RefreshCcw size={18} /> },
+  { slug: "privacy-policy", title: "Privacy Policy", icon: <Lock size={18} /> },
+  { slug: "terms-conditions", title: "Terms & Conditions", icon: <FileText size={18} /> },
+];
+
 export default async function StaticPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   
+  const currentLink = SIDEBAR_LINKS.find(link => link.slug === slug);
+  const title = currentLink ? currentLink.title : slug.replace(/-/g, ' ');
+
   let content = null;
   
   switch(slug) {
     case "about-us":
       content = (
         <>
+          <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-10 shadow-sm border border-stone-200">
+            <Image src="/images/products/name-necklace-rakhi-gift-11.jpg" alt="Octopus Perfume Craftsmanship" fill className="object-cover" />
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+              <span className="text-white font-serif text-4xl md:text-5xl font-bold tracking-wide">Our Story</span>
+            </div>
+          </div>
+          
           <h2>Our Genesis and Vision</h2>
           <p>Welcome to Octopus Perfume, India’s premier destination for bespoke, personalized gifting. Our journey began with a singular, resolute vision: to transform the way Indians celebrate their most cherished relationships. In a world inundated with mass-produced commodities, we realized that the true essence of gifting had been lost. We set out to restore that essence by creating a brand dedicated entirely to the art of personalization.</p>
           <p>We understand that every individual is unique, and every relationship tells a different story. That is why our products are not just items; they are tangible memories, meticulously crafted to reflect the profound bonds you share with your loved ones. Whether it is an engraved piece of artificial jewelry, a custom-printed keepsake, or an elegantly packaged fragrance, every product that leaves our facility carries with it a promise of quality, exclusivity, and heartfelt emotion.</p>
           
-          <h2>Our Craftsmanship and Dedication</h2>
-          <p>Our commitment to excellence is unwavering. We collaborate with master artisans and employ cutting-edge engraving and printing technologies to ensure that every personalization detail is executed with flawless precision. Our materials are ethically sourced, and our manufacturing processes are subjected to rigorous quality control protocols. When you purchase an Octopus product, you are acquiring a masterpiece of modern craftsmanship designed to endure the test of time.</p>
-          <p>We take immense pride in our state-of-the-art facility located in the heart of Rajasthan, a region globally renowned for its rich heritage of artistry and craftsmanship. Here, traditional techniques seamlessly blend with modern innovation, resulting in products that are both culturally resonant and contemporarily elegant.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+            <div className="bg-[#f9f2ed] p-8 rounded-xl border border-[#E5B8B7]/30">
+              <ShieldCheck className="text-[#800020] mb-4" size={32} />
+              <h3 className="font-serif text-xl text-stone-900 mt-0 mb-2">Our Craftsmanship</h3>
+              <p className="text-sm text-stone-600 mb-0">Our commitment to excellence is unwavering. We collaborate with master artisans and employ cutting-edge engraving and printing technologies to ensure that every personalization detail is executed with flawless precision.</p>
+            </div>
+            <div className="bg-[#f9f2ed] p-8 rounded-xl border border-[#E5B8B7]/30">
+              <Heart className="text-[#800020] mb-4" size={32} />
+              <h3 className="font-serif text-xl text-stone-900 mt-0 mb-2">Customer Delight</h3>
+              <p className="text-sm text-stone-600 mb-0">We do not merely sell gifts; we curate experiences. From the moment you land on our website to the instant our premium, signature packaging is unboxed, every touchpoint is optimized to deliver unparalleled delight.</p>
+            </div>
+          </div>
 
-          <h2>Our Commitment to Customer Delight</h2>
-          <p>At the core of our operations is an unyielding dedication to customer satisfaction. We do not merely sell gifts; we curate experiences. From the moment you land on our website to the instant our premium, signature packaging is unboxed, every touchpoint is optimized to deliver unparalleled delight. Our customer support team operates round-the-clock, ensuring that your queries are addressed promptly and your bespoke requests are fulfilled flawlessly.</p>
-          <p>We are continuously innovating, expanding our product lines, and refining our customization capabilities to stay ahead of the curve. Your trust is our most valued asset, and we go to extraordinary lengths to preserve it.</p>
-          
           <h2>Corporate Information & Legal Entity</h2>
           <p>Octopus Perfume operates under full compliance with all relevant corporate and commercial laws in India. For any legal inquiries, corporate collaborations, or official correspondence, please refer to our registered headquarters:</p>
-          <p><strong>Registered Address for Verification:</strong><br />Octopus Perfume<br />Shri Shanta Sharnam<br />Tonk, Rajasthan, 304022<br />India</p>
+          <div className="bg-stone-50 p-6 rounded-xl border-l-4 border-[#800020] my-6">
+            <p className="font-bold text-stone-900 mb-2">Registered Address for Verification:</p>
+            <p className="mb-0 text-sm">Octopus Perfume<br />Shri Shanta Sharnam<br />Tonk, Rajasthan, 304022<br />India</p>
+          </div>
           <p>For immediate assistance, our dedicated support channels remain open during standard business hours. We invite you to join the Octopus family and experience the zenith of personalized gifting.</p>
         </>
       );
@@ -34,150 +67,250 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
     case "terms-conditions":
       content = (
         <>
-          <h2>1. Comprehensive Introduction and Acceptance of Terms</h2>
-          <p>Welcome to Octopus Perfume (accessible at octopusperfume.in). These comprehensive Terms and Conditions ("Terms", "Agreement") constitute a legally binding contract between you (the "User", "Customer", "Visitor") and Octopus Perfume ("we", "us", "our", "the Company"). By accessing, browsing, registering an account, or placing an order on our platform, you categorically acknowledge that you have read, understood, and unequivocally agreed to be bound by these Terms in their entirety. If you harbor any objections to these Terms, you are explicitly prohibited from using our services and must immediately cease all access to the platform.</p>
+          <p className="lead text-lg font-medium text-stone-500 mb-8">Please read these Terms and Conditions carefully before using the Octopus Perfume website.</p>
           
-          <h2>2. Intellectual Property Rights and Copyright Infringement</h2>
-          <p>The entire contents of the Octopus Perfume website—including but not limited to textual content, graphical assets, logos, button icons, high-resolution imagery, audio clips, digital downloads, data compilations, and proprietary software—are the exclusive intellectual property of Octopus Perfume or its certified content suppliers. These assets are protected under the Indian Copyright Act, 1957, as well as international copyright and trademark laws. Any unauthorized reproduction, modification, distribution, transmission, republication, display, or performance of the content on this site is strictly prohibited and will be met with immediate legal action, potentially including claims for substantial damages and injunctive relief.</p>
-          
-          <h2>3. Detailed Product Descriptions, Pricing, and Availability</h2>
-          <p>While we expend extraordinary effort to ensure the absolute accuracy of all product descriptions, high-definition imagery, and pricing information, the Company does not warrant that product descriptions or other content is completely error-free, current, or reliable. All prices are listed in Indian Rupees (INR) and are inclusive of applicable taxes unless stated otherwise. We reserve the unassailable right to dynamically alter pricing without prior notice. In the event a product is listed at an incorrect price due to typographical error or system malfunction, we reserve the right to unilaterally refuse or cancel any orders placed for that product, regardless of whether the order has been confirmed or your payment method charged. If charged, a full refund will be initiated immediately.</p>
-          
-          <h2>4. User Account Obligations and Security</h2>
-          <p>To access specific advanced features, you may be required to register a user account. You are entirely responsible for maintaining the strict confidentiality of your account credentials (username and password) and for restricting unauthorized access to your devices. You agree to accept full responsibility for all activities, purchases, and communications that occur under your account. Octopus Perfume reserves the right to suspend or terminate accounts, refuse service, or cancel orders at our sole discretion if we detect any fraudulent, abusive, or Terms-violating activity.</p>
-          
-          <h2>5. Bespoke Personalization Policies</h2>
-          <p>As our core offering relies on customization, you are solely responsible for ensuring the absolute accuracy of all personalization inputs (e.g., names, dates, spelling, grammar) submitted during the checkout process. Octopus Perfume will not be held liable for typographical errors submitted by the customer. Furthermore, you agree not to submit any personalization requests that contain offensive, defamatory, profane, or legally prohibited content. We reserve the right to reject any personalization request that violates our ethical guidelines.</p>
-
-          <h2>6. Limitation of Liability and Indemnification</h2>
-          <p>To the maximum extent permitted by applicable law, Octopus Perfume, its directors, officers, employees, affiliates, agents, contractors, interns, suppliers, service providers, or licensors shall not be liable for any injury, loss, claim, or any direct, indirect, incidental, punitive, special, or consequential damages of any kind, including, without limitation, lost profits, lost revenue, lost savings, loss of data, replacement costs, or any similar damages, whether based in contract, tort (including negligence), strict liability or otherwise, arising from your use of any of the service or any products procured using the service. You agree to fully indemnify, defend and hold harmless Octopus Perfume from any claim or demand, including reasonable attorneys’ fees, made by any third-party due to or arising out of your breach of these Terms.</p>
-          
-          <h2>7. Dispute Resolution and Governing Law</h2>
-          <p>These Terms of Service and any separate agreements whereby we provide you Services shall be governed by and construed strictly in accordance with the laws of India. Any disputes, controversies, or claims arising out of or relating to these Terms, or the breach thereof, shall be subject to the exclusive jurisdiction of the competent courts located in Tonk, Rajasthan. By using this site, you unconditionally consent to this jurisdictional arrangement.</p>
+          <div className="space-y-8">
+            <div>
+              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#800020] text-white text-sm font-bold">1</span> Comprehensive Introduction</h2>
+              <p>Welcome to Octopus Perfume (accessible at octopusperfume.in). These comprehensive Terms and Conditions ("Terms", "Agreement") constitute a legally binding contract between you (the "User", "Customer", "Visitor") and Octopus Perfume ("we", "us", "our", "the Company"). By accessing, browsing, registering an account, or placing an order on our platform, you categorically acknowledge that you have read, understood, and unequivocally agreed to be bound by these Terms in their entirety. If you harbor any objections to these Terms, you are explicitly prohibited from using our services and must immediately cease all access to the platform.</p>
+            </div>
+            
+            <div>
+              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#800020] text-white text-sm font-bold">2</span> Intellectual Property</h2>
+              <p>The entire contents of the Octopus Perfume website—including but not limited to textual content, graphical assets, logos, button icons, high-resolution imagery, audio clips, digital downloads, data compilations, and proprietary software—are the exclusive intellectual property of Octopus Perfume or its certified content suppliers. These assets are protected under the Indian Copyright Act, 1957, as well as international copyright and trademark laws.</p>
+            </div>
+            
+            <div>
+              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#800020] text-white text-sm font-bold">3</span> Detailed Product Descriptions</h2>
+              <p>While we expend extraordinary effort to ensure the absolute accuracy of all product descriptions, high-definition imagery, and pricing information, the Company does not warrant that product descriptions or other content is completely error-free, current, or reliable. All prices are listed in Indian Rupees (INR) and are inclusive of applicable taxes unless stated otherwise.</p>
+            </div>
+            
+            <div>
+              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#800020] text-white text-sm font-bold">4</span> Bespoke Personalization Policies</h2>
+              <p>As our core offering relies on customization, you are solely responsible for ensuring the absolute accuracy of all personalization inputs (e.g., names, dates, spelling, grammar) submitted during the checkout process. Octopus Perfume will not be held liable for typographical errors submitted by the customer.</p>
+            </div>
+          </div>
         </>
       );
       break;
     case "returns-refund-policy":
       content = (
         <>
-          <h2>1. General Philosophy on Returns</h2>
-          <p>At Octopus Perfume, our operational model is heavily centered on creating highly bespoke, customized products tailored specifically to individual customer requests. Because these items are permanently altered (e.g., engraved, printed, or custom-molded) to feature your specific names, dates, or messages, they cannot be restocked, resold, or reused. Consequently, we enforce a strict, definitive <strong>No-Return, No-Refund Policy</strong> on all personalized merchandise, barring exceptional circumstances related to manufacturing defects or transit damage.</p>
-          
-          <h2>2. Policy for Defective, Damaged, or Incorrect Products</h2>
-          <p>We implement rigorous multi-stage quality control checks before any product is dispatched. However, in the highly unlikely event that you receive an item that is defective, damaged during transit, or deviates from the personalization details you originally submitted, you are entitled to a swift resolution. To claim this:</p>
-          <ul>
-            <li>You must notify our Customer Protection Team within <strong>48 hours</strong> of the delivery timestamp recorded by our courier partner.</li>
-            <li>Your notification must include your Order ID, a detailed description of the defect, and high-resolution, unedited photographic or video evidence clearly displaying the issue and the original packaging.</li>
-            <li>Failure to report the issue within this rigid 48-hour window will result in the forfeiture of your claim, and Octopus Perfume will not entertain any subsequent requests for replacement or refund.</li>
-          </ul>
-          <p>Upon verification of a valid claim, we will exclusively offer a <strong>Replacement</strong> of the identical item with the correct specifications. Refunds are not issued for defective personalized items; they are strictly replaced.</p>
-          
-          <h2>3. Non-Customized Product Returns</h2>
-          <p>If you purchase a non-customized, off-the-shelf product (which has not been personalized in any manner), you may initiate a return within <strong>7 calendar days</strong> of delivery. The product must be completely unused, free of any cosmetic damage, and housed in its original, undamaged premium packaging with all tags and protective seals intact. Return shipping logistics and associated costs are the sole responsibility of the customer. Once we receive and thoroughly inspect the returned non-customized item, we will process a refund to your original payment method within 7-14 business days, deducting a nominal restocking and original shipping fee.</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+            <div className="bg-[#f9f2ed] p-6 rounded-xl flex flex-col items-center text-center shadow-sm border border-[#E5B8B7]/30">
+              <Calendar size={32} strokeWidth={1.5} className="text-[#800020] mb-3" />
+              <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-1">Return Window</span>
+              <span className="font-serif text-lg text-gray-900">1 Day</span>
+            </div>
+            <div className="bg-[#f9f2ed] p-6 rounded-xl flex flex-col items-center text-center shadow-sm border border-[#E5B8B7]/30">
+              <RefreshCcw size={32} strokeWidth={1.5} className="text-[#800020] mb-3" />
+              <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-1">Exchanges</span>
+              <span className="font-serif text-lg text-gray-900">Accepted</span>
+            </div>
+            <div className="bg-[#f9f2ed] p-6 rounded-xl flex flex-col items-center text-center shadow-sm border border-[#E5B8B7]/30">
+              <Box size={32} strokeWidth={1.5} className="text-[#800020] mb-3" />
+              <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-1">Return Label</span>
+              <span className="font-serif text-lg text-gray-900">Included & Free</span>
+            </div>
+            <div className="bg-[#f9f2ed] p-6 rounded-xl flex flex-col items-center text-center shadow-sm border border-[#E5B8B7]/30">
+              <Banknote size={32} strokeWidth={1.5} className="text-[#800020] mb-3" />
+              <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-1">Restocking Fee</span>
+              <span className="font-serif text-lg text-gray-900">No Cost</span>
+            </div>
+          </div>
 
-          <h2>4. Artificial Jewelry Care Disclaimer</h2>
-          <p>Please note that all our jewelry products are explicitly classified as <strong>Artificial Jewelry</strong>. While we utilize premium anti-tarnish plating techniques, artificial jewelry is inherently subject to wear and fading over time based on environmental exposure (e.g., humidity, sweat, perfumes, harsh chemicals). Normal wear and tear, fading of plating, or allergic reactions do not qualify as manufacturing defects and are strictly ineligible for returns or replacements.</p>
+          <h2>1. Hassle-Free Returns & Exchanges</h2>
+          <p>At Octopus Perfume, your satisfaction is our top priority. We gladly accept returns and exchanges for <strong>both defective and non-defective products</strong>. Whether you changed your mind or received a faulty item, we've made our return process as seamless as possible.</p>
+          
+          <h2>2. Return & Exchange Window</h2>
+          <p>You have exactly <strong>1 day</strong> from the date of delivery to initiate a return or exchange. Due to the fast-moving nature of our premium inventory, we strictly enforce this 1-day window.</p>
+          
+          <h2>3. Product Condition Requirements</h2>
+          <p>To be eligible for a return or exchange, your item must be in <strong>New</strong> condition only. This means the product must be completely unused, unworn, and housed in its original, undamaged premium packaging with all protective seals and tags intact.</p>
 
-          <h2>5. Final Authority</h2>
-          <p>Octopus Perfume reserves the absolute right to unilaterally reject any return or replacement claim that we suspect is fraudulent, abusive, or fails to meet the stringent criteria outlined in this policy.</p>
+          <h2>4. Return Method & Free Return Label</h2>
+          <p>All returns are processed securely <strong>by post</strong>. To make your experience absolutely frictionless, a pre-paid return shipping label is already <strong>included in the package</strong> you received. Shipping the item back to us is entirely <strong>free of charge</strong>.</p>
+          
+          <h2>5. Restocking Fees & Refund Processing</h2>
+          <p>We do not believe in penalizing our customers. Therefore, we charge absolutely <strong>no restocking fees</strong>. Once we receive your returned package by post and verify its "New" condition, your refund will be fully processed within <strong>1 day</strong>. The funds will be credited back to your original payment method.</p>
+          
+          <h2>6. How to Initiate a Return</h2>
+          <div className="bg-stone-50 p-6 rounded-xl border border-stone-200 mt-6">
+            <ol className="list-decimal list-inside space-y-3 text-stone-700 m-0 p-0">
+              <li>Repack the item securely in its original packaging.</li>
+              <li>Attach the included pre-paid return label to the outside of the box.</li>
+              <li>Drop it off at your nearest authorized postal or courier center.</li>
+            </ol>
+            <p className="mt-4 text-sm text-stone-500 italic mb-0">If you lost your return label, please contact our support team immediately.</p>
+          </div>
         </>
       );
       break;
     case "shipping-policy":
       content = (
         <>
+          <div className="flex flex-col md:flex-row justify-between items-center bg-[#f9f2ed] p-8 rounded-2xl mb-12 gap-6 relative border border-[#E5B8B7]/30 shadow-sm">
+             <div className="flex flex-col items-center text-center max-w-[200px] z-10 relative">
+               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border-2 border-[#800020]">
+                 <Box size={24} className="text-[#800020]" />
+               </div>
+               <h3 className="font-serif text-lg text-stone-900 mt-0 mb-2">1. Processing</h3>
+               <p className="text-xs text-stone-600 leading-relaxed mb-0 font-medium">3-5 days for personalized crafting</p>
+             </div>
+             
+             <div className="hidden md:block absolute top-16 left-1/4 right-1/4 h-[2px] bg-[#E5B8B7] z-0"></div>
+             
+             <div className="flex flex-col items-center text-center max-w-[200px] z-10 relative">
+               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border-2 border-[#800020]">
+                 <Truck size={24} className="text-[#800020]" />
+               </div>
+               <h3 className="font-serif text-lg text-stone-900 mt-0 mb-2">2. Dispatch</h3>
+               <p className="text-xs text-stone-600 leading-relaxed mb-0 font-medium">Handed over to top-tier couriers</p>
+             </div>
+             
+             <div className="flex flex-col items-center text-center max-w-[200px] z-10 relative">
+               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border-2 border-[#800020]">
+                 <CheckCircle2 size={24} className="text-[#800020]" />
+               </div>
+               <h3 className="font-serif text-lg text-stone-900 mt-0 mb-2">3. Delivery</h3>
+               <p className="text-xs text-stone-600 leading-relaxed mb-0 font-medium">2-7 business days across India</p>
+             </div>
+          </div>
+          
           <h2>1. Nationwide Reach and Courier Partnerships</h2>
           <p>Octopus Perfume is proud to offer extensive shipping coverage across the entirety of India. We have forged strategic alliances with top-tier, highly reputable courier and logistics aggregators (such as BlueDart, Delhivery, ExpressBees, and Amazon Shipping) to ensure that your delicate, personalized gifts are handled with the utmost care and delivered with expedience. We do not currently facilitate international shipping.</p>
           
           <h2>2. Comprehensive Processing Timelines</h2>
-          <p>Unlike off-the-shelf e-commerce, bespoke gifting requires meticulous craftsmanship. When you place an order, it enters our production queue where it undergoes structural drafting, engraving/printing, polishing, quality assurance, and finally, premium gift wrapping. Therefore:</p>
-          <ul>
-            <li><strong>Personalized/Customized Orders:</strong> Require a mandatory processing window of <strong>3 to 5 business days</strong> prior to dispatch.</li>
-            <li><strong>Non-Personalized Orders:</strong> Are typically processed and dispatched within <strong>1 to 2 business days</strong>.</li>
-          </ul>
-          <p>Business days explicitly exclude Sundays and officially recognized National/State Holidays in Rajasthan.</p>
+          <p>Unlike off-the-shelf e-commerce, bespoke gifting requires meticulous craftsmanship. When you place an order, it enters our production queue where it undergoes structural drafting, engraving/printing, polishing, quality assurance, and finally, premium gift wrapping.</p>
+          
+          <div className="bg-stone-50 border-l-4 border-[#800020] p-6 my-6 rounded-r-xl">
+            <ul className="m-0 p-0 list-none space-y-4">
+              <li className="flex items-start gap-3">
+                <div className="mt-1 w-2 h-2 rounded-full bg-[#800020] shrink-0"></div>
+                <div>
+                  <strong className="block text-stone-900">Personalized/Customized Orders</strong>
+                  <span className="text-stone-600 text-sm">Require a mandatory processing window of 3 to 5 business days prior to dispatch.</span>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <div className="mt-1 w-2 h-2 rounded-full bg-[#800020] shrink-0"></div>
+                <div>
+                  <strong className="block text-stone-900">Non-Personalized Orders</strong>
+                  <span className="text-stone-600 text-sm">Are typically processed and dispatched within 1 to 2 business days.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
           
           <h2>3. Transit Times and Shipping Tariffs</h2>
-          <p>Once dispatched, standard transit times range from <strong>2 to 7 business days</strong>, heavily contingent upon your exact geographical location (metro cities typically see faster deliveries compared to remote or Tier-3 zones). We offer complimentary Standard Shipping on all prepaid orders exceeding ₹1500. For orders below this threshold, a calculated shipping fee will be dynamically applied at checkout. For Cash on Delivery (COD) orders, a non-refundable COD handling fee (advance) of ₹100 is strictly enforced to mitigate fraudulent orders and cover additional logistics overhead.</p>
-          
-          <h2>4. Real-Time Tracking and Delivery Protocols</h2>
-          <p>Immediately upon dispatch, our systems will automatically generate a tracking Airway Bill (AWB) number and dispatch an email and SMS containing your live tracking link. Our courier partners will attempt delivery a maximum of three (3) times. If the customer is unreachable, provides an incorrect address, or refuses delivery, the package will be Returned to Origin (RTO). In the case of RTO for personalized items, no refunds will be provided, and the customer will be liable to pay a re-shipping fee to have the package dispatched again.</p>
-          
-          <h2>5. Force Majeure and Unforeseen Logistics Disruptions</h2>
-          <p>While our logistical network is highly optimized, Octopus Perfume shall not be held liable for any delays in delivery resulting from events beyond our reasonable control. This includes, but is not limited to, severe meteorological events, natural disasters, localized strikes, geopolitical unrest, regulatory lockdowns, or systemic failures within the courier network. We do not offer compensation or refunds for delayed deliveries caused by such Force Majeure events.</p>
+          <p>Once dispatched, standard transit times range from <strong>2 to 7 business days</strong>, heavily contingent upon your exact geographical location (metro cities typically see faster deliveries compared to remote or Tier-3 zones). We offer complimentary Standard Shipping on all prepaid orders exceeding ₹1500. For orders below this threshold, a calculated shipping fee will be dynamically applied at checkout.</p>
         </>
       );
       break;
     case "cancellation-policy":
       content = (
         <>
+          <div className="bg-red-50 text-red-900 p-6 rounded-xl border border-red-200 mb-8">
+            <h3 className="font-serif text-xl font-bold mb-2 mt-0 flex items-center gap-2"><Lock size={20} /> 2-Hour Strict Window</h3>
+            <p className="mb-0 text-sm">You may only cancel your order within exactly two (2) hours of successful payment or order placement.</p>
+          </div>
+          
           <h2>1. Extremely Strict Cancellation Window</h2>
-          <p>Our entire operational pipeline is heavily automated to ensure that your personalized gifts are crafted and delivered as swiftly as possible. Once an order for a personalized product is placed on our platform, the details are programmatically routed to our production facility, and raw materials are immediately allocated and cut. Because of this rapid manufacturing commencement, we enforce a highly stringent cancellation window.</p>
-          <p><strong>You may only cancel your order within exactly two (2) hours of successful payment or order placement.</strong></p>
+          <p>Our entire operational pipeline is heavily automated to ensure that your personalized gifts are crafted and delivered as swiftly as possible. Once an order for a personalized product is placed on our platform, the details are programmatically routed to our production facility, and raw materials are immediately allocated and cut.</p>
           <p>If two hours have elapsed since the order timestamp, the order is irrevocably locked into the production phase. At this point, the item has been permanently customized with your specific details, rendering it completely unsellable to any other customer. Therefore, we categorically will not accept, process, or entertain any cancellation requests beyond this 2-hour window under any circumstances.</p>
           
           <h2>2. How to Request a Cancellation</h2>
-          <p>To request a cancellation within the permitted 2-hour window, you must immediately contact our emergency support team via the contact form on our website or reply directly to your order confirmation email with the subject line "URGENT CANCELLATION: Order #YourOrderID". Requests made via social media DMs are not considered official and may not be processed in time.</p>
-          
-          <h2>3. Cancellation Initiated by Octopus Perfume</h2>
-          <p>Octopus Perfume reserves the absolute right to unilaterally cancel any order without prior consent from the customer in the following scenarios:</p>
-          <ul>
-            <li>Suspected fraudulent activity or failure to pass risk analysis checks.</li>
-            <li>Incomplete, nonsensical, or unverifiable shipping addresses.</li>
-            <li>Requests for personalization that violate our ethical guidelines (e.g., hate speech, profanity).</li>
-            <li>Sudden, unforeseen depletion of raw materials or inventory discrepancies.</li>
-            <li>Pricing errors due to system glitches.</li>
-          </ul>
-          <p>If we initiate a cancellation, you will be notified immediately via your registered email, and a 100% full refund will be processed.</p>
-          
-          <h2>4. Refund Logistics for Approved Cancellations</h2>
-          <p>If your cancellation is officially approved (either within the 2-hour window by you, or initiated by us), the refund process will commence immediately. The funds will be credited back to your original mode of payment (Credit Card, Debit Card, UPI, or Netbanking) via our payment gateway partner (PayU). Please allow 5 to 7 business days for the financial institutions to process the transaction and reflect the credited amount in your account statement. For COD orders where an advance of ₹100 was paid, this advance will be fully refunded if the cancellation falls within the strict 2-hour parameter.</p>
+          <p>To request a cancellation within the permitted 2-hour window, you must immediately contact our emergency support team via the contact form on our website or reply directly to your order confirmation email with the subject line <strong>"URGENT CANCELLATION: Order #YourOrderID"</strong>.</p>
         </>
       );
       break;
     case "privacy-policy":
       content = (
         <>
+          <p className="lead text-lg font-medium text-stone-500 mb-8">Your privacy is critically important to us. This policy explains how we collect, use, and protect your personal information.</p>
+          
           <h2>1. Introduction to Data Privacy</h2>
-          <p>At Octopus Perfume, we respect your privacy and are deeply committed to protecting your personal data. This extensive Privacy Policy outlines our rigorous practices regarding the collection, utilization, secure storage, and disclosure of your information when you interact with our platform, octopusperfume.in. By utilizing our services, you grant explicit consent to the data practices described in this document, which complies with the prevailing data protection regulations in India, including the Information Technology Act, 2000 and the Digital Personal Data Protection Act.</p>
+          <p>At Octopus Perfume, we respect your privacy and are deeply committed to protecting your personal data. This extensive Privacy Policy outlines our rigorous practices regarding the collection, utilization, secure storage, and disclosure of your information when you interact with our platform, octopusperfume.in. By utilizing our services, you grant explicit consent to the data practices described in this document, which complies with the prevailing data protection regulations in India.</p>
 
           <h2>2. Comprehensive Data Collection Protocols</h2>
-          <p>To provide you with a frictionless, highly personalized e-commerce experience, we systematically collect various categories of data. <strong>Identity and Contact Data</strong> includes your full name, billing address, delivery address, email address, and telephone numbers. <strong>Financial Data</strong> is processed securely via our PCI-DSS compliant payment gateway (PayU); we do not store your raw credit card numbers or UPI PINs on our servers. <strong>Technical Data</strong> encompasses your internet protocol (IP) address, browser type and version, time zone setting, location, browser plug-in types, operating system, and the device you use to access our site. <strong>Profile and Usage Data</strong> includes your username, password, purchase history, your interests, preferences, and meticulous logs of how you navigate and interact with our website.</p>
+          <p>To provide you with a frictionless, highly personalized e-commerce experience, we systematically collect various categories of data:</p>
+          <ul className="list-disc pl-5 space-y-2 mt-4 mb-8">
+            <li><strong>Identity and Contact Data:</strong> Includes your full name, billing address, delivery address, email address, and telephone numbers.</li>
+            <li><strong>Financial Data:</strong> Processed securely via our PCI-DSS compliant payment gateway (PayU); we do not store your raw credit card numbers or UPI PINs on our servers.</li>
+            <li><strong>Technical Data:</strong> Encompasses your IP address, browser type and version, time zone setting, location, and operating system.</li>
+          </ul>
 
           <h2>3. Purpose and Utilization of Your Data</h2>
-          <p>We deploy your personal data strictly for legitimate business purposes. Primarily, we use it to process and deliver your orders, manage payments, and collect fees. Furthermore, we analyze Technical and Usage Data using advanced analytics to optimize our website layout, improve our artificial intelligence algorithms for product recommendations, and deliver highly relevant, targeted SEO content and advertisements. Your Contact Data may be utilized to dispatch critical service updates, order tracking information, and, if you have opted in, promotional newsletters and exclusive discount codes.</p>
+          <p>We deploy your personal data strictly for legitimate business purposes. Primarily, we use it to process and deliver your orders, manage payments, and collect fees. Furthermore, we analyze Technical and Usage Data using advanced analytics to optimize our website layout, improve our algorithms for product recommendations, and deliver highly relevant content.</p>
 
-          <h2>4. Data Sharing and Third-Party Disclosures</h2>
-          <p>Octopus Perfume categorically does not sell, rent, or trade your personal data to external marketing agencies. However, to operate our platform efficiently, we must share specific data subsets with strictly vetted third-party service providers. This includes our logistics and courier partners (for order delivery), payment gateway providers like PayU (for secure financial processing), and analytics/hosting providers (like Firebase and Google Analytics). These entities are legally bound by strict confidentiality agreements and are permitted to process your data solely for specified purposes in accordance with our direct instructions. We may also disclose your data to law enforcement agencies if legally mandated to do so by a valid court order or statutory requirement.</p>
-
-          <h2>5. Data Security Infrastructure</h2>
-          <p>We have implemented an array of robust, enterprise-grade security measures to prevent your personal data from being accidentally lost, altered, disclosed, or accessed in an unauthorized manner. Our databases are secured behind complex firewalls, and all data transmitted between your browser and our servers is encrypted using industry-standard SSL/TLS protocols. Access to your personal data is strictly limited to employees, agents, and contractors who have a legitimate business need to know, and they are subject to a strict duty of confidentiality.</p>
-
-          <h2>6. Data Retention and Your Rights</h2>
-          <p>We will only retain your personal data for as long as reasonably necessary to fulfill the purposes we collected it for, including for the purposes of satisfying any legal, regulatory, tax, accounting, or reporting requirements. You possess specific rights under data protection laws, including the right to request access to your personal data, request correction of inaccurate data, and request the deletion of your data (subject to our legal retention obligations). To exercise any of these rights, please submit a formal request via our contact channels.</p>
+          <h2>4. Data Security Infrastructure</h2>
+          <p>We have implemented an array of robust, enterprise-grade security measures to prevent your personal data from being accidentally lost, altered, disclosed, or accessed in an unauthorized manner. Our databases are secured behind complex firewalls, and all data transmitted between your browser and our servers is encrypted using industry-standard SSL/TLS protocols.</p>
         </>
       );
       break;
     default:
       content = (
-        <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">Legal Document Not Found</h2>
-          <p>
-            The requested legal document could not be located in our directory. If you believe this is an error, please contact Octopus Perfume support.
+        <div className="text-center py-20">
+          <FileText size={48} className="mx-auto text-stone-300 mb-6" />
+          <h2 className="text-2xl font-serif text-stone-900 mb-4">Legal Document Not Found</h2>
+          <p className="text-stone-500">
+            The requested document could not be located in our directory. If you believe this is an error, please contact Octopus Perfume support.
           </p>
+          <Link href="/" className="inline-block mt-8 bg-[#800020] text-white px-8 py-3 text-xs uppercase tracking-widest font-bold rounded-sm">
+            Return to Homepage
+          </Link>
         </div>
       );
   }
 
   return (
     <div className="bg-stone-50 min-h-screen pt-24 pb-32">
-      <div className="mx-auto max-w-[900px] px-6 md:px-12 bg-white p-10 md:p-16 border border-stone-200 shadow-sm">
-        <h1 className="font-serif text-3xl md:text-5xl text-stone-900 mb-12 text-center capitalize tracking-wide border-b border-stone-100 pb-8">
-          {slug.replace(/-/g, ' ')}
-        </h1>
+      <div className="mx-auto max-w-[1200px] px-6 md:px-12">
+        <div className="flex flex-col lg:flex-row gap-12">
+          
+          {/* Sidebar Navigation */}
+          <div className="w-full lg:w-1/4 shrink-0">
+            <div className="sticky top-32 bg-white rounded-2xl border border-stone-200 p-6 shadow-sm">
+              <h3 className="font-serif text-xl text-stone-900 mb-6 pb-4 border-b border-stone-100">Legal & Policies</h3>
+              <nav className="flex flex-col gap-2">
+                {SIDEBAR_LINKS.map((link) => (
+                  <Link 
+                    key={link.slug} 
+                    href={`/pages/${link.slug}`}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
+                      slug === link.slug 
+                        ? 'bg-[#800020] text-white font-bold shadow-md' 
+                        : 'text-stone-600 hover:bg-[#f9f2ed] hover:text-[#800020]'
+                    }`}
+                  >
+                    {link.icon}
+                    <span className="text-sm tracking-wide">{link.title}</span>
+                  </Link>
+                ))}
+              </nav>
+              
+              <div className="mt-8 pt-6 border-t border-stone-100">
+                <p className="text-xs text-stone-500 font-medium leading-relaxed mb-4">Need help? Our support team is available 24/7 to assist you with any policy questions.</p>
+                <Link href="/pages/contact" className="text-xs font-bold uppercase tracking-widest text-[#800020] flex items-center gap-1 hover:gap-2 transition-all">
+                  Contact Support <ChevronRight size={14} />
+                </Link>
+              </div>
+            </div>
+          </div>
 
-        <div className="prose prose-stone prose-p:leading-relaxed prose-p:text-justify prose-p:mb-6 prose-headings:font-serif prose-headings:text-[#800020] prose-headings:mt-10 prose-headings:mb-4 max-w-none text-stone-700">
-          {content}
+          {/* Main Content Area */}
+          <div className="w-full lg:w-3/4">
+            <div className="bg-white rounded-2xl p-8 md:p-12 border border-stone-200 shadow-sm">
+              <h1 className="font-serif text-3xl md:text-5xl text-stone-900 mb-10 pb-6 border-b border-stone-100">
+                {title}
+              </h1>
+
+              <div className="prose prose-stone prose-lg prose-p:leading-relaxed prose-p:text-justify prose-p:mb-6 prose-headings:font-serif prose-headings:text-[#800020] prose-headings:mt-10 prose-headings:mb-5 max-w-none text-stone-700">
+                {content}
+              </div>
+            </div>
+          </div>
+          
         </div>
       </div>
     </div>

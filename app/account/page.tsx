@@ -182,7 +182,7 @@ export default function AccountPage() {
   };
 
   const generateReceipt = async (order: Order) => {
-    const { default: jsPDF } = await import("jspdf");
+    const { jsPDF } = await import("jspdf");
     const { default: autoTable } = await import("jspdf-autotable");
     const doc = new jsPDF();
     

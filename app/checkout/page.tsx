@@ -13,7 +13,7 @@ export default function CheckoutPage() {
   const { items, totalPrice, clearCart } = useCartStore();
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
-  
+
   const [loading, setLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<"prepaid" | "cod">("prepaid");
   const [deliveryMethod, setDeliveryMethod] = useState<"standard" | "premium">("standard");
@@ -76,9 +76,9 @@ export default function CheckoutPage() {
       logAppEvent("begin_checkout", {
         currency: "INR",
         value: finalTotal,
-        items: items.map((i) => ({ 
-          item_id: i.id, 
-          item_name: i.title, 
+        items: items.map((i) => ({
+          item_id: i.id,
+          item_name: i.title,
           quantity: i.quantity,
           price: i.price,
           item_variant: i.variantTitle
@@ -125,7 +125,7 @@ export default function CheckoutPage() {
   const handlePayment = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
-    
+
     // Additional JS Validation
     if (!/^\d{10}$/.test(formData.phone.trim())) {
       alert("Please enter a valid 10-digit mobile number.");
@@ -139,13 +139,13 @@ export default function CheckoutPage() {
     setLoading(true);
     try {
       const orderId = `ORD-${Date.now()}`;
-      
+
       const isCOD = paymentMethod === "cod";
       const codAdvance = isCOD ? Math.floor(finalTotal / 2) : 0;
       const payUAmount = isAdmin ? 1 : (isCOD ? codAdvance : finalTotal);
       const orderTotal = finalTotal;
       const codBalance = isCOD ? finalTotal - codAdvance : 0;
-      
+
       // Write to Firestore (single batched write to minimize quota)
       await setDoc(doc(db, "users", user.uid, "orders", orderId), {
         orderId,
@@ -186,9 +186,9 @@ export default function CheckoutPage() {
         transaction_id: orderId,
         currency: "INR",
         value: finalTotal,
-        items: items.map((i) => ({ 
-          item_id: i.id, 
-          item_name: i.title, 
+        items: items.map((i) => ({
+          item_id: i.id,
+          item_name: i.title,
           quantity: i.quantity,
           price: i.price,
           item_variant: i.variantTitle
@@ -196,7 +196,7 @@ export default function CheckoutPage() {
       });
 
       clearCart();
-      
+
       // Submit PayU form programmatically
       const form = document.createElement("form");
       form.setAttribute("method", "post");
@@ -214,7 +214,7 @@ export default function CheckoutPage() {
 
       document.body.appendChild(form);
       form.submit();
-      
+
     } catch (error) {
       console.error("Error creating order:", error);
       alert("There was an issue processing your order. Please try again.");
@@ -226,12 +226,12 @@ export default function CheckoutPage() {
     <div className="bg-stone-50 min-h-screen pt-24 pb-32">
       <div className="mx-auto max-w-[1200px] px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          
+
           {/* Main Content Area */}
           <div className="lg:col-span-7">
             <div className="bg-white p-8 md:p-12 border border-stone-200">
               <h2 className="font-serif text-3xl mb-10 text-stone-900">Shipping Details</h2>
-              
+
               <form onSubmit={handlePayment} className="space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="relative">
@@ -243,7 +243,7 @@ export default function CheckoutPage() {
                     <input required type="email" pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address (e.g. name@domain.com)" name="email" value={formData.email} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="priya@example.com" />
                   </div>
                 </div>
-                
+
                 <div className="relative">
                   <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Phone Number</label>
                   <input required type="tel" pattern="\d{10}" maxLength={10} title="Please enter a valid 10-digit mobile number" name="phone" value={formData.phone} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="10-digit Mobile Number" />
@@ -298,7 +298,7 @@ export default function CheckoutPage() {
                     <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${paymentMethod === 'prepaid' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
                       <input type="radio" name="payment" value="prepaid" checked={paymentMethod === 'prepaid'} onChange={() => setPaymentMethod('prepaid')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
                       <div className="flex flex-col">
-                        <span className="font-bold text-sm text-stone-900">Pay in Full (Recommended)</span>
+                        <span className="font-bold text-sm text-stone-900">Pay in Full</span>
                         <span className="text-xs text-stone-500">Pay securely via UPI, Cards, or Netbanking.</span>
                       </div>
                     </label>
@@ -346,13 +346,13 @@ export default function CheckoutPage() {
                       {item.variantTitle && (
                         <p className="text-xs text-stone-500 mt-1">{item.variantTitle}</p>
                       )}
-                      
+
                       {/* Personalization Details Summary */}
                       {(item.customName || item.customPhotoUrl || item.isGift) && (
                         <div className="mt-1 flex flex-col gap-0.5">
-                           {item.customName && <p className="text-[10px] text-stone-500 uppercase tracking-widest">Engraving: {item.customName}</p>}
-                           {item.customPhotoUrl && <p className="text-[10px] text-stone-500 uppercase tracking-widest">Photo Included</p>}
-                           {item.isGift && <p className="text-[10px] text-[#800020] font-bold uppercase tracking-widest">Premium Gift</p>}
+                          {item.customName && <p className="text-[10px] text-stone-500 uppercase tracking-widest">Engraving: {item.customName}</p>}
+                          {item.customPhotoUrl && <p className="text-[10px] text-stone-500 uppercase tracking-widest">Photo Included</p>}
+                          {item.isGift && <p className="text-[10px] text-[#800020] font-bold uppercase tracking-widest">Premium Gift</p>}
                         </div>
                       )}
 
@@ -391,16 +391,16 @@ export default function CheckoutPage() {
               <div className="mt-10 flex justify-center gap-8 border-t border-stone-100 pt-8 text-stone-400">
                 <div className="flex flex-col items-center gap-2 text-center">
                   <ShieldCheck size={20} />
-                  <span className="text-[10px] uppercase tracking-widest font-medium">Secure<br/>Checkout</span>
+                  <span className="text-[10px] uppercase tracking-widest font-medium">Secure<br />Checkout</span>
                 </div>
                 <div className="flex flex-col items-center gap-2 text-center">
                   <CheckCircle2 size={20} />
-                  <span className="text-[10px] uppercase tracking-widest font-medium">Quality<br/>Guarantee</span>
+                  <span className="text-[10px] uppercase tracking-widest font-medium">Quality<br />Guarantee</span>
                 </div>
               </div>
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>

@@ -42,8 +42,20 @@ export default async function CollectionPage(props: {
     console.error("Error loading products:", e);
   }
 
-  // Filter products based on slug
+  // Filter products based on search param 'q' if present
   let filteredProducts = products;
+  const queryParam = typeof searchParams.q === 'string' ? searchParams.q.toLowerCase() : null;
+  
+  if (queryParam) {
+    filteredProducts = filteredProducts.filter(p => {
+      const titleMatch = (p.title || "").toLowerCase().includes(queryParam);
+      const typeMatch = (p.product_type || "").toLowerCase().includes(queryParam);
+      const tagsMatch = (Array.isArray(p.tags) ? p.tags.join(" ") : (p.tags || "")).toLowerCase().includes(queryParam);
+      return titleMatch || typeMatch || tagsMatch;
+    });
+  }
+
+  // Filter products based on slug
   if (slug !== 'all') {
     const searchStr = slug.toLowerCase().replace(/-/g, ' ');
     
@@ -52,17 +64,17 @@ export default async function CollectionPage(props: {
     
     if (budgetMatch) {
       const maxPrice = parseInt(budgetMatch[1], 10);
-      filteredProducts = products.filter(p => {
+      filteredProducts = filteredProducts.filter(p => {
         if (!p.variants || p.variants.length === 0) return false;
         const price = parseFloat(p.variants[0].price);
         return price <= maxPrice;
       });
     } else {
       // Intent/Keyword query
-      filteredProducts = products.filter(p => {
-        const titleMatch = p.title.toLowerCase().includes(searchStr);
-        const typeMatch = p.product_type?.toLowerCase().includes(searchStr);
-        const tagsMatch = p.tags?.toLowerCase().includes(searchStr);
+      filteredProducts = filteredProducts.filter(p => {
+        const titleMatch = (p.title || "").toLowerCase().includes(searchStr);
+        const typeMatch = (p.product_type || "").toLowerCase().includes(searchStr);
+        const tagsMatch = (Array.isArray(p.tags) ? p.tags.join(" ") : (p.tags || "")).toLowerCase().includes(searchStr);
         
         // Intent mappings
         if (slug.includes('gifts-for-her') || slug.includes('girlfriend') || slug.includes('wife') || slug.includes('women') || slug.includes('sister')) {
@@ -96,7 +108,11 @@ export default async function CollectionPage(props: {
   const startIndex = (validPage - 1) * PRODUCTS_PER_PAGE;
   const displayProducts = filteredProducts.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
 
-  const formattedTitle = rakhiConfig[slug] ? rakhiConfig[slug].title : (slug === 'all' ? 'All Gifts' : slug.replace(/-/g, ' '));
+  const formattedTitle = rakhiConfig[slug] 
+    ? rakhiConfig[slug].title 
+    : (slug === 'all' 
+        ? (queryParam ? `Search Results for "${searchParams.q}"` : 'All Gifts') 
+        : slug.replace(/-/g, ' '));
   const description = rakhiConfig[slug] ? rakhiConfig[slug].description : `Shop ${formattedTitle.toLowerCase()} at Octopus Gifts. Personalized gifts for every relationship and budget.`;
   const rakhiData = rakhiConfig[slug];
 

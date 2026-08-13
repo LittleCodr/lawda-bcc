@@ -61,6 +61,7 @@ export default function AccountPage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [savingProfile, setSavingProfile] = useState(false);
+  const [activeTab, setActiveTab] = useState<"profile" | "orders" | "favourites">("profile");
   const [editForm, setEditForm] = useState<UserProfile>({
     name: "", phone: "", address: "", city: "", state: "", zip: ""
   });
@@ -357,263 +358,293 @@ export default function AccountPage() {
           </button>
         </div>
 
-        {/* Profile Card */}
-        <div className="bg-white border border-[#E5B8B7]/50 shadow-sm p-8 md:p-12 mb-16 relative">
-          <div className="flex items-center justify-between mb-10 border-b border-[#E5B8B7]/30 pb-6">
-            <h2 className="font-serif text-2xl text-stone-900 flex items-center gap-3">
-              <User className="text-[#800020]" />
-              Profile Details
-            </h2>
-            {!isEditing && (
-              <button 
-                onClick={() => setIsEditing(true)}
-                className="text-xs uppercase tracking-widest text-[#800020] font-bold hover:opacity-70 transition-opacity flex items-center gap-2"
-              >
-                <Edit3 size={14} /> Edit Profile
-              </button>
-            )}
-          </div>
-
-          {isEditing ? (
-            <form onSubmit={saveProfile} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Full Name</label>
-                  <input
-                    type="text"
-                    value={editForm.name}
-                    onChange={(e) => setEditForm({...editForm, name: e.target.value})}
-                    className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Phone</label>
-                  <input
-                    type="tel"
-                    value={editForm.phone}
-                    onChange={(e) => setEditForm({...editForm, phone: e.target.value})}
-                    className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
-                  />
-                </div>
-                <div className="md:col-span-2">
-                  <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Address</label>
-                  <input
-                    type="text"
-                    value={editForm.address}
-                    onChange={(e) => setEditForm({...editForm, address: e.target.value})}
-                    className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">City</label>
-                  <input
-                    type="text"
-                    value={editForm.city}
-                    onChange={(e) => setEditForm({...editForm, city: e.target.value})}
-                    className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">State</label>
-                  <input
-                    type="text"
-                    value={editForm.state}
-                    onChange={(e) => setEditForm({...editForm, state: e.target.value})}
-                    className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">ZIP Code</label>
-                  <input
-                    type="text"
-                    value={editForm.zip}
-                    onChange={(e) => setEditForm({...editForm, zip: e.target.value})}
-                    className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
-                  />
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-4 mt-8 pt-8 border-t border-[#E5B8B7]/30">
-                <button
-                  type="submit"
-                  disabled={savingProfile}
-                  className="bg-[#800020] text-white px-8 py-3.5 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#E5B8B7] hover:text-[#800020] transition-colors duration-300 disabled:opacity-50"
-                >
-                  {savingProfile ? "Saving..." : "Save Changes"}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsEditing(false);
-                    setEditForm(profile || { name: "", phone: "", address: "", city: "", state: "", zip: "" });
-                  }}
-                  className="text-xs uppercase tracking-widest text-stone-500 font-bold hover:text-stone-900 transition-colors flex items-center gap-2"
-                >
-                  <X size={14} /> Cancel
-                </button>
-              </div>
-            </form>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-8">
-              <div>
-                <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-stone-400 block mb-2">Name</span>
-                <span className="text-stone-900 font-medium text-lg">{profile?.name || user.displayName || "Not set"}</span>
-              </div>
-              <div>
-                <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-stone-400 block mb-2">Email</span>
-                <span className="text-stone-900 font-medium text-lg">{user.email}</span>
-              </div>
-              <div>
-                <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-stone-400 block mb-2">Phone</span>
-                <span className="text-stone-900 font-medium text-lg">{profile?.phone || "Not set"}</span>
-              </div>
-              <div className="md:col-span-2">
-                <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-stone-400 block mb-2">Shipping Address</span>
-                {profile?.address ? (
-                  <address className="not-italic text-stone-900 text-lg leading-relaxed">
-                    {profile.address}<br />
-                    {profile.city}, {profile.state} {profile.zip}
-                  </address>
-                ) : (
-                  <span className="text-stone-400 italic">Not set</span>
-                )}
-              </div>
-            </div>
-          )}
+        {/* Tabs */}
+        <div className="flex items-center gap-6 border-b border-[#E5B8B7]/30 mb-12">
+          <button
+            onClick={() => setActiveTab("profile")}
+            className={`pb-4 text-xs uppercase tracking-widest font-bold transition-colors relative ${activeTab === "profile" ? "text-[#800020]" : "text-stone-500 hover:text-stone-900"}`}
+          >
+            Profile
+            {activeTab === "profile" && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#800020]"></span>}
+          </button>
+          <button
+            onClick={() => setActiveTab("orders")}
+            className={`pb-4 text-xs uppercase tracking-widest font-bold transition-colors relative ${activeTab === "orders" ? "text-[#800020]" : "text-stone-500 hover:text-stone-900"}`}
+          >
+            Orders
+            {activeTab === "orders" && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#800020]"></span>}
+          </button>
+          <button
+            onClick={() => setActiveTab("favourites")}
+            className={`pb-4 text-xs uppercase tracking-widest font-bold transition-colors relative flex items-center gap-2 ${activeTab === "favourites" ? "text-[#800020]" : "text-stone-500 hover:text-stone-900"}`}
+          >
+            Favourites
+            <span className="bg-[#fdfaf8] text-[#800020] px-2 py-0.5 rounded-full text-[9px] border border-[#E5B8B7]/30">{favourites.length}</span>
+            {activeTab === "favourites" && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#800020]"></span>}
+          </button>
         </div>
 
-        {/* Order History */}
-        <h2 className="font-serif text-3xl text-stone-900 mb-8 flex items-center gap-3">
-          <Package className="text-[#800020]" />
-          Order History
-        </h2>
+        {/* Tab Content */}
+        {activeTab === "profile" && (
+          <div className="bg-white border border-[#E5B8B7]/50 shadow-sm p-8 md:p-12 mb-16 relative animate-in fade-in duration-300">
+            <div className="flex items-center justify-between mb-10 border-b border-[#E5B8B7]/30 pb-6">
+              <h2 className="font-serif text-2xl text-stone-900 flex items-center gap-3">
+                <User className="text-[#800020]" />
+                Profile Details
+              </h2>
+              {!isEditing && (
+                <button 
+                  onClick={() => setIsEditing(true)}
+                  className="text-xs uppercase tracking-widest text-[#800020] font-bold hover:opacity-70 transition-opacity flex items-center gap-2"
+                >
+                  <Edit3 size={14} /> Edit Profile
+                </button>
+              )}
+            </div>
 
-        {loadingOrders ? (
-          <div className="py-12 flex justify-center">
-            <div className="w-8 h-8 border-2 border-[#E5B8B7] border-t-[#800020] rounded-full animate-spin"></div>
-          </div>
-        ) : orders.length === 0 ? (
-          <div className="text-center py-24 bg-white border border-[#E5B8B7]/50 shadow-sm flex flex-col items-center">
-            <Package size={48} className="text-[#E5B8B7] mb-6" strokeWidth={1} />
-            <p className="text-stone-500 mb-8 text-lg font-serif">You haven&apos;t placed any orders yet.</p>
-            <Link
-              href="/collections/all"
-              className="bg-[#800020] text-white px-10 py-4 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#E5B8B7] hover:text-[#800020] transition-colors duration-300 shadow-lg shadow-[#800020]/20"
-            >
-              Start Shopping
-            </Link>
-          </div>
-        ) : (
-          <div className="space-y-8">
-            {orders.map((order) => (
-              <div key={order.id} className="bg-white border border-[#E5B8B7]/50 shadow-sm overflow-hidden group">
-                {/* Order Header */}
-                <div className="bg-[#FDF8F5]/50 border-b border-[#E5B8B7]/50 p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-colors group-hover:bg-[#FDF8F5]">
+            {isEditing ? (
+              <form onSubmit={saveProfile} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
-                    <div className="flex items-center gap-4 mb-2">
-                      <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#800020]">Order</p>
-                      <p className="text-lg font-bold text-stone-900">#{order.id.slice(0, 12).toUpperCase()}</p>
-                    </div>
-                    <p className="text-sm text-stone-500 mb-4 font-medium">{order.createdAt}</p>
-                    
-                    {order.status && (
-                      <span className="px-4 py-1.5 bg-white border border-[#E5B8B7] text-[#800020] text-[10px] uppercase tracking-widest font-bold inline-flex items-center gap-2 shadow-sm">
-                        <div className="w-1.5 h-1.5 bg-[#800020] rounded-full animate-pulse"></div>
-                        {order.status}
-                      </span>
-                    )}
+                    <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Full Name</label>
+                    <input
+                      type="text"
+                      value={editForm.name}
+                      onChange={(e) => setEditForm({...editForm, name: e.target.value})}
+                      className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
+                    />
                   </div>
-                  
-                  <div className="flex flex-row md:flex-col items-center md:items-end justify-between gap-6 border-t md:border-t-0 border-[#E5B8B7]/30 pt-6 md:pt-0">
-                    <p className="font-serif text-3xl text-stone-900">{formatINR(order.total)}</p>
-                    <button 
-                      onClick={() => generateReceipt(order)}
-                      className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#800020] border-b-2 border-transparent hover:border-[#800020] transition-colors pb-0.5"
-                    >
-                      <Download size={14} />
-                      Download Invoice
-                    </button>
+                  <div>
+                    <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Phone</label>
+                    <input
+                      type="tel"
+                      value={editForm.phone}
+                      onChange={(e) => setEditForm({...editForm, phone: e.target.value})}
+                      className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
+                    />
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Address</label>
+                    <input
+                      type="text"
+                      value={editForm.address}
+                      onChange={(e) => setEditForm({...editForm, address: e.target.value})}
+                      className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">City</label>
+                    <input
+                      type="text"
+                      value={editForm.city}
+                      onChange={(e) => setEditForm({...editForm, city: e.target.value})}
+                      className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">State</label>
+                    <input
+                      type="text"
+                      value={editForm.state}
+                      onChange={(e) => setEditForm({...editForm, state: e.target.value})}
+                      className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">ZIP Code</label>
+                    <input
+                      type="text"
+                      value={editForm.zip}
+                      onChange={(e) => setEditForm({...editForm, zip: e.target.value})}
+                      className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
+                    />
                   </div>
                 </div>
                 
-                {/* Order Items */}
-                <div className="p-6 md:p-8">
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {order.items.map((item, i) => (
-                      <li key={i} className="flex gap-4 items-center">
-                        <div className="relative w-20 h-20 bg-stone-50 shrink-0 border border-stone-100 rounded-sm overflow-hidden">
-                          <Image src={item.image || "/logo.png"} alt={item.name} fill sizes="80px" className="object-cover" />
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-sm font-serif font-medium text-stone-900 leading-tight mb-1">{item.name}</p>
-                          {item.variantTitle && (
-                            <p className="text-xs text-stone-500 mb-2">{item.variantTitle}</p>
-                          )}
-                          <div className="flex justify-between items-center text-xs uppercase tracking-widest text-stone-500 mt-2">
-                            <span>Qty: {item.quantity}</span>
-                            <span className="font-bold text-stone-900">{formatINR(item.price)}</span>
-                          </div>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  {order.trackingId && (
-                    <div className="mt-8 pt-6 border-t border-[#E5B8B7]/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                      <div className="flex items-center gap-2 text-sm text-stone-600">
-                        <Package size={16} className="text-[#800020]" />
-                        Tracking ID: <span className="font-bold text-stone-900">{order.trackingId}</span>
-                      </div>
-                      {order.trackingUrl && (
-                        <a 
-                          href={order.trackingUrl} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="text-xs uppercase tracking-widest font-bold text-white bg-stone-900 px-6 py-2.5 hover:bg-stone-800 transition-colors inline-flex items-center justify-center gap-2"
-                        >
-                          Track Package <ExternalLink size={12} />
-                        </a>
-                      )}
-                    </div>
+                <div className="flex items-center gap-4 mt-8 pt-8 border-t border-[#E5B8B7]/30">
+                  <button
+                    type="submit"
+                    disabled={savingProfile}
+                    className="bg-[#800020] text-white px-8 py-3.5 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#E5B8B7] hover:text-[#800020] transition-colors duration-300 disabled:opacity-50"
+                  >
+                    {savingProfile ? "Saving..." : "Save Changes"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsEditing(false);
+                      setEditForm(profile || { name: "", phone: "", address: "", city: "", state: "", zip: "" });
+                    }}
+                    className="text-xs uppercase tracking-widest text-stone-500 font-bold hover:text-stone-900 transition-colors flex items-center gap-2"
+                  >
+                    <X size={14} /> Cancel
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-8">
+                <div>
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-stone-400 block mb-2">Name</span>
+                  <span className="text-stone-900 font-medium text-lg">{profile?.name || user.displayName || "Not set"}</span>
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-stone-400 block mb-2">Email</span>
+                  <span className="text-stone-900 font-medium text-lg">{user.email}</span>
+                </div>
+                <div>
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-stone-400 block mb-2">Phone</span>
+                  <span className="text-stone-900 font-medium text-lg">{profile?.phone || "Not set"}</span>
+                </div>
+                <div className="md:col-span-2">
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-stone-400 block mb-2">Shipping Address</span>
+                  {profile?.address ? (
+                    <address className="not-italic text-stone-900 text-lg leading-relaxed">
+                      {profile.address}<br />
+                      {profile.city}, {profile.state} {profile.zip}
+                    </address>
+                  ) : (
+                    <span className="text-stone-400 italic">Not set</span>
                   )}
                 </div>
               </div>
-            ))}
+            )}
+          </div>
+        )}
+
+        {/* Order History */}
+        {activeTab === "orders" && (
+          <div className="animate-in fade-in duration-300">
+            {loadingOrders ? (
+              <div className="py-12 flex justify-center">
+                <div className="w-8 h-8 border-2 border-[#E5B8B7] border-t-[#800020] rounded-full animate-spin"></div>
+              </div>
+            ) : orders.length === 0 ? (
+              <div className="text-center py-24 bg-white border border-[#E5B8B7]/50 shadow-sm flex flex-col items-center">
+                <Package size={48} className="text-[#E5B8B7] mb-6" strokeWidth={1} />
+                <p className="text-stone-500 mb-8 text-lg font-serif">You haven&apos;t placed any orders yet.</p>
+                <Link
+                  href="/collections/all"
+                  className="bg-[#800020] text-white px-10 py-4 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#E5B8B7] hover:text-[#800020] transition-colors duration-300 shadow-lg shadow-[#800020]/20"
+                >
+                  Start Shopping
+                </Link>
+              </div>
+            ) : (
+              <div className="space-y-8">
+                {orders.map((order) => (
+                  <div key={order.id} className="bg-white border border-[#E5B8B7]/50 shadow-sm overflow-hidden group">
+                    {/* Order Header */}
+                    <div className="bg-[#FDF8F5]/50 border-b border-[#E5B8B7]/50 p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-colors group-hover:bg-[#FDF8F5]">
+                      <div>
+                        <div className="flex items-center gap-4 mb-2">
+                          <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#800020]">Order</p>
+                          <p className="text-lg font-bold text-stone-900">#{order.id.slice(0, 12).toUpperCase()}</p>
+                        </div>
+                        <p className="text-sm text-stone-500 mb-4 font-medium">{order.createdAt}</p>
+                        
+                        {order.status && (
+                          <span className="px-4 py-1.5 bg-white border border-[#E5B8B7] text-[#800020] text-[10px] uppercase tracking-widest font-bold inline-flex items-center gap-2 shadow-sm">
+                            <div className="w-1.5 h-1.5 bg-[#800020] rounded-full animate-pulse"></div>
+                            {order.status}
+                          </span>
+                        )}
+                      </div>
+                      
+                      <div className="flex flex-row md:flex-col items-center md:items-end justify-between gap-6 border-t md:border-t-0 border-[#E5B8B7]/30 pt-6 md:pt-0">
+                        <p className="font-serif text-3xl text-stone-900">{formatINR(order.total)}</p>
+                        <button 
+                          onClick={() => generateReceipt(order)}
+                          className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#800020] border-b-2 border-transparent hover:border-[#800020] transition-colors pb-0.5"
+                        >
+                          <Download size={14} />
+                          Download Invoice
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {/* Order Items */}
+                    <div className="p-6 md:p-8">
+                      <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {order.items.map((item, i) => (
+                          <li key={i} className="flex gap-4 items-center">
+                            <div className="relative w-20 h-20 bg-stone-50 shrink-0 border border-stone-100 rounded-sm overflow-hidden">
+                              <Image src={item.image || "/logo.png"} alt={item.name} fill sizes="80px" className="object-cover" />
+                            </div>
+                            <div className="flex-1">
+                              <p className="text-sm font-serif font-medium text-stone-900 leading-tight mb-1">{item.name}</p>
+                              {item.variantTitle && (
+                                <p className="text-xs text-stone-500 mb-2">{item.variantTitle}</p>
+                              )}
+                              <div className="flex justify-between items-center text-xs uppercase tracking-widest text-stone-500 mt-2">
+                                <span>Qty: {item.quantity}</span>
+                                <span className="font-bold text-stone-900">{formatINR(item.price)}</span>
+                              </div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                      
+                      {order.trackingId && (
+                        <div className="mt-8 pt-6 border-t border-[#E5B8B7]/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                          <div className="flex items-center gap-2 text-sm text-stone-600">
+                            <Package size={16} className="text-[#800020]" />
+                            Tracking ID: <span className="font-bold text-stone-900">{order.trackingId}</span>
+                          </div>
+                          {order.trackingUrl && (
+                            <a 
+                              href={order.trackingUrl} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="text-xs uppercase tracking-widest font-bold text-white bg-stone-900 px-6 py-2.5 hover:bg-stone-800 transition-colors inline-flex items-center justify-center gap-2"
+                            >
+                              Track Package <ExternalLink size={12} />
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
         {/* Favourites Section */}
-        <div className="mt-24">
-          <h2 className="font-serif text-3xl text-stone-900 mb-8 flex items-center gap-3">
-            <Heart className="text-[#800020]" />
-            Saved Favourites
-          </h2>
-
-          {loadingFavs ? (
-            <div className="py-12 flex justify-center">
-              <div className="w-8 h-8 border-2 border-[#E5B8B7] border-t-[#800020] rounded-full animate-spin"></div>
-            </div>
-          ) : favourites.length === 0 ? (
-            <div className="text-center py-16 bg-white border border-[#E5B8B7]/50 shadow-sm flex flex-col items-center">
-              <Heart size={48} className="text-[#E5B8B7] mb-6" strokeWidth={1} />
-              <p className="text-stone-500 text-lg font-serif">You haven't saved any favourites yet.</p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {favourites.map((fav) => (
-                <Link key={fav.id} href={`/products/${fav.id}`} className="group bg-white border border-[#E5B8B7]/30 shadow-sm overflow-hidden flex flex-col hover:border-[#800020] transition-colors">
-                  <div className="relative aspect-[4/5] bg-stone-50 w-full overflow-hidden">
-                    <Image src={fav.image} alt={fav.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 50vw, 25vw" />
-                  </div>
-                  <div className="p-4 flex flex-col flex-1 justify-between">
-                    <p className="font-serif text-sm text-stone-900 leading-tight mb-2 line-clamp-2">{fav.title}</p>
-                    <p className="font-bold text-[#800020] text-sm">{formatINR(fav.price)}</p>
-                  </div>
+        {activeTab === "favourites" && (
+          <div className="animate-in fade-in duration-300">
+            {loadingFavs ? (
+              <div className="py-12 flex justify-center">
+                <div className="w-8 h-8 border-2 border-[#E5B8B7] border-t-[#800020] rounded-full animate-spin"></div>
+              </div>
+            ) : favourites.length === 0 ? (
+              <div className="text-center py-16 bg-white border border-[#E5B8B7]/50 shadow-sm flex flex-col items-center">
+                <Heart size={48} className="text-[#E5B8B7] mb-6" strokeWidth={1} />
+                <p className="text-stone-500 text-lg font-serif mb-6">You haven't saved any favourites yet.</p>
+                <Link
+                  href="/collections/all"
+                  className="bg-[#800020] text-white px-10 py-4 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#E5B8B7] hover:text-[#800020] transition-colors duration-300 shadow-lg shadow-[#800020]/20"
+                >
+                  Discover Gifts
                 </Link>
-              ))}
-            </div>
-          )}
-        </div>
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {favourites.map((fav) => (
+                  <Link key={fav.id} href={`/products/${fav.id}`} className="group bg-white border border-[#E5B8B7]/30 shadow-sm overflow-hidden flex flex-col hover:border-[#800020] transition-colors relative">
+                    <div className="relative aspect-[4/5] bg-stone-50 w-full overflow-hidden">
+                      <Image src={fav.image} alt={fav.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 50vw, 25vw" />
+                    </div>
+                    <div className="p-4 flex flex-col flex-1 justify-between bg-white z-10 relative">
+                      <p className="font-serif text-sm text-stone-900 leading-tight mb-2 line-clamp-2">{fav.title}</p>
+                      <p className="font-bold text-[#800020] text-sm">{formatINR(fav.price)}</p>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -20,9 +20,9 @@ export async function GET(request: Request) {
     }
 
     const results = products.filter((p: any) => 
-      p.title?.toLowerCase().includes(query) || 
-      p.tags?.some((t: string) => t.toLowerCase().includes(query)) ||
-      p.product_type?.toLowerCase().includes(query)
+      (p.title || "").toLowerCase().includes(query) || 
+      (Array.isArray(p.tags) ? p.tags.join(" ") : (p.tags || "")).toLowerCase().includes(query) ||
+      (p.product_type || "").toLowerCase().includes(query)
     ).slice(0, 10); // Limit to top 10 results for live search
 
     return NextResponse.json(results);

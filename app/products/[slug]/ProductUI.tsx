@@ -242,10 +242,10 @@ export default function ProductUI({ product }: ProductUIProps) {
         {/* Middle Column: Product Details (Span 4) */}
         <div className="lg:col-span-4 flex flex-col pt-2">
           
-          <div className="flex gap-2 mb-4">
-            <span className="bg-[#f9f2ed] text-[#800020] text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Personalized Gift</span>
-            <span className="bg-orange-50 text-orange-700 text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Selling Fast</span>
-            <span className="bg-emerald-50 text-emerald-700 text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full flex items-center gap-1"><Zap size={10} /> Deliver Before Rakhi</span>
+          <div className="flex flex-wrap gap-4 mb-6">
+            <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-stone-600 flex items-center gap-1.5"><CheckCircle2 size={12} className="text-[#800020]"/> Personalized Gift</span>
+            <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-stone-600 flex items-center gap-1.5"><Flame size={12} className="text-orange-600"/> Selling Fast</span>
+            <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-[#800020] flex items-center gap-1.5"><Truck size={12}/> Deliver Before Rakhi</span>
           </div>
 
           <h1 className="font-serif text-3xl md:text-4xl text-[#2d2d2d] mb-4 leading-tight">
@@ -466,9 +466,6 @@ export default function ProductUI({ product }: ProductUIProps) {
                 <span className="text-xs font-bold text-gray-800">4.8</span>
                 <span className="text-[10px] text-gray-500 ml-1">(12,500+ Reviews)</span>
              </div>
-             <button className="text-[10px] uppercase tracking-widest font-bold text-[#800020] hover:underline flex items-center gap-1">
-                View All <ChevronRight size={12} />
-             </button>
           </div>
         </div>
 

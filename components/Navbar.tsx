@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Gift, ShieldCheck, Truck, Star } from "lucide-react";
 import { Menu, Search, ShoppingBag, X, ChevronDown, User } from "lucide-react";
 import { useCartStore } from "@/lib/store";
 
@@ -60,11 +61,20 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header
-      className={`sticky top-0 w-full z-40 transition-all duration-300 bg-white ${
-        scrolled ? "shadow-md py-3" : "py-4 border-b border-gray-100"
-      }`}
-    >
+    <>
+      {/* Top Notification Bar */}
+      <div className="w-full bg-[#ffeaea] text-[#800020] py-2 hidden md:flex items-center justify-center gap-12 text-[10px] font-bold uppercase tracking-widest border-b border-[#E5B8B7]/30">
+        <div className="flex items-center gap-2"><Gift size={12} strokeWidth={2} /> Personalized Just for You</div>
+        <div className="flex items-center gap-2"><Truck size={12} strokeWidth={2} /> Fast Delivery Across India</div>
+        <div className="flex items-center gap-2"><ShieldCheck size={12} strokeWidth={2} /> Secure & Safe Payments</div>
+        <div className="flex items-center gap-2"><Star size={12} strokeWidth={2} /> 4.8/5 from 12,500+ Happy Customers</div>
+      </div>
+      
+      <header
+        className={`sticky top-0 w-full z-40 transition-all duration-300 bg-white ${
+          scrolled ? "shadow-md py-3" : "py-4 border-b border-gray-100"
+        }`}
+      >
       <div className="mx-auto max-w-[1440px] px-6 md:px-12 flex items-center justify-between">
         
         {/* Left Side: Navigation Links */}
@@ -191,5 +201,6 @@ export default function Navbar() {
         </div>
       )}
     </header>
+    </>
   );
 }

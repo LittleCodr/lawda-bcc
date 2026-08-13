@@ -34,6 +34,12 @@ export default function CheckoutPage() {
   const loggedBeginCheckout = useRef(false);
 
   useEffect(() => {
+    if (finalTotal <= 3000 && paymentMethod === "cod") {
+      setPaymentMethod("prepaid");
+    }
+  }, [finalTotal, paymentMethod]);
+
+  useEffect(() => {
     if (!authLoading && !user) {
       router.push("/auth?redirect=/checkout");
     }
@@ -102,9 +108,10 @@ export default function CheckoutPage() {
       const orderId = `ORD-${Date.now()}`;
       
       const isCOD = paymentMethod === "cod";
-      const payUAmount = isAdmin ? 1 : (isCOD ? 100 : finalTotal);
-      const orderTotal = isCOD ? finalTotal + (isAdmin ? 0 : 100) : finalTotal;
-      const codBalance = isCOD ? finalTotal : 0;
+      const codAdvance = isCOD ? Math.floor(finalTotal / 2) : 0;
+      const payUAmount = isAdmin ? 1 : (isCOD ? codAdvance : finalTotal);
+      const orderTotal = finalTotal;
+      const codBalance = isCOD ? finalTotal - codAdvance : 0;
       
       // Write to Firestore (single batched write to minimize quota)
       await setDoc(doc(db, "users", user.uid, "orders", orderId), {
@@ -258,13 +265,15 @@ export default function CheckoutPage() {
                         <span className="text-xs text-stone-500">Pay securely via UPI, Cards, or Netbanking.</span>
                       </div>
                     </label>
-                    <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${paymentMethod === 'cod' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
-                      <input type="radio" name="payment" value="cod" checked={paymentMethod === 'cod'} onChange={() => setPaymentMethod('cod')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
-                      <div className="flex flex-col">
-                        <span className="font-bold text-sm text-stone-900">Cash on Delivery (₹100 Fee)</span>
-                        <span className="text-xs text-stone-500">Pay ₹100 securely now as advance, pay the rest on delivery.</span>
-                      </div>
-                    </label>
+                    {finalTotal > 3000 && (
+                      <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${paymentMethod === 'cod' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
+                        <input type="radio" name="payment" value="cod" checked={paymentMethod === 'cod'} onChange={() => setPaymentMethod('cod')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
+                        <div className="flex flex-col">
+                          <span className="font-bold text-sm text-stone-900">Cash on Delivery (50% Advance)</span>
+                          <span className="text-xs text-stone-500">Pay 50% securely now as advance, pay the rest on delivery.</span>
+                        </div>
+                      </label>
+                    )}
                   </div>
                 </div>
 
@@ -275,7 +284,7 @@ export default function CheckoutPage() {
                 >
                   {loading ? "Processing..." : (
                     <>
-                      <Lock size={14} /> {paymentMethod === 'cod' ? 'Pay ₹100 Advance' : `Pay ₹${finalTotal}`}
+                      <Lock size={14} /> {paymentMethod === 'cod' ? `Pay ₹${Math.floor(finalTotal / 2)} Advance` : `Pay ₹${finalTotal}`}
                     </>
                   )}
                 </button>
@@ -329,20 +338,14 @@ export default function CheckoutPage() {
                   <span>Shipping</span>
                   <span>{deliveryMethod === 'premium' ? '₹300' : 'Free'}</span>
                 </div>
-                {paymentMethod === 'cod' && (
-                  <div className="flex justify-between text-sm text-[#800020] font-bold">
-                    <span>COD Fee</span>
-                    <span>+₹100</span>
-                  </div>
-                )}
                 <div className="flex justify-between items-end pt-4 mt-2 border-t border-stone-200">
                   <span className="font-serif text-2xl text-stone-900">Total</span>
-                  <span className="text-xl font-medium text-stone-900">₹{paymentMethod === 'cod' ? finalTotal + 100 : finalTotal}</span>
+                  <span className="text-xl font-medium text-stone-900">₹{finalTotal}</span>
                 </div>
                 {paymentMethod === 'cod' && (
                   <div className="flex justify-between items-end pt-2 text-sm">
-                    <span className="font-bold text-stone-600 uppercase tracking-widest text-[10px]">To Pay Now</span>
-                    <span className="font-bold text-[#800020]">₹100</span>
+                    <span className="font-bold text-stone-600 uppercase tracking-widest text-[10px]">To Pay Now (50% Advance)</span>
+                    <span className="font-bold text-[#800020]">₹{Math.floor(finalTotal / 2)}</span>
                   </div>
                 )}
               </div>

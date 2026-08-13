@@ -83,6 +83,16 @@ export default function CheckoutPage() {
     e.preventDefault();
     if (!user) return;
     
+    // Additional JS Validation
+    if (!/^\d{10}$/.test(formData.phone.trim())) {
+      alert("Please enter a valid 10-digit mobile number.");
+      return;
+    }
+    if (!/^\d{6}$/.test(formData.zip.trim())) {
+      alert("Please enter a valid 6-digit PIN code.");
+      return;
+    }
+
     setLoading(true);
     try {
       const orderId = `ORD-${Date.now()}`;
@@ -180,7 +190,7 @@ export default function CheckoutPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="relative">
                     <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Full Name</label>
-                    <input required type="text" name="name" value={formData.name} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="Jane Doe" />
+                    <input required minLength={3} type="text" name="name" value={formData.name} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="Jane Doe" />
                   </div>
                   <div className="relative">
                     <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Email Address</label>
@@ -190,26 +200,26 @@ export default function CheckoutPage() {
                 
                 <div className="relative">
                   <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Phone Number</label>
-                  <input required type="tel" name="phone" value={formData.phone} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="Mobile Number" />
+                  <input required type="tel" pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number" name="phone" value={formData.phone} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="10-digit Mobile Number" />
                 </div>
 
                 <div className="relative">
                   <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Street Address</label>
-                  <input required type="text" name="address" value={formData.address} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="House/Flat No., Street" />
+                  <input required minLength={5} type="text" name="address" value={formData.address} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="House/Flat No., Street" />
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
                   <div className="col-span-2 md:col-span-1 relative">
                     <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">City</label>
-                    <input required type="text" name="city" value={formData.city} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" />
+                    <input required minLength={2} type="text" name="city" value={formData.city} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="City" />
                   </div>
                   <div className="relative">
                     <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">State</label>
-                    <input required type="text" name="state" value={formData.state} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" />
+                    <input required minLength={2} type="text" name="state" value={formData.state} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="State" />
                   </div>
                   <div className="relative">
                     <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">ZIP Code</label>
-                    <input required type="text" name="zip" value={formData.zip} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" />
+                    <input required type="text" pattern="[0-9]{6}" title="Please enter a valid 6-digit PIN code" name="zip" value={formData.zip} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="6-digit PIN" />
                   </div>
                 </div>
 

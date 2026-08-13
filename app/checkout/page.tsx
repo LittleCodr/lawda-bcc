@@ -97,6 +97,25 @@ export default function CheckoutPage() {
         createdAt: new Date(),
       });
 
+      // Fetch PayU Hash
+      const cartSummary = items.map(i => `${i.title} (${i.quantity})`).join(", ");
+      const hashRes = await fetch("/api/payu/hash", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amount: finalTotal,
+          email: formData.email,
+          phone: formData.phone,
+          name: formData.name,
+          cartSummary,
+        }),
+      });
+
+      const hashData = await hashRes.json();
+      if (hashData.error) {
+        throw new Error(hashData.error);
+      }
+
       // Log Purchase Event
       logAppEvent("purchase", {
         transaction_id: orderId,
@@ -112,12 +131,28 @@ export default function CheckoutPage() {
       });
 
       clearCart();
-      alert(`Order ${orderId} placed successfully!`);
-      router.push("/");
+      
+      // Submit PayU form programmatically
+      const form = document.createElement("form");
+      form.setAttribute("method", "post");
+      form.setAttribute("action", hashData.action);
+
+      Object.keys(hashData).forEach((key) => {
+        if (key !== "action") {
+          const hiddenField = document.createElement("input");
+          hiddenField.setAttribute("type", "hidden");
+          hiddenField.setAttribute("name", key);
+          hiddenField.setAttribute("value", hashData[key]);
+          form.appendChild(hiddenField);
+        }
+      });
+
+      document.body.appendChild(form);
+      form.submit();
+      
     } catch (error) {
       console.error("Error creating order:", error);
       alert("There was an issue processing your order. Please try again.");
-    } finally {
       setLoading(false);
     }
   };

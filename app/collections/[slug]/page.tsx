@@ -72,20 +72,32 @@ export default async function CollectionPage(props: {
     } else {
       // Intent/Keyword query
       filteredProducts = filteredProducts.filter(p => {
-        const titleMatch = (p.title || "").toLowerCase().includes(searchStr);
-        const typeMatch = (p.product_type || "").toLowerCase().includes(searchStr);
-        const tagsMatch = (Array.isArray(p.tags) ? p.tags.join(" ") : (p.tags || "")).toLowerCase().includes(searchStr);
+        const titleStr = (p.title || "").toLowerCase();
+        const typeStr = (p.product_type || "").toLowerCase();
+        const tagsStr = (Array.isArray(p.tags) ? p.tags.join(" ") : (p.tags || "")).toLowerCase();
         
         // Intent mappings
         if (slug.includes('gifts-for-her') || slug.includes('girlfriend') || slug.includes('wife') || slug.includes('women') || slug.includes('sister')) {
           return ['necklace', 'earring', 'ring', 'anklet', 'bracelet'].some(t => 
-            p.product_type?.toLowerCase().includes(t) || p.title.toLowerCase().includes(t)
+            typeStr.includes(t) || titleStr.includes(t)
           );
         }
         if (slug.includes('gifts-for-him') || slug.includes('boyfriend') || slug.includes('husband') || slug.includes('men') || slug.includes('brother')) {
           return ['cufflink', 'wallet', 'men', 'bracelet', 'keychain'].some(t => 
-            p.product_type?.toLowerCase().includes(t) || p.title.toLowerCase().includes(t)
+            typeStr.includes(t) || titleStr.includes(t)
           );
+        }
+
+        if (slug.includes('valentine')) {
+          return tagsStr.includes('valentine') || titleStr.includes('valentine');
+        }
+
+        if (slug.includes('wedding') || slug.includes('anniversary') || slug.includes('couple')) {
+          return ['wedding', 'anniversary', 'couple'].some(w => tagsStr.includes(w) || titleStr.includes(w));
+        }
+
+        if (slug.includes('keychain')) {
+          return tagsStr.includes('keychain') || titleStr.includes('keychain') || typeStr.includes('keychain');
         }
 
         // Rakhi fallback (return all personalized items if no specific match)
@@ -93,7 +105,15 @@ export default async function CollectionPage(props: {
            return true; 
         }
 
-        return titleMatch || typeMatch || tagsMatch;
+        // Default word-based matching (ignore generic words)
+        const ignoreWords = ['gift', 'gifts', 'for', 'custom', 'personalised', 'personalized', 'online', 'india'];
+        const words = searchStr.split(' ').filter(w => !ignoreWords.includes(w) && w.length > 2);
+        
+        if (words.length > 0) {
+          return words.some(w => titleStr.includes(w) || typeStr.includes(w) || tagsStr.includes(w));
+        }
+
+        return titleStr.includes(searchStr) || typeStr.includes(searchStr) || tagsStr.includes(searchStr);
       });
     }
   }

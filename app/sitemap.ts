@@ -1,8 +1,10 @@
 import { MetadataRoute } from 'next'
 import { products } from '@/lib/products'
+import fs from 'fs'
+import path from 'path'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://octopusperfume.in'
+  const baseUrl = 'https://www.octopusperfume.in'
   
   // Static routes
   const routes = [
@@ -21,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '' ? 1 : route === '/collections/all' ? 0.9 : 0.6,
   }))
 
-  // Dynamic product routes — higher priority since these are money pages
+  // Dynamic product routes from legacy products.ts
   const productRoutes = products.map((product) => ({
     url: `${baseUrl}/products/${product.slug}`,
     lastModified: new Date(),
@@ -29,5 +31,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }))
 
-  return [...routes, ...productRoutes]
+  // Dynamic product routes from JSON
+  let jsonProducts: any[] = [];
+  try {
+    const dataPath = path.join(process.cwd(), "lib", "data", "products.json");
+    if (fs.existsSync(dataPath)) {
+      const fileContent = fs.readFileSync(dataPath, "utf-8");
+      jsonProducts = JSON.parse(fileContent);
+    }
+  } catch (e) {
+    console.error("Error loading products for sitemap:", e);
+  }
+
+  const jsonProductRoutes = jsonProducts.map((product) => ({
+    url: `${baseUrl}/products/${product.handle}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }))
+
+  return [...routes, ...productRoutes, ...jsonProductRoutes]
 }

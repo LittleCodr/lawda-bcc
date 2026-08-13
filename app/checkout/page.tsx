@@ -26,6 +26,7 @@ export default function CheckoutPage() {
     state: "",
     zip: "",
   });
+  const [fetchingPin, setFetchingPin] = useState(false);
 
   const baseTotal = totalPrice();
   const deliveryFee = deliveryMethod === "premium" ? 300 : 0;
@@ -44,6 +45,31 @@ export default function CheckoutPage() {
       router.push("/auth?redirect=/checkout");
     }
   }, [user, authLoading, router]);
+
+  useEffect(() => {
+    if (formData.zip.length === 6) {
+      const fetchPinDetails = async () => {
+        setFetchingPin(true);
+        try {
+          const res = await fetch(`https://api.postalpincode.in/pincode/${formData.zip}`);
+          const data = await res.json();
+          if (data && data[0] && data[0].Status === "Success" && data[0].PostOffice && data[0].PostOffice.length > 0) {
+            const po = data[0].PostOffice[0];
+            setFormData(prev => ({
+              ...prev,
+              city: po.District || po.Block || po.Region,
+              state: po.State
+            }));
+          }
+        } catch (e) {
+          console.error("Error fetching PIN code", e);
+        } finally {
+          setFetchingPin(false);
+        }
+      };
+      fetchPinDetails();
+    }
+  }, [formData.zip]);
 
   useEffect(() => {
     if (items.length > 0 && !loggedBeginCheckout.current) {
@@ -86,7 +112,14 @@ export default function CheckoutPage() {
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    let { name, value } = e.target;
+    if (name === "phone") {
+      value = value.replace(/\D/g, "").slice(0, 10);
+    }
+    if (name === "zip") {
+      value = value.replace(/\D/g, "").slice(0, 6);
+    }
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handlePayment = async (e: React.FormEvent) => {
@@ -206,13 +239,13 @@ export default function CheckoutPage() {
                   </div>
                   <div className="relative">
                     <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Email Address</label>
-                    <input required type="email" name="email" value={formData.email} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="priya@example.com" />
+                    <input required type="email" pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address (e.g. name@domain.com)" name="email" value={formData.email} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="priya@example.com" />
                   </div>
                 </div>
                 
                 <div className="relative">
                   <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Phone Number</label>
-                  <input required type="tel" pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number" name="phone" value={formData.phone} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="10-digit Mobile Number" />
+                  <input required type="tel" pattern="\d{10}" maxLength={10} title="Please enter a valid 10-digit mobile number" name="phone" value={formData.phone} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="10-digit Mobile Number" />
                 </div>
 
                 <div className="relative">
@@ -221,17 +254,20 @@ export default function CheckoutPage() {
                 </div>
 
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-                  <div className="col-span-2 md:col-span-1 relative">
-                    <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">City</label>
-                    <input required minLength={2} type="text" name="city" value={formData.city} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="City" />
-                  </div>
-                  <div className="relative">
-                    <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">State</label>
-                    <input required minLength={2} type="text" name="state" value={formData.state} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="State" />
-                  </div>
-                  <div className="relative">
+                  <div className="relative order-1 md:order-1">
                     <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">ZIP Code</label>
-                    <input required type="text" pattern="[0-9]{6}" title="Please enter a valid 6-digit PIN code" name="zip" value={formData.zip} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="6-digit PIN" />
+                    <div className="relative">
+                      <input required type="text" pattern="\d{6}" maxLength={6} title="Please enter a valid 6-digit PIN code" name="zip" value={formData.zip} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="6-digit PIN" />
+                      {fetchingPin && <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 border-2 border-[#E5B8B7] border-t-[#800020] rounded-full animate-spin"></div>}
+                    </div>
+                  </div>
+                  <div className="relative order-2 md:order-2">
+                    <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">City</label>
+                    <input required readOnly minLength={2} type="text" name="city" value={formData.city} className="w-full border-b border-stone-300 py-2 bg-stone-100 text-stone-500 focus:outline-none cursor-not-allowed text-sm" placeholder="Auto-filled" />
+                  </div>
+                  <div className="relative order-3 md:order-3">
+                    <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">State</label>
+                    <input required readOnly minLength={2} type="text" name="state" value={formData.state} className="w-full border-b border-stone-300 py-2 bg-stone-100 text-stone-500 focus:outline-none cursor-not-allowed text-sm" placeholder="Auto-filled" />
                   </div>
                 </div>
 

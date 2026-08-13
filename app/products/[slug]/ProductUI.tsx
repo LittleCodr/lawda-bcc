@@ -33,11 +33,16 @@ export default function ProductUI({ product }: ProductUIProps) {
   const handleAddToCart = () => {
     if (!selectedVariant) return;
 
+    // Find the actual image for this variant, or fallback to the first image
+    const variantImage = activeImageId 
+      ? images.find((img: any) => img.id === activeImageId)?.src 
+      : (images.length > 0 ? images[0].src : "/logo.png");
+
     addItem({
       id: product.id.toString(),
       title: product.title,
       price: currentPrice,
-      image: images.length > 0 ? images[0].src : "/logo.png",
+      image: variantImage,
       quantity: 1,
       variantId: selectedVariant.id.toString(),
       variantTitle: selectedVariant.title !== "Default Title" ? selectedVariant.title : undefined,

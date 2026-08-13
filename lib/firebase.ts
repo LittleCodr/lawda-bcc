@@ -1,7 +1,7 @@
 import { initializeApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { getAnalytics, isSupported } from "firebase/analytics";
+import { getAnalytics, isSupported, logEvent } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCDrhkAdOlVtMc4j2AsJgOR-7dZ-qyy9b8",
@@ -9,8 +9,8 @@ const firebaseConfig = {
   projectId: "octopusperfumes",
   storageBucket: "octopusperfumes.firebasestorage.app",
   messagingSenderId: "647675431879",
-  appId: "1:647675431879:web:04a5b348743743a09da7e2",
-  measurementId: "G-N188YZ4HTB",
+  appId: "1:647675431879:web:47c8069ab4aef10e9da7e2",
+  measurementId: "G-ZP3CXGVJGX"
 };
 
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
@@ -27,3 +27,9 @@ if (typeof window !== "undefined") {
     }
   });
 }
+
+export const logAppEvent = (eventName: string, eventParams?: any) => {
+  if (analytics) {
+    logEvent(analytics, eventName, eventParams);
+  }
+};

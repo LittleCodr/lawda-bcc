@@ -27,8 +27,10 @@ export const metadata: Metadata = {
 };
 
 import CartDrawer from "@/components/CartDrawer";
+import AnalyticsTracker from "@/components/AnalyticsTracker";
 
 import { AuthProvider } from "@/lib/auth-context";
+import { Suspense } from "react";
 
 export default function RootLayout({
   children,
@@ -39,6 +41,9 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth" className={`${playfair.variable} ${inter.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-stone-50 text-stone-900 font-sans">
         <AuthProvider>
+          <Suspense fallback={null}>
+            <AnalyticsTracker />
+          </Suspense>
           {/* Navbar */}
           <Navbar />
           

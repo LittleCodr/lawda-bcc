@@ -182,19 +182,6 @@ function AuthForm() {
               <button onClick={() => { setMode("login"); setError(""); setMagicSent(false); }} className="underline text-ink">Back to Sign In</button>
             </p>
           )}
-
-          {redirect === "/checkout" && (
-            <div className="mt-6 pt-6 border-t border-ink/10">
-              <p className="text-sm text-muted mb-3">Want to checkout without an account?</p>
-              <button
-                onClick={handleGuest}
-                disabled={loading}
-                className="w-full border border-ink py-3 text-[11px] tracking-[0.25em] uppercase hover:bg-ink hover:text-paper transition-colors disabled:opacity-50"
-              >
-                Continue as Guest
-              </button>
-            </div>
-          )}
         </div>
       </div>
     </div>

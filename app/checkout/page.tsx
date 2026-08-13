@@ -1,13 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ShieldCheck, Lock, CheckCircle2 } from "lucide-react";
 import { useCartStore } from "@/lib/store";
+import { useAuth } from "@/lib/auth-context";
+import { logAppEvent, db } from "@/lib/firebase";
+import { doc, setDoc } from "firebase/firestore";
 
 export default function CheckoutPage() {
-  const { items, totalPrice } = useCartStore();
+  const { items, totalPrice, clearCart } = useCartStore();
+  const { user, loading: authLoading } = useAuth();
   const router = useRouter();
   
   const [loading, setLoading] = useState(false);
@@ -21,9 +25,43 @@ export default function CheckoutPage() {
     zip: "",
   });
 
+  const finalTotal = totalPrice();
+  const loggedBeginCheckout = useRef(false);
+
+  useEffect(() => {
+    if (!authLoading && !user) {
+      router.push("/auth?redirect=/checkout");
+    }
+  }, [user, authLoading, router]);
+
+  useEffect(() => {
+    if (items.length > 0 && !loggedBeginCheckout.current) {
+      logAppEvent("begin_checkout", {
+        currency: "INR",
+        value: finalTotal,
+        items: items.map((i) => ({ 
+          item_id: i.id, 
+          item_name: i.title, 
+          quantity: i.quantity,
+          price: i.price,
+          item_variant: i.variantTitle
+        }))
+      });
+      loggedBeginCheckout.current = true;
+    }
+  }, [items, finalTotal]);
+
+  if (authLoading || !user) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-stone-50">
+        <div className="w-8 h-8 border-2 border-[#E5B8B7] border-t-[#800020] rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
   if (items.length === 0) {
     return (
-      <div className="mx-auto max-w-3xl px-5 py-32 text-center bg-white min-h-screen">
+      <div className="mx-auto max-w-3xl px-5 py-32 text-center bg-stone-50 min-h-screen">
         <h1 className="font-serif text-4xl mb-6 text-stone-900">Your Cart is Empty</h1>
         <p className="text-stone-500 mb-10">Add items to your cart before proceeding to checkout.</p>
         <button
@@ -42,15 +80,47 @@ export default function CheckoutPage() {
 
   const handlePayment = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) return;
+    
     setLoading(true);
-    // Dummy checkout process for the new site
-    setTimeout(() => {
-      alert("Order placed successfully! This is a demo store.");
-      setLoading(false);
-    }, 1500);
-  };
+    try {
+      const orderId = `ORD-${Date.now()}`;
+      
+      // Write to Firestore (single batched write to minimize quota)
+      await setDoc(doc(db, "users", user.uid, "orders", orderId), {
+        orderId,
+        userId: user.uid,
+        status: "pending_payment",
+        total: finalTotal,
+        items,
+        shippingDetails: formData,
+        createdAt: new Date(),
+      });
 
-  const finalTotal = totalPrice();
+      // Log Purchase Event
+      logAppEvent("purchase", {
+        transaction_id: orderId,
+        currency: "INR",
+        value: finalTotal,
+        items: items.map((i) => ({ 
+          item_id: i.id, 
+          item_name: i.title, 
+          quantity: i.quantity,
+          price: i.price,
+          item_variant: i.variantTitle
+        }))
+      });
+
+      clearCart();
+      alert(`Order ${orderId} placed successfully!`);
+      router.push("/");
+    } catch (error) {
+      console.error("Error creating order:", error);
+      alert("There was an issue processing your order. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="bg-stone-50 min-h-screen pt-24 pb-32">
@@ -122,7 +192,7 @@ export default function CheckoutPage() {
               {/* Items List */}
               <ul className="space-y-6 mb-8 max-h-[400px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-stone-200">
                 {items.map((item) => (
-                  <li key={`${item.id}-${item.variantId}`} className="flex gap-4">
+                  <li key={item.cartItemId || `${item.id}-${item.variantId}`} className="flex gap-4">
                     <div className="relative w-20 h-20 bg-stone-50 shrink-0 border border-stone-100">
                       <Image src={item.image || "/logo.png"} alt={item.title} fill sizes="80px" className="object-cover" />
                     </div>
@@ -131,6 +201,16 @@ export default function CheckoutPage() {
                       {item.variantTitle && (
                         <p className="text-xs text-stone-500 mt-1">{item.variantTitle}</p>
                       )}
+                      
+                      {/* Personalization Details Summary */}
+                      {(item.customName || item.customPhotoUrl || item.isGift) && (
+                        <div className="mt-1 flex flex-col gap-0.5">
+                           {item.customName && <p className="text-[10px] text-stone-500 uppercase tracking-widest">Engraving: {item.customName}</p>}
+                           {item.customPhotoUrl && <p className="text-[10px] text-stone-500 uppercase tracking-widest">Photo Included</p>}
+                           {item.isGift && <p className="text-[10px] text-[#800020] font-bold uppercase tracking-widest">Premium Gift</p>}
+                        </div>
+                      )}
+
                       <div className="flex justify-between items-center mt-2">
                         <p className="text-sm font-medium text-stone-700">₹{item.price}</p>
                         <p className="text-xs text-stone-400 uppercase tracking-widest">Qty: {item.quantity}</p>

@@ -5,6 +5,16 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "cdn.shopify.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.everlasting.shop",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
         hostname: "octopusperfume.in",
         pathname: "/**",
       },

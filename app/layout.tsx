@@ -63,6 +63,7 @@ export const metadata: Metadata = {
 import CartDrawer from "@/components/CartDrawer";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import MetaPixel from "@/components/MetaPixel";
+import NextTopLoader from "nextjs-toploader";
 
 import { AuthProvider } from "@/lib/auth-context";
 import { Suspense } from "react";
@@ -81,6 +82,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className="min-h-full flex flex-col bg-stone-50 text-stone-900 font-sans">
+        <NextTopLoader color="#800020" showSpinner={false} />
         <AuthProvider>
           <Suspense fallback={null}>
             <AnalyticsTracker />

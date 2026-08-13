@@ -61,6 +61,7 @@ export default function ProductUI({ product }: ProductUIProps) {
       } else {
         await setDoc(docRef, {
           id: product.id.toString(),
+          handle: product.handle,
           title: product.title,
           price: currentPrice,
           image: images.length > 0 ? images[0].src : "/logo.png",

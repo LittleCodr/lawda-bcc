@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (fs.existsSync(dataPath)) {
       const fileContent = fs.readFileSync(dataPath, "utf-8");
       const products = JSON.parse(fileContent);
-      product = products.find((p: any) => p.handle === slug);
+      product = products.find((p: any) => p.handle === slug || p.id.toString() === slug);
     }
   } catch (e) {}
 
@@ -37,7 +37,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     if (fs.existsSync(dataPath)) {
       const fileContent = fs.readFileSync(dataPath, "utf-8");
       const products = JSON.parse(fileContent);
-      product = products.find((p: any) => p.handle === slug);
+      product = products.find((p: any) => p.handle === slug || p.id.toString() === slug);
     }
   } catch (e) {}
 

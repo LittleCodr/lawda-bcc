@@ -43,6 +43,7 @@ type UserProfile = {
 
 type Favourite = {
   id: string;
+  handle?: string;
   title: string;
   price: number;
   image: string;
@@ -631,7 +632,7 @@ export default function AccountPage() {
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {favourites.map((fav) => (
-                  <Link key={fav.id} href={`/products/${fav.id}`} className="group bg-white border border-[#E5B8B7]/30 shadow-sm overflow-hidden flex flex-col hover:border-[#800020] transition-colors relative">
+                  <Link key={fav.id} href={`/products/${fav.handle || fav.id}`} className="group bg-white border border-[#E5B8B7]/30 shadow-sm overflow-hidden flex flex-col hover:border-[#800020] transition-colors relative">
                     <div className="relative aspect-[4/5] bg-stone-50 w-full overflow-hidden">
                       <Image src={fav.image} alt={fav.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 50vw, 25vw" />
                     </div>

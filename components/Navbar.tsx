@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Menu, Search, ShoppingBag, X, ChevronDown } from "lucide-react";
+import { Menu, Search, ShoppingBag, X, ChevronDown, User } from "lucide-react";
 import { useCartStore } from "@/lib/store";
 
 const NAV_MENU = [
@@ -123,6 +123,9 @@ export default function Navbar() {
         </Link>
 
         <div className="flex items-center gap-5 sm:gap-6 flex-1 justify-end relative z-10 text-[#2d2d2d]">
+          <Link href="/account" aria-label="Account" className="relative p-2 hover:text-[#800020] transition-colors">
+             <User size={22} strokeWidth={1.5} />
+          </Link>
           <button
             aria-label="Cart"
             className="relative p-2 hover:text-[#800020] transition-colors"

@@ -8,7 +8,7 @@ import { useAuth } from "@/lib/auth-context";
 import { db } from "@/lib/firebase";
 import { collection, query, orderBy, getDocs, doc, getDoc, setDoc } from "firebase/firestore";
 import { formatINR } from "@/lib/products";
-import { Download, Package, ExternalLink } from "lucide-react";
+import { Download, Package, ExternalLink, User, Settings, Edit3, X } from "lucide-react";
 
 
 type Order = {
@@ -20,7 +20,7 @@ type Order = {
   status?: string;
   trackingId?: string;
   trackingUrl?: string;
-  items: { name: string; quantity: number; price: number; image: string }[];
+  items: { name: string; quantity: number; price: number; image: string; variantTitle?: string }[];
   shipping: {
     name: string;
     address: string;
@@ -112,7 +112,7 @@ export default function AccountPage() {
           } else if (diffInDays >= 7 && diffInDays < 10) {
             dynamicStatus = "Delivery partner was unable to connect to the customer, will try again delivery today";
           } else if (diffInDays >= 10) {
-            dynamicStatus = "Order completion failed, package returning to seller. Once returned, the customer will get refund within 7 days AFTER the package is received by the seller";
+            dynamicStatus = "Order completion failed, package returning to seller.";
           }
 
           return {
@@ -158,24 +158,24 @@ export default function AccountPage() {
     const { default: autoTable } = await import("jspdf-autotable");
     const doc = new jsPDF();
     
-    // Theme colors
-    const primaryColor = [41, 41, 41];
+    // Theme colors matching new aesthetic
+    const primaryColor = [128, 0, 32]; // Burgundy #800020
     const secondaryColor = [100, 100, 100];
 
     // Header Background
-    doc.setFillColor(245, 245, 245);
+    doc.setFillColor(253, 248, 245); // Blush #FDF8F5
     doc.rect(0, 0, 210, 40, 'F');
     
     // Company Name
     doc.setFont("helvetica", "bold");
     doc.setFontSize(24);
     doc.setTextColor(primaryColor[0], primaryColor[1], primaryColor[2]);
-    doc.text("OCTOPUS LIFESTYLE", 14, 20);
+    doc.text("EVERLASTING SHOP", 14, 20);
     
     doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
     doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2]);
-    doc.text("Premium Fragrances & Lifestyle", 14, 26);
+    doc.text("Premium Personalized Jewelry", 14, 26);
     
     // Invoice Title
     doc.setFont("helvetica", "bold");
@@ -188,12 +188,9 @@ export default function AccountPage() {
     // Company Details (Left)
     doc.setFontSize(9);
     doc.setFont("helvetica", "bold");
-    doc.text("Octopus Lifestyle Private Limited", 14, 50);
+    doc.text("Everlasting Lifestyle Private Limited", 14, 50);
     doc.setFont("helvetica", "normal");
-    doc.text("1401, 14th Floor, Emaar Palm Spring Plaza", 14, 55);
-    doc.text("Sector 54, Gurgaon, Haryana - 122011", 14, 60);
-    doc.text("Email: support@octopusperfume.in", 14, 65);
-    doc.text("GSTIN: 06AAECO7617A1ZR", 14, 70); // Added GSTIN
+    doc.text("Email: support@everlasting.shop", 14, 55);
     
     // Order Details (Right)
     doc.setFont("helvetica", "bold");
@@ -205,14 +202,11 @@ export default function AccountPage() {
     doc.text(`Date:`, 140, 60);
     doc.text(order.createdAt, 165, 60);
     
-    doc.text(`Ref ID:`, 140, 65);
-    doc.text(order.gokwikOrderId || "N/A", 165, 65);
-    
-    doc.text(`Payment:`, 140, 70);
-    doc.text("Prepaid", 165, 70);
+    doc.text(`Payment:`, 140, 65);
+    doc.text("Prepaid", 165, 65);
 
     // Bill To & Ship To
-    doc.setDrawColor(200, 200, 200);
+    doc.setDrawColor(229, 184, 183); // #E5B8B7
     doc.line(14, 75, 196, 75);
     
     doc.setFont("helvetica", "bold");
@@ -226,11 +220,9 @@ export default function AccountPage() {
     // Items Table
     const tableData = order.items.map((item, index) => [
       (index + 1).toString(),
-      item.name,
-      "330300", // HSN code for perfumes
+      item.variantTitle ? `${item.name} (${item.variantTitle})` : item.name,
       item.quantity.toString(),
       `Rs. ${item.price.toFixed(2)}`,
-      "18%",
       `Rs. ${(item.price * item.quantity).toFixed(2)}`
     ]);
     
@@ -238,15 +230,15 @@ export default function AccountPage() {
     const discount = order.discount || 0;
     // Calculate shipping safely
     let shippingCost = order.total - subtotal + discount;
-    if (shippingCost < 0 || Math.abs(shippingCost) < 1) shippingCost = 0; // handle rounding or weird edge cases
+    if (shippingCost < 0 || Math.abs(shippingCost) < 1) shippingCost = 0; 
 
     autoTable(doc, {
       startY: 105 + (addressLines.length * 5),
-      head: [['#', 'Item Description', 'HSN/SAC', 'Qty', 'Unit Price', 'Tax', 'Total']],
+      head: [['#', 'Item Description', 'Qty', 'Unit Price', 'Total']],
       body: tableData,
       theme: 'grid',
       headStyles: { 
-        fillColor: [41, 41, 41],
+        fillColor: [128, 0, 32],
         textColor: 255,
         fontStyle: 'bold',
         halign: 'center'
@@ -254,16 +246,14 @@ export default function AccountPage() {
       columnStyles: {
         0: { halign: 'center' },
         2: { halign: 'center' },
-        3: { halign: 'center' },
-        4: { halign: 'right' },
-        5: { halign: 'center' },
-        6: { halign: 'right' }
+        3: { halign: 'right' },
+        4: { halign: 'right' }
       },
       bodyStyles: {
         textColor: [60, 60, 60]
       },
       alternateRowStyles: {
-        fillColor: [250, 250, 250]
+        fillColor: [253, 248, 245]
       },
       margin: { top: 10 }
     });
@@ -289,12 +279,12 @@ export default function AccountPage() {
     
     // Divider
     const totalY = finalY + (discount > 0 ? 18 : 12);
-    doc.setDrawColor(200, 200, 200);
+    doc.setDrawColor(229, 184, 183);
     doc.line(totalsX, totalY, valuesX, totalY);
     
     doc.setFont("helvetica", "bold");
     doc.setFontSize(12);
-    doc.text("Total Amount (Inc. GST):", totalsX, totalY + 7);
+    doc.text("Total Amount:", totalsX, totalY + 7);
     doc.text(`Rs. ${order.total.toFixed(2)}`, valuesX, totalY + 7, { align: 'right' });
     
     doc.setFontSize(9);
@@ -302,245 +292,270 @@ export default function AccountPage() {
     
     // Footer / Terms
     const footerY = 250;
-    doc.setDrawColor(200, 200, 200);
+    doc.setDrawColor(229, 184, 183);
     doc.line(14, footerY, 196, footerY);
     
     doc.setFontSize(8);
     doc.setTextColor(150, 150, 150);
     doc.text("Terms & Conditions:", 14, footerY + 5);
     doc.text("1. This is a computer generated invoice and does not require a physical signature.", 14, footerY + 9);
-    doc.text("2. Returns are accepted within 7 days of delivery as per the return policy.", 14, footerY + 13);
-    doc.text("3. All disputes are subject to Haryana jurisdiction.", 14, footerY + 17);
+    doc.text("2. Crafted with care to be everlasting.", 14, footerY + 13);
     
-    // Authorized Signatory
-    doc.setTextColor(41, 41, 41);
-    doc.setFont("helvetica", "bold");
-    doc.text("For Octopus Lifestyle Private Limited", 196, footerY + 5, { align: 'right' });
-    doc.setFont("helvetica", "normal");
-    doc.text("Authorized Signatory", 196, footerY + 17, { align: 'right' });
-    
-    doc.save(`Invoice_${order.id.slice(0,8)}.pdf`);
+    doc.save(`Everlasting_Invoice_${order.id.slice(0,8)}.pdf`);
   };
 
   if (loading || !user) {
     return (
-      <div className="min-h-[70vh] flex items-center justify-center">
-        <p className="text-muted text-sm">Loading...</p>
+      <div className="min-h-screen flex items-center justify-center bg-stone-50">
+        <div className="w-8 h-8 border-2 border-[#E5B8B7] border-t-[#800020] rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <div className="mx-auto max-w-4xl px-5 py-16 md:py-24">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-12">
-        <div>
-          <h1 className="font-serif-display text-4xl md:text-5xl">My Account</h1>
-          <p className="text-muted text-sm mt-2">{user.email}</p>
+    <div className="bg-stone-50 min-h-screen pt-24 pb-32">
+      <div className="mx-auto max-w-[1000px] px-6 lg:px-12">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-16">
+          <div>
+            <h1 className="font-serif text-4xl md:text-5xl text-stone-900 mb-2">My Account</h1>
+            <p className="text-stone-500 font-medium">{user.email}</p>
+          </div>
+          <button
+            onClick={async () => {
+              await logout();
+              router.push("/");
+            }}
+            className="border border-[#800020] text-[#800020] px-8 py-3 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#800020] hover:text-white transition-colors duration-300 w-fit"
+          >
+            Sign Out
+          </button>
         </div>
-        <button
-          onClick={async () => {
-            await logout();
-            router.push("/");
-          }}
-          className="border border-ink px-6 py-2.5 text-[11px] tracking-[0.2em] uppercase hover:bg-ink hover:text-paper transition-colors w-fit"
-        >
-          Sign Out
-        </button>
-      </div>
 
-      <div className="mb-12 p-6 border border-ink/10 bg-white/50 relative">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="font-serif-display text-2xl">Profile Details</h2>
-          {!isEditing && (
-            <button 
-              onClick={() => setIsEditing(true)}
-              className="text-xs uppercase tracking-widest text-ink hover:opacity-60 transition-opacity underline"
-            >
-              Edit Profile
-            </button>
+        {/* Profile Card */}
+        <div className="bg-white border border-[#E5B8B7]/50 shadow-sm p-8 md:p-12 mb-16 relative">
+          <div className="flex items-center justify-between mb-10 border-b border-[#E5B8B7]/30 pb-6">
+            <h2 className="font-serif text-2xl text-stone-900 flex items-center gap-3">
+              <User className="text-[#800020]" />
+              Profile Details
+            </h2>
+            {!isEditing && (
+              <button 
+                onClick={() => setIsEditing(true)}
+                className="text-xs uppercase tracking-widest text-[#800020] font-bold hover:opacity-70 transition-opacity flex items-center gap-2"
+              >
+                <Edit3 size={14} /> Edit Profile
+              </button>
+            )}
+          </div>
+
+          {isEditing ? (
+            <form onSubmit={saveProfile} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                  <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Full Name</label>
+                  <input
+                    type="text"
+                    value={editForm.name}
+                    onChange={(e) => setEditForm({...editForm, name: e.target.value})}
+                    className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Phone</label>
+                  <input
+                    type="tel"
+                    value={editForm.phone}
+                    onChange={(e) => setEditForm({...editForm, phone: e.target.value})}
+                    className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Address</label>
+                  <input
+                    type="text"
+                    value={editForm.address}
+                    onChange={(e) => setEditForm({...editForm, address: e.target.value})}
+                    className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">City</label>
+                  <input
+                    type="text"
+                    value={editForm.city}
+                    onChange={(e) => setEditForm({...editForm, city: e.target.value})}
+                    className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">State</label>
+                  <input
+                    type="text"
+                    value={editForm.state}
+                    onChange={(e) => setEditForm({...editForm, state: e.target.value})}
+                    className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">ZIP Code</label>
+                  <input
+                    type="text"
+                    value={editForm.zip}
+                    onChange={(e) => setEditForm({...editForm, zip: e.target.value})}
+                    className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm"
+                  />
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-4 mt-8 pt-8 border-t border-[#E5B8B7]/30">
+                <button
+                  type="submit"
+                  disabled={savingProfile}
+                  className="bg-[#800020] text-white px-8 py-3.5 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#E5B8B7] hover:text-[#800020] transition-colors duration-300 disabled:opacity-50"
+                >
+                  {savingProfile ? "Saving..." : "Save Changes"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsEditing(false);
+                    setEditForm(profile || { name: "", phone: "", address: "", city: "", state: "", zip: "" });
+                  }}
+                  className="text-xs uppercase tracking-widest text-stone-500 font-bold hover:text-stone-900 transition-colors flex items-center gap-2"
+                >
+                  <X size={14} /> Cancel
+                </button>
+              </div>
+            </form>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-8">
+              <div>
+                <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-stone-400 block mb-2">Name</span>
+                <span className="text-stone-900 font-medium text-lg">{profile?.name || user.displayName || "Not set"}</span>
+              </div>
+              <div>
+                <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-stone-400 block mb-2">Email</span>
+                <span className="text-stone-900 font-medium text-lg">{user.email}</span>
+              </div>
+              <div>
+                <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-stone-400 block mb-2">Phone</span>
+                <span className="text-stone-900 font-medium text-lg">{profile?.phone || "Not set"}</span>
+              </div>
+              <div className="md:col-span-2">
+                <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-stone-400 block mb-2">Shipping Address</span>
+                {profile?.address ? (
+                  <address className="not-italic text-stone-900 text-lg leading-relaxed">
+                    {profile.address}<br />
+                    {profile.city}, {profile.state} {profile.zip}
+                  </address>
+                ) : (
+                  <span className="text-stone-400 italic">Not set</span>
+                )}
+              </div>
+            </div>
           )}
         </div>
 
-        {isEditing ? (
-          <form onSubmit={saveProfile} className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs uppercase tracking-widest text-muted mb-2">Full Name</label>
-                <input
-                  type="text"
-                  value={editForm.name}
-                  onChange={(e) => setEditForm({...editForm, name: e.target.value})}
-                  className="w-full border-b border-ink/20 py-2 bg-transparent focus:outline-none focus:border-ink transition-colors text-sm"
-                />
-              </div>
-              <div>
-                <label className="block text-xs uppercase tracking-widest text-muted mb-2">Phone</label>
-                <input
-                  type="tel"
-                  value={editForm.phone}
-                  onChange={(e) => setEditForm({...editForm, phone: e.target.value})}
-                  className="w-full border-b border-ink/20 py-2 bg-transparent focus:outline-none focus:border-ink transition-colors text-sm"
-                />
-              </div>
-              <div className="sm:col-span-2">
-                <label className="block text-xs uppercase tracking-widest text-muted mb-2">Address</label>
-                <input
-                  type="text"
-                  value={editForm.address}
-                  onChange={(e) => setEditForm({...editForm, address: e.target.value})}
-                  className="w-full border-b border-ink/20 py-2 bg-transparent focus:outline-none focus:border-ink transition-colors text-sm"
-                />
-              </div>
-              <div>
-                <label className="block text-xs uppercase tracking-widest text-muted mb-2">City</label>
-                <input
-                  type="text"
-                  value={editForm.city}
-                  onChange={(e) => setEditForm({...editForm, city: e.target.value})}
-                  className="w-full border-b border-ink/20 py-2 bg-transparent focus:outline-none focus:border-ink transition-colors text-sm"
-                />
-              </div>
-              <div>
-                <label className="block text-xs uppercase tracking-widest text-muted mb-2">State</label>
-                <input
-                  type="text"
-                  value={editForm.state}
-                  onChange={(e) => setEditForm({...editForm, state: e.target.value})}
-                  className="w-full border-b border-ink/20 py-2 bg-transparent focus:outline-none focus:border-ink transition-colors text-sm"
-                />
-              </div>
-              <div>
-                <label className="block text-xs uppercase tracking-widest text-muted mb-2">ZIP Code</label>
-                <input
-                  type="text"
-                  value={editForm.zip}
-                  onChange={(e) => setEditForm({...editForm, zip: e.target.value})}
-                  className="w-full border-b border-ink/20 py-2 bg-transparent focus:outline-none focus:border-ink transition-colors text-sm"
-                />
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-4 mt-6 pt-4 border-t border-ink/10">
-              <button
-                type="submit"
-                disabled={savingProfile}
-                className="bg-ink text-paper px-6 py-2.5 text-[11px] tracking-[0.2em] uppercase hover:opacity-90 transition-opacity disabled:opacity-50"
-              >
-                {savingProfile ? "Saving..." : "Save Changes"}
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setIsEditing(false);
-                  setEditForm(profile || { name: "", phone: "", address: "", city: "", state: "", zip: "" });
-                }}
-                className="text-xs uppercase tracking-widest text-muted hover:text-ink transition-colors"
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
-            <div>
-              <span className="text-xs uppercase tracking-widest text-muted block mb-1">Name</span>
-              <span>{profile?.name || user.displayName || "Not set"}</span>
-            </div>
-            <div>
-              <span className="text-xs uppercase tracking-widest text-muted block mb-1">Email</span>
-              <span>{user.email}</span>
-            </div>
-            <div>
-              <span className="text-xs uppercase tracking-widest text-muted block mb-1">Phone</span>
-              <span>{profile?.phone || "Not set"}</span>
-            </div>
-            <div className="sm:col-span-2">
-              <span className="text-xs uppercase tracking-widest text-muted block mb-1">Shipping Address</span>
-              {profile?.address ? (
-                <address className="not-italic">
-                  {profile.address}<br />
-                  {profile.city}, {profile.state} {profile.zip}
-                </address>
-              ) : (
-                <span className="text-muted">Not set</span>
-              )}
-            </div>
+        {/* Order History */}
+        <h2 className="font-serif text-3xl text-stone-900 mb-8 flex items-center gap-3">
+          <Package className="text-[#800020]" />
+          Order History
+        </h2>
+
+        {loadingOrders ? (
+          <div className="py-12 flex justify-center">
+            <div className="w-8 h-8 border-2 border-[#E5B8B7] border-t-[#800020] rounded-full animate-spin"></div>
           </div>
-        )}
-      </div>
-
-      <h2 className="font-serif-display text-2xl mb-6">Order History</h2>
-
-      {loadingOrders ? (
-        <p className="text-muted text-sm">Loading orders...</p>
-      ) : orders.length === 0 ? (
-        <div className="text-center py-16 border border-ink/10 bg-white/50">
-          <p className="text-muted mb-6">You haven&apos;t placed any orders yet.</p>
-          <Link
-            href="/collections/all"
-            className="border border-ink px-8 py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-ink hover:text-paper transition-colors"
-          >
-            Start Shopping
-          </Link>
-        </div>
-      ) : (
-        <div className="space-y-6">
-          {orders.map((order) => (
-            <div key={order.id} className="border border-ink/10 bg-white/50 p-6">
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4 border-b border-ink/10 pb-6">
-                <div>
-                  <div className="flex items-center gap-3 mb-1">
-                    <p className="text-xs uppercase tracking-widest text-muted">Order</p>
-                    <p className="text-sm font-bold">{order.id.slice(0, 12).toUpperCase()}</p>
+        ) : orders.length === 0 ? (
+          <div className="text-center py-24 bg-white border border-[#E5B8B7]/50 shadow-sm flex flex-col items-center">
+            <Package size={48} className="text-[#E5B8B7] mb-6" strokeWidth={1} />
+            <p className="text-stone-500 mb-8 text-lg font-serif">You haven&apos;t placed any orders yet.</p>
+            <Link
+              href="/collections/all"
+              className="bg-[#800020] text-white px-10 py-4 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#E5B8B7] hover:text-[#800020] transition-colors duration-300 shadow-lg shadow-[#800020]/20"
+            >
+              Start Shopping
+            </Link>
+          </div>
+        ) : (
+          <div className="space-y-8">
+            {orders.map((order) => (
+              <div key={order.id} className="bg-white border border-[#E5B8B7]/50 shadow-sm overflow-hidden group">
+                {/* Order Header */}
+                <div className="bg-[#FDF8F5]/50 border-b border-[#E5B8B7]/50 p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 transition-colors group-hover:bg-[#FDF8F5]">
+                  <div>
+                    <div className="flex items-center gap-4 mb-2">
+                      <p className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#800020]">Order</p>
+                      <p className="text-lg font-bold text-stone-900">#{order.id.slice(0, 12).toUpperCase()}</p>
+                    </div>
+                    <p className="text-sm text-stone-500 mb-4 font-medium">{order.createdAt}</p>
+                    
                     {order.status && (
-                      <span className="px-2 py-0.5 bg-ink/5 text-[10px] uppercase tracking-wider font-medium flex items-center gap-1.5">
-                        <Package size={10} />
+                      <span className="px-4 py-1.5 bg-white border border-[#E5B8B7] text-[#800020] text-[10px] uppercase tracking-widest font-bold inline-flex items-center gap-2 shadow-sm">
+                        <div className="w-1.5 h-1.5 bg-[#800020] rounded-full animate-pulse"></div>
                         {order.status}
                       </span>
                     )}
                   </div>
-                  <p className="text-xs text-muted mb-3">{order.createdAt}</p>
+                  
+                  <div className="flex flex-row md:flex-col items-center md:items-end justify-between gap-6 border-t md:border-t-0 border-[#E5B8B7]/30 pt-6 md:pt-0">
+                    <p className="font-serif text-3xl text-stone-900">{formatINR(order.total)}</p>
+                    <button 
+                      onClick={() => generateReceipt(order)}
+                      className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#800020] border-b-2 border-transparent hover:border-[#800020] transition-colors pb-0.5"
+                    >
+                      <Download size={14} />
+                      Download Invoice
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Order Items */}
+                <div className="p-6 md:p-8">
+                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {order.items.map((item, i) => (
+                      <li key={i} className="flex gap-4 items-center">
+                        <div className="relative w-20 h-20 bg-stone-50 shrink-0 border border-stone-100 rounded-sm overflow-hidden">
+                          <Image src={item.image || "/logo.png"} alt={item.name} fill sizes="80px" className="object-cover" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-sm font-serif font-medium text-stone-900 leading-tight mb-1">{item.name}</p>
+                          {item.variantTitle && (
+                            <p className="text-xs text-stone-500 mb-2">{item.variantTitle}</p>
+                          )}
+                          <div className="flex justify-between items-center text-xs uppercase tracking-widest text-stone-500 mt-2">
+                            <span>Qty: {item.quantity}</span>
+                            <span className="font-bold text-stone-900">{formatINR(item.price)}</span>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
                   
                   {order.trackingId && (
-                    <div className="text-xs">
-                      <span className="text-muted">Tracking ID: </span>
-                      <span className="font-medium">{order.trackingId}</span>
+                    <div className="mt-8 pt-6 border-t border-[#E5B8B7]/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                      <div className="flex items-center gap-2 text-sm text-stone-600">
+                        <Package size={16} className="text-[#800020]" />
+                        Tracking ID: <span className="font-bold text-stone-900">{order.trackingId}</span>
+                      </div>
                       {order.trackingUrl && (
-                        <a href={order.trackingUrl} target="_blank" rel="noopener noreferrer" className="ml-2 text-ink hover:opacity-60 underline inline-flex items-center gap-1">
-                          Track <ExternalLink size={10} />
+                        <a 
+                          href={order.trackingUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-xs uppercase tracking-widest font-bold text-white bg-stone-900 px-6 py-2.5 hover:bg-stone-800 transition-colors inline-flex items-center justify-center gap-2"
+                        >
+                          Track Package <ExternalLink size={12} />
                         </a>
                       )}
                     </div>
                   )}
                 </div>
-                <div className="flex flex-row md:flex-col items-center md:items-end justify-between gap-4">
-                  <p className="font-serif-display text-xl md:text-lg">{formatINR(order.total)}</p>
-                  <button 
-                    onClick={() => generateReceipt(order)}
-                    className="flex items-center gap-2 text-xs uppercase tracking-widest text-ink border border-ink px-4 py-2 hover:bg-ink hover:text-paper transition-colors"
-                  >
-                    <Download size={14} />
-                    Receipt
-                  </button>
-                </div>
               </div>
-              <ul className="space-y-3">
-                {order.items.map((item, i) => (
-                  <li key={i} className="flex gap-3 items-center">
-                    <div className="relative w-12 h-14 bg-white shrink-0 border border-ink/5">
-                      <Image src={item.image} alt={item.name} fill sizes="48px" className="object-contain p-1" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm">{item.name}</p>
-                      <p className="text-xs text-muted">Qty: {item.quantity} - {formatINR(item.price)}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

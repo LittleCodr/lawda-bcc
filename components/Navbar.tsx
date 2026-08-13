@@ -10,36 +10,38 @@ const NAV_MENU = [
     label: "Gifts For Her",
     href: "/collections/gifts-for-her",
     subLinks: [
-      { label: "Necklaces", href: "/collections/name-necklaces" },
-      { label: "Earrings", href: "/collections/earrings" },
-      { label: "Rings", href: "/collections/name-rings" },
-      { label: "Anklets", href: "/collections/anklets" }
+      { label: "Birthday Gifts", href: "/collections/birthday-gift-for-girlfriend" },
+      { label: "Anniversary Gifts", href: "/collections/anniversary-gifts-for-wife" },
+      { label: "Personalized Jewelry", href: "/collections/personalized-gifts-for-women" },
+      { label: "Name Necklaces", href: "/collections/name-necklaces" }
     ]
   },
   { 
     label: "Gifts For Him",
     href: "/collections/gifts-for-him",
     subLinks: [
-      { label: "Personalised Bracelets", href: "/collections/personalised-jewellery" },
-      { label: "Cufflinks", href: "/collections/cufflinks" },
-    ]
-  },
-  {
-    label: "Personalised",
-    href: "/collections/personalised-jewellery",
-    subLinks: [
-      { label: "Name Necklaces", href: "/collections/name-necklaces" },
-      { label: "Name Rings", href: "/collections/name-rings" },
-      { label: "Photo Gifts", href: "/collections/photo-gifts" }
+      { label: "Gifts for Boyfriend", href: "/collections/gifts-for-boyfriend" },
+      { label: "Gifts for Husband", href: "/collections/gifts-for-husband" },
+      { label: "Custom Keychains", href: "/collections/custom-keychain" },
+      { label: "Engraved Bracelets", href: "/collections/personalized-gifts-for-men" },
     ]
   },
   {
     label: "Occasions",
     href: "/collections/all",
     subLinks: [
-      { label: "Anniversary", href: "/collections/anniversary" },
-      { label: "Birthday", href: "/collections/birthday" },
-      { label: "Wedding", href: "/collections/wedding" }
+      { label: "Rakhi Gifts", href: "/collections/rakhi-gifts" },
+      { label: "Valentine's Day", href: "/collections/valentine-gift" },
+      { label: "Wedding Gifts", href: "/collections/wedding-gift" }
+    ]
+  },
+  {
+    label: "Budget",
+    href: "/collections/all",
+    subLinks: [
+      { label: "Under ₹499", href: "/collections/gifts-under-499" },
+      { label: "Under ₹999", href: "/collections/gifts-under-999" },
+      { label: "Under ₹1499", href: "/collections/gifts-under-1499" }
     ]
   }
 ];
@@ -92,7 +94,7 @@ export default function Navbar() {
                 </Link>
                 
                 {/* Dropdown Menu */}
-                <div className={`absolute top-full left-0 w-56 bg-white border border-[#E5B8B7]/30 shadow-xl rounded-sm transition-all duration-300 origin-top ${
+                <div className={`absolute top-full left-0 w-64 bg-white border border-[#E5B8B7]/30 shadow-xl rounded-sm transition-all duration-300 origin-top ${
                   activeMenu === item.label ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'
                 }`}>
                   <div className="py-2">
@@ -117,9 +119,9 @@ export default function Navbar() {
           className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center group z-0"
         >
           <span className="font-serif text-3xl sm:text-4xl tracking-widest uppercase text-[#800020]">
-            Everlasting
+            Octopus
           </span>
-          <span className="hidden sm:block text-[9px] uppercase tracking-[0.3em] text-[#2d2d2d] mt-1">Gifts for every moment</span>
+          <span className="hidden sm:block text-[9px] uppercase tracking-[0.3em] text-[#2d2d2d] mt-1">Personalized Gifts</span>
         </Link>
 
         <div className="flex items-center gap-5 sm:gap-6 flex-1 justify-end relative z-10 text-[#2d2d2d]">
@@ -144,7 +146,7 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="fixed inset-0 z-50 bg-[#FDF8F5] flex flex-col xl:hidden overflow-y-auto">
           <div className="h-[76px] flex items-center justify-between px-6 border-b border-[#E5B8B7]/30 shrink-0 sticky top-0 bg-[#FDF8F5]/90 backdrop-blur-md">
-            <span className="font-serif text-2xl uppercase text-[#800020] tracking-widest">Everlasting</span>
+            <span className="font-serif text-2xl uppercase text-[#800020] tracking-widest">Octopus</span>
             <button onClick={() => setMobileOpen(false)} aria-label="Close menu" className="p-2 text-[#2d2d2d] hover:text-[#800020] transition-colors">
               <X size={24} strokeWidth={1.5} />
             </button>

@@ -18,9 +18,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.everlasting.shop"),
-  title: "Everlasting Shop | Personalized Jewelry & Accessories",
-  description: "Shop personalized jewelry, custom necklaces, rings, and more at Everlasting Shop.",
+  metadataBase: new URL("https://www.octopusperfume.in"),
+  title: "Personalized Gifts for Her & Him in India | Octopus",
+  description: "Shop personalized gifts, custom jewelry, name necklaces, and couple gifts. Perfect for birthdays, anniversaries, and weddings. Free shipping across India.",
   icons: {
     icon: "/favicon.ico",
   },
@@ -44,6 +44,21 @@ export default function RootLayout({
           <Suspense fallback={null}>
             <AnalyticsTracker />
           </Suspense>
+          
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "Octopus",
+                "url": "https://www.octopusperfume.in",
+                "logo": "https://www.octopusperfume.in/icon.png",
+                "description": "Personalized gifts for every relationship, every occasion and every budget."
+              })
+            }}
+          />
+
           {/* Navbar */}
           <Navbar />
           

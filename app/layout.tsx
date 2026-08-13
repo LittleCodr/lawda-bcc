@@ -1,21 +1,8 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 // import { AuthProvider } from "@/lib/auth-context"; // Keep disabled if not needed
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.octopusperfume.in"),
@@ -38,7 +25,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${playfair.variable} ${inter.variable} h-full antialiased`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`font-sans h-full antialiased`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      </head>
       <body className="min-h-full flex flex-col bg-stone-50 text-stone-900 font-sans">
         <AuthProvider>
           <Suspense fallback={null}>

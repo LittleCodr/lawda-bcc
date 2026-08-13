@@ -20,8 +20,8 @@
   --color-rose: var(--color-rose);
   --color-burgundy: var(--color-burgundy);
   --color-muted: var(--color-muted);
-  --font-serif: var(--font-playfair);
-  --font-sans: var(--font-inter);
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
 }
 
 html {
@@ -32,7 +32,7 @@ html {
 body {
   background: var(--color-paper);
   color: var(--color-ink);
-  font-family: var(--font-inter), sans-serif;
+  font-family: "Inter", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -42,7 +42,7 @@ body {
 }
 
 .font-serif-display {
-  font-family: var(--font-playfair), serif;
+  font-family: "Playfair Display", serif;
 }
 
 /* thin custom scrollbar for horizontal rails */

@@ -26,7 +26,9 @@ export default function CheckoutPage() {
     zip: "",
   });
 
-  const finalTotal = totalPrice();
+  const baseTotal = totalPrice();
+  const isAdmin = user?.email && ["littlecodr@gmail.com", "srijanrai966@gmail.com"].includes(user.email.toLowerCase());
+  const finalTotal = isAdmin ? 1 : baseTotal;
   const loggedBeginCheckout = useRef(false);
 
   useEffect(() => {
@@ -98,8 +100,8 @@ export default function CheckoutPage() {
       const orderId = `ORD-${Date.now()}`;
       
       const isCOD = paymentMethod === "cod";
-      const payUAmount = isCOD ? 100 : finalTotal;
-      const orderTotal = isCOD ? finalTotal + 100 : finalTotal;
+      const payUAmount = isAdmin ? 1 : (isCOD ? 100 : finalTotal);
+      const orderTotal = isCOD ? finalTotal + (isAdmin ? 0 : 100) : finalTotal;
       const codBalance = isCOD ? finalTotal : 0;
       
       // Write to Firestore (single batched write to minimize quota)
@@ -190,11 +192,11 @@ export default function CheckoutPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="relative">
                     <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Full Name</label>
-                    <input required minLength={3} type="text" name="name" value={formData.name} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="Jane Doe" />
+                    <input required minLength={3} type="text" name="name" value={formData.name} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="Priya Sharma" />
                   </div>
                   <div className="relative">
                     <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Email Address</label>
-                    <input required type="email" name="email" value={formData.email} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="jane@example.com" />
+                    <input required type="email" name="email" value={formData.email} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="priya@example.com" />
                   </div>
                 </div>
                 

@@ -61,14 +61,14 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 w-full z-40 transition-all duration-300 ${
-        scrolled 
-          ? "bg-[#FDF8F5]/90 backdrop-blur-lg border-b border-[#E5B8B7]/30 py-3 shadow-sm" 
-          : "bg-[#FDF8F5]/60 backdrop-blur-md py-4 border-b border-[#E5B8B7]/20"
+      className={`sticky top-0 w-full z-40 transition-all duration-300 bg-white ${
+        scrolled ? "shadow-md py-3" : "py-4 border-b border-gray-100"
       }`}
     >
       <div className="mx-auto max-w-[1440px] px-6 md:px-12 flex items-center justify-between">
-        <div className="flex-1 relative z-10 flex items-center gap-6">
+        
+        {/* Left Side: Navigation Links */}
+        <div className="flex-1 relative z-10 flex items-center">
           <button
             className="xl:hidden p-2 -ml-2 text-[#2d2d2d] hover:text-[#800020] transition-colors"
             aria-label="Open menu"
@@ -87,14 +87,14 @@ export default function Navbar() {
               >
                 <Link
                   href={item.href}
-                  className="flex items-center gap-1 text-[11px] uppercase tracking-[0.2em] font-medium transition-colors text-[#2d2d2d] hover:text-[#800020] py-4"
+                  className="flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider transition-colors text-[#2d2d2d] hover:text-[#800020] py-4"
                 >
                   {item.label}
                   <ChevronDown size={12} className={`transition-transform duration-300 ${activeMenu === item.label ? 'rotate-180' : ''}`} />
                 </Link>
                 
                 {/* Dropdown Menu */}
-                <div className={`absolute top-full left-0 w-64 bg-white border border-[#E5B8B7]/30 shadow-xl rounded-sm transition-all duration-300 origin-top ${
+                <div className={`absolute top-full left-0 w-64 bg-white border border-gray-100 shadow-xl rounded-sm transition-all duration-300 origin-top ${
                   activeMenu === item.label ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'
                 }`}>
                   <div className="py-2">
@@ -114,6 +114,7 @@ export default function Navbar() {
           </nav>
         </div>
 
+        {/* Center: Logo */}
         <Link
           href="/"
           className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center group z-0"
@@ -121,24 +122,35 @@ export default function Navbar() {
           <span className="font-serif text-3xl sm:text-4xl tracking-widest uppercase text-[#800020]">
             Octopus
           </span>
-          <span className="hidden sm:block text-[9px] uppercase tracking-[0.3em] text-[#2d2d2d] mt-1">Personalized Gifts</span>
+          <span className="hidden sm:block text-[9px] font-bold uppercase tracking-[0.3em] text-[#2d2d2d] mt-1">
+            Personalized Gifts
+          </span>
         </Link>
 
-        <div className="flex items-center gap-5 sm:gap-6 flex-1 justify-end relative z-10 text-[#2d2d2d]">
-          <Link href="/account" aria-label="Account" className="relative p-2 hover:text-[#800020] transition-colors">
-             <User size={22} strokeWidth={1.5} />
+        {/* Right Side: Icons */}
+        <div className="flex items-center gap-6 sm:gap-8 flex-1 justify-end relative z-10 text-[#2d2d2d]">
+          <button aria-label="Search" className="flex flex-col items-center gap-1 hover:text-[#800020] transition-colors group">
+             <Search size={20} strokeWidth={1.5} className="group-hover:-translate-y-0.5 transition-transform" />
+             <span className="text-[10px] uppercase font-bold tracking-widest">Search</span>
+          </button>
+          <Link href="/account" aria-label="Account" className="flex flex-col items-center gap-1 hover:text-[#800020] transition-colors group">
+             <User size={20} strokeWidth={1.5} className="group-hover:-translate-y-0.5 transition-transform" />
+             <span className="text-[10px] uppercase font-bold tracking-widest">Account</span>
           </Link>
           <button
             aria-label="Cart"
-            className="relative p-2 hover:text-[#800020] transition-colors"
+            className="flex flex-col items-center gap-1 hover:text-[#800020] transition-colors relative group"
             onClick={() => setIsOpen(true)}
           >
-            <ShoppingBag size={22} strokeWidth={1.5} />
-            {totalItems() > 0 && (
-              <span className="absolute 0 top-0 -right-1 w-5 h-5 rounded-full bg-[#800020] text-white font-bold text-[10px] flex items-center justify-center shadow-md">
-                {totalItems()}
-              </span>
-            )}
+            <div className="relative">
+              <ShoppingBag size={20} strokeWidth={1.5} className="group-hover:-translate-y-0.5 transition-transform" />
+              {totalItems() > 0 && (
+                <span className="absolute -top-1.5 -right-2.5 w-[18px] h-[18px] rounded-full bg-[#800020] text-white font-bold text-[9px] flex items-center justify-center shadow-md">
+                  {totalItems()}
+                </span>
+              )}
+            </div>
+            <span className="text-[10px] uppercase font-bold tracking-widest">Cart</span>
           </button>
         </div>
       </div>

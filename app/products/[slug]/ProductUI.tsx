@@ -3,8 +3,10 @@
 import { useState, useEffect, useRef } from "react";
 import { useCartStore } from "@/lib/store";
 import ProductImageGallery from "@/components/ProductImageGallery";
-import { Gift, ShieldCheck, Truck, Star, Heart, CheckCircle2, ChevronRight, ShoppingBag, Zap, Clock, Smile, Award, Users } from "lucide-react";
-import { logAppEvent } from "@/lib/firebase";
+import { Gift, ShieldCheck, Truck, Star, Heart, CheckCircle2, ChevronRight, ShoppingBag, Zap, Clock, Smile, Award, Users, Flame } from "lucide-react";
+import { logAppEvent, db } from "@/lib/firebase";
+import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
+import { useAuth } from "@/lib/auth-context";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -26,6 +28,48 @@ export default function ProductUI({ product }: ProductUIProps) {
 
   // Tabs state
   const [activeTab, setActiveTab] = useState("details");
+
+  const { user } = useAuth();
+  const [isFavourite, setIsFavourite] = useState(false);
+  const [isFavLoading, setIsFavLoading] = useState(false);
+
+  useEffect(() => {
+    if (!user) return;
+    const checkFav = async () => {
+      const docRef = doc(db, "users", user.uid, "favourites", product.id.toString());
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) setIsFavourite(true);
+    };
+    checkFav();
+  }, [user, product.id]);
+
+  const toggleFavourite = async () => {
+    if (!user) {
+      alert("Please login to save favourites!");
+      return;
+    }
+    setIsFavLoading(true);
+    try {
+      const docRef = doc(db, "users", user.uid, "favourites", product.id.toString());
+      if (isFavourite) {
+        await deleteDoc(docRef);
+        setIsFavourite(false);
+      } else {
+        await setDoc(docRef, {
+          id: product.id.toString(),
+          title: product.title,
+          price: currentPrice,
+          image: images.length > 0 ? images[0].src : "/logo.png",
+          addedAt: new Date()
+        });
+        setIsFavourite(true);
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsFavLoading(false);
+    }
+  };
 
   const selectedVariant = product.variants?.find((v: any) => v.id === selectedVariantId);
   const isAvailable = true; 
@@ -156,13 +200,17 @@ export default function ProductUI({ product }: ProductUIProps) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
         
         {/* Left Column: Image Gallery (Span 5) */}
-        <div className="lg:col-span-5 flex flex-col gap-6 sticky top-24">
+        <div className="lg:col-span-5 flex flex-col gap-6 lg:sticky top-24">
           <div className="relative">
              <div className="absolute top-4 left-4 z-10 bg-[#800020] text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shadow-md">
-               🔥 Bestseller
+               <Flame size={12} fill="currentColor" /> Bestseller
              </div>
-             <button className="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform text-gray-400 hover:text-[#800020]">
-               <Heart size={20} />
+             <button 
+                onClick={toggleFavourite}
+                disabled={isFavLoading}
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform text-gray-400 hover:text-[#800020] disabled:opacity-50 disabled:scale-100"
+             >
+               <Heart size={20} fill={isFavourite ? "#800020" : "transparent"} className={isFavourite ? "text-[#800020]" : ""} />
              </button>
              <ProductImageGallery images={images} selectedImageId={activeImageId} />
           </div>
@@ -211,7 +259,7 @@ export default function ProductUI({ product }: ProductUIProps) {
 
           {((productTitleLower.includes('gold')) || (selectedVariant?.title?.toLowerCase().includes('gold'))) && (
             <div className="bg-amber-50 text-amber-800 text-[10px] uppercase tracking-widest font-bold px-3 py-2 rounded-md mb-6 inline-block w-fit border border-amber-200">
-              Note: This is an 18k Gold Plated item, not solid gold.
+              Note: This is an Artificial Jewelry item, not solid gold.
             </div>
           )}
 

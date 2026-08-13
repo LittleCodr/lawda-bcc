@@ -8,7 +8,7 @@ import { useAuth } from "@/lib/auth-context";
 import { db } from "@/lib/firebase";
 import { collection, query, orderBy, getDocs, doc, getDoc, setDoc } from "firebase/firestore";
 import { formatINR } from "@/lib/products";
-import { Download, Package, ExternalLink, User, Settings, Edit3, X } from "lucide-react";
+import { Download, Package, ExternalLink, User, Settings, Edit3, X, Heart } from "lucide-react";
 
 
 type Order = {
@@ -41,11 +41,22 @@ type UserProfile = {
   zip: string;
 };
 
+type Favourite = {
+  id: string;
+  title: string;
+  price: number;
+  image: string;
+  addedAt: any;
+};
+
 export default function AccountPage() {
   const { user, loading, logout } = useAuth();
   const router = useRouter();
   const [orders, setOrders] = useState<Order[]>([]);
   const [loadingOrders, setLoadingOrders] = useState(true);
+
+  const [favourites, setFavourites] = useState<Favourite[]>([]);
+  const [loadingFavs, setLoadingFavs] = useState(true);
 
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -134,8 +145,23 @@ export default function AccountPage() {
       }
     };
 
+    const fetchFavourites = async () => {
+      try {
+        const favRef = collection(db, "users", user.uid, "favourites");
+        const q = query(favRef, orderBy("addedAt", "desc"));
+        const snapshot = await getDocs(q);
+        const data = snapshot.docs.map(doc => doc.data() as Favourite);
+        setFavourites(data);
+      } catch (err) {
+        console.error("Error fetching favourites:", err);
+      } finally {
+        setLoadingFavs(false);
+      }
+    };
+
     fetchProfile();
     fetchOrders();
+    fetchFavourites();
   }, [user]);
 
   const saveProfile = async (e: React.FormEvent) => {
@@ -555,6 +581,39 @@ export default function AccountPage() {
             ))}
           </div>
         )}
+
+        {/* Favourites Section */}
+        <div className="mt-24">
+          <h2 className="font-serif text-3xl text-stone-900 mb-8 flex items-center gap-3">
+            <Heart className="text-[#800020]" />
+            Saved Favourites
+          </h2>
+
+          {loadingFavs ? (
+            <div className="py-12 flex justify-center">
+              <div className="w-8 h-8 border-2 border-[#E5B8B7] border-t-[#800020] rounded-full animate-spin"></div>
+            </div>
+          ) : favourites.length === 0 ? (
+            <div className="text-center py-16 bg-white border border-[#E5B8B7]/50 shadow-sm flex flex-col items-center">
+              <Heart size={48} className="text-[#E5B8B7] mb-6" strokeWidth={1} />
+              <p className="text-stone-500 text-lg font-serif">You haven't saved any favourites yet.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {favourites.map((fav) => (
+                <Link key={fav.id} href={`/products/${fav.id}`} className="group bg-white border border-[#E5B8B7]/30 shadow-sm overflow-hidden flex flex-col hover:border-[#800020] transition-colors">
+                  <div className="relative aspect-[4/5] bg-stone-50 w-full overflow-hidden">
+                    <Image src={fav.image} alt={fav.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 50vw, 25vw" />
+                  </div>
+                  <div className="p-4 flex flex-col flex-1 justify-between">
+                    <p className="font-serif text-sm text-stone-900 leading-tight mb-2 line-clamp-2">{fav.title}</p>
+                    <p className="font-bold text-[#800020] text-sm">{formatINR(fav.price)}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -3,7 +3,7 @@ import path from "path";
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { Gift, ShieldCheck, Truck, Award, Star, ArrowRight, Heart, Users, Gem, Watch, Wallet, Box, RefreshCcw, CalendarClock } from "lucide-react";
+import { Gift, ShieldCheck, Truck, Award, Star, ArrowRight, Heart, Users, Gem, Wallet, RefreshCcw, CalendarClock, ChevronRight, Package, MessageSquare, Plus, Minus, Search, Edit3, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Personalized Gifts for Every Relationship in India | Octopus",
@@ -22,8 +22,9 @@ export default async function Home() {
     console.error("Error loading products:", e);
   }
 
-  // Use only first 8 products for featured section
+  // Use only first 8 products for featured sections
   const featuredProducts = products.slice(0, 8);
+  const trendingProducts = products.slice(8, 12);
 
   const websiteSchema = {
     "@context": "https://schema.org",
@@ -89,11 +90,9 @@ export default async function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       
-      {/* Hero Section Container */}
+      {/* 1. Hero Section */}
       <section className="bg-white px-4 md:px-8 pt-4 pb-24">
         <div className="relative w-full h-auto min-h-[600px] md:h-[650px] bg-[#f9f2ed] rounded-[40px] overflow-visible flex items-center shadow-sm">
-          
-          {/* Background Image Area */}
           <div className="absolute inset-0 w-full h-full rounded-[40px] overflow-hidden z-0">
              <Image 
                 src="/images/products/DSC07516copy.jpg" 
@@ -104,31 +103,22 @@ export default async function Home() {
              />
              <div className="absolute inset-0 bg-gradient-to-r from-[#f9f2ed] via-[#f9f2ed]/90 to-transparent md:w-2/3"></div>
           </div>
-
-          {/* "Make it Truly Yours" Badge */}
           <div className="hidden md:flex absolute top-24 right-24 z-20 w-36 h-36 bg-white/80 backdrop-blur-md rounded-full items-center justify-center border border-[#800020]/10 shadow-xl rotate-12 hover:rotate-0 transition-transform duration-500 flex-col gap-1">
              <span className="text-[10px] font-bold uppercase tracking-widest text-[#2d2d2d]">Make It</span>
              <span className="font-serif text-xl italic text-[#800020]">Truly Yours</span>
              <Heart size={14} className="text-[#800020] mt-1" strokeWidth={2} />
           </div>
-
-          {/* Left Content Area */}
           <div className="relative z-10 pl-8 md:pl-16 lg:pl-24 max-w-2xl py-12">
-            
             <div className="inline-block bg-[#800020] text-white text-[10px] md:text-xs px-5 py-2 rounded-full uppercase font-bold tracking-[0.15em] mb-6 shadow-sm">
               Octopus Gifting
             </div>
-
             <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-[#800020] leading-[1.1] mb-2 tracking-tight drop-shadow-sm">
               Personalized Gifts <br />
               <span className="italic font-light text-[#9e7662]">for every relationship in India</span>
             </h1>
-
             <p className="text-gray-700 mt-6 max-w-md text-sm md:text-base leading-relaxed font-medium">
               Discover personalized name necklaces, engraved bracelets, couple gifts and custom keepsakes for birthdays, anniversaries, Raksha Bandhan and every special occasion.
             </p>
-
-            {/* Feature Icons Grid */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-lg">
               <div className="flex items-center gap-2">
                  <Gift size={20} className="text-[#800020]" strokeWidth={1.5} />
@@ -147,24 +137,14 @@ export default async function Home() {
                  <span className="text-[10px] font-bold uppercase leading-tight tracking-wider text-gray-800">Secure<br/>Payments</span>
               </div>
             </div>
-
-            {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mt-10">
-              <Link 
-                href="/collections/gifts-for-her" 
-                className="flex items-center justify-center gap-3 bg-[#800020] text-white px-8 py-4 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-[#600018] transition-colors shadow-lg"
-              >
+              <Link href="/collections/gifts-for-her" className="flex items-center justify-center gap-3 bg-[#800020] text-white px-8 py-4 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-[#600018] transition-colors shadow-lg">
                 Shop Gifts For Her <ArrowRight size={16} />
               </Link>
-              <Link 
-                href="/collections/gifts-for-him" 
-                className="flex items-center justify-center gap-3 bg-white text-[#800020] border border-[#800020] px-8 py-4 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-[#800020] hover:text-white transition-colors shadow-sm"
-              >
+              <Link href="/collections/gifts-for-him" className="flex items-center justify-center gap-3 bg-white text-[#800020] border border-[#800020] px-8 py-4 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-[#800020] hover:text-white transition-colors shadow-sm">
                 Shop Gifts For Him <ArrowRight size={16} />
               </Link>
             </div>
-
-            {/* Social Proof */}
             <div className="flex items-center gap-4 mt-10 bg-white/60 backdrop-blur-sm p-3 pr-6 rounded-full inline-flex border border-white/40 shadow-sm">
               <div className="flex -space-x-2">
                 <div className="w-8 h-8 rounded-full bg-gray-300 border-2 border-white overflow-hidden relative">
@@ -192,120 +172,335 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-
           </div>
+        </div>
+      </section>
 
-          {/* Floating Categories Bar */}
-          <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] z-30 py-6 px-4 hidden lg:block border border-gray-50">
-            <div className="flex items-center justify-between divide-x divide-gray-100">
-              {[
-                { icon: <Gift size={28} className="text-[#800020]" strokeWidth={1} />, title: "Birthday Gifts", href: "/collections/birthday-gift-for-girlfriend" },
-                { icon: <Heart size={28} className="text-[#800020]" strokeWidth={1} />, title: "Anniversary Gifts", href: "/collections/anniversary-gifts-for-wife" },
-                { icon: <CalendarClock size={28} className="text-[#800020]" strokeWidth={1} />, title: "Raksha Bandhan", href: "/collections/rakhi-gifts", badge: "NEW" },
-                { icon: <Users size={28} className="text-[#800020]" strokeWidth={1} />, title: "Couple Gifts", href: "/collections/couple-gifts" },
-                { icon: <Gem size={28} className="text-[#800020]" strokeWidth={1} />, title: "Personalized Jewelry", href: "/collections/personalized-gifts" },
-                { icon: <Wallet size={28} className="text-[#800020]" strokeWidth={1} />, title: "Gifts Under ₹999", href: "/collections/gifts-under-999" }
-              ].map((cat, idx) => (
-                <Link key={idx} href={cat.href} className="flex flex-col items-center flex-1 group px-2 relative">
-                  {cat.badge && (
-                    <span className="absolute -top-4 right-1/4 bg-[#ffeaea] text-[#800020] text-[9px] font-bold px-2 py-0.5 rounded-sm uppercase">
-                      {cat.badge}
-                    </span>
-                  )}
-                  <div className="mb-3 transform group-hover:-translate-y-1 transition-transform duration-300">
-                    {cat.icon}
+      {/* 2. Shop by Occasion */}
+      <section className="bg-stone-50 py-20 px-6 md:px-12">
+        <div className="max-w-[1440px] mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-3xl md:text-5xl text-[#800020] mb-4">Shop By Occasion</h2>
+            <p className="text-gray-600 text-sm md:text-base uppercase tracking-widest font-bold">Find the perfect gift for every moment</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { title: "Birthdays", img: "/images/products/Necklace3_3Variants_gold1.png", link: "/collections/birthday-gifts" },
+              { title: "Anniversaries", img: "/images/products/gold2_67d409be-fa53-4c55-9bc1-e33b18f28e0f.jpg", link: "/collections/anniversary-gifts" },
+              { title: "Raksha Bandhan", img: "/images/products/DSC07516copy.jpg", link: "/collections/rakhi-gifts" },
+              { title: "Weddings", img: "/images/products/Necklace3_3Variants_gold1.png", link: "/collections/wedding-gifts" }
+            ].map((occ, idx) => (
+              <Link href={occ.link} key={idx} className="group block relative aspect-square overflow-hidden rounded-lg shadow-sm">
+                <Image src={occ.img} alt={occ.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <h3 className="text-white font-serif text-xl md:text-3xl font-bold tracking-wide drop-shadow-md">{occ.title}</h3>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Shop by Relationship */}
+      <section className="bg-white py-20 px-6 md:px-12">
+        <div className="max-w-[1440px] mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-3xl md:text-5xl text-[#800020] mb-4">Who Are You Shopping For?</h2>
+            <p className="text-gray-600 text-sm md:text-base uppercase tracking-widest font-bold">Curated selections for your loved ones</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 lg:gap-12">
+            {[
+              { title: "For Her", desc: "Girlfriend, Wife, Sister, Mother", icon: <Heart className="text-[#800020]" size={40} />, link: "/collections/gifts-for-her" },
+              { title: "For Him", desc: "Boyfriend, Husband, Brother, Father", icon: <Users className="text-[#800020]" size={40} />, link: "/collections/gifts-for-him" },
+              { title: "For Couples", desc: "Matching & Complementary Gifts", icon: <Gem className="text-[#800020]" size={40} />, link: "/collections/couple-gifts" }
+            ].map((rel, idx) => (
+              <Link href={rel.link} key={idx} className="group flex flex-col items-center text-center p-8 border border-stone-200 rounded-xl hover:border-[#800020] hover:shadow-xl transition-all duration-300 bg-stone-50 hover:bg-white">
+                <div className="w-20 h-20 rounded-full bg-white border border-[#E5B8B7] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
+                  {rel.icon}
+                </div>
+                <h3 className="font-serif text-2xl text-stone-900 mb-2">{rel.title}</h3>
+                <p className="text-stone-500 text-sm mb-6">{rel.desc}</p>
+                <span className="text-[#800020] text-xs uppercase tracking-widest font-bold flex items-center gap-2 group-hover:gap-4 transition-all">Explore <ArrowRight size={14} /></span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Best Sellers */}
+      <section className="bg-stone-50 mx-auto w-full px-6 md:px-12 py-20 border-t border-gray-100">
+        <div className="max-w-[1440px] mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-6">
+            <div className="text-left">
+              <h2 className="font-serif text-3xl md:text-4xl text-[#800020] mb-3">Best Sellers</h2>
+              <p className="text-[#2d2d2d] text-sm tracking-widest uppercase opacity-80 font-bold">The most loved personalized gifts</p>
+            </div>
+            <Link href="/collections/all" className="text-[#800020] text-xs uppercase tracking-widest font-bold border-b border-[#800020] hover:text-[#E5B8B7] hover:border-[#E5B8B7] transition-colors pb-1">
+              View All Gifts
+            </Link>
+          </div>
+          {featuredProducts.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+              {featuredProducts.map((product: any) => (
+                <Link href={`/products/${product.handle}`} key={product.id} className="group flex flex-col h-full bg-white border border-[#E5B8B7]/40 hover:border-[#E5B8B7] transition-all duration-300 shadow-sm hover:shadow-xl overflow-hidden rounded-md">
+                  <div className="relative aspect-[4/5] bg-[#FDF8F5] overflow-hidden">
+                    {product.images && product.images.length > 0 ? (
+                      <Image 
+                        src={product.images[0].local_src || product.images[0].src} 
+                        alt={product.title} 
+                        fill 
+                        sizes="(max-width: 768px) 100vw, 25vw"
+                        className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" 
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-[#E5B8B7]">No Image</div>
+                    )}
+                    <div className="absolute inset-0 bg-[#800020]/0 group-hover:bg-[#800020]/5 transition-colors duration-300 flex items-end justify-center p-6">
+                      <span className="bg-white/90 backdrop-blur-sm text-[#800020] px-8 py-3 text-xs uppercase tracking-widest font-bold translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 shadow-lg rounded-sm">
+                        Customize Now
+                      </span>
+                    </div>
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-gray-800 text-center mb-1">{cat.title}</span>
-                  <span className="text-[10px] text-gray-500 group-hover:text-[#800020] transition-colors">Shop Now ›</span>
+                  <div className="p-6 flex flex-col flex-1 text-center bg-white">
+                    <h3 className="font-serif text-lg text-[#2d2d2d] group-hover:text-[#800020] transition-colors leading-tight mb-3 font-bold line-clamp-2">
+                      {product.title}
+                    </h3>
+                    <p className="text-sm font-bold text-[#800020] mt-auto tracking-wide">
+                      ₹{product.variants && product.variants.length > 0 ? product.variants[0].price : "0"}
+                    </p>
+                  </div>
                 </Link>
               ))}
             </div>
+          ) : (
+            <div className="text-center py-20 text-[#E5B8B7]">Products are currently syncing.</div>
+          )}
+        </div>
+      </section>
+
+      {/* 5. Personalization Process */}
+      <section className="bg-[#800020] py-24 px-6 md:px-12 text-white overflow-hidden relative">
+        <div className="absolute inset-0 opacity-10 bg-[url('/images/pattern.svg')] bg-repeat"></div>
+        <div className="max-w-[1200px] mx-auto relative z-10 text-center">
+          <h2 className="font-serif text-3xl md:text-5xl mb-6">How It Works</h2>
+          <p className="text-sm uppercase tracking-widest font-bold text-white/80 mb-20">Creating your custom piece is simple</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-24 relative">
+            <div className="hidden md:block absolute top-1/2 left-[15%] right-[15%] h-0.5 bg-white/20 -translate-y-1/2 z-0"></div>
+            {[
+              { icon: <Search size={40} className="text-[#800020]" />, step: "01", title: "Select Your Gift", desc: "Choose from our wide range of premium jewelry, wallets, and keepsakes." },
+              { icon: <Edit3 size={40} className="text-[#800020]" />, step: "02", title: "Add Personal Touch", desc: "Provide names, dates, or photos to be expertly engraved or printed." },
+              { icon: <Truck size={40} className="text-[#800020]" />, step: "03", title: "Fast Delivery", desc: "We craft it with love and deliver it securely to your doorstep." }
+            ].map((step, idx) => (
+              <div key={idx} className="relative z-10 flex flex-col items-center">
+                <div className="w-24 h-24 rounded-full bg-white flex items-center justify-center shadow-[0_0_40px_rgba(255,255,255,0.2)] mb-8">
+                  {step.icon}
+                </div>
+                <span className="text-white/50 font-serif text-6xl absolute -top-8 -left-4 z-[-1] font-bold opacity-30">{step.step}</span>
+                <h3 className="font-serif text-2xl mb-4 font-bold">{step.title}</h3>
+                <p className="text-white/80 text-sm leading-relaxed max-w-[250px]">{step.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
+      </section>
 
-        {/* Floating Trust Bar */}
-        <div className="mx-auto max-w-6xl mt-24 mb-8 bg-[#fdfaf8] rounded-xl py-6 px-8 flex flex-wrap lg:flex-nowrap items-center justify-between gap-6 border border-orange-900/5">
+      {/* 6. Trust Bar */}
+      <section className="bg-white py-12 px-6 border-b border-stone-200">
+        <div className="mx-auto max-w-[1440px] flex flex-wrap lg:flex-nowrap items-center justify-between gap-8 md:gap-4">
           {[
-            { icon: <Truck size={24} className="text-[#2d2d2d]" strokeWidth={1} />, title: "FREE SHIPPING", sub: "On all prepaid orders" },
-            { icon: <CalendarClock size={24} className="text-[#2d2d2d]" strokeWidth={1} />, title: "DELIVERED WITH LOVE", sub: "2-5 days across India" },
-            { icon: <Gift size={24} className="text-[#2d2d2d]" strokeWidth={1} />, title: "PREMIUM GIFT WRAP", sub: "Make it extra special" },
-            { icon: <RefreshCcw size={24} className="text-[#2d2d2d]" strokeWidth={1} />, title: "EASY RETURNS", sub: "Hassle-free returns" }
+            { icon: <Truck size={32} className="text-[#800020]" strokeWidth={1.5} />, title: "FREE SHIPPING", sub: "On all prepaid orders" },
+            { icon: <CalendarClock size={32} className="text-[#800020]" strokeWidth={1.5} />, title: "DELIVERED WITH LOVE", sub: "Fast Delivery in 2-5 days" },
+            { icon: <Package size={32} className="text-[#800020]" strokeWidth={1.5} />, title: "PREMIUM GIFT WRAP", sub: "Make it extra special" },
+            { icon: <RefreshCcw size={32} className="text-[#800020]" strokeWidth={1.5} />, title: "SECURE PAYMENTS", sub: "100% safe transactions" }
           ].map((trust, idx) => (
-            <div key={idx} className="flex items-center gap-4 min-w-[200px]">
+            <div key={idx} className="flex items-center gap-4 flex-1 min-w-[240px] justify-center md:justify-start lg:justify-center p-4">
                {trust.icon}
                <div>
-                 <p className="text-[11px] font-bold uppercase tracking-widest text-gray-900">{trust.title}</p>
-                 <p className="text-[11px] text-gray-500 mt-0.5">{trust.sub}</p>
+                 <p className="text-xs font-bold uppercase tracking-[0.15em] text-gray-900">{trust.title}</p>
+                 <p className="text-xs text-gray-500 mt-1">{trust.sub}</p>
                </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Hidden SEO Text Block (Improves NLP intent mapping) */}
-      <section className="mx-auto max-w-4xl px-6 md:px-12 py-16 text-center text-[#2d2d2d]">
-        <h2 className="font-serif text-2xl text-[#800020] mb-4">Personalized Gifts for Every Occasion in India</h2>
-        <div className="text-sm md:text-base leading-relaxed opacity-80 text-justify">
-          At Octopus, we believe every relationship deserves to be celebrated with meaning. Whether you are searching for thoughtful <strong className="font-medium text-[#800020]">birthday gifts</strong>, romantic <strong className="font-medium text-[#800020]">anniversary gifts</strong>, or festive <strong className="font-medium text-[#800020]">Rakhi gifts</strong>, our collection of <strong className="font-medium text-[#800020]">personalized jewelry</strong> is crafted to turn memories into tangible keepsakes. From delicate 925 silver name necklaces for your girlfriend to engraved stainless steel couple gifts for your husband, we curate the perfect personalized gifts across India. Shop our highly affordable gifts under ₹999 or discover our premium custom keepsakes—all backed by our promise of fast delivery and premium anti-tarnish quality.
-        </div>
-      </section>
-
-      {/* New Arrivals / Best Sellers Preview */}
-      <section className="bg-white mx-auto max-w-[1440px] px-6 md:px-12 py-12 border-t border-gray-100">
-        <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-6">
-          <div className="text-left">
-            <h2 className="font-serif text-3xl md:text-4xl text-[#800020] mb-3">
-              Best Sellers
-            </h2>
-            <p className="text-[#2d2d2d] text-sm tracking-widest uppercase opacity-80 font-bold">
-              The most loved personalized gifts
-            </p>
-          </div>
-          <Link href="/collections/all" className="text-[#800020] text-xs uppercase tracking-widest font-bold border-b border-[#800020] hover:text-[#E5B8B7] hover:border-[#E5B8B7] transition-colors pb-1">
-            View All Gifts
-          </Link>
-        </div>
-        
-        {featuredProducts.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
-            {featuredProducts.map((product: any) => (
-              <Link href={`/products/${product.handle}`} key={product.id} className="group flex flex-col h-full bg-white border border-[#E5B8B7]/40 hover:border-[#E5B8B7] transition-all duration-300 shadow-sm hover:shadow-xl overflow-hidden rounded-md">
-                <div className="relative aspect-[4/5] bg-[#FDF8F5] overflow-hidden">
-                  {product.images && product.images.length > 0 ? (
-                    <Image 
-                      src={product.images[0].local_src || product.images[0].src} 
-                      alt={product.title} 
-                      fill 
-                      sizes="(max-width: 768px) 100vw, 25vw"
-                      className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" 
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-[#E5B8B7]">No Image</div>
-                  )}
-                  
-                  <div className="absolute inset-0 bg-[#800020]/0 group-hover:bg-[#800020]/5 transition-colors duration-300 flex items-end justify-center p-6">
-                    <span className="bg-white/90 backdrop-blur-sm text-[#800020] px-8 py-3 text-xs uppercase tracking-widest font-bold translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 shadow-lg rounded-sm">
-                      View Gift
-                    </span>
-                  </div>
-                </div>
-                
-                <div className="p-6 flex flex-col flex-1 text-center bg-white">
-                  <h3 className="font-serif text-lg text-[#2d2d2d] group-hover:text-[#800020] transition-colors leading-tight mb-3 font-bold">
-                    {product.title}
-                  </h3>
-                  <p className="text-sm font-bold text-[#800020] mt-auto tracking-wide">
-                    ₹{product.variants && product.variants.length > 0 ? product.variants[0].price : "0"}
-                  </p>
-                </div>
+      {/* 7. Gifts under Budget */}
+      <section className="bg-stone-50 py-20 px-6 md:px-12">
+        <div className="max-w-[1440px] mx-auto text-center">
+          <h2 className="font-serif text-3xl md:text-5xl text-[#800020] mb-4">Shop By Budget</h2>
+          <p className="text-gray-600 text-sm uppercase tracking-widest font-bold mb-12">Premium gifting for every pocket</p>
+          <div className="flex flex-wrap justify-center gap-6">
+            {[
+              { label: "Under ₹999", link: "/collections/under-999" },
+              { label: "₹1000 - ₹1999", link: "/collections/1000-to-1999" },
+              { label: "₹2000 - ₹2999", link: "/collections/2000-to-2999" },
+              { label: "Premium Gifts", link: "/collections/premium" }
+            ].map((budget, idx) => (
+              <Link key={idx} href={budget.link} className="bg-white border-2 border-[#E5B8B7] text-[#800020] px-8 py-5 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#800020] hover:text-white transition-colors min-w-[200px] shadow-sm">
+                {budget.label}
               </Link>
             ))}
           </div>
-        ) : (
-          <div className="text-center py-20 text-[#E5B8B7]">
-            <p>Products are currently syncing. Please refresh in a moment.</p>
+        </div>
+      </section>
+
+      {/* 8. Trending Now */}
+      {trendingProducts.length > 0 && (
+        <section className="bg-white py-24 px-6 md:px-12">
+          <div className="max-w-[1440px] mx-auto">
+            <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6 border-b border-stone-200 pb-8">
+              <div>
+                <h2 className="font-serif text-3xl md:text-5xl text-stone-900 mb-4">Trending Now</h2>
+                <p className="text-stone-500 text-sm uppercase tracking-widest font-bold">What everyone is buying right now</p>
+              </div>
+              <Link href="/collections/trending" className="flex items-center gap-2 text-[#800020] font-bold uppercase tracking-widest text-xs group">
+                Shop Trending <ChevronRight size={16} className="group-hover:translate-x-2 transition-transform" />
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              {trendingProducts.slice(0, 2).map((product: any) => (
+                <Link href={`/products/${product.handle}`} key={product.id} className="group flex flex-col md:flex-row bg-stone-50 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-stone-100">
+                  <div className="relative w-full md:w-1/2 aspect-square md:aspect-auto overflow-hidden">
+                    <Image src={product.images?.[0]?.src || "/logo.png"} alt={product.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                  </div>
+                  <div className="p-8 md:p-12 flex flex-col justify-center w-full md:w-1/2 bg-white">
+                    <span className="text-[10px] uppercase tracking-[0.2em] text-[#800020] font-bold mb-4">Hot Demand</span>
+                    <h3 className="font-serif text-2xl text-stone-900 mb-4 leading-tight">{product.title}</h3>
+                    <p className="text-[#800020] font-bold text-xl mb-8">₹{product.variants?.[0]?.price || "0"}</p>
+                    <span className="inline-flex items-center justify-center gap-2 bg-stone-900 text-white px-6 py-4 text-xs font-bold uppercase tracking-widest hover:bg-[#800020] transition-colors mt-auto w-fit">
+                      Customize <ArrowRight size={14} />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
-        )}
+        </section>
+      )}
+
+      {/* 9. Customer Stories */}
+      <section className="bg-[#f9f2ed] py-24 px-6 md:px-12">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-3xl md:text-5xl text-[#800020] mb-4">Real Love Stories</h2>
+            <p className="text-stone-600 text-sm uppercase tracking-widest font-bold">Hear from our happy customers</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { name: "Priya S.", product: "Custom Name Necklace", text: "I ordered this for my sister's birthday and she literally cried when she saw it. The quality is amazing and the packaging felt so luxurious!" },
+              { name: "Rahul K.", product: "Engraved Wallet", text: "Got an engraved wallet for my dad. He loved the personal touch. Delivery was right on time and the leather quality is premium." },
+              { name: "Anjali M.", product: "Couple Bracelets", text: "Bought matching bracelets for our anniversary. We never take them off! They are completely waterproof and haven't lost their shine at all." }
+            ].map((review, idx) => (
+              <div key={idx} className="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-[#E5B8B7]/30 flex flex-col items-center text-center">
+                <div className="flex text-amber-400 mb-6">
+                  {[...Array(5)].map((_, i) => <Star key={i} size={20} fill="currentColor" />)}
+                </div>
+                <p className="text-stone-700 italic leading-relaxed mb-8 font-serif">&quot;{review.text}&quot;</p>
+                <div className="mt-auto border-t border-stone-100 pt-6 w-full">
+                  <p className="font-bold text-stone-900 uppercase tracking-widest text-xs mb-1">{review.name}</p>
+                  <p className="text-stone-500 text-[10px] uppercase tracking-widest">{review.product}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 10. Gift Finder CTA */}
+      <section className="bg-stone-900 py-24 px-6 md:px-12 text-center text-white">
+        <div className="max-w-2xl mx-auto flex flex-col items-center">
+          <Gift size={64} className="text-[#E5B8B7] mb-8" strokeWidth={1} />
+          <h2 className="font-serif text-4xl md:text-6xl mb-6">Can't Decide?</h2>
+          <p className="text-stone-400 text-lg mb-10 font-serif italic">Let us help you find the absolute perfect gift for your special someone in under 60 seconds.</p>
+          <Link href="/collections/all" className="bg-[#800020] text-white px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-stone-900 transition-colors shadow-xl inline-flex items-center gap-3">
+            Open Gift Finder <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+
+      {/* 11. Premium Gift Wrapping */}
+      <section className="bg-white py-24 px-6 md:px-12">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
+            <Image src="/images/products/gold2_67d409be-fa53-4c55-9bc1-e33b18f28e0f.jpg" alt="Premium Gift Wrapping" fill className="object-cover" />
+          </div>
+          <div className="max-w-lg">
+            <span className="text-[#800020] text-xs font-bold uppercase tracking-[0.2em] mb-4 block">The Perfect Presentation</span>
+            <h2 className="font-serif text-3xl md:text-5xl text-stone-900 mb-6 leading-tight">Unboxing <br/>Happiness</h2>
+            <p className="text-stone-600 leading-relaxed mb-8 font-medium">First impressions matter. Every personalized gift from Octopus comes beautifully nestled in our signature premium box, complete with a heartfelt custom message card. Make them feel truly special before they even see the gift.</p>
+            <ul className="space-y-4 mb-10">
+              <li className="flex items-center gap-3 text-sm font-bold text-stone-700 uppercase tracking-widest"><CheckCircle2 className="text-[#800020]" size={20} /> Signature Luxury Box</li>
+              <li className="flex items-center gap-3 text-sm font-bold text-stone-700 uppercase tracking-widest"><CheckCircle2 className="text-[#800020]" size={20} /> Custom Message Card</li>
+              <li className="flex items-center gap-3 text-sm font-bold text-stone-700 uppercase tracking-widest"><CheckCircle2 className="text-[#800020]" size={20} /> Ribbon Bow Tie</li>
+            </ul>
+            <Link href="/collections/all" className="inline-block border-b-2 border-[#800020] text-[#800020] font-bold uppercase tracking-widest text-xs pb-1 hover:text-stone-900 hover:border-stone-900 transition-colors">
+              Discover Our Gifts
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 12. Social Proof Wall */}
+      <section className="bg-stone-50 py-24 border-t border-stone-200">
+        <div className="text-center mb-12 px-6">
+          <h2 className="font-serif text-3xl md:text-4xl text-stone-900 mb-4">Join The Octopus Family</h2>
+          <p className="text-stone-500 text-xs uppercase tracking-[0.2em] font-bold">Tag @OctopusPerfume to be featured</p>
+        </div>
+        <div className="flex overflow-hidden">
+          <div className="flex w-full min-w-max animate-[scroll_40s_linear_infinite] gap-4 px-4">
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="relative w-64 h-64 bg-stone-200 shrink-0 rounded-xl overflow-hidden group cursor-pointer">
+                <Image src={featuredProducts[i % featuredProducts.length]?.images?.[0]?.src || "/logo.png"} alt="Social" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <Heart className="text-white fill-white" size={32} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 13. FAQ Section */}
+      <section className="bg-white py-24 px-6 md:px-12 max-w-4xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="font-serif text-3xl md:text-5xl text-stone-900 mb-4">Frequently Asked Questions</h2>
+          <p className="text-stone-500 text-sm uppercase tracking-widest font-bold">Everything you need to know</p>
+        </div>
+        <div className="space-y-6">
+          {faqSchema.mainEntity.map((faq, idx) => (
+            <details key={idx} className="group border-b border-stone-200 pb-6 [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+              <summary className="flex items-center justify-between text-lg font-serif font-bold text-stone-900">
+                {faq.name}
+                <span className="relative flex-shrink-0 ml-1.5 w-5 h-5">
+                  <Plus className="absolute inset-0 w-5 h-5 opacity-100 group-open:opacity-0 transition-opacity" />
+                  <Minus className="absolute inset-0 w-5 h-5 opacity-0 group-open:opacity-100 transition-opacity" />
+                </span>
+              </summary>
+              <p className="mt-4 text-stone-600 leading-relaxed pl-2 border-l-2 border-[#800020]">{faq.acceptedAnswer.text}</p>
+            </details>
+          ))}
+        </div>
+        <div className="mt-12 text-center">
+          <Link href="/pages/contact" className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#800020] hover:text-stone-900 transition-colors">
+            <MessageSquare size={16} /> Have more questions? Contact Us
+          </Link>
+        </div>
+      </section>
+
+      {/* 14. SEO Content Block */}
+      <section className="bg-stone-900 px-6 md:px-12 py-20 text-center text-white/80">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="font-serif text-3xl text-white mb-6">India's Premier Personalized Gifting Destination</h2>
+          <div className="text-sm md:text-base leading-relaxed text-justify md:text-center space-y-4 font-serif">
+            <p>
+              At Octopus, we believe every relationship deserves to be celebrated with meaning. Whether you are searching for thoughtful <strong className="text-white">birthday gifts</strong>, romantic <strong className="text-white">anniversary gifts</strong>, or festive <strong className="text-white">Rakhi gifts</strong>, our collection of <strong className="text-white">personalized jewelry</strong> is crafted to turn memories into tangible keepsakes.
+            </p>
+            <p>
+              From delicate 925 silver name necklaces for your girlfriend to engraved stainless steel couple gifts for your husband, we curate the perfect personalized gifts across India. Shop our highly affordable gifts under ₹999 or discover our premium custom keepsakes—all backed by our promise of fast delivery and premium anti-tarnish quality. Experience the joy of gifting with Octopus today.
+            </p>
+          </div>
+        </div>
       </section>
     </>
   );

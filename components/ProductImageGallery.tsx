@@ -152,12 +152,18 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
             className="relative w-full max-w-4xl h-[80vh] px-12 md:px-24 z-[105]"
             onClick={(e) => e.stopPropagation()}
           >
+            {isImgLoading && (
+              <div className="absolute inset-0 flex items-center justify-center z-0">
+                 <div className="w-8 h-8 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+              </div>
+            )}
             <Image 
               src={images[currentIndex].src} 
               alt={images[currentIndex].alt}
               fill
-              className="object-contain" 
+              className={`object-contain z-10 transition-opacity duration-300 ${isImgLoading ? 'opacity-0' : 'opacity-100'}`}
               sizes="100vw"
+              onLoad={() => setIsImgLoading(false)}
             />
           </div>
 

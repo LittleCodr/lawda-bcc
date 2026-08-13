@@ -15,6 +15,7 @@ export default function CheckoutPage() {
   const router = useRouter();
   
   const [loading, setLoading] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState<"prepaid" | "cod">("prepaid");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -86,12 +87,20 @@ export default function CheckoutPage() {
     try {
       const orderId = `ORD-${Date.now()}`;
       
+      const isCOD = paymentMethod === "cod";
+      const payUAmount = isCOD ? 100 : finalTotal;
+      const orderTotal = isCOD ? finalTotal + 100 : finalTotal;
+      const codBalance = isCOD ? finalTotal : 0;
+      
       // Write to Firestore (single batched write to minimize quota)
       await setDoc(doc(db, "users", user.uid, "orders", orderId), {
         orderId,
         userId: user.uid,
-        status: "pending_payment",
-        total: finalTotal,
+        status: isCOD ? "pending_cod_advance" : "pending_payment",
+        total: orderTotal,
+        amountPaid: 0,
+        codBalance: codBalance,
+        paymentMethod: paymentMethod,
         items,
         shippingDetails: formData,
         createdAt: new Date(),
@@ -103,11 +112,11 @@ export default function CheckoutPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          amount: finalTotal,
+          amount: payUAmount,
           email: formData.email,
           phone: formData.phone,
           name: formData.name,
-          cartSummary,
+          cartSummary: isCOD ? `COD Advance: ${cartSummary}` : cartSummary,
         }),
       });
 
@@ -204,14 +213,34 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
+                <div className="pt-4 border-t border-stone-200">
+                  <h3 className="font-serif text-2xl mb-6 text-stone-900">Payment Method</h3>
+                  <div className="space-y-4">
+                    <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${paymentMethod === 'prepaid' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
+                      <input type="radio" name="payment" value="prepaid" checked={paymentMethod === 'prepaid'} onChange={() => setPaymentMethod('prepaid')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
+                      <div className="flex flex-col">
+                        <span className="font-bold text-sm text-stone-900">Pay in Full (Recommended)</span>
+                        <span className="text-xs text-stone-500">Pay securely via UPI, Cards, or Netbanking.</span>
+                      </div>
+                    </label>
+                    <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${paymentMethod === 'cod' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
+                      <input type="radio" name="payment" value="cod" checked={paymentMethod === 'cod'} onChange={() => setPaymentMethod('cod')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
+                      <div className="flex flex-col">
+                        <span className="font-bold text-sm text-stone-900">Cash on Delivery (₹100 Fee)</span>
+                        <span className="text-xs text-stone-500">Pay ₹100 securely now as advance, pay the rest on delivery.</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-stone-900 text-white py-4 text-xs tracking-widest uppercase hover:bg-stone-800 transition-colors disabled:opacity-50 mt-4 flex items-center justify-center gap-2"
+                  className="w-full bg-[#800020] text-white py-4 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#600018] transition-colors disabled:opacity-50 mt-4 flex items-center justify-center gap-2 shadow-lg"
                 >
                   {loading ? "Processing..." : (
                     <>
-                      <Lock size={14} /> Complete Order
+                      <Lock size={14} /> {paymentMethod === 'cod' ? 'Pay ₹100 Advance' : `Pay ₹${finalTotal}`}
                     </>
                   )}
                 </button>
@@ -265,10 +294,22 @@ export default function CheckoutPage() {
                   <span>Shipping</span>
                   <span>Free</span>
                 </div>
+                {paymentMethod === 'cod' && (
+                  <div className="flex justify-between text-sm text-[#800020] font-bold">
+                    <span>COD Fee</span>
+                    <span>+₹100</span>
+                  </div>
+                )}
                 <div className="flex justify-between items-end pt-4 mt-2 border-t border-stone-200">
                   <span className="font-serif text-2xl text-stone-900">Total</span>
-                  <span className="text-xl font-medium text-stone-900">₹{finalTotal}</span>
+                  <span className="text-xl font-medium text-stone-900">₹{paymentMethod === 'cod' ? finalTotal + 100 : finalTotal}</span>
                 </div>
+                {paymentMethod === 'cod' && (
+                  <div className="flex justify-between items-end pt-2 text-sm">
+                    <span className="font-bold text-stone-600 uppercase tracking-widest text-[10px]">To Pay Now</span>
+                    <span className="font-bold text-[#800020]">₹100</span>
+                  </div>
+                )}
               </div>
 
               {/* Trust Badges */}

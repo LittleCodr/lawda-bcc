@@ -33,6 +33,7 @@ const NAV_MENU = [
     href: "/collections/all",
     subLinks: [
       { label: "Rakhi Gifts", href: "/collections/rakhi-gifts" },
+      { label: "Rakhi Name Necklaces", href: "/collections/rakhi-name-necklaces" },
       { label: "Valentine's Day", href: "/collections/valentine-gift" },
       { label: "Wedding Gifts", href: "/collections/wedding-gift" }
     ]
@@ -65,11 +66,10 @@ export default function Navbar() {
   return (
     <>
       {/* Top Notification Bar */}
-      <div className="w-full bg-[#ffeaea] text-[#800020] py-2 hidden md:flex items-center justify-center gap-12 text-[10px] font-bold uppercase tracking-widest border-b border-[#E5B8B7]/30">
-        <div className="flex items-center gap-2"><Gift size={12} strokeWidth={2} /> Personalized Just for You</div>
-        <div className="flex items-center gap-2"><Truck size={12} strokeWidth={2} /> Fast Delivery Across India</div>
-        <div className="flex items-center gap-2"><ShieldCheck size={12} strokeWidth={2} /> Secure & Safe Payments</div>
-        <div className="flex items-center gap-2"><Star size={12} strokeWidth={2} /> 4.8/5 from 12,500+ Happy Customers</div>
+      <div className="w-full bg-[#800020] text-white py-2.5 hidden md:flex items-center justify-center gap-12 text-[11px] font-bold uppercase tracking-[0.2em]">
+        <div className="flex items-center gap-2"><Gift size={14} strokeWidth={2} /> Rakshabandhan Special: 50% Off Sitewide</div>
+        <div className="flex items-center gap-2"><Truck size={14} strokeWidth={2} /> Free Express Delivery</div>
+        <div className="flex items-center gap-2"><Star size={14} strokeWidth={2} /> Best Rakhi Gifts 2026</div>
       </div>
       
       <header

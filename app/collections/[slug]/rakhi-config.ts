@@ -87,5 +87,17 @@ export const rakhiConfig: Record<string, {
       { q: "Do you ship internationally?", a: "Currently, we only ship within India." },
       { q: "What if I make a spelling mistake in my order?", a: "Please contact our customer support within 24 hours of placing the order to correct any spelling mistakes." }
     ]
+  },
+  "rakhi-name-necklaces": {
+    title: "Rakhi Name Necklaces (₹349 Special)",
+    description: "Shop our exclusive Rakshabandhan special: Personalized Name Necklaces starting at just ₹349. Beautifully crafted, anti-tarnish custom jewelry for your sister.",
+    copy: "This Rakshabandhan, gift your sister something she will cherish forever. Our exclusive collection of personalized name necklaces features exquisite designs, including the Signature Heart, Arabic, and Butterfly Name Necklaces. Crafted with care and precision, these anti-tarnish jewelry pieces are the perfect token of your affection. Take advantage of our Rakhi Special pricing and get these premium necklaces for just ₹349. Show her how much she means to you with a gift that carries her name.",
+    faqs: [
+      { q: "Is the ₹349 offer valid on all name necklaces?", a: "The ₹349 special pricing applies to our selected best-selling Rakhi Name Necklaces, including the Signature Heart and Arabic designs." },
+      { q: "Are these necklaces anti-tarnish?", a: "Yes, all our personalized necklaces are made from high-quality materials that are skin-friendly and anti-tarnish." },
+      { q: "How long does it take to deliver?", a: "We offer fast 2-5 day delivery across India. Order now to ensure delivery before Rakhi." },
+      { q: "Can I add a personalized message card?", a: "Yes, you can opt for our Premium Gift Wrap at checkout to include a personalized message card." },
+      { q: "What length is the necklace chain?", a: "Our necklaces come with an adjustable chain (usually 16-18 inches) to ensure a perfect fit." }
+    ]
   }
 };

@@ -97,6 +97,10 @@ export default async function CollectionPage(props: {
         const tagsStr = (Array.isArray(p.tags) ? p.tags.join(" ") : (p.tags || "")).toLowerCase();
         
         // Intent mappings
+        if (slug === 'rakhi-name-necklaces') {
+          return titleStr.includes('name necklace') || typeStr.includes('necklace') || tagsStr.includes('name necklace');
+        }
+
         if (slug.includes('gifts-for-her') || slug.includes('girlfriend') || slug.includes('wife') || slug.includes('women') || slug.includes('sister')) {
           return ['necklace', 'earring', 'ring', 'anklet', 'bracelet'].some(t => 
             typeStr.includes(t) || titleStr.includes(t)

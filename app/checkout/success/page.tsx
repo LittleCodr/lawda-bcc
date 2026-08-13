@@ -36,15 +36,21 @@ function SuccessContent() {
         const data = await res.json();
         
         if (data.success) {
+          // Extract original base order ID in case PayU appends a suffix (e.g. ORD-1234567890123-1)
+          const baseOrderIdMatch = orderId.match(/(ORD-\d{13})/);
+          const baseOrderId = baseOrderIdMatch ? baseOrderIdMatch[1] : orderId;
+
           // Update Firestore
-          const orderDoc = doc(db, "users", user.uid, "orders", orderId);
-          await updateDoc(orderDoc, { status: "Paid" });
+          const orderDoc = doc(db, "users", user.uid, "orders", baseOrderId);
+          await updateDoc(orderDoc, { status: "Paid", payuTxnId: orderId });
           setStatus("success");
           clearCart();
         } else {
           // Payment failed
-          const orderDoc = doc(db, "users", user.uid, "orders", orderId);
-          await updateDoc(orderDoc, { status: "Failed" });
+          const baseOrderIdMatch = orderId.match(/(ORD-\d{13})/);
+          const baseOrderId = baseOrderIdMatch ? baseOrderIdMatch[1] : orderId;
+          const orderDoc = doc(db, "users", user.uid, "orders", baseOrderId);
+          await updateDoc(orderDoc, { status: "Failed", payuTxnId: orderId });
           setStatus("error");
         }
       } catch (err) {

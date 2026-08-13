@@ -264,11 +264,11 @@ export default function CheckoutPage() {
                   </div>
                   <div className="relative order-2 md:order-2">
                     <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">City</label>
-                    <input required readOnly minLength={2} type="text" name="city" value={formData.city} className="w-full border-b border-stone-300 py-2 bg-stone-100 text-stone-500 focus:outline-none cursor-not-allowed text-sm" placeholder="Auto-filled" />
+                    <input required minLength={2} type="text" name="city" value={formData.city} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent text-stone-900 focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="Enter City" />
                   </div>
                   <div className="relative order-3 md:order-3">
                     <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">State</label>
-                    <input required readOnly minLength={2} type="text" name="state" value={formData.state} className="w-full border-b border-stone-300 py-2 bg-stone-100 text-stone-500 focus:outline-none cursor-not-allowed text-sm" placeholder="Auto-filled" />
+                    <input required minLength={2} type="text" name="state" value={formData.state} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent text-stone-900 focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="Enter State" />
                   </div>
                 </div>
 

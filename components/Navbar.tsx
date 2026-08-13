@@ -6,6 +6,7 @@ import { Gift, ShieldCheck, Truck, Star } from "lucide-react";
 import { Menu, Search, ShoppingBag, X, ChevronDown, User } from "lucide-react";
 import { useCartStore } from "@/lib/store";
 import SearchModal from "./SearchModal";
+import Marquee from "./Marquee";
 
 const NAV_MENU = [
   { 
@@ -71,6 +72,12 @@ export default function Navbar() {
         <div className="flex items-center gap-2 text-[#FFEAEA] bg-white/20 px-4 py-1 rounded-full border border-white/40">Use code <strong className="text-white">ILYBEHENA</strong> for extra ₹150 OFF 🎁</div>
         <div className="flex items-center gap-2">Shop Now <span className="group-hover:translate-x-1 transition-transform">→</span></div>
       </Link>
+      
+      <div className="block md:hidden">
+        <Link href="/collections/rakhi-name-necklaces">
+          <Marquee />
+        </Link>
+      </div>
       
       <header
         className={`sticky top-0 w-full z-40 transition-all duration-300 bg-white ${

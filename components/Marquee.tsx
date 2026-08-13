@@ -39,7 +39,7 @@ export default function Marquee() {
             className="mx-8 text-[11px] tracking-[0.2em] font-bold uppercase flex items-center gap-4"
           >
             <Zap size={14} className="text-yellow-300 fill-yellow-300" />
-            FREEDOM SALE ON INDEPENDENCE DAY! USE CODE FREEDOM FOR 15% OFF 
+            USE CODE ILYBEHENA FOR ₹150 OFF 🎁
             <Clock size={14} className="text-yellow-300 ml-2" />
             ENDS IN: {timeLeft || "00:00:00"}
           </span>

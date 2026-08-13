@@ -5,7 +5,6 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ChevronRight, Gift, ChevronDown, ChevronUp } from "lucide-react";
 import { rakhiConfig } from "./rakhi-config";
-import RakhiPopup from "./RakhiPopup";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -230,7 +229,7 @@ export default async function CollectionPage(props: {
 
           {slug === 'rakhi-name-necklaces' && (
             <>
-              <RakhiPopup />
+
               <div className="mb-12 bg-gradient-to-br from-[#800020] to-[#c00030] rounded-2xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
                 <div className="absolute top-0 right-0 opacity-10 scale-150 -translate-y-1/4 translate-x-1/4">
                   <Gift size={200} />

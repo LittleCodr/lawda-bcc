@@ -66,6 +66,7 @@ import MetaPixel from "@/components/MetaPixel";
 
 import { AuthProvider } from "@/lib/auth-context";
 import { Suspense } from "react";
+import RakhiPopup from "@/components/RakhiPopup";
 
 export default function RootLayout({
   children,
@@ -108,6 +109,7 @@ export default function RootLayout({
           {/* Footer */}
           <Footer />
           <CartDrawer />
+          <RakhiPopup />
         </AuthProvider>
       </body>
     </html>

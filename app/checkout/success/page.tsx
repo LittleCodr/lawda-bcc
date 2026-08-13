@@ -8,13 +8,13 @@ import { CheckCircle, XCircle, Loader2 } from "lucide-react";
 import { db } from "@/lib/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import { useAuth } from "@/lib/auth-context";
-import { useCart } from "@/lib/cart-context";
+import { useCartStore } from "@/lib/store";
 
 function SuccessContent() {
   const searchParams = useSearchParams();
   const orderId = searchParams.get("order_id");
   const { user } = useAuth();
-  const { emptyCart } = useCart();
+  const { clearCart } = useCartStore();
   
   const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
   
@@ -40,7 +40,7 @@ function SuccessContent() {
           const orderDoc = doc(db, "users", user.uid, "orders", orderId);
           await updateDoc(orderDoc, { status: "Paid" });
           setStatus("success");
-          emptyCart();
+          clearCart();
         } else {
           // Payment failed
           const orderDoc = doc(db, "users", user.uid, "orders", orderId);

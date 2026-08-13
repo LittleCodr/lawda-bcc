@@ -116,7 +116,7 @@ export default function CheckoutPage() {
         codBalance: codBalance,
         paymentMethod: paymentMethod,
         deliveryMethod: deliveryMethod,
-        items,
+        items: JSON.parse(JSON.stringify(items)),
         shippingDetails: formData,
         createdAt: new Date(),
       });

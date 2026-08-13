@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --color-ink: #0f172a;
-  --color-charcoal: #1e293b;
-  --color-paper: #ffffff;
+  --color-ink: #1a1a1a;
+  --color-charcoal: #2d2d2d;
+  --color-paper: #FDF8F5; /* Blush pink background */
   --color-white: #ffffff;
-  --color-gold: #d4af37;
-  --color-muted: #64748b;
-  --color-line: rgba(15, 23, 42, 0.1);
+  --color-gold: #D4AF37;
+  --color-rose: #E5B8B7;
+  --color-burgundy: #800020;
+  --color-muted: #8c8c8c;
+  --color-line: rgba(26, 26, 26, 0.1);
 }
 
 @theme inline {
@@ -15,6 +17,8 @@
   --color-charcoal: var(--color-charcoal);
   --color-paper: var(--color-paper);
   --color-gold: var(--color-gold);
+  --color-rose: var(--color-rose);
+  --color-burgundy: var(--color-burgundy);
   --color-muted: var(--color-muted);
   --font-serif: var(--font-playfair);
   --font-sans: var(--font-inter);

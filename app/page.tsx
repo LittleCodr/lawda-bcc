@@ -6,8 +6,8 @@ import type { Metadata } from "next";
 import { Gift, ShieldCheck, Truck, Award, Star, ArrowRight, Heart, Users, Gem, Wallet, RefreshCcw, CalendarClock, ChevronRight, Package, MessageSquare, Plus, Minus, Search, Edit3, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Personalized Gifts for Every Relationship in India | Octopus",
-  description: "Shop personalized gifts, custom jewelry, couple gifts, birthday gifts, anniversary gifts and Raksha Bandhan gifts with fast delivery across India.",
+  title: "Personalized Rakhi Gifts for Sister & Brother | Gifts Under ₹499",
+  description: "Surprise your sister or brother with personalized Raksha Bandhan gifts, custom jewelry and gift boxes under ₹499 with fast delivery across India.",
 };
 
 export default async function Home() {
@@ -110,14 +110,14 @@ export default async function Home() {
           </div>
           <div className="relative z-10 pl-8 md:pl-16 lg:pl-24 max-w-2xl py-12">
             <div className="inline-block bg-[#800020] text-white text-[10px] md:text-xs px-5 py-2 rounded-full uppercase font-bold tracking-[0.15em] mb-6 shadow-sm">
-              Octopus Gifting
+              Raksha Bandhan Collection 2026
             </div>
             <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-[#800020] leading-[1.1] mb-2 tracking-tight drop-shadow-sm">
-              Personalized Gifts <br />
-              <span className="italic font-light text-[#9e7662]">for every relationship in India</span>
+              Personalized Raksha Bandhan Gifts <br />
+              <span className="italic font-light text-[#9e7662]">for Sister & Brother</span>
             </h1>
             <p className="text-gray-700 mt-6 max-w-md text-sm md:text-base leading-relaxed font-medium">
-              Discover personalized name necklaces, engraved bracelets, couple gifts and custom keepsakes for birthdays, anniversaries, Raksha Bandhan and every special occasion.
+              Discover personalized name necklaces, engraved bracelets, couple gifts and custom keepsakes to make this Rakhi truly unforgettable.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-lg">
               <div className="flex items-center gap-2">
@@ -138,12 +138,12 @@ export default async function Home() {
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 mt-10">
-              <Link href="/collections/gifts-for-her" className="flex items-center justify-center gap-3 bg-[#800020] text-white px-8 py-4 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-[#600018] transition-colors shadow-lg">
-                Shop Gifts For Her <ArrowRight size={16} />
+              <Link href="/collections/rakhi-gifts" className="flex items-center justify-center gap-3 bg-[#800020] text-white px-8 py-4 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-[#600018] transition-colors shadow-lg">
+                Shop Rakhi Gifts <ArrowRight size={16} />
               </Link>
-              <Link href="/collections/gifts-for-him" className="flex items-center justify-center gap-3 bg-white text-[#800020] border border-[#800020] px-8 py-4 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-[#800020] hover:text-white transition-colors shadow-sm">
-                Shop Gifts For Him <ArrowRight size={16} />
-              </Link>
+            </div>
+            <div className="mt-4 flex items-center gap-2 text-[#800020] font-bold text-sm bg-[#ffeaea] w-fit px-4 py-2 rounded-full border border-[#E5B8B7]">
+              <CalendarClock size={16} /> Order in the next 48 hours for delivery before Rakhi.
             </div>
             <div className="flex items-center gap-4 mt-10 bg-white/60 backdrop-blur-sm p-3 pr-6 rounded-full inline-flex border border-white/40 shadow-sm">
               <div className="flex -space-x-2">
@@ -206,14 +206,15 @@ export default async function Home() {
       <section className="bg-white py-20 px-6 md:px-12">
         <div className="max-w-[1440px] mx-auto">
           <div className="text-center mb-16">
-            <h2 className="font-serif text-3xl md:text-5xl text-[#800020] mb-4">Who Are You Shopping For?</h2>
-            <p className="text-gray-600 text-sm md:text-base uppercase tracking-widest font-bold">Curated selections for your loved ones</p>
+            <h2 className="font-serif text-3xl md:text-5xl text-[#800020] mb-4">Shop By Recipient</h2>
+            <p className="text-gray-600 text-sm md:text-base uppercase tracking-widest font-bold">Curated Rakhi selections for your siblings</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { title: "For Her", desc: "Girlfriend, Wife, Sister, Mother", icon: <Heart className="text-[#800020]" size={40} />, link: "/collections/gifts-for-her" },
-              { title: "For Him", desc: "Boyfriend, Husband, Brother, Father", icon: <Users className="text-[#800020]" size={40} />, link: "/collections/gifts-for-him" },
-              { title: "For Couples", desc: "Matching & Complementary Gifts", icon: <Gem className="text-[#800020]" size={40} />, link: "/collections/couple-gifts" }
+              { title: "Sister", desc: "Thoughtful Gifts for Her", icon: <Heart className="text-[#800020]" size={40} />, link: "/collections/rakhi-gifts-for-sister" },
+              { title: "Brother", desc: "Premium Gifts for Him", icon: <Users className="text-[#800020]" size={40} />, link: "/collections/rakhi-gifts-for-brother" },
+              { title: "Younger Sister", desc: "Cute & Meaningful", icon: <Gift className="text-[#800020]" size={40} />, link: "/collections/rakhi-gifts-for-sister" },
+              { title: "Elder Brother", desc: "Sophisticated Keepsakes", icon: <Gem className="text-[#800020]" size={40} />, link: "/collections/rakhi-gifts-for-brother" }
             ].map((rel, idx) => (
               <Link href={rel.link} key={idx} className="group flex flex-col items-center text-center p-8 border border-stone-200 rounded-xl hover:border-[#800020] hover:shadow-xl transition-all duration-300 bg-stone-50 hover:bg-white">
                 <div className="w-20 h-20 rounded-full bg-white border border-[#E5B8B7] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
@@ -221,7 +222,7 @@ export default async function Home() {
                 </div>
                 <h3 className="font-serif text-2xl text-stone-900 mb-2">{rel.title}</h3>
                 <p className="text-stone-500 text-sm mb-6">{rel.desc}</p>
-                <span className="text-[#800020] text-xs uppercase tracking-widest font-bold flex items-center gap-2 group-hover:gap-4 transition-all">Explore <ArrowRight size={14} /></span>
+                <span className="text-[#800020] text-xs uppercase tracking-widest font-bold flex items-center gap-2 group-hover:gap-4 transition-all">Shop Now <ArrowRight size={14} /></span>
               </Link>
             ))}
           </div>
@@ -233,11 +234,11 @@ export default async function Home() {
         <div className="max-w-[1440px] mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-6">
             <div className="text-left">
-              <h2 className="font-serif text-3xl md:text-4xl text-[#800020] mb-3">Best Sellers</h2>
-              <p className="text-[#2d2d2d] text-sm tracking-widest uppercase opacity-80 font-bold">The most loved personalized gifts</p>
+              <h2 className="font-serif text-3xl md:text-4xl text-[#800020] mb-3">Best Rakhi Picks</h2>
+              <p className="text-[#2d2d2d] text-sm tracking-widest uppercase opacity-80 font-bold">The most loved personalized gifts for siblings</p>
             </div>
-            <Link href="/collections/all" className="text-[#800020] text-xs uppercase tracking-widest font-bold border-b border-[#800020] hover:text-[#E5B8B7] hover:border-[#E5B8B7] transition-colors pb-1">
-              View All Gifts
+            <Link href="/collections/rakhi-gifts" className="text-[#800020] text-xs uppercase tracking-widest font-bold border-b border-[#800020] hover:text-[#E5B8B7] hover:border-[#E5B8B7] transition-colors pb-1">
+              View All Rakhi Gifts
             </Link>
           </div>
           {featuredProducts.length > 0 ? (
@@ -332,10 +333,10 @@ export default async function Home() {
           <p className="text-gray-600 text-sm uppercase tracking-widest font-bold mb-12">Premium gifting for every pocket</p>
           <div className="flex flex-wrap justify-center gap-6">
             {[
-              { label: "Under ₹999", link: "/collections/under-999" },
-              { label: "₹1000 - ₹1999", link: "/collections/1000-to-1999" },
-              { label: "₹2000 - ₹2999", link: "/collections/2000-to-2999" },
-              { label: "Premium Gifts", link: "/collections/premium" }
+              { label: "Under ₹299", link: "/collections/rakhi-gifts-under-299" },
+              { label: "Under ₹499", link: "/collections/rakhi-gifts-under-499" },
+              { label: "Under ₹999", link: "/collections/rakhi-gifts-under-999" },
+              { label: "Luxury Gifts", link: "/collections/premium" }
             ].map((budget, idx) => (
               <Link key={idx} href={budget.link} className="bg-white border-2 border-[#E5B8B7] text-[#800020] px-8 py-5 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-[#800020] hover:text-white transition-colors min-w-[200px] shadow-sm">
                 {budget.label}

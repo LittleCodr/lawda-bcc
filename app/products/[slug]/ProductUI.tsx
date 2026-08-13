@@ -33,6 +33,10 @@ export default function ProductUI({ product }: ProductUIProps) {
   const [isFavourite, setIsFavourite] = useState(false);
   const [isFavLoading, setIsFavLoading] = useState(false);
 
+  // PIN Code State
+  const [pinCode, setPinCode] = useState("");
+  const [pinStatus, setPinStatus] = useState<"idle" | "checking" | "success">("idle");
+
   useEffect(() => {
     if (!user) return;
     const checkFav = async () => {
@@ -240,7 +244,8 @@ export default function ProductUI({ product }: ProductUIProps) {
           
           <div className="flex gap-2 mb-4">
             <span className="bg-[#f9f2ed] text-[#800020] text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Personalized Gift</span>
-            <span className="bg-orange-50 text-orange-700 text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Trending</span>
+            <span className="bg-orange-50 text-orange-700 text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full">Selling Fast</span>
+            <span className="bg-emerald-50 text-emerald-700 text-[9px] uppercase tracking-widest font-bold px-3 py-1 rounded-full flex items-center gap-1"><Zap size={10} /> Deliver Before Rakhi</span>
           </div>
 
           <h1 className="font-serif text-3xl md:text-4xl text-[#2d2d2d] mb-4 leading-tight">
@@ -411,10 +416,42 @@ export default function ProductUI({ product }: ProductUIProps) {
           </div>
 
           {/* Fast Delivery Highlight */}
-          <div className="bg-[#ecfdf5] border border-[#a7f3d0] rounded-lg p-3 flex items-center justify-center gap-2 text-emerald-800 mb-8">
+          <div className="bg-[#ecfdf5] border border-[#a7f3d0] rounded-lg p-3 flex items-center justify-center gap-2 text-emerald-800 mb-4">
              <Zap size={16} className="text-emerald-600 fill-emerald-600" />
              <span className="text-[10px] font-bold uppercase tracking-widest">Fast Delivery across India | 2-5 Days</span>
           </div>
+
+          {/* PIN Code Check */}
+          <div className="mb-8 border border-[#E5B8B7] rounded-lg p-4 bg-[#fdfaf8]">
+            <h4 className="text-xs font-bold text-gray-800 mb-2 flex items-center gap-2"><Truck size={14} className="text-[#800020]"/> Check Delivery Before Raksha Bandhan</h4>
+            <div className="flex gap-2">
+              <input 
+                type="text" 
+                placeholder="Enter PIN Code" 
+                value={pinCode}
+                onChange={(e) => setPinCode(e.target.value)}
+                maxLength={6}
+                className="flex-1 text-xs px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-[#800020]" 
+              />
+              <button 
+                onClick={() => {
+                  if(pinCode.length === 6) {
+                    setPinStatus("checking");
+                    setTimeout(() => setPinStatus("success"), 800);
+                  }
+                }}
+                className="bg-[#800020] text-white px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-md hover:bg-[#600018] transition-colors"
+              >
+                {pinStatus === "checking" ? "..." : "Check"}
+              </button>
+            </div>
+            {pinStatus === "success" ? (
+              <p className="text-[10px] text-emerald-700 mt-3 font-bold flex items-center gap-1 bg-emerald-50 p-2 rounded-md"><CheckCircle2 size={12}/> Delivery available to {pinCode}. Order now with Premium Delivery to get it before Aug 28th.</p>
+            ) : (
+              <p className="text-[10px] text-gray-500 mt-2 flex items-center gap-1">Enter a 6-digit PIN code to check delivery time.</p>
+            )}
+          </div>
+
 
           {/* Reviews Preview */}
           <div className="flex items-center justify-between border-t border-gray-100 pt-6">
@@ -443,15 +480,15 @@ export default function ProductUI({ product }: ProductUIProps) {
              <ul className="space-y-5">
                 <li className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#800020] shadow-sm"><Gift size={18} strokeWidth={1.5} /></div>
-                  <span className="text-xs font-bold text-gray-700">Birthday Gifts</span>
+                  <Link href="/collections/rakhi-gifts-for-sister" className="text-xs font-bold text-gray-700 hover:text-[#800020] transition-colors">Rakhi Gift for Sister</Link>
                 </li>
                 <li className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#800020] shadow-sm"><Heart size={18} strokeWidth={1.5} /></div>
-                  <span className="text-xs font-bold text-gray-700">Anniversary Gifts</span>
+                  <Link href="/collections/rakhi-gifts-for-brother" className="text-xs font-bold text-gray-700 hover:text-[#800020] transition-colors">Rakhi Gift for Brother</Link>
                 </li>
                 <li className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#800020] shadow-sm"><Users size={18} strokeWidth={1.5} /></div>
-                  <span className="text-xs font-bold text-gray-700">Couple Gifts</span>
+                  <Link href="/collections/rakhi-gifts-under-499" className="text-xs font-bold text-gray-700 hover:text-[#800020] transition-colors">Rakhi Gifts Under ₹499</Link>
                 </li>
              </ul>
           </div>

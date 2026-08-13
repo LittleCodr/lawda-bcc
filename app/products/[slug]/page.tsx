@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const cleanDescription = product.body_html?.replace(/<[^>]+>/g, "").substring(0, 160) || "Buy personalized gifts at Octopus.";
 
   return {
-    title: `${product.title} | Octopus Gifts`,
+    title: `${product.title} | Personalized Rakhi Gift | Octopus Gifts`,
     description: cleanDescription,
   };
 }
@@ -67,6 +67,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       "url": `https://www.octopusperfume.in/products/${slug}`,
       "priceCurrency": "INR",
       "price": minPrice,
+      "salePrice": minPrice,
       "availability": "https://schema.org/InStock",
       "shippingDetails": {
         "@type": "OfferShippingDetails",
@@ -104,7 +105,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       "@type": "AggregateRating",
       "ratingValue": (Math.random() * (5.0 - 4.5) + 4.5).toFixed(1), // Mock high rating between 4.5 and 5.0
       "reviewCount": Math.floor(Math.random() * 500) + 50
-    }
+    },
+    "isSimilarTo": [
+      { "@type": "Product", "url": "https://www.octopusperfume.in/collections/rakhi-gifts" },
+      { "@type": "Product", "url": "https://www.octopusperfume.in/collections/personalized-rakhi-gifts" }
+    ]
   };
 
   return (

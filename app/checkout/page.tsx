@@ -16,6 +16,7 @@ export default function CheckoutPage() {
   
   const [loading, setLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<"prepaid" | "cod">("prepaid");
+  const [deliveryMethod, setDeliveryMethod] = useState<"standard" | "premium">("standard");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,8 +28,9 @@ export default function CheckoutPage() {
   });
 
   const baseTotal = totalPrice();
+  const deliveryFee = deliveryMethod === "premium" ? 300 : 0;
   const isAdmin = user?.email && ["littlecodr@gmail.com", "srijanrai966@gmail.com"].includes(user.email.toLowerCase());
-  const finalTotal = isAdmin ? 1 : baseTotal;
+  const finalTotal = isAdmin ? 1 : baseTotal + deliveryFee;
   const loggedBeginCheckout = useRef(false);
 
   useEffect(() => {
@@ -113,6 +115,7 @@ export default function CheckoutPage() {
         amountPaid: 0,
         codBalance: codBalance,
         paymentMethod: paymentMethod,
+        deliveryMethod: deliveryMethod,
         items,
         shippingDetails: formData,
         createdAt: new Date(),
@@ -226,6 +229,26 @@ export default function CheckoutPage() {
                 </div>
 
                 <div className="pt-4 border-t border-stone-200">
+                  <h3 className="font-serif text-2xl mb-6 text-stone-900">Delivery Method</h3>
+                  <div className="space-y-4">
+                    <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${deliveryMethod === 'standard' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
+                      <input type="radio" name="delivery" value="standard" checked={deliveryMethod === 'standard'} onChange={() => setDeliveryMethod('standard')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
+                      <div className="flex flex-col">
+                        <span className="font-bold text-sm text-stone-900">Standard Delivery (Free)</span>
+                        <span className="text-xs text-stone-500">2-5 business days</span>
+                      </div>
+                    </label>
+                    <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${deliveryMethod === 'premium' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
+                      <input type="radio" name="delivery" value="premium" checked={deliveryMethod === 'premium'} onChange={() => setDeliveryMethod('premium')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
+                      <div className="flex flex-col">
+                        <span className="font-bold text-sm text-stone-900">Premium Delivery by Air (+₹300)</span>
+                        <span className="text-xs text-stone-500">2 day delivery</span>
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-stone-200">
                   <h3 className="font-serif text-2xl mb-6 text-stone-900">Payment Method</h3>
                   <div className="space-y-4">
                     <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${paymentMethod === 'prepaid' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
@@ -304,7 +327,7 @@ export default function CheckoutPage() {
                 </div>
                 <div className="flex justify-between text-sm text-stone-600">
                   <span>Shipping</span>
-                  <span>Free</span>
+                  <span>{deliveryMethod === 'premium' ? '₹300' : 'Free'}</span>
                 </div>
                 {paymentMethod === 'cod' && (
                   <div className="flex justify-between text-sm text-[#800020] font-bold">

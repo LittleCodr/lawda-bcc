@@ -3,10 +3,19 @@ import path from "path";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { ChevronRight, Gift, ChevronDown, ChevronUp } from "lucide-react";
+import { rakhiConfig } from "./rakhi-config";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   
+  if (rakhiConfig[slug]) {
+    return { 
+      title: `${rakhiConfig[slug].title} | Octopus`,
+      description: rakhiConfig[slug].description
+    };
+  }
+
   if (slug === 'all') {
     return { title: "All Personalized Gifts | Octopus" };
   }
@@ -56,15 +65,20 @@ export default async function CollectionPage(props: {
         const tagsMatch = p.tags?.toLowerCase().includes(searchStr);
         
         // Intent mappings
-        if (slug.includes('gifts-for-her') || slug.includes('girlfriend') || slug.includes('wife') || slug.includes('women')) {
+        if (slug.includes('gifts-for-her') || slug.includes('girlfriend') || slug.includes('wife') || slug.includes('women') || slug.includes('sister')) {
           return ['necklace', 'earring', 'ring', 'anklet', 'bracelet'].some(t => 
             p.product_type?.toLowerCase().includes(t) || p.title.toLowerCase().includes(t)
           );
         }
-        if (slug.includes('gifts-for-him') || slug.includes('boyfriend') || slug.includes('husband') || slug.includes('men')) {
+        if (slug.includes('gifts-for-him') || slug.includes('boyfriend') || slug.includes('husband') || slug.includes('men') || slug.includes('brother')) {
           return ['cufflink', 'wallet', 'men', 'bracelet', 'keychain'].some(t => 
             p.product_type?.toLowerCase().includes(t) || p.title.toLowerCase().includes(t)
           );
+        }
+
+        // Rakhi fallback (return all personalized items if no specific match)
+        if (slug.includes('rakhi')) {
+           return true; 
         }
 
         return titleMatch || typeMatch || tagsMatch;
@@ -82,13 +96,15 @@ export default async function CollectionPage(props: {
   const startIndex = (validPage - 1) * PRODUCTS_PER_PAGE;
   const displayProducts = filteredProducts.slice(startIndex, startIndex + PRODUCTS_PER_PAGE);
 
-  const formattedTitle = slug === 'all' ? 'All Gifts' : slug.replace(/-/g, ' ');
+  const formattedTitle = rakhiConfig[slug] ? rakhiConfig[slug].title : (slug === 'all' ? 'All Gifts' : slug.replace(/-/g, ' '));
+  const description = rakhiConfig[slug] ? rakhiConfig[slug].description : `Shop ${formattedTitle.toLowerCase()} at Octopus Gifts. Personalized gifts for every relationship and budget.`;
+  const rakhiData = rakhiConfig[slug];
 
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "name": `${formattedTitle.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} - Octopus Gifts`,
-    "description": `Shop ${formattedTitle.toLowerCase()} at Octopus Gifts. Personalized gifts for every relationship and budget.`,
+    "description": description,
     "url": `https://www.octopusperfume.in/collections/${slug}`,
     "mainEntity": {
       "@type": "ItemList",
@@ -100,20 +116,46 @@ export default async function CollectionPage(props: {
     }
   };
 
+  const faqSchema = rakhiData && rakhiData.faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": rakhiData.faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  } : null;
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <div className="bg-[#FDF8F5] min-h-screen">
         {/* Category Banner */}
         <div className="bg-[#E5B8B7]/20 py-24 px-6 text-center border-b border-[#E5B8B7]/30">
+          <nav className="flex items-center justify-center gap-2 text-[10px] uppercase font-bold tracking-widest text-gray-500 mb-6">
+            <Link href="/" className="hover:text-[#800020] transition-colors">Home</Link>
+            <ChevronRight size={12} />
+            <Link href="/collections/all" className="hover:text-[#800020] transition-colors">Collections</Link>
+            <ChevronRight size={12} />
+            <span className="text-[#800020] truncate">{formattedTitle}</span>
+          </nav>
           <h1 className="font-serif text-4xl md:text-5xl text-[#800020] mb-4 uppercase tracking-widest">
             {formattedTitle}
           </h1>
           <p className="text-[#2d2d2d] max-w-2xl mx-auto text-sm tracking-wide leading-relaxed font-bold">
-            Discover our curated collection of {formattedTitle.toLowerCase()}. Crafted with love and designed to create unforgettable moments for you and your loved ones.
+            {description}
           </p>
         </div>
 
@@ -214,6 +256,47 @@ export default async function CollectionPage(props: {
             </div>
           )}
         </div>
+
+        {/* SEO Copy & FAQs Section */}
+        {rakhiData && (
+          <div className="bg-white py-16 px-6 border-t border-[#E5B8B7]/30 mt-12">
+            <div className="max-w-4xl mx-auto">
+              <div className="prose prose-stone max-w-none text-justify mb-16 text-gray-700 leading-relaxed">
+                <h2 className="font-serif text-3xl text-[#800020] mb-6">About {rakhiData.title}</h2>
+                <p>{rakhiData.copy}</p>
+              </div>
+
+              <div className="mb-16">
+                <h2 className="font-serif text-3xl text-[#800020] mb-8 text-center">Frequently Asked Questions</h2>
+                <div className="space-y-4">
+                  {rakhiData.faqs.map((faq, idx) => (
+                    <details key={idx} className="group bg-stone-50 border border-stone-200 rounded-lg p-6 [&_summary::-webkit-details-marker]:hidden">
+                      <summary className="flex cursor-pointer items-center justify-between font-bold text-gray-900">
+                        {faq.q}
+                        <span className="transition group-open:rotate-180">
+                          <ChevronDown size={20} className="text-[#800020]" />
+                        </span>
+                      </summary>
+                      <div className="mt-4 text-gray-600 leading-relaxed">
+                        {faq.a}
+                      </div>
+                    </details>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h2 className="font-serif text-3xl text-[#800020] mb-6 text-center">Related Rakhi Collections</h2>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <Link href="/collections/rakhi-gifts-for-sister" className="border border-[#E5B8B7] px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-[#800020] hover:bg-[#800020] hover:text-white transition-colors shadow-sm">Rakhi Gifts for Sister</Link>
+                  <Link href="/collections/rakhi-gifts-for-brother" className="border border-[#E5B8B7] px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-[#800020] hover:bg-[#800020] hover:text-white transition-colors shadow-sm">Rakhi Gifts for Brother</Link>
+                  <Link href="/collections/rakhi-gifts-under-499" className="border border-[#E5B8B7] px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-[#800020] hover:bg-[#800020] hover:text-white transition-colors shadow-sm">Gifts Under ₹499</Link>
+                  <Link href="/collections/personalized-rakhi-gifts" className="border border-[#E5B8B7] px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-[#800020] hover:bg-[#800020] hover:text-white transition-colors shadow-sm">Personalized Rakhi</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

@@ -189,7 +189,7 @@ export default function CartDrawer() {
                 </div>
 
                 <Link href="/checkout" onClick={closeCart} className="block w-full bg-[#800020] text-white py-5 text-center text-xs tracking-widest uppercase font-bold hover:bg-[#E5B8B7] hover:text-[#800020] transition-colors mb-6 shadow-lg">
-                  Secure Checkout
+                  Continue Checkout
                 </Link>
 
                 {/* Trust Badges */}

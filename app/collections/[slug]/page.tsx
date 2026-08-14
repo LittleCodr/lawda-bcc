@@ -287,7 +287,7 @@ export default async function CollectionPage(props: {
                     </div>
                     
                     <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full">
-                      <div className="inline-block bg-red-100 text-red-700 px-3 py-1 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-4 border border-red-200 shadow-sm animate-pulse flex items-center gap-1.5">
+                      <div className="inline-flex bg-red-100 text-red-700 px-3 py-1 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-4 border border-red-200 shadow-sm animate-pulse items-center gap-1.5">
                         <Flame size={12} className="fill-current text-red-600 shrink-0" /> 
                         <span className="whitespace-nowrap leading-tight">Sold over 2000 pieces!</span>
                       </div>
@@ -320,7 +320,7 @@ export default async function CollectionPage(props: {
                     </div>
                     
                     <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full">
-                      <div className="inline-block bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-4 border border-purple-200 shadow-sm animate-pulse flex items-center gap-1.5">
+                      <div className="inline-flex bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-4 border border-purple-200 shadow-sm animate-pulse items-center gap-1.5">
                         <Sparkles size={12} className="fill-current text-purple-600 shrink-0" /> 
                         <span className="whitespace-nowrap leading-tight">Trending Design!</span>
                       </div>

@@ -302,12 +302,6 @@ export default function ProductUI({ product }: ProductUIProps) {
             )}
           </div>
 
-          {((productTitleLower.includes('gold')) || (selectedVariant?.title?.toLowerCase().includes('gold'))) && (
-            <div className="bg-amber-50 text-amber-800 text-[10px] uppercase tracking-widest font-bold px-3 py-2 rounded-md mb-6 inline-block w-fit border border-amber-200">
-              Note: This is an Artificial Jewelry item, not solid gold.
-            </div>
-          )}
-
           <div
             className="prose prose-sm text-gray-600 mb-8 leading-relaxed max-w-none text-justify"
             dangerouslySetInnerHTML={{ __html: product.body_html || "" }}

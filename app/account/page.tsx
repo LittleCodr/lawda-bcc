@@ -68,6 +68,16 @@ export default function AccountPage() {
   });
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const tab = params.get("tab");
+      if (tab === "orders" || tab === "favourites") {
+        setActiveTab(tab);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     if (!loading && !user) {
       router.push("/auth?redirect=/account");
     }
@@ -237,22 +247,27 @@ export default function AccountPage() {
     doc.setDrawColor(229, 184, 183); // #E5B8B7
     doc.line(14, 75, 196, 75);
     
+    const shipping = order.shippingDetails || order.shipping || {} as any;
+
     doc.setFont("helvetica", "bold");
     doc.text("Billed & Shipped To:", 14, 82);
     doc.setFont("helvetica", "normal");
-    doc.text(order.shipping.name || "Customer", 14, 87);
-    const addressLines = doc.splitTextToSize(`${order.shipping.address || ""}, ${order.shipping.city || ""}, ${order.shipping.state || ""} ${order.shipping.zip || ""}`, 80);
+    doc.text(shipping.name || "Customer", 14, 87);
+    const addressLines = doc.splitTextToSize(`${shipping.address || ""}, ${shipping.city || ""}, ${shipping.state || ""} ${shipping.zip || ""}`, 80);
     doc.text(addressLines, 14, 92);
-    doc.text(`Phone: ${order.shipping.phone || "N/A"}`, 14, 92 + (addressLines.length * 5));
+    doc.text(`Phone: ${shipping.phone || "N/A"}`, 14, 92 + (addressLines.length * 5));
 
     // Items Table
-    const tableData = order.items.map((item, index) => [
-      (index + 1).toString(),
-      item.variantTitle ? `${item.name} (${item.variantTitle})` : item.name,
-      item.quantity.toString(),
-      `Rs. ${item.price.toFixed(2)}`,
-      `Rs. ${(item.price * item.quantity).toFixed(2)}`
-    ]);
+    const tableData = order.items.map((item, index) => {
+      const itemName = item.name || (item as any).title || "Unknown Item";
+      return [
+        (index + 1).toString(),
+        item.variantTitle ? `${itemName} (${item.variantTitle})` : itemName,
+        item.quantity.toString(),
+        `Rs. ${item.price.toFixed(2)}`,
+        `Rs. ${(item.price * item.quantity).toFixed(2)}`
+      ];
+    });
     
     const subtotal = order.subtotal || order.total;
     const discount = order.discount || 0;
@@ -569,10 +584,10 @@ export default function AccountPage() {
                         {order.items.map((item, i) => (
                           <li key={i} className="flex gap-4 items-center">
                             <div className="relative w-20 h-20 bg-stone-50 shrink-0 border border-stone-100 rounded-sm overflow-hidden">
-                              <Image src={item.image || "/logo.png"} alt={item.name} fill sizes="80px" className="object-cover" />
+                              <Image src={item.image || "/logo.png"} alt={item.name || (item as any).title || "Product"} fill sizes="80px" className="object-cover" />
                             </div>
                             <div className="flex-1">
-                              <p className="text-sm font-serif font-medium text-stone-900 leading-tight mb-1">{item.name}</p>
+                              <p className="text-sm font-serif font-medium text-stone-900 leading-tight mb-1">{item.name || (item as any).title}</p>
                               {item.variantTitle && (
                                 <p className="text-xs text-stone-500 mb-2">{item.variantTitle}</p>
                               )}

@@ -80,11 +80,11 @@ function SuccessContent() {
           </p>
           <p className="text-muted max-w-md mx-auto mb-10 text-sm">
             This order has been saved to your account. You can view your order history anytime from your{" "}
-            <Link href="/account" className="underline text-ink">Account</Link> page.
+            <Link href="/account?tab=orders" className="underline text-ink">Account</Link> page.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 
-              href="/account"
+              href="/account?tab=orders"
               className="border border-ink px-8 py-3 text-[11px] tracking-[0.2em] uppercase hover:bg-ink hover:text-paper transition-colors"
             >
               View Orders

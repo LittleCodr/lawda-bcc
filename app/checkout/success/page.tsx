@@ -4,7 +4,7 @@ import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { CheckCircle, XCircle, Loader2 } from "lucide-react";
+import { CheckCircle, XCircle, Loader2, Check, Package, Truck, Home } from "lucide-react";
 import { db } from "@/lib/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import { useAuth } from "@/lib/auth-context";
@@ -82,6 +82,47 @@ function SuccessContent() {
             You can track your order status anytime by visiting the{" "}
             <Link href="/account?tab=orders" className="underline text-ink font-medium">Orders</Link> tab in your account section.
           </p>
+
+          {/* Order Status Stepper */}
+          <div className="w-full max-w-3xl mx-auto my-12 overflow-x-auto pb-4 hide-scrollbar">
+            <div className="relative flex items-center justify-between min-w-[500px] px-4">
+              {/* Connecting Line */}
+              <div className="absolute left-[5%] right-[5%] top-5 -translate-y-1/2 h-[1px] bg-gray-200 -z-10" />
+              
+              {/* Step 1: Order Placed (Active) */}
+              <div className="flex flex-col items-center gap-3 bg-paper px-2 z-10 w-24">
+                <div className="w-10 h-10 rounded-full bg-ink text-paper flex items-center justify-center shadow-sm">
+                  <Check size={18} strokeWidth={2.5} />
+                </div>
+                <span className="text-[10px] md:text-xs uppercase tracking-widest font-medium text-ink text-center">Order Placed</span>
+              </div>
+
+              {/* Step 2: Processing (Inactive) */}
+              <div className="flex flex-col items-center gap-3 bg-paper px-2 z-10 w-24 opacity-40 grayscale">
+                <div className="w-10 h-10 rounded-full border border-ink/30 bg-paper text-ink flex items-center justify-center">
+                  <Package size={18} strokeWidth={1.5} />
+                </div>
+                <span className="text-[10px] md:text-xs uppercase tracking-widest text-ink text-center">Processing</span>
+              </div>
+
+              {/* Step 3: Shipped (Inactive) */}
+              <div className="flex flex-col items-center gap-3 bg-paper px-2 z-10 w-24 opacity-40 grayscale">
+                <div className="w-10 h-10 rounded-full border border-ink/30 bg-paper text-ink flex items-center justify-center">
+                  <Truck size={18} strokeWidth={1.5} />
+                </div>
+                <span className="text-[10px] md:text-xs uppercase tracking-widest text-ink text-center">Shipped</span>
+              </div>
+
+              {/* Step 4: Delivered (Inactive) */}
+              <div className="flex flex-col items-center gap-3 bg-paper px-2 z-10 w-24 opacity-40 grayscale">
+                <div className="w-10 h-10 rounded-full border border-ink/30 bg-paper text-ink flex items-center justify-center">
+                  <Home size={18} strokeWidth={1.5} />
+                </div>
+                <span className="text-[10px] md:text-xs uppercase tracking-widest text-ink text-center">Delivered</span>
+              </div>
+            </div>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 
               href="/account?tab=orders"

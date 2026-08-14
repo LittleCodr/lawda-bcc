@@ -269,9 +269,9 @@ export default async function Home() {
             </Link>
           </div>
           {featuredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-6 md:gap-x-8 md:gap-y-12">
               {featuredProducts.map((product: any) => (
-                <Link href={`/products/${product.handle}`} key={product.id} className="group flex flex-col h-full bg-white border border-[#E5B8B7]/40 hover:border-[#E5B8B7] transition-all duration-300 shadow-sm hover:shadow-xl overflow-hidden rounded-md">
+                <Link href={`/products/${product.handle}`} key={product.id} className="group flex flex-col h-full bg-white border border-[#E5B8B7]/40 hover:border-[#E5B8B7] transition-all duration-300 shadow-sm hover:shadow-xl overflow-hidden rounded-lg md:rounded-md">
                   <div className="relative aspect-[4/5] bg-[#FDF8F5] overflow-hidden">
                     {product.images && product.images.length > 0 ? (
                       <Image 
@@ -290,13 +290,17 @@ export default async function Home() {
                       </span>
                     </div>
                   </div>
-                  <div className="p-6 flex flex-col flex-1 text-center bg-white">
-                    <h3 className="font-serif text-lg text-[#2d2d2d] group-hover:text-[#800020] transition-colors leading-tight mb-3 font-bold line-clamp-2">
+                  <div className="p-3 md:p-6 flex flex-col flex-1 text-center bg-white">
+                    <h3 className="font-serif text-sm md:text-lg text-[#2d2d2d] group-hover:text-[#800020] transition-colors leading-tight mb-2 md:mb-3 font-bold line-clamp-2 md:line-clamp-none h-10 md:h-auto">
                       {product.title}
                     </h3>
-                    <p className="text-sm font-bold text-[#800020] mt-auto tracking-wide">
+                    <p className="text-sm font-bold text-[#800020] tracking-wide mb-3 md:mt-auto">
                       ₹{product.variants && product.variants.length > 0 ? product.variants[0].price : "0"}
                     </p>
+
+                    <button className="w-full bg-[#FDF8F5] text-[#800020] border border-[#E5B8B7] py-2 md:py-3 text-[9px] md:text-[10px] uppercase tracking-widest font-bold group-hover:bg-[#800020] group-hover:text-white transition-all duration-300 rounded-sm mt-auto shadow-sm group-hover:shadow-md">
+                      Customize
+                    </button>
                   </div>
                 </Link>
               ))}

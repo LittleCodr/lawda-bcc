@@ -265,23 +265,24 @@ export default async function CollectionPage(props: {
                     <Flame size={400} />
                   </div>
                   
-                  <div className="z-10 flex-1">
-                    <div className="inline-block bg-red-100 text-red-700 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.1em] mb-4 border border-red-200 shadow-sm animate-pulse flex items-center gap-2 w-fit mx-auto md:mx-0">
-                      <Flame size={14} className="fill-current text-red-600" /> Bestselling Necklace - Sold over 2000 pieces in last 28 hours!
+                  <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full">
+                    <div className="inline-block bg-red-100 text-red-700 px-3 md:px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest md:tracking-[0.1em] mb-4 border border-red-200 shadow-sm animate-pulse flex items-center gap-1.5 md:gap-2">
+                      <Flame size={14} className="fill-current text-red-600 shrink-0" /> 
+                      <span className="whitespace-normal md:whitespace-nowrap leading-tight">Bestselling Necklace - Sold over 2000 pieces in last 28 hours!</span>
                     </div>
-                    <h2 className="font-serif text-3xl md:text-5xl mb-4 leading-tight font-black text-gray-900 uppercase tracking-widest">
+                    <h2 className="font-serif text-2xl md:text-5xl mb-3 md:mb-4 leading-tight font-black text-gray-900 uppercase tracking-widest">
                       Independence Day<br /><span className="text-red-600">Mega Sale</span>
                     </h2>
-                    <p className="text-gray-600 mb-6 text-lg font-medium leading-relaxed max-w-xl mx-auto md:mx-0">
+                    <p className="text-gray-600 mb-5 md:mb-6 text-sm md:text-lg font-medium leading-relaxed max-w-xl">
                       Get the exclusive <strong className="text-gray-900 font-black">Fairy Name Necklace</strong> at a mind-blowing price. Our biggest drop of the year.
                     </p>
-                    <Link href="/products/fairy-name-necklace" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 text-white px-8 py-4 rounded-lg font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-xl shadow-red-500/20 w-full md:w-auto">
+                    <Link href="/products/fairy-name-necklace" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-xl shadow-red-500/20 w-full md:w-auto text-xs md:text-sm">
                       Claim Yours For ₹199 Now <ChevronRight size={18} />
                     </Link>
                   </div>
                   
-                  <div className="z-10 relative w-full md:w-1/3 aspect-[4/5] max-w-[300px] bg-stone-100 rounded-xl overflow-hidden border-4 border-white shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 mx-auto md:mx-0">
-                    <Image src="https://cdn.shopify.com/s/files/1/0885/8763/2921/files/Picsart_24-05-18_10-53-40-621.jpg?v=1716010078" alt="Fairy Name Necklace" fill className="object-cover" />
+                  <div className="z-10 relative w-[80%] max-w-[240px] md:w-1/3 aspect-[4/5] md:max-w-[300px] bg-stone-100 rounded-xl overflow-hidden border-4 border-white shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 mx-auto md:mx-0 mt-6 md:mt-0 shrink-0">
+                    <img src="https://cdn.shopify.com/s/files/1/0885/8763/2921/files/Picsart_24-05-18_10-53-40-621.jpg?v=1716010078" alt="Fairy Name Necklace" className="w-full h-full object-cover" />
                     <div className="absolute top-4 right-4 bg-red-600 text-white w-16 h-16 rounded-full flex flex-col items-center justify-center text-center shadow-xl rotate-12 font-black leading-none border-2 border-white">
                       <span className="text-[10px] uppercase tracking-widest opacity-90">Only</span>
                       <span className="text-lg">₹199</span>
@@ -294,9 +295,9 @@ export default async function CollectionPage(props: {
 
           {displayProducts.length > 0 ? (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-12">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 gap-y-6 md:gap-x-8 md:gap-y-12">
                 {displayProducts.map((product: any) => (
-                  <Link href={`/products/${product.handle}`} key={product.id} className="group flex flex-col h-full bg-white border border-[#E5B8B7]/30 hover:border-[#E5B8B7] transition-all duration-300 shadow-sm hover:shadow-xl rounded-sm overflow-hidden">
+                  <Link href={`/products/${product.handle}`} key={product.id} className="group flex flex-col h-full bg-white border border-[#E5B8B7]/30 hover:border-[#E5B8B7] transition-all duration-300 shadow-sm hover:shadow-xl rounded-lg md:rounded-sm overflow-hidden">
                     <div className="relative aspect-[4/5] bg-[#FDF8F5] overflow-hidden">
                       {product.images && product.images.length > 0 ? (
                         <Image 
@@ -318,13 +319,17 @@ export default async function CollectionPage(props: {
                       </div>
                     </div>
                     
-                    <div className="p-6 flex flex-col flex-1 text-center bg-white">
-                      <h3 className="font-serif text-lg text-[#2d2d2d] group-hover:text-[#800020] transition-colors leading-tight mb-3 font-bold">
+                    <div className="p-3 md:p-6 flex flex-col flex-1 text-center bg-white">
+                      <h3 className="font-serif text-sm md:text-lg text-[#2d2d2d] group-hover:text-[#800020] transition-colors leading-tight mb-2 md:mb-3 font-bold line-clamp-2 md:line-clamp-none h-10 md:h-auto">
                         {product.title}
                       </h3>
-                      <p className="text-sm font-bold text-[#800020] mt-auto tracking-wide">
+                      <p className="text-sm font-bold text-[#800020] tracking-wide mb-3 md:mt-auto">
                         ₹{product.variants && product.variants.length > 0 ? product.variants[0].price : "0"}
                       </p>
+                      
+                      <button className="w-full bg-[#FDF8F5] text-[#800020] border border-[#E5B8B7] py-2 md:py-3 text-[9px] md:text-[10px] uppercase tracking-widest font-bold group-hover:bg-[#800020] group-hover:text-white transition-all duration-300 rounded-sm mt-auto shadow-sm group-hover:shadow-md">
+                        Customize
+                      </button>
                     </div>
                   </Link>
                 ))}

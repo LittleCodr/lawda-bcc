@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { X, Gift } from "lucide-react";
+import toast from "react-hot-toast";
 
 export default function RakhiPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,7 +48,11 @@ export default function RakhiPopup() {
           </div>
 
           <button 
-            onClick={() => setIsOpen(false)}
+            onClick={() => {
+              navigator.clipboard.writeText("ILYBEHENA");
+              toast.success("Code copied to clipboard! 🎁");
+              setIsOpen(false);
+            }}
             className="w-full bg-[#800020] text-white py-4 rounded-xl text-sm font-bold uppercase tracking-widest shadow-lg hover:bg-[#600018] transition-colors"
           >
             Claim Discount Now

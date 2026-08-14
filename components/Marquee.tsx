@@ -1,6 +1,6 @@
 "use client";
 
-import { Zap, Clock } from "lucide-react";
+import { Heart, Clock, Gift } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Marquee() {
@@ -36,12 +36,13 @@ export default function Marquee() {
         {items.concat(items).map((_, i) => (
           <span
             key={i}
-            className="mx-8 text-[11px] tracking-[0.2em] font-bold uppercase flex items-center gap-4"
+            className="mx-4 md:mx-8 text-[9px] md:text-[11px] tracking-[0.2em] font-bold uppercase flex items-center gap-2 md:gap-4"
           >
-            <Zap size={14} className="text-yellow-300 fill-yellow-300" />
-            USE CODE ILYBEHENA FOR ₹150 OFF 🎁
-            <Clock size={14} className="text-yellow-300 ml-2" />
-            ENDS IN: {timeLeft || "00:00:00"}
+            <Heart size={14} className="text-yellow-300 fill-yellow-300 shrink-0" />
+            <span>SIBLING LOVE SALE! CODE ILYBEHENA FOR ₹150 OFF</span>
+            <Gift size={14} className="text-yellow-300 shrink-0" />
+            <span className="flex items-center gap-1"><Clock size={14} className="text-yellow-300 shrink-0" />
+            ENDS IN: {timeLeft || "00:00:00"}</span>
           </span>
         ))}
       </div>

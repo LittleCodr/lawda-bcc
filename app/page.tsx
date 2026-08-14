@@ -139,11 +139,11 @@ export default async function Home() {
               Raksha Bandhan Collection 2026
             </div>
             <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-[#800020] leading-[1.1] mb-2 tracking-tight drop-shadow-sm">
-              Personalized Raksha Bandhan Gifts <br />
-              <span className="italic font-light text-[#9e7662]">for Sister & Brother</span>
+              Celebrate the Bond <br />
+              <span className="italic font-light text-[#9e7662]">That Lasts Forever</span>
             </h1>
             <p className="text-gray-700 mt-6 max-w-md text-sm md:text-base leading-relaxed font-medium">
-              Discover personalized name necklaces, engraved bracelets, couple gifts and custom keepsakes to make this Rakhi truly unforgettable.
+              Because they're more than family—they're your first best friend. Surprise your sibling with a personalized keepsake they'll cherish for a lifetime.
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-lg">
               <div className="flex items-center gap-2">
@@ -152,11 +152,11 @@ export default async function Home() {
               </div>
               <div className="flex items-center gap-2">
                  <Award size={20} className="text-[#800020]" strokeWidth={1.5} />
-                 <span className="text-[10px] font-bold uppercase leading-tight tracking-wider text-gray-800">Premium<br/>Quality</span>
+                 <span className="text-[10px] font-bold uppercase leading-tight tracking-wider text-gray-800">Crafted to Last<br/>A Lifetime</span>
               </div>
               <div className="flex items-center gap-2">
                  <Truck size={20} className="text-[#800020]" strokeWidth={1.5} />
-                 <span className="text-[10px] font-bold uppercase leading-tight tracking-wider text-gray-800">Fast & Reliable<br/>Delivery</span>
+                 <span className="text-[10px] font-bold uppercase leading-tight tracking-wider text-gray-800">Delivered Safely<br/>With Love</span>
               </div>
               <div className="flex items-center gap-2">
                  <ShieldCheck size={20} className="text-[#800020]" strokeWidth={1.5} />
@@ -165,7 +165,7 @@ export default async function Home() {
             </div>
             <div className="flex flex-col sm:flex-row gap-4 mt-10">
               <Link href="/collections/rakhi-gifts" className="flex items-center justify-center gap-3 bg-[#800020] text-white px-8 py-4 text-xs font-bold uppercase tracking-wider rounded-sm hover:bg-[#600018] transition-colors shadow-lg">
-                Shop Rakhi Gifts <ArrowRight size={16} />
+                Find Their Perfect Gift <ArrowRight size={16} />
               </Link>
             </div>
             <div className="mt-4 flex items-center gap-2 text-[#800020] font-bold text-sm bg-[#ffeaea] w-fit px-4 py-2 rounded-full border border-[#E5B8B7]">
@@ -211,16 +211,17 @@ export default async function Home() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { title: "Birthdays", img: "/images/products/customized-bar-necklace-rakhi-gift-1.jpg", link: "/collections/birthday-gifts" },
-              { title: "Anniversaries", img: "/images/products/eternal-heart-necklace-1-rakhi-gift-4.jpg", link: "/collections/anniversary-gifts" },
-              { title: "Raksha Bandhan", img: "/images/products/customized-butterfly-name-ring-rakhi-gift-1.jpg", link: "/collections/rakhi-gifts" },
-              { title: "Weddings", img: "/images/products/18k-cuff-bracelet-rakhi-gift-11.jpg", link: "/collections/wedding-gifts" }
+              { title: "Birthdays", desc: "Make Their Day Magical", img: "/images/products/customized-bar-necklace-rakhi-gift-1.jpg", link: "/collections/birthday-gifts" },
+              { title: "Anniversaries", desc: "Celebrate Forever", img: "/images/products/eternal-heart-necklace-1-rakhi-gift-4.jpg", link: "/collections/anniversary-gifts" },
+              { title: "Raksha Bandhan", desc: "Honor Your Bond", img: "/images/products/customized-butterfly-name-ring-rakhi-gift-1.jpg", link: "/collections/rakhi-gifts" },
+              { title: "Weddings", desc: "A Gift For The Couple", img: "/images/products/18k-cuff-bracelet-rakhi-gift-11.jpg", link: "/collections/wedding-gifts" }
             ].map((occ, idx) => (
               <Link href={occ.link} key={idx} className="group block relative aspect-square overflow-hidden rounded-lg shadow-sm">
                 <Image src={occ.img} alt={occ.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <h3 className="text-white font-serif text-xl md:text-3xl font-bold tracking-wide drop-shadow-md">{occ.title}</h3>
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+                  <h3 className="text-white font-serif text-xl md:text-3xl font-bold tracking-wide drop-shadow-md mb-2">{occ.title}</h3>
+                  <p className="text-white/90 text-xs md:text-sm font-bold uppercase tracking-widest drop-shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-y-2 group-hover:translate-y-0">{occ.desc}</p>
                 </div>
               </Link>
             ))}
@@ -237,10 +238,10 @@ export default async function Home() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { title: "Sister", desc: "Thoughtful Gifts for Her", icon: <Heart className="text-[#800020]" size={40} />, link: "/collections/rakhi-gifts-for-sister" },
-              { title: "Brother", desc: "Premium Gifts for Him", icon: <Users className="text-[#800020]" size={40} />, link: "/collections/rakhi-gifts-for-brother" },
-              { title: "Younger Sister", desc: "Cute & Meaningful", icon: <Gift className="text-[#800020]" size={40} />, link: "/collections/rakhi-gifts-for-sister" },
-              { title: "Elder Brother", desc: "Sophisticated Keepsakes", icon: <Gem className="text-[#800020]" size={40} />, link: "/collections/rakhi-gifts-for-brother" }
+              { title: "Sister", desc: "Make her smile with a gift just for her.", icon: <Heart className="text-[#800020]" size={40} />, link: "/collections/rakhi-gifts-for-sister" },
+              { title: "Brother", desc: "Show him how much he means to you.", icon: <Users className="text-[#800020]" size={40} />, link: "/collections/rakhi-gifts-for-brother" },
+              { title: "Younger Sister", desc: "A cute keepsake she'll never take off.", icon: <Gift className="text-[#800020]" size={40} />, link: "/collections/rakhi-gifts-for-sister" },
+              { title: "Elder Brother", desc: "Sophisticated gifts for your protector.", icon: <Gem className="text-[#800020]" size={40} />, link: "/collections/rakhi-gifts-for-brother" }
             ].map((rel, idx) => (
               <Link href={rel.link} key={idx} className="group flex flex-col items-center text-center p-8 border border-stone-200 rounded-xl hover:border-[#800020] hover:shadow-xl transition-all duration-300 bg-stone-50 hover:bg-white">
                 <div className="w-20 h-20 rounded-full bg-white border border-[#E5B8B7] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm">
@@ -415,9 +416,9 @@ export default async function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { name: "Priya S.", product: "Custom Name Necklace", text: "I ordered this for my sister's birthday and she literally cried when she saw it. The quality is amazing and the packaging felt so luxurious!" },
-              { name: "Rahul K.", product: "Engraved Wallet", text: "Got an engraved wallet for my dad. He loved the personal touch. Delivery was right on time and the leather quality is premium." },
-              { name: "Anjali M.", product: "Couple Bracelets", text: "Bought matching bracelets for our anniversary. We never take them off! They are completely waterproof and haven't lost their shine at all." }
+              { name: "Priya S.", product: "Custom Name Necklace", text: "I ordered this for my sister and she cried tears of joy when she saw it. It's more than a necklace, it's a piece of my heart she can wear forever." },
+              { name: "Rahul K.", product: "Engraved Wallet", text: "Got an engraved wallet for my dad. Seeing his reaction when he read the personal message was priceless. Highly recommend for special moments." },
+              { name: "Anjali M.", product: "Couple Bracelets", text: "We never take them off! It constantly reminds us of our bond no matter the distance. They haven't lost their shine at all." }
             ].map((review, idx) => (
               <div key={idx} className="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-[#E5B8B7]/30 flex flex-col items-center text-center">
                 <div className="flex text-amber-400 mb-6">
@@ -439,9 +440,9 @@ export default async function Home() {
         <div className="max-w-2xl mx-auto flex flex-col items-center">
           <Gift size={64} className="text-[#E5B8B7] mb-8" strokeWidth={1} />
           <h2 className="font-serif text-4xl md:text-6xl mb-6">Can't Decide?</h2>
-          <p className="text-stone-400 text-lg mb-10 font-serif italic">Let us help you find the absolute perfect gift for your special someone in under 60 seconds.</p>
+          <p className="text-stone-400 text-lg mb-10 font-serif italic">Let us help you find a gift that perfectly captures your feelings, in under 60 seconds.</p>
           <Link href="/collections/all" className="bg-[#800020] text-white px-10 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-stone-900 transition-colors shadow-xl inline-flex items-center gap-3">
-            Open Gift Finder <ArrowRight size={16} />
+            Find Their Gift Now <ArrowRight size={16} />
           </Link>
         </div>
       </section>

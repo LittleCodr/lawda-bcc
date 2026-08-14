@@ -69,7 +69,7 @@ export default function Navbar() {
       {/* Top Notification Bar - PROMO HYPERLINK */}
       <Link href="/collections/rakhi-name-necklaces" className="group w-full bg-gradient-to-r from-[#800020] via-[#c00030] to-[#800020] text-white py-3 hidden md:flex items-center justify-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">
         <div className="flex items-center gap-2 animate-pulse"><Gift size={16} strokeWidth={2} /> Rakshabandhan Special: 50% Off Sitewide</div>
-        <div className="flex items-center gap-2 text-[#FFEAEA] bg-white/20 px-4 py-1 rounded-full border border-white/40">Use code <strong className="text-white">ILYBEHENA</strong> for extra ₹150 OFF 🎁</div>
+        <div className="flex items-center gap-2 text-[#FFEAEA] bg-white/20 px-4 py-1 rounded-full border border-white/40">Use code <strong className="text-white">ILYBEHENA</strong> for extra ₹150 OFF <Gift size={16} strokeWidth={2} className="text-white" /></div>
         <div className="flex items-center gap-2">Shop Now <span className="group-hover:translate-x-1 transition-transform">→</span></div>
       </Link>
       
@@ -136,7 +136,7 @@ export default function Navbar() {
         {/* Center: Logo */}
         <Link
           href="/"
-          className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center group z-0"
+          className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center group z-20"
         >
           <span className="font-serif text-3xl sm:text-4xl tracking-widest uppercase text-[#800020]">
             Octopus
@@ -177,7 +177,7 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="fixed inset-0 z-50 bg-[#FDF8F5] flex flex-col xl:hidden overflow-y-auto">
           <div className="h-[76px] flex items-center justify-between px-6 border-b border-[#E5B8B7]/30 shrink-0 sticky top-0 bg-[#FDF8F5]/90 backdrop-blur-md">
-            <span className="font-serif text-2xl uppercase text-[#800020] tracking-widest">Octopus</span>
+            <Link href="/" onClick={() => setMobileOpen(false)} className="font-serif text-2xl uppercase text-[#800020] tracking-widest">Octopus</Link>
             <button onClick={() => setMobileOpen(false)} aria-label="Close menu" className="p-2 text-[#2d2d2d] hover:text-[#800020] transition-colors">
               <X size={24} strokeWidth={1.5} />
             </button>

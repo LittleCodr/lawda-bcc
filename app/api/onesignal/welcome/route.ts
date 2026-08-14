@@ -18,7 +18,7 @@ export async function POST(req: Request) {
         app_id: "112b9c69-6c71-44be-8b41-6b47147772ae",
         include_subscription_ids: [subscriptionId],
         headings: { en: "Here is your ₹150 OFF! 🎉" },
-        contents: { en: "Use code WELCOME15 on orders above ₹399. Valid for 6 hours only. Shop now!" },
+        contents: { en: "Use code WELCOME15 on orders above ₹499. Valid for 6 hours only. Shop now!" },
         url: "https://www.octopusperfume.in"
       })
     });

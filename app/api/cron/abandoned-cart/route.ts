@@ -11,10 +11,10 @@ export async function GET(req: Request) {
       return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
     }
 
-    // 2. Calculate time bounds (Orders between 1 hour and 2 hours old)
+    // 2. Calculate time bounds (Orders between 1 hour and 25 hours old, to give a 24h window for the daily cron)
     const now = new Date();
     const oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
-    const twoHoursAgo = new Date(now.getTime() - 2 * 60 * 60 * 1000);
+    const twentyFiveHoursAgo = new Date(now.getTime() - 25 * 60 * 60 * 1000);
 
     // 3. Query Firestore
     // Note: This requires a Collection Group Index on 'orders' in Firestore
@@ -24,7 +24,7 @@ export async function GET(req: Request) {
       where("status", "in", ["pending_payment", "pending_cod_advance"]),
       where("abandonedEmailSent", "==", false),
       where("createdAt", "<=", oneHourAgo),
-      where("createdAt", ">=", twoHoursAgo)
+      where("createdAt", ">=", twentyFiveHoursAgo)
     );
 
     const snapshot = await getDocs(ordersQuery);

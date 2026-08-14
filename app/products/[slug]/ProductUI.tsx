@@ -9,6 +9,7 @@ import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 import { useAuth } from "@/lib/auth-context";
 import Link from "next/link";
 import Image from "next/image";
+import toast from "react-hot-toast";
 
 interface ProductUIProps {
   product: any;
@@ -49,7 +50,7 @@ export default function ProductUI({ product }: ProductUIProps) {
 
   const toggleFavourite = async () => {
     if (!user) {
-      alert("Please login to save favourites!");
+      toast.error("Please login to save favourites!");
       return;
     }
     setIsFavLoading(true);
@@ -68,9 +69,11 @@ export default function ProductUI({ product }: ProductUIProps) {
           addedAt: new Date()
         });
         setIsFavourite(true);
+        toast.success("Added to favourites! ❤️");
       }
     } catch (e) {
       console.error(e);
+      toast.error("Failed to update favourites.");
     } finally {
       setIsFavLoading(false);
     }
@@ -133,12 +136,13 @@ export default function ProductUI({ product }: ProductUIProps) {
       const data = await response.json();
       if (data.success) {
         setCustomPhotoUrl(data.data.url);
+        toast.success("Photo uploaded successfully!");
       } else {
-        alert("Failed to upload image. Please try again.");
+        toast.error("Failed to upload image. Please try again.");
       }
     } catch (error) {
       console.error("Upload error:", error);
-      alert("Failed to upload image. Please try again.");
+      toast.error("Failed to upload image. Please try again.");
     } finally {
       setIsUploading(false);
     }
@@ -182,6 +186,8 @@ export default function ProductUI({ product }: ProductUIProps) {
     setCustomName("");
     setCustomPhotoUrl("");
     setIsGift(false);
+    
+    toast.success("Added to Cart! 🎁");
   };
 
   const isPersonalizationComplete = 

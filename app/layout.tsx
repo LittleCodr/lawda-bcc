@@ -3,6 +3,7 @@ import "./globals.css";
 // import { AuthProvider } from "@/lib/auth-context"; // Keep disabled if not needed
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.octopusperfume.in"),
@@ -112,6 +113,25 @@ export default function RootLayout({
           <Footer />
           <CartDrawer />
           <RakhiPopup />
+          <Toaster 
+            position="top-center" 
+            toastOptions={{
+              style: {
+                background: '#333',
+                color: '#fff',
+                borderRadius: '8px',
+                padding: '12px 16px',
+                fontSize: '14px',
+                fontWeight: '500',
+              },
+              success: {
+                iconTheme: {
+                  primary: '#4ade80',
+                  secondary: '#fff',
+                },
+              },
+            }} 
+          />
         </AuthProvider>
       </body>
     </html>

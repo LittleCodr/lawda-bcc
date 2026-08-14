@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { ShieldCheck, Lock, CheckCircle2 } from "lucide-react";
 import { useCartStore } from "@/lib/store";
@@ -132,11 +133,11 @@ export default function CheckoutPage() {
 
     // Additional JS Validation
     if (!/^\d{10}$/.test(formData.phone.trim())) {
-      alert("Please enter a valid 10-digit mobile number.");
+      toast.error("Please enter a valid 10-digit mobile number.");
       return;
     }
     if (!/^\d{6}$/.test(formData.zip.trim())) {
-      alert("Please enter a valid 6-digit PIN code.");
+      toast.error("Please enter a valid 6-digit PIN code.");
       return;
     }
 
@@ -238,7 +239,7 @@ export default function CheckoutPage() {
       logAppEvent("payment_error", {
         reason: error.message || "Unknown error generating hash"
       });
-      alert("There was an issue processing your order. Please try again.");
+      toast.error("There was an issue processing your order. Please try again.");
       setLoading(false);
     }
   };

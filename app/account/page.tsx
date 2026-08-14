@@ -9,6 +9,7 @@ import { db } from "@/lib/firebase";
 import { collection, query, orderBy, getDocs, doc, getDoc, setDoc } from "firebase/firestore";
 import { formatINR } from "@/lib/products";
 import { Download, Package, ExternalLink, User, Settings, Edit3, X, Heart } from "lucide-react";
+import toast from "react-hot-toast";
 
 
 type Order = {
@@ -184,8 +185,10 @@ export default function AccountPage() {
       await setDoc(doc(db, "users", user.uid), editForm, { merge: true });
       setProfile(editForm);
       setIsEditing(false);
+      toast.success("Profile updated successfully!");
     } catch (err) {
       console.error("Error saving profile", err);
+      toast.error("Failed to update profile.");
     } finally {
       setSavingProfile(false);
     }
@@ -247,7 +250,7 @@ export default function AccountPage() {
     doc.setDrawColor(229, 184, 183); // #E5B8B7
     doc.line(14, 75, 196, 75);
     
-    const shipping = order.shippingDetails || order.shipping || {} as any;
+    const shipping = (order as any).shippingDetails || order.shipping || {} as any;
 
     doc.setFont("helvetica", "bold");
     doc.text("Billed & Shipped To:", 14, 82);
@@ -345,6 +348,7 @@ export default function AccountPage() {
     doc.text("2. Crafted with care to be everlasting.", 14, footerY + 13);
     
     doc.save(`Everlasting_Invoice_${order.id.slice(0,8)}.pdf`);
+    toast.success("Invoice downloaded!");
   };
 
   if (loading || !user) {
@@ -366,6 +370,7 @@ export default function AccountPage() {
           <button
             onClick={async () => {
               await logout();
+              toast.success("Logged out successfully.");
               router.push("/");
             }}
             className="border border-[#800020] text-[#800020] px-8 py-3 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#800020] hover:text-white transition-colors duration-300 w-fit"

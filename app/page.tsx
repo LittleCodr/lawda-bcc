@@ -145,28 +145,28 @@ export default async function Home() {
             <div className="inline-block bg-[#800020] text-white text-[10px] md:text-xs px-5 py-2 rounded-full uppercase font-bold tracking-[0.15em] mb-6 shadow-sm">
               Raksha Bandhan Collection 2026
             </div>
-            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-[#800020] leading-[1.1] mb-2 tracking-tight drop-shadow-sm">
-              Celebrate the Bond <br />
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-7xl text-[#800020] leading-[1.1] tracking-wide drop-shadow-sm">
+              <span className="block mb-2">Everlasting Gifts</span>
               <span className="italic font-light text-[#9e7662]">That Lasts Forever</span>
             </h1>
             <p className="text-gray-700 mt-6 max-w-md text-sm md:text-base leading-relaxed font-medium">
               Because they're more than family—they're your first best friend. Surprise your sibling with a personalized keepsake they'll cherish for a lifetime.
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8 w-full">
-              <div className="flex items-center gap-2 justify-center md:justify-start">
-                 <Gift size={20} className="text-[#800020] shrink-0" strokeWidth={1.5} />
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mt-8 w-full">
+              <div className="flex items-start gap-2 justify-center lg:justify-start">
+                 <Gift size={20} className="text-[#800020] shrink-0 mt-0.5" strokeWidth={1.5} />
                  <span className="text-[10px] md:text-[11px] font-bold uppercase leading-tight tracking-wider text-gray-800">Personalized<br/>Just For You</span>
               </div>
-              <div className="flex items-center gap-2 justify-center md:justify-start">
-                 <Award size={20} className="text-[#800020] shrink-0" strokeWidth={1.5} />
+              <div className="flex items-start gap-2 justify-center lg:justify-start">
+                 <Award size={20} className="text-[#800020] shrink-0 mt-0.5" strokeWidth={1.5} />
                  <span className="text-[10px] md:text-[11px] font-bold uppercase leading-tight tracking-wider text-gray-800">Crafted to Last<br/>A Lifetime</span>
               </div>
-              <div className="flex items-center gap-2 justify-center md:justify-start">
-                 <Truck size={20} className="text-[#800020] shrink-0" strokeWidth={1.5} />
+              <div className="flex items-start gap-2 justify-center lg:justify-start">
+                 <Truck size={20} className="text-[#800020] shrink-0 mt-0.5" strokeWidth={1.5} />
                  <span className="text-[10px] md:text-[11px] font-bold uppercase leading-tight tracking-wider text-gray-800">Delivered Safely<br/>With Love</span>
               </div>
-              <div className="flex items-center gap-2 justify-center md:justify-start">
-                 <ShieldCheck size={20} className="text-[#800020] shrink-0" strokeWidth={1.5} />
+              <div className="flex items-start gap-2 justify-center lg:justify-start">
+                 <ShieldCheck size={20} className="text-[#800020] shrink-0 mt-0.5" strokeWidth={1.5} />
                  <span className="text-[10px] md:text-[11px] font-bold uppercase leading-tight tracking-wider text-gray-800">Secure<br/>Payments</span>
               </div>
             </div>

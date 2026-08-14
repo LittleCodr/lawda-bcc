@@ -222,21 +222,55 @@ export default async function CollectionPage(props: {
       )}
       <div className="bg-[#FDF8F5] min-h-screen">
         {/* Category Banner */}
-        <div className="bg-[#E5B8B7]/20 py-24 px-6 text-center border-b border-[#E5B8B7]/30">
-          <nav className="flex items-center justify-center gap-2 text-[10px] uppercase font-bold tracking-widest text-gray-500 mb-6">
-            <Link href="/" className="hover:text-[#800020] transition-colors">Home</Link>
-            <ChevronRight size={12} />
-            <Link href="/collections/all" className="hover:text-[#800020] transition-colors">Collections</Link>
-            <ChevronRight size={12} />
-            <span className="text-[#800020] truncate">{formattedTitle}</span>
-          </nav>
-          <h1 className="font-serif text-4xl md:text-5xl text-[#800020] mb-4 uppercase tracking-widest">
-            {formattedTitle}
-          </h1>
-          <p className="text-[#2d2d2d] max-w-2xl mx-auto text-sm tracking-wide leading-relaxed font-bold">
-            {description}
-          </p>
-        </div>
+        {slug === 'rakhi-name-necklaces' ? (
+          <div className="bg-[#f3efe9] py-16 px-6 md:px-16 lg:px-24 border-b border-[#E5B8B7]/30 relative overflow-hidden flex items-center min-h-[400px]">
+            {/* We don't have the exact background image, so we use a gradient and some abstract shapes to mimic the luxury feel */}
+            <div className="absolute right-0 top-0 bottom-0 w-1/2 bg-gradient-to-l from-[#e6dfd3] to-transparent pointer-events-none"></div>
+            <div className="absolute right-[-10%] top-[-10%] w-[60%] h-[120%] bg-[url('https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Fairynamenecklace3.webp?v=1745910455')] bg-cover bg-center opacity-30 mix-blend-multiply rounded-full blur-xl pointer-events-none"></div>
+
+            <div className="relative z-10 max-w-2xl text-left">
+              <nav className="flex flex-wrap items-center gap-2 text-[10px] md:text-xs uppercase font-bold tracking-widest text-[#800020] mb-8">
+                <Link href="/" className="hover:text-red-700 transition-colors">Home</Link>
+                <ChevronRight size={12} />
+                <Link href="/collections/all" className="hover:text-red-700 transition-colors">Collections</Link>
+                <ChevronRight size={12} />
+                <span className="truncate">{formattedTitle}</span>
+                <ChevronRight size={12} />
+                <span className="truncate">Starting from ₹199</span>
+              </nav>
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-[#6b1625] mb-2 uppercase tracking-[0.05em] font-medium leading-tight">
+                RAKHI NAME NECKLACES
+              </h1>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="h-[1px] w-12 bg-[#800020]"></div>
+                <h2 className="font-serif text-xl md:text-3xl text-[#6b1625] uppercase tracking-widest font-medium">
+                  STARTING FROM ₹199
+                </h2>
+                <div className="h-[1px] w-12 bg-[#800020]"></div>
+              </div>
+              
+              <p className="text-[#2d2d2d] max-w-lg text-xs md:text-sm tracking-wide leading-relaxed font-medium">
+                Shop our exclusive Rakshabandhan special: Personalized Name Necklaces starting from just ₹199. Beautifully crafted, anti-tarnish custom jewelry for your sister.
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="bg-[#E5B8B7]/20 py-24 px-6 text-center border-b border-[#E5B8B7]/30">
+            <nav className="flex items-center justify-center gap-2 text-[10px] uppercase font-bold tracking-widest text-gray-500 mb-6">
+              <Link href="/" className="hover:text-[#800020] transition-colors">Home</Link>
+              <ChevronRight size={12} />
+              <Link href="/collections/all" className="hover:text-[#800020] transition-colors">Collections</Link>
+              <ChevronRight size={12} />
+              <span className="text-[#800020] truncate">{formattedTitle}</span>
+            </nav>
+            <h1 className="font-serif text-4xl md:text-5xl text-[#800020] mb-4 uppercase tracking-widest">
+              {formattedTitle}
+            </h1>
+            <p className="text-[#2d2d2d] max-w-2xl mx-auto text-sm tracking-wide leading-relaxed font-bold">
+              {description}
+            </p>
+          </div>
+        )}
 
         <div className="mx-auto max-w-[1440px] px-6 md:px-12 py-16">
           {/* Toolbar */}
@@ -253,93 +287,103 @@ export default async function CollectionPage(props: {
           {slug === 'rakhi-name-necklaces' && (
             <>
 
-              <div className="mb-12 bg-gradient-to-br from-[#800020] to-[#c00030] rounded-2xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
-                <div className="absolute top-0 right-0 opacity-10 scale-150 -translate-y-1/4 translate-x-1/4">
-                  <Gift size={200} />
+              <div className="mb-12 bg-[#801b34] rounded-[16px] p-6 md:p-10 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 animate-in fade-in slide-in-from-bottom-8 duration-700 border border-[#9a2845]">
+                {/* Decorative Box Outline */}
+                <div className="absolute left-[-5%] top-1/2 -translate-y-1/2 opacity-[0.03] scale-[2] pointer-events-none">
+                  <Gift size={200} strokeWidth={1} />
                 </div>
-                <div className="z-10 text-center md:text-left flex-1">
-                  <div className="inline-block bg-white/20 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4 border border-white/30 backdrop-blur-sm">
-                    <Flame size={12} className="inline-block mr-1 text-orange-500" /> Selling Out Fast
+                
+                <div className="z-10 text-center md:text-left flex-1 pl-4 md:pl-12">
+                  <div className="inline-flex bg-[#a73447]/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest mb-4 border border-[#a73447] backdrop-blur-sm items-center gap-1.5">
+                    <Flame size={12} className="fill-current text-orange-400" /> HURRY! SELLING FAST
                   </div>
-                  <h2 className="font-serif text-3xl md:text-5xl mb-4 leading-tight font-bold">
-                    Make Her Smile<br />This Rakhi.
+                  <h2 className="font-serif text-3xl md:text-5xl mb-2 leading-tight font-medium tracking-wide">
+                    Make Her Smile<br /><span className="font-['Dancing_Script'] font-normal text-4xl md:text-6xl text-[#f3efe9]">This Rakhi</span>
                   </h2>
-                  <p className="text-white/90 mb-6 text-lg">
-                    The ultimate personalized gift for your sister. Limited stock available at just ₹349.
+                  <p className="text-white/80 text-xs md:text-sm max-w-xs md:max-w-md mx-auto md:mx-0 mt-4 font-medium tracking-wide leading-relaxed">
+                    The ultimate personalized gift for your sister.<br/> Limited stock available at just ₹349.
                   </p>
                 </div>
-                <div className="z-10 bg-white text-center p-6 md:p-8 rounded-xl shadow-xl w-full md:w-auto min-w-[280px]">
-                  <p className="text-[#800020] text-sm uppercase tracking-widest font-bold mb-2">Secret Brother Code</p>
-                  <p className="text-3xl font-black text-gray-900 tracking-widest select-all bg-[#FDF8F5] py-3 rounded-lg border-2 border-dashed border-[#800020] mb-4">
-                    ILYBEHENA
+                
+                {/* Ticket Style Promo Box */}
+                <div className="z-10 bg-[#fefdfa] text-center p-6 md:p-8 rounded-xl shadow-2xl w-[90%] md:w-auto min-w-[280px] md:min-w-[340px] relative">
+                  {/* Ticket cutouts */}
+                  <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-[#801b34] rounded-full"></div>
+                  <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-[#801b34] rounded-full"></div>
+                  
+                  <p className="text-[#800020] text-[10px] uppercase tracking-widest font-black mb-3">SECRET BROTHER CODE</p>
+                  <div className="border border-dashed border-[#800020] py-4 px-6 mb-4 bg-white mx-2">
+                    <p className="text-2xl md:text-3xl font-black text-gray-900 tracking-[0.2em] select-all">
+                      ILYBEHENA
+                    </p>
+                  </div>
+                  <p className="text-gray-800 text-[10px] md:text-xs font-bold px-4 leading-relaxed">
+                    Use at checkout for extra <br/><span className="text-[#800020]">₹150 OFF</span> on orders above ₹499!
                   </p>
-                  <p className="text-gray-600 text-sm font-bold">Use at checkout for extra ₹150 OFF (orders above ₹499)!</p>
                 </div>
               </div>
 
               {/* Highlight Sections */}
-              <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Fairy Name Necklace Highlight Section */}
-                <div className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-500 p-[2px] rounded-2xl shadow-2xl relative overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
-                  <div className="bg-white rounded-[14px] p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left relative overflow-hidden h-full">
-                    <div className="absolute -top-24 -right-24 opacity-5 scale-150 pointer-events-none">
-                      <Flame size={300} />
+                <div className="bg-gradient-to-br from-[#fcf0ee] to-[#fae6de] border border-[#f1dacd] rounded-xl relative overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 flex flex-col justify-between h-full group p-8">
+                  {/* Watermark/Background texture */}
+                  <div className="absolute inset-0 opacity-20 bg-[url('https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Fairynamenecklace3.webp')] bg-cover bg-center mix-blend-multiply pointer-events-none blur-sm grayscale"></div>
+                  
+                  <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full mb-6">
+                    <div className="inline-flex bg-[#fedcdc]/80 text-[#a03030] px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-6 shadow-sm items-center gap-1.5 backdrop-blur-sm border border-[#fca5a5]">
+                      <Flame size={12} className="fill-current text-[#dc2626] shrink-0" /> 
+                      <span className="whitespace-nowrap leading-tight">SOLD OVER 2000 PIECES!</span>
                     </div>
-                    
-                    <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full">
-                      <div className="inline-flex bg-red-100 text-red-700 px-3 py-1 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-4 border border-red-200 shadow-sm animate-pulse items-center gap-1.5">
-                        <Flame size={12} className="fill-current text-red-600 shrink-0" /> 
-                        <span className="whitespace-nowrap leading-tight">Sold over 2000 pieces!</span>
-                      </div>
-                      <h2 className="font-serif text-2xl md:text-4xl mb-3 leading-tight font-black text-gray-900 uppercase tracking-widest">
-                        Mega <span className="text-red-600">Sale</span>
-                      </h2>
-                      <p className="text-gray-600 mb-5 text-xs md:text-sm font-medium leading-relaxed">
-                        Get the exclusive <strong className="text-gray-900 font-black">Fairy Name Necklace</strong>.
-                      </p>
-                      <Link href="/products/fairy-name-necklace" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 text-white px-6 py-3 rounded-lg font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-xl shadow-red-500/20 w-full md:w-auto text-xs">
-                        Claim For ₹199 <ChevronRight size={16} />
-                      </Link>
-                    </div>
-                    
-                    <div className="z-10 relative w-[80%] max-w-[200px] md:w-1/2 aspect-[4/5] bg-stone-100 rounded-xl overflow-hidden border-4 border-white shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 shrink-0">
+                    <h2 className="font-serif text-3xl md:text-4xl mb-3 leading-none font-bold text-gray-900 tracking-wide flex gap-2 items-center">
+                      Mega <span className="font-['Dancing_Script'] text-5xl md:text-6xl text-[#d75454] font-normal transform -rotate-2 -translate-y-2">Sale</span>
+                    </h2>
+                    <p className="text-gray-800 mb-6 text-xs md:text-sm font-medium tracking-wide">
+                      Get the exclusive <strong>Fairy Name Necklace</strong>.
+                    </p>
+                  </div>
+                  
+                  <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 z-10">
+                    <Link href="/products/fairy-name-necklace" className="inline-flex items-center justify-center gap-2 bg-[#801b34] text-white px-6 py-3 rounded-md font-black uppercase tracking-widest hover:bg-[#6b162b] transition-colors shadow-lg w-full md:w-auto text-[10px]">
+                      SHOP FOR ₹199 <ChevronRight size={14} />
+                    </Link>
+                    <div className="relative w-48 h-48 md:w-56 md:h-56 bg-white rounded-xl overflow-hidden border-4 border-white shadow-xl shrink-0 group-hover:scale-105 transition-transform duration-500">
                       <img src="https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Fairynamenecklace3.webp?v=1745910455" alt="Fairy Name Necklace" className="w-full h-full object-cover" />
-                      <div className="absolute top-3 right-3 bg-red-600 text-white w-14 h-14 rounded-full flex flex-col items-center justify-center text-center shadow-xl rotate-12 font-black leading-none border-2 border-white">
-                        <span className="text-[9px] uppercase tracking-widest opacity-90">Only</span>
-                        <span className="text-base">₹199</span>
+                      <div className="absolute top-2 right-2 bg-[#801b34] text-white w-14 h-14 rounded-full flex flex-col items-center justify-center text-center shadow-lg font-black leading-none border-2 border-white">
+                        <span className="text-[8px] uppercase tracking-widest opacity-90 mb-0.5">ONLY</span>
+                        <span className="text-sm">₹199</span>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Ethereal Hollow Necklace Highlight Section */}
-                <div className="bg-gradient-to-r from-purple-600 via-fuchsia-500 to-pink-500 p-[2px] rounded-2xl shadow-2xl relative overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
-                  <div className="bg-white rounded-[14px] p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left relative overflow-hidden h-full">
-                    <div className="absolute -top-24 -right-24 opacity-5 scale-150 pointer-events-none">
-                      <Sparkles size={300} />
+                <div className="bg-gradient-to-br from-[#f6f0fd] to-[#ede1fb] border border-[#e5d0f6] rounded-xl relative overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200 flex flex-col justify-between h-full group p-8">
+                  {/* Watermark/Background texture */}
+                  <div className="absolute inset-0 opacity-20 bg-[url('https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Ethereal_Hollow_Necklace_-_Silver_G.webp')] bg-cover bg-center mix-blend-multiply pointer-events-none blur-sm grayscale"></div>
+                  
+                  <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full mb-6">
+                    <div className="inline-flex bg-[#e8d5f9]/80 text-[#7e3eaf] px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-6 shadow-sm items-center gap-1.5 backdrop-blur-sm border border-[#d8b4fe]">
+                      <Sparkles size={12} className="fill-current text-[#9333ea] shrink-0" /> 
+                      <span className="whitespace-nowrap leading-tight">TRENDING DESIGN!</span>
                     </div>
-                    
-                    <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full">
-                      <div className="inline-flex bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-4 border border-purple-200 shadow-sm animate-pulse items-center gap-1.5">
-                        <Sparkles size={12} className="fill-current text-purple-600 shrink-0" /> 
-                        <span className="whitespace-nowrap leading-tight">Trending Design!</span>
-                      </div>
-                      <h2 className="font-serif text-2xl md:text-4xl mb-3 leading-tight font-black text-gray-900 uppercase tracking-widest">
-                        Steal <span className="text-purple-600">Deal</span>
-                      </h2>
-                      <p className="text-gray-600 mb-5 text-xs md:text-sm font-medium leading-relaxed">
-                        Get the elegant <strong className="text-gray-900 font-black">Ethereal Hollow Necklace</strong>.
-                      </p>
-                      <Link href="/products/ethereal-hollow-necklace" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 text-white px-6 py-3 rounded-lg font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-xl shadow-purple-500/20 w-full md:w-auto text-xs">
-                        Claim For ₹99 <ChevronRight size={16} />
-                      </Link>
-                    </div>
-                    
-                    <div className="z-10 relative w-[80%] max-w-[200px] md:w-1/2 aspect-[4/5] bg-stone-100 rounded-xl overflow-hidden border-4 border-white shadow-2xl -rotate-3 hover:rotate-0 transition-transform duration-500 shrink-0">
+                    <h2 className="font-serif text-3xl md:text-4xl mb-3 leading-none font-bold text-gray-900 tracking-wide flex gap-2 items-center">
+                      Steal <span className="font-['Dancing_Script'] text-5xl md:text-6xl text-[#a855f7] font-normal transform -rotate-2 -translate-y-2">Deal</span>
+                    </h2>
+                    <p className="text-gray-800 mb-6 text-xs md:text-sm font-medium tracking-wide">
+                      Get the elegant <strong>Ethereal Hollow Necklace</strong>.
+                    </p>
+                  </div>
+                  
+                  <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 z-10">
+                    <Link href="/products/ethereal-hollow-necklace" className="inline-flex items-center justify-center gap-2 bg-[#7e3eaf] text-white px-6 py-3 rounded-md font-black uppercase tracking-widest hover:bg-[#6b2c99] transition-colors shadow-lg w-full md:w-auto text-[10px]">
+                      CLAIM FOR ₹99 <ChevronRight size={14} />
+                    </Link>
+                    <div className="relative w-48 h-48 md:w-56 md:h-56 bg-white rounded-xl overflow-hidden border-4 border-white shadow-xl shrink-0 group-hover:scale-105 transition-transform duration-500">
                       <img src="https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Ethereal_Hollow_Necklace_-_Silver_G.webp?v=1764585187" alt="Ethereal Hollow Necklace" className="w-full h-full object-cover" />
-                      <div className="absolute top-3 right-3 bg-purple-600 text-white w-14 h-14 rounded-full flex flex-col items-center justify-center text-center shadow-xl -rotate-12 font-black leading-none border-2 border-white">
-                        <span className="text-[9px] uppercase tracking-widest opacity-90">Only</span>
-                        <span className="text-base">₹99</span>
+                      <div className="absolute top-2 right-2 bg-[#7e3eaf] text-white w-14 h-14 rounded-full flex flex-col items-center justify-center text-center shadow-lg font-black leading-none border-2 border-white">
+                        <span className="text-[8px] uppercase tracking-widest opacity-90 mb-0.5">ONLY</span>
+                        <span className="text-sm">₹99</span>
                       </div>
                     </div>
                   </div>

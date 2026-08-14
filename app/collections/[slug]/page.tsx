@@ -129,6 +129,11 @@ export default async function CollectionPage(props: {
           return tagsStr.includes('rakhi-for-him');
         }
 
+        if (slug === 'rakhi-name-necklaces') {
+          const allowedWords = ['necklace', 'rakhi', 'anklet', 'bracelet', 'earrings'];
+          return allowedWords.some(w => titleStr.includes(w));
+        }
+
         // Rakhi fallback (return all personalized items if no specific match)
         if (slug.includes('rakhi')) {
            return true; 

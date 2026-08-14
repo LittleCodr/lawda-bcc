@@ -83,7 +83,7 @@ export default function ProductUI({ product }: ProductUIProps) {
   const isAvailable = true; 
 
   const productTitleLower = (product.title || "").toLowerCase();
-  const isNamePersonalised = productTitleLower.includes('name') || productTitleLower.includes('initial');
+  const isNamePersonalised = productTitleLower.includes('name') || productTitleLower.includes('initial') || product.handle === '12-in-1-jhumkas-box';
   const isPhotoPersonalised = productTitleLower.includes('photo') || productTitleLower.includes('picture');
 
   const basePrice = selectedVariant ? parseFloat(selectedVariant.price) : 0;

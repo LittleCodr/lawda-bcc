@@ -1,7 +1,7 @@
 import { initializeApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
-import { getAnalytics, isSupported, logEvent } from "firebase/analytics";
+import { getAnalytics, isSupported, logEvent, setUserProperties } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCDrhkAdOlVtMc4j2AsJgOR-7dZ-qyy9b8",
@@ -32,6 +32,12 @@ export const logAppEvent = (eventName: string, eventParams?: any) => {
   // 1. Google Analytics (Firebase)
   if (analytics) {
     logEvent(analytics, eventName, eventParams);
+  }
+};
+
+export const setAppUserProperties = (properties: any) => {
+  if (analytics) {
+    setUserProperties(analytics, properties);
   }
 
   // 2. Meta Pixel Tracking

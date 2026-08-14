@@ -45,9 +45,9 @@ export default function RakhiPopup() {
         <div className="p-8 text-center bg-[#FDF8F5]">
           <p className="text-gray-700 mb-6 font-medium leading-relaxed">
             {isForHim ? (
-              <>Make him smile this Rakshabandhan. Use this secret code at checkout to get an extra <strong className="text-[#800020] font-bold text-xl">₹150 OFF</strong> on these premium gifts for your brother!</>
+              <>Make him smile this Rakshabandhan. Use this secret code at checkout to get an extra <strong className="text-[#800020] font-bold text-xl">₹150 OFF</strong> (orders above ₹499) on these premium gifts for your brother!</>
             ) : (
-              <>Make her smile this Rakshabandhan. Use this secret code at checkout to get an extra <strong className="text-[#800020] font-bold text-xl">₹150 OFF</strong> on these beautiful name necklaces!</>
+              <>Make her smile this Rakshabandhan. Use this secret code at checkout to get an extra <strong className="text-[#800020] font-bold text-xl">₹150 OFF</strong> (orders above ₹499) on these beautiful name necklaces!</>
             )}
           </p>
           

@@ -432,6 +432,10 @@ export default function CheckoutPage() {
                         }
 
                         if (promoCode === "ILYBEHENA" || promoCode === "WELCOME15") {
+                          if (baseTotal <= 499) {
+                            setPromoError("This promo code is only valid on orders above ₹499.");
+                            return;
+                          }
                           setPromoApplied(true);
                           setPromoError("");
                         } else {

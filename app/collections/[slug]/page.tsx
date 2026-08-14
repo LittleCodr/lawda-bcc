@@ -273,7 +273,7 @@ export default async function CollectionPage(props: {
                   <p className="text-3xl font-black text-gray-900 tracking-widest select-all bg-[#FDF8F5] py-3 rounded-lg border-2 border-dashed border-[#800020] mb-4">
                     ILYBEHENA
                   </p>
-                  <p className="text-gray-600 text-sm font-bold">Use at checkout for extra ₹150 OFF!</p>
+                  <p className="text-gray-600 text-sm font-bold">Use at checkout for extra ₹150 OFF (orders above ₹499)!</p>
                 </div>
               </div>
 

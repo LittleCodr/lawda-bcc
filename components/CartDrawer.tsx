@@ -3,13 +3,29 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Minus, Plus, X, Lock, ShieldCheck, Gift } from "lucide-react";
+import { Minus, Plus, X, Lock, ShieldCheck, Gift, Clock } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useCartStore } from "@/lib/store";
 
 export default function CartDrawer() {
-  const { items, isOpen, setIsOpen, updateQuantity, removeItem, totalPrice } = useCartStore();
+  const { items, isOpen, setIsOpen, updateQuantity, removeItem, totalPrice, totalItems, autoDiscountPercentage, autoDiscountAmount, discountedTotal } = useCartStore();
 
   const closeCart = () => setIsOpen(false);
+
+  const [timeLeft, setTimeLeft] = useState(600); // 10 minutes in seconds
+
+  useEffect(() => {
+    if (!isOpen || timeLeft <= 0) return;
+    const timer = setInterval(() => {
+      setTimeLeft(prev => prev - 1);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [isOpen, timeLeft]);
+
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  const itemCount = totalItems ? totalItems() : 0;
+  const progressPercent = itemCount >= 3 ? 100 : itemCount === 2 ? 66 : itemCount === 1 ? 33 : 0;
 
   return (
     <AnimatePresence>
@@ -35,6 +51,35 @@ export default function CartDrawer() {
                 <X size={24} strokeWidth={1.5} />
               </button>
             </div>
+
+            {/* Timer & Gamification Bar */}
+            {items.length > 0 && (
+              <div className="px-6 py-4 bg-white shrink-0 border-b border-[#E5B8B7]/30 flex flex-col gap-3">
+                <div className="flex items-center justify-between text-xs font-bold uppercase tracking-widest">
+                  <span className="text-orange-600 flex items-center gap-1"><Clock size={14}/> Cart Reserved For</span>
+                  <span className="text-orange-600 font-mono text-sm">{minutes}:{seconds.toString().padStart(2, '0')}</span>
+                </div>
+                
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex justify-between text-[10px] uppercase font-bold text-stone-500">
+                    <span>Buy 2: 15% Off</span>
+                    <span>Buy 3+: 33% Off</span>
+                  </div>
+                  <div className="w-full bg-stone-100 h-2 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-emerald-500 transition-all duration-700"
+                      style={{ width: `${progressPercent}%` }}
+                    />
+                  </div>
+                  <div className="text-[10px] text-center mt-1 font-medium text-[#800020]">
+                    {itemCount === 0 ? "Add items to unlock discounts!" :
+                     itemCount === 1 ? "Add 1 more item to unlock 15% OFF!" :
+                     itemCount === 2 ? "Add 1 more item to unlock 33% OFF!" :
+                     "You've unlocked the maximum 33% OFF!"}
+                  </div>
+                </div>
+              </div>
+            )}
 
             <div className="flex-1 overflow-y-auto px-6 py-6">
               {items.length === 0 ? (
@@ -123,11 +168,24 @@ export default function CartDrawer() {
             {items.length > 0 && (
               <div className="px-6 py-8 border-t border-[#E5B8B7]/30 shrink-0 bg-white shadow-[0_-10px_40px_rgba(0,0,0,0.03)]">
                 <div className="space-y-3 mb-8">
-                  <div className="flex items-baseline justify-between border-b border-[#E5B8B7]/20 pb-4">
+                  <div className="flex items-baseline justify-between border-b border-[#E5B8B7]/20 pb-2">
                     <span className="text-xs tracking-widest uppercase text-[#2d2d2d] font-bold">Subtotal</span>
-                    <span className="text-2xl font-serif text-[#800020]">₹{totalPrice().toFixed(2)}</span>
+                    <span className="text-xl font-serif text-[#800020]">₹{totalPrice().toFixed(2)}</span>
                   </div>
-                  <p className="text-[10px] uppercase tracking-widest text-[#2d2d2d] opacity-60 text-center">Taxes and shipping calculated at checkout</p>
+                  
+                  {autoDiscountAmount && autoDiscountAmount() > 0 && (
+                    <div className="flex items-baseline justify-between border-b border-[#E5B8B7]/20 pb-2 text-emerald-600">
+                      <span className="text-xs tracking-widest uppercase font-bold">Auto Discount ({autoDiscountPercentage()}%)</span>
+                      <span className="text-xl font-serif">-₹{autoDiscountAmount().toFixed(2)}</span>
+                    </div>
+                  )}
+
+                  <div className="flex items-baseline justify-between pt-1">
+                    <span className="text-xs tracking-widest uppercase text-[#2d2d2d] font-bold">Total</span>
+                    <span className="text-2xl font-serif text-[#800020]">₹{discountedTotal ? discountedTotal().toFixed(2) : totalPrice().toFixed(2)}</span>
+                  </div>
+
+                  <p className="text-[10px] uppercase tracking-widest text-[#2d2d2d] opacity-60 text-center mt-2">Taxes and shipping calculated at checkout</p>
                 </div>
                 
                 <Link href="/checkout" onClick={closeCart} className="block w-full bg-[#800020] text-white py-5 text-center text-xs tracking-widest uppercase font-bold hover:bg-[#E5B8B7] hover:text-[#800020] transition-colors mb-6 shadow-lg">

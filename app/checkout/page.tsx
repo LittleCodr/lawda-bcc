@@ -11,7 +11,7 @@ import { logAppEvent, db } from "@/lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
 
 export default function CheckoutPage() {
-  const { items, totalPrice, clearCart } = useCartStore();
+  const { items, totalPrice, clearCart, autoDiscountAmount: getAutoDiscountAmount, autoDiscountPercentage: getAutoDiscountPercentage } = useCartStore();
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
 
@@ -33,10 +33,13 @@ export default function CheckoutPage() {
   const [promoError, setPromoError] = useState("");
 
   const baseTotal = totalPrice();
+  const cartAutoDiscount = getAutoDiscountAmount ? getAutoDiscountAmount() : 0;
+  const cartDiscountPercent = getAutoDiscountPercentage ? getAutoDiscountPercentage() : 0;
   const deliveryFee = deliveryMethod === "premium" ? 300 : 0;
-  const discountAmount = promoApplied ? 150 : 0;
+  const promoDiscountAmount = promoApplied ? 150 : 0;
+  const totalDiscount = cartAutoDiscount + promoDiscountAmount;
   const isAdmin = user?.email && ["littlecodr@gmail.com", "srijanrai966@gmail.com", "coderdracwound@gmail.com"].includes(user.email.toLowerCase());
-  const finalTotal = isAdmin ? 1 : Math.max(0, baseTotal + deliveryFee - discountAmount);
+  const finalTotal = isAdmin ? 1 : Math.max(0, baseTotal - totalDiscount + deliveryFee);
   const loggedBeginCheckout = useRef(false);
 
   useEffect(() => {
@@ -176,7 +179,7 @@ export default function CheckoutPage() {
         items: JSON.parse(JSON.stringify(items)),
         shippingDetails: formData,
         promoCode: promoApplied ? promoCode : null,
-        discountAmount: discountAmount,
+        discountAmount: totalDiscount,
         abandonedEmailSent: false,
         createdAt: new Date(),
       });
@@ -438,9 +441,15 @@ export default function CheckoutPage() {
                   <span>Subtotal</span>
                   <span>₹{baseTotal}</span>
                 </div>
+                {cartAutoDiscount > 0 && (
+                  <div className="flex justify-between text-sm font-bold text-emerald-600">
+                    <span>Auto Discount ({cartDiscountPercent}%)</span>
+                    <span>-₹{cartAutoDiscount}</span>
+                  </div>
+                )}
                 {promoApplied && (
                   <div className="flex justify-between text-sm font-bold text-emerald-600">
-                    <span>Discount ({promoCode})</span>
+                    <span>Promo Discount ({promoCode})</span>
                     <span>-₹150</span>
                   </div>
                 )}

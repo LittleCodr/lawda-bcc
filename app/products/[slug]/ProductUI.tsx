@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useCartStore } from "@/lib/store";
 import ProductImageGallery from "@/components/ProductImageGallery";
-import { Gift, ShieldCheck, Truck, Star, Heart, CheckCircle2, ChevronRight, ShoppingBag, Zap, Clock, Smile, Award, Users, Flame } from "lucide-react";
+import { Gift, ShieldCheck, Truck, Star, Heart, CheckCircle2, ChevronRight, ShoppingBag, Zap, Clock, Smile, Award, Users, Flame, Sparkles } from "lucide-react";
 import { logAppEvent, db } from "@/lib/firebase";
 import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 import { useAuth } from "@/lib/auth-context";
@@ -26,7 +26,14 @@ export default function ProductUI({ product }: ProductUIProps) {
   const [customPhotoUrl, setCustomPhotoUrl] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const [isGift, setIsGift] = useState(false);
+  const [customFont, setCustomFont] = useState("font-pacifico");
+  const [viewers, setViewers] = useState(0);
+  const [stockLeft, setStockLeft] = useState(0);
 
+  useEffect(() => {
+    setViewers(Math.floor(Math.random() * 20) + 15);
+    setStockLeft(Math.floor(Math.random() * 5) + 2);
+  }, []);
   // Tabs state
   const [activeTab, setActiveTab] = useState("details");
 
@@ -69,7 +76,7 @@ export default function ProductUI({ product }: ProductUIProps) {
           addedAt: new Date()
         });
         setIsFavourite(true);
-        toast.success("Added to favourites! ❤️");
+        toast.success("Added to favourites!");
       }
     } catch (e) {
       console.error(e);
@@ -165,6 +172,7 @@ export default function ProductUI({ product }: ProductUIProps) {
       variantTitle: selectedVariant.title !== "Default Title" ? selectedVariant.title : undefined,
       customName: isNamePersonalised ? customName : undefined,
       customPhotoUrl: isPhotoPersonalised ? customPhotoUrl : undefined,
+      customFont: isNamePersonalised ? customFont : undefined,
       isGift,
     });
     
@@ -187,7 +195,7 @@ export default function ProductUI({ product }: ProductUIProps) {
     setCustomPhotoUrl("");
     setIsGift(false);
     
-    toast.success("Added to Cart! 🎁");
+    toast.success("Added to Cart!");
   };
 
   const isPersonalizationComplete = 
@@ -325,19 +333,51 @@ export default function ProductUI({ product }: ProductUIProps) {
             )}
 
             {isNamePersonalised && (
-              <div className="flex flex-col gap-2">
-                <label className="text-[10px] uppercase tracking-widest font-bold text-[#2d2d2d] flex justify-between">
-                  <span>Enter Name to Engrave</span>
-                  <span className="text-[#800020]">{customName.length}/7</span>
-                </label>
-                <input 
-                  type="text" 
-                  maxLength={7}
-                  value={customName}
-                  onChange={(e) => setCustomName(e.target.value)}
-                  placeholder="e.g. SOPHIA"
-                  className="border border-gray-200 focus:border-[#800020] bg-gray-50/50 rounded-lg px-4 py-3 text-sm text-[#2d2d2d] font-bold outline-none transition-all placeholder:text-gray-400 placeholder:font-normal"
-                />
+              <div className="flex flex-col gap-5">
+                <div className="flex flex-col gap-2">
+                  <label className="text-[10px] uppercase tracking-widest font-bold text-[#2d2d2d] flex justify-between">
+                    <span>Enter Name to Engrave</span>
+                    <span className="text-[#800020]">{customName.length}/7</span>
+                  </label>
+                  <input 
+                    type="text" 
+                    maxLength={7}
+                    value={customName}
+                    onChange={(e) => setCustomName(e.target.value)}
+                    placeholder="e.g. SOPHIA"
+                    className="border border-gray-200 focus:border-[#800020] bg-gray-50/50 rounded-lg px-4 py-3 text-sm text-[#2d2d2d] font-bold outline-none transition-all placeholder:text-gray-400 placeholder:font-normal"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-2">
+                  <label className="text-[10px] uppercase tracking-widest font-bold text-[#2d2d2d]">Select Font</label>
+                  <div className="flex gap-2">
+                    {['font-pacifico', 'font-dancing', 'font-greatvibes'].map(fontClass => (
+                      <button
+                        key={fontClass}
+                        onClick={() => setCustomFont(fontClass)}
+                        className={`flex-1 py-3 px-2 border rounded-md text-center transition-all ${
+                          customFont === fontClass 
+                            ? 'border-[#800020] bg-[#fdfaf8] text-[#800020] shadow-sm' 
+                            : 'border-gray-200 text-gray-500 hover:border-[#800020]'
+                        }`}
+                      >
+                        <span className={`text-lg leading-none ${fontClass}`}>
+                          {fontClass === 'font-pacifico' ? 'Pacifico' : fontClass === 'font-dancing' ? 'Dancing' : 'Great Vibes'}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {customName && (
+                  <div className="bg-[#fdfaf8] border border-[#800020]/20 rounded-lg p-6 flex flex-col items-center justify-center gap-2 shadow-sm relative overflow-hidden mt-2">
+                    <span className="text-[9px] uppercase tracking-widest text-[#800020] font-bold absolute top-2 left-3">Live Preview</span>
+                    <p className={`text-3xl text-stone-800 ${customFont} mt-2 text-center break-all`}>
+                      {customName}
+                    </p>
+                  </div>
+                )}
               </div>
             )}
 
@@ -407,12 +447,24 @@ export default function ProductUI({ product }: ProductUIProps) {
                 </div>
                 <div>
                   <h4 className="text-[#800020] font-bold text-sm mb-1 uppercase tracking-widest flex items-center gap-2">
-                    ✨ Rakhi Special
+                    <Sparkles size={14} className="inline-block" /> Rakhi Special
                   </h4>
                   <p className="text-[#2d2d2d] text-xs font-medium leading-relaxed">
                     Brother, use secret code <strong className="font-black text-[#800020] bg-white px-2 py-0.5 rounded border border-[#800020]/20">ILYBEHENA</strong> at checkout to get an extra <strong className="text-[#800020]">₹150 OFF</strong> on this necklace!
                   </p>
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* FOMO Elements */}
+          {(viewers > 0) && (
+            <div className="flex flex-col gap-2 mb-4">
+              <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-orange-700 bg-orange-50 border border-orange-200 px-3 py-2.5 rounded-md shadow-sm">
+                <Users size={14} /> {viewers} people are viewing this right now
+              </div>
+              <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-red-700 bg-red-50 border border-red-200 px-3 py-2.5 rounded-md shadow-sm">
+                <Flame size={14} /> Hurry, only {stockLeft} left in stock!
               </div>
             </div>
           )}

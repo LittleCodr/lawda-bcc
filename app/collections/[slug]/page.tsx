@@ -3,7 +3,7 @@ import path from "path";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ChevronRight, Gift, ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronRight, Gift, ChevronDown, ChevronUp, Flame } from "lucide-react";
 import { rakhiConfig } from "./rakhi-config";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -240,7 +240,7 @@ export default async function CollectionPage(props: {
                 </div>
                 <div className="z-10 text-center md:text-left flex-1">
                   <div className="inline-block bg-white/20 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest mb-4 border border-white/30 backdrop-blur-sm">
-                    🔥 Selling Out Fast
+                    <Flame size={12} className="inline-block mr-1 text-orange-500" /> Selling Out Fast
                   </div>
                   <h2 className="font-serif text-3xl md:text-5xl mb-4 leading-tight font-bold">
                     Make Her Smile<br />This Rakhi.

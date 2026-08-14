@@ -69,6 +69,7 @@ import NextTopLoader from "nextjs-toploader";
 import { AuthProvider } from "@/lib/auth-context";
 import { Suspense } from "react";
 import RakhiPopup from "@/components/RakhiPopup";
+import SalesToasts from "@/components/SalesToasts";
 
 export default function RootLayout({
   children,
@@ -80,7 +81,7 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Pacifico&family=Dancing+Script:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet" />
       </head>
       <body className="min-h-full flex flex-col bg-stone-50 text-stone-900 font-sans">
         <NextTopLoader color="#800020" showSpinner={false} />
@@ -113,6 +114,7 @@ export default function RootLayout({
           <Footer />
           <CartDrawer />
           <RakhiPopup />
+          <SalesToasts />
           <Toaster 
             position="top-center" 
             toastOptions={{

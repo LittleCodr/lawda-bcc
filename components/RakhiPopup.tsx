@@ -62,7 +62,7 @@ export default function RakhiPopup() {
             onClick={() => {
               const code = isForHim ? "WELCOME15" : "ILYBEHENA";
               navigator.clipboard.writeText(code);
-              toast.success("Code copied to clipboard! 🎁");
+              toast.success("Code copied to clipboard!");
               setIsOpen(false);
             }}
             className="w-full bg-[#800020] text-white py-4 rounded-xl text-sm font-bold uppercase tracking-widest shadow-lg hover:bg-[#600018] transition-colors"

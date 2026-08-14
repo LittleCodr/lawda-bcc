@@ -11,6 +11,7 @@ export interface CartItem {
   variantTitle?: string;
   customName?: string;
   customPhotoUrl?: string;
+  customFont?: string;
   isGift?: boolean;
   cartItemId?: string; // Unique identifier for the cart instance
 }
@@ -25,6 +26,9 @@ interface CartState {
   clearCart: () => void;
   totalItems: () => number;
   totalPrice: () => number;
+  autoDiscountPercentage: () => number;
+  autoDiscountAmount: () => number;
+  discountedTotal: () => number;
 }
 
 export const useCartStore = create<CartState>()(
@@ -42,6 +46,7 @@ export const useCartStore = create<CartState>()(
               i.variantId === item.variantId &&
               i.customName === item.customName &&
               i.customPhotoUrl === item.customPhotoUrl &&
+              i.customFont === item.customFont &&
               i.isGift === item.isGift
           );
 
@@ -80,9 +85,24 @@ export const useCartStore = create<CartState>()(
       totalItems: () => {
         return get().items.reduce((total, item) => total + item.quantity, 0);
       },
-      totalPrice: () => {
+totalPrice: () => {
         return get().items.reduce((total, item) => total + item.price * item.quantity, 0);
       },
+      autoDiscountPercentage: () => {
+        const count = get().totalItems();
+        if (count >= 3) return 33;
+        if (count === 2) return 15;
+        return 0;
+      },
+      autoDiscountAmount: () => {
+        const raw = get().totalPrice();
+        const pct = get().autoDiscountPercentage();
+        return Math.floor(raw * (pct / 100));
+      },
+      discountedTotal: () => {
+        return get().totalPrice() - get().autoDiscountAmount();
+      },
+
     }),
     {
       name: 'everlasting-cart',

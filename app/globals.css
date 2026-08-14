@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Pacifico&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -59,4 +60,16 @@ body {
 
 .text-balance {
   text-wrap: balance;
+}
+
+.font-pacifico {
+  font-family: 'Pacifico', cursive;
+}
+
+.font-dancing {
+  font-family: 'Dancing Script', cursive;
+}
+
+.font-greatvibes {
+  font-family: 'Great Vibes', cursive;
 }

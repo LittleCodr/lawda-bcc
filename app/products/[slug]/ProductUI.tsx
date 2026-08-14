@@ -483,7 +483,7 @@ export default function ProductUI({ product }: ProductUIProps) {
                     <Sparkles size={14} className="inline-block" /> Rakhi Special
                   </h4>
                   <p className="text-[#2d2d2d] text-xs font-medium leading-relaxed">
-                    Brother, use secret code <strong className="font-black text-[#800020] bg-white px-2 py-0.5 rounded border border-[#800020]/20">ILYBEHENA</strong> at checkout to get an extra <strong className="text-[#800020]">₹150 OFF</strong> on this necklace!
+                    Brother, use secret code <strong className="font-black text-[#800020] bg-white px-2 py-0.5 rounded border border-[#800020]/20">ILYBEHENA</strong> at checkout to get an extra <strong className="text-[#800020]">₹150 OFF</strong> on orders above ₹499!
                   </p>
                 </div>
               </div>
@@ -521,7 +521,7 @@ export default function ProductUI({ product }: ProductUIProps) {
             <button
               onClick={handleAddToCart}
               disabled={isButtonDisabled}
-              className="flex-1 flex items-center justify-center border border-[#800020] text-[#800020] py-4 uppercase tracking-widest text-[10px] font-bold rounded-lg hover:bg-[#800020] hover:text-white transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed hidden sm:flex"
+              className="flex-1 flex items-center justify-center border border-[#800020] text-[#800020] py-4 uppercase tracking-widest text-[10px] font-bold rounded-lg hover:bg-[#800020] hover:text-white transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Buy Now
             </button>

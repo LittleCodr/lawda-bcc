@@ -43,7 +43,7 @@ export default function CheckoutPage() {
   const loggedBeginCheckout = useRef(false);
 
   useEffect(() => {
-    if (finalTotal <= 3000 && paymentMethod === "cod") {
+    if (finalTotal > 10000 && paymentMethod === "cod") {
       setPaymentMethod("prepaid");
     }
   }, [finalTotal, paymentMethod]);
@@ -342,15 +342,13 @@ export default function CheckoutPage() {
                         <span className="text-xs text-stone-500">Pay securely via UPI, Cards, or Netbanking.</span>
                       </div>
                     </label>
-                    {finalTotal > 3000 && (
-                      <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${paymentMethod === 'cod' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
-                        <input type="radio" name="payment" value="cod" checked={paymentMethod === 'cod'} onChange={() => setPaymentMethod('cod')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
-                        <div className="flex flex-col">
-                          <span className="font-bold text-sm text-stone-900">Cash on Delivery (50% Advance)</span>
-                          <span className="text-xs text-stone-500">Pay 50% securely now as advance, pay the rest on delivery.</span>
-                        </div>
-                      </label>
-                    )}
+                    <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${paymentMethod === 'cod' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
+                      <input type="radio" name="payment" value="cod" checked={paymentMethod === 'cod'} onChange={() => setPaymentMethod('cod')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
+                      <div className="flex flex-col">
+                        <span className="font-bold text-sm text-stone-900">Cash on Delivery (50% Advance)</span>
+                        <span className="text-xs text-stone-500">Pay 50% securely now as advance, pay the rest on delivery.</span>
+                      </div>
+                    </label>
                   </div>
                 </div>
 

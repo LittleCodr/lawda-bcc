@@ -16,6 +16,18 @@ export const rakhiConfig: Record<string, {
       { q: "What is your return policy for personalized gifts?", a: "Because personalized items are made uniquely for you, we cannot accept returns unless the product arrives damaged or defective." }
     ]
   },
+  "rakhi-for-him": {
+    title: "Rakhis & Bracelets for Him",
+    description: "Shop premium personalized Rakhi gifts for your brother. Custom leather wallets, engraved keychains, and bracelets.",
+    copy: "Looking for a Rakhi gift for your brother that he will actually use and appreciate? Our collection of personalized gifts for men is designed with utility and style in mind. From premium vegan leather wallets engraved with his name to sleek stainless steel bracelets and custom keychains, we have something for every type of brother. These functional keepsakes serve as a daily reminder of your bond. Order now and enjoy fast, reliable shipping across India just in time for Raksha Bandhan.",
+    faqs: [
+      { q: "What is a good Rakhi gift for an elder brother?", a: "Our engraved premium vegan leather wallets and custom initial keychains are highly appreciated by elder brothers for their practicality and style." },
+      { q: "Do you offer gifts for younger brothers?", a: "Yes, our customized braided leather bracelets and photo magnets are great options for younger brothers." },
+      { q: "Can I engrave a message on the wallet?", a: "Yes, most of our wallets allow for name or short message engraving." },
+      { q: "How long will the engraving last?", a: "We use high-precision laser engraving that is permanent and will not fade over time." },
+      { q: "Is cash on delivery available?", a: "Yes, Cash on Delivery is available for an additional fee of ₹100." }
+    ]
+  },
   "rakhi-gifts-for-sister": {
     title: "Rakhi Gifts for Sister",
     description: "Shop the best Rakhi gifts for your sister. From personalized name necklaces to custom bracelets, find the perfect gift under ₹499.",

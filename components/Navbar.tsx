@@ -34,6 +34,7 @@ const NAV_MENU = [
     href: "/collections/all",
     subLinks: [
       { label: "Rakhi Gifts", href: "/collections/rakhi-gifts" },
+      { label: "Rakhis for Him", href: "/collections/rakhi-for-him" },
       { label: "Rakhi Name Necklaces", href: "/collections/rakhi-name-necklaces" },
       { label: "Valentine's Day", href: "/collections/valentine-gift" },
       { label: "Wedding Gifts", href: "/collections/wedding-gift" }

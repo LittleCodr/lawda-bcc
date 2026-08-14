@@ -175,7 +175,7 @@ export default function CheckoutPage() {
         deliveryMethod: deliveryMethod,
         items: JSON.parse(JSON.stringify(items)),
         shippingDetails: formData,
-        promoCode: promoApplied ? "ILYBEHENA" : null,
+        promoCode: promoApplied ? promoCode : null,
         discountAmount: discountAmount,
         abandonedEmailSent: false,
         createdAt: new Date(),
@@ -404,7 +404,7 @@ export default function CheckoutPage() {
                     <button 
                       type="button"
                       onClick={() => {
-                        if (promoCode === "ILYBEHENA") {
+                        if (promoCode === "ILYBEHENA" || promoCode === "WELCOME15") {
                           setPromoApplied(true);
                           setPromoError("");
                         } else {
@@ -440,7 +440,7 @@ export default function CheckoutPage() {
                 </div>
                 {promoApplied && (
                   <div className="flex justify-between text-sm font-bold text-emerald-600">
-                    <span>Discount (ILYBEHENA)</span>
+                    <span>Discount ({promoCode})</span>
                     <span>-₹150</span>
                   </div>
                 )}

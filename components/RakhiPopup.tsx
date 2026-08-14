@@ -2,10 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { X, Gift } from "lucide-react";
+import { usePathname } from "next/navigation";
 import toast from "react-hot-toast";
 
 export default function RakhiPopup() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const isForHim = pathname === "/collections/rakhi-for-him";
 
   useEffect(() => {
     // Show popup after 2 seconds
@@ -33,23 +36,32 @@ export default function RakhiPopup() {
             <X size={20} />
           </button>
           <Gift size={48} className="mx-auto mb-4 opacity-90" />
-          <h2 className="font-serif text-3xl font-bold mb-2">Wait, Brother!</h2>
+          <h2 className="font-serif text-3xl font-bold mb-2">
+            {isForHim ? "Wait, Sister!" : "Wait, Brother!"}
+          </h2>
           <p className="text-sm opacity-90 uppercase tracking-widest font-bold">Don't checkout without this</p>
         </div>
         
         <div className="p-8 text-center bg-[#FDF8F5]">
           <p className="text-gray-700 mb-6 font-medium leading-relaxed">
-            Make her smile this Rakshabandhan. Use this secret code at checkout to get an extra <strong className="text-[#800020] font-bold text-xl">₹150 OFF</strong> on these beautiful name necklaces!
+            {isForHim ? (
+              <>Make him smile this Rakshabandhan. Use this secret code at checkout to get an extra <strong className="text-[#800020] font-bold text-xl">₹150 OFF</strong> on these premium gifts for your brother!</>
+            ) : (
+              <>Make her smile this Rakshabandhan. Use this secret code at checkout to get an extra <strong className="text-[#800020] font-bold text-xl">₹150 OFF</strong> on these beautiful name necklaces!</>
+            )}
           </p>
           
           <div className="bg-white border-2 border-dashed border-[#800020] rounded-xl p-4 mb-6">
             <span className="text-xs text-gray-500 uppercase tracking-widest block mb-1 font-bold">Promo Code</span>
-            <span className="text-2xl font-black text-[#800020] tracking-widest select-all">ILYBEHENA</span>
+            <span className="text-2xl font-black text-[#800020] tracking-widest select-all">
+              {isForHim ? "WELCOME15" : "ILYBEHENA"}
+            </span>
           </div>
 
           <button 
             onClick={() => {
-              navigator.clipboard.writeText("ILYBEHENA");
+              const code = isForHim ? "WELCOME15" : "ILYBEHENA";
+              navigator.clipboard.writeText(code);
               toast.success("Code copied to clipboard! 🎁");
               setIsOpen(false);
             }}

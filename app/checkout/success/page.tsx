@@ -76,11 +76,11 @@ function SuccessContent() {
           <CheckCircle size={48} className="text-green-600 mb-4" strokeWidth={1.5} />
           <h1 className="font-serif-display text-4xl md:text-5xl mb-4">Thank You!</h1>
           <p className="text-muted max-w-md mx-auto mb-4 leading-relaxed">
-            Your payment was successful and your order has been placed. We will begin processing your items shortly.
+            Your payment was successful and your order has been placed! We've sent a detailed confirmation email to your inbox.
           </p>
           <p className="text-muted max-w-md mx-auto mb-10 text-sm">
-            This order has been saved to your account. You can view your order history anytime from your{" "}
-            <Link href="/account?tab=orders" className="underline text-ink">Account</Link> page.
+            You can track your order status anytime by visiting the{" "}
+            <Link href="/account?tab=orders" className="underline text-ink font-medium">Orders</Link> tab in your account section.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Link 

@@ -98,7 +98,7 @@ export default async function CollectionPage(props: {
         
         // Intent mappings
         if (slug === 'rakhi-name-necklaces') {
-          return titleStr.includes('name necklace') || typeStr.includes('necklace') || tagsStr.includes('name necklace');
+          return titleStr.includes('name necklace') || typeStr.includes('necklace') || tagsStr.includes('name necklace') || tagsStr.includes('rakhi-name-necklaces');
         }
 
         if (slug.includes('gifts-for-her') || slug.includes('girlfriend') || slug.includes('wife') || slug.includes('women') || slug.includes('sister')) {

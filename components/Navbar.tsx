@@ -89,7 +89,7 @@ export default function Navbar() {
         {/* Left Side: Navigation Links */}
         <div className="flex-1 relative z-10 flex items-center">
           <button
-            className="xl:hidden p-2 -ml-2 text-[#2d2d2d] hover:text-[#800020] transition-colors"
+            className="xl:hidden p-3 -ml-3 text-[#2d2d2d] hover:text-[#800020] transition-colors"
             aria-label="Open menu"
             onClick={() => setMobileOpen(true)}
           >
@@ -147,18 +147,18 @@ export default function Navbar() {
         </Link>
 
         {/* Right Side: Icons */}
-        <div className="flex items-center gap-4 sm:gap-8 flex-1 justify-end relative z-10 text-[#2d2d2d]">
-          <button aria-label="Search" onClick={() => setSearchOpen(true)} className="flex flex-col items-center gap-1 hover:text-[#800020] transition-colors group">
-             <Search size={20} strokeWidth={1.5} className="group-hover:-translate-y-0.5 transition-transform" />
+        <div className="flex items-center gap-2 sm:gap-8 flex-1 justify-end relative z-10 text-[#2d2d2d]">
+          <button aria-label="Search" onClick={() => setSearchOpen(true)} className="p-2 sm:p-0 flex flex-col items-center gap-1 hover:text-[#800020] transition-colors group">
+             <Search size={22} strokeWidth={1.5} className="group-hover:-translate-y-0.5 transition-transform sm:w-5 sm:h-5" />
              <span className="hidden sm:block text-[10px] uppercase font-bold tracking-widest">Search</span>
           </button>
-          <Link href="/account" aria-label="Account" className="flex flex-col items-center gap-1 hover:text-[#800020] transition-colors group">
-             <User size={20} strokeWidth={1.5} className="group-hover:-translate-y-0.5 transition-transform" />
+          <Link href="/account" aria-label="Account" className="p-2 sm:p-0 flex flex-col items-center gap-1 hover:text-[#800020] transition-colors group">
+             <User size={22} strokeWidth={1.5} className="group-hover:-translate-y-0.5 transition-transform sm:w-5 sm:h-5" />
              <span className="hidden sm:block text-[10px] uppercase font-bold tracking-widest">Account</span>
           </Link>
           <button
             aria-label="Cart"
-            className="flex flex-col items-center gap-1 hover:text-[#800020] transition-colors relative group"
+            className="p-2 sm:p-0 -mr-2 sm:mr-0 flex flex-col items-center gap-1 hover:text-[#800020] transition-colors relative group"
             onClick={() => setIsOpen(true)}
           >
             <div className="relative">

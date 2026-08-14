@@ -117,24 +117,24 @@ export default async function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       
       {/* 1. Hero Section */}
-      <section className="bg-white px-4 md:px-8 pt-4 pb-24">
-        <div className="relative w-full h-auto min-h-[600px] md:h-[650px] bg-[#f9f2ed] rounded-[40px] overflow-visible flex items-center shadow-sm">
-          <div className="absolute inset-0 w-full h-full rounded-[40px] overflow-hidden z-0">
+      <section className="bg-white px-3 md:px-8 pt-4 pb-16 md:pb-24">
+        <div className="relative w-full h-auto min-h-[85vh] md:min-h-[650px] bg-[#f9f2ed] rounded-[24px] md:rounded-[40px] overflow-visible flex items-center justify-center md:justify-start shadow-sm">
+          <div className="absolute inset-0 w-full h-full rounded-[24px] md:rounded-[40px] overflow-hidden z-0">
              <Image 
                 src="/images/products/name-necklace-rakhi-gift-11.jpg" 
                 alt="Personalized Gifts" 
                 fill 
-                className="object-cover object-right md:object-[60%_center] opacity-40 md:opacity-100"
+                className="object-cover object-right md:object-[60%_center]"
                 priority
              />
-             <div className="absolute inset-0 bg-gradient-to-r from-[#f9f2ed] via-[#f9f2ed]/90 to-transparent md:w-2/3"></div>
+             <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-[#f9f2ed] via-[#f9f2ed]/80 to-transparent md:w-2/3"></div>
           </div>
           <div className="hidden md:flex absolute top-24 right-24 z-20 w-36 h-36 bg-white/80 backdrop-blur-md rounded-full items-center justify-center border border-[#800020]/10 shadow-xl rotate-12 hover:rotate-0 transition-transform duration-500 flex-col gap-1">
              <span className="text-[10px] font-bold uppercase tracking-widest text-[#2d2d2d]">Make It</span>
              <span className="font-serif text-xl italic text-[#800020]">Truly Yours</span>
              <Heart size={14} className="text-[#800020] mt-1" strokeWidth={2} />
           </div>
-          <div className="relative z-10 pl-8 md:pl-16 lg:pl-24 max-w-2xl py-12">
+          <div className="relative z-10 px-6 md:px-0 md:pl-16 lg:pl-24 max-w-2xl py-12 flex flex-col items-center text-center md:items-start md:text-left w-full mt-20 md:mt-0">
             <div className="inline-block bg-[#800020] text-white text-[10px] md:text-xs px-5 py-2 rounded-full uppercase font-bold tracking-[0.15em] mb-6 shadow-sm">
               Raksha Bandhan Collection 2026
             </div>
@@ -145,22 +145,22 @@ export default async function Home() {
             <p className="text-gray-700 mt-6 max-w-md text-sm md:text-base leading-relaxed font-medium">
               Because they're more than family—they're your first best friend. Surprise your sibling with a personalized keepsake they'll cherish for a lifetime.
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8 max-w-lg">
-              <div className="flex items-center gap-2">
-                 <Gift size={20} className="text-[#800020]" strokeWidth={1.5} />
-                 <span className="text-[10px] font-bold uppercase leading-tight tracking-wider text-gray-800">Personalized<br/>Just For You</span>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8 w-full">
+              <div className="flex items-center gap-2 justify-center md:justify-start">
+                 <Gift size={20} className="text-[#800020] shrink-0" strokeWidth={1.5} />
+                 <span className="text-[10px] md:text-[11px] font-bold uppercase leading-tight tracking-wider text-gray-800">Personalized<br/>Just For You</span>
               </div>
-              <div className="flex items-center gap-2">
-                 <Award size={20} className="text-[#800020]" strokeWidth={1.5} />
-                 <span className="text-[10px] font-bold uppercase leading-tight tracking-wider text-gray-800">Crafted to Last<br/>A Lifetime</span>
+              <div className="flex items-center gap-2 justify-center md:justify-start">
+                 <Award size={20} className="text-[#800020] shrink-0" strokeWidth={1.5} />
+                 <span className="text-[10px] md:text-[11px] font-bold uppercase leading-tight tracking-wider text-gray-800">Crafted to Last<br/>A Lifetime</span>
               </div>
-              <div className="flex items-center gap-2">
-                 <Truck size={20} className="text-[#800020]" strokeWidth={1.5} />
-                 <span className="text-[10px] font-bold uppercase leading-tight tracking-wider text-gray-800">Delivered Safely<br/>With Love</span>
+              <div className="flex items-center gap-2 justify-center md:justify-start">
+                 <Truck size={20} className="text-[#800020] shrink-0" strokeWidth={1.5} />
+                 <span className="text-[10px] md:text-[11px] font-bold uppercase leading-tight tracking-wider text-gray-800">Delivered Safely<br/>With Love</span>
               </div>
-              <div className="flex items-center gap-2">
-                 <ShieldCheck size={20} className="text-[#800020]" strokeWidth={1.5} />
-                 <span className="text-[10px] font-bold uppercase leading-tight tracking-wider text-gray-800">Secure<br/>Payments</span>
+              <div className="flex items-center gap-2 justify-center md:justify-start">
+                 <ShieldCheck size={20} className="text-[#800020] shrink-0" strokeWidth={1.5} />
+                 <span className="text-[10px] md:text-[11px] font-bold uppercase leading-tight tracking-wider text-gray-800">Secure<br/>Payments</span>
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 mt-10">

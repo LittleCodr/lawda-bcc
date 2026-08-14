@@ -56,26 +56,26 @@ export default function CartDrawer() {
             {items.length > 0 && (
               <div className="px-6 py-4 bg-white shrink-0 border-b border-[#E5B8B7]/30 flex flex-col gap-3">
                 <div className="flex items-center justify-between text-xs font-bold uppercase tracking-widest">
-                  <span className="text-orange-600 flex items-center gap-1"><Clock size={14}/> Cart Reserved For</span>
+                  <span className="text-orange-600 flex items-center gap-1"><Clock size={14} /> Cart Reserved For</span>
                   <span className="text-orange-600 font-mono text-sm">{minutes}:{seconds.toString().padStart(2, '0')}</span>
                 </div>
-                
+
                 <div className="flex flex-col gap-1.5">
                   <div className="flex justify-between text-[10px] uppercase font-bold text-stone-500">
                     <span>Buy 2: 15% Off</span>
                     <span>Buy 3+: 33% Off</span>
                   </div>
                   <div className="w-full bg-stone-100 h-2 rounded-full overflow-hidden">
-                    <div 
+                    <div
                       className="h-full bg-emerald-500 transition-all duration-700"
                       style={{ width: `${progressPercent}%` }}
                     />
                   </div>
                   <div className="text-[10px] text-center mt-1 font-medium text-[#800020]">
                     {itemCount === 0 ? "Add items to unlock discounts!" :
-                     itemCount === 1 ? "Add 1 more item to unlock 15% OFF!" :
-                     itemCount === 2 ? "Add 1 more item to unlock 33% OFF!" :
-                     "You've unlocked the maximum 33% OFF!"}
+                      itemCount === 1 ? "Add 1 more item to unlock 15% OFF!" :
+                        itemCount === 2 ? "Add 1 more item to unlock 33% OFF!" :
+                          "You've unlocked the maximum 33% OFF!"}
                   </div>
                 </div>
               </div>
@@ -110,7 +110,7 @@ export default function CartDrawer() {
                                 <X size={18} strokeWidth={1.5} />
                               </button>
                             </div>
-                            
+
                             {item.variantTitle && (
                               <p className="text-xs uppercase tracking-widest font-bold text-[#800020] mt-1">{item.variantTitle}</p>
                             )}
@@ -145,7 +145,7 @@ export default function CartDrawer() {
 
                             <p className="text-sm font-medium text-[#2d2d2d] mt-3">₹{item.price.toFixed(2)}</p>
                           </div>
-                          
+
                           <div className="mt-4 flex items-center justify-between">
                             <div className="flex items-center gap-4 border border-[#E5B8B7] w-fit px-3 py-1.5 rounded-sm bg-white">
                               <button onClick={() => updateQuantity(uniqueId, item.quantity - 1)} aria-label="Decrease" className="text-[#2d2d2d] hover:text-[#800020]">
@@ -172,7 +172,7 @@ export default function CartDrawer() {
                     <span className="text-xs tracking-widest uppercase text-[#2d2d2d] font-bold">Subtotal</span>
                     <span className="text-xl font-serif text-[#800020]">₹{totalPrice().toFixed(2)}</span>
                   </div>
-                  
+
                   {autoDiscountAmount && autoDiscountAmount() > 0 && (
                     <div className="flex items-baseline justify-between border-b border-[#E5B8B7]/20 pb-2 text-emerald-600">
                       <span className="text-xs tracking-widest uppercase font-bold">Auto Discount ({autoDiscountPercentage()}%)</span>
@@ -187,7 +187,7 @@ export default function CartDrawer() {
 
                   <p className="text-[10px] uppercase tracking-widest text-[#2d2d2d] opacity-60 text-center mt-2">Taxes and shipping calculated at checkout</p>
                 </div>
-                
+
                 <Link href="/checkout" onClick={closeCart} className="block w-full bg-[#800020] text-white py-5 text-center text-xs tracking-widest uppercase font-bold hover:bg-[#E5B8B7] hover:text-[#800020] transition-colors mb-6 shadow-lg">
                   Secure Checkout
                 </Link>

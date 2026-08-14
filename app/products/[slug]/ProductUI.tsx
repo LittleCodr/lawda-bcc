@@ -45,6 +45,15 @@ export default function ProductUI({ product }: ProductUIProps) {
   const [pinCode, setPinCode] = useState("");
   const [pinStatus, setPinStatus] = useState<"idle" | "checking" | "success">("idle");
 
+  const [deliveryMessage, setDeliveryMessage] = useState("Same day delivery available in Delhi, Noida, Agra, Lucknow, Surat, Vadodara, Jaipur.");
+
+  useEffect(() => {
+    const currentHour = new Date().getHours();
+    if (currentHour >= 12) {
+      setDeliveryMessage("Order will be delivered by 6pm next day in Delhi, Noida, Agra, Lucknow, Surat, Vadodara, Jaipur.");
+    }
+  }, []);
+
   useEffect(() => {
     if (!user) return;
     const checkFav = async () => {
@@ -512,9 +521,9 @@ export default function ProductUI({ product }: ProductUIProps) {
           </div>
 
           {/* Fast Delivery Highlight */}
-          <div className="bg-[#ecfdf5] border border-[#a7f3d0] rounded-lg p-3 flex items-center justify-center gap-2 text-emerald-800 mb-4">
-            <Zap size={16} className="text-emerald-600 fill-emerald-600" />
-            <span className="text-[10px] font-bold uppercase tracking-widest">Fast Delivery across India | 2-5 Days</span>
+          <div className="bg-[#ecfdf5] border border-[#a7f3d0] rounded-lg p-3 flex items-center justify-center gap-2 text-emerald-800 mb-4 text-center">
+            <Zap size={16} className="text-emerald-600 fill-emerald-600 shrink-0" />
+            <span className="text-[10px] font-bold uppercase tracking-widest">{deliveryMessage}</span>
           </div>
 
           {/* PIN Code Check */}

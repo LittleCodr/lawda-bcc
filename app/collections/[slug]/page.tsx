@@ -282,7 +282,7 @@ export default async function CollectionPage(props: {
                   </div>
                   
                   <div className="z-10 relative w-[80%] max-w-[240px] md:w-1/3 aspect-[4/5] md:max-w-[300px] bg-stone-100 rounded-xl overflow-hidden border-4 border-white shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 mx-auto md:mx-0 mt-6 md:mt-0 shrink-0">
-                    <img src="https://cdn.shopify.com/s/files/1/0885/8763/2921/files/Picsart_24-05-18_10-53-40-621.jpg?v=1716010078" alt="Fairy Name Necklace" className="w-full h-full object-cover" />
+                    <img src="https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Fairynamenecklace3.webp?v=1745910455" alt="Fairy Name Necklace" className="w-full h-full object-cover" />
                     <div className="absolute top-4 right-4 bg-red-600 text-white w-16 h-16 rounded-full flex flex-col items-center justify-center text-center shadow-xl rotate-12 font-black leading-none border-2 border-white">
                       <span className="text-[10px] uppercase tracking-widest opacity-90">Only</span>
                       <span className="text-lg">₹199</span>

@@ -193,12 +193,16 @@ export default function CartDrawer() {
                 </Link>
 
                 {/* Trust Badges */}
-                <div className="flex items-center justify-center gap-6 text-[10px] uppercase tracking-widest text-stone-400 font-medium">
+                <div className="flex items-center justify-center gap-4 text-[10px] uppercase tracking-widest text-stone-400 font-medium flex-wrap">
                   <div className="flex items-center gap-1.5">
-                    <Lock size={14} /> Secure Checkout
+                    <Lock size={14} /> Contine Checkout
+                  </div>
+                  <div className="flex items-center gap-1.5 text-emerald-600 font-bold bg-emerald-50 px-2 py-1 rounded-sm border border-emerald-100">
+                    <span className="flex items-center justify-center w-3 h-3 bg-emerald-100 text-emerald-600 rounded-full text-[8px]">₹</span>
+                    Cash On Delivery
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <ShieldCheck size={14} /> 100% Quality
+                    <ShieldCheck size={14} /> Quality
                   </div>
                 </div>
               </div>

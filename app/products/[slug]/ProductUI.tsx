@@ -255,10 +255,10 @@ export default function ProductUI({ product }: ProductUIProps) {
             </div>
             <div className="hidden sm:block w-[1px] h-8 bg-gray-200"></div>
             <div className="flex items-center gap-3">
-              <Gift size={18} className="text-[#800020]" />
+              <span className="flex items-center justify-center w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full font-bold text-[10px]">₹</span>
               <div className="flex flex-col">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-gray-800">Premium Gift Wrap</span>
-                <span className="text-[9px] text-gray-500">Make it extra special</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-700">Cash on Delivery</span>
+                <span className="text-[9px] text-gray-500">Pay 50% upfront, rest later</span>
               </div>
             </div>
           </div>
@@ -285,8 +285,8 @@ export default function ProductUI({ product }: ProductUIProps) {
 
           <div className="flex flex-wrap gap-4 mb-6">
             <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-stone-600 flex items-center gap-1.5"><CheckCircle2 size={12} className="text-[#800020]" /> Personalized Gift</span>
-            <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-stone-600 flex items-center gap-1.5"><Flame size={12} className="text-orange-600" /> Selling Fast</span>
-            <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-[#800020] flex items-center gap-1.5"><Truck size={12} /> Deliver Before Rakhi</span>
+            <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded border border-emerald-200 flex items-center gap-1.5"><Truck size={12} /> Cash on Delivery Available</span>
+            <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-orange-600 flex items-center gap-1.5"><Flame size={12} /> Selling Fast</span>
           </div>
 
           <h1 className="font-serif text-3xl md:text-4xl text-[#2d2d2d] mb-4 leading-tight">
@@ -616,6 +616,10 @@ export default function ProductUI({ product }: ProductUIProps) {
               <li className="flex items-center gap-4">
                 <ShieldCheck size={20} className="text-[#800020] shrink-0" strokeWidth={1.5} />
                 <span className="text-xs font-bold text-gray-700">Secure Payments</span>
+              </li>
+              <li className="flex items-center gap-4 bg-emerald-50 border border-emerald-100 p-2 rounded-lg">
+                <span className="flex items-center justify-center w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full font-bold text-[10px] shrink-0">₹</span>
+                <span className="text-xs font-black text-emerald-800 uppercase tracking-widest">Cash on Delivery</span>
               </li>
               <li className="flex items-center gap-4">
                 <Smile size={20} className="text-[#800020] shrink-0" strokeWidth={1.5} />

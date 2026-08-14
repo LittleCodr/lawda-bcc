@@ -496,10 +496,14 @@ export default function CheckoutPage() {
               </div>
 
               {/* Trust Badges */}
-              <div className="mt-10 flex justify-center gap-8 border-t border-stone-100 pt-8 text-stone-400">
+              <div className="mt-10 flex justify-center gap-6 border-t border-stone-100 pt-8 text-stone-400">
                 <div className="flex flex-col items-center gap-2 text-center">
                   <ShieldCheck size={20} />
                   <span className="text-[10px] uppercase tracking-widest font-medium">Secure<br />Checkout</span>
+                </div>
+                <div className="flex flex-col items-center gap-2 text-center text-emerald-600">
+                  <div className="w-5 h-5 rounded-full border-2 border-emerald-600 flex items-center justify-center font-bold text-xs">₹</div>
+                  <span className="text-[10px] uppercase tracking-widest font-bold">Cash On<br />Delivery</span>
                 </div>
                 <div className="flex flex-col items-center gap-2 text-center">
                   <CheckCircle2 size={20} />

@@ -177,6 +177,7 @@ export default function CheckoutPage() {
         shippingDetails: formData,
         promoCode: promoApplied ? "ILYBEHENA" : null,
         discountAmount: discountAmount,
+        abandonedEmailSent: false,
         createdAt: new Date(),
       });
 

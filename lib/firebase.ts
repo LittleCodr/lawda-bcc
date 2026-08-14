@@ -33,13 +33,6 @@ export const logAppEvent = (eventName: string, eventParams?: any) => {
   if (analytics) {
     logEvent(analytics, eventName, eventParams);
   }
-};
-
-export const setAppUserProperties = (properties: any) => {
-  if (analytics) {
-    setUserProperties(analytics, properties);
-  }
-
   // 2. Meta Pixel Tracking
   if (typeof window !== "undefined" && (window as any).fbq) {
     const fbq = (window as any).fbq;
@@ -92,5 +85,11 @@ export const setAppUserProperties = (properties: any) => {
       default:
         fbq('trackCustom', eventName, eventParams);
     }
+  }
+};
+
+export const setAppUserProperties = (properties: any) => {
+  if (analytics) {
+    setUserProperties(analytics, properties);
   }
 };

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
+import { sendOrderConfirmation } from "@/lib/brevo";
 
 export async function POST(req: Request) {
   try {
@@ -87,6 +88,20 @@ export async function POST(req: Request) {
           );
         } catch (telegramErr) {
           console.error("Telegram notification error:", telegramErr);
+        }
+
+        // Send Brevo Email Confirmation
+        try {
+          const amount = transaction.amt || transaction.transaction_amount || "Unknown";
+          const customerName = transaction.firstname || "Unknown";
+          const customerEmail = transaction.udf1 || transaction.email || "N/A";
+          const productInfo = transaction.udf3 || transaction.productinfo || "N/A";
+          
+          if (customerEmail !== "N/A") {
+            await sendOrderConfirmation(orderId, customerName, customerEmail, amount, productInfo);
+          }
+        } catch (emailErr) {
+          console.error("Brevo email notification error:", emailErr);
         }
 
         return NextResponse.json({ success: true, transaction });

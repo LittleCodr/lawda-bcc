@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useCartStore } from "@/lib/store";
 import ProductImageGallery from "@/components/ProductImageGallery";
-import { Gift, ShieldCheck, Truck, Star, Heart, CheckCircle2, ChevronRight, ShoppingBag, Zap, Clock, Smile, Award, Users, Flame, Sparkles } from "lucide-react";
+import { Gift, ShieldCheck, Truck, Star, Heart, CheckCircle2, ChevronRight, ChevronDown, ShoppingBag, Zap, Clock, Smile, Award, Users, Flame, Sparkles } from "lucide-react";
 import { logAppEvent, db } from "@/lib/firebase";
 import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 import { useAuth } from "@/lib/auth-context";
@@ -40,6 +40,7 @@ export default function ProductUI({ product }: ProductUIProps) {
   const { user } = useAuth();
   const [isFavourite, setIsFavourite] = useState(false);
   const [isFavLoading, setIsFavLoading] = useState(false);
+  const [isDescOpen, setIsDescOpen] = useState(false);
 
   // PIN Code State
   const [pinCode, setPinCode] = useState("");
@@ -302,10 +303,22 @@ export default function ProductUI({ product }: ProductUIProps) {
             )}
           </div>
 
-          <div
-            className="prose prose-sm text-gray-600 mb-8 leading-relaxed max-w-none text-justify"
-            dangerouslySetInnerHTML={{ __html: product.body_html || "" }}
-          />
+          {/* Accordion Description */}
+          <div className="mb-8 border border-stone-200 rounded-lg overflow-hidden bg-white">
+            <button
+              onClick={() => setIsDescOpen(!isDescOpen)}
+              className="w-full flex items-center justify-between p-4 bg-stone-50 hover:bg-stone-100 transition-colors"
+            >
+              <span className="font-bold text-[#2d2d2d] uppercase tracking-widest text-[10px]">Product Description</span>
+              <ChevronDown size={16} className={`transition-transform duration-300 ${isDescOpen ? 'rotate-180' : ''}`} />
+            </button>
+            <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isDescOpen ? 'max-h-[5000px] opacity-100 border-t border-stone-200' : 'max-h-0 opacity-0'}`}>
+              <div
+                className="prose prose-sm text-gray-600 p-6 leading-relaxed max-w-none text-justify"
+                dangerouslySetInnerHTML={{ __html: product.body_html || "" }}
+              />
+            </div>
+          </div>
 
           {/* Quick Features */}
           <div className="grid grid-cols-4 gap-2 mb-8">

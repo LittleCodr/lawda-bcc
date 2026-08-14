@@ -17,6 +17,7 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
   const [isHovering, setIsHovering] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [isImgLoading, setIsImgLoading] = useState(true);
+  const [retryCount, setRetryCount] = useState(0);
   
   const imgRef = useRef<HTMLDivElement>(null);
 
@@ -27,7 +28,23 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
   // Reset loading state when the image changes
   useEffect(() => {
     setIsImgLoading(true);
+    setRetryCount(0);
   }, [currentIndex]);
+
+  // Retry logic: if loading takes more than 3 seconds, retry
+  useEffect(() => {
+    if (!isImgLoading) return;
+    
+    const timer = setTimeout(() => {
+      if (retryCount >= 2) {
+        setIsImgLoading(false); // Force show after a few retries
+      } else {
+        setRetryCount(prev => prev + 1);
+      }
+    }, 3000);
+    
+    return () => clearTimeout(timer);
+  }, [isImgLoading, retryCount]);
 
   // Sync selectedImageId with currentIndex when it changes from the parent (e.g. via variant click)
   useEffect(() => {
@@ -74,6 +91,11 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
     setZoomStyle({ transformOrigin: "center center", transform: "scale(1)" });
   };
 
+  const getRetrySrc = (src: string) => {
+    if (retryCount === 0) return src;
+    return `${src}${src.includes('?') ? '&' : '?'}retry=${retryCount}`;
+  };
+
   return (
     <div className="flex flex-col gap-4">
       {/* Main Image View */}
@@ -95,13 +117,17 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
             </div>
           )}
           <Image 
-            src={images[currentIndex].src} 
+            src={getRetrySrc(images[currentIndex].src)} 
             alt={images[currentIndex].alt}
             fill
             priority
             sizes="(max-width: 768px) 100vw, 50vw"
             className={`object-cover z-10 transition-opacity duration-300 ${isImgLoading ? 'opacity-0' : 'opacity-100'}`} 
             onLoad={() => setIsImgLoading(false)}
+            onError={() => {
+              if (retryCount < 2) setRetryCount(prev => prev + 1);
+              else setIsImgLoading(false);
+            }}
           />
         </div>
         
@@ -158,12 +184,16 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
               </div>
             )}
             <Image 
-              src={images[currentIndex].src} 
+              src={getRetrySrc(images[currentIndex].src)} 
               alt={images[currentIndex].alt}
               fill
               className={`object-contain z-10 transition-opacity duration-300 ${isImgLoading ? 'opacity-0' : 'opacity-100'}`}
               sizes="100vw"
               onLoad={() => setIsImgLoading(false)}
+              onError={() => {
+                if (retryCount < 2) setRetryCount(prev => prev + 1);
+                else setIsImgLoading(false);
+              }}
             />
           </div>
 

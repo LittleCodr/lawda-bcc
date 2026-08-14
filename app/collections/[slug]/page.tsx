@@ -257,6 +257,38 @@ export default async function CollectionPage(props: {
                   <p className="text-gray-600 text-sm font-bold">Use at checkout for extra ₹150 OFF!</p>
                 </div>
               </div>
+
+              {/* Fairy Name Necklace Highlight Section */}
+              <div className="mb-12 bg-gradient-to-r from-red-600 via-orange-500 to-yellow-500 p-[2px] rounded-2xl shadow-2xl relative overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100">
+                <div className="bg-white rounded-[14px] p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left relative overflow-hidden">
+                  <div className="absolute -top-24 -right-24 opacity-5 scale-150 pointer-events-none">
+                    <Flame size={400} />
+                  </div>
+                  
+                  <div className="z-10 flex-1">
+                    <div className="inline-block bg-red-100 text-red-700 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.1em] mb-4 border border-red-200 shadow-sm animate-pulse flex items-center gap-2 w-fit mx-auto md:mx-0">
+                      <Flame size={14} className="fill-current text-red-600" /> Bestselling Necklace - Sold over 2000 pieces in last 28 hours!
+                    </div>
+                    <h2 className="font-serif text-3xl md:text-5xl mb-4 leading-tight font-black text-gray-900 uppercase tracking-widest">
+                      Independence Day<br /><span className="text-red-600">Mega Sale</span>
+                    </h2>
+                    <p className="text-gray-600 mb-6 text-lg font-medium leading-relaxed max-w-xl mx-auto md:mx-0">
+                      Get the exclusive <strong className="text-gray-900 font-black">Fairy Name Necklace</strong> at a mind-blowing price. Our biggest drop of the year.
+                    </p>
+                    <Link href="/products/fairy-name-necklace" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 text-white px-8 py-4 rounded-lg font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-xl shadow-red-500/20 w-full md:w-auto">
+                      Claim Yours For ₹199 Now <ChevronRight size={18} />
+                    </Link>
+                  </div>
+                  
+                  <div className="z-10 relative w-full md:w-1/3 aspect-[4/5] max-w-[300px] bg-stone-100 rounded-xl overflow-hidden border-4 border-white shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500 mx-auto md:mx-0">
+                    <Image src="https://cdn.shopify.com/s/files/1/0885/8763/2921/files/Picsart_24-05-18_10-53-40-621.jpg?v=1716010078" alt="Fairy Name Necklace" fill className="object-cover" />
+                    <div className="absolute top-4 right-4 bg-red-600 text-white w-16 h-16 rounded-full flex flex-col items-center justify-center text-center shadow-xl rotate-12 font-black leading-none border-2 border-white">
+                      <span className="text-[10px] uppercase tracking-widest opacity-90">Only</span>
+                      <span className="text-lg">₹199</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </>
           )}
 

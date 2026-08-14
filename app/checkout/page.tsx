@@ -12,7 +12,7 @@ import { doc, setDoc } from "firebase/firestore";
 
 export default function CheckoutPage() {
   const { items, totalPrice, clearCart, autoDiscountAmount: getAutoDiscountAmount, autoDiscountPercentage: getAutoDiscountPercentage } = useCartStore();
-  const { user, loading: authLoading } = useAuth();
+  const { user, loading: authLoading, loginAnonymously } = useAuth();
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
@@ -50,9 +50,9 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     if (!authLoading && !user) {
-      router.push("/auth?redirect=/checkout");
+      loginAnonymously().catch(console.error);
     }
-  }, [user, authLoading, router]);
+  }, [user, authLoading, loginAnonymously]);
 
   useEffect(() => {
     if (formData.zip.length === 6) {
@@ -165,6 +165,20 @@ export default function CheckoutPage() {
       const payUAmount = isAdmin ? 1 : (isCOD ? codAdvance : finalTotal);
       const orderTotal = finalTotal;
       const codBalance = isCOD ? finalTotal - codAdvance : 0;
+
+      // Associate email to anonymous account
+      await setDoc(doc(db, "users", user.uid), {
+        email: formData.email,
+        name: formData.name,
+        phone: formData.phone,
+        address: {
+          address: formData.address,
+          city: formData.city,
+          state: formData.state,
+          zip: formData.zip,
+        },
+        updatedAt: new Date()
+      }, { merge: true });
 
       // Write to Firestore (single batched write to minimize quota)
       await setDoc(doc(db, "users", user.uid, "orders", orderId), {

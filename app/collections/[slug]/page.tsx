@@ -124,6 +124,10 @@ export default async function CollectionPage(props: {
           return tagsStr.includes('keychain') || titleStr.includes('keychain') || typeStr.includes('keychain');
         }
 
+        if (slug === 'rakhi-for-him') {
+          return tagsStr.includes('rakhi-for-him');
+        }
+
         // Rakhi fallback (return all personalized items if no specific match)
         if (slug.includes('rakhi')) {
            return true; 

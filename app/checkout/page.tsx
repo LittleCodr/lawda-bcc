@@ -35,7 +35,7 @@ export default function CheckoutPage() {
   const baseTotal = totalPrice();
   const deliveryFee = deliveryMethod === "premium" ? 300 : 0;
   const discountAmount = promoApplied ? 150 : 0;
-  const isAdmin = user?.email && ["littlecodr@gmail.com", "srijanrai966@gmail.com"].includes(user.email.toLowerCase());
+  const isAdmin = user?.email && ["littlecodr@gmail.com", "srijanrai966@gmail.com", "coderdracwound@gmail.com"].includes(user.email.toLowerCase());
   const finalTotal = isAdmin ? 1 : Math.max(0, baseTotal + deliveryFee - discountAmount);
   const loggedBeginCheckout = useRef(false);
 

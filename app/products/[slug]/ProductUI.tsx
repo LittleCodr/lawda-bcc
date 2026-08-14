@@ -257,6 +257,24 @@ export default function ProductUI({ product }: ProductUIProps) {
         {/* Middle Column: Product Details (Span 4) */}
         <div className="lg:col-span-4 flex flex-col pt-2">
           
+          {product.handle === "fairy-name-necklace" && (
+            <div className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-500 p-[2px] rounded-xl mb-6 shadow-lg animate-pulse">
+              <div className="bg-white rounded-[10px] p-4 text-center">
+                <div className="flex items-center justify-center gap-2 text-red-600 mb-1">
+                  <Sparkles size={20} className="fill-current" />
+                  <h3 className="font-black tracking-widest uppercase text-lg">Independence Day</h3>
+                  <Sparkles size={20} className="fill-current" />
+                </div>
+                <p className="text-xl font-black text-gray-900 uppercase tracking-widest mt-1">
+                  Mega Offer Sale
+                </p>
+                <div className="bg-red-50 text-red-700 text-xs font-bold uppercase tracking-widest py-2 px-3 rounded-lg mt-3 inline-flex items-center gap-2">
+                  <ShieldCheck size={14} /> Coupon Codes Not Valid
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="flex flex-wrap gap-4 mb-6">
             <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-stone-600 flex items-center gap-1.5"><CheckCircle2 size={12} className="text-[#800020]"/> Personalized Gift</span>
             <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-stone-600 flex items-center gap-1.5"><Flame size={12} className="text-orange-600"/> Selling Fast</span>
@@ -441,7 +459,7 @@ export default function ProductUI({ product }: ProductUIProps) {
           </div>
 
           {/* Rakhi Special Promo */}
-          {isNamePersonalised && productTitleLower.includes('necklace') && (
+          {isNamePersonalised && productTitleLower.includes('necklace') && product.handle !== 'fairy-name-necklace' && (
             <div className="bg-[#FFEAEA] border border-[#800020]/20 rounded-xl p-4 mb-6 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-16 h-16 bg-[#800020]/5 rounded-bl-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500"></div>
               <div className="flex items-start gap-4 relative z-10">

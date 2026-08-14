@@ -407,6 +407,16 @@ export default function CheckoutPage() {
                     <button 
                       type="button"
                       onClick={() => {
+                        // Block coupons if Fairy Name Necklace is in cart
+                        const hasFairyNecklace = items.some(item => 
+                          item.id === "9174020817113" || (item.title && item.title.toLowerCase().includes("fairy name necklace"))
+                        );
+
+                        if (hasFairyNecklace) {
+                          setPromoError("Promo codes are not valid on Independence Day Mega Sale items (Fairy Name Necklace).");
+                          return;
+                        }
+
                         if (promoCode === "ILYBEHENA" || promoCode === "WELCOME15") {
                           setPromoApplied(true);
                           setPromoError("");

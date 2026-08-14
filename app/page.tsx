@@ -43,6 +43,13 @@ export default async function Home() {
     if (fs.existsSync(dataPath)) {
       const fileContent = fs.readFileSync(dataPath, "utf-8");
       products = JSON.parse(fileContent);
+      
+      // Default Sort: Price Low to High
+      products.sort((a: any, b: any) => {
+        const priceA = a.variants && a.variants.length > 0 ? parseFloat(a.variants[0].price) : 0;
+        const priceB = b.variants && b.variants.length > 0 ? parseFloat(b.variants[0].price) : 0;
+        return priceA - priceB;
+      });
     }
   } catch (e) {
     console.error("Error loading products:", e);

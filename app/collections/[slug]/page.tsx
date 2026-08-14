@@ -3,8 +3,9 @@ import path from "path";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ChevronRight, Gift, ChevronDown, ChevronUp, Flame } from "lucide-react";
+import { ChevronRight, Gift, Flame } from "lucide-react";
 import { rakhiConfig } from "./rakhi-config";
+import SortSelect from "@/components/SortSelect";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -146,6 +147,20 @@ export default async function CollectionPage(props: {
     }
   }
 
+  // Sorting logic
+  const sortParam = typeof searchParams.sort === 'string' ? searchParams.sort : 'price-asc'; // Default sort is low to high
+
+  filteredProducts.sort((a, b) => {
+    const priceA = a.variants && a.variants.length > 0 ? parseFloat(a.variants[0].price) : 0;
+    const priceB = b.variants && b.variants.length > 0 ? parseFloat(b.variants[0].price) : 0;
+    
+    if (sortParam === 'price-asc') return priceA - priceB;
+    if (sortParam === 'price-desc') return priceB - priceA;
+    if (sortParam === 'title-asc') return a.title.localeCompare(b.title);
+    if (sortParam === 'title-desc') return b.title.localeCompare(a.title);
+    return 0; // fallback
+  });
+
   // Pagination logic
   const PRODUCTS_PER_PAGE = 24;
   const currentPage = typeof searchParams.page === 'string' ? parseInt(searchParams.page, 10) : 1;
@@ -225,10 +240,14 @@ export default async function CollectionPage(props: {
 
         <div className="mx-auto max-w-[1440px] px-6 md:px-12 py-16">
           {/* Toolbar */}
-          <div className="flex justify-between items-center mb-12 border-b border-[#E5B8B7]/30 pb-4">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-12 border-b border-[#E5B8B7]/30 pb-4">
             <p className="text-xs uppercase tracking-widest text-[#2d2d2d] font-bold">
               Showing {displayProducts.length > 0 ? startIndex + 1 : 0} - {Math.min(startIndex + PRODUCTS_PER_PAGE, totalProducts)} of {totalProducts} Products
             </p>
+            <div className="flex items-center gap-2 text-xs uppercase tracking-widest font-bold">
+              <label htmlFor="sort" className="text-gray-500">Sort By:</label>
+              <SortSelect slug={slug} queryParam={queryParam || undefined} defaultSort={sortParam} />
+            </div>
           </div>
 
           {slug === 'rakhi-name-necklaces' && (

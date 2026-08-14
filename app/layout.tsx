@@ -95,6 +95,31 @@ export default function RootLayout({
                   enable: true,
                 },
               });
+
+              // Automatically prompt user after 3 seconds if they haven't opted in
+              setTimeout(() => {
+                if (!OneSignal.User.PushSubscription.optedIn) {
+                  OneSignal.Slidedown.promptPush();
+                }
+              }, 3000);
+
+              // Listen for subscription changes
+              OneSignal.User.PushSubscription.addEventListener("change", async (event) => {
+                if (event.current.optedIn) {
+                  const subscriptionId = OneSignal.User.PushSubscription.id;
+                  if (subscriptionId) {
+                    try {
+                      await fetch('/api/onesignal/welcome', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ subscriptionId })
+                      });
+                    } catch (e) {
+                      console.error("Failed to send welcome push", e);
+                    }
+                  }
+                }
+              });
             });
           `
         }} />

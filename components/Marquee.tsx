@@ -40,6 +40,7 @@ export default function Marquee() {
           >
             <Heart size={14} className="text-yellow-300 fill-yellow-300 shrink-0" />
             <span>SIBLING LOVE SALE! CODE ILYBEHENA FOR ₹150 OFF</span>
+            <span className="text-emerald-300 font-black tracking-widest">• CASH ON DELIVERY AVAILABLE</span>
             <Gift size={14} className="text-yellow-300 shrink-0" />
             <span className="flex items-center gap-1"><Clock size={14} className="text-yellow-300 shrink-0" />
             ENDS IN: {timeLeft || "00:00:00"}</span>

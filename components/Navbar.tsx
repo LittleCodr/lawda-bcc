@@ -143,7 +143,7 @@ export default function Navbar() {
             Octopus
           </span>
           <span className="hidden sm:block text-[9px] font-bold uppercase tracking-[0.3em] text-[#2d2d2d] mt-1">
-            Personalized Gifts
+            Everlasting Gifts
           </span>
         </Link>
 

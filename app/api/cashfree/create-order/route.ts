@@ -35,7 +35,7 @@ export async function POST(req: Request) {
         return_url: `${origin}/checkout/success?order_id=${orderId}`,
         notify_url: `${origin}/api/cashfree/webhook`,
       },
-      order_note: "Order from Octopus Perfume"
+      order_note: "Order from Octopus Everlasting Gifts"
     };
 
     const response = await cashfree.PGCreateOrder(request);

@@ -7,7 +7,7 @@ import { ChevronRight, ShieldCheck, Truck, RefreshCcw, Heart, Info, FileText, Lo
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  return { title: `${slug.replace(/-/g, ' ').toUpperCase()} | Octopus Perfume` };
+  return { title: `${slug.replace(/-/g, ' ').toUpperCase()} | Octopus Everlasting Gifts` };
 }
 
 const SIDEBAR_LINKS = [
@@ -31,14 +31,14 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
       content = (
         <>
           <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-10 shadow-sm border border-stone-200">
-            <Image src="/images/products/name-necklace-rakhi-gift-11.jpg" alt="Octopus Perfume Craftsmanship" fill className="object-cover" />
+            <Image src="/images/products/name-necklace-rakhi-gift-11.jpg" alt="Octopus Everlasting Gifts Craftsmanship" fill className="object-cover" />
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
               <span className="text-white font-serif text-4xl md:text-5xl font-bold tracking-wide">Our Story</span>
             </div>
           </div>
           
           <h2>Our Genesis and Vision</h2>
-          <p>Welcome to Octopus Perfume, India’s premier destination for bespoke, personalized gifting. Our journey began with a singular, resolute vision: to transform the way Indians celebrate their most cherished relationships. In a world inundated with mass-produced commodities, we realized that the true essence of gifting had been lost. We set out to restore that essence by creating a brand dedicated entirely to the art of personalization.</p>
+          <p>Welcome to Octopus Everlasting Gifts, India’s premier destination for bespoke, personalized gifting. Our journey began with a singular, resolute vision: to transform the way Indians celebrate their most cherished relationships. In a world inundated with mass-produced commodities, we realized that the true essence of gifting had been lost. We set out to restore that essence by creating a brand dedicated entirely to the art of personalization.</p>
           <p>We understand that every individual is unique, and every relationship tells a different story. That is why our products are not just items; they are tangible memories, meticulously crafted to reflect the profound bonds you share with your loved ones. Whether it is an engraved piece of artificial jewelry, a custom-printed keepsake, or an elegantly packaged fragrance, every product that leaves our facility carries with it a promise of quality, exclusivity, and heartfelt emotion.</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
@@ -55,10 +55,10 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           </div>
 
           <h2>Corporate Information & Legal Entity</h2>
-          <p>Octopus Perfume operates under full compliance with all relevant corporate and commercial laws in India. For any legal inquiries, corporate collaborations, or official correspondence, please refer to our registered headquarters:</p>
+          <p>Octopus Everlasting Gifts operates under full compliance with all relevant corporate and commercial laws in India. For any legal inquiries, corporate collaborations, or official correspondence, please refer to our registered headquarters:</p>
           <div className="bg-stone-50 p-6 rounded-xl border-l-4 border-[#800020] my-6">
             <p className="font-bold text-stone-900 mb-2">Registered Address for Verification:</p>
-            <p className="mb-0 text-sm">Octopus Perfume<br />Shri Shanta Sharnam<br />Tonk, Rajasthan, 304022<br />India</p>
+            <p className="mb-0 text-sm">Octopus Everlasting Gifts<br />Shri Shanta Sharnam<br />Tonk, Rajasthan, 304022<br />India</p>
           </div>
           <p>For immediate assistance, our dedicated support channels remain open during standard business hours. We invite you to join the Octopus family and experience the zenith of personalized gifting.</p>
         </>
@@ -67,17 +67,17 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
     case "terms-conditions":
       content = (
         <>
-          <p className="lead text-lg font-medium text-stone-500 mb-8">Please read these Terms and Conditions carefully before using the Octopus Perfume website.</p>
+          <p className="lead text-lg font-medium text-stone-500 mb-8">Please read these Terms and Conditions carefully before using the Octopus Everlasting Gifts website.</p>
           
           <div className="space-y-8">
             <div>
               <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#800020] text-white text-sm font-bold">1</span> Comprehensive Introduction</h2>
-              <p>Welcome to Octopus Perfume (accessible at octopusperfume.in). These comprehensive Terms and Conditions ("Terms", "Agreement") constitute a legally binding contract between you (the "User", "Customer", "Visitor") and Octopus Perfume ("we", "us", "our", "the Company"). By accessing, browsing, registering an account, or placing an order on our platform, you categorically acknowledge that you have read, understood, and unequivocally agreed to be bound by these Terms in their entirety. If you harbor any objections to these Terms, you are explicitly prohibited from using our services and must immediately cease all access to the platform.</p>
+              <p>Welcome to Octopus Everlasting Gifts (accessible at octopusperfume.in). These comprehensive Terms and Conditions ("Terms", "Agreement") constitute a legally binding contract between you (the "User", "Customer", "Visitor") and Octopus Everlasting Gifts ("we", "us", "our", "the Company"). By accessing, browsing, registering an account, or placing an order on our platform, you categorically acknowledge that you have read, understood, and unequivocally agreed to be bound by these Terms in their entirety. If you harbor any objections to these Terms, you are explicitly prohibited from using our services and must immediately cease all access to the platform.</p>
             </div>
             
             <div>
               <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#800020] text-white text-sm font-bold">2</span> Intellectual Property</h2>
-              <p>The entire contents of the Octopus Perfume website—including but not limited to textual content, graphical assets, logos, button icons, high-resolution imagery, audio clips, digital downloads, data compilations, and proprietary software—are the exclusive intellectual property of Octopus Perfume or its certified content suppliers. These assets are protected under the Indian Copyright Act, 1957, as well as international copyright and trademark laws.</p>
+              <p>The entire contents of the Octopus Everlasting Gifts website—including but not limited to textual content, graphical assets, logos, button icons, high-resolution imagery, audio clips, digital downloads, data compilations, and proprietary software—are the exclusive intellectual property of Octopus Everlasting Gifts or its certified content suppliers. These assets are protected under the Indian Copyright Act, 1957, as well as international copyright and trademark laws.</p>
             </div>
             
             <div>
@@ -87,7 +87,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
             
             <div>
               <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#800020] text-white text-sm font-bold">4</span> Bespoke Personalization Policies</h2>
-              <p>As our core offering relies on customization, you are solely responsible for ensuring the absolute accuracy of all personalization inputs (e.g., names, dates, spelling, grammar) submitted during the checkout process. Octopus Perfume will not be held liable for typographical errors submitted by the customer.</p>
+              <p>As our core offering relies on customization, you are solely responsible for ensuring the absolute accuracy of all personalization inputs (e.g., names, dates, spelling, grammar) submitted during the checkout process. Octopus Everlasting Gifts will not be held liable for typographical errors submitted by the customer.</p>
             </div>
           </div>
         </>
@@ -120,7 +120,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           </div>
 
           <h2>1. Hassle-Free Returns & Exchanges</h2>
-          <p>At Octopus Perfume, your satisfaction is our top priority. We gladly accept returns and exchanges for <strong>both defective and non-defective products</strong>. Whether you changed your mind or received a faulty item, we've made our return process as seamless as possible.</p>
+          <p>At Octopus Everlasting Gifts, your satisfaction is our top priority. We gladly accept returns and exchanges for <strong>both defective and non-defective products</strong>. Whether you changed your mind or received a faulty item, we've made our return process as seamless as possible.</p>
           
           <h2>2. Return & Exchange Window</h2>
           <p>You have exactly <strong>1 day</strong> from the date of delivery to initiate a return or exchange. Due to the fast-moving nature of our premium inventory, we strictly enforce this 1-day window.</p>
@@ -178,7 +178,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           </div>
           
           <h2>1. Nationwide Reach and Courier Partnerships</h2>
-          <p>Octopus Perfume is proud to offer extensive shipping coverage across the entirety of India. We have forged strategic alliances with top-tier, highly reputable courier and logistics aggregators (such as BlueDart, Delhivery, ExpressBees, and Amazon Shipping) to ensure that your delicate, personalized gifts are handled with the utmost care and delivered with expedience. We do not currently facilitate international shipping.</p>
+          <p>Octopus Everlasting Gifts is proud to offer extensive shipping coverage across the entirety of India. We have forged strategic alliances with top-tier, highly reputable courier and logistics aggregators (such as BlueDart, Delhivery, ExpressBees, and Amazon Shipping) to ensure that your delicate, everlasting gifts are handled with the utmost care and delivered with expedience. We do not currently facilitate international shipping.</p>
           
           <h2>2. Comprehensive Processing Timelines</h2>
           <p>Unlike off-the-shelf e-commerce, bespoke gifting requires meticulous craftsmanship. When you place an order, it enters our production queue where it undergoes structural drafting, engraving/printing, polishing, quality assurance, and finally, premium gift wrapping.</p>
@@ -216,7 +216,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           </div>
           
           <h2>1. Extremely Strict Cancellation Window</h2>
-          <p>Our entire operational pipeline is heavily automated to ensure that your personalized gifts are crafted and delivered as swiftly as possible. Once an order for a personalized product is placed on our platform, the details are programmatically routed to our production facility, and raw materials are immediately allocated and cut.</p>
+          <p>Our entire operational pipeline is heavily automated to ensure that your everlasting gifts are crafted and delivered as swiftly as possible. Once an order for a personalized product is placed on our platform, the details are programmatically routed to our production facility, and raw materials are immediately allocated and cut.</p>
           <p>If two hours have elapsed since the order timestamp, the order is irrevocably locked into the production phase. At this point, the item has been permanently customized with your specific details, rendering it completely unsellable to any other customer. Therefore, we categorically will not accept, process, or entertain any cancellation requests beyond this 2-hour window under any circumstances.</p>
           
           <h2>2. How to Request a Cancellation</h2>
@@ -230,7 +230,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           <p className="lead text-lg font-medium text-stone-500 mb-8">Your privacy is critically important to us. This policy explains how we collect, use, and protect your personal information.</p>
           
           <h2>1. Introduction to Data Privacy</h2>
-          <p>At Octopus Perfume, we respect your privacy and are deeply committed to protecting your personal data. This extensive Privacy Policy outlines our rigorous practices regarding the collection, utilization, secure storage, and disclosure of your information when you interact with our platform, octopusperfume.in. By utilizing our services, you grant explicit consent to the data practices described in this document, which complies with the prevailing data protection regulations in India.</p>
+          <p>At Octopus Everlasting Gifts, we respect your privacy and are deeply committed to protecting your personal data. This extensive Privacy Policy outlines our rigorous practices regarding the collection, utilization, secure storage, and disclosure of your information when you interact with our platform, octopusperfume.in. By utilizing our services, you grant explicit consent to the data practices described in this document, which complies with the prevailing data protection regulations in India.</p>
 
           <h2>2. Comprehensive Data Collection Protocols</h2>
           <p>To provide you with a frictionless, highly personalized e-commerce experience, we systematically collect various categories of data:</p>
@@ -254,7 +254,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           <FileText size={48} className="mx-auto text-stone-300 mb-6" />
           <h2 className="text-2xl font-serif text-stone-900 mb-4">Legal Document Not Found</h2>
           <p className="text-stone-500">
-            The requested document could not be located in our directory. If you believe this is an error, please contact Octopus Perfume support.
+            The requested document could not be located in our directory. If you believe this is an error, please contact Octopus Everlasting Gifts support.
           </p>
           <Link href="/" className="inline-block mt-8 bg-[#800020] text-white px-8 py-3 text-xs uppercase tracking-widest font-bold rounded-sm">
             Return to Homepage

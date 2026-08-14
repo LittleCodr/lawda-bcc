@@ -8,12 +8,12 @@ import Script from "next/script";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.octopusperfume.in"),
-  title: "Personalized Gifts for Her & Him in India | Octopus Gifts",
-  description: "Shop personalized gifts, custom jewelry, name necklaces, and couple gifts. Perfect for birthdays, anniversaries, and weddings. Free shipping across India.",
-  keywords: ["personalized gifts", "custom jewelry", "name necklace", "gifts for her", "gifts for him", "anniversary gifts", "wedding gifts india", "custom keychain", "octopus gifts"],
-  authors: [{ name: "Octopus Gifts" }],
-  creator: "Octopus Gifts",
-  publisher: "Octopus Gifts",
+  title: "Everlasting Gifts for Her & Him in India | Octopus Everlasting Gifts",
+  description: "Shop everlasting gifts, custom jewelry, name necklaces, and couple gifts. Perfect for birthdays, anniversaries, and weddings. Free shipping across India.",
+  keywords: ["everlasting gifts", "custom jewelry", "name necklace", "gifts for her", "gifts for him", "anniversary gifts", "wedding gifts india", "custom keychain", "octopus gifts"],
+  authors: [{ name: "Octopus Everlasting Gifts" }],
+  creator: "Octopus Everlasting Gifts",
+  publisher: "Octopus Everlasting Gifts",
   formatDetection: {
     email: false,
     address: false,
@@ -25,16 +25,16 @@ export const metadata: Metadata = {
     apple: "/logo.png",
   },
   openGraph: {
-    title: "Personalized Gifts for Her & Him in India | Octopus Gifts",
-    description: "Shop personalized gifts, custom jewelry, name necklaces, and couple gifts. Perfect for birthdays, anniversaries, and weddings. Free shipping across India.",
+    title: "Everlasting Gifts for Her & Him in India | Octopus Everlasting Gifts",
+    description: "Shop everlasting gifts, custom jewelry, name necklaces, and couple gifts. Perfect for birthdays, anniversaries, and weddings. Free shipping across India.",
     url: "https://www.octopusperfume.in",
-    siteName: "Octopus Gifts",
+    siteName: "Octopus Everlasting Gifts",
     images: [
       {
         url: "/logo.png",
         width: 800,
         height: 600,
-        alt: "Octopus Gifts - Personalized Gifts",
+        alt: "Octopus Everlasting Gifts - Everlasting Gifts",
       },
     ],
     locale: "en_IN",
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Personalized Gifts for Her & Him in India | Octopus Gifts",
-    description: "Shop personalized gifts, custom jewelry, name necklaces, and couple gifts. Free shipping across India.",
+    title: "Everlasting Gifts for Her & Him in India | Octopus Everlasting Gifts",
+    description: "Shop everlasting gifts, custom jewelry, name necklaces, and couple gifts. Free shipping across India.",
     images: ["/logo.png"],
   },
   robots: {
@@ -141,7 +141,7 @@ export default function RootLayout({
                 "name": "Octopus",
                 "url": "https://www.octopusperfume.in",
                 "logo": "https://www.octopusperfume.in/icon.png",
-                "description": "Personalized gifts for every relationship, every occasion and every budget."
+                "description": "Everlasting gifts for every relationship, every occasion and every budget."
               })
             }}
           />

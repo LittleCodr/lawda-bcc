@@ -10,8 +10,8 @@ import SortSelect from "@/components/SortSelect";
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const formattedSlug = slug === 'all' ? 'All Gifts' : slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-  const title = rakhiConfig[slug] ? `${rakhiConfig[slug].title} | Octopus Gifts` : `${formattedSlug} | Octopus Gifts`;
-  const description = rakhiConfig[slug]?.description || `Shop ${formattedSlug.toLowerCase()} at Octopus Gifts. Personalized gifts for every relationship and budget.`;
+  const title = rakhiConfig[slug] ? `${rakhiConfig[slug].title} | Octopus Everlasting Gifts` : `${formattedSlug} | Octopus Everlasting Gifts`;
+  const description = rakhiConfig[slug]?.description || `Shop ${formattedSlug.toLowerCase()} at Octopus Everlasting Gifts. Everlasting gifts for every relationship and budget.`;
   const collectionUrl = `https://www.octopusperfume.in/collections/${slug}`;
 
   return {
@@ -24,13 +24,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title,
       description,
       url: collectionUrl,
-      siteName: "Octopus Gifts",
+      siteName: "Octopus Everlasting Gifts",
       images: [
         {
           url: "/logo.png",
           width: 800,
           height: 800,
-          alt: "Octopus Gifts Collections",
+          alt: "Octopus Everlasting Gifts Collections",
         },
       ],
       locale: "en_IN",
@@ -181,13 +181,13 @@ export default async function CollectionPage(props: {
     : (slug === 'all' 
         ? (queryParam ? `Search Results for "${searchParams.q}"` : 'All Gifts') 
         : slug.replace(/-/g, ' '));
-  const description = rakhiConfig[slug] ? rakhiConfig[slug].description : `Shop ${formattedTitle.toLowerCase()} at Octopus Gifts. Personalized gifts for every relationship and budget.`;
+  const description = rakhiConfig[slug] ? rakhiConfig[slug].description : `Shop ${formattedTitle.toLowerCase()} at Octopus Everlasting Gifts. Everlasting gifts for every relationship and budget.`;
   const rakhiData = rakhiConfig[slug];
 
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": `${formattedTitle.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} - Octopus Gifts`,
+    "name": `${formattedTitle.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} - Octopus Everlasting Gifts`,
     "description": description,
     "url": `https://www.octopusperfume.in/collections/${slug}`,
     "mainEntity": {

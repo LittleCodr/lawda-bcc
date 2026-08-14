@@ -17,11 +17,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   } catch (e) {}
 
   if (!product) {
-    return { title: "Product Not Found | Octopus Gifts" };
+    return { title: "Product Not Found | Octopus Everlasting Gifts" };
   }
 
-  const title = `${product.title} | Personalized Gift | Octopus Gifts`;
-  const cleanDescription = product.body_html?.replace(/<[^>]+>/g, "").substring(0, 160) || "Buy personalized gifts at Octopus Gifts.";
+  const title = `${product.title} | Personalized Gift | Octopus Everlasting Gifts`;
+  const cleanDescription = product.body_html?.replace(/<[^>]+>/g, "").substring(0, 160) || "Buy everlasting gifts at Octopus Everlasting Gifts.";
   const imageUrl = product.images && product.images.length > 0 ? (product.images[0].local_src || product.images[0].src) : "/logo.png";
   const absoluteImageUrl = imageUrl.startsWith("http") ? imageUrl : `https://www.octopusperfume.in${imageUrl}`;
   const productUrl = `https://www.octopusperfume.in/products/${slug}`;
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title,
       description: cleanDescription,
       url: productUrl,
-      siteName: "Octopus Gifts",
+      siteName: "Octopus Everlasting Gifts",
       images: [
         {
           url: absoluteImageUrl,
@@ -103,7 +103,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     "mpn": product.variants?.[0]?.sku || `OCT-${product.id}`,
     "brand": {
       "@type": "Brand",
-      "name": "Octopus Gifts"
+      "name": "Octopus Everlasting Gifts"
     },
     "offers": {
       "@type": "Offer",
@@ -115,7 +115,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       "availability": "https://schema.org/InStock",
       "seller": {
         "@type": "Organization",
-        "name": "Octopus Gifts"
+        "name": "Octopus Everlasting Gifts"
       },
       "shippingDetails": {
         "@type": "OfferShippingDetails",

@@ -607,7 +607,7 @@ export default function ProductUI({ product }: ProductUIProps) {
             <ul className="space-y-5">
               <li className="flex items-center gap-4">
                 <CheckCircle2 size={20} className="text-[#800020] shrink-0" strokeWidth={1.5} />
-                <span className="text-xs font-bold text-gray-700">Personalized Gifts</span>
+                <span className="text-xs font-bold text-gray-700">Everlasting Gifts</span>
               </li>
               <li className="flex items-center gap-4">
                 <Award size={20} className="text-[#800020] shrink-0" strokeWidth={1.5} />

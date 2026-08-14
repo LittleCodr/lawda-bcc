@@ -64,7 +64,7 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
           <input
             ref={inputRef}
             type="text"
-            placeholder="Search for personalized gifts..."
+            placeholder="Search for everlasting gifts..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="flex-1 text-lg font-serif outline-none bg-transparent placeholder:text-stone-300 text-stone-900"

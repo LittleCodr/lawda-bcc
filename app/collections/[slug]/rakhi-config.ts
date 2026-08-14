@@ -13,13 +13,13 @@ export const rakhiConfig: Record<string, {
       { q: "Do you deliver before Raksha Bandhan?", a: "Yes, we offer fast delivery across India (2-5 days). We recommend ordering at least 5 days in advance, or choosing our Premium Delivery option at checkout for 2-day delivery." },
       { q: "Are gift boxes included?", a: "We offer a Premium Gift Wrap option at checkout for a small fee, which includes a luxurious signature box, ribbon, and a custom message card." },
       { q: "Can I add a message card?", a: "Yes, when you choose the Premium Gift Wrap option, you can add a personalized message card for your sibling." },
-      { q: "What is your return policy for personalized gifts?", a: "Because personalized items are made uniquely for you, we cannot accept returns unless the product arrives damaged or defective." }
+      { q: "What is your return policy for everlasting gifts?", a: "Because personalized items are made uniquely for you, we cannot accept returns unless the product arrives damaged or defective." }
     ]
   },
   "rakhi-for-him": {
     title: "Rakhis & Bracelets for Him",
     description: "Shop premium personalized Rakhi gifts for your brother. Custom leather wallets, engraved keychains, and bracelets.",
-    copy: "Looking for a Rakhi gift for your brother that he will actually use and appreciate? Our collection of personalized gifts for men is designed with utility and style in mind. From premium vegan leather wallets engraved with his name to sleek stainless steel bracelets and custom keychains, we have something for every type of brother. These functional keepsakes serve as a daily reminder of your bond. Order now and enjoy fast, reliable shipping across India just in time for Raksha Bandhan.",
+    copy: "Looking for a Rakhi gift for your brother that he will actually use and appreciate? Our collection of everlasting gifts for men is designed with utility and style in mind. From premium vegan leather wallets engraved with his name to sleek stainless steel bracelets and custom keychains, we have something for every type of brother. These functional keepsakes serve as a daily reminder of your bond. Order now and enjoy fast, reliable shipping across India just in time for Raksha Bandhan.",
     faqs: [
       { q: "What is a good Rakhi gift for an elder brother?", a: "Our engraved premium vegan leather wallets and custom initial keychains are highly appreciated by elder brothers for their practicality and style." },
       { q: "Do you offer gifts for younger brothers?", a: "Yes, our customized braided leather bracelets and photo magnets are great options for younger brothers." },
@@ -37,13 +37,13 @@ export const rakhiConfig: Record<string, {
       { q: "Is the jewelry anti-tarnish?", a: "Yes, our personalized jewelry pieces for women are made from premium materials that are waterproof and anti-tarnish." },
       { q: "How long does engraving take?", a: "Engraving and crafting typically takes 1-3 days before the item is shipped out." },
       { q: "Can I send the gift directly to my sister?", a: "Yes! Enter her address in the shipping details, and select our Premium Gift Wrap option so it arrives beautifully packaged." },
-      { q: "Do you have budget-friendly options?", a: "Yes, we have a wide selection of beautiful, personalized gifts under ₹499 and ₹999." }
+      { q: "Do you have budget-friendly options?", a: "Yes, we have a wide selection of beautiful, everlasting gifts under ₹499 and ₹999." }
     ]
   },
   "rakhi-gifts-for-brother": {
     title: "Rakhi Gifts for Brother",
     description: "Shop premium personalized Rakhi gifts for your brother. Custom leather wallets, engraved keychains, and bracelets.",
-    copy: "Looking for a Rakhi gift for your brother that he will actually use and appreciate? Our collection of personalized gifts for men is designed with utility and style in mind. From premium vegan leather wallets engraved with his name to sleek stainless steel bracelets and custom keychains, we have something for every type of brother. These functional keepsakes serve as a daily reminder of your bond. Order now and enjoy fast, reliable shipping across India just in time for Raksha Bandhan.",
+    copy: "Looking for a Rakhi gift for your brother that he will actually use and appreciate? Our collection of everlasting gifts for men is designed with utility and style in mind. From premium vegan leather wallets engraved with his name to sleek stainless steel bracelets and custom keychains, we have something for every type of brother. These functional keepsakes serve as a daily reminder of your bond. Order now and enjoy fast, reliable shipping across India just in time for Raksha Bandhan.",
     faqs: [
       { q: "What is a good Rakhi gift for an elder brother?", a: "Our engraved premium vegan leather wallets and custom initial keychains are highly appreciated by elder brothers for their practicality and style." },
       { q: "Do you offer gifts for younger brothers?", a: "Yes, our customized braided leather bracelets and photo magnets are great options for younger brothers." },
@@ -67,7 +67,7 @@ export const rakhiConfig: Record<string, {
   "rakhi-gifts-under-999": {
     title: "Rakhi Gifts Under ₹999",
     description: "Premium personalized Rakhi gifts under ₹999. Luxury custom wallets, photo projection necklaces, and more.",
-    copy: "Elevate your gifting game this Raksha Bandhan with our premium selection of personalized gifts under ₹999. This curated collection features our most luxurious and intricately designed items, including photo projection necklaces, premium engraved vegan leather wallets, and customized soundwave art blocks. These gifts are designed to impress and create a lasting impact. Perfect for elder siblings or when you want to give something truly extraordinary.",
+    copy: "Elevate your gifting game this Raksha Bandhan with our premium selection of everlasting gifts under ₹999. This curated collection features our most luxurious and intricately designed items, including photo projection necklaces, premium engraved vegan leather wallets, and customized soundwave art blocks. These gifts are designed to impress and create a lasting impact. Perfect for elder siblings or when you want to give something truly extraordinary.",
     faqs: [
       { q: "What makes these gifts premium?", a: "These items feature complex personalization (like photo projection), higher-grade materials, and more intricate craftsmanship." },
       { q: "Can I include a photo in the photo projection necklace?", a: "Yes, you can upload any high-quality image, and we will embed it into the necklace's center stone." },
@@ -79,7 +79,7 @@ export const rakhiConfig: Record<string, {
   "rakhi-gifts-under-299": {
     title: "Rakhi Gifts Under ₹299",
     description: "Budget-friendly personalized Rakhi gifts under ₹299. Meaningful and customized gifts that don't break the bank.",
-    copy: "Celebrate Raksha Bandhan on a budget with our exclusive collection of personalized gifts under ₹299. From cute mini photo magnets to engraved metal bookmarks and simple initial keychains, these thoughtful little keepsakes pack a massive emotional punch. They are the perfect addition to a larger gift or a sweet standalone gesture for cousins and friends. Personalization is included in the price, making these the most cost-effective custom gifts in India.",
+    copy: "Celebrate Raksha Bandhan on a budget with our exclusive collection of everlasting gifts under ₹299. From cute mini photo magnets to engraved metal bookmarks and simple initial keychains, these thoughtful little keepsakes pack a massive emotional punch. They are the perfect addition to a larger gift or a sweet standalone gesture for cousins and friends. Personalization is included in the price, making these the most cost-effective custom gifts in India.",
     faqs: [
       { q: "What can I buy under ₹299?", a: "You can choose from personalized metal bookmarks, initial keychains, and custom photo magnets." },
       { q: "Is personalization free?", a: "Yes, the cost of engraving or personalization is included in the product price." },
@@ -91,7 +91,7 @@ export const rakhiConfig: Record<string, {
   "personalized-rakhi-gifts": {
     title: "Personalized Rakhi Gifts",
     description: "Shop unique personalized Raksha Bandhan gifts. Custom name jewelry, engraved accessories, and photo gifts.",
-    copy: "Make this Raksha Bandhan unforgettable with our extensive range of personalized gifts. At Octopus, we believe that adding a name, a date, or a special photo transforms an ordinary item into a treasured keepsake. Explore our collection of custom name necklaces, engraved leather bracelets, and personalized wallets designed specifically for brothers and sisters. Enjoy our seamless customization process, premium quality materials, and fast shipping across India.",
+    copy: "Make this Raksha Bandhan unforgettable with our extensive range of everlasting gifts. At Octopus, we believe that adding a name, a date, or a special photo transforms an ordinary item into a treasured keepsake. Explore our collection of custom name necklaces, engraved leather bracelets, and personalized wallets designed specifically for brothers and sisters. Enjoy our seamless customization process, premium quality materials, and fast shipping across India.",
     faqs: [
       { q: "How do I personalize my Rakhi gift?", a: "Simply visit the product page, enter the name or upload the photo you wish to use, and add the item to your cart." },
       { q: "What materials do you use?", a: "We primarily use high-grade stainless steel, brass, and premium vegan leather, depending on the product." },

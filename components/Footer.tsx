@@ -37,7 +37,7 @@ export default function Footer() {
               Octopus
             </h2>
             <p className="text-sm text-stone-600 leading-relaxed max-w-sm mb-8 font-medium tracking-wide">
-              Personalized gifts for every relationship, every occasion, and every budget.
+              Everlasting gifts for every relationship, every occasion, and every budget.
             </p>
           </div>
 
@@ -92,7 +92,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-20 pt-8 border-t border-stone-200 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] text-stone-500 tracking-widest uppercase">
-          <span>© {new Date().getFullYear()} Octopus Gifts. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Octopus Everlasting Gifts. All rights reserved.</span>
         </div>
       </div>
     </footer>

@@ -98,10 +98,32 @@ export async function POST(req: Request) {
           const productInfo = transaction.udf3 || transaction.productinfo || "N/A";
           
           if (customerEmail !== "N/A") {
-            await sendOrderConfirmation(orderId, customerName, customerEmail, amount, productInfo);
+            const emailResult = await sendOrderConfirmation(orderId, customerName, customerEmail, amount, productInfo);
+            
+            // If Brevo email fails (e.g. due to IP whitelist restrictions), notify Admin via Telegram
+            if (!emailResult.success) {
+              const errMsg = `⚠️ *Email Failed to Send!*\n\n*Order:* \`${orderId}\`\n*Customer:* ${customerEmail}\n*Reason:* ${emailResult.error || "Unknown Error"}\n\n_Check your Brevo API key and IP whitelisting settings!_`;
+              await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  chat_id: process.env.TELEGRAM_CHAT_ID,
+                  text: errMsg,
+                  parse_mode: "Markdown",
+                }),
+              });
+            }
           }
-        } catch (emailErr) {
+        } catch (emailErr: any) {
           console.error("Brevo email notification error:", emailErr);
+          try {
+             const errMsg = `⚠️ *Email Failed to Send!*\n\n*Order:* \`${orderId}\`\n*Reason:* ${emailErr.message || "Catch Block Error"}`;
+             await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ chat_id: process.env.TELEGRAM_CHAT_ID, text: errMsg, parse_mode: "Markdown" }),
+             });
+          } catch(e) {}
         }
 
         return NextResponse.json({ success: true, transaction });

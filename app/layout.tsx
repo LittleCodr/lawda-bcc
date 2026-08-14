@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.octopusperfume.in"),
@@ -82,6 +83,21 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Pacifico&family=Dancing+Script:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet" />
+        <Script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" strategy="afterInteractive" />
+        <Script id="onesignal-init" strategy="afterInteractive" dangerouslySetInnerHTML={{
+          __html: `
+            window.OneSignalDeferred = window.OneSignalDeferred || [];
+            OneSignalDeferred.push(async function(OneSignal) {
+              await OneSignal.init({
+                appId: "112b9c69-6c71-44be-8b41-6b47147772ae",
+                safari_web_id: "web.onesignal.auto.11512f5d-61af-48e1-99c6-cc09fe5cc2c2",
+                notifyButton: {
+                  enable: true,
+                },
+              });
+            });
+          `
+        }} />
       </head>
       <body className="min-h-full flex flex-col bg-stone-50 text-stone-900 font-sans">
         <NextTopLoader color="#800020" showSpinner={false} />

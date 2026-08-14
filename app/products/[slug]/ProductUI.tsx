@@ -26,7 +26,7 @@ export default function ProductUI({ product }: ProductUIProps) {
   const [customPhotoUrl, setCustomPhotoUrl] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const [isGift, setIsGift] = useState(false);
-  const [customFont, setCustomFont] = useState("font-pacifico");
+  const [customFont, setCustomFont] = useState("font-italianno");
   const [viewers, setViewers] = useState(0);
   const [stockLeft, setStockLeft] = useState(0);
 
@@ -351,19 +351,22 @@ export default function ProductUI({ product }: ProductUIProps) {
 
                 <div className="flex flex-col gap-2">
                   <label className="text-[10px] uppercase tracking-widest font-bold text-[#2d2d2d]">Select Font</label>
-                  <div className="flex gap-2">
-                    {['font-pacifico', 'font-dancing', 'font-greatvibes'].map(fontClass => (
+                  <div className="flex flex-wrap gap-2">
+                    {['font-italianno', 'font-alexbrush', 'font-pinyon', 'font-tangerine', 'font-satisfy'].map(fontClass => (
                       <button
                         key={fontClass}
                         onClick={() => setCustomFont(fontClass)}
-                        className={`flex-1 py-3 px-2 border rounded-md text-center transition-all ${
+                        className={`px-3 py-2 border rounded-md text-center transition-all flex-1 min-w-[30%] ${
                           customFont === fontClass 
                             ? 'border-[#800020] bg-[#fdfaf8] text-[#800020] shadow-sm' 
                             : 'border-gray-200 text-gray-500 hover:border-[#800020]'
                         }`}
                       >
-                        <span className={`text-lg leading-none ${fontClass}`}>
-                          {fontClass === 'font-pacifico' ? 'Pacifico' : fontClass === 'font-dancing' ? 'Dancing' : 'Great Vibes'}
+                        <span className={`text-2xl leading-none ${fontClass}`}>
+                          {fontClass === 'font-italianno' ? 'Italianno' : 
+                           fontClass === 'font-alexbrush' ? 'Alex Brush' : 
+                           fontClass === 'font-pinyon' ? 'Pinyon' : 
+                           fontClass === 'font-tangerine' ? 'Tangerine' : 'Satisfy'}
                         </span>
                       </button>
                     ))}

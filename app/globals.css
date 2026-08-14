@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Italianno&family=Pinyon+Script&family=Satisfy&family=Tangerine:wght@400;700&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -62,14 +62,25 @@ body {
   text-wrap: balance;
 }
 
-.font-pacifico {
-  font-family: 'Pacifico', cursive;
+
+
+
+.font-italianno {
+  font-family: 'Italianno', cursive;
 }
 
-.font-dancing {
-  font-family: 'Dancing Script', cursive;
+.font-alexbrush {
+  font-family: 'Alex Brush', cursive;
 }
 
-.font-greatvibes {
-  font-family: 'Great Vibes', cursive;
+.font-pinyon {
+  font-family: 'Pinyon Script', cursive;
+}
+
+.font-tangerine {
+  font-family: 'Tangerine', cursive;
+}
+
+.font-satisfy {
+  font-family: 'Satisfy', cursive;
 }

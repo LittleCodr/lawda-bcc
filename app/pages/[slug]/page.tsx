@@ -3,7 +3,7 @@ import path from "path";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ChevronRight, ShieldCheck, Truck, RefreshCcw, Heart, Info, FileText, Lock, Box, Banknote, Calendar, CheckCircle2 } from "lucide-react";
+import { ChevronRight, ShieldCheck, Truck, RefreshCcw, Heart, Info, FileText, Lock, Box, Banknote, Calendar, CheckCircle2, Mail, Phone } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -12,6 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 const SIDEBAR_LINKS = [
   { slug: "about-us", title: "About Us", icon: <Info size={18} /> },
+  { slug: "contact", title: "Contact Us", icon: <Mail size={18} /> },
   { slug: "shipping-policy", title: "Shipping Policy", icon: <Truck size={18} /> },
   { slug: "returns-refund-policy", title: "Returns & Exchanges", icon: <RefreshCcw size={18} /> },
   { slug: "privacy-policy", title: "Privacy Policy", icon: <Lock size={18} /> },
@@ -245,6 +246,43 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
 
           <h2>4. Data Security Infrastructure</h2>
           <p>We have implemented an array of robust, enterprise-grade security measures to prevent your personal data from being accidentally lost, altered, disclosed, or accessed in an unauthorized manner. Our databases are secured behind complex firewalls, and all data transmitted between your browser and our servers is encrypted using industry-standard SSL/TLS protocols.</p>
+        </>
+      );
+      break;
+    case "contact":
+      content = (
+        <>
+          <p className="lead text-lg font-medium text-stone-500 mb-8">We are here to help. Reach out to our dedicated support team with any questions, concerns, or bespoke gifting requests.</p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+            <div className="bg-[#f9f2ed] p-8 rounded-xl border border-[#E5B8B7]/30 flex flex-col items-center text-center">
+              <Mail className="text-[#800020] mb-4" size={32} />
+              <h3 className="font-serif text-xl text-stone-900 mt-0 mb-2">Email Support</h3>
+              <p className="text-sm text-stone-600 mb-4">For order inquiries, cancellations (within 2 hours), and general questions, email us at:</p>
+              <a href="mailto:support@octopusperfume.in" className="font-bold text-[#800020] text-lg hover:underline">support@octopusperfume.in</a>
+              <p className="text-xs text-stone-500 mt-4 mb-0">We aim to reply within 24 hours.</p>
+            </div>
+            
+            <div className="bg-[#f9f2ed] p-8 rounded-xl border border-[#E5B8B7]/30 flex flex-col items-center text-center">
+              <Phone className="text-[#800020] mb-4" size={32} />
+              <h3 className="font-serif text-xl text-stone-900 mt-0 mb-2">Phone Support</h3>
+              <p className="text-sm text-stone-600 mb-4">Need immediate assistance? Our customer support agents are available Monday to Saturday (10 AM - 6 PM IST):</p>
+              <a href="tel:+919876543210" className="font-bold text-[#800020] text-lg hover:underline">+91 98765 43210</a>
+              <p className="text-xs text-stone-500 mt-4 mb-0">Standard call rates apply.</p>
+            </div>
+          </div>
+          
+          <h2>Corporate Headquarters</h2>
+          <p>If you wish to send us mail, corporate inquiries, or written correspondence, please use our registered address below:</p>
+          <div className="bg-stone-50 p-6 rounded-xl border-l-4 border-[#800020] my-6">
+            <p className="font-bold text-stone-900 mb-2">Octopus Everlasting Gifts</p>
+            <p className="mb-0 text-sm leading-relaxed">
+              Shri Shanta Sharnam<br />
+              Tonk, Rajasthan, 304022<br />
+              India
+            </p>
+          </div>
+          <p className="text-sm text-stone-600 mt-8">Note: This address is strictly for corporate correspondence and returns processing. We do not operate a physical retail storefront at this location.</p>
         </>
       );
       break;

@@ -64,6 +64,7 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
               src={src}
               alt={`${product.name} - image ${idx + 1}`}
               fill
+              unoptimized
               quality={100}
               sizes="(max-width: 768px) 50vw, 33vw"
               className={`object-cover transition-all duration-700 ease-out ${

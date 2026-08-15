@@ -121,6 +121,7 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
             alt={images[currentIndex].alt}
             fill
             priority
+            unoptimized
             sizes="(max-width: 768px) 100vw, 50vw"
             className={`object-cover z-10 transition-opacity duration-300 ${isImgLoading ? 'opacity-0' : 'opacity-100'}`} 
             onLoad={() => setIsImgLoading(false)}
@@ -148,7 +149,7 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
                 currentIndex === idx ? "border-[#800020] opacity-100" : "border-transparent opacity-60 hover:opacity-100"
               }`}
             >
-              <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="96px" />
+              <Image src={img.src} alt={img.alt} fill unoptimized className="object-cover" sizes="96px" />
             </button>
           ))}
         </div>
@@ -187,6 +188,7 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
               src={getRetrySrc(images[currentIndex].src)} 
               alt={images[currentIndex].alt}
               fill
+              unoptimized
               className={`object-contain z-10 transition-opacity duration-300 ${isImgLoading ? 'opacity-0' : 'opacity-100'}`}
               sizes="100vw"
               onLoad={() => setIsImgLoading(false)}

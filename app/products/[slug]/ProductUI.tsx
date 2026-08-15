@@ -574,20 +574,7 @@ export default function ProductUI({ product }: ProductUIProps) {
         </div>
 
 
-        {/* Reviews Preview */}
-        <div className="flex items-center justify-between border-t border-gray-100 pt-6">
-          <div className="flex items-center gap-2">
-            <div className="flex text-amber-400">
-              <Star size={14} fill="currentColor" />
-              <Star size={14} fill="currentColor" />
-              <Star size={14} fill="currentColor" />
-              <Star size={14} fill="currentColor" />
-              <Star size={14} fill="currentColor" />
-            </div>
-            <span className="text-xs font-bold text-gray-800">4.8</span>
-            <span className="text-[10px] text-gray-500 ml-1">(12,500+ Reviews)</span>
-          </div>
-        </div>
+
       </div>
 
       {/* Right Column: Sidebar (Span 3) */}
@@ -643,7 +630,7 @@ export default function ProductUI({ product }: ProductUIProps) {
       {/* Tabs Section */ }
   <div className="mt-16 max-w-4xl border border-gray-200 rounded-xl overflow-hidden">
     <div className="flex items-center border-b border-gray-200 bg-gray-50/50">
-      {['details', 'reviews', 'shipping', 'faqs'].map((tab) => (
+      {['details', 'shipping', 'faqs'].map((tab) => (
         <button
           key={tab}
           onClick={() => setActiveTab(tab)}
@@ -653,8 +640,7 @@ export default function ProductUI({ product }: ProductUIProps) {
             }`}
         >
           {tab === 'details' ? 'Product Details' :
-            tab === 'reviews' ? 'Reviews (1250)' :
-              tab === 'shipping' ? 'Shipping & Returns' : 'FAQs'}
+            tab === 'shipping' ? 'Shipping & Returns' : 'FAQs'}
         </button>
       ))}
     </div>
@@ -665,13 +651,7 @@ export default function ProductUI({ product }: ProductUIProps) {
           <div className="prose prose-sm text-gray-600 text-justify" dangerouslySetInnerHTML={{ __html: product.body_html || "" }} />
         </div>
       )}
-      {activeTab === 'reviews' && (
-        <div className="animate-in fade-in duration-300 text-center py-10">
-          <div className="flex justify-center text-amber-400 mb-4"><Star size={24} fill="currentColor" /><Star size={24} fill="currentColor" /><Star size={24} fill="currentColor" /><Star size={24} fill="currentColor" /><Star size={24} fill="currentColor" /></div>
-          <h4 className="text-xl font-serif text-gray-900 mb-2">4.8 out of 5 Stars</h4>
-          <p className="text-sm text-gray-500">Based on 12,500+ reviews from verified customers.</p>
-        </div>
-      )}
+
       {activeTab === 'shipping' && (
         <div className="animate-in fade-in duration-300">
           <h4 className="text-sm font-bold text-gray-900 mb-2">Shipping Information</h4>

@@ -86,12 +86,12 @@ export default function Navbar() {
           scrolled ? "shadow-md py-3" : "py-4 border-b border-gray-100"
         }`}
       >
-      <div className="mx-auto max-w-[1440px] px-6 md:px-12 flex items-center justify-between">
+      <div className="mx-auto max-w-[1440px] px-4 md:px-12 flex items-center justify-between">
         
         {/* Left Side: Navigation Links */}
         <div className="flex-1 relative z-10 flex items-center">
           <button
-            className="xl:hidden p-3 -ml-3 text-[#2d2d2d] hover:text-[#800020] transition-colors"
+            className="xl:hidden p-2 -ml-2 text-[#2d2d2d] hover:text-[#800020] transition-colors"
             aria-label="Open menu"
             onClick={() => setMobileOpen(true)}
           >
@@ -138,9 +138,9 @@ export default function Navbar() {
         {/* Center: Logo */}
         <Link
           href="/"
-          className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center group z-20"
+          className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center group z-20 w-fit whitespace-nowrap"
         >
-          <span className="font-serif text-3xl sm:text-4xl tracking-widest uppercase text-[#800020]">
+          <span className="font-serif text-2xl sm:text-4xl tracking-widest uppercase text-[#800020]">
             Octopus
           </span>
           <span className="hidden sm:block text-[9px] font-bold uppercase tracking-[0.3em] text-[#2d2d2d] mt-1">
@@ -149,18 +149,18 @@ export default function Navbar() {
         </Link>
 
         {/* Right Side: Icons */}
-        <div className="flex items-center gap-2 sm:gap-8 flex-1 justify-end relative z-10 text-[#2d2d2d]">
-          <button aria-label="Search" onClick={() => setSearchOpen(true)} className="p-2 sm:p-0 flex flex-col items-center gap-1 hover:text-[#800020] transition-colors group">
+        <div className="flex items-center gap-1 sm:gap-8 flex-1 justify-end relative z-10 text-[#2d2d2d]">
+          <button aria-label="Search" onClick={() => setSearchOpen(true)} className="p-1.5 sm:p-0 flex flex-col items-center gap-1 hover:text-[#800020] transition-colors group">
              <Search size={22} strokeWidth={1.5} className="group-hover:-translate-y-0.5 transition-transform sm:w-5 sm:h-5" />
              <span className="hidden sm:block text-[10px] uppercase font-bold tracking-widest">Search</span>
           </button>
-          <Link href="/account" aria-label="Account" className="p-2 sm:p-0 flex flex-col items-center gap-1 hover:text-[#800020] transition-colors group">
+          <Link href="/account" aria-label="Account" className="p-1.5 sm:p-0 flex flex-col items-center gap-1 hover:text-[#800020] transition-colors group">
              <User size={22} strokeWidth={1.5} className="group-hover:-translate-y-0.5 transition-transform sm:w-5 sm:h-5" />
              <span className="hidden sm:block text-[10px] uppercase font-bold tracking-widest">Account</span>
           </Link>
           <button
             aria-label="Cart"
-            className="p-2 sm:p-0 -mr-2 sm:mr-0 flex flex-col items-center gap-1 hover:text-[#800020] transition-colors relative group"
+            className="p-1.5 sm:p-0 -mr-1.5 sm:mr-0 flex flex-col items-center gap-1 hover:text-[#800020] transition-colors relative group"
             onClick={() => setIsOpen(true)}
           >
             <div className="relative">

@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useCartStore } from "@/lib/store";
 import ProductImageGallery from "@/components/ProductImageGallery";
-import { Gift, ShieldCheck, Truck, Star, Heart, CheckCircle2, ChevronRight, ChevronDown, ShoppingBag, Zap, Clock, Smile, Award, Users, Flame, Sparkles } from "lucide-react";
+import { Gift, ShieldCheck, Truck, Star, Heart, CheckCircle2, ChevronRight, ChevronDown, ShoppingBag, Zap, Clock, Smile, Award, Users, Flame, Sparkles, Gem } from "lucide-react";
 import { logAppEvent, db } from "@/lib/firebase";
 import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 import { useAuth } from "@/lib/auth-context";
@@ -510,6 +510,18 @@ export default function ProductUI({ product }: ProductUIProps) {
               </div>
             </div>
           )}
+
+          {/* Trust Banner */}
+          <div className="flex flex-col gap-2 mb-6 p-4 rounded-xl border border-[#b8860b]/30 bg-gradient-to-r from-[#fff9e6] to-[#fffef0] shadow-sm">
+             <div className="flex items-center gap-2 text-[#b8860b] font-bold text-xs uppercase tracking-widest">
+               <Gem size={16} />
+               <span>Crafted in Premium 22K Gold Plating</span>
+             </div>
+             <div className="flex items-center gap-2 text-[#b8860b] font-bold text-xs uppercase tracking-widest">
+               <ShieldCheck size={16} />
+               <span>1-Year Anti-Tarnish Warranty</span>
+             </div>
+          </div>
 
           {/* Action Buttons */}
           <div className="flex gap-4 mb-6">

@@ -149,6 +149,9 @@ export default async function Home() {
               <span className="block mb-2">Everlasting Gifts</span>
               <span className="italic font-light text-[#9e7662]">That Lasts Forever</span>
             </h1>
+            <p className="text-[#b8860b] mt-4 font-bold tracking-widest uppercase text-xs md:text-sm flex items-center gap-2">
+              <Gem size={16} /> Premium 22K Gold Plated
+            </p>
             <p className="text-gray-700 mt-6 max-w-md text-sm md:text-base leading-relaxed font-medium">
               Because they're more than family—they're your first best friend. Surprise your sibling with a personalized keepsake they'll cherish for a lifetime.
             </p>
@@ -158,8 +161,8 @@ export default async function Home() {
                  <span className="text-[10px] md:text-[11px] font-bold uppercase leading-tight tracking-wider text-gray-800">Personalized<br/>Just For You</span>
               </div>
               <div className="flex items-start gap-2 justify-center lg:justify-start">
-                 <Award size={20} className="text-[#800020] shrink-0 mt-0.5" strokeWidth={1.5} />
-                 <span className="text-[10px] md:text-[11px] font-bold uppercase leading-tight tracking-wider text-gray-800">Crafted to Last<br/>A Lifetime</span>
+                 <Gem size={20} className="text-[#800020] shrink-0 mt-0.5" strokeWidth={1.5} />
+                 <span className="text-[10px] md:text-[11px] font-bold uppercase leading-tight tracking-wider text-gray-800">22K Gold<br/>Plated</span>
               </div>
               <div className="flex items-start gap-2 justify-center lg:justify-start">
                  <Truck size={20} className="text-[#800020] shrink-0 mt-0.5" strokeWidth={1.5} />
@@ -167,7 +170,7 @@ export default async function Home() {
               </div>
               <div className="flex items-start gap-2 justify-center lg:justify-start">
                  <ShieldCheck size={20} className="text-[#800020] shrink-0 mt-0.5" strokeWidth={1.5} />
-                 <span className="text-[10px] md:text-[11px] font-bold uppercase leading-tight tracking-wider text-gray-800">Secure<br/>Payments</span>
+                 <span className="text-[10px] md:text-[11px] font-bold uppercase leading-tight tracking-wider text-gray-800">Anti-Tarnish<br/>Waterproof</span>
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 mt-10">

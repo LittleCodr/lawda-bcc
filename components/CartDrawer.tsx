@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Minus, Plus, X, Lock, ShieldCheck, Gift, Clock } from "lucide-react";
+import { Minus, Plus, X, Lock, ShieldCheck, Gift, Clock, Gem } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useCartStore } from "@/lib/store";
 
@@ -197,16 +197,18 @@ export default function CartDrawer() {
                 </Link>
 
                 {/* Trust Badges */}
-                <div className="flex items-center justify-center gap-4 text-[10px] uppercase tracking-widest text-stone-400 font-medium flex-wrap">
-                  <div className="flex items-center gap-1.5">
-                    <Lock size={14} /> Continue Checkout
+                <div className="flex flex-col gap-2 p-3 bg-stone-50 border border-stone-200 rounded-lg mb-4 text-[10px] uppercase tracking-widest text-[#2d2d2d] font-bold">
+                  <div className="flex items-center gap-2 justify-center text-[#b8860b]">
+                    <Gem size={14} /> 100% Authentic 22K Gold Plated
                   </div>
-                  <div className="flex items-center gap-1.5 text-emerald-600 font-bold bg-emerald-50 px-2 py-1 rounded-sm border border-emerald-100">
-                    <span className="flex items-center justify-center w-3 h-3 bg-emerald-100 text-emerald-600 rounded-full text-[8px]">₹</span>
-                    Cash On Delivery
+                  <div className="flex items-center gap-2 justify-center text-emerald-600">
+                    <ShieldCheck size={14} /> Waterproof & Skin Friendly
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <ShieldCheck size={14} /> Quality
+                  <div className="flex items-center justify-center gap-4 text-stone-500 mt-1 pt-2 border-t border-stone-200">
+                    <div className="flex items-center gap-1.5"><Lock size={12} /> Secure Checkout</div>
+                    <div className="flex items-center gap-1.5 text-emerald-600 font-bold bg-emerald-50 px-1.5 py-0.5 rounded-sm border border-emerald-100">
+                      Cash On Delivery
+                    </div>
                   </div>
                 </div>
               </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, Clock, Gift } from "lucide-react";
+import { Heart, Clock, Gift, Sparkles, ShieldCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Marquee() {
@@ -41,6 +41,10 @@ export default function Marquee() {
             <Heart size={14} className="text-yellow-300 fill-yellow-300 shrink-0" />
             <span>SIBLING LOVE SALE! CODE ILYBEHENA FOR ₹150 OFF</span>
             <span className="text-emerald-300 font-black tracking-widest">• CASH ON DELIVERY AVAILABLE</span>
+            <Sparkles size={14} className="text-yellow-300 shrink-0" />
+            <span className="text-yellow-200 font-black tracking-widest">PREMIUM 22K GOLD PLATED</span>
+            <ShieldCheck size={14} className="text-yellow-300 shrink-0" />
+            <span className="text-yellow-200 font-black tracking-widest">ANTI-TARNISH & WATERPROOF</span>
             <Gift size={14} className="text-yellow-300 shrink-0" />
             <span className="flex items-center gap-1"><Clock size={14} className="text-yellow-300 shrink-0" />
             ENDS IN: {timeLeft || "00:00:00"}</span>

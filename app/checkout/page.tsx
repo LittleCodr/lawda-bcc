@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { ShieldCheck, Lock, CheckCircle2 } from "lucide-react";
+import { ShieldCheck, Lock, CheckCircle2, Gem } from "lucide-react";
 import { useCartStore } from "@/lib/store";
 import { useAuth } from "@/lib/auth-context";
 import { logAppEvent, db } from "@/lib/firebase";
@@ -507,6 +507,10 @@ export default function CheckoutPage() {
                 <div className="flex flex-col items-center gap-2 text-center text-emerald-600">
                   <div className="w-5 h-5 rounded-full border-2 border-emerald-600 flex items-center justify-center font-bold text-xs">₹</div>
                   <span className="text-[10px] uppercase tracking-widest font-bold">Cash On<br />Delivery</span>
+                </div>
+                <div className="flex flex-col items-center gap-2 text-center text-[#b8860b]">
+                  <Gem size={20} />
+                  <span className="text-[10px] uppercase tracking-widest font-bold">22K Gold<br />Plated</span>
                 </div>
                 <div className="flex flex-col items-center gap-2 text-center">
                   <CheckCircle2 size={20} />

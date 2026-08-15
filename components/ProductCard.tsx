@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Flame, Hourglass, Star, ShoppingBag } from "lucide-react";
+import { Flame, Hourglass, Star, ShoppingBag, Gem } from "lucide-react";
 import type { Product } from "@/lib/products";
 import { formatINR } from "@/lib/products";
 import { useCart } from "@/lib/cart-context";
@@ -94,8 +94,8 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
 
       {/* Product Info */}
       <div className="mt-5 px-1 flex flex-col gap-1.5 pb-2">
-        <p className="text-[10px] tracking-[0.2em] uppercase text-stone-400 font-medium">
-          Inspired by {product.inspiredBy}
+        <p className="text-[10px] tracking-[0.2em] uppercase text-[#b8860b] font-bold flex items-center gap-1.5">
+          <Gem size={12} /> 22K Gold Plated • Anti Tarnish
         </p>
         <div className="flex items-start justify-between gap-3 mt-1">
           <Link href={`/products/${product.slug}`}>

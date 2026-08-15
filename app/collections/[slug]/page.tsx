@@ -338,7 +338,7 @@ export default async function CollectionPage(props: {
               </div>
 
               {/* Highlight Sections */}
-              <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="mb-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Fairy Name Necklace Highlight Section */}
                 <div className="bg-gradient-to-br from-[#fcf0ee] to-[#fae6de] border border-[#f1dacd] rounded-xl relative overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 flex flex-col justify-between h-full group p-8">
                   {/* Watermark/Background texture */}
@@ -398,6 +398,38 @@ export default async function CollectionPage(props: {
                       <div className="absolute top-2 right-2 bg-[#7e3eaf] text-white w-14 h-14 rounded-full flex flex-col items-center justify-center text-center shadow-lg font-black leading-none border-2 border-white">
                         <span className="text-[8px] uppercase tracking-widest opacity-90 mb-0.5">ONLY</span>
                         <span className="text-sm">₹99</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Free Ring Highlight Section */}
+                <div className="bg-gradient-to-br from-[#fff7f0] to-[#fce3ce] border border-[#f5d0b5] rounded-xl relative overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300 flex flex-col justify-between h-full group p-8">
+                  {/* Watermark/Background texture */}
+                  <div className="absolute inset-0 opacity-10 bg-[url('https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg')] bg-cover bg-center mix-blend-multiply pointer-events-none blur-sm grayscale"></div>
+                  
+                  <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full mb-6">
+                    <div className="inline-flex bg-[#f59e0b]/20 text-[#b45309] px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-6 shadow-sm items-center gap-1.5 backdrop-blur-sm border border-[#fcd34d]">
+                      <Gift size={12} className="shrink-0" /> 
+                      <span className="whitespace-nowrap leading-tight">FREE GIFT INCLUDED</span>
+                    </div>
+                    <h2 className="font-serif text-3xl md:text-4xl mb-3 leading-none font-bold text-gray-900 tracking-wide flex gap-2 items-center">
+                      Free <span className="font-['Dancing_Script'] text-5xl md:text-6xl text-[#d97706] font-normal transform -rotate-2 -translate-y-2">Ring</span>
+                    </h2>
+                    <p className="text-gray-800 mb-6 text-xs md:text-sm font-medium tracking-wide">
+                      Get a free <strong>18K Paw Name Ring</strong> with every personalized name necklace!
+                    </p>
+                  </div>
+                  
+                  <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 z-10">
+                    <div className="inline-flex items-center justify-center gap-2 bg-[#d97706] text-white px-6 py-3 rounded-md font-black uppercase tracking-widest shadow-lg w-full md:w-auto text-[10px]">
+                      AUTO ADDED IN CART
+                    </div>
+                    <div className="relative w-48 h-48 md:w-56 md:h-56 bg-white rounded-xl overflow-hidden border-4 border-white shadow-xl shrink-0 group-hover:scale-105 transition-transform duration-500">
+                      <img src="https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg?v=1667301766" alt="Free Ring" className="w-full h-full object-cover" />
+                      <div className="absolute top-2 right-2 bg-[#d97706] text-white w-14 h-14 rounded-full flex flex-col items-center justify-center text-center shadow-lg font-black leading-none border-2 border-white">
+                        <span className="text-[8px] uppercase tracking-widest opacity-90 mb-0.5">VALUE</span>
+                        <span className="text-sm">₹499</span>
                       </div>
                     </div>
                   </div>

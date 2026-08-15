@@ -6,11 +6,11 @@ export const rakhiConfig: Record<string, {
 }> = {
   "rakhi-gifts": {
     title: "Personalized Rakhi Gifts",
-    description: "Discover the best personalized Raksha Bandhan gifts. Unique custom jewelry, couple gifts, and more with fast delivery across India.",
+    description: "Discover the best personalized Raksha Bandhan gifts. Unique custom jewelry, couple gifts, and more with fast delivery worldwide.",
     copy: "Raksha Bandhan is a celebration of the unique bond between siblings. This year, move beyond generic chocolates and mass-produced items by gifting something truly special: personalized Rakhi gifts. Whether you are looking for an engraved name necklace for your sister or a custom leather wallet for your brother, our collection is curated to create unforgettable moments. We use high-quality materials that are anti-tarnish and skin-friendly, ensuring your gift lasts as long as your memories. Shop our exclusive Raksha Bandhan collection and find the perfect token of love for your sibling.",
     faqs: [
       { q: "Can I personalize Rakhi gifts?", a: "Yes, absolutely! You can personalize our jewelry and gifts with names, initials, special dates, or short messages." },
-      { q: "Do you deliver before Raksha Bandhan?", a: "Yes, we offer fast delivery across India (2-5 days). We recommend ordering at least 5 days in advance, or choosing our Premium Delivery option at checkout for 2-day delivery." },
+      { q: "Do you deliver before Raksha Bandhan?", a: "Yes, we offer fast delivery across India (2-5 days) and Worldwide (within 7 days). We recommend ordering at least 5 days in advance, or choosing our Premium Delivery option at checkout for 2-day domestic delivery." },
       { q: "Are gift boxes included?", a: "We offer a Premium Gift Wrap option at checkout for a small fee, which includes a luxurious signature box, ribbon, and a custom message card." },
       { q: "Can I add a message card?", a: "Yes, when you choose the Premium Gift Wrap option, you can add a personalized message card for your sibling." },
       { q: "What is your return policy for everlasting gifts?", a: "Because personalized items are made uniquely for you, we cannot accept returns unless the product arrives damaged or defective." }
@@ -25,7 +25,7 @@ export const rakhiConfig: Record<string, {
       { q: "Do you offer gifts for younger brothers?", a: "Yes, our customized braided leather bracelets and photo magnets are great options for younger brothers." },
       { q: "Can I engrave a message on the wallet?", a: "Yes, most of our wallets allow for name or short message engraving." },
       { q: "How long will the engraving last?", a: "We use high-precision laser engraving that is permanent and will not fade over time." },
-      { q: "Is cash on delivery available?", a: "Yes, Cash on Delivery is available for an additional fee of ₹100." }
+      { q: "Is cash on delivery available?", a: "Yes, Cash on Delivery is available for domestic orders (India) for an additional fee of ₹100. COD is not available for international orders." }
     ]
   },
   "rakhi-gifts-for-sister": {
@@ -49,7 +49,7 @@ export const rakhiConfig: Record<string, {
       { q: "Do you offer gifts for younger brothers?", a: "Yes, our customized braided leather bracelets and photo magnets are great options for younger brothers." },
       { q: "Can I engrave a message on the wallet?", a: "Yes, most of our wallets allow for name or short message engraving." },
       { q: "How long will the engraving last?", a: "We use high-precision laser engraving that is permanent and will not fade over time." },
-      { q: "Is cash on delivery available?", a: "Yes, Cash on Delivery is available for an additional fee of ₹100." }
+      { q: "Is cash on delivery available?", a: "Yes, Cash on Delivery is available for domestic orders (India) for an additional fee of ₹100. COD is not available for international orders." }
     ]
   },
   "rakhi-gifts-under-499": {
@@ -60,7 +60,7 @@ export const rakhiConfig: Record<string, {
       { q: "What are the best Rakhi gifts under ₹499?", a: "Our personalized name necklaces and custom initial keychains are the absolute best-sellers in this category." },
       { q: "Is the quality compromised at this price?", a: "Not at all. We maintain strict quality control and use high-grade materials like stainless steel and premium plating for all our products." },
       { q: "Do these items come with gift wrapping?", a: "Standard packaging is included, but you can upgrade to Premium Gift Wrap for a small fee at checkout." },
-      { q: "Can I get fast delivery on these items?", a: "Yes, all our items, regardless of price, are eligible for our fast 2-5 day delivery across India." },
+      { q: "Can I get fast delivery on these items?", a: "Yes, all our items, regardless of price, are eligible for our fast 2-5 day delivery across India and 7-day international delivery." },
       { q: "Are there return gifts for cousins in this range?", a: "Absolutely! These budget-friendly options are perfect for bulk buying for cousins and extended family." }
     ]
   },
@@ -107,7 +107,7 @@ export const rakhiConfig: Record<string, {
     faqs: [
       { q: "Is the ₹199 offer valid on all name necklaces?", a: "The ₹199 special pricing applies to our selected best-selling Fairy Name Necklace. Other premium designs like Angel and Mangalsutra are available at slightly higher, heavily discounted prices." },
       { q: "Are these necklaces anti-tarnish?", a: "Yes, all our personalized necklaces are made from high-quality materials that are skin-friendly and anti-tarnish." },
-      { q: "How long does it take to deliver?", a: "We offer fast 2-5 day delivery across India. Order now to ensure delivery before Rakhi." },
+      { q: "How long does it take to deliver?", a: "We offer fast 2-5 day delivery across India and within 7 days internationally. Order now to ensure delivery before Rakhi." },
       { q: "Can I add a personalized message card?", a: "Yes, you can opt for our Premium Gift Wrap at checkout to include a personalized message card." },
       { q: "What length is the necklace chain?", a: "Our necklaces come with an adjustable chain (usually 16-18 inches) to ensure a perfect fit." }
     ]

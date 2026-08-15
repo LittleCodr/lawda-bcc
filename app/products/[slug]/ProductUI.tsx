@@ -583,7 +583,7 @@ export default function ProductUI({ product }: ProductUIProps) {
             {pinStatus === "success" ? (
               <p className="text-[10px] text-emerald-700 mt-3 font-bold flex items-center gap-1 bg-emerald-50 p-2 rounded-md"><CheckCircle2 size={12} /> Delivery available to {pinCode}. Order now with Premium Delivery to get it before Aug 28th.</p>
             ) : (
-              <p className="text-[10px] text-gray-500 mt-2 flex items-center gap-1">Enter a 6-digit PIN code to check delivery time.</p>
+              <p className="text-[10px] text-gray-500 mt-2 flex items-center gap-1">Enter a PIN / ZIP code to check delivery time.</p>
             )}
           </div>
 
@@ -669,7 +669,7 @@ export default function ProductUI({ product }: ProductUIProps) {
           {activeTab === 'shipping' && (
             <div className="animate-in fade-in duration-300">
               <h4 className="text-sm font-bold text-gray-900 mb-2">Shipping Information</h4>
-              <p className="text-sm text-gray-600 mb-6 text-justify">Free standard shipping on all orders. Personalised items take 3-5 business days to craft before shipping to ensure perfection. Once shipped, delivery takes 2-5 days across India.</p>
+              <p className="text-sm text-gray-600 mb-6 text-justify">Free standard shipping on all orders. Personalised items take 3-5 business days to craft before shipping to ensure perfection. Once shipped, domestic delivery takes 2-5 days across India, and international delivery takes up to 7 days.</p>
               <h4 className="text-sm font-bold text-gray-900 mb-2">Returns Policy</h4>
               <p className="text-sm text-gray-600 text-justify">Due to the personalized nature of our products, we do not accept returns unless the item is defective or incorrect. Please contact our support team within 48 hours of delivery if there are any issues.</p>
             </div>

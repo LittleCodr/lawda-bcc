@@ -17,7 +17,7 @@ export default function CheckoutPage() {
 
   const [loading, setLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<"prepaid" | "cod">("prepaid");
-  const [deliveryMethod, setDeliveryMethod] = useState<"standard" | "premium">("standard");
+  const [deliveryMethod, setDeliveryMethod] = useState<"standard" | "premium" | "international">("standard");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -26,6 +26,7 @@ export default function CheckoutPage() {
     city: "",
     state: "",
     zip: "",
+    country: "India",
   });
   const [fetchingPin, setFetchingPin] = useState(false);
   const [promoCode, setPromoCode] = useState("");
@@ -35,7 +36,7 @@ export default function CheckoutPage() {
   const baseTotal = totalPrice();
   const cartAutoDiscount = getAutoDiscountAmount ? getAutoDiscountAmount() : 0;
   const cartDiscountPercent = getAutoDiscountPercentage ? getAutoDiscountPercentage() : 0;
-  const deliveryFee = deliveryMethod === "premium" ? 300 : 0;
+  const deliveryFee = deliveryMethod === "international" ? 1500 : (deliveryMethod === "premium" ? 300 : 0);
   const promoDiscountAmount = promoApplied ? Math.floor(baseTotal * 0.15) : 0;
   const totalDiscount = cartAutoDiscount + promoDiscountAmount;
   const isAdmin = user?.email && ["littlecodr@gmail.com", "srijanrai966@gmail.com", "coderdracwound@gmail.com"].includes(user.email.toLowerCase());
@@ -55,7 +56,7 @@ export default function CheckoutPage() {
   }, [user, authLoading, loginAnonymously]);
 
   useEffect(() => {
-    if (formData.zip.length === 6) {
+    if (formData.country === "India" && formData.zip.length === 6) {
       const fetchPinDetails = async () => {
         setFetchingPin(true);
         try {
@@ -119,7 +120,7 @@ export default function CheckoutPage() {
     );
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     let { name, value } = e.target;
     if (name === "phone") {
       value = value.replace(/\D/g, "").slice(0, 10);
@@ -294,11 +295,42 @@ export default function CheckoutPage() {
                   <input required minLength={5} type="text" name="address" value={formData.address} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="House/Flat No., Street" />
                 </div>
 
+                <div className="relative">
+                  <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Country</label>
+                  <select name="country" value={formData.country} onChange={(e) => {
+                    handleChange(e);
+                    if (e.target.value !== "India") {
+                      setDeliveryMethod("international");
+                      setPaymentMethod("prepaid");
+                    } else {
+                      setDeliveryMethod("standard");
+                    }
+                  }} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm">
+                    <option value="India">India</option>
+                    <option value="United States">United States</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                    <option value="United Arab Emirates">United Arab Emirates</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="Germany">Germany</option>
+                    <option value="France">France</option>
+                    <option value="Italy">Italy</option>
+                    <option value="Spain">Spain</option>
+                    <option value="Netherlands">Netherlands</option>
+                    <option value="New Zealand">New Zealand</option>
+                  </select>
+                </div>
+
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
                   <div className="relative order-1 md:order-1">
                     <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">ZIP Code</label>
                     <div className="relative">
-                      <input required type="text" pattern="\d{6}" maxLength={6} title="Please enter a valid 6-digit PIN code" name="zip" value={formData.zip} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="6-digit PIN" />
+                      {formData.country === "India" ? (
+                        <input required type="text" pattern="\d{6}" maxLength={6} title="Please enter a valid 6-digit PIN code" name="zip" value={formData.zip} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="6-digit PIN" />
+                      ) : (
+                        <input required type="text" minLength={3} name="zip" value={formData.zip} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="ZIP / Postal Code" />
+                      )}
                       {fetchingPin && <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 border-2 border-[#E5B8B7] border-t-[#800020] rounded-full animate-spin"></div>}
                     </div>
                   </div>
@@ -315,20 +347,32 @@ export default function CheckoutPage() {
                 <div className="pt-4 border-t border-stone-200">
                   <h3 className="font-serif text-2xl mb-6 text-stone-900">Delivery Method</h3>
                   <div className="space-y-4">
-                    <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${deliveryMethod === 'standard' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
-                      <input type="radio" name="delivery" value="standard" checked={deliveryMethod === 'standard'} onChange={() => setDeliveryMethod('standard')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
-                      <div className="flex flex-col">
-                        <span className="font-bold text-sm text-stone-900">Standard Delivery (Free)</span>
-                        <span className="text-xs text-stone-500">3-5 business days</span>
-                      </div>
-                    </label>
-                    <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${deliveryMethod === 'premium' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
-                      <input type="radio" name="delivery" value="premium" checked={deliveryMethod === 'premium'} onChange={() => setDeliveryMethod('premium')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
-                      <div className="flex flex-col">
-                        <span className="font-bold text-sm text-stone-900">Premium Delivery by Air (+₹300)</span>
-                        <span className="text-xs text-stone-500">2 day delivery</span>
-                      </div>
-                    </label>
+                    {formData.country === "India" ? (
+                      <>
+                        <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${deliveryMethod === 'standard' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
+                          <input type="radio" name="delivery" value="standard" checked={deliveryMethod === 'standard'} onChange={() => setDeliveryMethod('standard')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
+                          <div className="flex flex-col">
+                            <span className="font-bold text-sm text-stone-900">Standard Delivery (Free)</span>
+                            <span className="text-xs text-stone-500">3-5 business days</span>
+                          </div>
+                        </label>
+                        <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${deliveryMethod === 'premium' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
+                          <input type="radio" name="delivery" value="premium" checked={deliveryMethod === 'premium'} onChange={() => setDeliveryMethod('premium')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
+                          <div className="flex flex-col">
+                            <span className="font-bold text-sm text-stone-900">Premium Delivery by Air (+₹300)</span>
+                            <span className="text-xs text-stone-500">2 day delivery</span>
+                          </div>
+                        </label>
+                      </>
+                    ) : (
+                      <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${deliveryMethod === 'international' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
+                        <input type="radio" name="delivery" value="international" checked={deliveryMethod === 'international'} onChange={() => setDeliveryMethod('international')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
+                        <div className="flex flex-col">
+                          <span className="font-bold text-sm text-stone-900">International Delivery (+₹1500)</span>
+                          <span className="text-xs text-stone-500">Within 7 days worldwide</span>
+                        </div>
+                      </label>
+                    )}
                   </div>
                 </div>
 
@@ -342,13 +386,15 @@ export default function CheckoutPage() {
                         <span className="text-xs text-stone-500">Pay securely via UPI, Cards, or Netbanking.</span>
                       </div>
                     </label>
-                    <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${paymentMethod === 'cod' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
-                      <input type="radio" name="payment" value="cod" checked={paymentMethod === 'cod'} onChange={() => setPaymentMethod('cod')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
-                      <div className="flex flex-col">
-                        <span className="font-bold text-sm text-stone-900">Cash on Delivery (50% Advance)</span>
-                        <span className="text-xs text-stone-500">Pay 50% securely now as advance, pay the rest on delivery.</span>
-                      </div>
-                    </label>
+                    {formData.country === "India" && (
+                      <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${paymentMethod === 'cod' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
+                        <input type="radio" name="payment" value="cod" checked={paymentMethod === 'cod'} onChange={() => setPaymentMethod('cod')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
+                        <div className="flex flex-col">
+                          <span className="font-bold text-sm text-stone-900">Cash on Delivery (50% Advance)</span>
+                          <span className="text-xs text-stone-500">Pay 50% securely now as advance, pay the rest on delivery.</span>
+                        </div>
+                      </label>
+                    )}
                   </div>
                 </div>
 
@@ -484,7 +530,7 @@ export default function CheckoutPage() {
                 )}
                 <div className="flex justify-between text-sm text-stone-600">
                   <span>Shipping</span>
-                  <span>{deliveryMethod === 'premium' ? '₹300' : 'Free'}</span>
+                  <span>{deliveryMethod === 'international' ? '₹1500' : (deliveryMethod === 'premium' ? '₹300' : 'Free')}</span>
                 </div>
                 <div className="flex justify-between items-end pt-4 mt-2 border-t border-stone-200">
                   <span className="font-serif text-2xl text-stone-900">Total</span>

@@ -7,14 +7,14 @@ import { Gift, ShieldCheck, Truck, Award, Star, ArrowRight, Heart, Users, Gem, W
 
 export const metadata: Metadata = {
   title: "Personalized Rakhi Gifts for Sister & Brother | Gifts Under ₹499 | Octopus Everlasting Gifts",
-  description: "Surprise your sister or brother with personalized Raksha Bandhan gifts, custom jewelry and gift boxes under ₹499 with fast delivery across India.",
+  description: "Surprise your sister or brother with personalized Raksha Bandhan gifts, custom jewelry and gift boxes under ₹499 with fast delivery worldwide.",
   keywords: ["rakhi gifts", "raksha bandhan gifts", "everlasting gifts", "custom jewelry", "gifts for sister", "gifts for brother", "gifts under 499", "octopus gifts"],
   alternates: {
     canonical: "https://www.octopusperfume.in",
   },
   openGraph: {
     title: "Personalized Rakhi Gifts for Sister & Brother | Octopus Everlasting Gifts",
-    description: "Surprise your sister or brother with personalized Raksha Bandhan gifts, custom jewelry and gift boxes under ₹499 with fast delivery across India.",
+    description: "Surprise your sister or brother with personalized Raksha Bandhan gifts, custom jewelry and gift boxes under ₹499 with fast delivery worldwide.",
     url: "https://www.octopusperfume.in",
     siteName: "Octopus Everlasting Gifts",
     images: [
@@ -104,7 +104,7 @@ export default async function Home() {
         "name": "Do you deliver across India?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes, we provide fast and reliable delivery to all pin codes across India."
+          "text": "Yes, we provide fast and reliable delivery to all pin codes across India, as well as International delivery worldwide within 7 days."
         }
       },
       {
@@ -542,7 +542,7 @@ export default async function Home() {
               At Octopus, we believe every relationship deserves to be celebrated with meaning. Whether you are searching for thoughtful <strong className="text-white">birthday gifts</strong>, romantic <strong className="text-white">anniversary gifts</strong>, or festive <strong className="text-white">Rakhi gifts</strong>, our collection of <strong className="text-white">personalized jewelry</strong> is crafted to turn memories into tangible keepsakes.
             </p>
             <p>
-              From delicate 925 silver name necklaces for your girlfriend to engraved stainless steel couple gifts for your husband, we curate the perfect everlasting gifts across India. Shop our highly affordable gifts under ₹999 or discover our premium custom keepsakes—all backed by our promise of fast delivery and premium anti-tarnish quality. Experience the joy of gifting with Octopus today.
+              From delicate 925 silver name necklaces for your girlfriend to engraved stainless steel couple gifts for your husband, we curate the perfect everlasting gifts worldwide. Shop our highly affordable gifts under ₹999 or discover our premium custom keepsakes—all backed by our promise of fast international delivery and premium anti-tarnish quality. Experience the joy of gifting with Octopus today.
             </p>
           </div>
         </div>

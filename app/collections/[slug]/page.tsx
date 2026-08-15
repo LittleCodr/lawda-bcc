@@ -7,6 +7,7 @@ import { ChevronRight, Gift, ChevronDown, Flame, Sparkles } from "lucide-react";
 import { rakhiConfig } from "./rakhi-config";
 import SortSelect from "@/components/SortSelect";
 import FeaturedProductCarousel from "@/components/FeaturedProductCarousel";
+import ZoomableImage from "@/components/ZoomableImage";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -425,9 +426,9 @@ export default async function CollectionPage(props: {
                     <div className="inline-flex items-center justify-center gap-2 bg-[#d97706] text-white px-6 py-3 rounded-md font-black uppercase tracking-widest shadow-lg w-full md:w-auto text-[10px]">
                       AUTO ADDED IN CART
                     </div>
-                    <div className="relative w-48 h-48 md:w-56 md:h-56 bg-white rounded-xl overflow-hidden border-4 border-white shadow-xl shrink-0 group-hover:scale-105 transition-transform duration-500">
-                      <img src="https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg?v=1667301766" alt="Free Ring" className="w-full h-full object-cover" />
-                      <div className="absolute top-2 right-2 bg-[#d97706] text-white w-14 h-14 rounded-full flex flex-col items-center justify-center text-center shadow-lg font-black leading-none border-2 border-white">
+                    <div className="relative w-48 h-48 md:w-56 md:h-56 bg-white rounded-xl overflow-hidden border-4 border-white shadow-xl shrink-0">
+                      <ZoomableImage src="https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg?v=1667301766" alt="Free Ring" />
+                      <div className="absolute top-2 right-2 bg-[#d97706] text-white w-14 h-14 rounded-full flex flex-col items-center justify-center text-center shadow-lg font-black leading-none border-2 border-white pointer-events-none">
                         <span className="text-[8px] uppercase tracking-widest opacity-90 mb-0.5">VALUE</span>
                         <span className="text-sm">₹499</span>
                       </div>

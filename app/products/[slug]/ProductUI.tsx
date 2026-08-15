@@ -10,6 +10,7 @@ import { useAuth } from "@/lib/auth-context";
 import Link from "next/link";
 import Image from "next/image";
 import toast from "react-hot-toast";
+import ZoomableImage from "@/components/ZoomableImage";
 
 interface ProductUIProps {
   product: any;
@@ -485,7 +486,7 @@ export default function ProductUI({ product }: ProductUIProps) {
           {isNamePersonalised && (productTitleLower.includes('necklace') || product.handle === '12-in-1-jhumkas-box') && (
             <div className="bg-[#fdfaf8] border border-[#800020]/30 rounded-xl p-4 mb-6 flex items-center gap-4 relative overflow-hidden group shadow-sm">
               <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden border border-[#800020]/20 bg-white">
-                <img src="https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg?v=1667301766" alt="Free Ring" className="w-full h-full object-cover" />
+                <ZoomableImage src="https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg?v=1667301766" alt="Free Ring" />
               </div>
               <div className="flex-1">
                 <h4 className="text-[#800020] font-bold text-sm mb-1 uppercase tracking-widest flex items-center gap-2">

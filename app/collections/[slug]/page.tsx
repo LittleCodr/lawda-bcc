@@ -424,9 +424,12 @@ export default async function CollectionPage(props: {
                     </div>
                     
                     <div className="p-3 md:p-6 flex flex-col flex-1 text-center bg-white">
-                      <h3 className="font-serif text-sm md:text-lg text-[#2d2d2d] group-hover:text-[#800020] transition-colors leading-tight mb-2 md:mb-3 font-bold line-clamp-2 md:line-clamp-none h-10 md:h-auto">
+                      <h3 className="font-serif text-sm md:text-lg text-[#2d2d2d] group-hover:text-[#800020] transition-colors leading-tight mb-1 md:mb-2 font-bold line-clamp-2 md:line-clamp-none h-10 md:h-auto">
                         {product.title}
                       </h3>
+                      {(product.title || "").toLowerCase().includes("name necklace") && (
+                        <p className="text-[8px] uppercase tracking-widest text-[#b8860b] font-bold mb-2">22k Gold Plated • Anti Tarnish</p>
+                      )}
                       <p className="text-sm font-bold text-[#800020] tracking-wide mb-3 md:mt-auto">
                         ₹{product.variants && product.variants.length > 0 ? product.variants[0].price : "0"}
                       </p>

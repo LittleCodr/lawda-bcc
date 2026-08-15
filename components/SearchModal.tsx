@@ -111,7 +111,10 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-serif text-lg text-stone-900 truncate group-hover:text-[#800020] transition-colors">{product.title}</h4>
+                    <h4 className="font-serif text-lg text-stone-900 truncate group-hover:text-[#800020] transition-colors mb-0.5">{product.title}</h4>
+                    {(product.title || "").toLowerCase().includes("name necklace") && (
+                      <p className="text-[9px] uppercase tracking-widest text-[#b8860b] font-bold mb-1">22k Gold Plated • Anti Tarnish</p>
+                    )}
                     <p className="text-xs font-bold text-[#800020]">₹{product.variants?.[0]?.price || "0"}</p>
                   </div>
                 </Link>

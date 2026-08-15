@@ -110,6 +110,10 @@ export default function CartDrawer() {
                                 <X size={18} strokeWidth={1.5} />
                               </button>
                             </div>
+                            
+                            {(item.title || "").toLowerCase().includes("name necklace") && (
+                              <p className="text-[9px] uppercase tracking-widest text-[#b8860b] font-bold mb-1">22k Gold Plated • Anti Tarnish</p>
+                            )}
 
                             {item.variantTitle && (
                               <p className="text-xs uppercase tracking-widest font-bold text-[#800020] mt-1">{item.variantTitle}</p>

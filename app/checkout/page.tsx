@@ -380,9 +380,12 @@ export default function CheckoutPage() {
                       <Image src={item.image || "/logo.png"} alt={item.title} fill sizes="80px" className="object-cover" />
                     </div>
                     <div className="flex-1 flex flex-col justify-center">
-                      <p className="font-serif text-lg leading-tight text-stone-900">{item.title}</p>
+                      <p className="font-serif text-lg leading-tight text-stone-900 mb-0.5">{item.title}</p>
+                      {(item.title || "").toLowerCase().includes("name necklace") && (
+                        <p className="text-[9px] uppercase tracking-widest text-[#b8860b] font-bold mb-1">22k Gold Plated • Anti Tarnish</p>
+                      )}
                       {item.variantTitle && (
-                        <p className="text-xs text-stone-500 mt-1">{item.variantTitle}</p>
+                        <p className="text-xs text-stone-500">{item.variantTitle}</p>
                       )}
 
                       {/* Personalization Details Summary */}

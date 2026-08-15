@@ -289,9 +289,19 @@ export default function ProductUI({ product }: ProductUIProps) {
             <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-orange-600 flex items-center gap-1.5"><Flame size={12} /> Selling Fast</span>
           </div>
 
-          <h1 className="font-serif text-3xl md:text-4xl text-[#2d2d2d] mb-4 leading-tight">
+          <h1 className="font-serif text-3xl md:text-4xl text-[#2d2d2d] mb-2 leading-tight">
             {product.title}
           </h1>
+          {(product.title || "").toLowerCase().includes('name necklace') && (
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#b8860b] bg-[#fdf5e6] px-2.5 py-1 rounded-sm border border-[#f5deb3]">
+                22k Gold Plated
+              </span>
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-600 bg-gray-100 px-2.5 py-1 rounded-sm border border-gray-200">
+                Anti Tarnish
+              </span>
+            </div>
+          )}
 
           <div className="flex items-center gap-3 mb-6">
             <span className="text-2xl font-bold text-[#800020]">₹{currentPrice.toFixed(2)}</span>

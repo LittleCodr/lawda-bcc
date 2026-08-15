@@ -482,7 +482,7 @@ export default function ProductUI({ product }: ProductUIProps) {
           </div>
 
           {/* Free Ring Promo */}
-          {isNamePersonalised && productTitleLower.includes('necklace') && (
+          {isNamePersonalised && (productTitleLower.includes('necklace') || product.handle === '12-in-1-jhumkas-box') && (
             <div className="bg-[#fdfaf8] border border-[#800020]/30 rounded-xl p-4 mb-6 flex items-center gap-4 relative overflow-hidden group shadow-sm">
               <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden border border-[#800020]/20 bg-white">
                 <img src="https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg?v=1667301766" alt="Free Ring" className="w-full h-full object-cover" />

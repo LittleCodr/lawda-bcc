@@ -15,6 +15,23 @@ export default function CheckoutPage() {
   const { user, loading: authLoading, loginAnonymously } = useAuth();
   const router = useRouter();
 
+  const freeRings = items
+    .filter((item) => (item.title || "").toLowerCase().includes("name necklace") && item.customName)
+    .map((item) => ({
+      ...item,
+      id: `free-ring-${item.id}`,
+      cartItemId: `free-ring-${item.cartItemId || item.id}`,
+      title: "18K Paw Name Ring",
+      price: 0,
+      image: "https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg?v=1667301766",
+      variantTitle: undefined,
+      isGift: false,
+      isFree: true
+    }));
+  
+  const allDisplayItems = [...items, ...freeRings];
+
+
   const [loading, setLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState<"prepaid" | "cod">("prepaid");
   const [deliveryMethod, setDeliveryMethod] = useState<"standard" | "premium" | "international">("standard");
@@ -85,7 +102,7 @@ export default function CheckoutPage() {
       logAppEvent("begin_checkout", {
         currency: "INR",
         value: finalTotal,
-        items: items.map((i) => ({
+        items: allDisplayItems.map((i: any) => ({
           item_id: i.id,
           item_name: i.title,
           quantity: i.quantity,
@@ -151,7 +168,7 @@ export default function CheckoutPage() {
         currency: "INR",
         value: finalTotal,
         payment_type: paymentMethod,
-        items: items.map((i) => ({
+        items: allDisplayItems.map((i: any) => ({
           item_id: i.id,
           item_name: i.title,
           quantity: i.quantity,
@@ -191,7 +208,7 @@ export default function CheckoutPage() {
         codBalance: codBalance,
         paymentMethod: paymentMethod,
         deliveryMethod: deliveryMethod,
-        items: JSON.parse(JSON.stringify(items)),
+        items: JSON.parse(JSON.stringify(allDisplayItems)),
         shippingDetails: formData,
         promoCode: promoApplied ? promoCode : null,
         discountAmount: totalDiscount,
@@ -224,7 +241,7 @@ export default function CheckoutPage() {
         transaction_id: orderId,
         currency: "INR",
         value: finalTotal,
-        items: items.map((i) => ({
+        items: allDisplayItems.map((i: any) => ({
           item_id: i.id,
           item_name: i.title,
           quantity: i.quantity,
@@ -420,14 +437,14 @@ export default function CheckoutPage() {
 
               {/* Items List */}
               <ul className="space-y-6 mb-8 max-h-[400px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-stone-200">
-                {items.map((item) => (
+                {allDisplayItems.map((item: any) => (
                   <li key={item.cartItemId || `${item.id}-${item.variantId}`} className="flex gap-4">
                     <div className="relative w-20 h-20 bg-stone-50 shrink-0 border border-stone-100">
                       <Image src={item.image || "/logo.png"} alt={item.title} fill unoptimized sizes="80px" className="object-cover" />
                     </div>
                     <div className="flex-1 flex flex-col justify-center">
                       <p className="font-serif text-lg leading-tight text-stone-900 mb-0.5">{item.title}</p>
-                      {(item.title || "").toLowerCase().includes("name necklace") && (
+                      {(item.title || "").toLowerCase().includes("name necklace") && !item.isFree && (
                         <p className="text-[9px] uppercase tracking-widest text-[#b8860b] font-bold mb-1">22k Gold Plated • Anti Tarnish</p>
                       )}
                       {item.variantTitle && (
@@ -439,12 +456,18 @@ export default function CheckoutPage() {
                         <div className="mt-1 flex flex-col gap-0.5">
                           {item.customName && <p className="text-[10px] text-stone-500 uppercase tracking-widest">Engraving: {item.customName}</p>}
                           {item.customPhotoUrl && <p className="text-[10px] text-stone-500 uppercase tracking-widest">Photo Included</p>}
-                          {item.isGift && <p className="text-[10px] text-[#800020] font-bold uppercase tracking-widest">Premium Gift</p>}
+                          {item.isGift && !item.isFree && <p className="text-[10px] text-[#800020] font-bold uppercase tracking-widest">Premium Gift</p>}
                         </div>
                       )}
 
                       <div className="flex justify-between items-center mt-2">
-                        <p className="text-sm font-medium text-stone-700">₹{item.price}</p>
+                        {item.isFree ? (
+                          <p className="text-sm font-bold text-emerald-600 uppercase tracking-widest flex items-center gap-1">
+                            FREE
+                          </p>
+                        ) : (
+                          <p className="text-sm font-medium text-stone-700">₹{item.price}</p>
+                        )}
                         <p className="text-xs text-stone-400 uppercase tracking-widest">Qty: {item.quantity}</p>
                       </div>
                     </div>

@@ -95,76 +95,108 @@ export default function CartDrawer() {
                 </div>
               ) : (
                 <ul className="space-y-8">
-                  {items.map((item) => {
-                    const uniqueId = item.cartItemId || `${item.id}-${item.variantId || 'default'}`;
-                    return (
-                      <li key={uniqueId} className="flex gap-5 group">
-                        <div className="relative w-28 h-32 bg-white shrink-0 rounded-sm overflow-hidden border border-[#E5B8B7]/40 shadow-sm">
-                          <Image src={item.image || "/logo.png"} alt={item.title} fill unoptimized sizes="112px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                        </div>
-                        <div className="flex-1 flex flex-col justify-between py-1">
-                          <div>
-                            <div className="flex items-start justify-between mb-1">
-                              <p className="font-serif text-lg text-[#2d2d2d] leading-tight pr-4">{item.title}</p>
-                              <button onClick={() => removeItem(uniqueId)} aria-label="Remove" className="text-[#E5B8B7] hover:text-[#800020] transition-colors -mt-1 -mr-2 p-2 shrink-0">
-                                <X size={18} strokeWidth={1.5} />
-                              </button>
-                            </div>
-                            
-                            {(item.title || "").toLowerCase().includes("name necklace") && (
-                              <p className="text-[9px] uppercase tracking-widest text-[#b8860b] font-bold mb-1">22k Gold Plated • Anti Tarnish</p>
-                            )}
-
-                            {item.variantTitle && (
-                              <p className="text-xs uppercase tracking-widest font-bold text-[#800020] mt-1">{item.variantTitle}</p>
-                            )}
-
-                            {/* Personalization Details */}
-                            {(item.customName || item.customPhotoUrl) && (
-                              <div className="mt-3 flex flex-col gap-2 border-t border-[#E5B8B7]/30 pt-3">
-                                {item.customName && (
-                                  <div className="flex justify-between items-center">
-                                    <span className="text-[10px] uppercase tracking-widest text-[#2d2d2d] opacity-70">Engraving</span>
-                                    <span className="text-[11px] font-bold text-[#2d2d2d]">{item.customName}</span>
-                                  </div>
+                  {(() => {
+                    const freeRings = items
+                      .filter((item) => (item.title || "").toLowerCase().includes("name necklace") && item.customName)
+                      .map((item) => ({
+                        ...item,
+                        id: `free-ring-${item.id}`,
+                        cartItemId: `free-ring-${item.cartItemId || item.id}`,
+                        title: "18K Paw Name Ring",
+                        price: 0,
+                        image: "https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg?v=1667301766",
+                        variantTitle: undefined,
+                        isGift: false,
+                        isFree: true
+                      }));
+                    
+                    const allDisplayItems = [...items, ...freeRings];
+                    
+                    return allDisplayItems.map((item: any) => {
+                      const uniqueId = item.cartItemId || `${item.id}-${item.variantId || 'default'}`;
+                      return (
+                        <li key={uniqueId} className="flex gap-5 group">
+                          <div className="relative w-28 h-32 bg-white shrink-0 rounded-sm overflow-hidden border border-[#E5B8B7]/40 shadow-sm">
+                            <Image src={item.image || "/logo.png"} alt={item.title} fill unoptimized sizes="112px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                          </div>
+                          <div className="flex-1 flex flex-col justify-between py-1">
+                            <div>
+                              <div className="flex items-start justify-between mb-1">
+                                <p className="font-serif text-lg text-[#2d2d2d] leading-tight pr-4">{item.title}</p>
+                                {!item.isFree && (
+                                  <button onClick={() => removeItem(uniqueId)} aria-label="Remove" className="text-[#E5B8B7] hover:text-[#800020] transition-colors -mt-1 -mr-2 p-2 shrink-0">
+                                    <X size={18} strokeWidth={1.5} />
+                                  </button>
                                 )}
-                                {item.customPhotoUrl && (
-                                  <div className="flex justify-between items-center">
-                                    <span className="text-[10px] uppercase tracking-widest text-[#2d2d2d] opacity-70">Photo</span>
-                                    <div className="w-8 h-8 rounded-sm overflow-hidden border border-[#E5B8B7]">
-                                      <img src={item.customPhotoUrl} alt="Custom Memory" className="w-full h-full object-cover" />
+                              </div>
+                              
+                              {(item.title || "").toLowerCase().includes("name necklace") && !item.isFree && (
+                                <p className="text-[9px] uppercase tracking-widest text-[#b8860b] font-bold mb-1">22k Gold Plated • Anti Tarnish</p>
+                              )}
+
+                              {item.variantTitle && (
+                                <p className="text-xs uppercase tracking-widest font-bold text-[#800020] mt-1">{item.variantTitle}</p>
+                              )}
+
+                              {/* Personalization Details */}
+                              {(item.customName || item.customPhotoUrl) && (
+                                <div className="mt-3 flex flex-col gap-2 border-t border-[#E5B8B7]/30 pt-3">
+                                  {item.customName && (
+                                    <div className="flex justify-between items-center">
+                                      <span className="text-[10px] uppercase tracking-widest text-[#2d2d2d] opacity-70">Engraving</span>
+                                      <span className="text-[11px] font-bold text-[#2d2d2d]">{item.customName}</span>
                                     </div>
-                                  </div>
-                                )}
-                              </div>
-                            )}
+                                  )}
+                                  {item.customPhotoUrl && (
+                                    <div className="flex justify-between items-center">
+                                      <span className="text-[10px] uppercase tracking-widest text-[#2d2d2d] opacity-70">Photo</span>
+                                      <div className="w-8 h-8 rounded-sm overflow-hidden border border-[#E5B8B7]">
+                                        <img src={item.customPhotoUrl} alt="Custom Memory" className="w-full h-full object-cover" />
+                                      </div>
+                                    </div>
+                                  )}
+                                </div>
+                              )}
 
-                            {/* Gift Packaging */}
-                            {item.isGift && (
-                              <div className="mt-3 flex items-center gap-1.5 text-[10px] uppercase tracking-widest font-bold text-[#800020] bg-[#FDF8F5] border border-[#E5B8B7] w-fit px-2 py-1 rounded-sm shadow-sm">
-                                <Gift size={12} strokeWidth={2} />
-                                Premium Packaging
-                              </div>
-                            )}
+                              {/* Gift Packaging */}
+                              {item.isGift && !item.isFree && (
+                                <div className="mt-3 flex items-center gap-1.5 text-[10px] uppercase tracking-widest font-bold text-[#800020] bg-[#FDF8F5] border border-[#E5B8B7] w-fit px-2 py-1 rounded-sm shadow-sm">
+                                  <Gift size={12} strokeWidth={2} />
+                                  Premium Packaging
+                                </div>
+                              )}
 
-                            <p className="text-sm font-medium text-[#2d2d2d] mt-3">₹{item.price.toFixed(2)}</p>
-                          </div>
+                              {item.isFree ? (
+                                <p className="text-sm font-bold text-emerald-600 mt-3 flex items-center gap-1 uppercase tracking-widest">
+                                  <Gift size={14} /> FREE
+                                </p>
+                              ) : (
+                                <p className="text-sm font-medium text-[#2d2d2d] mt-3">₹{item.price.toFixed(2)}</p>
+                              )}
+                            </div>
 
-                          <div className="mt-4 flex items-center justify-between">
-                            <div className="flex items-center gap-4 border border-[#E5B8B7] w-fit px-3 py-1.5 rounded-sm bg-white">
-                              <button onClick={() => updateQuantity(uniqueId, item.quantity - 1)} aria-label="Decrease" className="text-[#2d2d2d] hover:text-[#800020]">
-                                <Minus size={14} strokeWidth={1.5} />
-                              </button>
-                              <span className="text-xs font-medium w-6 text-center text-[#2d2d2d]">{item.quantity}</span>
-                              <button onClick={() => updateQuantity(uniqueId, item.quantity + 1)} aria-label="Increase" className="text-[#2d2d2d] hover:text-[#800020]">
-                                <Plus size={14} strokeWidth={1.5} />
-                              </button>
+                            <div className="mt-4 flex items-center justify-between">
+                              {item.isFree ? (
+                                <div className="text-xs uppercase tracking-widest font-bold text-stone-400">
+                                  Qty: {item.quantity}
+                                </div>
+                              ) : (
+                                <div className="flex items-center gap-4 border border-[#E5B8B7] w-fit px-3 py-1.5 rounded-sm bg-white">
+                                  <button onClick={() => updateQuantity(uniqueId, item.quantity - 1)} aria-label="Decrease" className="text-[#2d2d2d] hover:text-[#800020]">
+                                    <Minus size={14} strokeWidth={1.5} />
+                                  </button>
+                                  <span className="text-xs font-medium w-6 text-center text-[#2d2d2d]">{item.quantity}</span>
+                                  <button onClick={() => updateQuantity(uniqueId, item.quantity + 1)} aria-label="Increase" className="text-[#2d2d2d] hover:text-[#800020]">
+                                    <Plus size={14} strokeWidth={1.5} />
+                                  </button>
+                                </div>
+                              )}
                             </div>
                           </div>
-                        </div>
-                      </li>
-                    );
-                  })}
+                        </li>
+                      );
+                    });
+                  })()}
                 </ul>
               )}
             </div>

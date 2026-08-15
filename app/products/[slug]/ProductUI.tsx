@@ -481,6 +481,23 @@ export default function ProductUI({ product }: ProductUIProps) {
             </div>
           </div>
 
+          {/* Free Ring Promo */}
+          {isNamePersonalised && productTitleLower.includes('necklace') && (
+            <div className="bg-[#fdfaf8] border border-[#800020]/30 rounded-xl p-4 mb-6 flex items-center gap-4 relative overflow-hidden group shadow-sm">
+              <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden border border-[#800020]/20 bg-white">
+                <img src="https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg?v=1667301766" alt="Free Ring" className="w-full h-full object-cover" />
+              </div>
+              <div className="flex-1">
+                <h4 className="text-[#800020] font-bold text-sm mb-1 uppercase tracking-widest flex items-center gap-2">
+                  <Gift size={14} className="inline-block" /> Free Gift
+                </h4>
+                <p className="text-[#2d2d2d] text-xs font-medium leading-relaxed">
+                  Get a <a href="https://octopusperfume.in/products/18k-paw-name-ring" target="_blank" rel="noopener noreferrer" className="text-[#800020] underline font-bold">FREE 18K Paw Name Ring</a> with your name engraved! (Added automatically to cart)
+                </p>
+              </div>
+            </div>
+          )}
+
           {/* Rakhi Special Promo */}
           {isNamePersonalised && productTitleLower.includes('necklace') && product.handle !== 'fairy-name-necklace' && (
             <div className="bg-[#FFEAEA] border border-[#800020]/20 rounded-xl p-4 mb-6 relative overflow-hidden group">

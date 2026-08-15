@@ -70,7 +70,7 @@ export default function Navbar() {
       {/* Top Notification Bar - PROMO HYPERLINK */}
       <Link href="/collections/rakhi-name-necklaces" className="group w-full bg-gradient-to-r from-[#800020] via-[#c00030] to-[#800020] text-white py-3 hidden md:flex items-center justify-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] hover:opacity-90 transition-opacity">
         <div className="flex items-center gap-2 animate-pulse"><Gift size={16} strokeWidth={2} /> Rakshabandhan Special: 50% Off Sitewide</div>
-        <div className="flex items-center gap-2 text-[#FFEAEA] bg-white/20 px-4 py-1 rounded-full border border-white/40">Use code <strong className="text-white">ILYBEHENA</strong> for extra ₹150 OFF <Gift size={16} strokeWidth={2} className="text-white" /></div>
+        <div className="flex items-center gap-2 text-[#FFEAEA] bg-white/20 px-4 py-1 rounded-full border border-white/40">Use code <strong className="text-white">ILYBEHENA</strong> for extra 15% OFF <Gift size={16} strokeWidth={2} className="text-white" /></div>
         <div className="flex items-center gap-2 text-emerald-200 bg-emerald-900/40 px-4 py-1 rounded-full border border-emerald-400/30"><strong className="text-emerald-400">CASH ON DELIVERY</strong> AVAILABLE</div>
         <div className="flex items-center gap-2">Shop Now <span className="group-hover:translate-x-1 transition-transform">→</span></div>
       </Link>

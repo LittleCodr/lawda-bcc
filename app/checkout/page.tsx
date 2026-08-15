@@ -36,7 +36,7 @@ export default function CheckoutPage() {
   const cartAutoDiscount = getAutoDiscountAmount ? getAutoDiscountAmount() : 0;
   const cartDiscountPercent = getAutoDiscountPercentage ? getAutoDiscountPercentage() : 0;
   const deliveryFee = deliveryMethod === "premium" ? 300 : 0;
-  const promoDiscountAmount = promoApplied ? 150 : 0;
+  const promoDiscountAmount = promoApplied ? Math.floor(baseTotal * 0.15) : 0;
   const totalDiscount = cartAutoDiscount + promoDiscountAmount;
   const isAdmin = user?.email && ["littlecodr@gmail.com", "srijanrai966@gmail.com", "coderdracwound@gmail.com"].includes(user.email.toLowerCase());
   const finalTotal = isAdmin ? 1 : Math.max(0, baseTotal - totalDiscount + deliveryFee);
@@ -479,7 +479,7 @@ export default function CheckoutPage() {
                 {promoApplied && (
                   <div className="flex justify-between text-sm font-bold text-emerald-600">
                     <span>Promo Discount ({promoCode})</span>
-                    <span>-₹150</span>
+                    <span>-₹{promoDiscountAmount}</span>
                   </div>
                 )}
                 <div className="flex justify-between text-sm text-stone-600">

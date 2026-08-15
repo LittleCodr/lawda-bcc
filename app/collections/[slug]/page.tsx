@@ -332,7 +332,7 @@ export default async function CollectionPage(props: {
                     </p>
                   </div>
                   <p className="text-gray-800 text-[10px] md:text-xs font-bold px-4 leading-relaxed">
-                    Use at checkout for extra <br/><span className="text-[#800020]">₹150 OFF</span> on orders above ₹499!
+                    Use at checkout for extra <br/><span className="text-[#800020]">15% OFF</span> on orders above ₹499!
                   </p>
                 </div>
               </div>

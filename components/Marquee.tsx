@@ -39,7 +39,7 @@ export default function Marquee() {
             className="mx-4 md:mx-8 text-[9px] md:text-[11px] tracking-[0.2em] font-bold uppercase flex items-center gap-2 md:gap-4"
           >
             <Heart size={14} className="text-yellow-300 fill-yellow-300 shrink-0" />
-            <span>SIBLING LOVE SALE! CODE ILYBEHENA FOR ₹150 OFF</span>
+            <span>SIBLING LOVE SALE! CODE ILYBEHENA FOR 15% OFF</span>
             <span className="text-emerald-300 font-black tracking-widest">• CASH ON DELIVERY AVAILABLE</span>
             <Sparkles size={14} className="text-yellow-300 shrink-0" />
             <span className="text-yellow-200 font-black tracking-widest">PREMIUM 22K GOLD PLATED</span>

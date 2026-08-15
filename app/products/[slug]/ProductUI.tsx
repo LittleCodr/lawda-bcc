@@ -492,7 +492,7 @@ export default function ProductUI({ product }: ProductUIProps) {
                     <Sparkles size={14} className="inline-block" /> Rakhi Special
                   </h4>
                   <p className="text-[#2d2d2d] text-xs font-medium leading-relaxed">
-                    Brother, use secret code <strong className="font-black text-[#800020] bg-white px-2 py-0.5 rounded border border-[#800020]/20">ILYBEHENA</strong> at checkout to get an extra <strong className="text-[#800020]">₹150 OFF</strong> on orders above ₹499!
+                    Brother, use secret code <strong className="font-black text-[#800020] bg-white px-2 py-0.5 rounded border border-[#800020]/20">ILYBEHENA</strong> at checkout to get an extra <strong className="text-[#800020]">15% OFF</strong> on orders above ₹499!
                   </p>
                 </div>
               </div>

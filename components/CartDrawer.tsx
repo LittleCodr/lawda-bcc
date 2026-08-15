@@ -100,7 +100,7 @@ export default function CartDrawer() {
                     return (
                       <li key={uniqueId} className="flex gap-5 group">
                         <div className="relative w-28 h-32 bg-white shrink-0 rounded-sm overflow-hidden border border-[#E5B8B7]/40 shadow-sm">
-                          <Image src={item.image || "/logo.png"} alt={item.title} fill sizes="112px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                          <Image src={item.image || "/logo.png"} alt={item.title} fill unoptimized sizes="112px" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                         </div>
                         <div className="flex-1 flex flex-col justify-between py-1">
                           <div>

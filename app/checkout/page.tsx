@@ -377,7 +377,7 @@ export default function CheckoutPage() {
                 {items.map((item) => (
                   <li key={item.cartItemId || `${item.id}-${item.variantId}`} className="flex gap-4">
                     <div className="relative w-20 h-20 bg-stone-50 shrink-0 border border-stone-100">
-                      <Image src={item.image || "/logo.png"} alt={item.title} fill sizes="80px" className="object-cover" />
+                      <Image src={item.image || "/logo.png"} alt={item.title} fill unoptimized sizes="80px" className="object-cover" />
                     </div>
                     <div className="flex-1 flex flex-col justify-center">
                       <p className="font-serif text-lg leading-tight text-stone-900 mb-0.5">{item.title}</p>

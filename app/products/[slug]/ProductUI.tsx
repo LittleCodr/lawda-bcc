@@ -283,11 +283,6 @@ export default function ProductUI({ product }: ProductUIProps) {
             </div>
           )}
 
-          <div className="flex flex-wrap gap-4 mb-6">
-            <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-stone-600 flex items-center gap-1.5"><CheckCircle2 size={12} className="text-[#800020]" /> Personalized Gift</span>
-            <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded border border-emerald-200 flex items-center gap-1.5"><Truck size={12} /> Cash on Delivery Available</span>
-            <span className="text-[10px] uppercase tracking-[0.15em] font-bold text-orange-600 flex items-center gap-1.5"><Flame size={12} /> Selling Fast</span>
-          </div>
 
           <h1 className="font-serif text-3xl md:text-4xl text-[#2d2d2d] mb-2 leading-tight">
             {product.title}
@@ -354,42 +349,7 @@ export default function ProductUI({ product }: ProductUIProps) {
              </div>
           </div>
 
-          {/* Accordion Description */}
-          <div className="mb-8 border border-stone-200 rounded-lg overflow-hidden bg-white">
-            <button
-              onClick={() => setIsDescOpen(!isDescOpen)}
-              className="w-full flex items-center justify-between p-4 bg-stone-50 hover:bg-stone-100 transition-colors"
-            >
-              <span className="font-bold text-[#2d2d2d] uppercase tracking-widest text-[10px]">Product Description</span>
-              <ChevronDown size={16} className={`transition-transform duration-300 ${isDescOpen ? 'rotate-180' : ''}`} />
-            </button>
-            <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isDescOpen ? 'max-h-[5000px] opacity-100 border-t border-stone-200' : 'max-h-0 opacity-0'}`}>
-              <div
-                className="prose prose-sm text-gray-600 p-6 leading-relaxed max-w-none text-justify"
-                dangerouslySetInnerHTML={{ __html: product.body_html || "" }}
-              />
-            </div>
-          </div>
 
-          {/* Quick Features */}
-          <div className="grid grid-cols-4 gap-2 mb-8">
-            <div className="flex flex-col items-center text-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-[#fdfaf8] flex items-center justify-center text-[#800020]"><Star size={18} /></div>
-              <span className="text-[9px] font-bold uppercase text-gray-700">Premium Quality</span>
-            </div>
-            <div className="flex flex-col items-center text-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-[#fdfaf8] flex items-center justify-center text-[#800020]"><Smile size={18} /></div>
-              <span className="text-[9px] font-bold uppercase text-gray-700">Skin Friendly</span>
-            </div>
-            <div className="flex flex-col items-center text-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-[#fdfaf8] flex items-center justify-center text-[#800020]"><CheckCircle2 size={18} /></div>
-              <span className="text-[9px] font-bold uppercase text-gray-700">Anti Tarnish</span>
-            </div>
-            <div className="flex flex-col items-center text-center gap-2">
-              <div className="w-10 h-10 rounded-full bg-[#fdfaf8] flex items-center justify-center text-[#800020]"><ShieldCheck size={18} /></div>
-              <span className="text-[9px] font-bold uppercase text-gray-700">Warranty</span>
-            </div>
-          </div>
 
           {/* Configurations */}
           <div className="flex flex-col gap-6 mb-8">
@@ -555,17 +515,7 @@ export default function ProductUI({ product }: ProductUIProps) {
             </div>
           )}
 
-          {/* Trust Banner */}
-          <div className="flex flex-col gap-2 mb-6 p-4 rounded-xl border border-[#b8860b]/30 bg-gradient-to-r from-[#fff9e6] to-[#fffef0] shadow-sm">
-             <div className="flex items-center gap-2 text-[#b8860b] font-bold text-xs uppercase tracking-widest">
-               <Gem size={16} />
-               <span>Crafted in Premium 22K Gold Plating</span>
-             </div>
-             <div className="flex items-center gap-2 text-[#b8860b] font-bold text-xs uppercase tracking-widest">
-               <ShieldCheck size={16} />
-               <span>1-Year Anti-Tarnish Warranty</span>
-             </div>
-          </div>
+
 
           {/* Action Buttons */}
           <div className="flex gap-4 mb-2">
@@ -649,7 +599,22 @@ export default function ProductUI({ product }: ProductUIProps) {
             )}
           </div>
 
-
+          {/* Accordion Description - Moved Below */}
+          <div className="mb-8 border border-stone-200 rounded-lg overflow-hidden bg-white mt-4">
+            <button
+              onClick={() => setIsDescOpen(!isDescOpen)}
+              className="w-full flex items-center justify-between p-4 bg-stone-50 hover:bg-stone-100 transition-colors"
+            >
+              <span className="font-bold text-[#2d2d2d] uppercase tracking-widest text-[10px]">Product Description</span>
+              <ChevronDown size={16} className={`transition-transform duration-300 ${isDescOpen ? 'rotate-180' : ''}`} />
+            </button>
+            <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isDescOpen ? 'max-h-[5000px] opacity-100 border-t border-stone-200' : 'max-h-0 opacity-0'}`}>
+              <div
+                className="prose prose-sm text-gray-600 p-6 leading-relaxed max-w-none text-justify"
+                dangerouslySetInnerHTML={{ __html: product.body_html || "" }}
+              />
+            </div>
+          </div>
 
         </div>
 

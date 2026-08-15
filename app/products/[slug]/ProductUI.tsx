@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useCartStore } from "@/lib/store";
 import ProductImageGallery from "@/components/ProductImageGallery";
-import { Gift, ShieldCheck, Truck, Star, Heart, CheckCircle2, ChevronRight, ChevronDown, ShoppingBag, Zap, Clock, Smile, Award, Users, Flame, Sparkles, Gem } from "lucide-react";
+import { Gift, ShieldCheck, Truck, Star, Heart, CheckCircle2, ChevronRight, ChevronDown, ShoppingBag, Zap, Clock, Smile, Award, Users, Flame, Sparkles, Gem, Info, Lock } from "lucide-react";
 import { logAppEvent, db } from "@/lib/firebase";
 import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 import { useAuth } from "@/lib/auth-context";
@@ -41,6 +41,7 @@ export default function ProductUI({ product }: ProductUIProps) {
   const [isFavourite, setIsFavourite] = useState(false);
   const [isFavLoading, setIsFavLoading] = useState(false);
   const [isDescOpen, setIsDescOpen] = useState(false);
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
 
   // PIN Code State
   const [pinCode, setPinCode] = useState("");
@@ -292,24 +293,65 @@ export default function ProductUI({ product }: ProductUIProps) {
             {product.title}
           </h1>
           {(product.title || "").toLowerCase().includes('name necklace') && (
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#b8860b] bg-[#fdf5e6] px-2.5 py-1 rounded-sm border border-[#f5deb3]">
+            <div className="flex items-center gap-2 mb-4 relative">
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#b8860b] bg-[#fdf5e6] px-2.5 py-1 rounded-sm border border-[#f5deb3] flex items-center gap-1">
                 22k Gold Plated
+                <button onClick={() => setIsInfoModalOpen(true)} className="text-[#b8860b] hover:text-[#800020] transition-colors md:group">
+                   <Info size={12} />
+                   <div className="hidden md:group-hover:block absolute top-full left-0 mt-2 w-72 bg-white border border-[#b8860b]/30 shadow-xl rounded-lg p-4 z-50 normal-case tracking-normal">
+                      <p className="font-serif font-bold text-[#b8860b] mb-1">An Everlasting Keepsake</p>
+                      <p className="text-gray-600 text-xs leading-relaxed mb-2">This isn't just jewelry; it's a memory crafted to last forever. Triple-plated with real 22K Gold and sealed with an advanced anti-tarnish shield, it's designed to be worn daily without losing its shine.</p>
+                      <p className="text-gray-500 text-[10px] italic">Over 15,000+ sisters wear our pieces every day. Give a gift that stays as beautiful as your bond.</p>
+                   </div>
+                </button>
               </span>
               <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-600 bg-gray-100 px-2.5 py-1 rounded-sm border border-gray-200">
                 Anti Tarnish
               </span>
+              
+              {/* Mobile Info Modal */}
+              {isInfoModalOpen && (
+                 <div className="md:hidden fixed inset-0 z-[100] flex items-end justify-center bg-black/50" onClick={() => setIsInfoModalOpen(false)}>
+                    <div className="bg-white w-full rounded-t-2xl p-6 border-t border-[#b8860b]/30 shadow-2xl animate-in slide-in-from-bottom" onClick={(e) => e.stopPropagation()}>
+                       <div className="flex justify-between items-center mb-4">
+                          <h3 className="font-serif font-bold text-xl text-[#b8860b]">An Everlasting Keepsake</h3>
+                          <button onClick={() => setIsInfoModalOpen(false)} className="text-gray-400 hover:text-gray-600">✕</button>
+                       </div>
+                       <p className="text-gray-600 text-sm leading-relaxed mb-4 text-justify">This isn't just jewelry; it's a memory crafted to last forever. Triple-plated with real 22K Gold and sealed with an advanced anti-tarnish shield, it's designed to be worn daily without losing its shine.</p>
+                       <p className="text-gray-500 text-xs italic bg-[#fdfaf8] p-3 rounded-lg border border-[#800020]/10">Over 15,000+ sisters wear our pieces every day. Give a gift that stays as beautiful as your bond.</p>
+                    </div>
+                 </div>
+              )}
             </div>
           )}
 
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-3 mb-2">
             <span className="text-2xl font-bold text-[#800020]">₹{currentPrice.toFixed(2)}</span>
             {compareAtPrice > basePrice && (
               <>
                 <span className="text-sm text-gray-400 line-through font-medium">₹{compareAtPrice.toFixed(2)}</span>
-                <span className="text-[10px] uppercase font-bold text-[#800020] bg-[#ffeaea] px-2 py-0.5 rounded-sm">({discountPercent}% OFF)</span>
+                <span className="text-[10px] uppercase font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-sm border border-emerald-200 flex items-center gap-1">
+                   <Sparkles size={12} /> You Save ₹{(compareAtPrice - currentPrice).toFixed(0)} ({discountPercent}%)
+                </span>
               </>
             )}
+          </div>
+
+          <div className="flex items-center gap-4 mb-6">
+             <div className="flex items-center gap-1">
+                <div className="flex text-amber-400">
+                   <Star size={14} fill="currentColor" />
+                   <Star size={14} fill="currentColor" />
+                   <Star size={14} fill="currentColor" />
+                   <Star size={14} fill="currentColor" />
+                   <Star size={14} fill="currentColor" />
+                </div>
+                <span className="text-[10px] font-bold text-gray-600 uppercase tracking-widest">(1,245 Reviews)</span>
+             </div>
+             <div className="w-[1px] h-3 bg-gray-300"></div>
+             <div className="flex items-center gap-1 text-[10px] font-bold text-[#800020] uppercase tracking-widest">
+                <Award size={14} /> #1 Bestseller for Rakhi
+             </div>
           </div>
 
           {/* Accordion Description */}
@@ -503,10 +545,12 @@ export default function ProductUI({ product }: ProductUIProps) {
           {(viewers > 0) && (
             <div className="flex flex-col gap-2 mb-4">
               <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-orange-700 bg-orange-50 border border-orange-200 px-3 py-2.5 rounded-md shadow-sm">
-                <Users size={14} /> {viewers} people are viewing this right now
+                <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+                <span className="flex items-center gap-1.5"><Users size={14} /> <span className="font-black">High Demand:</span> {viewers} people have this in their cart right now.</span>
               </div>
               <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-red-700 bg-red-50 border border-red-200 px-3 py-2.5 rounded-md shadow-sm">
-                <Flame size={14} /> Hurry, only {stockLeft} left in stock!
+                <Zap size={14} className="text-red-600 fill-red-600" />
+                <span><span className="font-black">Selling Fast:</span> Only {stockLeft} pieces left at this price!</span>
               </div>
             </div>
           )}
@@ -524,7 +568,7 @@ export default function ProductUI({ product }: ProductUIProps) {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-4 mb-6">
+          <div className="flex gap-4 mb-2">
             <button
               onClick={handleAddToCart}
               disabled={isButtonDisabled}
@@ -549,6 +593,24 @@ export default function ProductUI({ product }: ProductUIProps) {
               <span className="text-center leading-tight">Buy Now</span>
             </button>
           </div>
+
+          {/* Trust Badges */}
+          <div className="grid grid-cols-3 gap-2 mt-4">
+             <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-gray-50 p-2 rounded-lg border border-gray-100">
+                <Lock size={16} className="text-[#800020]" />
+                <span className="text-[8px] font-bold uppercase tracking-widest text-gray-600">100% Secure Checkout</span>
+             </div>
+             <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-gray-50 p-2 rounded-lg border border-gray-100">
+                <Truck size={16} className="text-[#800020]" />
+                <span className="text-[8px] font-bold uppercase tracking-widest text-gray-600">Fast Dispatch</span>
+             </div>
+             <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-gray-50 p-2 rounded-lg border border-gray-100">
+                <Sparkles size={16} className="text-[#800020]" />
+                <span className="text-[8px] font-bold uppercase tracking-widest text-gray-600">Premium Anti-Tarnish</span>
+             </div>
+          </div>
+          
+          <p className="text-center text-xs font-serif italic text-gray-500 mt-4 mb-6">"Imagine her smile when she opens this personalized keepsake. Guaranteed to be her favorite gift."</p>
 
           {/* Fast Delivery Highlight */}
           <div className="bg-[#ecfdf5] border border-[#a7f3d0] rounded-lg p-3 flex items-center justify-center gap-2 text-emerald-800 mb-4 text-center">

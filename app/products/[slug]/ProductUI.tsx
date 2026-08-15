@@ -104,6 +104,8 @@ export default function ProductUI({ product }: ProductUIProps) {
   const productTitleLower = (product.title || "").toLowerCase();
   const isNamePersonalised = productTitleLower.includes('name') || productTitleLower.includes('initial') || product.handle === '12-in-1-jhumkas-box';
   const isPhotoPersonalised = productTitleLower.includes('photo') || productTitleLower.includes('picture');
+  const isRing = productTitleLower.includes('ring');
+  const showNameInput = isNamePersonalised || !isRing;
 
   const basePrice = selectedVariant ? parseFloat(selectedVariant.price) : 0;
   const compareAtPrice = selectedVariant?.compare_at_price ? parseFloat(selectedVariant.compare_at_price) : (basePrice * 1.4);
@@ -182,9 +184,9 @@ export default function ProductUI({ product }: ProductUIProps) {
       quantity: 1,
       variantId: selectedVariant.id.toString(),
       variantTitle: selectedVariant.title !== "Default Title" ? selectedVariant.title : undefined,
-      customName: isNamePersonalised ? customName : undefined,
+      customName: showNameInput ? customName : undefined,
       customPhotoUrl: isPhotoPersonalised ? customPhotoUrl : undefined,
-      customFont: isNamePersonalised ? customFont : undefined,
+      customFont: showNameInput ? customFont : undefined,
       isGift,
     });
 
@@ -211,7 +213,7 @@ export default function ProductUI({ product }: ProductUIProps) {
   };
 
   const isPersonalizationComplete =
-    (!isNamePersonalised || customName.trim().length > 0) &&
+    (!showNameInput || customName.trim().length > 0) &&
     (!isPhotoPersonalised || customPhotoUrl.length > 0);
 
   const isButtonDisabled = !isAvailable || !selectedVariant || !isPersonalizationComplete || isUploading;
@@ -375,11 +377,11 @@ export default function ProductUI({ product }: ProductUIProps) {
               </div>
             )}
 
-            {isNamePersonalised && (
+            {showNameInput && (
               <div className="flex flex-col gap-5">
                 <div className="flex flex-col gap-2">
                   <label className="text-[10px] uppercase tracking-widest font-bold text-[#2d2d2d] flex justify-between">
-                    <span>Enter Name to Engrave</span>
+                    <span>{isNamePersonalised ? 'Enter Name to Engrave' : 'Enter Name for Free Ring'}</span>
                     <span className="text-[#800020]">{customName.length}/7</span>
                   </label>
                   <input

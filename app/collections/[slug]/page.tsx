@@ -99,6 +99,7 @@ export default async function CollectionPage(props: {
         
         // Intent mappings
         if (slug === 'rakhi-name-necklaces') {
+          if (titleStr.includes('hair') || typeStr.includes('hair') || tagsStr.includes('hair')) return false;
           return titleStr.includes('name necklace') || typeStr.includes('necklace') || tagsStr.includes('name necklace') || tagsStr.includes('rakhi-name-necklaces');
         }
 
@@ -408,6 +409,7 @@ export default async function CollectionPage(props: {
                           src={product.images[0].local_src || product.images[0].src} 
                           alt={product.title} 
                           fill 
+                          unoptimized
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
                           className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" 
                         />

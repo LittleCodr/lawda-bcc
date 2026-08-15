@@ -319,7 +319,7 @@ export default function CheckoutPage() {
                       <input type="radio" name="delivery" value="standard" checked={deliveryMethod === 'standard'} onChange={() => setDeliveryMethod('standard')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
                       <div className="flex flex-col">
                         <span className="font-bold text-sm text-stone-900">Standard Delivery (Free)</span>
-                        <span className="text-xs text-stone-500">2-5 business days</span>
+                        <span className="text-xs text-stone-500">3-5 business days</span>
                       </div>
                     </label>
                     <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${deliveryMethod === 'premium' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>

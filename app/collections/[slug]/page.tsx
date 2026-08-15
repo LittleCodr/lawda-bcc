@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { ChevronRight, Gift, ChevronDown, Flame, Sparkles } from "lucide-react";
 import { rakhiConfig } from "./rakhi-config";
 import SortSelect from "@/components/SortSelect";
+import FeaturedProductCarousel from "@/components/FeaturedProductCarousel";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -259,11 +260,9 @@ export default async function CollectionPage(props: {
             </div>
 
             <div className="relative z-10 md:w-1/2 flex justify-center md:justify-end mt-8 md:mt-0 w-full">
-              <div className="relative w-full max-w-[450px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-[6px] border-white rotate-2 hover:rotate-0 transition-transform duration-500">
-                <Image src="https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Fairynamenecklace3.webp?v=1745910455" alt="Fairy Name Necklace" fill unoptimized className="object-cover" />
-              </div>
+              <FeaturedProductCarousel />
               {/* Decorative floating badge */}
-              <div className="absolute -bottom-6 -right-6 md:right-4 bg-[#800020] text-white w-24 h-24 rounded-full flex flex-col items-center justify-center text-center shadow-xl border-4 border-[#f3efe9] rotate-[-15deg] z-20">
+              <div className="absolute -bottom-6 -right-6 md:right-4 bg-[#800020] text-white w-24 h-24 rounded-full flex flex-col items-center justify-center text-center shadow-xl border-4 border-[#f3efe9] rotate-[-15deg] z-20 pointer-events-none">
                 <span className="text-[10px] font-bold uppercase tracking-widest leading-none mb-1">Only</span>
                 <span className="text-xl font-serif leading-none">₹199</span>
               </div>

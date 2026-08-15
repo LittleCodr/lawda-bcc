@@ -326,42 +326,6 @@ export default async function CollectionPage(props: {
           {slug === 'rakhi-name-necklaces' && (
             <>
 
-              <div className="mb-12 bg-[#801b34] rounded-[16px] p-6 md:p-10 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 animate-in fade-in slide-in-from-bottom-8 duration-700 border border-[#9a2845]">
-                {/* Decorative Box Outline */}
-                <div className="absolute left-[-5%] top-1/2 -translate-y-1/2 opacity-[0.03] scale-[2] pointer-events-none">
-                  <Gift size={200} strokeWidth={1} />
-                </div>
-                
-                <div className="z-10 text-center md:text-left flex-1 pl-4 md:pl-12">
-                  <div className="inline-flex bg-[#a73447]/30 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest mb-4 border border-[#a73447] backdrop-blur-sm items-center gap-1.5">
-                    <Flame size={12} className="fill-current text-orange-400" /> HURRY! SELLING FAST
-                  </div>
-                  <h2 className="font-serif text-3xl md:text-5xl mb-2 leading-tight font-medium tracking-wide">
-                    Make Her Smile<br /><span className="font-['Dancing_Script'] font-normal text-4xl md:text-6xl text-[#f3efe9]">This Rakhi</span>
-                  </h2>
-                  <p className="text-white/80 text-xs md:text-sm max-w-xs md:max-w-md mx-auto md:mx-0 mt-4 font-medium tracking-wide leading-relaxed">
-                    The ultimate personalized gift for your sister.<br/> Limited stock available at just ₹349.
-                  </p>
-                </div>
-                
-                {/* Ticket Style Promo Box */}
-                <div className="z-10 bg-[#fefdfa] text-center p-6 md:p-8 rounded-xl shadow-2xl w-[90%] md:w-auto min-w-[280px] md:min-w-[340px] relative">
-                  {/* Ticket cutouts */}
-                  <div className="absolute -left-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-[#801b34] rounded-full"></div>
-                  <div className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-[#801b34] rounded-full"></div>
-                  
-                  <p className="text-[#800020] text-[10px] uppercase tracking-widest font-black mb-3">SECRET BROTHER CODE</p>
-                  <div className="border border-dashed border-[#800020] py-4 px-6 mb-4 bg-white mx-2">
-                    <p className="text-2xl md:text-3xl font-black text-gray-900 tracking-[0.2em] select-all">
-                      ILYBEHENA
-                    </p>
-                  </div>
-                  <p className="text-gray-800 text-[10px] md:text-xs font-bold px-4 leading-relaxed">
-                    Use at checkout for extra <br/><span className="text-[#800020]">15% OFF</span> on orders above ₹499!
-                  </p>
-                </div>
-              </div>
-
               {/* Highlight Sections */}
               <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Fairy Name Necklace Highlight Section */}

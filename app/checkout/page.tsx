@@ -410,20 +410,20 @@ export default function CheckoutPage() {
               <div className="mb-8">
                 <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2 font-bold">Promo Code</label>
                 <div className="flex gap-2">
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     value={promoCode}
                     onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
                     disabled={promoApplied}
-                    placeholder="Enter code" 
+                    placeholder="Enter code"
                     className="w-full border border-stone-300 px-4 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm uppercase"
                   />
                   {!promoApplied ? (
-                    <button 
+                    <button
                       type="button"
                       onClick={() => {
                         // Block coupons if Fairy Name Necklace is in cart
-                        const hasFairyNecklace = items.some(item => 
+                        const hasFairyNecklace = items.some(item =>
                           item.id === "9174020817113" || (item.title && item.title.toLowerCase().includes("fairy name necklace"))
                         );
 
@@ -448,7 +448,7 @@ export default function CheckoutPage() {
                       Apply
                     </button>
                   ) : (
-                    <button 
+                    <button
                       type="button"
                       onClick={() => {
                         setPromoApplied(false);
@@ -461,7 +461,7 @@ export default function CheckoutPage() {
                   )}
                 </div>
                 {promoError && <p className="text-red-500 text-xs mt-2">{promoError}</p>}
-                {promoApplied && <p className="text-emerald-600 font-bold text-xs mt-2 flex items-center gap-1"><CheckCircle2 size={12}/> Promo code applied successfully!</p>}
+                {promoApplied && <p className="text-emerald-600 font-bold text-xs mt-2 flex items-center gap-1"><CheckCircle2 size={12} /> Promo code applied successfully!</p>}
               </div>
 
               {/* Totals */}

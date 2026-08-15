@@ -258,6 +258,30 @@ export default async function CollectionPage(props: {
               <p className="text-[#2d2d2d] max-w-lg text-xs md:text-sm tracking-wide leading-relaxed font-medium">
                 Shop our exclusive Rakshabandhan special: Personalized Name Necklaces starting from just ₹199. Beautifully crafted, anti-tarnish custom jewelry for your sister.
               </p>
+
+              {/* Free Ring Hero Promo */}
+              <div className="mt-8 bg-gradient-to-r from-[#fff7f0] to-[#fce3ce] border border-[#f5d0b5] rounded-xl relative overflow-hidden p-4 md:p-6 flex flex-col sm:flex-row items-center gap-6 shadow-md max-w-lg">
+                <div className="absolute inset-0 opacity-10 bg-[url('https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg')] bg-cover bg-center mix-blend-multiply pointer-events-none blur-sm grayscale"></div>
+                
+                <div className="relative w-28 h-28 md:w-32 md:h-32 bg-white rounded-lg overflow-hidden border-4 border-white shadow-lg shrink-0 z-10">
+                  <ZoomableImage src="https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg?v=1667301766" alt="Free Ring" />
+                  <div className="absolute -bottom-1 -right-1 bg-[#d97706] text-white w-10 h-10 rounded-full flex flex-col items-center justify-center text-center shadow-md font-black leading-none border-2 border-white pointer-events-none transform rotate-12 scale-90">
+                    <span className="text-[6px] uppercase tracking-widest opacity-90">FREE</span>
+                  </div>
+                </div>
+
+                <div className="relative z-10 flex-1 text-center sm:text-left">
+                  <div className="inline-flex bg-[#f59e0b]/20 text-[#b45309] px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-3 border border-[#fcd34d] items-center gap-1.5 shadow-sm">
+                    <Gift size={12} className="shrink-0" /> FREE GIFT
+                  </div>
+                  <h3 className="font-serif text-xl md:text-2xl mb-2 font-bold text-gray-900 leading-tight">
+                    18K Paw Name Ring
+                  </h3>
+                  <p className="text-gray-800 text-xs font-medium leading-relaxed mb-1">
+                    Value <span className="line-through opacity-70">₹499</span> — Automatically added to your cart with every name necklace!
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div className="relative z-10 md:w-1/2 flex justify-center md:justify-end mt-8 md:mt-0 w-full">
@@ -339,7 +363,7 @@ export default async function CollectionPage(props: {
               </div>
 
               {/* Highlight Sections */}
-              <div className="mb-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Fairy Name Necklace Highlight Section */}
                 <div className="bg-gradient-to-br from-[#fcf0ee] to-[#fae6de] border border-[#f1dacd] rounded-xl relative overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 flex flex-col justify-between h-full group p-8">
                   {/* Watermark/Background texture */}
@@ -399,38 +423,6 @@ export default async function CollectionPage(props: {
                       <div className="absolute top-2 right-2 bg-[#7e3eaf] text-white w-14 h-14 rounded-full flex flex-col items-center justify-center text-center shadow-lg font-black leading-none border-2 border-white">
                         <span className="text-[8px] uppercase tracking-widest opacity-90 mb-0.5">ONLY</span>
                         <span className="text-sm">₹99</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Free Ring Highlight Section */}
-                <div className="bg-gradient-to-br from-[#fff7f0] to-[#fce3ce] border border-[#f5d0b5] rounded-xl relative overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300 flex flex-col justify-between h-full group p-8">
-                  {/* Watermark/Background texture */}
-                  <div className="absolute inset-0 opacity-10 bg-[url('https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg')] bg-cover bg-center mix-blend-multiply pointer-events-none blur-sm grayscale"></div>
-                  
-                  <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full mb-6">
-                    <div className="inline-flex bg-[#f59e0b]/20 text-[#b45309] px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-6 shadow-sm items-center gap-1.5 backdrop-blur-sm border border-[#fcd34d]">
-                      <Gift size={12} className="shrink-0" /> 
-                      <span className="whitespace-nowrap leading-tight">FREE GIFT INCLUDED</span>
-                    </div>
-                    <h2 className="font-serif text-3xl md:text-4xl mb-3 leading-none font-bold text-gray-900 tracking-wide flex gap-2 items-center">
-                      Free <span className="font-['Dancing_Script'] text-5xl md:text-6xl text-[#d97706] font-normal transform -rotate-2 -translate-y-2">Ring</span>
-                    </h2>
-                    <p className="text-gray-800 mb-6 text-xs md:text-sm font-medium tracking-wide">
-                      Get a free <strong>18K Paw Name Ring</strong> with every personalized name necklace!
-                    </p>
-                  </div>
-                  
-                  <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 z-10">
-                    <div className="inline-flex items-center justify-center gap-2 bg-[#d97706] text-white px-6 py-3 rounded-md font-black uppercase tracking-widest shadow-lg w-full md:w-auto text-[10px]">
-                      AUTO ADDED IN CART
-                    </div>
-                    <div className="relative w-48 h-48 md:w-56 md:h-56 bg-white rounded-xl overflow-hidden border-4 border-white shadow-xl shrink-0">
-                      <ZoomableImage src="https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg?v=1667301766" alt="Free Ring" />
-                      <div className="absolute top-2 right-2 bg-[#d97706] text-white w-14 h-14 rounded-full flex flex-col items-center justify-center text-center shadow-lg font-black leading-none border-2 border-white pointer-events-none">
-                        <span className="text-[8px] uppercase tracking-widest opacity-90 mb-0.5">VALUE</span>
-                        <span className="text-sm">₹499</span>
                       </div>
                     </div>
                   </div>

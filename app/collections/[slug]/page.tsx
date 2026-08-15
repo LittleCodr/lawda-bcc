@@ -229,12 +229,10 @@ export default async function CollectionPage(props: {
       <div className="bg-[#FDF8F5] min-h-screen">
         {/* Category Banner */}
         {slug === 'rakhi-name-necklaces' ? (
-          <div className="bg-[#f3efe9] py-16 px-6 md:px-16 lg:px-24 border-b border-[#E5B8B7]/30 relative overflow-hidden flex items-center min-h-[400px]">
-            {/* We don't have the exact background image, so we use a gradient and some abstract shapes to mimic the luxury feel */}
+          <div className="bg-[#f3efe9] py-16 px-6 md:px-16 lg:px-24 border-b border-[#E5B8B7]/30 relative overflow-hidden flex flex-col md:flex-row items-center justify-between min-h-[400px] gap-8">
             <div className="absolute right-0 top-0 bottom-0 w-1/2 bg-gradient-to-l from-[#e6dfd3] to-transparent pointer-events-none"></div>
-            <div className="absolute right-[-10%] top-[-10%] w-[60%] h-[120%] bg-[url('https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Fairynamenecklace3.webp?v=1745910455')] bg-cover bg-center opacity-30 mix-blend-multiply rounded-full blur-xl pointer-events-none"></div>
-
-            <div className="relative z-10 max-w-2xl text-left">
+            
+            <div className="relative z-10 max-w-2xl text-left md:w-1/2">
               <nav className="flex flex-wrap items-center gap-2 text-[10px] md:text-xs uppercase font-bold tracking-widest text-[#800020] mb-8">
                 <Link href="/" className="hover:text-red-700 transition-colors">Home</Link>
                 <ChevronRight size={12} />
@@ -258,6 +256,17 @@ export default async function CollectionPage(props: {
               <p className="text-[#2d2d2d] max-w-lg text-xs md:text-sm tracking-wide leading-relaxed font-medium">
                 Shop our exclusive Rakshabandhan special: Personalized Name Necklaces starting from just ₹199. Beautifully crafted, anti-tarnish custom jewelry for your sister.
               </p>
+            </div>
+
+            <div className="relative z-10 md:w-1/2 flex justify-center md:justify-end mt-8 md:mt-0 w-full">
+              <div className="relative w-full max-w-[450px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-[6px] border-white rotate-2 hover:rotate-0 transition-transform duration-500">
+                <Image src="https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Fairynamenecklace3.webp?v=1745910455" alt="Fairy Name Necklace" fill unoptimized className="object-cover" />
+              </div>
+              {/* Decorative floating badge */}
+              <div className="absolute -bottom-6 -right-6 md:right-4 bg-[#800020] text-white w-24 h-24 rounded-full flex flex-col items-center justify-center text-center shadow-xl border-4 border-[#f3efe9] rotate-[-15deg] z-20">
+                <span className="text-[10px] font-bold uppercase tracking-widest leading-none mb-1">Only</span>
+                <span className="text-xl font-serif leading-none">₹199</span>
+              </div>
             </div>
           </div>
         ) : (

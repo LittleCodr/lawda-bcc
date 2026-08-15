@@ -97,7 +97,7 @@ export default function CartDrawer() {
                 <ul className="space-y-8">
                   {(() => {
                     const freeRings = items
-                      .filter((item) => ((item.title || "").toLowerCase().includes("name necklace") || (item.title || "").toLowerCase().includes("jhumka box")) && item.customName)
+                      .filter((item) => !(item.title || "").toLowerCase().includes("ring"))
                       .map((item) => ({
                         ...item,
                         id: `free-ring-${item.id}`,

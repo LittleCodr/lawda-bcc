@@ -483,7 +483,7 @@ export default function ProductUI({ product }: ProductUIProps) {
           </div>
 
           {/* Free Ring Promo */}
-          {isNamePersonalised && (productTitleLower.includes('necklace') || product.handle === '12-in-1-jhumkas-box') && (
+          {!productTitleLower.includes('ring') && (
             <div className="bg-[#fdfaf8] border border-[#800020]/30 rounded-xl p-4 mb-6 flex items-center gap-4 relative overflow-hidden group shadow-sm">
               <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden border border-[#800020]/20 bg-white">
                 <ZoomableImage src="https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg?v=1667301766" alt="Free Ring" />
@@ -493,7 +493,7 @@ export default function ProductUI({ product }: ProductUIProps) {
                   <Gift size={14} className="inline-block" /> Free Gift
                 </h4>
                 <p className="text-[#2d2d2d] text-xs font-medium leading-relaxed">
-                  Get a <a href="https://octopusperfume.in/products/18k-paw-name-ring" target="_blank" rel="noopener noreferrer" className="text-[#800020] underline font-bold">FREE 18K Paw Name Ring</a> with your name engraved! (Added automatically to cart)
+                  Get a <a href="https://octopusperfume.in/products/18k-paw-name-ring" target="_blank" rel="noopener noreferrer" className="text-[#800020] underline font-bold">FREE 18K Paw Name Ring</a>{isNamePersonalised ? ' with your name engraved!' : '!'} (Added automatically to cart)
                 </p>
               </div>
             </div>

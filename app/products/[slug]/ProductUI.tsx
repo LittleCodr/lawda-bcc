@@ -257,8 +257,8 @@ export default function ProductUI({ product }: ProductUIProps) {
             <div className="flex items-center gap-3">
               <span className="flex items-center justify-center w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full font-bold text-[10px]">₹</span>
               <div className="flex flex-col">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-700">Cash on Delivery Available</Available></span>
-            </div>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-700">Cash on Delivery Available</span>
+              </div>
           </div>
         </div>
       </div>

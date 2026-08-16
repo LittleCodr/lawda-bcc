@@ -527,31 +527,59 @@ export default function ProductUI({ product }: ProductUIProps) {
              </div>
           </div>
           
-          {/* Progress Tracker */}
-          <div className="mt-6 mb-6 bg-stone-50 rounded-xl p-6 border border-stone-100">
-            <div className="flex items-center justify-between relative max-w-sm mx-auto">
-              <div className="absolute left-6 right-6 top-1.5 h-0.5 bg-gray-200 -z-10"></div>
-              <div className="absolute left-6 right-1/2 top-1.5 h-0.5 bg-stone-800 -z-10"></div>
-              
-              <div className="flex flex-col items-center flex-1">
-                <div className="w-3 h-3 rounded-full bg-stone-800 border-2 border-stone-50 box-content"></div>
-                <span className="text-[10px] font-bold text-gray-900 mt-2 text-center">Order Placed</span>
-                <span className="text-[9px] text-gray-500">Today</span>
-              </div>
-              <div className="flex flex-col items-center flex-1">
-                <div className="w-3 h-3 rounded-full bg-stone-50 border-2 border-gray-300 box-content"></div>
-                <span className="text-[10px] font-bold text-gray-900 mt-2 text-center">Shipped</span>
-                <span className="text-[9px] text-gray-500">Tomorrow evening</span>
-              </div>
-              <div className="flex flex-col items-center flex-1">
-                <div className="w-3 h-3 rounded-full bg-stone-50 border-2 border-gray-300 box-content"></div>
-                <span className="text-[10px] font-bold text-gray-900 mt-2 text-center">Delivered</span>
-                <span className="text-[9px] text-gray-500">In 3-5 days</span>
+          {/* Premium Progress Tracker */}
+          <div className="mt-8 mb-10 bg-gradient-to-br from-[#fdfaf8] to-white rounded-2xl p-6 border border-[#800020]/10 shadow-[0_8px_30px_rgb(128,0,32,0.04)] relative overflow-hidden">
+            {/* Decorative background blur */}
+            <div className="absolute -right-10 -top-10 w-40 h-40 bg-[#800020]/5 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div className="relative max-w-sm mx-auto">
+              {/* Perfectly aligned connecting lines */}
+              <div className="absolute top-3 left-1/6 right-1/6 h-[2px] bg-gray-200 rounded-full"></div>
+              <div className="absolute top-3 left-1/6 w-1/3 h-[2px] bg-gradient-to-r from-[#800020] to-[#d81b60] rounded-full shadow-[0_0_8px_rgba(128,0,32,0.3)]"></div>
+
+              {/* Steps */}
+              <div className="flex justify-between relative z-10">
+                {/* Step 1: Active */}
+                <div className="flex flex-col items-center flex-1 group">
+                  <div className="w-6 h-6 rounded-full bg-white border-[3px] border-[#800020] flex items-center justify-center shadow-[0_0_12px_rgba(128,0,32,0.2)] relative transition-transform duration-300 group-hover:scale-110">
+                    <div className="w-2 h-2 rounded-full bg-[#800020]"></div>
+                    <div className="absolute -inset-1.5 rounded-full border border-[#800020]/30 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
+                  </div>
+                  <div className="text-center mt-3">
+                    <span className="block text-[10px] font-black text-gray-900 uppercase tracking-widest mb-1 transition-colors group-hover:text-[#800020]">Order Placed</span>
+                    <span className="block text-[9px] font-bold text-[#800020] bg-[#800020]/5 border border-[#800020]/10 px-2 py-0.5 rounded-full inline-block shadow-sm">Today</span>
+                  </div>
+                </div>
+
+                {/* Step 2: Pending */}
+                <div className="flex flex-col items-center flex-1 group">
+                  <div className="w-6 h-6 rounded-full bg-white border-[3px] border-gray-200 flex items-center justify-center transition-all duration-300 group-hover:border-gray-300 group-hover:scale-110">
+                    <div className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover:bg-gray-300 transition-colors"></div>
+                  </div>
+                  <div className="text-center mt-3">
+                    <span className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 transition-colors group-hover:text-gray-600">Shipped</span>
+                    <span className="block text-[9px] font-medium text-gray-500">Tomorrow Eve</span>
+                  </div>
+                </div>
+
+                {/* Step 3: Pending */}
+                <div className="flex flex-col items-center flex-1 group">
+                  <div className="w-6 h-6 rounded-full bg-white border-[3px] border-gray-200 flex items-center justify-center transition-all duration-300 group-hover:border-gray-300 group-hover:scale-110">
+                  </div>
+                  <div className="text-center mt-3">
+                    <span className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 transition-colors group-hover:text-gray-600">Delivered</span>
+                    <span className="block text-[9px] font-medium text-gray-500">In 3-5 Days</span>
+                  </div>
+                </div>
               </div>
             </div>
-            <p className="text-center text-[9px] italic text-gray-500 mt-4 flex justify-center items-center gap-1">
-              ✨ Each piece is carefully crafted to order. Not picked from a shelf.
-            </p>
+            
+            <div className="mt-6 pt-4 border-t border-[#800020]/5 flex justify-center relative z-10">
+               <div className="bg-white/80 backdrop-blur-sm border border-[#800020]/10 shadow-sm rounded-full px-4 py-1.5 flex items-center gap-2 hover:shadow-md transition-shadow">
+                 <Sparkles size={12} className="text-[#800020] animate-pulse" />
+                 <span className="text-[10px] font-medium text-gray-700 italic">Handcrafted to order. Not picked from a shelf.</span>
+               </div>
+            </div>
           </div>
           
           <p className="text-center text-xs font-serif italic text-gray-500 mt-4 mb-6">"Imagine her smile when she opens this personalized keepsake. Guaranteed to be her favorite gift."</p>

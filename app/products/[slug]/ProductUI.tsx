@@ -28,13 +28,6 @@ export default function ProductUI({ product }: ProductUIProps) {
   const [isUploading, setIsUploading] = useState(false);
   const [isGift, setIsGift] = useState(false);
   const [customFont, setCustomFont] = useState("font-italianno");
-  const [viewers, setViewers] = useState(0);
-  const [stockLeft, setStockLeft] = useState(0);
-
-  useEffect(() => {
-    setViewers(Math.floor(Math.random() * 20) + 15);
-    setStockLeft(Math.floor(Math.random() * 5) + 2);
-  }, []);
   // Tabs state
   const [activeTab, setActiveTab] = useState("details");
 
@@ -43,19 +36,6 @@ export default function ProductUI({ product }: ProductUIProps) {
   const [isFavLoading, setIsFavLoading] = useState(false);
   const [isDescOpen, setIsDescOpen] = useState(false);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
-
-  // PIN Code State
-  const [pinCode, setPinCode] = useState("");
-  const [pinStatus, setPinStatus] = useState<"idle" | "checking" | "success">("idle");
-
-  const [deliveryMessage, setDeliveryMessage] = useState("Same day delivery available in Delhi NCR and some selected cities.");
-
-  useEffect(() => {
-    const currentHour = new Date().getHours();
-    if (currentHour >= 12) {
-      setDeliveryMessage("Order will be delivered by 6pm next day in Delhi, Noida, Agra, Lucknow, Surat, Vadodara, Jaipur.");
-    }
-  }, []);
 
   useEffect(() => {
     if (!user) return;
@@ -229,11 +209,11 @@ export default function ProductUI({ product }: ProductUIProps) {
         <span className="text-[#800020] truncate">{product.title}</span>
       </nav>
 
-      {/* Main 3-Column Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      {/* Main 2-Column Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
 
-        {/* Left Column: Image Gallery (Span 5) */}
-        <div className="lg:col-span-5 flex flex-col gap-6 lg:sticky top-24">
+        {/* Left Column: Image Gallery */}
+        <div className="flex flex-col gap-6 lg:sticky top-24">
           <div className="relative">
             <div className="absolute top-4 left-4 z-10 bg-[#800020] text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shadow-md">
               <Flame size={12} fill="currentColor" /> Bestseller
@@ -267,8 +247,8 @@ export default function ProductUI({ product }: ProductUIProps) {
           </div>
         </div>
 
-        {/* Middle Column: Product Details (Span 4) */}
-        <div className="lg:col-span-4 flex flex-col pt-2">
+        {/* Right Column: Product Details */}
+        <div className="flex flex-col pt-2">
 
           {product.handle === "fairy-name-necklace" && (
             <div className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-500 p-[2px] rounded-xl mb-6 shadow-lg animate-pulse">
@@ -334,24 +314,6 @@ export default function ProductUI({ product }: ProductUIProps) {
               </>
             )}
           </div>
-
-          <div className="flex items-center gap-4 mb-6">
-             <div className="flex items-center gap-1">
-                <div className="flex text-amber-400">
-                   <Star size={14} fill="currentColor" />
-                   <Star size={14} fill="currentColor" />
-                   <Star size={14} fill="currentColor" />
-                   <Star size={14} fill="currentColor" />
-                   <Star size={14} fill="currentColor" />
-                </div>
-                <span className="text-[10px] font-bold text-gray-600 uppercase tracking-widest">(1,245 Reviews)</span>
-             </div>
-             <div className="w-[1px] h-3 bg-gray-300"></div>
-             <div className="flex items-center gap-1 text-[10px] font-bold text-[#800020] uppercase tracking-widest">
-                <Award size={14} /> #1 Bestseller for Rakhi
-             </div>
-          </div>
-
 
 
           {/* Configurations */}
@@ -521,21 +483,6 @@ export default function ProductUI({ product }: ProductUIProps) {
             </div>
           )}
 
-          {/* FOMO Elements */}
-          {(viewers > 0) && (
-            <div className="flex flex-col gap-2 mb-4">
-              <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-orange-700 bg-orange-50 border border-orange-200 px-3 py-2.5 rounded-md shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
-                <span className="flex items-center gap-1.5"><Users size={14} /> <span className="font-black">High Demand:</span> {viewers} people have this in their cart right now.</span>
-              </div>
-              <div className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-red-700 bg-red-50 border border-red-200 px-3 py-2.5 rounded-md shadow-sm">
-                <Zap size={14} className="text-red-600 fill-red-600" />
-                <span><span className="font-black">Selling Fast:</span> Only {stockLeft} pieces left at this price!</span>
-              </div>
-            </div>
-          )}
-
-
 
           {/* Action Buttons */}
           <div className="flex gap-4 mb-2">
@@ -580,44 +527,35 @@ export default function ProductUI({ product }: ProductUIProps) {
              </div>
           </div>
           
+          {/* Progress Tracker */}
+          <div className="mt-6 mb-6 bg-stone-50 rounded-xl p-6 border border-stone-100">
+            <div className="flex items-center justify-between relative max-w-sm mx-auto">
+              <div className="absolute left-6 right-6 top-1.5 h-0.5 bg-gray-200 -z-10"></div>
+              <div className="absolute left-6 right-1/2 top-1.5 h-0.5 bg-stone-800 -z-10"></div>
+              
+              <div className="flex flex-col items-center flex-1">
+                <div className="w-3 h-3 rounded-full bg-stone-800 border-2 border-stone-50 box-content"></div>
+                <span className="text-[10px] font-bold text-gray-900 mt-2 text-center">Order Placed</span>
+                <span className="text-[9px] text-gray-500">Today</span>
+              </div>
+              <div className="flex flex-col items-center flex-1">
+                <div className="w-3 h-3 rounded-full bg-stone-50 border-2 border-gray-300 box-content"></div>
+                <span className="text-[10px] font-bold text-gray-900 mt-2 text-center">Shipped</span>
+                <span className="text-[9px] text-gray-500">Tomorrow evening</span>
+              </div>
+              <div className="flex flex-col items-center flex-1">
+                <div className="w-3 h-3 rounded-full bg-stone-50 border-2 border-gray-300 box-content"></div>
+                <span className="text-[10px] font-bold text-gray-900 mt-2 text-center">Delivered</span>
+                <span className="text-[9px] text-gray-500">In 3-5 days</span>
+              </div>
+            </div>
+            <p className="text-center text-[9px] italic text-gray-500 mt-4 flex justify-center items-center gap-1">
+              ✨ Each piece is carefully crafted to order. Not picked from a shelf.
+            </p>
+          </div>
+          
           <p className="text-center text-xs font-serif italic text-gray-500 mt-4 mb-6">"Imagine her smile when she opens this personalized keepsake. Guaranteed to be her favorite gift."</p>
 
-          {/* Fast Delivery Highlight */}
-          <div className="bg-[#ecfdf5] border border-[#a7f3d0] rounded-lg p-3 flex items-center justify-center gap-2 text-emerald-800 mb-4 text-center">
-            <Zap size={16} className="text-emerald-600 fill-emerald-600 shrink-0" />
-            <span className="text-[10px] font-bold uppercase tracking-widest">{deliveryMessage}</span>
-          </div>
-
-          {/* PIN Code Check */}
-          <div className="mb-8 border border-[#E5B8B7] rounded-lg p-4 bg-[#fdfaf8]">
-            <h4 className="text-xs font-bold text-gray-800 mb-2 flex items-center gap-2"><Truck size={14} className="text-[#800020]" /> Check Delivery Before Raksha Bandhan</h4>
-            <div className="flex gap-2">
-              <input
-                type="text"
-                placeholder="Enter PIN Code"
-                value={pinCode}
-                onChange={(e) => setPinCode(e.target.value)}
-                maxLength={6}
-                className="flex-1 text-xs px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-[#800020]"
-              />
-              <button
-                onClick={() => {
-                  if (pinCode.length === 6) {
-                    setPinStatus("checking");
-                    setTimeout(() => setPinStatus("success"), 800);
-                  }
-                }}
-                className="bg-[#800020] text-white px-4 py-2 text-xs font-bold uppercase tracking-widest rounded-md hover:bg-[#600018] transition-colors"
-              >
-                {pinStatus === "checking" ? "..." : "Check"}
-              </button>
-            </div>
-            {pinStatus === "success" ? (
-              <p className="text-[10px] text-emerald-700 mt-3 font-bold flex items-center gap-1 bg-emerald-50 p-2 rounded-md"><CheckCircle2 size={12} /> Delivery available to {pinCode}. Order now with Premium Delivery to get it before Aug 28th.</p>
-            ) : (
-              <p className="text-[10px] text-gray-500 mt-2 flex items-center gap-1">Enter a PIN / ZIP code to check delivery time.</p>
-            )}
-          </div>
 
           {/* Accordion Description - Moved Below */}
           <div className="mb-8 border border-stone-200 rounded-lg overflow-hidden bg-white mt-4">
@@ -638,53 +576,28 @@ export default function ProductUI({ product }: ProductUIProps) {
 
         </div>
 
-        {/* Right Column: Sidebar (Span 3) */}
-        <div className="lg:col-span-3 flex flex-col gap-6">
 
-          <div className="bg-[#fdfaf8] rounded-2xl p-6 border border-[#800020]/5">
-            <h3 className="text-xs uppercase tracking-widest font-bold text-gray-800 mb-6 border-b border-gray-200 pb-4">Perfect For</h3>
-            <ul className="space-y-5">
-              <li className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#800020] shadow-sm"><Gift size={18} strokeWidth={1.5} /></div>
-                <Link href="/collections/rakhi-gifts-for-sister" className="text-xs font-bold text-gray-700 hover:text-[#800020] transition-colors">Rakhi Gift for Sister</Link>
-              </li>
-              <li className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#800020] shadow-sm"><Heart size={18} strokeWidth={1.5} /></div>
-                <Link href="/collections/rakhi-gifts-for-brother" className="text-xs font-bold text-gray-700 hover:text-[#800020] transition-colors">Rakhi Gift for Brother</Link>
-              </li>
-              <li className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#800020] shadow-sm"><Users size={18} strokeWidth={1.5} /></div>
-                <Link href="/collections/rakhi-gifts-under-499" className="text-xs font-bold text-gray-700 hover:text-[#800020] transition-colors">Rakhi Gifts Under ₹499</Link>
-              </li>
-            </ul>
-          </div>
+      </div>
 
-          <div className="bg-[#fdfaf8] rounded-2xl p-6 border border-[#800020]/5">
-            <h3 className="text-xs uppercase tracking-widest font-bold text-gray-800 mb-6 border-b border-gray-200 pb-4">Why Choose Octopus?</h3>
-            <ul className="space-y-5">
-              <li className="flex items-center gap-4">
-                <CheckCircle2 size={20} className="text-[#800020] shrink-0" strokeWidth={1.5} />
-                <span className="text-xs font-bold text-gray-700">Everlasting Gifts</span>
-              </li>
-              <li className="flex items-center gap-4">
-                <Award size={20} className="text-[#800020] shrink-0" strokeWidth={1.5} />
-                <span className="text-xs font-bold text-gray-700">Premium Quality</span>
-              </li>
-              <li className="flex items-center gap-4">
-                <ShieldCheck size={20} className="text-[#800020] shrink-0" strokeWidth={1.5} />
-                <span className="text-xs font-bold text-gray-700">Secure Payments</span>
-              </li>
-              <li className="flex items-center gap-4 bg-emerald-50 border border-emerald-100 p-2 rounded-lg">
-                <span className="flex items-center justify-center w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full font-bold text-[10px] shrink-0">₹</span>
-                <span className="text-xs font-black text-emerald-800 uppercase tracking-widest">Cash on Delivery</span>
-              </li>
-              <li className="flex items-center gap-4">
-                <Smile size={20} className="text-[#800020] shrink-0" strokeWidth={1.5} />
-                <span className="text-xs font-bold text-gray-700">Happy Customers</span>
-              </li>
-            </ul>
-          </div>
-
+      {/* Social Proof Section */}
+      <div className="mt-16 mb-8 max-w-[1200px] mx-auto">
+        <div className="mb-6">
+          <p className="text-[10px] uppercase tracking-widest font-bold text-gray-500 mb-1">REAL GIFTING MOMENTS</p>
+          <h2 className="font-serif text-2xl md:text-3xl text-[#2d2d2d]">2 Lakh+ sisters have <span className="italic">received this gift</span></h2>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4">
+          {[
+            "https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Still_2026-03-18_155922_2.8.1.png?v=1774435784&width=300",
+            "https://cdn.shopify.com/s/files/1/0277/7019/2008/files/2_540119ee-180a-4c97-be0b-7471fa4138e2.jpg?v=1774435875&width=300",
+            "https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Name_Necklace_3.jpg?v=1774435972&width=300",
+            "https://cdn.shopify.com/s/files/1/0277/7019/2008/files/6.jpg?v=1774436053&width=300",
+            "https://cdn.shopify.com/s/files/1/0277/7019/2008/files/image_3_59ac7156-ef01-4ccf-8e70-b440a413b90d.png?v=1774436174&width=300",
+            "https://cdn.shopify.com/s/files/1/0277/7019/2008/files/image_4.png?v=1774436221&width=300"
+          ].map((src, index) => (
+            <div key={index} className="aspect-square relative rounded-xl overflow-hidden shadow-sm bg-gray-100">
+              <img src={src} alt={`Customer moment ${index + 1}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            </div>
+          ))}
         </div>
       </div>
 

@@ -8,6 +8,7 @@ function ProxyForm() {
   const [hash, setHash] = useState<string | null>(null);
   const [key, setKey] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [countdown, setCountdown] = useState(8);
   const formRef = useRef<HTMLFormElement>(null);
 
   const txnid = searchParams.get('txnid');
@@ -54,14 +55,28 @@ function ProxyForm() {
   }, [txnid, amount, productinfo, firstname, email]);
 
   useEffect(() => {
-    if (hash && key && formRef.current) {
-      formRef.current.submit();
+    if (hash && key) {
+      // Start 8-second countdown before submitting
+      const timer = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            if (formRef.current) {
+              formRef.current.submit();
+            }
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
+      return () => clearInterval(timer);
     }
   }, [hash, key]);
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-slate-50 p-4 font-sans text-slate-900">
+      <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-slate-50 p-4 font-sans text-slate-900 overflow-y-auto">
         <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center border border-slate-100 flex flex-col items-center">
           <div className="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center mb-6">
             <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -79,7 +94,7 @@ function ProxyForm() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-slate-50 p-4 font-sans text-slate-900">
+    <div className="fixed inset-0 z-[99999] flex flex-col items-center justify-center bg-slate-50 p-4 font-sans text-slate-900 overflow-y-auto">
       <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center border border-slate-100 flex flex-col items-center relative overflow-hidden">
         
         {/* Top decorative gradient bar */}
@@ -99,26 +114,28 @@ function ProxyForm() {
           </span>
         </div>
 
-        {/* Animated Loader */}
+        {/* Animated Loader with Countdown */}
         <div className="relative w-20 h-20 mb-6">
           <div className="absolute inset-0 border-4 border-slate-100 rounded-full"></div>
           <div className="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
           <div className="absolute inset-0 flex items-center justify-center">
-            <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
-            </svg>
+            <span className="text-blue-600 font-bold text-lg">{countdown}s</span>
           </div>
         </div>
 
-        <h1 className="text-xl font-bold text-slate-900 mb-2">
+        <h1 className="text-xl font-bold text-slate-900 mb-3">
           Redirecting to Secure Checkout
         </h1>
-        <p className="text-slate-500 text-sm mb-6 max-w-[280px] mx-auto leading-relaxed">
-          Please wait while we transfer you to our secure PayU payment gateway to complete your transaction.
-        </p>
+        
+        <div className="bg-blue-50 border border-blue-100 rounded-xl p-4 mb-6 text-left">
+          <p className="text-blue-800 text-sm leading-relaxed">
+            Our primary payment servers are currently experiencing high traffic. 
+            <strong> We are securely routing you to our alternate PayU payment gateway</strong> to complete your transaction without any issues.
+          </p>
+        </div>
         
         <div className="w-full bg-amber-50 border border-amber-100 text-amber-800 text-xs py-2 px-3 rounded-lg font-medium">
-          Do not refresh or close this page
+          Please do not refresh or close this page
         </div>
 
         {/* Powered by footer */}
@@ -152,7 +169,11 @@ function ProxyForm() {
 
 export default function PayUProxyPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-gray-500">Loading...</div>}>
+    <Suspense fallback={
+      <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-slate-50 text-slate-500">
+        Loading secure checkout...
+      </div>
+    }>
       <ProxyForm />
     </Suspense>
   );

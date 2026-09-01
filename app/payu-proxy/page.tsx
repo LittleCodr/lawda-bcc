@@ -61,23 +61,75 @@ function ProxyForm() {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50 text-red-600">
-        Error: {error}. Please return to InternshipsHub and try again.
+      <div className="flex items-center justify-center min-h-screen bg-slate-50 p-4 font-sans text-slate-900">
+        <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center border border-slate-100 flex flex-col items-center">
+          <div className="w-16 h-16 bg-red-50 text-red-600 rounded-full flex items-center justify-center mb-6">
+            <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <h1 className="text-xl font-bold text-slate-900 mb-2">Payment Error</h1>
+          <p className="text-slate-500 mb-6">{error}</p>
+          <button onClick={() => window.location.href = 'https://internshipshub.in'} className="w-full py-3 px-4 bg-slate-900 text-white rounded-xl font-bold shadow-lg hover:bg-slate-800 transition">
+            Return to InternshipsHub
+          </button>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-4">
-      <div className="animate-pulse flex flex-col items-center">
-        <div className="h-12 w-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4"></div>
-        <p className="text-gray-700 font-semibold text-lg text-center">
-          Securely redirecting to PayU Payment Gateway...
+    <div className="flex flex-col items-center justify-center min-h-screen bg-slate-50 p-4 font-sans text-slate-900">
+      <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center border border-slate-100 flex flex-col items-center relative overflow-hidden">
+        
+        {/* Top decorative gradient bar */}
+        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-500 via-teal-400 to-emerald-500"></div>
+
+        {/* InternshipsHub Logo */}
+        <div className="mb-8 flex items-center justify-center space-x-2">
+          <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-teal-500 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20">
+            <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 14l9 5-9 5-9-5 9-5z" />
+            </svg>
+          </div>
+          <span className="text-2xl font-extrabold tracking-tight text-slate-800">
+            Internships<span className="text-blue-600">Hub</span>
+          </span>
+        </div>
+
+        {/* Animated Loader */}
+        <div className="relative w-20 h-20 mb-6">
+          <div className="absolute inset-0 border-4 border-slate-100 rounded-full"></div>
+          <div className="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+            </svg>
+          </div>
+        </div>
+
+        <h1 className="text-xl font-bold text-slate-900 mb-2">
+          Redirecting to Secure Checkout
+        </h1>
+        <p className="text-slate-500 text-sm mb-6 max-w-[280px] mx-auto leading-relaxed">
+          Please wait while we transfer you to our secure PayU payment gateway to complete your transaction.
         </p>
-        <p className="text-gray-500 text-sm mt-2 text-center">
-          Please do not refresh or close this page.
-        </p>
-      </div>
+        
+        <div className="w-full bg-amber-50 border border-amber-100 text-amber-800 text-xs py-2 px-3 rounded-lg font-medium">
+          Do not refresh or close this page
+        </div>
+
+        {/* Powered by footer */}
+        <div className="mt-8 pt-6 border-t border-slate-100 w-full">
+          <p className="text-[11px] text-slate-400 font-medium flex justify-center items-center gap-1.5">
+            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.88-11.71L10 14.17l-1.88-1.88a.996.996 0 10-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 10-1.42-1.41z"/>
+            </svg>
+            256-bit Encrypted Connection
+          </p>
+        </div>
 
       {hash && key && (
         <form ref={formRef} action="https://secure.payu.in/_payment" method="POST" className="hidden">
@@ -93,6 +145,7 @@ function ProxyForm() {
           <input type="hidden" name="hash" value={hash} />
         </form>
       )}
+      </div>
     </div>
   );
 }

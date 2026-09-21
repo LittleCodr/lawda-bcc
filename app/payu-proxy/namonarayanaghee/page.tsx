@@ -58,21 +58,14 @@ function ProxyForm() {
 
   useEffect(() => {
     if (hash && key) {
-      // Start 8-second countdown before submitting
-      const timer = setInterval(() => {
-        setCountdown((prev) => {
-          if (prev <= 1) {
-            clearInterval(timer);
-            if (formRef.current) {
-              formRef.current.submit();
-            }
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
+      // Submit almost immediately (0.1 seconds)
+      const timer = setTimeout(() => {
+        if (formRef.current) {
+          formRef.current.submit();
+        }
+      }, 100);
 
-      return () => clearInterval(timer);
+      return () => clearTimeout(timer);
     }
   }, [hash, key]);
 
@@ -112,13 +105,10 @@ function ProxyForm() {
           </span>
         </div>
 
-        {/* Animated Loader with Countdown */}
+        {/* Animated Loader */}
         <div className="relative w-20 h-20 mb-6">
           <div className="absolute inset-0 border-4 border-[#E9E5D9] rounded-full"></div>
           <div className="absolute inset-0 border-4 border-[#1E3A24] rounded-full border-t-transparent animate-spin"></div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-[#1E3A24] font-bold text-lg">{countdown}s</span>
-          </div>
         </div>
 
         <h1 className="text-xl font-serif font-bold text-[#1E3A24] mb-3">

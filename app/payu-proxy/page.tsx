@@ -17,6 +17,7 @@ function ProxyForm() {
   const firstname = searchParams.get('firstname');
   const email = searchParams.get('email');
   const phone = searchParams.get('phone');
+  const udf1 = searchParams.get('udf1');
 
   useEffect(() => {
     if (!txnid || !amount || !productinfo || !firstname || !email) {
@@ -35,6 +36,7 @@ function ProxyForm() {
             productinfo,
             firstname,
             email,
+            udf1,
           })
         });
 
@@ -159,6 +161,7 @@ function ProxyForm() {
           <input type="hidden" name="phone" value={phone || ''} />
           <input type="hidden" name="surl" value="https://octopusperfume.in/api/payu/callback" />
           <input type="hidden" name="furl" value="https://octopusperfume.in/api/payu/callback" />
+          <input type="hidden" name="udf1" value={udf1 || ''} />
           <input type="hidden" name="hash" value={hash} />
         </form>
       )}

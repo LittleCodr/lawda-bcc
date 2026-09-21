@@ -7,10 +7,15 @@ export async function POST(req: Request) {
     const txnid = formData.get('txnid');
     const payuid = formData.get('mihpayid');
     const error_Message = formData.get('error_Message');
+    const udf1 = formData.get('udf1');
     
     // In PayU callback, we should redirect to the origin site
     // The verify_payment will be handled securely by the origin site backend
-    const redirectUrl = new URL('https://internshipshub.in/payment/verify-payu');
+    let redirectUrlStr = 'https://internshipshub.in/payment/verify-payu';
+    if (udf1 === 'namonarayanaghee') {
+      redirectUrlStr = 'https://namonarayanaghee.store/checkout/success';
+    }
+    const redirectUrl = new URL(redirectUrlStr);
     redirectUrl.searchParams.set('txnid', txnid?.toString() || '');
     redirectUrl.searchParams.set('status', status?.toString() || '');
     redirectUrl.searchParams.set('payuid', payuid?.toString() || '');

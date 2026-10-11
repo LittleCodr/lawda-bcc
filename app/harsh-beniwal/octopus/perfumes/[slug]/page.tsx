@@ -1,26 +1,17 @@
-import fs from "fs";
-import path from "path";
 import { notFound } from "next/navigation";
 import ProductUI from "@/app/products/[slug]/ProductUI";
+import scrapedPerfumes from "@/harsh-beniwal/octopus/perfumes/scraped_products.json";
+
+export function generateStaticParams() {
+  return (scrapedPerfumes as any[]).map((p) => ({
+    slug: p.handle,
+  }));
+}
 
 function getProduct(slug: string) {
-  try {
-    const dataPath = path.join(process.cwd(), "harsh-beniwal", "octopus", "perfumes", "scraped_products.json");
-    if (fs.existsSync(dataPath)) {
-      const perfumes = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
-      const found = perfumes.find((p: any) => p.handle === slug || p.id.toString() === slug);
-      if (found) return found;
-    }
-  } catch (e) {}
-
-  try {
-    const dataPath = path.join(process.cwd(), "lib", "data", "products.json");
-    if (fs.existsSync(dataPath)) {
-      const products = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
-      return products.find((p: any) => p.handle === slug || p.id.toString() === slug);
-    }
-  } catch (e) {}
-
+  const perfumes = scrapedPerfumes as any[];
+  const found = perfumes.find((p: any) => p.handle === slug || p.id?.toString() === slug);
+  if (found) return found;
   return null;
 }
 
@@ -65,7 +56,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         },
       ],
       locale: "en_IN",
-      type: "product",
+      type: "website",
     },
     twitter: {
       card: "summary_large_image",

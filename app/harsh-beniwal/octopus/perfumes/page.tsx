@@ -1,9 +1,8 @@
-import fs from "fs";
-import path from "path";
 import { Metadata } from "next";
 import Link from "next/link";
 import { Sparkles, ShieldCheck, Flame, Star, Award, CheckCircle2 } from "lucide-react";
 import HarshBeniwalPerfumesClient from "@/components/HarshBeniwalPerfumesClient";
+import scrapedPerfumes from "@/harsh-beniwal/octopus/perfumes/scraped_products.json";
 
 const PAGE_URL = "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes";
 
@@ -57,20 +56,8 @@ export const metadata: Metadata = {
   },
 };
 
-function getPerfumesData() {
-  try {
-    const dataPath = path.join(process.cwd(), "harsh-beniwal", "octopus", "perfumes", "scraped_products.json");
-    if (fs.existsSync(dataPath)) {
-      return JSON.parse(fs.readFileSync(dataPath, "utf-8"));
-    }
-  } catch (e) {
-    console.error("Error reading scraped perfumes:", e);
-  }
-  return [];
-}
-
 export default function HarshBeniwalPerfumesPage() {
-  const perfumes = getPerfumesData();
+  const perfumes = scrapedPerfumes;
 
   // Structured Data Schema for Google #1 Ranking
   const itemListSchema = {

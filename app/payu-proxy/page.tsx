@@ -5,8 +5,7 @@ import { useSearchParams } from 'next/navigation';
 
 function ProxyForm() {
   const searchParams = useSearchParams();
-  const [hash, setHash] = useState<string | null>(null);
-  const [key, setKey] = useState<string | null>(null);
+  const [payuParams, setPayuParams] = useState<Record<string, string> | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [countdown, setCountdown] = useState(8);
   const formRef = useRef<HTMLFormElement>(null);
@@ -36,15 +35,17 @@ function ProxyForm() {
             productinfo,
             firstname,
             email,
-            udf1,
+            phone: phone || '',
+            udf1: udf1 || '',
+            udf2: phone || '',
+            udf3: 'octopusperfumes',
           })
         });
 
         const data = await response.json();
         
         if (data.hash && data.key) {
-          setHash(data.hash);
-          setKey(data.key);
+          setPayuParams(data);
         } else {
           setError(data.error || "Failed to generate hash");
         }
@@ -54,10 +55,10 @@ function ProxyForm() {
     };
 
     getHash();
-  }, [txnid, amount, productinfo, firstname, email]);
+  }, [txnid, amount, productinfo, firstname, email, phone, udf1]);
 
   useEffect(() => {
-    if (hash && key) {
+    if (payuParams) {
       // Start 8-second countdown before submitting
       const timer = setInterval(() => {
         setCountdown((prev) => {
@@ -150,19 +151,11 @@ function ProxyForm() {
           </p>
         </div>
 
-      {hash && key && (
-        <form ref={formRef} action="https://secure.payu.in/_payment" method="POST" className="hidden">
-          <input type="hidden" name="key" value={key} />
-          <input type="hidden" name="txnid" value={txnid || ''} />
-          <input type="hidden" name="amount" value={amount || ''} />
-          <input type="hidden" name="productinfo" value={productinfo || ''} />
-          <input type="hidden" name="firstname" value={firstname || ''} />
-          <input type="hidden" name="email" value={email || ''} />
-          <input type="hidden" name="phone" value={phone || ''} />
-          <input type="hidden" name="surl" value="https://octopusperfume.in/api/payu/callback" />
-          <input type="hidden" name="furl" value="https://octopusperfume.in/api/payu/callback" />
-          <input type="hidden" name="udf1" value={udf1 || ''} />
-          <input type="hidden" name="hash" value={hash} />
+      {payuParams && (
+        <form ref={formRef} action={payuParams.action || "https://secure.payu.in/_payment"} method="POST" className="hidden">
+          {Object.entries(payuParams).map(([name, val]) => (
+            name !== "action" && <input key={name} type="hidden" name={name} value={String(val ?? '')} />
+          ))}
         </form>
       )}
       </div>

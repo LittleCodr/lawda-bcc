@@ -9,14 +9,19 @@ export async function POST(req: Request) {
     const error_Message = formData.get('error_Message');
     const udf1 = formData.get('udf1');
     
-    // In PayU callback, we should redirect to the origin site
-    // The verify_payment will be handled securely by the origin site backend
-    let redirectUrlStr = 'https://internshipshub.in/payment/verify-payu';
+    // In PayU callback, redirect to origin checkout success page with order_id
+    const host = req.headers.get('x-forwarded-host') || req.headers.get('host') || 'www.octopusperfume.in';
+    const proto = req.headers.get('x-forwarded-proto') || 'https';
+    const origin = `${proto}://${host}`;
+
+    let redirectUrlStr = `${origin}/checkout/success`;
     if (udf1 === 'namonarayanaghee') {
       redirectUrlStr = 'https://namonarayanaghee.store/checkout/success';
     }
     const redirectUrl = new URL(redirectUrlStr);
-    redirectUrl.searchParams.set('txnid', txnid?.toString() || '');
+    const orderId = txnid?.toString() || '';
+    redirectUrl.searchParams.set('order_id', orderId);
+    redirectUrl.searchParams.set('txnid', orderId);
     redirectUrl.searchParams.set('status', status?.toString() || '');
     redirectUrl.searchParams.set('payuid', payuid?.toString() || '');
     if (error_Message) {

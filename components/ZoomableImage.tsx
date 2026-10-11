@@ -21,7 +21,7 @@ export default function ZoomableImage({ src, alt, className }: { src: string, al
   return (
     <>
       <div className={`relative cursor-pointer group overflow-hidden ${className || ''}`} onClick={() => setIsOpen(true)}>
-        <img src={src} alt={alt} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <img src={src} alt={alt} loading="eager" decoding="async" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
         <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <ZoomIn className="text-white drop-shadow-md" size={24} />
         </div>
@@ -46,6 +46,8 @@ export default function ZoomableImage({ src, alt, className }: { src: string, al
             <img 
               src={src} 
               alt={alt} 
+              loading="eager"
+              decoding="async"
               className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl bg-white" 
             />
           </div>

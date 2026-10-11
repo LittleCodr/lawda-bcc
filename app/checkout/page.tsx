@@ -227,6 +227,8 @@ export default function CheckoutPage() {
           email: formData.email,
           phone: formData.phone,
           name: formData.name,
+          firstname: formData.name,
+          productinfo: isCOD ? `COD Advance: ${cartSummary}` : cartSummary,
           cartSummary: isCOD ? `COD Advance: ${cartSummary}` : cartSummary,
         }),
       });

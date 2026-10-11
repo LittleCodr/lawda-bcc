@@ -116,6 +116,7 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
             alt={images[currentIndex].alt || "Product image"}
             fill
             priority
+            loading="eager"
             unoptimized
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-contain p-2 sm:p-4 z-10 transition-transform duration-300" 
@@ -181,6 +182,7 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
                 alt={img.alt || `Thumbnail ${idx + 1}`} 
                 fill 
                 unoptimized 
+                loading="eager"
                 className="object-contain p-1" 
                 sizes="80px" 
               />
@@ -223,6 +225,7 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
               alt={images[currentIndex].alt}
               fill
               unoptimized
+              loading="eager"
               className={`object-contain z-10 transition-opacity duration-300 ${isImgLoading ? 'opacity-0' : 'opacity-100'}`}
               sizes="100vw"
               onLoad={() => setIsImgLoading(false)}

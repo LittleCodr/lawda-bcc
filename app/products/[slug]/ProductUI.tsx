@@ -82,7 +82,8 @@ export default function ProductUI({ product }: ProductUIProps) {
   const isAvailable = true;
 
   const productTitleLower = (product.title || "").toLowerCase();
-  const isPerfume = product.product_type?.toLowerCase() === 'perfume' || (product.tags || []).some((t: string) => typeof t === 'string' && t.toLowerCase() === 'perfume');
+  const perfumeHandles = ['overlord', 'paradox', 'rhapsody', 'your-move', 'somersault', 'promised', 'outlaw', 'mirage', 'darling-women'];
+  const isPerfume = perfumeHandles.includes(product.handle) || product.product_type?.toLowerCase() === 'perfume' || (product.tags || []).some((t: string) => typeof t === 'string' && (t.toLowerCase().includes('perfume') || t.toLowerCase().includes('harsh beniwal')));
   const isNamePersonalised = !isPerfume && (productTitleLower.includes('name') || productTitleLower.includes('initial') || product.handle === '12-in-1-jhumkas-box');
   const isPhotoPersonalised = !isPerfume && (productTitleLower.includes('photo') || productTitleLower.includes('picture'));
   const isRing = productTitleLower.includes('ring');
@@ -429,28 +430,30 @@ export default function ProductUI({ product }: ProductUIProps) {
             )}
 
             {/* Upsell: Gift Packaging */}
-            <div
-              onClick={() => setIsGift(!isGift)}
-              className={`border rounded-lg p-4 flex items-center justify-between cursor-pointer transition-all duration-300 group ${isGift ? 'border-[#800020] bg-[#fdfaf8] shadow-sm' : 'border-gray-200 hover:border-[#800020]'}`}
-            >
-              <div className="flex items-center gap-3">
-                <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors shrink-0 ${isGift ? 'border-[#800020] bg-[#800020]' : 'border-gray-300'}`}>
-                  {isGift && <div className="w-1.5 h-1.5 bg-white rounded-full"></div>}
-                </div>
+            {!isPerfume && (
+              <div
+                onClick={() => setIsGift(!isGift)}
+                className={`border rounded-lg p-4 flex items-center justify-between cursor-pointer transition-all duration-300 group ${isGift ? 'border-[#800020] bg-[#fdfaf8] shadow-sm' : 'border-gray-200 hover:border-[#800020]'}`}
+              >
                 <div className="flex items-center gap-3">
-                  <Gift size={20} className={isGift ? 'text-[#800020]' : 'text-gray-400 group-hover:text-[#800020] transition-colors'} strokeWidth={1.5} />
-                  <div className="flex flex-col">
-                    <span className="text-sm font-bold text-[#2d2d2d]">Make it a Gift</span>
-                    <span className="text-[9px] uppercase tracking-widest text-gray-500 mt-0.5">Premium Box + Card</span>
+                  <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors shrink-0 ${isGift ? 'border-[#800020] bg-[#800020]' : 'border-gray-300'}`}>
+                    {isGift && <div className="w-1.5 h-1.5 bg-white rounded-full"></div>}
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Gift size={20} className={isGift ? 'text-[#800020]' : 'text-gray-400 group-hover:text-[#800020] transition-colors'} strokeWidth={1.5} />
+                    <div className="flex flex-col">
+                      <span className="text-sm font-bold text-[#2d2d2d]">Make it a Gift</span>
+                      <span className="text-[9px] uppercase tracking-widest text-gray-500 mt-0.5">Premium Box + Card</span>
+                    </div>
                   </div>
                 </div>
+                <span className="text-xs font-bold text-[#800020]">+₹249</span>
               </div>
-              <span className="text-xs font-bold text-[#800020]">+₹249</span>
-            </div>
+            )}
           </div>
 
           {/* Free Ring Promo */}
-          {!productTitleLower.includes('ring') && (
+          {!isPerfume && !productTitleLower.includes('ring') && (
             <div className="bg-[#fdfaf8] border border-[#800020]/30 rounded-xl p-4 mb-6 flex items-center gap-4 relative overflow-hidden group shadow-sm">
               <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden border border-[#800020]/20 bg-white">
                 <ZoomableImage src="https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg?v=1667301766" alt="Free Ring" />
@@ -467,7 +470,7 @@ export default function ProductUI({ product }: ProductUIProps) {
           )}
 
           {/* Rakhi Special Promo */}
-          {isNamePersonalised && productTitleLower.includes('necklace') && product.handle !== 'fairy-name-necklace' && (
+          {!isPerfume && isNamePersonalised && productTitleLower.includes('necklace') && product.handle !== 'fairy-name-necklace' && (
             <div className="bg-[#FFEAEA] border border-[#800020]/20 rounded-xl p-4 mb-6 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-16 h-16 bg-[#800020]/5 rounded-bl-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500"></div>
               <div className="flex items-start gap-4 relative z-10">
@@ -518,7 +521,9 @@ export default function ProductUI({ product }: ProductUIProps) {
           <div className="grid grid-cols-3 gap-2 mt-4">
              <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-gray-50 p-2 rounded-lg border border-gray-100">
                 <Lock size={16} className="text-[#800020]" />
-                <span className="text-[8px] font-bold uppercase tracking-widest text-gray-600">100% Secure Checkout</span>
+                <span className="text-[8px] font-bold uppercase tracking-widest text-gray-600">
+                  {isPerfume ? "100% Original EDP" : "100% Secure Checkout"}
+                </span>
              </div>
              <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-gray-50 p-2 rounded-lg border border-gray-100">
                 <Truck size={16} className="text-[#800020]" />
@@ -526,82 +531,123 @@ export default function ProductUI({ product }: ProductUIProps) {
              </div>
              <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-gray-50 p-2 rounded-lg border border-gray-100">
                 <Sparkles size={16} className="text-[#800020]" />
-                <span className="text-[8px] font-bold uppercase tracking-widest text-gray-600">Premium Anti-Tarnish</span>
+                <span className="text-[8px] font-bold uppercase tracking-widest text-gray-600">
+                  {isPerfume ? "12+ Hours Sillage" : "Premium Anti-Tarnish"}
+                </span>
              </div>
           </div>
           
-          {/* Premium Progress Tracker */}
-          <div className="mt-8 mb-10 bg-gradient-to-br from-[#fdfaf8] to-white rounded-2xl p-6 border border-[#800020]/10 shadow-[0_8px_30px_rgb(128,0,32,0.04)] relative overflow-hidden">
-            {/* Decorative background blur */}
-            <div className="absolute -right-10 -top-10 w-40 h-40 bg-[#800020]/5 rounded-full blur-3xl pointer-events-none"></div>
-            
-            <div className="relative max-w-sm mx-auto">
-              {/* Perfectly aligned connecting lines */}
-              <div className="absolute top-3 left-1/6 right-1/6 h-[2px] bg-gray-200 rounded-full"></div>
-              <div className="absolute top-3 left-1/6 w-1/3 h-[2px] bg-gradient-to-r from-[#800020] to-[#d81b60] rounded-full shadow-[0_0_8px_rgba(128,0,32,0.3)]"></div>
-
-              {/* Steps */}
-              <div className="flex justify-between relative z-10">
-                {/* Step 1: Active */}
-                <div className="flex flex-col items-center flex-1 group">
-                  <div className="w-6 h-6 rounded-full bg-white border-[3px] border-[#800020] flex items-center justify-center shadow-[0_0_12px_rgba(128,0,32,0.2)] relative transition-transform duration-300 group-hover:scale-110">
-                    <div className="w-2 h-2 rounded-full bg-[#800020]"></div>
-                    <div className="absolute -inset-1.5 rounded-full border border-[#800020]/30 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
+          {/* Fragrance Specifications for Perfumes / Delivery Tracker for Keepsakes */}
+          {isPerfume ? (
+            <div className="mt-8 mb-6 bg-gradient-to-br from-stone-900 to-stone-950 text-white rounded-2xl p-6 border border-amber-500/20 shadow-xl">
+              <div className="flex items-center gap-2 mb-2">
+                <Sparkles size={16} className="text-amber-400" />
+                <span className="text-[10px] uppercase tracking-widest text-amber-400 font-bold">Harsh Beniwal x Octopus • 25%+ French Oil Concentration</span>
+              </div>
+              <p className="text-xs text-stone-300 leading-relaxed mb-4">
+                {product.tagline || product.scentStory || "Crafted with imported French fragrance oils. 50ML Eau De Parfum formulated for maximum longevity, magnetic sillage, and IFRA skin safety."}
+              </p>
+              
+              {product.notes && (
+                <div className="pt-3 border-t border-stone-800 grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-left sm:text-center">
+                  <div className="bg-stone-800/60 p-2.5 rounded-lg border border-stone-700/50">
+                    <span className="text-[9px] uppercase tracking-wider text-stone-400 font-bold block mb-0.5">Top Notes</span>
+                    <span className="text-[11px] text-amber-200 font-medium block">{product.notes.top || "Citrus, Fresh Zest"}</span>
                   </div>
-                  <div className="text-center mt-3">
-                    <span className="block text-[10px] font-black text-gray-900 uppercase tracking-widest mb-1 transition-colors group-hover:text-[#800020]">Order Placed</span>
-                    <span className="block text-[9px] font-bold text-[#800020] bg-[#800020]/5 border border-[#800020]/10 px-2 py-0.5 rounded-full inline-block shadow-sm">Today</span>
+                  <div className="bg-stone-800/60 p-2.5 rounded-lg border border-stone-700/50">
+                    <span className="text-[9px] uppercase tracking-wider text-stone-400 font-bold block mb-0.5">Heart Notes</span>
+                    <span className="text-[11px] text-amber-200 font-medium block">{product.notes.heart || "Aromatic Spices, Florals"}</span>
                   </div>
-                </div>
-
-                {/* Step 2: Pending */}
-                <div className="flex flex-col items-center flex-1 group">
-                  <div className="w-6 h-6 rounded-full bg-white border-[3px] border-gray-200 flex items-center justify-center transition-all duration-300 group-hover:border-gray-300 group-hover:scale-110">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover:bg-gray-300 transition-colors"></div>
-                  </div>
-                  <div className="text-center mt-3">
-                    <span className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 transition-colors group-hover:text-gray-600">Shipped</span>
-                    <span className="block text-[9px] font-medium text-gray-500">Tomorrow Eve</span>
+                  <div className="bg-stone-800/60 p-2.5 rounded-lg border border-stone-700/50">
+                    <span className="text-[9px] uppercase tracking-wider text-stone-400 font-bold block mb-0.5">Base Notes</span>
+                    <span className="text-[11px] text-amber-200 font-medium block">{product.notes.base || "Amber, Woody Ambroxan"}</span>
                   </div>
                 </div>
-
-                {/* Step 3: Pending */}
-                <div className="flex flex-col items-center flex-1 group">
-                  <div className="w-6 h-6 rounded-full bg-white border-[3px] border-gray-200 flex items-center justify-center transition-all duration-300 group-hover:border-gray-300 group-hover:scale-110">
+              )}
+            </div>
+          ) : (
+            <>
+              {/* Premium Progress Tracker */}
+              <div className="mt-8 mb-10 bg-gradient-to-br from-[#fdfaf8] to-white rounded-2xl p-6 border border-[#800020]/10 shadow-[0_8px_30px_rgb(128,0,32,0.04)] relative overflow-hidden">
+                <div className="absolute -right-10 -top-10 w-40 h-40 bg-[#800020]/5 rounded-full blur-3xl pointer-events-none"></div>
+                <div className="relative max-w-sm mx-auto">
+                  <div className="absolute top-3 left-1/6 right-1/6 h-[2px] bg-gray-200 rounded-full"></div>
+                  <div className="absolute top-3 left-1/6 w-1/3 h-[2px] bg-gradient-to-r from-[#800020] to-[#d81b60] rounded-full shadow-[0_0_8px_rgba(128,0,32,0.3)]"></div>
+                  <div className="flex justify-between relative z-10">
+                    <div className="flex flex-col items-center flex-1 group">
+                      <div className="w-6 h-6 rounded-full bg-white border-[3px] border-[#800020] flex items-center justify-center shadow-[0_0_12px_rgba(128,0,32,0.2)] relative transition-transform duration-300 group-hover:scale-110">
+                        <div className="w-2 h-2 rounded-full bg-[#800020]"></div>
+                        <div className="absolute -inset-1.5 rounded-full border border-[#800020]/30 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
+                      </div>
+                      <div className="text-center mt-3">
+                        <span className="block text-[10px] font-black text-gray-900 uppercase tracking-widest mb-1 transition-colors group-hover:text-[#800020]">Order Placed</span>
+                        <span className="block text-[9px] font-bold text-[#800020] bg-[#800020]/5 border border-[#800020]/10 px-2 py-0.5 rounded-full inline-block shadow-sm">Today</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-center flex-1 group">
+                      <div className="w-6 h-6 rounded-full bg-white border-[3px] border-gray-200 flex items-center justify-center transition-all duration-300 group-hover:border-gray-300 group-hover:scale-110">
+                        <div className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover:bg-gray-300 transition-colors"></div>
+                      </div>
+                      <div className="text-center mt-3">
+                        <span className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 transition-colors group-hover:text-gray-600">Shipped</span>
+                        <span className="block text-[9px] font-medium text-gray-500">Tomorrow Eve</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-center flex-1 group">
+                      <div className="w-6 h-6 rounded-full bg-white border-[3px] border-gray-200 flex items-center justify-center transition-all duration-300 group-hover:border-gray-300 group-hover:scale-110">
+                      </div>
+                      <div className="text-center mt-3">
+                        <span className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 transition-colors group-hover:text-gray-600">Delivered</span>
+                        <span className="block text-[9px] font-medium text-gray-500">In 3-5 Days</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-center mt-3">
-                    <span className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 transition-colors group-hover:text-gray-600">Delivered</span>
-                    <span className="block text-[9px] font-medium text-gray-500">In 3-5 Days</span>
-                  </div>
+                </div>
+                <div className="mt-6 pt-4 border-t border-[#800020]/5 flex justify-center relative z-10">
+                   <div className="bg-white/80 backdrop-blur-sm border border-[#800020]/10 shadow-sm rounded-full px-4 py-1.5 flex items-center gap-2 hover:shadow-md transition-shadow">
+                     <Sparkles size={12} className="text-[#800020] animate-pulse" />
+                     <span className="text-[10px] font-medium text-gray-700 italic">Handcrafted to order. Not picked from a shelf.</span>
+                   </div>
                 </div>
               </div>
-            </div>
-            
-            <div className="mt-6 pt-4 border-t border-[#800020]/5 flex justify-center relative z-10">
-               <div className="bg-white/80 backdrop-blur-sm border border-[#800020]/10 shadow-sm rounded-full px-4 py-1.5 flex items-center gap-2 hover:shadow-md transition-shadow">
-                 <Sparkles size={12} className="text-[#800020] animate-pulse" />
-                 <span className="text-[10px] font-medium text-gray-700 italic">Handcrafted to order. Not picked from a shelf.</span>
-               </div>
-            </div>
-          </div>
-          
-          <p className="text-center text-xs font-serif italic text-gray-500 mt-4 mb-6">"Imagine her smile when she opens this personalized keepsake. Guaranteed to be her favorite gift."</p>
+              <p className="text-center text-xs font-serif italic text-gray-500 mt-4 mb-6">"Imagine her smile when she opens this personalized keepsake. Guaranteed to be her favorite gift."</p>
+            </>
+          )}
 
-
-          {/* Accordion Description - Moved Below */}
+          {/* Accordion Description */}
           <div className="mb-8 border border-stone-200 rounded-lg overflow-hidden bg-white mt-4">
             <button
               onClick={() => setIsDescOpen(!isDescOpen)}
               className="w-full flex items-center justify-between p-4 bg-stone-50 hover:bg-stone-100 transition-colors"
             >
-              <span className="font-bold text-[#2d2d2d] uppercase tracking-widest text-[10px]">Product Description</span>
+              <span className="font-bold text-[#2d2d2d] uppercase tracking-widest text-[10px]">
+                {isPerfume ? "Fragrance Story & Notes" : "Product Description"}
+              </span>
               <ChevronDown size={16} className={`transition-transform duration-300 ${isDescOpen ? 'rotate-180' : ''}`} />
             </button>
             <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isDescOpen ? 'max-h-[5000px] opacity-100 border-t border-stone-200' : 'max-h-0 opacity-0'}`}>
-              <div
-                className="prose prose-sm text-gray-600 p-6 leading-relaxed max-w-none text-justify"
-                dangerouslySetInnerHTML={{ __html: product.body_html || "" }}
-              />
+              <div className="p-6 leading-relaxed">
+                {isPerfume && product.scentStory && (
+                  <div className="mb-4 text-sm text-stone-700 leading-relaxed font-sans">
+                    <p className="font-semibold text-stone-900 mb-2">The Scent Story:</p>
+                    <p className="text-stone-600">{product.scentStory}</p>
+                  </div>
+                )}
+                <div
+                  className="prose prose-sm text-gray-600 leading-relaxed max-w-none text-justify"
+                  dangerouslySetInnerHTML={{ __html: product.body_html || product.descriptionHtml || product.descriptionText || "" }}
+                />
+                {isPerfume && Array.isArray(product.goodToKnow) && product.goodToKnow.length > 0 && (
+                  <div className="mt-4 pt-4 border-t border-stone-100">
+                    <p className="font-semibold text-stone-900 text-xs uppercase tracking-wider mb-2">Good To Know:</p>
+                    <ul className="list-disc pl-5 text-xs text-stone-600 space-y-1">
+                      {product.goodToKnow.map((item: string, i: number) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
 

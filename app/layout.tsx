@@ -8,12 +8,32 @@ import Script from "next/script";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.octopusperfume.in"),
-  title: "Everlasting Gifts for Her & Him in India | Octopus Everlasting Gifts",
-  description: "Shop everlasting gifts, custom jewelry, name necklaces, and couple gifts. Perfect for birthdays, anniversaries, and weddings. Free shipping across India.",
-  keywords: ["everlasting gifts", "custom jewelry", "name necklace", "gifts for her", "gifts for him", "anniversary gifts", "wedding gifts india", "custom keychain", "octopus gifts"],
-  authors: [{ name: "Octopus Everlasting Gifts" }],
-  creator: "Octopus Everlasting Gifts",
-  publisher: "Octopus Everlasting Gifts",
+  title: "OCTOPUS Perfumes by Harsh Beniwal | Luxury 50ML EDP Fragrances India",
+  description: "Experience official OCTOPUS Perfumes by Harsh Beniwal. 100% original 50ML Eau De Parfum crafted with 25%+ French fragrance oil concentration, beast-mode projection, and 12+ hour longevity. Free express shipping across India.",
+  keywords: [
+    "harsh beniwal perfume",
+    "octopus perfumes",
+    "octopus perfume by harsh beniwal",
+    "harsh beniwal octopus perfume",
+    "harsh beniwal fragrance",
+    "harsh beniwal cologne",
+    "overlord perfume harsh beniwal",
+    "promised perfume octopus",
+    "somersault perfume harsh beniwal",
+    "mirage perfume octopus",
+    "rhapsody perfume harsh beniwal",
+    "outlaw perfume octopus",
+    "your move perfume harsh beniwal",
+    "paradox perfume octopus",
+    "darling perfume harsh beniwal",
+    "best edp perfumes for men in india",
+    "luxury perfumes india",
+    "long lasting perfumes 12 hours",
+    "french edp perfumes online"
+  ],
+  authors: [{ name: "Harsh Beniwal - OCTOPUS Perfumes" }],
+  creator: "OCTOPUS Perfumes by Harsh Beniwal",
+  publisher: "OCTOPUS Perfumes",
   formatDetection: {
     email: false,
     address: false,
@@ -25,16 +45,16 @@ export const metadata: Metadata = {
     apple: "/logo.png",
   },
   openGraph: {
-    title: "Everlasting Gifts for Her & Him in India | Octopus Everlasting Gifts",
-    description: "Shop everlasting gifts, custom jewelry, name necklaces, and couple gifts. Perfect for birthdays, anniversaries, and weddings. Free shipping across India.",
+    title: "OCTOPUS Perfumes by Harsh Beniwal | Luxury 50ML EDP Fragrances India",
+    description: "Shop 100% original OCTOPUS Perfumes by Harsh Beniwal. 9 signature 50ML Eau De Parfums with 25%+ French oils & 12+ hour sillage. Free express delivery in India.",
     url: "https://www.octopusperfume.in",
-    siteName: "Octopus Everlasting Gifts",
+    siteName: "OCTOPUS Perfumes by Harsh Beniwal",
     images: [
       {
-        url: "/logo.png",
-        width: 800,
-        height: 600,
-        alt: "Octopus Everlasting Gifts - Everlasting Gifts",
+        url: "/harsh-beniwal/octopus/perfumes/images/overlord_box.png",
+        width: 1200,
+        height: 630,
+        alt: "OCTOPUS Perfumes by Harsh Beniwal - Luxury EDP Fragrances",
       },
     ],
     locale: "en_IN",
@@ -42,9 +62,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Everlasting Gifts for Her & Him in India | Octopus Everlasting Gifts",
-    description: "Shop everlasting gifts, custom jewelry, name necklaces, and couple gifts. Free shipping across India.",
-    images: ["/logo.png"],
+    title: "OCTOPUS Perfumes by Harsh Beniwal | Luxury 50ML EDP Fragrances India",
+    description: "Shop 100% original OCTOPUS Perfumes by Harsh Beniwal with 25%+ French oils & 12+ hour longevity. Free express delivery in India.",
+    images: ["/harsh-beniwal/octopus/perfumes/images/overlord_box.png"],
   },
   robots: {
     index: true,
@@ -137,11 +157,30 @@ export default function RootLayout({
             dangerouslySetInnerHTML={{
               __html: JSON.stringify({
                 "@context": "https://schema.org",
-                "@type": "Organization",
-                "name": "Octopus",
-                "url": "https://www.octopusperfume.in",
-                "logo": "https://www.octopusperfume.in/icon.png",
-                "description": "Everlasting gifts for every relationship, every occasion and every budget."
+                "@graph": [
+                  {
+                    "@type": "Organization",
+                    "@id": "https://www.octopusperfume.in/#organization",
+                    "name": "OCTOPUS Perfumes by Harsh Beniwal",
+                    "alternateName": ["Octopus Perfumes", "Harsh Beniwal Perfumes", "OCTOPUS EDP"],
+                    "url": "https://www.octopusperfume.in",
+                    "logo": "https://www.octopusperfume.in/logo.png",
+                    "founder": {
+                      "@type": "Person",
+                      "name": "Harsh Beniwal"
+                    },
+                    "description": "Official OCTOPUS Perfumes luxury fragrance line created by Harsh Beniwal. Long-lasting 50ML Eau De Parfum crafted with 25%+ French fragrance oils."
+                  },
+                  {
+                    "@type": "WebSite",
+                    "@id": "https://www.octopusperfume.in/#website",
+                    "url": "https://www.octopusperfume.in",
+                    "name": "OCTOPUS Perfumes",
+                    "publisher": {
+                      "@id": "https://www.octopusperfume.in/#organization"
+                    }
+                  }
+                ]
               })
             }}
           />

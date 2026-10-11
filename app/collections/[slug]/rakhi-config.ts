@@ -10,7 +10,7 @@ export const rakhiConfig: Record<string, {
     copy: "Diwali is the festival of lights, gratitude, and heartfelt celebrations. This festive season, elevate your gifting beyond mundane sweets by choosing thoughtful, everlasting presents: authentic 50ML Eau De Parfum fragrances crafted by Harsh Beniwal and custom-engraved 22K gold-plated jewelry. Whether you are looking for an opulent signature scent like Overlord or a delicate bespoke name necklace, our collection brings joy that lasts for years. Every order is nestles in our deluxe festive presentation box with express Pan-India shipping.",
     faqs: [
       { q: "Can I personalize gifts for Diwali?", a: "Yes! You can customize our necklaces, rings, and wallets with names, initials, special dates, or auspicious mantras." },
-      { q: "Do you deliver in time for Diwali celebrations?", a: "Yes, we offer express delivery across India (2-4 days) to all pin codes. Cash on Delivery is also available." },
+      { q: "Do you deliver in time for Diwali celebrations?", a: "Yes, we offer express delivery across India (2-4 days) to all pin codes with 100% secure online prepaid checkout." },
       { q: "Are deluxe Diwali gift boxes included?", a: "Yes, our luxury gift options include signature packaging, ribbon bow ties, and custom festive greeting cards." },
       { q: "What concentration are the Harsh Beniwal perfumes?", a: "All Harsh Beniwal x Octopus fragrances are concentrated Eau De Parfum (EDP) with 25%+ imported French fragrance oils, delivering 12+ hours longevity." },
       { q: "Can I send Diwali gifts directly to friends and family?", a: "Absolutely! Simply enter the recipient's shipping address at checkout, and we will deliver it beautifully wrapped directly to their doorstep." }
@@ -22,7 +22,7 @@ export const rakhiConfig: Record<string, {
     copy: "Light up Diwali celebrations with meaningful luxury. From high-projection French Eau De Parfums to timeless anti-tarnish keepsakes, Octopus curates the finest festive presents for family, friends, and colleagues. Enjoy flat 20% OFF with code DIWALI20 and express delivery to every corner of India.",
     faqs: [
       { q: "What are the best-selling Diwali gifts this year?", a: "Our Harsh Beniwal 50ML Eau De Parfums (Overlord, Paradox, Promised) and 22K Gold Plated Custom Name Necklaces are this season's top favorites." },
-      { q: "Is Cash on Delivery available for festive orders?", a: "Yes, Cash on Delivery is available across all serviceable pin codes in India." },
+      { q: "What are the payment options for festive orders?", a: "We support 100% secure prepaid checkout via UPI (Google Pay, PhonePe, Paytm), Credit/Debit cards, and Net Banking." },
       { q: "Is there a festive discount code?", a: "Yes! Use coupon code DIWALI20 at checkout for an extra 20% discount on all orders above ₹499." }
     ]
   },

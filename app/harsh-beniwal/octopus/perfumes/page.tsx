@@ -159,10 +159,10 @@ export default function HarshBeniwalPerfumesPage() {
       },
       {
         "@type": "Question",
-        "name": "What is the shipping time and is Cash on Delivery (COD) available?",
+        "name": "What is the shipping time and payment options?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We provide Free Express Delivery across India within 2 to 5 business days. Both online prepaid payment and Cash on Delivery (COD) options are fully supported."
+          "text": "We provide Free Express Delivery across India within 2 to 5 business days. All orders are processed securely online via UPI, Credit/Debit Cards, and NetBanking."
         }
       }
     ]
@@ -214,7 +214,7 @@ export default function HarshBeniwalPerfumesPage() {
                 <CheckCircle2 size={14} className="text-amber-400" /> Free Shipping in India
               </span>
               <span className="flex items-center gap-1.5">
-                <CheckCircle2 size={14} className="text-amber-400" /> Cash on Delivery
+                <CheckCircle2 size={14} className="text-amber-400" /> 100% Secure Prepaid
               </span>
             </div>
           </div>

@@ -50,7 +50,7 @@ export default function Marquee() {
             <span className="text-stone-900 font-black">•</span>
             <span className="flex items-center gap-1.5 font-bold text-stone-950">
               <Truck size={14} className="text-black shrink-0" />
-              FREE EXPRESS DELIVERY & COD ACROSS INDIA
+              FREE PAN-INDIA EXPRESS SHIPPING • 100% PREPAID SECURE
             </span>
             <span className="text-stone-900 font-black">•</span>
             <span className="flex items-center gap-1.5 font-bold text-stone-950">

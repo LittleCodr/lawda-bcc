@@ -257,7 +257,7 @@ export default function CartDrawer() {
                   <div className="flex items-center justify-center gap-4 text-stone-700 mt-1 pt-2 border-t border-black/10">
                     <div className="flex items-center gap-1.5"><Lock size={12} strokeWidth={2.5} /> Secure Checkout</div>
                     <div className="flex items-center gap-1.5 text-black font-black bg-amber-300 px-2 py-0.5 rounded border border-black">
-                      Cash On Delivery Available
+                      100% Secure Prepaid (UPI/Cards)
                     </div>
                   </div>
                 </div>

@@ -93,16 +93,16 @@ export default function Navbar() {
       >
         <div className="flex items-center gap-2">
           <span>🪔</span>
-          <span>DIWALI FESTIVE SALE: 20% OFF SITEWIDE</span>
+          <span>DIWALI FESTIVE SALE: 20% OFF ALL PERFUMES</span>
         </div>
         <div className="flex items-center gap-2 bg-black text-amber-300 px-3 py-0.5 rounded-full border border-black shadow-[1px_1px_0px_0px_#000]">
           USE CODE <strong className="font-mono text-yellow-300 underline">DIWALI20</strong>
         </div>
         <div className="flex items-center gap-2 text-stone-900 font-bold">
-          <Truck size={14} className="stroke-[2.5]" /> FREE PAN-INDIA EXPRESS SHIPPING & COD
+          <Truck size={14} className="stroke-[2.5]" /> FREE PAN-INDIA EXPRESS SHIPPING • 100% PREPAID SECURE
         </div>
         <div className="flex items-center gap-1 font-black group-hover:translate-x-1 transition-transform">
-          EXPLORE PERFUMES →
+          EXPLORE 9 EDP SCENTS →
         </div>
       </Link>
       
@@ -184,8 +184,8 @@ export default function Navbar() {
               </span>
               <span className="text-base">🪔</span>
             </div>
-            <span className="text-[9px] font-black uppercase tracking-[0.25em] text-stone-700 -mt-1">
-              LUXURY PERFUMES & GIFTS
+            <span className="text-[9px] font-black uppercase tracking-[0.2em] text-amber-900 -mt-1">
+              BY HARSH BENIWAL • LUXURY EDP
             </span>
           </Link>
 

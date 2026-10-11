@@ -24,9 +24,9 @@ export default function DiwaliPopup() {
   if (!isOpen) return null;
 
   const copyCode = () => {
-    navigator.clipboard.writeText("DIWALI15");
+    navigator.clipboard.writeText("DIWALI20");
     setCopied(true);
-    toast.success("Coupon code DIWALI15 copied! 15% OFF applied at checkout.", {
+    toast.success("Coupon code DIWALI20 copied! 20% OFF applied at checkout.", {
       style: {
         border: "2px solid #121212",
         padding: "12px 16px",
@@ -90,7 +90,7 @@ export default function DiwaliPopup() {
                   Limited Festive Code
                 </span>
                 <span className="text-2xl font-black text-[#121212] tracking-wider font-mono">
-                  DIWALI15
+                  DIWALI20
                 </span>
               </div>
               <button
@@ -104,7 +104,7 @@ export default function DiwaliPopup() {
             
             <div className="border-t border-stone-200 pt-2 flex flex-col gap-1 text-[11px] text-stone-600 font-medium text-left">
               <span className="text-emerald-700 font-bold flex items-center gap-1">
-                ✓ Flat 15% OFF on orders above ₹499
+                ✓ Flat 20% OFF on orders above ₹499
               </span>
               <span className="text-stone-700 flex items-center gap-1">
                 ✓ FREE 18K Paw Ring automatically added
@@ -121,12 +121,12 @@ export default function DiwaliPopup() {
             className="w-full bg-[#800020] text-white border-2 border-[#121212] py-4 rounded-xl text-xs font-black uppercase tracking-[0.15em] shadow-[4px_4px_0px_0px_#121212] hover:bg-[#600018] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#121212] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <Sparkles size={16} className="text-amber-300" />
-            Claim 15% Discount Now
+            Claim 20% Discount Now
             <Gift size={16} className="text-amber-300" />
           </button>
           
           <p className="mt-3 text-[10px] text-stone-500 uppercase tracking-widest font-bold">
-            ⚡ Express delivery before Diwali • 100% Cash on Delivery
+            ⚡ Fast Pan-India Express Delivery • 100% Genuine Harsh Beniwal EDP
           </p>
         </div>
       </div>

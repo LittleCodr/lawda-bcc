@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { ShieldCheck, Lock, CheckCircle2, Gem } from "lucide-react";
+import { ShieldCheck, Lock, CheckCircle2, Sparkles, Clock } from "lucide-react";
 import { useCartStore } from "@/lib/store";
 import { useAuth } from "@/lib/auth-context";
 import { logAppEvent, db } from "@/lib/firebase";
@@ -33,8 +33,8 @@ export default function CheckoutPage() {
 
 
   const [loading, setLoading] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState<"prepaid" | "cod">("prepaid");
-  const [deliveryMethod, setDeliveryMethod] = useState<"standard" | "premium" | "international">("standard");
+  const [paymentMethod] = useState<"prepaid">("prepaid");
+  const [deliveryMethod, setDeliveryMethod] = useState<"standard" | "international">("standard");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -53,7 +53,7 @@ export default function CheckoutPage() {
   const baseTotal = totalPrice();
   const cartAutoDiscount = getAutoDiscountAmount ? getAutoDiscountAmount() : 0;
   const cartDiscountPercent = getAutoDiscountPercentage ? getAutoDiscountPercentage() : 0;
-  const deliveryFee = deliveryMethod === "international" ? 1500 : (deliveryMethod === "premium" ? 300 : 0);
+  const deliveryFee = deliveryMethod === "international" ? 1500 : 0;
   const promoDiscountAmount = promoApplied 
     ? (["DIWALI20", "OCTOPUS20"].includes(promoCode.trim().toUpperCase()) ? Math.floor(baseTotal * 0.20) : Math.floor(baseTotal * 0.15)) 
     : 0;
@@ -61,12 +61,6 @@ export default function CheckoutPage() {
   const isAdmin = user?.email && ["littlecodr@gmail.com", "srijanrai966@gmail.com", "coderdracwound@gmail.com"].includes(user.email.toLowerCase());
   const finalTotal = isAdmin ? 1 : Math.max(0, baseTotal - totalDiscount + deliveryFee);
   const loggedBeginCheckout = useRef(false);
-
-  useEffect(() => {
-    if (finalTotal > 10000 && paymentMethod === "cod") {
-      setPaymentMethod("prepaid");
-    }
-  }, [finalTotal, paymentMethod]);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -179,12 +173,8 @@ export default function CheckoutPage() {
       });
 
       const orderId = `ORD-${Date.now()}`;
-
-      const isCOD = paymentMethod === "cod";
-      const codAdvance = isCOD ? Math.floor(finalTotal / 2) : 0;
-      const payUAmount = isAdmin ? 1 : (isCOD ? codAdvance : finalTotal);
+      const payUAmount = isAdmin ? 1 : finalTotal;
       const orderTotal = finalTotal;
-      const codBalance = isCOD ? finalTotal - codAdvance : 0;
 
       // Associate email to anonymous account
       await setDoc(doc(db, "users", user.uid), {
@@ -204,11 +194,11 @@ export default function CheckoutPage() {
       await setDoc(doc(db, "users", user.uid, "orders", orderId), {
         orderId,
         userId: user.uid,
-        status: isCOD ? "pending_cod_advance" : "pending_payment",
+        status: "pending_payment",
         total: orderTotal,
         amountPaid: 0,
-        codBalance: codBalance,
-        paymentMethod: paymentMethod,
+        codBalance: 0,
+        paymentMethod: "prepaid",
         deliveryMethod: deliveryMethod,
         items: JSON.parse(JSON.stringify(allDisplayItems)),
         shippingDetails: formData,
@@ -230,8 +220,8 @@ export default function CheckoutPage() {
           phone: formData.phone,
           name: formData.name,
           firstname: formData.name,
-          productinfo: isCOD ? `COD Advance: ${cartSummary}` : cartSummary,
-          cartSummary: isCOD ? `COD Advance: ${cartSummary}` : cartSummary,
+          productinfo: cartSummary,
+          cartSummary: cartSummary,
         }),
       });
 
@@ -322,7 +312,6 @@ export default function CheckoutPage() {
                     handleChange(e);
                     if (e.target.value !== "India") {
                       setDeliveryMethod("international");
-                      setPaymentMethod("prepaid");
                     } else {
                       setDeliveryMethod("standard");
                     }
@@ -369,22 +358,13 @@ export default function CheckoutPage() {
                   <h3 className="font-serif text-2xl mb-6 text-stone-900">Delivery Method</h3>
                   <div className="space-y-4">
                     {formData.country === "India" ? (
-                      <>
-                        <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${deliveryMethod === 'standard' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
-                          <input type="radio" name="delivery" value="standard" checked={deliveryMethod === 'standard'} onChange={() => setDeliveryMethod('standard')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
-                          <div className="flex flex-col">
-                            <span className="font-bold text-sm text-stone-900">Standard Delivery (Free)</span>
-                            <span className="text-xs text-stone-500">3-5 business days</span>
-                          </div>
-                        </label>
-                        <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${deliveryMethod === 'premium' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
-                          <input type="radio" name="delivery" value="premium" checked={deliveryMethod === 'premium'} onChange={() => setDeliveryMethod('premium')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
-                          <div className="flex flex-col">
-                            <span className="font-bold text-sm text-stone-900">Premium Delivery by Air (+₹300)</span>
-                            <span className="text-xs text-stone-500">2 day delivery</span>
-                          </div>
-                        </label>
-                      </>
+                      <label className="flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors border-[#800020] bg-[#FDF8F5]">
+                        <input type="radio" name="delivery" value="standard" checked={deliveryMethod === 'standard'} onChange={() => setDeliveryMethod('standard')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
+                        <div className="flex flex-col">
+                          <span className="font-bold text-sm text-stone-900">Free Express Pan-India Delivery</span>
+                          <span className="text-xs text-stone-500">2-4 business days with real-time tracking</span>
+                        </div>
+                      </label>
                     ) : (
                       <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${deliveryMethod === 'international' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
                         <input type="radio" name="delivery" value="international" checked={deliveryMethod === 'international'} onChange={() => setDeliveryMethod('international')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
@@ -400,33 +380,24 @@ export default function CheckoutPage() {
                 <div className="pt-4 border-t border-stone-200">
                   <h3 className="font-serif text-2xl mb-6 text-stone-900">Payment Method</h3>
                   <div className="space-y-4">
-                    <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${paymentMethod === 'prepaid' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
-                      <input type="radio" name="payment" value="prepaid" checked={paymentMethod === 'prepaid'} onChange={() => setPaymentMethod('prepaid')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
+                    <div className="flex items-center gap-4 p-4 border rounded-lg border-[#800020] bg-[#FDF8F5]">
+                      <input type="radio" name="payment" value="prepaid" checked readOnly className="w-4 h-4 text-[#800020] focus:ring-[#800020]" />
                       <div className="flex flex-col">
-                        <span className="font-bold text-sm text-stone-900">Pay in Full</span>
-                        <span className="text-xs text-stone-500">Pay securely via UPI, Cards, or Netbanking.</span>
+                        <span className="font-bold text-sm text-stone-900">100% Secure Online Payment (Prepaid)</span>
+                        <span className="text-xs text-stone-500">Instant checkout via UPI (Google Pay, PhonePe, Paytm), Cards & Netbanking.</span>
                       </div>
-                    </label>
-                    {formData.country === "India" && (
-                      <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${paymentMethod === 'cod' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
-                        <input type="radio" name="payment" value="cod" checked={paymentMethod === 'cod'} onChange={() => setPaymentMethod('cod')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
-                        <div className="flex flex-col">
-                          <span className="font-bold text-sm text-stone-900">Cash on Delivery (50% Advance)</span>
-                          <span className="text-xs text-stone-500">Pay 50% securely now as advance, pay the rest on delivery.</span>
-                        </div>
-                      </label>
-                    )}
+                    </div>
                   </div>
                 </div>
 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#800020] text-white py-4 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#600018] transition-colors disabled:opacity-50 mt-4 flex items-center justify-center gap-2 shadow-lg"
+                  className="w-full bg-[#800020] text-white py-4 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#600018] transition-colors disabled:opacity-50 mt-4 flex items-center justify-center gap-2 shadow-lg cursor-pointer"
                 >
                   {loading ? "Processing..." : (
                     <>
-                      <Lock size={14} /> {paymentMethod === 'cod' ? `Pay ₹${Math.floor(finalTotal / 2)} Advance` : `Pay ₹${finalTotal}`}
+                      <Lock size={14} /> Pay ₹{finalTotal} Securely
                     </>
                   )}
                 </button>
@@ -566,37 +537,31 @@ export default function CheckoutPage() {
                 )}
                 <div className="flex justify-between text-sm text-stone-600">
                   <span>Shipping</span>
-                  <span>{deliveryMethod === 'international' ? '₹1500' : (deliveryMethod === 'premium' ? '₹300' : 'Free')}</span>
+                  <span>{deliveryMethod === 'international' ? '₹1500' : 'Free Express'}</span>
                 </div>
                 <div className="flex justify-between items-end pt-4 mt-2 border-t border-stone-200">
                   <span className="font-serif text-2xl text-stone-900">Total</span>
                   <span className="text-xl font-medium text-stone-900">₹{finalTotal}</span>
                 </div>
-                {paymentMethod === 'cod' && (
-                  <div className="flex justify-between items-end pt-2 text-sm">
-                    <span className="font-bold text-stone-600 uppercase tracking-widest text-[10px]">To Pay Now (50% Advance)</span>
-                    <span className="font-bold text-[#800020]">₹{Math.floor(finalTotal / 2)}</span>
-                  </div>
-                )}
               </div>
 
               {/* Trust Badges */}
               <div className="mt-10 flex justify-center gap-6 border-t border-stone-100 pt-8 text-stone-400">
                 <div className="flex flex-col items-center gap-2 text-center">
                   <ShieldCheck size={20} />
-                  <span className="text-[10px] uppercase tracking-widest font-medium">Secure<br />Checkout</span>
+                  <span className="text-[10px] uppercase tracking-widest font-medium">100% Secure<br />Checkout</span>
                 </div>
-                <div className="flex flex-col items-center gap-2 text-center text-emerald-600">
-                  <div className="w-5 h-5 rounded-full border-2 border-emerald-600 flex items-center justify-center font-bold text-xs">₹</div>
-                  <span className="text-[10px] uppercase tracking-widest font-bold">Cash On<br />Delivery</span>
+                <div className="flex flex-col items-center gap-2 text-center text-[#800020]">
+                  <Sparkles size={20} />
+                  <span className="text-[10px] uppercase tracking-widest font-bold">25%+ French<br />EDP Oils</span>
                 </div>
-                <div className="flex flex-col items-center gap-2 text-center text-[#b8860b]">
-                  <Gem size={20} />
-                  <span className="text-[10px] uppercase tracking-widest font-bold">22K Gold<br />Plated</span>
+                <div className="flex flex-col items-center gap-2 text-center text-stone-700">
+                  <Clock size={20} />
+                  <span className="text-[10px] uppercase tracking-widest font-bold">12+ Hour<br />Longevity</span>
                 </div>
                 <div className="flex flex-col items-center gap-2 text-center">
                   <CheckCircle2 size={20} />
-                  <span className="text-[10px] uppercase tracking-widest font-medium">Quality<br />Guarantee</span>
+                  <span className="text-[10px] uppercase tracking-widest font-medium">Authentic<br />Guarantee</span>
                 </div>
               </div>
             </div>

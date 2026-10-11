@@ -57,7 +57,7 @@ export default function Footer() {
             <Truck size={20} className="text-black stroke-[2.5]" />
             <div>
               <p className="text-xs font-black uppercase tracking-wider">Pan-India Express</p>
-              <p className="text-[10px] text-stone-700 font-bold">Free Shipping on Prepaid</p>
+              <p className="text-[10px] text-stone-700 font-bold">Free Express Shipping</p>
             </div>
           </div>
           <div className="flex items-center justify-center md:justify-start gap-3">
@@ -82,10 +82,10 @@ export default function Footer() {
               <span className="text-xl">🪔</span>
             </div>
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-800 mb-4">
-              Luxury Perfumes & Everlasting Keepsakes
+              OCTOPUS PERFUMES BY HARSH BENIWAL
             </p>
             <p className="text-sm text-stone-700 leading-relaxed max-w-sm mb-6 font-medium">
-              India&apos;s premier destination for high-concentration Eau De Parfum fragrances crafted by Harsh Beniwal and bespoke anti-tarnish jewelry.
+              India&apos;s official house for high-concentration 50ML Eau De Parfum fragrances formulated by Harsh Beniwal and bespoke festive keepsakes.
             </p>
 
             {/* Promo Pill Box */}
@@ -161,11 +161,11 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t-2 border-black flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] font-bold text-stone-700 tracking-wider uppercase">
-          <span>© {new Date().getFullYear()} OCTOPUS LUXURY PERFUMES & EVERLASTING GIFTS. ALL RIGHTS RESERVED.</span>
+          <span>© {new Date().getFullYear()} OCTOPUS PERFUMES BY HARSH BENIWAL. ALL RIGHTS RESERVED.</span>
           <span className="flex items-center gap-2">
-            <span>PAN-INDIA DELIVERY</span>
+            <span>FREE PAN-INDIA DELIVERY</span>
             <span>•</span>
-            <span>CASH ON DELIVERY</span>
+            <span>100% PREPAID ONLY</span>
             <span>•</span>
             <span>100% SECURE CHECKOUT</span>
           </span>

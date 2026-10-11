@@ -99,8 +99,8 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
       a: "Yes. All formulations are IFRA compliant, dermatologically tested, non-staining, cruelty-free, and blended with premium imported fragrance oils.",
     },
     {
-      q: "What is the shipping time and is Cash on Delivery (COD) available?",
-      a: "We provide Free Express Delivery across India within 2 to 5 business days. Both online prepaid payment and Cash on Delivery (COD) options are fully supported.",
+      q: "What is the shipping time and payment options?",
+      a: "We provide Free Pan-India Express Delivery within 2 to 5 business days. All orders are processed with 100% secure online prepaid payments (UPI, Cards, NetBanking).",
     },
   ];
 

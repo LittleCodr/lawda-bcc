@@ -237,15 +237,16 @@ export default function ProductUI({ product }: ProductUIProps) {
             <div className="flex items-center gap-3">
               <Truck size={18} className="text-[#800020]" />
               <div className="flex flex-col">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-gray-800">Free Shipping</span>
-                <span className="text-[9px] text-gray-500">On all prepaid orders</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-gray-800">Free Express Shipping</span>
+                <span className="text-[9px] text-gray-500">Pan-India delivery in 2-4 days</span>
               </div>
             </div>
             <div className="hidden sm:block w-[1px] h-8 bg-gray-200"></div>
             <div className="flex items-center gap-3">
-              <span className="flex items-center justify-center w-5 h-5 bg-emerald-100 text-emerald-600 rounded-full font-bold text-[10px]">₹</span>
+              <Sparkles size={18} className="text-amber-600" />
               <div className="flex flex-col">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-emerald-700">Cash on Delivery Available</span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-stone-900">100% French EDP Oils</span>
+                <span className="text-[9px] text-stone-500">12+ Hours Projection</span>
               </div>
             </div>
           </div>
@@ -253,22 +254,6 @@ export default function ProductUI({ product }: ProductUIProps) {
 
         {/* Right Column: Product Details */}
         <div className="flex flex-col pt-2">
-
-          {product.handle === "fairy-name-necklace" && (
-            <div className="bg-gradient-to-r from-red-600 via-orange-500 to-yellow-500 p-[2px] rounded-xl mb-6 shadow-lg animate-pulse">
-              <div className="bg-white rounded-[10px] p-4 text-center">
-                <div className="flex items-center justify-center gap-2 text-red-600 mb-1">
-                  <Sparkles size={20} className="fill-current" />
-                  <h3 className="font-black tracking-widest uppercase text-lg">Independence Day</h3>
-                  <Sparkles size={20} className="fill-current" />
-                </div>
-                <p className="text-xl font-black text-gray-900 uppercase tracking-widest mt-1">
-                  Mega Offer Sale
-                </p>
-
-              </div>
-            </div>
-          )}
 
 
           <h1 className="font-serif text-3xl md:text-4xl text-[#2d2d2d] mb-2 leading-tight">
@@ -719,8 +704,8 @@ export default function ProductUI({ product }: ProductUIProps) {
                 <p className="text-sm text-gray-600">Yes, our jewelry is made from premium materials and is anti-tarnish and waterproof.</p>
               </div>
               <div>
-                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-1">Do you offer cash on delivery?</h4>
-                <p className="text-sm text-gray-600">Yes, Cash on Delivery is available on select non-personalized products.</p>
+                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-1">What payment methods do you accept?</h4>
+                <p className="text-sm text-gray-600">We accept 100% secure online prepaid payments including UPI (Google Pay, PhonePe, Paytm), Credit/Debit Cards, and Net Banking with free express shipping across India.</p>
               </div>
             </div>
           )}

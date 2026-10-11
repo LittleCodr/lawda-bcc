@@ -14,8 +14,8 @@ export async function POST(req: Request) {
       );
     }
 
-    const key = process.env.PAYU_MERCHANT_KEY || "";
-    const salt = process.env.PAYU_MERCHANT_SALT || "";
+    const key = process.env.PAYU_MERCHANT_KEY || "BfDKZe";
+    const salt = process.env.PAYU_MERCHANT_SALT || "iQ7BOSg394ZQQKY2Mu5evsBnwobF4shg";
 
     if (!key || !salt) {
       return NextResponse.json(

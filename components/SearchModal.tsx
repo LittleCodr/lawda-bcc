@@ -104,10 +104,11 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
                 >
                   <div className="relative w-16 h-16 rounded-md overflow-hidden bg-[#FDF8F5] shrink-0">
                     <Image
-                      src={product.images?.[0]?.src || "/logo.png"}
+                      src={product.images?.[0]?.local_src || product.images?.[0]?.localPath || product.images?.[0]?.src || "/logo.png"}
                       alt={product.title}
                       fill
-                      className="object-cover group-hover:scale-110 transition-transform"
+                      unoptimized
+                      className={`${(product.images?.[0]?.local_src || product.images?.[0]?.src || '').includes('perfume') || (product.images?.[0]?.src || '').endsWith('.png') ? 'object-contain p-1' : 'object-cover'} group-hover:scale-110 transition-transform`}
                     />
                   </div>
                   <div className="flex-1 min-w-0">

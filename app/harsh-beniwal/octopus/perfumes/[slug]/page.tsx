@@ -92,16 +92,17 @@ export default async function HarshBeniwalProductDetailPage({ params }: { params
         available: true,
       }
     ],
-    images: (product.images || []).map((img: any) => ({
-      src: img.localPath || img.local_src || img.url || img.src,
-      alt: `${product.title} - Octopus Perfumes by Harsh Beniwal`,
-      id: img.id || product.id
+    images: (product.images || []).map((img: any, i: number) => ({
+      src: img.local_src || img.localPath || img.src || img.url,
+      alt: img.alt || `${product.title} - 50ML EDP by Harsh Beniwal`,
+      id: img.id || `${product.id}-${i}`
     }))
   };
 
   const minPrice = formattedProduct.variants[0]?.price || "999";
-  const primaryImg = formattedProduct.images[0]?.src || "/logo.png";
-  const absoluteImageUrl = primaryImg.startsWith("http") ? primaryImg : `https://www.octopusperfume.in${primaryImg}`;
+  const allImageUrls = formattedProduct.images.map((img: any) =>
+    img.src.startsWith("http") ? img.src : `https://www.octopusperfume.in${img.src}`
+  );
 
   const nextYear = new Date();
   nextYear.setFullYear(nextYear.getFullYear() + 1);
@@ -110,7 +111,7 @@ export default async function HarshBeniwalProductDetailPage({ params }: { params
     "@context": "https://schema.org/",
     "@type": "Product",
     "name": formattedProduct.title,
-    "image": [absoluteImageUrl],
+    "image": allImageUrls.length > 0 ? allImageUrls : ["https://www.octopusperfume.in/logo.png"],
     "description": product.tagline || product.scentStory || "Original 50ML Eau De Parfum by Harsh Beniwal",
     "sku": product.sku || `OCT-${product.id}`,
     "mpn": product.sku || `OCT-${product.id}`,

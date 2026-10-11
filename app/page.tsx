@@ -285,11 +285,16 @@ export default async function Home() {
                   <div className="relative aspect-[4/5] bg-[#FDF8F5] overflow-hidden">
                     {product.images && product.images.length > 0 ? (
                       <Image 
-                        src={product.images[0].local_src || product.images[0].src} 
+                        src={product.images[0].local_src || product.images[0].localPath || product.images[0].src} 
                         alt={product.title} 
                         fill 
+                        unoptimized
                         sizes="(max-width: 768px) 100vw, 25vw"
-                        className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" 
+                        className={`${
+                          product.product_type?.toLowerCase() === 'perfume' 
+                            ? "object-contain p-4" 
+                            : "object-cover"
+                        } group-hover:scale-105 transition-transform duration-700 ease-out`} 
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-[#E5B8B7]">No Image</div>
@@ -407,7 +412,13 @@ export default async function Home() {
               {trendingProducts.slice(0, 2).map((product: any) => (
                 <Link href={`/products/${product.handle}`} key={product.id} className="group flex flex-col md:flex-row bg-stone-50 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-500 border border-stone-100">
                   <div className="relative w-full md:w-1/2 aspect-square md:aspect-auto overflow-hidden">
-                    <Image src={product.images?.[0]?.src || "/logo.png"} alt={product.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <Image 
+                      src={product.images?.[0]?.local_src || product.images?.[0]?.localPath || product.images?.[0]?.src || "/logo.png"} 
+                      alt={product.title} 
+                      fill 
+                      unoptimized
+                      className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                    />
                   </div>
                   <div className="p-8 md:p-12 flex flex-col justify-center w-full md:w-1/2 bg-white">
                     <span className="text-[10px] uppercase tracking-[0.2em] text-[#800020] font-bold mb-4">Hot Demand</span>

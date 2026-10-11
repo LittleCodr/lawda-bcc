@@ -29,9 +29,12 @@ interface Perfume {
   };
   goodToKnow: string[];
   images: {
-    url: string;
-    localPath: string;
-    alt: string;
+    url?: string;
+    localPath?: string;
+    local_src?: string;
+    src?: string;
+    alt?: string;
+    type?: string;
   }[];
   sku: string;
   rating: {
@@ -140,16 +143,17 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
       {/* Product Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredPerfumes.map((perfume) => {
-          const imgPath = perfume.images?.[0]?.localPath || perfume.images?.[0]?.url || "/logo.png";
+          const primaryImg = perfume.images?.[0]?.local_src || perfume.images?.[0]?.localPath || perfume.images?.[0]?.url || "/logo.png";
+          const secondaryImg = perfume.images?.[1]?.local_src || perfume.images?.[1]?.localPath || perfume.images?.[1]?.url || primaryImg;
           return (
             <article
               key={perfume.handle}
               className="group bg-white rounded-2xl border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden hover:-translate-y-1"
             >
               {/* Image Container */}
-              <div className="relative aspect-square bg-gradient-to-b from-stone-50 to-stone-100 overflow-hidden p-6 flex items-center justify-center">
+              <div className="relative aspect-square bg-gradient-to-b from-stone-50 to-stone-100 overflow-hidden p-4 sm:p-6 flex items-center justify-center">
                 {/* Badges */}
-                <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
+                <div className="absolute top-3 left-3 z-20 flex flex-col gap-1.5">
                   <span className="inline-flex items-center gap-1 bg-stone-950/90 text-amber-300 backdrop-blur-sm text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">
                     <Sparkles size={11} /> 50ML EDP
                   </span>
@@ -158,7 +162,7 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
                   </span>
                 </div>
 
-                <div className="absolute top-3 right-3 z-10">
+                <div className="absolute top-3 right-3 z-20">
                   <span className="text-[10px] font-semibold bg-white/90 backdrop-blur-sm text-stone-800 px-2.5 py-1 rounded-full shadow-sm">
                     {perfume.gender}
                   </span>
@@ -168,14 +172,35 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
                   href={`/products/${perfume.handle}`}
                   className="w-full h-full relative flex items-center justify-center"
                 >
+                  {/* Primary Bottle Image */}
                   <Image
-                    src={imgPath}
-                    alt={`${perfume.title} - Octopus Perfumes by Harsh Beniwal`}
+                    src={primaryImg}
+                    alt={`${perfume.title} - 100% Original Bottle by Harsh Beniwal`}
                     fill
+                    unoptimized
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-contain p-4 group-hover:scale-108 transition-transform duration-500"
+                    className="object-contain p-4 group-hover:opacity-0 group-hover:scale-105 transition-all duration-500 z-10"
                   />
+
+                  {/* Secondary Lifestyle / Hero Image on Hover */}
+                  {secondaryImg !== primaryImg && (
+                    <Image
+                      src={secondaryImg}
+                      alt={`${perfume.title} - Lifestyle Edition`}
+                      fill
+                      unoptimized
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-contain p-2 opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 z-10"
+                    />
+                  )}
                 </Link>
+
+                {/* Multi-image indicator badge */}
+                {perfume.images && perfume.images.length > 1 && (
+                  <div className="absolute bottom-2.5 right-3 z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-stone-900/60 backdrop-blur-sm text-white text-[9px] px-2 py-0.5 rounded-full">
+                    +{perfume.images.length - 1} photos
+                  </div>
+                )}
               </div>
 
               {/* Content Body */}

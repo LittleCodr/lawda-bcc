@@ -100,7 +100,7 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
     <div className="flex flex-col gap-4">
       {/* Main Image View */}
       <div 
-        className="relative aspect-[4/5] bg-[#FDF8F5] w-full rounded-sm overflow-hidden border border-[#E5B8B7]/30 cursor-zoom-in group"
+        className="relative aspect-square sm:aspect-[4/4] bg-stone-50/80 w-full rounded-xl overflow-hidden border border-stone-200/80 cursor-zoom-in group shadow-inner"
         ref={imgRef}
         onMouseMove={handleMouseMove}
         onMouseEnter={handleMouseEnter}
@@ -108,22 +108,17 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
         onClick={() => setIsLightboxOpen(true)}
       >
         <div 
-          className="absolute inset-0 transition-transform duration-200 ease-out bg-[#FDF8F5]"
+          className="absolute inset-0 transition-transform duration-200 ease-out bg-stone-50/50 flex items-center justify-center p-2 sm:p-4"
           style={isHovering ? zoomStyle : { transformOrigin: "center center", transform: "scale(1)" }}
         >
-          {isImgLoading && (
-            <div className="absolute inset-0 flex items-center justify-center z-0">
-               <div className="w-8 h-8 border-2 border-[#E5B8B7] border-t-[#800020] rounded-full animate-spin"></div>
-            </div>
-          )}
           <Image 
             src={getRetrySrc(images[currentIndex].src)} 
-            alt={images[currentIndex].alt}
+            alt={images[currentIndex].alt || "Product image"}
             fill
             priority
             unoptimized
             sizes="(max-width: 768px) 100vw, 50vw"
-            className={`object-cover z-10 transition-opacity duration-300 ${isImgLoading ? 'opacity-0' : 'opacity-100'}`} 
+            className="object-contain p-2 sm:p-4 z-10 transition-transform duration-300" 
             onLoad={() => setIsImgLoading(false)}
             onError={() => {
               if (retryCount < 2) setRetryCount(prev => prev + 1);
@@ -131,25 +126,64 @@ export default function ProductImageGallery({ images, selectedImageId }: Product
             }}
           />
         </div>
+
+        {/* Gallery Navigation Arrows (if multiple images) */}
+        {images.length > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={handlePrev}
+              aria-label="Previous image"
+              className="absolute left-2.5 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-stone-800 p-2 rounded-full shadow-md z-20 opacity-90 md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:scale-105"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              type="button"
+              onClick={handleNext}
+              aria-label="Next image"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-stone-800 p-2 rounded-full shadow-md z-20 opacity-90 md:opacity-0 md:group-hover:opacity-100 transition-opacity hover:scale-105"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </>
+        )}
         
         {/* Hover Hint */}
-        <div className="absolute top-4 right-4 bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none text-[#800020]">
-          <ZoomIn size={20} />
+        <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none text-stone-700 z-20">
+          <ZoomIn size={16} />
         </div>
+
+        {/* Counter Badge */}
+        {images.length > 1 && (
+          <div className="absolute bottom-3 left-3 bg-stone-900/70 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full pointer-events-none z-20 tracking-wider">
+            {currentIndex + 1} / {images.length}
+          </div>
+        )}
       </div>
 
       {/* Thumbnail Carousel */}
       {images.length > 1 && (
-        <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+        <div className="flex gap-2.5 sm:gap-3 overflow-x-auto pb-2 pt-1 scrollbar-hide">
           {images.map((img, idx) => (
             <button
               key={idx}
+              type="button"
               onClick={() => setCurrentIndex(idx)}
-              className={`relative flex-shrink-0 w-20 h-24 sm:w-24 sm:h-28 rounded-sm overflow-hidden border-2 transition-all ${
-                currentIndex === idx ? "border-[#800020] opacity-100" : "border-transparent opacity-60 hover:opacity-100"
+              className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 transition-all bg-white p-1 ${
+                currentIndex === idx 
+                  ? "border-stone-950 shadow-md ring-2 ring-stone-950/20 scale-102" 
+                  : "border-stone-200/80 opacity-70 hover:opacity-100 hover:border-stone-400"
               }`}
             >
-              <Image src={img.src} alt={img.alt} fill unoptimized className="object-cover" sizes="96px" />
+              <Image 
+                src={img.src} 
+                alt={img.alt || `Thumbnail ${idx + 1}`} 
+                fill 
+                unoptimized 
+                className="object-contain p-1" 
+                sizes="80px" 
+              />
             </button>
           ))}
         </div>

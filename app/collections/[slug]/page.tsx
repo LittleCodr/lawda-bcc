@@ -402,14 +402,34 @@ export default async function CollectionPage(props: {
                   <Link href={`/products/${product.handle}`} key={product.id} className="group flex flex-col h-full bg-white border border-[#E5B8B7]/30 hover:border-[#E5B8B7] transition-all duration-300 shadow-sm hover:shadow-xl rounded-lg md:rounded-sm overflow-hidden">
                     <div className="relative aspect-[4/5] bg-[#FDF8F5] overflow-hidden">
                       {product.images && product.images.length > 0 ? (
-                        <Image 
-                          src={product.images[0].local_src || product.images[0].src} 
-                          alt={product.title} 
-                          fill 
-                          unoptimized
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
-                          className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" 
-                        />
+                        <>
+                          <Image 
+                            src={product.images[0].local_src || product.images[0].localPath || product.images[0].src} 
+                            alt={product.title} 
+                            fill 
+                            unoptimized
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                            className={`${
+                              product.product_type?.toLowerCase() === 'perfume' 
+                                ? "object-contain p-4" 
+                                : "object-cover"
+                            } ${product.images.length > 1 ? "group-hover:opacity-0" : "group-hover:scale-105"} transition-all duration-700 ease-out z-10`} 
+                          />
+                          {product.images.length > 1 && (
+                            <Image 
+                              src={product.images[1].local_src || product.images[1].localPath || product.images[1].src} 
+                              alt={`${product.title} - Preview`} 
+                              fill 
+                              unoptimized
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                              className={`${
+                                product.product_type?.toLowerCase() === 'perfume' 
+                                  ? "object-contain p-4" 
+                                  : "object-cover"
+                              } opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out z-10`} 
+                            />
+                          )}
+                        </>
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-[#E5B8B7]">No Image</div>
                       )}

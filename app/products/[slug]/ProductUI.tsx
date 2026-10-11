@@ -97,8 +97,8 @@ export default function ProductUI({ product }: ProductUIProps) {
   const activeImageId = selectedVariant?.image_id || null;
 
   const images = product.images?.map((img: any) => ({
-    src: img.local_src || img.src,
-    alt: product.title,
+    src: img.local_src || img.localPath || img.src || img.url,
+    alt: img.alt || product.title,
     id: img.id
   })) || [];
 

@@ -85,14 +85,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     minPrice = product.variants[0].price;
   }
 
-  // Ensure absolute image URL
-  let imageUrl = "";
-  if (product.images && product.images.length > 0) {
-    const src = product.images[0].local_src || product.images[0].src;
-    imageUrl = src.startsWith("http") ? src : `https://www.octopusperfume.in${src}`;
-  } else {
-    imageUrl = "https://www.octopusperfume.in/logo.png"; // Fallback
-  }
+  // Ensure absolute image URLs
+  const allImages = (product.images || []).map((img: any) => {
+    const src = img.local_src || img.localPath || img.src || "";
+    return src.startsWith("http") ? src : `https://www.octopusperfume.in${src}`;
+  }).filter(Boolean);
 
   const nextYear = new Date();
   nextYear.setFullYear(nextYear.getFullYear() + 1);
@@ -102,7 +99,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     "@context": "https://schema.org/",
     "@type": "Product",
     "name": product.title,
-    "image": [imageUrl],
+    "image": allImages.length > 0 ? allImages : ["https://www.octopusperfume.in/logo.png"],
     "description": product.body_html?.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().substring(0, 300) || "Original fragrance collection",
     "sku": product.variants?.[0]?.sku || `OCT-${product.id}`,
     "mpn": product.variants?.[0]?.sku || `OCT-${product.id}`,

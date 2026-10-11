@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/checkout/'],
       },
     ],
-    sitemap: 'https://octopusperfume.in/sitemap.xml',
-    host: 'https://octopusperfume.in',
+    sitemap: 'https://www.octopusperfume.in/sitemap.xml',
+    host: 'https://www.octopusperfume.in',
   }
 }

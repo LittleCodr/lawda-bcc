@@ -1,5 +1,763 @@
 [
   {
+    "id": 10329407881510,
+    "title": "Overlord - 50ML EDP Octopus Perfumes By Harsh Beniwal",
+    "handle": "overlord",
+    "body_html": "<div class=\"octopus-perfume-description\">\n  <p class=\"tagline text-lg font-medium text-gray-800 mb-4\">Electrifying citrus crashes into aromatic herbs and fiery pepper, grounding into magnetic amber and ambroxan.</p>\n  <div class=\"luxury-inspiration mb-4 p-3 bg-amber-50 rounded-lg border border-amber-200\">\n    <span class=\"font-bold text-amber-900\">Luxury Accord:</span>\n    <span class=\"text-amber-800\"> Inspired by the iconic DNA of <strong>Dior Sauvage</strong>.</span>\n  </div>\n  <p class=\"scent-story mb-4 text-gray-700 leading-relaxed\">An explosive burst of Italian bergamot and tangy citrus zest commands the opening. French lavender weaves through the heart with smoky Sichuan pepper, warm nutmeg, and star anise. The foundation is built on amber and ambroxan with rich Madagascar vanilla.</p>\n  <div class=\"olfactory-pyramid my-4 p-4 bg-gray-50 rounded-xl border border-gray-100\">\n    <h4 class=\"font-bold text-gray-900 mb-2 uppercase text-xs tracking-wider\">Fragrance Notes Breakdown:</h4>\n    <ul class=\"space-y-1 text-sm text-gray-700\">\n      <li><strong>Top Notes:</strong> Calabrian Bergamot, Lemon, Pepper</li>\n      <li><strong>Heart Notes:</strong> Lavender, Sichuan Pepper, Star Anise, Nutmeg</li>\n      <li><strong>Base Notes:</strong> Ambroxan, Cedarwood, Vanilla, Labdanum</li>\n    </ul>\n  </div>\n  <div class=\"specs-grid grid grid-cols-2 gap-2 text-xs text-gray-600 my-4\">\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Concentration:</strong> 25%+ Eau De Parfum (EDP)</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Volume:</strong> 50ML / 1.7 FL. OZ</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Longevity:</strong> 12+ Hours High Projection</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Gender:</strong> For Him</div>\n  </div>\n  <div class=\"authenticity-badge text-xs text-emerald-700 font-semibold mt-3\">\n    ✓ 100% Original Authentic Harsh Beniwal x Octopus Creation. IFRA Compliant & Cruelty-Free.\n  </div>\n</div>",
+    "published_at": "2026-10-11T17:17:31.693Z",
+    "created_at": "2026-10-11T17:17:31.693Z",
+    "updated_at": "2026-10-11T17:17:31.693Z",
+    "vendor": "Octopus Perfumes by Harsh Beniwal",
+    "product_type": "Perfume",
+    "tags": [
+      "Perfume",
+      "Harsh Beniwal",
+      "Octopus Perfumes",
+      "EDP",
+      "50ML",
+      "Eau De Parfum",
+      "Luxury Fragrance",
+      "For Him",
+      "Overlord",
+      "dior",
+      "Dior Sauvage",
+      "EDP",
+      "Sauvage"
+    ],
+    "variants": [
+      {
+        "id": 10329407881511,
+        "product_id": 10329407881510,
+        "title": "50ML - Eau De Parfum",
+        "price": "1299.00",
+        "compare_at_price": "2099",
+        "sku": "sku006",
+        "position": 1,
+        "grams": 50,
+        "available": true,
+        "option1": "50ML EDP",
+        "option2": null,
+        "option3": null,
+        "requires_shipping": true,
+        "taxable": true,
+        "featured_image": {
+          "src": "/harsh-beniwal/octopus/perfumes/images/overlord_img_1.png"
+        }
+      }
+    ],
+    "images": [
+      {
+        "id": 103294078815100,
+        "product_id": 10329407881510,
+        "position": 1,
+        "created_at": "2026-10-11T17:17:31.686Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Overlord - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "https://cdn.shopify.com/s/files/1/0970/1605/4054/files/Overlord_30.png?v=1783971526",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/overlord_img_1.png"
+      },
+      {
+        "id": 103294078815101,
+        "product_id": 10329407881510,
+        "position": 2,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Overlord - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "http://buyoctopus.com/cdn/shop/files/Overlord_30.png?v=1783971526",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/overlord_img_2.png"
+      }
+    ],
+    "options": [
+      {
+        "id": 10329407881512,
+        "product_id": 10329407881510,
+        "name": "Size",
+        "position": 1,
+        "values": [
+          "50ML EDP"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10329407357222,
+    "title": "Paradox - 50ML EDP Octopus Perfumes By Harsh Beniwal",
+    "handle": "paradox",
+    "body_html": "<div class=\"octopus-perfume-description\">\n  <p class=\"tagline text-lg font-medium text-gray-800 mb-4\">An opulent rose symphony unfolds with hypnotic intensity, layered over rare oud and gilded ambergris.</p>\n  <div class=\"luxury-inspiration mb-4 p-3 bg-amber-50 rounded-lg border border-amber-200\">\n    <span class=\"font-bold text-amber-900\">Luxury Accord:</span>\n    <span class=\"text-amber-800\"> Inspired by the iconic DNA of <strong>Louis Vuitton Les Sables Roses</strong>.</span>\n  </div>\n  <p class=\"scent-story mb-4 text-gray-700 leading-relaxed\">The curtain rises with lavish centifolia and Bulgarian rose — luminous and deeply romantic. Precious oud wood introduces refined smokiness, resolving into oceanic ambergris, spiced with black pepper and saffron.</p>\n  <div class=\"olfactory-pyramid my-4 p-4 bg-gray-50 rounded-xl border border-gray-100\">\n    <h4 class=\"font-bold text-gray-900 mb-2 uppercase text-xs tracking-wider\">Fragrance Notes Breakdown:</h4>\n    <ul class=\"space-y-1 text-sm text-gray-700\">\n      <li><strong>Top Notes:</strong> Orange, Centifolia Rose, Saffron</li>\n      <li><strong>Heart Notes:</strong> Bulgarian Rose, Spices, Geranium</li>\n      <li><strong>Base Notes:</strong> Precious Oud Wood, Ambergris, Sandalwood, Musk</li>\n    </ul>\n  </div>\n  <div class=\"specs-grid grid grid-cols-2 gap-2 text-xs text-gray-600 my-4\">\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Concentration:</strong> 25%+ Eau De Parfum (EDP)</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Volume:</strong> 50ML / 1.7 FL. OZ</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Longevity:</strong> 12+ Hours High Projection</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Gender:</strong> For Her</div>\n  </div>\n  <div class=\"authenticity-badge text-xs text-emerald-700 font-semibold mt-3\">\n    ✓ 100% Original Authentic Harsh Beniwal x Octopus Creation. IFRA Compliant & Cruelty-Free.\n  </div>\n</div>",
+    "published_at": "2026-10-11T17:17:31.693Z",
+    "created_at": "2026-10-11T17:17:31.693Z",
+    "updated_at": "2026-10-11T17:17:31.693Z",
+    "vendor": "Octopus Perfumes by Harsh Beniwal",
+    "product_type": "Perfume",
+    "tags": [
+      "Perfume",
+      "Harsh Beniwal",
+      "Octopus Perfumes",
+      "EDP",
+      "50ML",
+      "Eau De Parfum",
+      "Luxury Fragrance",
+      "For Her",
+      "Paradox",
+      "EDP",
+      "Les Sables Roses",
+      "Louis Vuitton",
+      "Louis Vuitton Les Sables Roses"
+    ],
+    "variants": [
+      {
+        "id": 10329407357223,
+        "product_id": 10329407357222,
+        "title": "50ML - Eau De Parfum",
+        "price": "1399.00",
+        "compare_at_price": "2199",
+        "sku": "sku007",
+        "position": 1,
+        "grams": 50,
+        "available": true,
+        "option1": "50ML EDP",
+        "option2": null,
+        "option3": null,
+        "requires_shipping": true,
+        "taxable": true,
+        "featured_image": {
+          "src": "/harsh-beniwal/octopus/perfumes/images/paradox_img_1.png"
+        }
+      }
+    ],
+    "images": [
+      {
+        "id": 103294073572220,
+        "product_id": 10329407357222,
+        "position": 1,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Paradox - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "https://cdn.shopify.com/s/files/1/0970/1605/4054/files/Paradox_Product_Image.png?v=1783971528",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/paradox_img_1.png"
+      },
+      {
+        "id": 103294073572221,
+        "product_id": 10329407357222,
+        "position": 2,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Paradox - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "http://buyoctopus.com/cdn/shop/files/Paradox_Product_Image.png?v=1783971528",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/paradox_img_2.png"
+      }
+    ],
+    "options": [
+      {
+        "id": 10329407357224,
+        "product_id": 10329407357222,
+        "name": "Size",
+        "position": 1,
+        "values": [
+          "50ML EDP"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10329403293990,
+    "title": "Rhapsody - 50ML EDP Octopus Perfumes By Harsh Beniwal",
+    "handle": "rhapsody",
+    "body_html": "<div class=\"octopus-perfume-description\">\n  <p class=\"tagline text-lg font-medium text-gray-800 mb-4\">Sun-drenched citrus and peppery warmth dissolve into a boozy, smoky embrace of rum, tobacco leaf, and vanilla.</p>\n  <div class=\"luxury-inspiration mb-4 p-3 bg-amber-50 rounded-lg border border-amber-200\">\n    <span class=\"font-bold text-amber-900\">Luxury Accord:</span>\n    <span class=\"text-amber-800\"> Inspired by the iconic DNA of <strong>Maison Margiela Jazz Club</strong>.</span>\n  </div>\n  <p class=\"scent-story mb-4 text-gray-700 leading-relaxed\">Sparkling lemon zest and bittersweet neroli punctuated with pink peppercorn. A heart of dark rum swirls with Java vetiver and clary sage, drying down into cured tobacco leaf smoldering beneath rich vanilla bean and styrax.</p>\n  <div class=\"olfactory-pyramid my-4 p-4 bg-gray-50 rounded-xl border border-gray-100\">\n    <h4 class=\"font-bold text-gray-900 mb-2 uppercase text-xs tracking-wider\">Fragrance Notes Breakdown:</h4>\n    <ul class=\"space-y-1 text-sm text-gray-700\">\n      <li><strong>Top Notes:</strong> Neroli, Lemon, Pink Peppercorn, Clary Sage</li>\n      <li><strong>Heart Notes:</strong> Dark Rum, Java Vetiver, Spices</li>\n      <li><strong>Base Notes:</strong> Tobacco Leaf, Vanilla Bean, Sandalwood, Amber</li>\n    </ul>\n  </div>\n  <div class=\"specs-grid grid grid-cols-2 gap-2 text-xs text-gray-600 my-4\">\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Concentration:</strong> 25%+ Eau De Parfum (EDP)</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Volume:</strong> 50ML / 1.7 FL. OZ</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Longevity:</strong> 12+ Hours High Projection</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Gender:</strong> For Him + Her (Unisex)</div>\n  </div>\n  <div class=\"authenticity-badge text-xs text-emerald-700 font-semibold mt-3\">\n    ✓ 100% Original Authentic Harsh Beniwal x Octopus Creation. IFRA Compliant & Cruelty-Free.\n  </div>\n</div>",
+    "published_at": "2026-10-11T17:17:31.693Z",
+    "created_at": "2026-10-11T17:17:31.693Z",
+    "updated_at": "2026-10-11T17:17:31.693Z",
+    "vendor": "Octopus Perfumes by Harsh Beniwal",
+    "product_type": "Perfume",
+    "tags": [
+      "Perfume",
+      "Harsh Beniwal",
+      "Octopus Perfumes",
+      "EDP",
+      "50ML",
+      "Eau De Parfum",
+      "Luxury Fragrance",
+      "For Him + Her (Unisex)",
+      "Rhapsody",
+      "EDP",
+      "Jazz Club",
+      "Maison Margiela",
+      "Maison Margiela Jazz Club"
+    ],
+    "variants": [
+      {
+        "id": 10329403293991,
+        "product_id": 10329403293990,
+        "title": "50ML - Eau De Parfum",
+        "price": "799.00",
+        "compare_at_price": "1299",
+        "sku": "sku010",
+        "position": 1,
+        "grams": 50,
+        "available": true,
+        "option1": "50ML EDP",
+        "option2": null,
+        "option3": null,
+        "requires_shipping": true,
+        "taxable": true,
+        "featured_image": {
+          "src": "/harsh-beniwal/octopus/perfumes/images/rhapsody_img_1.png"
+        }
+      }
+    ],
+    "images": [
+      {
+        "id": 103294032939900,
+        "product_id": 10329403293990,
+        "position": 1,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Rhapsody - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "https://cdn.shopify.com/s/files/1/0970/1605/4054/files/Rhapsody_Product_Image.png?v=1783971528",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/rhapsody_img_1.png"
+      },
+      {
+        "id": 103294032939901,
+        "product_id": 10329403293990,
+        "position": 2,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Rhapsody - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "http://buyoctopus.com/cdn/shop/files/Rhapsody_Product_Image.png?v=1783971528",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/rhapsody_img_2.png"
+      }
+    ],
+    "options": [
+      {
+        "id": 10329403293992,
+        "product_id": 10329403293990,
+        "name": "Size",
+        "position": 1,
+        "values": [
+          "50ML EDP"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10328281481510,
+    "title": "Your Move - 50ML EDP Octopus Perfumes By Harsh Beniwal",
+    "handle": "your-move",
+    "body_html": "<div class=\"octopus-perfume-description\">\n  <p class=\"tagline text-lg font-medium text-gray-800 mb-4\">Ancient smoky woods and exotic spices collide in a confident opening, deepening into tonka and amber.</p>\n  <div class=\"luxury-inspiration mb-4 p-3 bg-amber-50 rounded-lg border border-amber-200\">\n    <span class=\"font-bold text-amber-900\">Luxury Accord:</span>\n    <span class=\"text-amber-800\"> Inspired by the iconic DNA of <strong>Tom Ford Oud Wood</strong>.</span>\n  </div>\n  <p class=\"scent-story mb-4 text-gray-700 leading-relaxed\">Rare oud wood anchors the opening with unmistakable smoky intensity, flanked by creamy Indian sandalwood and vetiver. Polished rosewood, green cardamom, and Sichuan pepper bring controlled heat into caramelized tonka bean and golden amber.</p>\n  <div class=\"olfactory-pyramid my-4 p-4 bg-gray-50 rounded-xl border border-gray-100\">\n    <h4 class=\"font-bold text-gray-900 mb-2 uppercase text-xs tracking-wider\">Fragrance Notes Breakdown:</h4>\n    <ul class=\"space-y-1 text-sm text-gray-700\">\n      <li><strong>Top Notes:</strong> Rare Oud Wood, Cardamom, Rosewood</li>\n      <li><strong>Heart Notes:</strong> Sichuan Pepper, Indian Sandalwood, Vetiver</li>\n      <li><strong>Base Notes:</strong> Tonka Bean, Vanilla, Golden Amber</li>\n    </ul>\n  </div>\n  <div class=\"specs-grid grid grid-cols-2 gap-2 text-xs text-gray-600 my-4\">\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Concentration:</strong> 25%+ Eau De Parfum (EDP)</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Volume:</strong> 50ML / 1.7 FL. OZ</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Longevity:</strong> 12+ Hours High Projection</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Gender:</strong> For Him + Her (Unisex)</div>\n  </div>\n  <div class=\"authenticity-badge text-xs text-emerald-700 font-semibold mt-3\">\n    ✓ 100% Original Authentic Harsh Beniwal x Octopus Creation. IFRA Compliant & Cruelty-Free.\n  </div>\n</div>",
+    "published_at": "2026-10-11T17:17:31.693Z",
+    "created_at": "2026-10-11T17:17:31.693Z",
+    "updated_at": "2026-10-11T17:17:31.693Z",
+    "vendor": "Octopus Perfumes by Harsh Beniwal",
+    "product_type": "Perfume",
+    "tags": [
+      "Perfume",
+      "Harsh Beniwal",
+      "Octopus Perfumes",
+      "EDP",
+      "50ML",
+      "Eau De Parfum",
+      "Luxury Fragrance",
+      "For Him + Her (Unisex)",
+      "Your Move",
+      "EDP",
+      "Oud Wood",
+      "Tom Ford",
+      "Tom Ford Oud Wood"
+    ],
+    "variants": [
+      {
+        "id": 10328281481511,
+        "product_id": 10328281481510,
+        "title": "50ML - Eau De Parfum",
+        "price": "1199.00",
+        "compare_at_price": "1899",
+        "sku": "sku009",
+        "position": 1,
+        "grams": 50,
+        "available": true,
+        "option1": "50ML EDP",
+        "option2": null,
+        "option3": null,
+        "requires_shipping": true,
+        "taxable": true,
+        "featured_image": {
+          "src": "/harsh-beniwal/octopus/perfumes/images/your-move_img_1.png"
+        }
+      }
+    ],
+    "images": [
+      {
+        "id": 103282814815100,
+        "product_id": 10328281481510,
+        "position": 1,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Your Move - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "https://cdn.shopify.com/s/files/1/0970/1605/4054/files/Yourmove_Product_Image.png?v=1783971527",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/your-move_img_1.png"
+      },
+      {
+        "id": 103282814815101,
+        "product_id": 10328281481510,
+        "position": 2,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Your Move - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "http://buyoctopus.com/cdn/shop/files/Yourmove_Product_Image.png?v=1783971527",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/your-move_img_2.png"
+      }
+    ],
+    "options": [
+      {
+        "id": 10328281481512,
+        "product_id": 10328281481510,
+        "name": "Size",
+        "position": 1,
+        "values": [
+          "50ML EDP"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10328280957222,
+    "title": "Somersault - 50ML EDP Octopus Perfumes By Harsh Beniwal",
+    "handle": "somersault",
+    "body_html": "<div class=\"octopus-perfume-description\">\n  <p class=\"tagline text-lg font-medium text-gray-800 mb-4\">A vivid explosion of Mediterranean citrus gives way to Nigerian ginger, Ceylon cinnamon, and smoked black tea.</p>\n  <div class=\"luxury-inspiration mb-4 p-3 bg-amber-50 rounded-lg border border-amber-200\">\n    <span class=\"font-bold text-amber-900\">Luxury Accord:</span>\n    <span class=\"text-amber-800\"> Inspired by the iconic DNA of <strong>Louis Vuitton Imagination</strong>.</span>\n  </div>\n  <p class=\"scent-story mb-4 text-gray-700 leading-relaxed\">Electric zest of citron amplified by Calabrian bergamot and Sicilian orange. Tunisian neroli blooms at the heart with fiery Nigerian ginger and Ceylon cinnamon bark, resolving into meditative Chinese black tea, guaiac wood, and ambroxan.</p>\n  <div class=\"olfactory-pyramid my-4 p-4 bg-gray-50 rounded-xl border border-gray-100\">\n    <h4 class=\"font-bold text-gray-900 mb-2 uppercase text-xs tracking-wider\">Fragrance Notes Breakdown:</h4>\n    <ul class=\"space-y-1 text-sm text-gray-700\">\n      <li><strong>Top Notes:</strong> Citron, Calabrian Bergamot, Sicilian Orange</li>\n      <li><strong>Heart Notes:</strong> Tunisian Neroli, Nigerian Ginger, Ceylon Cinnamon</li>\n      <li><strong>Base Notes:</strong> Chinese Black Tea, Ambroxan, Guaiac Wood, Olibanum</li>\n    </ul>\n  </div>\n  <div class=\"specs-grid grid grid-cols-2 gap-2 text-xs text-gray-600 my-4\">\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Concentration:</strong> 25%+ Eau De Parfum (EDP)</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Volume:</strong> 50ML / 1.7 FL. OZ</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Longevity:</strong> 12+ Hours High Projection</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Gender:</strong> For Him + Her (Unisex)</div>\n  </div>\n  <div class=\"authenticity-badge text-xs text-emerald-700 font-semibold mt-3\">\n    ✓ 100% Original Authentic Harsh Beniwal x Octopus Creation. IFRA Compliant & Cruelty-Free.\n  </div>\n</div>",
+    "published_at": "2026-10-11T17:17:31.693Z",
+    "created_at": "2026-10-11T17:17:31.693Z",
+    "updated_at": "2026-10-11T17:17:31.693Z",
+    "vendor": "Octopus Perfumes by Harsh Beniwal",
+    "product_type": "Perfume",
+    "tags": [
+      "Perfume",
+      "Harsh Beniwal",
+      "Octopus Perfumes",
+      "EDP",
+      "50ML",
+      "Eau De Parfum",
+      "Luxury Fragrance",
+      "For Him + Her (Unisex)",
+      "Somersault",
+      "EDP",
+      "Imagination",
+      "Louis Vuitton",
+      "Louis Vuitton Imagination"
+    ],
+    "variants": [
+      {
+        "id": 10328280957223,
+        "product_id": 10328280957222,
+        "title": "50ML - Eau De Parfum",
+        "price": "1899.00",
+        "compare_at_price": "2999",
+        "sku": "sku008",
+        "position": 1,
+        "grams": 50,
+        "available": true,
+        "option1": "50ML EDP",
+        "option2": null,
+        "option3": null,
+        "requires_shipping": true,
+        "taxable": true,
+        "featured_image": {
+          "src": "/harsh-beniwal/octopus/perfumes/images/somersault_img_1.png"
+        }
+      }
+    ],
+    "images": [
+      {
+        "id": 103282809572220,
+        "product_id": 10328280957222,
+        "position": 1,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Somersault - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "https://cdn.shopify.com/s/files/1/0970/1605/4054/files/Somersault_Product_Image.png?v=1783971527",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/somersault_img_1.png"
+      },
+      {
+        "id": 103282809572221,
+        "product_id": 10328280957222,
+        "position": 2,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Somersault - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "http://buyoctopus.com/cdn/shop/files/Somersault_Product_Image.png?v=1783971527",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/somersault_img_2.png"
+      }
+    ],
+    "options": [
+      {
+        "id": 10328280957224,
+        "product_id": 10328280957222,
+        "name": "Size",
+        "position": 1,
+        "values": [
+          "50ML EDP"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10328279974182,
+    "title": "Promised - 50ML EDP Octopus Perfumes By Harsh Beniwal",
+    "handle": "promised",
+    "body_html": "<div class=\"octopus-perfume-description\">\n  <p class=\"tagline text-lg font-medium text-gray-800 mb-4\">Liquid gold meets crystalline florals, melting into warm amberwood, fir balsam resin, and sugared cedar.</p>\n  <div class=\"luxury-inspiration mb-4 p-3 bg-amber-50 rounded-lg border border-amber-200\">\n    <span class=\"font-bold text-amber-900\">Luxury Accord:</span>\n    <span class=\"text-amber-800\"> Inspired by the iconic DNA of <strong>Maison Francis Kurkdjian Baccarat Rouge 540</strong>.</span>\n  </div>\n  <p class=\"scent-story mb-4 text-gray-700 leading-relaxed\">Precious saffron threads and luminous jasmine petals paint an ethereal opening. The heart reveals glowing amberwood and ambergris, resolving into balsamic fir resin, aromatic cedar, crystalline sugar, and mineral ambroxan.</p>\n  <div class=\"olfactory-pyramid my-4 p-4 bg-gray-50 rounded-xl border border-gray-100\">\n    <h4 class=\"font-bold text-gray-900 mb-2 uppercase text-xs tracking-wider\">Fragrance Notes Breakdown:</h4>\n    <ul class=\"space-y-1 text-sm text-gray-700\">\n      <li><strong>Top Notes:</strong> Saffron, Jasmine, Tagette</li>\n      <li><strong>Heart Notes:</strong> Amberwood, Ambergris, Hedione, Oakmoss</li>\n      <li><strong>Base Notes:</strong> Fir Balsam, Cedarwood, Crystalline Sugar, Musk</li>\n    </ul>\n  </div>\n  <div class=\"specs-grid grid grid-cols-2 gap-2 text-xs text-gray-600 my-4\">\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Concentration:</strong> 25%+ Eau De Parfum (EDP)</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Volume:</strong> 50ML / 1.7 FL. OZ</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Longevity:</strong> 12+ Hours High Projection</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Gender:</strong> For Him + Her (Unisex)</div>\n  </div>\n  <div class=\"authenticity-badge text-xs text-emerald-700 font-semibold mt-3\">\n    ✓ 100% Original Authentic Harsh Beniwal x Octopus Creation. IFRA Compliant & Cruelty-Free.\n  </div>\n</div>",
+    "published_at": "2026-10-11T17:17:31.693Z",
+    "created_at": "2026-10-11T17:17:31.693Z",
+    "updated_at": "2026-10-11T17:17:31.693Z",
+    "vendor": "Octopus Perfumes by Harsh Beniwal",
+    "product_type": "Perfume",
+    "tags": [
+      "Perfume",
+      "Harsh Beniwal",
+      "Octopus Perfumes",
+      "EDP",
+      "50ML",
+      "Eau De Parfum",
+      "Luxury Fragrance",
+      "For Him + Her (Unisex)",
+      "Promised",
+      "Bacarrat Rouge 540",
+      "BR 540",
+      "BR540",
+      "EDP",
+      "Maison Francis Kurkdjian"
+    ],
+    "variants": [
+      {
+        "id": 10328279974183,
+        "product_id": 10328279974182,
+        "title": "50ML - Eau De Parfum",
+        "price": "1099.00",
+        "compare_at_price": "1799",
+        "sku": "sku005",
+        "position": 1,
+        "grams": 50,
+        "available": true,
+        "option1": "50ML EDP",
+        "option2": null,
+        "option3": null,
+        "requires_shipping": true,
+        "taxable": true,
+        "featured_image": {
+          "src": "/harsh-beniwal/octopus/perfumes/images/promised_img_1.png"
+        }
+      }
+    ],
+    "images": [
+      {
+        "id": 103282799741820,
+        "product_id": 10328279974182,
+        "position": 1,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Promised - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "https://cdn.shopify.com/s/files/1/0970/1605/4054/files/Promised_Product_Image.png?v=1783971529",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/promised_img_1.png"
+      },
+      {
+        "id": 103282799741821,
+        "product_id": 10328279974182,
+        "position": 2,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Promised - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "http://buyoctopus.com/cdn/shop/files/Promised_Product_Image.png?v=1783971529",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/promised_img_2.png"
+      }
+    ],
+    "options": [
+      {
+        "id": 10328279974184,
+        "product_id": 10328279974182,
+        "name": "Size",
+        "position": 1,
+        "values": [
+          "50ML EDP"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10328278794534,
+    "title": "Outlaw - 50ML EDP Octopus Perfumes By Harsh Beniwal",
+    "handle": "outlaw",
+    "body_html": "<div class=\"octopus-perfume-description\">\n  <p class=\"tagline text-lg font-medium text-gray-800 mb-4\">Raw black leather meets aromatic cardamom and nocturnal jasmine, settling into earthy moss and warm patchouli.</p>\n  <div class=\"luxury-inspiration mb-4 p-3 bg-amber-50 rounded-lg border border-amber-200\">\n    <span class=\"font-bold text-amber-900\">Luxury Accord:</span>\n    <span class=\"text-amber-800\"> Inspired by the iconic DNA of <strong>Tom Ford Ombré Leather</strong>.</span>\n  </div>\n  <p class=\"scent-story mb-4 text-gray-700 leading-relaxed\">Green cardamom ignites the senses with aromatic precision. The heart unfolds with the sweetness of night-blooming jasmine sambac layered over buttery black leather, with rich patchouli, cool white moss, and golden amber clinging to skin for hours.</p>\n  <div class=\"olfactory-pyramid my-4 p-4 bg-gray-50 rounded-xl border border-gray-100\">\n    <h4 class=\"font-bold text-gray-900 mb-2 uppercase text-xs tracking-wider\">Fragrance Notes Breakdown:</h4>\n    <ul class=\"space-y-1 text-sm text-gray-700\">\n      <li><strong>Top Notes:</strong> Cardamom, Fresh Spices</li>\n      <li><strong>Heart Notes:</strong> Black Leather, Jasmine Sambac, Violet Leaf</li>\n      <li><strong>Base Notes:</strong> White Moss, Patchouli, Amber</li>\n    </ul>\n  </div>\n  <div class=\"specs-grid grid grid-cols-2 gap-2 text-xs text-gray-600 my-4\">\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Concentration:</strong> 25%+ Eau De Parfum (EDP)</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Volume:</strong> 50ML / 1.7 FL. OZ</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Longevity:</strong> 12+ Hours High Projection</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Gender:</strong> For Him + Her (Unisex)</div>\n  </div>\n  <div class=\"authenticity-badge text-xs text-emerald-700 font-semibold mt-3\">\n    ✓ 100% Original Authentic Harsh Beniwal x Octopus Creation. IFRA Compliant & Cruelty-Free.\n  </div>\n</div>",
+    "published_at": "2026-10-11T17:17:31.693Z",
+    "created_at": "2026-10-11T17:17:31.693Z",
+    "updated_at": "2026-10-11T17:17:31.693Z",
+    "vendor": "Octopus Perfumes by Harsh Beniwal",
+    "product_type": "Perfume",
+    "tags": [
+      "Perfume",
+      "Harsh Beniwal",
+      "Octopus Perfumes",
+      "EDP",
+      "50ML",
+      "Eau De Parfum",
+      "Luxury Fragrance",
+      "For Him + Her (Unisex)",
+      "Outlaw",
+      "EDP",
+      "Ombre Leather",
+      "Tom Ford",
+      "Tom Ford Ombre Leather"
+    ],
+    "variants": [
+      {
+        "id": 10328278794535,
+        "product_id": 10328278794534,
+        "title": "50ML - Eau De Parfum",
+        "price": "1099.00",
+        "compare_at_price": "1699",
+        "sku": "sku004",
+        "position": 1,
+        "grams": 50,
+        "available": true,
+        "option1": "50ML EDP",
+        "option2": null,
+        "option3": null,
+        "requires_shipping": true,
+        "taxable": true,
+        "featured_image": {
+          "src": "/harsh-beniwal/octopus/perfumes/images/outlaw_img_1.png"
+        }
+      }
+    ],
+    "images": [
+      {
+        "id": 103282787945340,
+        "product_id": 10328278794534,
+        "position": 1,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Outlaw - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "https://cdn.shopify.com/s/files/1/0970/1605/4054/files/Outlaw_Product_Image.png?v=1783971527",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/outlaw_img_1.png"
+      },
+      {
+        "id": 103282787945341,
+        "product_id": 10328278794534,
+        "position": 2,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Outlaw - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "http://buyoctopus.com/cdn/shop/files/Outlaw_Product_Image.png?v=1783971527",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/outlaw_img_2.png"
+      }
+    ],
+    "options": [
+      {
+        "id": 10328278794536,
+        "product_id": 10328278794534,
+        "name": "Size",
+        "position": 1,
+        "values": [
+          "50ML EDP"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10328278630694,
+    "title": "Mirage - 50ML EDP Octopus Perfumes By Harsh Beniwal",
+    "handle": "mirage",
+    "body_html": "<div class=\"octopus-perfume-description\">\n  <p class=\"tagline text-lg font-medium text-gray-800 mb-4\">Resinous incense, tart raspberry, and crimson saffron bloom into opulent rose and rare agarwood.</p>\n  <div class=\"luxury-inspiration mb-4 p-3 bg-amber-50 rounded-lg border border-amber-200\">\n    <span class=\"font-bold text-amber-900\">Luxury Accord:</span>\n    <span class=\"text-amber-800\"> Inspired by the iconic DNA of <strong>Louis Vuitton Ombre Nomade</strong>.</span>\n  </div>\n  <p class=\"scent-story mb-4 text-gray-700 leading-relaxed\">Sacred incense and crimson saffron offset by a burst of tart raspberry. Opulent centifolia rose petals entwine with geranium and silver birch bark. The finale is benzoin, polished amberwood, and deep Cambodian agarwood.</p>\n  <div class=\"olfactory-pyramid my-4 p-4 bg-gray-50 rounded-xl border border-gray-100\">\n    <h4 class=\"font-bold text-gray-900 mb-2 uppercase text-xs tracking-wider\">Fragrance Notes Breakdown:</h4>\n    <ul class=\"space-y-1 text-sm text-gray-700\">\n      <li><strong>Top Notes:</strong> Raspberry, Sacred Incense, Saffron, Bergamot</li>\n      <li><strong>Heart Notes:</strong> Damask Rose, Geranium, Silver Birch</li>\n      <li><strong>Base Notes:</strong> Rare Agarwood (Oud), Benzoin, Amberwood, Leather</li>\n    </ul>\n  </div>\n  <div class=\"specs-grid grid grid-cols-2 gap-2 text-xs text-gray-600 my-4\">\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Concentration:</strong> 25%+ Eau De Parfum (EDP)</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Volume:</strong> 50ML / 1.7 FL. OZ</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Longevity:</strong> 12+ Hours High Projection</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Gender:</strong> For Him + Her (Unisex)</div>\n  </div>\n  <div class=\"authenticity-badge text-xs text-emerald-700 font-semibold mt-3\">\n    ✓ 100% Original Authentic Harsh Beniwal x Octopus Creation. IFRA Compliant & Cruelty-Free.\n  </div>\n</div>",
+    "published_at": "2026-10-11T17:17:31.693Z",
+    "created_at": "2026-10-11T17:17:31.693Z",
+    "updated_at": "2026-10-11T17:17:31.693Z",
+    "vendor": "Octopus Perfumes by Harsh Beniwal",
+    "product_type": "Perfume",
+    "tags": [
+      "Perfume",
+      "Harsh Beniwal",
+      "Octopus Perfumes",
+      "EDP",
+      "50ML",
+      "Eau De Parfum",
+      "Luxury Fragrance",
+      "For Him + Her (Unisex)",
+      "Mirage",
+      "EDP",
+      "Inspired By Ombre Nomade",
+      "Louis Vuitton",
+      "Louis Vuitton Ombre Nomade",
+      "Ombre Nomade"
+    ],
+    "variants": [
+      {
+        "id": 10328278630695,
+        "product_id": 10328278630694,
+        "title": "50ML - Eau De Parfum",
+        "price": "999.00",
+        "compare_at_price": "1599",
+        "sku": "sku003",
+        "position": 1,
+        "grams": 50,
+        "available": true,
+        "option1": "50ML EDP",
+        "option2": null,
+        "option3": null,
+        "requires_shipping": true,
+        "taxable": true,
+        "featured_image": {
+          "src": "/harsh-beniwal/octopus/perfumes/images/mirage_img_1.png"
+        }
+      }
+    ],
+    "images": [
+      {
+        "id": 103282786306940,
+        "product_id": 10328278630694,
+        "position": 1,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Mirage - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "https://cdn.shopify.com/s/files/1/0970/1605/4054/files/Mirage_Product_Image.png?v=1783971529",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/mirage_img_1.png"
+      },
+      {
+        "id": 103282786306941,
+        "product_id": 10328278630694,
+        "position": 2,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Mirage - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "http://buyoctopus.com/cdn/shop/files/Mirage_Product_Image.png?v=1783971529",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/mirage_img_2.png"
+      }
+    ],
+    "options": [
+      {
+        "id": 10328278630696,
+        "product_id": 10328278630694,
+        "name": "Size",
+        "position": 1,
+        "values": [
+          "50ML EDP"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10315734319398,
+    "title": "Darling - 50ML EDP Octopus Perfumes By Harsh Beniwal",
+    "handle": "darling-women",
+    "body_html": "<div class=\"octopus-perfume-description\">\n  <p class=\"tagline text-lg font-medium text-gray-800 mb-4\">A gentle floral embrace of morning peony and iris dissolving into damask rose, ripe peach, and velvety vanilla woods.</p>\n  <div class=\"luxury-inspiration mb-4 p-3 bg-amber-50 rounded-lg border border-amber-200\">\n    <span class=\"font-bold text-amber-900\">Luxury Accord:</span>\n    <span class=\"text-amber-800\"> Inspired by the iconic DNA of <strong>Miss Dior</strong>.</span>\n  </div>\n  <p class=\"scent-story mb-4 text-gray-700 leading-relaxed\">Fresh iris petals and morning peony carried by lily-of-the-valley. Damask rose entwined with ripe stone fruits — golden apricot and blushing peach. Smooth sandalwood draped in sweet vanilla, honeyed benzoin, and tonka on a powdery musk bed.</p>\n  <div class=\"olfactory-pyramid my-4 p-4 bg-gray-50 rounded-xl border border-gray-100\">\n    <h4 class=\"font-bold text-gray-900 mb-2 uppercase text-xs tracking-wider\">Fragrance Notes Breakdown:</h4>\n    <ul class=\"space-y-1 text-sm text-gray-700\">\n      <li><strong>Top Notes:</strong> Iris, Peony, Lily-of-the-Valley, Citrus</li>\n      <li><strong>Heart Notes:</strong> Damask Rose, Apricot, Blushing Peach</li>\n      <li><strong>Base Notes:</strong> Sandalwood, Vanilla, Tonka Bean, Benzoin, Clean Musk</li>\n    </ul>\n  </div>\n  <div class=\"specs-grid grid grid-cols-2 gap-2 text-xs text-gray-600 my-4\">\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Concentration:</strong> 25%+ Eau De Parfum (EDP)</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Volume:</strong> 50ML / 1.7 FL. OZ</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Longevity:</strong> 12+ Hours High Projection</div>\n    <div class=\"p-2 bg-gray-50 rounded\"><strong>Gender:</strong> For Her</div>\n  </div>\n  <div class=\"authenticity-badge text-xs text-emerald-700 font-semibold mt-3\">\n    ✓ 100% Original Authentic Harsh Beniwal x Octopus Creation. IFRA Compliant & Cruelty-Free.\n  </div>\n</div>",
+    "published_at": "2026-10-11T17:17:31.693Z",
+    "created_at": "2026-10-11T17:17:31.693Z",
+    "updated_at": "2026-10-11T17:17:31.693Z",
+    "vendor": "Octopus Perfumes by Harsh Beniwal",
+    "product_type": "Perfume",
+    "tags": [
+      "Perfume",
+      "Harsh Beniwal",
+      "Octopus Perfumes",
+      "EDP",
+      "50ML",
+      "Eau De Parfum",
+      "Luxury Fragrance",
+      "For Her",
+      "Darling",
+      "dior",
+      "EDP",
+      "INSPIRED BY MISS DIOR",
+      "Miss Dior"
+    ],
+    "variants": [
+      {
+        "id": 10315734319399,
+        "product_id": 10315734319398,
+        "title": "50ML - Eau De Parfum",
+        "price": "849.00",
+        "compare_at_price": "1399",
+        "sku": "sku001",
+        "position": 1,
+        "grams": 50,
+        "available": true,
+        "option1": "50ML EDP",
+        "option2": null,
+        "option3": null,
+        "requires_shipping": true,
+        "taxable": true,
+        "featured_image": {
+          "src": "/harsh-beniwal/octopus/perfumes/images/darling-women_img_1.webp"
+        }
+      }
+    ],
+    "images": [
+      {
+        "id": 103157343193980,
+        "product_id": 10315734319398,
+        "position": 1,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Darling - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "https://cdn.shopify.com/s/files/1/0970/1605/4054/files/Darling_Product_Image.webp?v=1784100276",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/darling-women_img_1.webp"
+      },
+      {
+        "id": 103157343193981,
+        "product_id": 10315734319398,
+        "position": 2,
+        "created_at": "2026-10-11T17:17:31.693Z",
+        "updated_at": "2026-10-11T17:17:31.693Z",
+        "alt": "Darling - Octopus Perfumes by Harsh Beniwal (50ML EDP)",
+        "width": 1200,
+        "height": 1200,
+        "src": "http://buyoctopus.com/cdn/shop/files/Darling_Product_Image.webp?v=1784100276",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/darling-women_img_2.webp"
+      }
+    ],
+    "options": [
+      {
+        "id": 10315734319400,
+        "product_id": 10315734319398,
+        "name": "Size",
+        "position": 1,
+        "values": [
+          "50ML EDP"
+        ]
+      }
+    ]
+  },
+  {
     "id": 5713770610837,
     "title": "Bar Necklace",
     "handle": "customized-bar-necklace",

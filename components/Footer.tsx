@@ -12,11 +12,12 @@ const GIFTS_BY_RELATIONSHIP = [
 ];
 
 const GIFTS_BY_BUDGET = [
+  { href: "/harsh-beniwal/octopus/perfumes", label: "Harsh Beniwal Perfumes" },
+  { href: "/products/overlord", label: "Overlord (Sauvage EDP)" },
+  { href: "/products/promised", label: "Promised (BR540 EDP)" },
+  { href: "/products/somersault", label: "Somersault (Imagination)" },
   { href: "/collections/gifts-under-499", label: "Under ₹499" },
   { href: "/collections/gifts-under-999", label: "Under ₹999" },
-  { href: "/collections/gifts-under-1499", label: "Under ₹1499" },
-  { href: "/collections/personalized-gifts-for-women", label: "Personalized Jewelry" },
-  { href: "/collections/name-necklaces", label: "Name Necklaces" },
 ];
 
 const SUPPORT_LINKS = [

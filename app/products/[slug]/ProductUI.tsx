@@ -82,10 +82,11 @@ export default function ProductUI({ product }: ProductUIProps) {
   const isAvailable = true;
 
   const productTitleLower = (product.title || "").toLowerCase();
-  const isNamePersonalised = productTitleLower.includes('name') || productTitleLower.includes('initial') || product.handle === '12-in-1-jhumkas-box';
-  const isPhotoPersonalised = productTitleLower.includes('photo') || productTitleLower.includes('picture');
+  const isPerfume = product.product_type?.toLowerCase() === 'perfume' || (product.tags || []).some((t: string) => typeof t === 'string' && t.toLowerCase() === 'perfume');
+  const isNamePersonalised = !isPerfume && (productTitleLower.includes('name') || productTitleLower.includes('initial') || product.handle === '12-in-1-jhumkas-box');
+  const isPhotoPersonalised = !isPerfume && (productTitleLower.includes('photo') || productTitleLower.includes('picture'));
   const isRing = productTitleLower.includes('ring');
-  const showNameInput = isNamePersonalised || !isRing;
+  const showNameInput = !isPerfume && (isNamePersonalised || !isRing);
 
   const basePrice = selectedVariant ? parseFloat(selectedVariant.price) : 0;
   const compareAtPrice = selectedVariant?.compare_at_price ? parseFloat(selectedVariant.compare_at_price) : (basePrice * 1.4);
@@ -204,7 +205,9 @@ export default function ProductUI({ product }: ProductUIProps) {
       <nav className="flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest text-gray-400 mb-8 mt-4">
         <Link href="/" className="hover:text-[#800020] transition-colors">Home</Link>
         <ChevronRight size={12} />
-        <Link href="/collections/all" className="hover:text-[#800020] transition-colors">Gifts</Link>
+        <Link href={isPerfume ? "/harsh-beniwal/octopus/perfumes" : "/collections/all"} className="hover:text-[#800020] transition-colors">
+          {isPerfume ? "Harsh Beniwal Octopus Perfumes" : "Gifts"}
+        </Link>
         <ChevronRight size={12} />
         <span className="text-[#800020] truncate">{product.title}</span>
       </nav>

@@ -10,6 +10,22 @@ import Marquee from "./Marquee";
 
 const NAV_MENU = [
   { 
+    label: "Harsh Beniwal Perfumes",
+    href: "/harsh-beniwal/octopus/perfumes",
+    subLinks: [
+      { label: "All 50ML EDP Perfumes", href: "/harsh-beniwal/octopus/perfumes" },
+      { label: "Overlord (Dior Sauvage)", href: "/products/overlord" },
+      { label: "Promised (Baccarat Rouge 540)", href: "/products/promised" },
+      { label: "Somersault (LV Imagination)", href: "/products/somersault" },
+      { label: "Mirage (LV Ombre Nomade)", href: "/products/mirage" },
+      { label: "Rhapsody (Jazz Club)", href: "/products/rhapsody" },
+      { label: "Your Move (Oud Wood)", href: "/products/your-move" },
+      { label: "Outlaw (Ombré Leather)", href: "/products/outlaw" },
+      { label: "Paradox (Les Sables Roses)", href: "/products/paradox" },
+      { label: "Darling (Miss Dior)", href: "/products/darling-women" }
+    ]
+  },
+  { 
     label: "Gifts For Her",
     href: "/collections/gifts-for-her",
     subLinks: [

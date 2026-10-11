@@ -15,12 +15,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/pages/returns-refund-policy',
     '/pages/shipping-policy',
     '/pages/terms-conditions',
+    '/harsh-beniwal/octopus/perfumes',
     '/collections/all',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1 : route === '/collections/all' ? 0.9 : 0.6,
+    changeFrequency: (route === '' || route === '/harsh-beniwal/octopus/perfumes') ? ('daily' as const) : ('weekly' as const),
+    priority: route === '' || route === '/harsh-beniwal/octopus/perfumes' ? 1 : route === '/collections/all' ? 0.9 : 0.6,
   }))
 
   // Dynamic product routes from legacy products.ts
@@ -50,5 +51,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
-  return [...routes, ...productRoutes, ...jsonProductRoutes]
+  // Dynamic Harsh Beniwal Perfumes dedicated routes
+  let harshBeniwalRoutes: any[] = [];
+  try {
+    const hbPath = path.join(process.cwd(), "harsh-beniwal", "octopus", "perfumes", "scraped_products.json");
+    if (fs.existsSync(hbPath)) {
+      const hbPerfumes = JSON.parse(fs.readFileSync(hbPath, "utf-8"));
+      harshBeniwalRoutes = hbPerfumes.map((p: any) => ({
+        url: `${baseUrl}/harsh-beniwal/octopus/perfumes/${p.handle}`,
+        lastModified: new Date(),
+        changeFrequency: 'daily' as const,
+        priority: 0.95,
+      }));
+    }
+  } catch (e) {
+    console.error("Error loading harsh beniwal perfumes for sitemap:", e);
+  }
+
+  return [...routes, ...harshBeniwalRoutes, ...productRoutes, ...jsonProductRoutes]
 }

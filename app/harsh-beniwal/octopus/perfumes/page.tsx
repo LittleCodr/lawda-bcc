@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     siteName: "Octopus Perfumes by Harsh Beniwal",
     images: [
       {
-        url: "/harsh-beniwal/octopus/perfumes/images/overlord_img_1.png",
+        url: "/harsh-beniwal/octopus/perfumes/images/overlord_box.png",
         width: 1200,
         height: 1200,
         alt: "Octopus Perfumes by Harsh Beniwal",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: "Harsh Beniwal Octopus Perfumes | 100% Original 50ML EDP",
     description:
       "Official Octopus Perfumes by Harsh Beniwal. Formulated with 25%+ French fragrance oils, 12+ hour longevity. Best prices across India.",
-    images: ["/harsh-beniwal/octopus/perfumes/images/overlord_img_1.png"],
+    images: ["/harsh-beniwal/octopus/perfumes/images/overlord_box.png"],
   },
 };
 
@@ -73,7 +73,7 @@ export default function HarshBeniwalPerfumesPage() {
         "@type": "Product",
         "name": `${perfume.title} - Octopus Perfumes by Harsh Beniwal (50ML EDP)`,
         "url": `https://www.octopusperfume.in/products/${perfume.handle}`,
-        "image": perfume.images?.[0]?.url || `https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/${perfume.handle}_img_1.png`,
+        "image": perfume.images?.[0]?.url || `https://www.octopusperfume.in${perfume.images?.[0]?.src || ""}`,
         "description": perfume.tagline || perfume.descriptionText,
         "sku": perfume.sku,
         "mpn": perfume.sku,

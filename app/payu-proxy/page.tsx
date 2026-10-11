@@ -75,7 +75,7 @@ function ProxyForm() {
 
       return () => clearInterval(timer);
     }
-  }, [hash, key]);
+  }, [payuParams]);
 
   if (error) {
     return (

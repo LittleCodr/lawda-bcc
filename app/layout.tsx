@@ -69,7 +69,7 @@ import NextTopLoader from "nextjs-toploader";
 
 import { AuthProvider } from "@/lib/auth-context";
 import { Suspense } from "react";
-import RakhiPopup from "@/components/RakhiPopup";
+import DiwaliPopup from "@/components/DiwaliPopup";
 import SalesToasts from "@/components/SalesToasts";
 
 export default function RootLayout({
@@ -154,7 +154,7 @@ export default function RootLayout({
           {/* Footer */}
           <Footer />
           <CartDrawer />
-          <RakhiPopup />
+          <DiwaliPopup />
           <SalesToasts />
           <Toaster 
             position="top-center" 

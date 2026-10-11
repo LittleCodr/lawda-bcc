@@ -54,7 +54,9 @@ export default function CheckoutPage() {
   const cartAutoDiscount = getAutoDiscountAmount ? getAutoDiscountAmount() : 0;
   const cartDiscountPercent = getAutoDiscountPercentage ? getAutoDiscountPercentage() : 0;
   const deliveryFee = deliveryMethod === "international" ? 1500 : (deliveryMethod === "premium" ? 300 : 0);
-  const promoDiscountAmount = promoApplied ? Math.floor(baseTotal * 0.15) : 0;
+  const promoDiscountAmount = promoApplied 
+    ? (["DIWALI20", "OCTOPUS20"].includes(promoCode.trim().toUpperCase()) ? Math.floor(baseTotal * 0.20) : Math.floor(baseTotal * 0.15)) 
+    : 0;
   const totalDiscount = cartAutoDiscount + promoDiscountAmount;
   const isAdmin = user?.email && ["littlecodr@gmail.com", "srijanrai966@gmail.com", "coderdracwound@gmail.com"].includes(user.email.toLowerCase());
   const finalTotal = isAdmin ? 1 : Math.max(0, baseTotal - totalDiscount + deliveryFee);
@@ -487,7 +489,7 @@ export default function CheckoutPage() {
                     onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
                     disabled={promoApplied}
                     placeholder="Enter code"
-                    className="w-full border border-stone-300 px-4 py-2 bg-transparent focus:outline-none focus:border-[#800020] transition-colors text-sm uppercase"
+                    className="w-full border-2 border-black rounded-lg px-4 py-2.5 bg-white focus:outline-none focus:bg-amber-50 transition-colors text-sm font-bold uppercase shadow-[2px_2px_0px_0px_#000]"
                   />
                   {!promoApplied ? (
                     <button
@@ -499,22 +501,26 @@ export default function CheckoutPage() {
                         );
 
                         if (hasFairyNecklace) {
-                          setPromoError("Promo codes are not valid on Independence Day Mega Sale items (Fairy Name Necklace).");
+                          setPromoError("Promo codes are not valid on Flash Mega Sale items (Fairy Name Necklace).");
                           return;
                         }
 
-                        if (promoCode === "ILYBEHENA" || promoCode === "WELCOME15") {
+                        const cleanCode = promoCode.trim().toUpperCase();
+                        const valid15 = ["DIWALI15", "FESTIVE15", "OCTOPUS15", "WELCOME15"];
+                        const valid20 = ["DIWALI20", "OCTOPUS20"];
+                        if (valid15.includes(cleanCode) || valid20.includes(cleanCode)) {
                           if (baseTotal <= 499) {
                             setPromoError("This promo code is only valid on orders above ₹499.");
                             return;
                           }
+                          setPromoCode(cleanCode);
                           setPromoApplied(true);
                           setPromoError("");
                         } else {
-                          setPromoError("Invalid or expired promo code.");
+                          setPromoError("Invalid promo code. Use DIWALI15 for 15% OFF or DIWALI20.");
                         }
                       }}
-                      className="bg-stone-900 text-white px-6 text-xs uppercase tracking-widest font-bold hover:bg-[#800020] transition-colors"
+                      className="bg-black text-amber-300 border-2 border-black rounded-lg px-6 text-xs uppercase tracking-wider font-black shadow-[2px_2px_0px_0px_#f59e0b] hover:bg-stone-900 active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all cursor-pointer"
                     >
                       Apply
                     </button>
@@ -525,14 +531,19 @@ export default function CheckoutPage() {
                         setPromoApplied(false);
                         setPromoCode("");
                       }}
-                      className="bg-red-50 text-red-600 border border-red-200 px-6 text-xs uppercase tracking-widest font-bold hover:bg-red-100 transition-colors"
+                      className="bg-red-100 text-red-700 border-2 border-black rounded-lg px-6 text-xs uppercase tracking-wider font-black shadow-[2px_2px_0px_0px_#000] hover:bg-red-200 transition-colors cursor-pointer"
                     >
                       Remove
                     </button>
                   )}
                 </div>
-                {promoError && <p className="text-red-500 text-xs mt-2">{promoError}</p>}
-                {promoApplied && <p className="text-emerald-600 font-bold text-xs mt-2 flex items-center gap-1"><CheckCircle2 size={12} /> Promo code applied successfully!</p>}
+                {promoError && <p className="text-red-600 font-bold text-xs mt-2">{promoError}</p>}
+                {promoApplied && (
+                  <p className="text-emerald-700 font-black text-xs mt-2 flex items-center gap-1.5 bg-emerald-50 border border-emerald-300 px-3 py-1.5 rounded-lg w-fit">
+                    <CheckCircle2 size={14} className="text-emerald-600" /> 
+                    <span>{promoCode === "DIWALI20" ? "🪔 Diwali Festive 20% OFF Applied!" : "Promo code applied successfully!"}</span>
+                  </p>
+                )}
               </div>
 
               {/* Totals */}

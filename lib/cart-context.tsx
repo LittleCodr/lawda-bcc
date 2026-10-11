@@ -112,7 +112,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const applyCoupon = useCallback((code: string) => {
     const codeUpper = code.toUpperCase();
-    if (["HARSH10", "HARSH15", "HARSH20", "FREEDOM"].includes(codeUpper)) {
+    if (["HARSH10", "HARSH15", "HARSH20", "FREEDOM", "DIWALI15", "DIWALI20", "DIWALI50", "FESTIVE15", "OCTOPUS15", "OCTOPUS20", "WELCOME15"].includes(codeUpper)) {
       setCouponCode(codeUpper);
       return true;
     }
@@ -204,6 +204,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   );
 
   const discountPercentage = useMemo(() => {
+    if (couponCode === "DIWALI50") return 50;
+    if (couponCode === "DIWALI20" || couponCode === "OCTOPUS20") return 20;
+    if (couponCode === "DIWALI15" || couponCode === "FESTIVE15" || couponCode === "OCTOPUS15" || couponCode === "WELCOME15") return 15;
     if (couponCode === "FREEDOM") {
       if (subtotal >= 3499) return 25;
       if (subtotal >= 2499) return 20;

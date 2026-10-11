@@ -131,12 +131,12 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
               <p className="text-sm uppercase tracking-widest font-bold text-stone-400">Start typing to search...</p>
               
               <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <span className="text-xs text-stone-500 w-full mb-2">Popular Searches:</span>
-                {['Necklace', 'Bracelet', 'Rakhi', 'Wallet', 'Ring'].map(term => (
+                <span className="text-xs font-bold text-stone-600 w-full mb-2">Popular Searches:</span>
+                {['Perfumes', 'Overlord', 'Diwali Gifts', 'Name Necklace', 'Bracelet', 'Wallet'].map(term => (
                   <button 
                     key={term}
                     onClick={() => setQuery(term)}
-                    className="px-4 py-2 bg-white border border-stone-200 rounded-full text-xs font-bold uppercase tracking-widest text-stone-600 hover:border-[#800020] hover:text-[#800020] transition-colors"
+                    className="px-4 py-2 bg-white border-2 border-black rounded-lg text-xs font-black uppercase tracking-wider text-black shadow-[2px_2px_0px_0px_#000] hover:bg-amber-100 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_0px_#000] active:translate-x-0 active:translate-y-0 active:shadow-none transition-all cursor-pointer"
                   >
                     {term}
                   </button>

@@ -39,16 +39,16 @@
     ],
     "images": [
       {
-        "id": 1032940788151001,
+        "id": 1032940788151004,
         "position": 1,
-        "alt": "Overlord 50ML EDP - Luxury Fragrance Bottle",
-        "width": 2160,
-        "height": 2160,
-        "src": "/harsh-beniwal/octopus/perfumes/images/overlord_bottle.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/overlord_bottle.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/overlord_bottle.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/overlord_bottle.png",
-        "type": "bottle"
+        "alt": "Overlord - Premium Monocarton Packaging Box",
+        "width": 4096,
+        "height": 2304,
+        "src": "/harsh-beniwal/octopus/perfumes/images/overlord_box.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/overlord_box.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/overlord_box.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/overlord_box.png",
+        "type": "box"
       },
       {
         "id": 1032940788151002,
@@ -75,16 +75,16 @@
         "type": "lifestyle"
       },
       {
-        "id": 1032940788151004,
+        "id": 1032940788151001,
         "position": 4,
-        "alt": "Overlord - Premium Monocarton Packaging Box",
-        "width": 4096,
-        "height": 2304,
-        "src": "/harsh-beniwal/octopus/perfumes/images/overlord_box.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/overlord_box.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/overlord_box.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/overlord_box.png",
-        "type": "box"
+        "alt": "Overlord 50ML EDP - Luxury Fragrance Bottle",
+        "width": 2160,
+        "height": 2160,
+        "src": "/harsh-beniwal/octopus/perfumes/images/overlord_bottle.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/overlord_bottle.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/overlord_bottle.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/overlord_bottle.png",
+        "type": "bottle"
       },
       {
         "id": 1032940788151005,
@@ -151,16 +151,16 @@
     ],
     "images": [
       {
-        "id": 1032940735722201,
+        "id": 1032940735722204,
         "position": 1,
-        "alt": "Paradox 50ML EDP - Luxury Fragrance Bottle",
-        "width": 2160,
-        "height": 2160,
-        "src": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
-        "type": "bottle"
+        "alt": "Paradox - Premium Monocarton Packaging Box",
+        "width": 4096,
+        "height": 2304,
+        "src": "/harsh-beniwal/octopus/perfumes/images/paradox_box.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/paradox_box.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/paradox_box.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/paradox_box.png",
+        "type": "box"
       },
       {
         "id": 1032940735722202,
@@ -187,16 +187,16 @@
         "type": "lifestyle"
       },
       {
-        "id": 1032940735722204,
+        "id": 1032940735722201,
         "position": 4,
-        "alt": "Paradox - Premium Monocarton Packaging Box",
-        "width": 4096,
-        "height": 2304,
-        "src": "/harsh-beniwal/octopus/perfumes/images/paradox_box.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/paradox_box.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/paradox_box.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/paradox_box.png",
-        "type": "box"
+        "alt": "Paradox 50ML EDP - Luxury Fragrance Bottle",
+        "width": 2160,
+        "height": 2160,
+        "src": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+        "type": "bottle"
       },
       {
         "id": 1032940735722205,
@@ -263,16 +263,16 @@
     ],
     "images": [
       {
-        "id": 1032940329399001,
+        "id": 1032940329399004,
         "position": 1,
-        "alt": "Rhapsody 50ML EDP - Luxury Fragrance Bottle",
-        "width": 2160,
-        "height": 2160,
-        "src": "/harsh-beniwal/octopus/perfumes/images/rhapsody_bottle.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/rhapsody_bottle.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/rhapsody_bottle.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/rhapsody_bottle.png",
-        "type": "bottle"
+        "alt": "Rhapsody - Premium Monocarton Packaging Box",
+        "width": 4096,
+        "height": 2304,
+        "src": "/harsh-beniwal/octopus/perfumes/images/rhapsody_box.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/rhapsody_box.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/rhapsody_box.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/rhapsody_box.png",
+        "type": "box"
       },
       {
         "id": 1032940329399002,
@@ -299,16 +299,16 @@
         "type": "lifestyle"
       },
       {
-        "id": 1032940329399004,
+        "id": 1032940329399001,
         "position": 4,
-        "alt": "Rhapsody - Premium Monocarton Packaging Box",
-        "width": 4096,
-        "height": 2304,
-        "src": "/harsh-beniwal/octopus/perfumes/images/rhapsody_box.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/rhapsody_box.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/rhapsody_box.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/rhapsody_box.png",
-        "type": "box"
+        "alt": "Rhapsody 50ML EDP - Luxury Fragrance Bottle",
+        "width": 2160,
+        "height": 2160,
+        "src": "/harsh-beniwal/octopus/perfumes/images/rhapsody_bottle.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/rhapsody_bottle.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/rhapsody_bottle.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/rhapsody_bottle.png",
+        "type": "bottle"
       },
       {
         "id": 1032940329399005,
@@ -375,16 +375,16 @@
     ],
     "images": [
       {
-        "id": 1032828148151001,
+        "id": 1032828148151004,
         "position": 1,
-        "alt": "Your Move 50ML EDP - Luxury Fragrance Bottle",
-        "width": 2160,
-        "height": 2160,
-        "src": "/harsh-beniwal/octopus/perfumes/images/your_move_bottle.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/your_move_bottle.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/your_move_bottle.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/your_move_bottle.png",
-        "type": "bottle"
+        "alt": "Your Move - Premium Monocarton Packaging Box",
+        "width": 4096,
+        "height": 2304,
+        "src": "/harsh-beniwal/octopus/perfumes/images/your_move_box.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/your_move_box.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/your_move_box.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/your_move_box.png",
+        "type": "box"
       },
       {
         "id": 1032828148151002,
@@ -411,16 +411,16 @@
         "type": "lifestyle"
       },
       {
-        "id": 1032828148151004,
+        "id": 1032828148151001,
         "position": 4,
-        "alt": "Your Move - Premium Monocarton Packaging Box",
-        "width": 4096,
-        "height": 2304,
-        "src": "/harsh-beniwal/octopus/perfumes/images/your_move_box.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/your_move_box.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/your_move_box.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/your_move_box.png",
-        "type": "box"
+        "alt": "Your Move 50ML EDP - Luxury Fragrance Bottle",
+        "width": 2160,
+        "height": 2160,
+        "src": "/harsh-beniwal/octopus/perfumes/images/your_move_bottle.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/your_move_bottle.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/your_move_bottle.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/your_move_bottle.png",
+        "type": "bottle"
       },
       {
         "id": 1032828148151005,
@@ -487,16 +487,16 @@
     ],
     "images": [
       {
-        "id": 1032828095722201,
+        "id": 1032828095722204,
         "position": 1,
-        "alt": "Somersault 50ML EDP - Luxury Fragrance Bottle",
-        "width": 2160,
-        "height": 2160,
-        "src": "/harsh-beniwal/octopus/perfumes/images/somersault_bottle.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/somersault_bottle.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/somersault_bottle.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/somersault_bottle.png",
-        "type": "bottle"
+        "alt": "Somersault - Premium Monocarton Packaging Box",
+        "width": 4096,
+        "height": 2304,
+        "src": "/harsh-beniwal/octopus/perfumes/images/somersault_box.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/somersault_box.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/somersault_box.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/somersault_box.png",
+        "type": "box"
       },
       {
         "id": 1032828095722202,
@@ -523,16 +523,16 @@
         "type": "lifestyle"
       },
       {
-        "id": 1032828095722204,
+        "id": 1032828095722201,
         "position": 4,
-        "alt": "Somersault - Premium Monocarton Packaging Box",
-        "width": 4096,
-        "height": 2304,
-        "src": "/harsh-beniwal/octopus/perfumes/images/somersault_box.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/somersault_box.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/somersault_box.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/somersault_box.png",
-        "type": "box"
+        "alt": "Somersault 50ML EDP - Luxury Fragrance Bottle",
+        "width": 2160,
+        "height": 2160,
+        "src": "/harsh-beniwal/octopus/perfumes/images/somersault_bottle.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/somersault_bottle.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/somersault_bottle.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/somersault_bottle.png",
+        "type": "bottle"
       },
       {
         "id": 1032828095722205,
@@ -600,16 +600,16 @@
     ],
     "images": [
       {
-        "id": 1032827997418201,
+        "id": 1032827997418204,
         "position": 1,
-        "alt": "Promised 50ML EDP - Luxury Fragrance Bottle",
-        "width": 2160,
-        "height": 2160,
-        "src": "/harsh-beniwal/octopus/perfumes/images/promised_bottle.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/promised_bottle.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/promised_bottle.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/promised_bottle.png",
-        "type": "bottle"
+        "alt": "Promised - Premium Monocarton Packaging Box",
+        "width": 4096,
+        "height": 2304,
+        "src": "/harsh-beniwal/octopus/perfumes/images/promised_box.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/promised_box.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/promised_box.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/promised_box.png",
+        "type": "box"
       },
       {
         "id": 1032827997418202,
@@ -636,16 +636,16 @@
         "type": "lifestyle"
       },
       {
-        "id": 1032827997418204,
+        "id": 1032827997418201,
         "position": 4,
-        "alt": "Promised - Premium Monocarton Packaging Box",
-        "width": 4096,
-        "height": 2304,
-        "src": "/harsh-beniwal/octopus/perfumes/images/promised_box.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/promised_box.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/promised_box.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/promised_box.png",
-        "type": "box"
+        "alt": "Promised 50ML EDP - Luxury Fragrance Bottle",
+        "width": 2160,
+        "height": 2160,
+        "src": "/harsh-beniwal/octopus/perfumes/images/promised_bottle.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/promised_bottle.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/promised_bottle.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/promised_bottle.png",
+        "type": "bottle"
       },
       {
         "id": 1032827997418205,
@@ -712,16 +712,16 @@
     ],
     "images": [
       {
-        "id": 1032827879453401,
+        "id": 1032827879453404,
         "position": 1,
-        "alt": "Outlaw 50ML EDP - Luxury Fragrance Bottle",
-        "width": 2160,
-        "height": 2160,
-        "src": "/harsh-beniwal/octopus/perfumes/images/outlaw_bottle.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/outlaw_bottle.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/outlaw_bottle.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/outlaw_bottle.png",
-        "type": "bottle"
+        "alt": "Outlaw - Premium Monocarton Packaging Box",
+        "width": 4096,
+        "height": 2304,
+        "src": "/harsh-beniwal/octopus/perfumes/images/outlaw_box.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/outlaw_box.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/outlaw_box.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/outlaw_box.png",
+        "type": "box"
       },
       {
         "id": 1032827879453402,
@@ -748,16 +748,16 @@
         "type": "lifestyle"
       },
       {
-        "id": 1032827879453404,
+        "id": 1032827879453401,
         "position": 4,
-        "alt": "Outlaw - Premium Monocarton Packaging Box",
-        "width": 4096,
-        "height": 2304,
-        "src": "/harsh-beniwal/octopus/perfumes/images/outlaw_box.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/outlaw_box.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/outlaw_box.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/outlaw_box.png",
-        "type": "box"
+        "alt": "Outlaw 50ML EDP - Luxury Fragrance Bottle",
+        "width": 2160,
+        "height": 2160,
+        "src": "/harsh-beniwal/octopus/perfumes/images/outlaw_bottle.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/outlaw_bottle.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/outlaw_bottle.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/outlaw_bottle.png",
+        "type": "bottle"
       },
       {
         "id": 1032827879453405,
@@ -825,16 +825,16 @@
     ],
     "images": [
       {
-        "id": 1032827863069401,
+        "id": 1032827863069404,
         "position": 1,
-        "alt": "Mirage 50ML EDP - Luxury Fragrance Bottle",
-        "width": 2160,
-        "height": 2160,
-        "src": "/harsh-beniwal/octopus/perfumes/images/mirage_bottle.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/mirage_bottle.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/mirage_bottle.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/mirage_bottle.png",
-        "type": "bottle"
+        "alt": "Mirage - Premium Monocarton Packaging Box",
+        "width": 4096,
+        "height": 2304,
+        "src": "/harsh-beniwal/octopus/perfumes/images/mirage_box.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/mirage_box.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/mirage_box.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/mirage_box.png",
+        "type": "box"
       },
       {
         "id": 1032827863069402,
@@ -861,16 +861,16 @@
         "type": "lifestyle"
       },
       {
-        "id": 1032827863069404,
+        "id": 1032827863069401,
         "position": 4,
-        "alt": "Mirage - Premium Monocarton Packaging Box",
-        "width": 4096,
-        "height": 2304,
-        "src": "/harsh-beniwal/octopus/perfumes/images/mirage_box.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/mirage_box.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/mirage_box.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/mirage_box.png",
-        "type": "box"
+        "alt": "Mirage 50ML EDP - Luxury Fragrance Bottle",
+        "width": 2160,
+        "height": 2160,
+        "src": "/harsh-beniwal/octopus/perfumes/images/mirage_bottle.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/mirage_bottle.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/mirage_bottle.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/mirage_bottle.png",
+        "type": "bottle"
       },
       {
         "id": 1032827863069405,
@@ -937,16 +937,16 @@
     ],
     "images": [
       {
-        "id": 1031573431939801,
+        "id": 1031573431939804,
         "position": 1,
-        "alt": "Darling 50ML EDP - Luxury Fragrance Bottle",
-        "width": 2160,
-        "height": 2160,
-        "src": "/harsh-beniwal/octopus/perfumes/images/darling_bottle.webp",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/darling_bottle.webp",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/darling_bottle.webp",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/darling_bottle.webp",
-        "type": "bottle"
+        "alt": "Darling - Premium Monocarton Packaging Box",
+        "width": 4096,
+        "height": 2304,
+        "src": "/harsh-beniwal/octopus/perfumes/images/darling_box.png",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/darling_box.png",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/darling_box.png",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/darling_box.png",
+        "type": "box"
       },
       {
         "id": 1031573431939802,
@@ -973,16 +973,16 @@
         "type": "lifestyle"
       },
       {
-        "id": 1031573431939804,
+        "id": 1031573431939801,
         "position": 4,
-        "alt": "Darling - Premium Monocarton Packaging Box",
-        "width": 4096,
-        "height": 2304,
-        "src": "/harsh-beniwal/octopus/perfumes/images/darling_box.png",
-        "local_src": "/harsh-beniwal/octopus/perfumes/images/darling_box.png",
-        "localPath": "/harsh-beniwal/octopus/perfumes/images/darling_box.png",
-        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/darling_box.png",
-        "type": "box"
+        "alt": "Darling 50ML EDP - Luxury Fragrance Bottle",
+        "width": 2160,
+        "height": 2160,
+        "src": "/harsh-beniwal/octopus/perfumes/images/darling_bottle.webp",
+        "local_src": "/harsh-beniwal/octopus/perfumes/images/darling_bottle.webp",
+        "localPath": "/harsh-beniwal/octopus/perfumes/images/darling_bottle.webp",
+        "url": "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes/images/darling_bottle.webp",
+        "type": "bottle"
       },
       {
         "id": 1031573431939805,

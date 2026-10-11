@@ -100,18 +100,22 @@ export default async function CollectionPage(props: {
         const tagsStr = (Array.isArray(p.tags) ? p.tags.join(" ") : (p.tags || "")).toLowerCase();
         
         // Intent mappings
-        if (slug === 'rakhi-name-necklaces') {
+        if (slug.includes('festive') || slug.includes('diwali')) {
+          return true; // Show all products for festive and diwali collections
+        }
+
+        if (slug === 'rakhi-name-necklaces' || slug === 'name-necklaces') {
           if (titleStr.includes('hair') || typeStr.includes('hair') || tagsStr.includes('hair')) return false;
-          return titleStr.includes('name necklace') || typeStr.includes('necklace') || tagsStr.includes('name necklace') || tagsStr.includes('rakhi-name-necklaces');
+          return titleStr.includes('name necklace') || typeStr.includes('necklace') || tagsStr.includes('name necklace');
         }
 
         if (slug.includes('gifts-for-her') || slug.includes('girlfriend') || slug.includes('wife') || slug.includes('women') || slug.includes('sister')) {
-          return ['necklace', 'earring', 'ring', 'anklet', 'bracelet'].some(t => 
+          return ['necklace', 'earring', 'ring', 'anklet', 'bracelet', 'darling'].some(t => 
             typeStr.includes(t) || titleStr.includes(t)
           );
         }
         if (slug.includes('gifts-for-him') || slug.includes('boyfriend') || slug.includes('husband') || slug.includes('men') || slug.includes('brother')) {
-          return ['cufflink', 'wallet', 'men', 'bracelet', 'keychain'].some(t => 
+          return ['cufflink', 'wallet', 'men', 'bracelet', 'keychain', 'perfume', 'edp'].some(t => 
             typeStr.includes(t) || titleStr.includes(t)
           );
         }
@@ -128,16 +132,7 @@ export default async function CollectionPage(props: {
           return tagsStr.includes('keychain') || titleStr.includes('keychain') || typeStr.includes('keychain');
         }
 
-        if (slug === 'rakhi-for-him') {
-          return tagsStr.includes('rakhi-for-him');
-        }
-
-        if (slug === 'rakhi-name-necklaces') {
-          const allowedWords = ['necklace', 'rakhi', 'anklet', 'bracelet', 'earrings'];
-          return allowedWords.some(w => titleStr.includes(w));
-        }
-
-        // Rakhi fallback (return all personalized items if no specific match)
+        // Evergreen fallback
         if (slug.includes('rakhi')) {
            return true; 
         }
@@ -230,7 +225,7 @@ export default async function CollectionPage(props: {
       )}
       <div className="bg-[#FDF8F5] min-h-screen">
         {/* Category Banner */}
-        {slug === 'rakhi-name-necklaces' ? (
+        {(slug === 'rakhi-name-necklaces' || slug === 'name-necklaces') ? (
           <div className="bg-[#f3efe9] py-16 px-6 md:px-16 lg:px-24 border-b border-[#E5B8B7]/30 relative overflow-hidden flex flex-col md:flex-row items-center justify-between min-h-[400px] gap-8">
             <div className="absolute right-0 top-0 bottom-0 w-1/2 bg-gradient-to-l from-[#e6dfd3] to-transparent pointer-events-none"></div>
             
@@ -244,19 +239,22 @@ export default async function CollectionPage(props: {
                 <ChevronRight size={12} />
                 <span className="truncate">Starting from ₹199</span>
               </nav>
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-[#6b1625] mb-2 uppercase tracking-[0.05em] font-medium leading-tight">
-                RAKHI NAME NECKLACES
+              <div className="inline-flex items-center gap-1.5 bg-[#FFDE59] text-black border-2 border-black rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-wider mb-4 shadow-[2px_2px_0px_0px_#000]">
+                <span>🪔</span> DIWALI FESTIVE SPECIAL <span>✨</span>
+              </div>
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-black mb-2 uppercase tracking-wide font-black leading-tight">
+                PERSONALIZED NAME NECKLACES
               </h1>
-              <div className="flex items-center gap-4 mb-6">
-                <div className="h-[1px] w-12 bg-[#800020]"></div>
-                <h2 className="font-serif text-xl md:text-3xl text-[#6b1625] uppercase tracking-widest font-medium">
+              <div className="flex items-center gap-4 mb-4">
+                <div className="h-0.5 w-12 bg-black"></div>
+                <h2 className="text-xl md:text-2xl font-black text-[#800020] uppercase tracking-wider">
                   STARTING FROM ₹199
                 </h2>
-                <div className="h-[1px] w-12 bg-[#800020]"></div>
+                <div className="h-0.5 w-12 bg-black"></div>
               </div>
               
-              <p className="text-[#2d2d2d] max-w-lg text-xs md:text-sm tracking-wide leading-relaxed font-medium">
-                Shop our exclusive Rakshabandhan special: Personalized Name Necklaces starting from just ₹199. Beautifully crafted, anti-tarnish custom jewelry for your sister.
+              <p className="text-stone-800 max-w-lg text-xs md:text-sm tracking-wide leading-relaxed font-semibold">
+                Shop our exclusive Diwali festive special: Handcrafted 22K Gold Plated Name Necklaces starting from just ₹199. Beautifully engraved, waterproof & anti-tarnish custom jewelry.
               </p>
 
               {/* Free Ring Hero Promo */}
@@ -323,7 +321,7 @@ export default async function CollectionPage(props: {
             </div>
           </div>
 
-          {slug === 'rakhi-name-necklaces' && (
+          {(slug === 'rakhi-name-necklaces' || slug === 'name-necklaces') && (
             <>
 
               {/* Highlight Sections */}
@@ -542,12 +540,13 @@ export default async function CollectionPage(props: {
               </div>
 
               <div>
-                <h2 className="font-serif text-3xl text-[#800020] mb-6 text-center">Related Rakhi Collections</h2>
-                <div className="flex flex-wrap justify-center gap-4">
-                  <Link href="/collections/rakhi-gifts-for-sister" className="border border-[#E5B8B7] px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-[#800020] hover:bg-[#800020] hover:text-white transition-colors shadow-sm">Rakhi Gifts for Sister</Link>
-                  <Link href="/collections/rakhi-gifts-for-brother" className="border border-[#E5B8B7] px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-[#800020] hover:bg-[#800020] hover:text-white transition-colors shadow-sm">Rakhi Gifts for Brother</Link>
-                  <Link href="/collections/rakhi-gifts-under-499" className="border border-[#E5B8B7] px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-[#800020] hover:bg-[#800020] hover:text-white transition-colors shadow-sm">Gifts Under ₹499</Link>
-                  <Link href="/collections/personalized-rakhi-gifts" className="border border-[#E5B8B7] px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-[#800020] hover:bg-[#800020] hover:text-white transition-colors shadow-sm">Personalized Rakhi</Link>
+                <h2 className="font-serif text-2xl md:text-3xl text-stone-900 mb-6 text-center font-bold">Popular Festive Collections</h2>
+                <div className="flex flex-wrap justify-center gap-3">
+                  <Link href="/collections/diwali-gifts" className="bg-[#FFDE59] text-black border-2 border-black px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">🪔 Diwali Gift Sets</Link>
+                  <Link href="/harsh-beniwal/octopus/perfumes" className="bg-white text-black border-2 border-black px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">🔥 Harsh Beniwal Perfumes</Link>
+                  <Link href="/collections/gifts-for-her" className="bg-white text-black border-2 border-black px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">Gifts for Her</Link>
+                  <Link href="/collections/gifts-for-him" className="bg-white text-black border-2 border-black px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">Gifts for Him</Link>
+                  <Link href="/collections/gifts-under-499" className="bg-white text-black border-2 border-black px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">Gifts Under ₹499</Link>
                 </div>
               </div>
             </div>

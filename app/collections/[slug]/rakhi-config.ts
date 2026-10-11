@@ -4,112 +4,76 @@ export const rakhiConfig: Record<string, {
   copy: string;
   faqs: { q: string; a: string }[];
 }> = {
-  "rakhi-gifts": {
-    title: "Personalized Rakhi Gifts",
-    description: "Discover the best personalized Raksha Bandhan gifts. Unique custom jewelry, couple gifts, and more with fast delivery worldwide.",
-    copy: "Raksha Bandhan is a celebration of the unique bond between siblings. This year, move beyond generic chocolates and mass-produced items by gifting something truly special: personalized Rakhi gifts. Whether you are looking for an engraved name necklace for your sister or a custom leather wallet for your brother, our collection is curated to create unforgettable moments. We use high-quality materials that are anti-tarnish and skin-friendly, ensuring your gift lasts as long as your memories. Shop our exclusive Raksha Bandhan collection and find the perfect token of love for your sibling.",
+  "festive-gifts": {
+    title: "Diwali & Festive Luxury Gifts 2026",
+    description: "Celebrate Diwali with authentic luxury perfumes by Harsh Beniwal and bespoke personalized jewelry in signature gift boxes with fast Pan-India delivery.",
+    copy: "Diwali is the festival of lights, gratitude, and heartfelt celebrations. This festive season, elevate your gifting beyond mundane sweets by choosing thoughtful, everlasting presents: authentic 50ML Eau De Parfum fragrances crafted by Harsh Beniwal and custom-engraved 22K gold-plated jewelry. Whether you are looking for an opulent signature scent like Overlord or a delicate bespoke name necklace, our collection brings joy that lasts for years. Every order is nestles in our deluxe festive presentation box with express Pan-India shipping.",
     faqs: [
-      { q: "Can I personalize Rakhi gifts?", a: "Yes, absolutely! You can personalize our jewelry and gifts with names, initials, special dates, or short messages." },
-      { q: "Do you deliver before Raksha Bandhan?", a: "Yes, we offer fast delivery across India (2-5 days) and Worldwide (within 7 days). We recommend ordering at least 5 days in advance, or choosing our Premium Delivery option at checkout for 2-day domestic delivery." },
-      { q: "Are gift boxes included?", a: "We offer a Premium Gift Wrap option at checkout for a small fee, which includes a luxurious signature box, ribbon, and a custom message card." },
-      { q: "Can I add a message card?", a: "Yes, when you choose the Premium Gift Wrap option, you can add a personalized message card for your sibling." },
-      { q: "What is your return policy for everlasting gifts?", a: "Because personalized items are made uniquely for you, we cannot accept returns unless the product arrives damaged or defective." }
+      { q: "Can I personalize gifts for Diwali?", a: "Yes! You can customize our necklaces, rings, and wallets with names, initials, special dates, or auspicious mantras." },
+      { q: "Do you deliver in time for Diwali celebrations?", a: "Yes, we offer express delivery across India (2-4 days) to all pin codes. Cash on Delivery is also available." },
+      { q: "Are deluxe Diwali gift boxes included?", a: "Yes, our luxury gift options include signature packaging, ribbon bow ties, and custom festive greeting cards." },
+      { q: "What concentration are the Harsh Beniwal perfumes?", a: "All Harsh Beniwal x Octopus fragrances are concentrated Eau De Parfum (EDP) with 25%+ imported French fragrance oils, delivering 12+ hours longevity." },
+      { q: "Can I send Diwali gifts directly to friends and family?", a: "Absolutely! Simply enter the recipient's shipping address at checkout, and we will deliver it beautifully wrapped directly to their doorstep." }
+    ]
+  },
+  "diwali-gifts": {
+    title: "Diwali Festive Luxury Gifts & Hampers",
+    description: "Celebrate Diwali with premium EDP perfumes by Harsh Beniwal and personalized keepsakes. Use code DIWALI20 for 20% OFF.",
+    copy: "Light up Diwali celebrations with meaningful luxury. From high-projection French Eau De Parfums to timeless anti-tarnish keepsakes, Octopus curates the finest festive presents for family, friends, and colleagues. Enjoy flat 20% OFF with code DIWALI20 and express delivery to every corner of India.",
+    faqs: [
+      { q: "What are the best-selling Diwali gifts this year?", a: "Our Harsh Beniwal 50ML Eau De Parfums (Overlord, Paradox, Promised) and 22K Gold Plated Custom Name Necklaces are this season's top favorites." },
+      { q: "Is Cash on Delivery available for festive orders?", a: "Yes, Cash on Delivery is available across all serviceable pin codes in India." },
+      { q: "Is there a festive discount code?", a: "Yes! Use coupon code DIWALI20 at checkout for an extra 20% discount on all orders above ₹499." }
+    ]
+  },
+  "rakhi-gifts": {
+    title: "Evergreen & Festive Luxury Keepsakes",
+    description: "Shop everlasting personalized jewelry, luxury perfumes, and curated gift boxes for all celebrations with express delivery across India.",
+    copy: "Every relationship deserves to be celebrated with meaning and style. Move beyond generic off-the-shelf items with bespoke keepsakes and high-oil EDP fragrances. Crafted with anti-tarnish 22k gold finishes and imported French perfume essences, our pieces are designed to become lifelong memories.",
+    faqs: [
+      { q: "Can I customize the jewelry pieces?", a: "Yes, each piece is precision-engraved with your custom names, initials, or heartfelt messages." },
+      { q: "How long does delivery take?", a: "Orders are dispatched via express courier and arrive in 2-4 days across India." }
     ]
   },
   "rakhi-for-him": {
-    title: "Rakhis & Bracelets for Him",
-    description: "Shop premium personalized Rakhi gifts for your brother. Custom leather wallets, engraved keychains, and bracelets.",
-    copy: "Looking for a Rakhi gift for your brother that he will actually use and appreciate? Our collection of everlasting gifts for men is designed with utility and style in mind. From premium vegan leather wallets engraved with his name to sleek stainless steel bracelets and custom keychains, we have something for every type of brother. These functional keepsakes serve as a daily reminder of your bond. Order now and enjoy fast, reliable shipping across India just in time for Raksha Bandhan.",
+    title: "Luxury Fragrances & Gifts for Him",
+    description: "Shop premium EDP perfumes by Harsh Beniwal and personalized leather accessories for men.",
+    copy: "Discover masculine luxury designed for impact. From seductive woody and spicy fragrances like Overlord and Your Move to laser-engraved vegan leather wallets, our gifts for him combine rugged elegance and daily utility.",
     faqs: [
-      { q: "What is a good Rakhi gift for an elder brother?", a: "Our engraved premium vegan leather wallets and custom initial keychains are highly appreciated by elder brothers for their practicality and style." },
-      { q: "Do you offer gifts for younger brothers?", a: "Yes, our customized braided leather bracelets and photo magnets are great options for younger brothers." },
-      { q: "Can I engrave a message on the wallet?", a: "Yes, most of our wallets allow for name or short message engraving." },
-      { q: "How long will the engraving last?", a: "We use high-precision laser engraving that is permanent and will not fade over time." },
-      { q: "Is cash on delivery available?", a: "Yes, Cash on Delivery is available for domestic orders (India) for an additional fee of ₹100. COD is not available for international orders." }
+      { q: "What is the best perfume for men?", a: "Overlord (citrus & amber ambroxan) and Your Move (rich smoky oud wood) are our top-rated fragrances for men." },
+      { q: "Will the wallet engraving fade?", a: "Never. We use high-precision laser engraving that is permanent and wear-resistant." }
     ]
   },
   "rakhi-gifts-for-sister": {
-    title: "Rakhi Gifts for Sister",
-    description: "Shop the best Rakhi gifts for your sister. From personalized name necklaces to custom bracelets, find the perfect gift under ₹499.",
-    copy: "Finding the perfect Rakhi gift for your sister can be a challenge, especially if she has everything. Our exclusive collection of personalized Raksha Bandhan gifts for sisters makes it easy. Choose from beautifully crafted name necklaces, engraved bracelets, and custom photo keepsakes that show you've put real thought into her present. Most of our jewelry is 18k gold plated and anti-tarnish, making it perfect for everyday wear. Make her feel like the best sister in the world without breaking your budget.",
+    title: "Festive & Milestone Gifts for Her",
+    description: "Personalized anti-tarnish jewelry, name necklaces, and luxury fragrances for women under ₹499 and ₹999.",
+    copy: "Surprise the special woman in your life with fine jewelry crafted for everyday elegance. Anti-tarnish, waterproof, and skin-friendly, our bespoke necklaces and bracelets sparkle with timeless charm.",
     faqs: [
-      { q: "What are the best Rakhi gifts for sisters?", a: "Personalized name necklaces and engraved coordinate rings are our top-selling Rakhi gifts for sisters." },
-      { q: "Is the jewelry anti-tarnish?", a: "Yes, our personalized jewelry pieces for women are made from premium materials that are waterproof and anti-tarnish." },
-      { q: "How long does engraving take?", a: "Engraving and crafting typically takes 1-3 days before the item is shipped out." },
-      { q: "Can I send the gift directly to my sister?", a: "Yes! Enter her address in the shipping details, and select our Premium Gift Wrap option so it arrives beautifully packaged." },
-      { q: "Do you have budget-friendly options?", a: "Yes, we have a wide selection of beautiful, everlasting gifts under ₹499 and ₹999." }
+      { q: "Is the jewelry waterproof and anti-tarnish?", a: "Yes, crafted from premium stainless steel with 18k/22k gold plating, safe for daily wear and showers." }
     ]
   },
   "rakhi-gifts-for-brother": {
-    title: "Rakhi Gifts for Brother",
-    description: "Shop premium personalized Rakhi gifts for your brother. Custom leather wallets, engraved keychains, and bracelets.",
-    copy: "Looking for a Rakhi gift for your brother that he will actually use and appreciate? Our collection of everlasting gifts for men is designed with utility and style in mind. From premium vegan leather wallets engraved with his name to sleek stainless steel bracelets and custom keychains, we have something for every type of brother. These functional keepsakes serve as a daily reminder of your bond. Order now and enjoy fast, reliable shipping across India just in time for Raksha Bandhan.",
+    title: "Curated Luxury Gifts for Him",
+    description: "Shop high-projection EDP perfumes, custom bracelets, and engraved wallets for men.",
+    copy: "Celebrate your bond with practical, sophisticated keepsakes that he will carry every day.",
     faqs: [
-      { q: "What is a good Rakhi gift for an elder brother?", a: "Our engraved premium vegan leather wallets and custom initial keychains are highly appreciated by elder brothers for their practicality and style." },
-      { q: "Do you offer gifts for younger brothers?", a: "Yes, our customized braided leather bracelets and photo magnets are great options for younger brothers." },
-      { q: "Can I engrave a message on the wallet?", a: "Yes, most of our wallets allow for name or short message engraving." },
-      { q: "How long will the engraving last?", a: "We use high-precision laser engraving that is permanent and will not fade over time." },
-      { q: "Is cash on delivery available?", a: "Yes, Cash on Delivery is available for domestic orders (India) for an additional fee of ₹100. COD is not available for international orders." }
+      { q: "Can I engrave his initials?", a: "Yes, all our personalized men's accessories allow custom initial or name engraving." }
     ]
   },
   "rakhi-gifts-under-499": {
-    title: "Rakhi Gifts Under ₹499",
-    description: "Affordable and premium personalized Rakhi gifts under ₹499. High-quality custom jewelry and keepsakes for your siblings.",
-    copy: "You don't need to spend a fortune to give a meaningful Rakhi gift. Our collection of personalized Raksha Bandhan gifts under ₹499 offers incredible value without compromising on quality. Choose from stunning name necklaces, custom keychains, and elegant bracelets that look and feel premium. Each piece is crafted with care and can be personalized to add that special touch. Shop our affordable Rakhi gifts today and celebrate the sibling bond beautifully.",
+    title: "Bespoke Gifts Under ₹499",
+    description: "Affordable luxury: 22K gold plated personalized necklaces and custom keychains under ₹499.",
+    copy: "Meaningful gifting doesn't require a fortune. Discover handcrafted custom jewelry and accessories starting under ₹499.",
     faqs: [
-      { q: "What are the best Rakhi gifts under ₹499?", a: "Our personalized name necklaces and custom initial keychains are the absolute best-sellers in this category." },
-      { q: "Is the quality compromised at this price?", a: "Not at all. We maintain strict quality control and use high-grade materials like stainless steel and premium plating for all our products." },
-      { q: "Do these items come with gift wrapping?", a: "Standard packaging is included, but you can upgrade to Premium Gift Wrap for a small fee at checkout." },
-      { q: "Can I get fast delivery on these items?", a: "Yes, all our items, regardless of price, are eligible for our fast 2-5 day delivery across India and 7-day international delivery." },
-      { q: "Are there return gifts for cousins in this range?", a: "Absolutely! These budget-friendly options are perfect for bulk buying for cousins and extended family." }
-    ]
-  },
-  "rakhi-gifts-under-999": {
-    title: "Rakhi Gifts Under ₹999",
-    description: "Premium personalized Rakhi gifts under ₹999. Luxury custom wallets, photo projection necklaces, and more.",
-    copy: "Elevate your gifting game this Raksha Bandhan with our premium selection of everlasting gifts under ₹999. This curated collection features our most luxurious and intricately designed items, including photo projection necklaces, premium engraved vegan leather wallets, and customized soundwave art blocks. These gifts are designed to impress and create a lasting impact. Perfect for elder siblings or when you want to give something truly extraordinary.",
-    faqs: [
-      { q: "What makes these gifts premium?", a: "These items feature complex personalization (like photo projection), higher-grade materials, and more intricate craftsmanship." },
-      { q: "Can I include a photo in the photo projection necklace?", a: "Yes, you can upload any high-quality image, and we will embed it into the necklace's center stone." },
-      { q: "Are these items durable?", a: "Yes, our premium items are built to last, using top-tier stainless steel, advanced plating, and high-quality vegan leather." },
-      { q: "Is shipping free for these items?", a: "Yes, all prepaid orders enjoy free standard shipping across India." },
-      { q: "Can I track my order?", a: "Yes, once your order is dispatched, you will receive a tracking link via email and SMS." }
-    ]
-  },
-  "rakhi-gifts-under-299": {
-    title: "Rakhi Gifts Under ₹299",
-    description: "Budget-friendly personalized Rakhi gifts under ₹299. Meaningful and customized gifts that don't break the bank.",
-    copy: "Celebrate Raksha Bandhan on a budget with our exclusive collection of everlasting gifts under ₹299. From cute mini photo magnets to engraved metal bookmarks and simple initial keychains, these thoughtful little keepsakes pack a massive emotional punch. They are the perfect addition to a larger gift or a sweet standalone gesture for cousins and friends. Personalization is included in the price, making these the most cost-effective custom gifts in India.",
-    faqs: [
-      { q: "What can I buy under ₹299?", a: "You can choose from personalized metal bookmarks, initial keychains, and custom photo magnets." },
-      { q: "Is personalization free?", a: "Yes, the cost of engraving or personalization is included in the product price." },
-      { q: "Are these good for return gifts?", a: "Yes, these budget-friendly items are highly popular as return gifts for sisters and cousins." },
-      { q: "Can I order in bulk?", a: "Yes, you can add multiple quantities to your cart. For very large orders, contact our support team." },
-      { q: "How long does shipping take?", a: "Shipping typically takes 2-5 business days across India." }
-    ]
-  },
-  "personalized-rakhi-gifts": {
-    title: "Personalized Rakhi Gifts",
-    description: "Shop unique personalized Raksha Bandhan gifts. Custom name jewelry, engraved accessories, and photo gifts.",
-    copy: "Make this Raksha Bandhan unforgettable with our extensive range of everlasting gifts. At Octopus, we believe that adding a name, a date, or a special photo transforms an ordinary item into a treasured keepsake. Explore our collection of custom name necklaces, engraved leather bracelets, and personalized wallets designed specifically for brothers and sisters. Enjoy our seamless customization process, premium quality materials, and fast shipping across India.",
-    faqs: [
-      { q: "How do I personalize my Rakhi gift?", a: "Simply visit the product page, enter the name or upload the photo you wish to use, and add the item to your cart." },
-      { q: "What materials do you use?", a: "We primarily use high-grade stainless steel, brass, and premium vegan leather, depending on the product." },
-      { q: "Will the jewelry turn black?", a: "No, our jewelry is anti-tarnish and designed to retain its shine with proper care." },
-      { q: "Do you ship internationally?", a: "Currently, we only ship within India." },
-      { q: "What if I make a spelling mistake in my order?", a: "Please contact our customer support within 24 hours of placing the order to correct any spelling mistakes." }
+      { q: "Are gifts under ₹499 good quality?", a: "Yes! We use the exact same anti-tarnish materials and precision laser engraving on all our pieces." }
     ]
   },
   "rakhi-name-necklaces": {
-    title: "Rakhi Name Necklaces | Starting from ₹199",
-    description: "Shop our exclusive Rakshabandhan special: Personalized Name Necklaces starting from just ₹199. Beautifully crafted, anti-tarnish custom jewelry for your sister.",
-    copy: "This Rakshabandhan, gift your sister something she will cherish forever. Our exclusive collection of personalized name necklaces features exquisite designs, including the Signature Heart, Arabic, and Butterfly Name Necklaces. Crafted with care and precision, these anti-tarnish jewelry pieces are the perfect token of your affection. Take advantage of our Rakhi Special pricing and get these premium necklaces starting at an unbelievable ₹199. Show her how much she means to you with a gift that carries her name.",
+    title: "Personalized Custom Name Necklaces",
+    description: "Handcrafted 22K gold plated name necklaces. Waterproof, anti-tarnish, and bespoke with fast delivery.",
+    copy: "Our iconic custom name necklace is India's most beloved personalized accessory. Wear your name or the name of someone you cherish in exquisite cursive typography.",
     faqs: [
-      { q: "Is the ₹199 offer valid on all name necklaces?", a: "The ₹199 special pricing applies to our selected best-selling Fairy Name Necklace. Other premium designs like Angel and Mangalsutra are available at slightly higher, heavily discounted prices." },
-      { q: "Are these necklaces anti-tarnish?", a: "Yes, all our personalized necklaces are made from high-quality materials that are skin-friendly and anti-tarnish." },
-      { q: "How long does it take to deliver?", a: "We offer fast 2-5 day delivery across India and within 7 days internationally. Order now to ensure delivery before Rakhi." },
-      { q: "Can I add a personalized message card?", a: "Yes, you can opt for our Premium Gift Wrap at checkout to include a personalized message card." },
-      { q: "What length is the necklace chain?", a: "Our necklaces come with an adjustable chain (usually 16-18 inches) to ensure a perfect fit." }
+      { q: "Can any name or language be engraved?", a: "Yes, we support names in English, Hindi, and custom scripts up to 12 characters." }
     ]
   }
 };

@@ -43,12 +43,19 @@ export default function CartDrawer() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 320, damping: 34 }}
-            className="fixed right-0 top-0 z-[70] h-full w-full sm:w-[440px] bg-[#FDF8F5] flex flex-col shadow-2xl border-l border-[#E5B8B7]/30"
+            className="fixed right-0 top-0 z-[70] h-full w-full sm:w-[440px] bg-[#FFFDF9] flex flex-col shadow-[8px_0px_0px_0px_#000] border-l-3 border-black"
           >
-            <div className="flex items-center justify-between px-6 h-[72px] border-b border-[#E5B8B7]/30 shrink-0 bg-white/50 backdrop-blur-md">
-              <h2 className="font-serif text-2xl uppercase tracking-widest text-[#800020]">Your Cart</h2>
-              <button onClick={closeCart} aria-label="Close cart" className="p-1 text-[#2d2d2d] hover:text-[#800020] transition-colors">
-                <X size={24} strokeWidth={1.5} />
+            <div className="flex items-center justify-between px-6 h-[72px] border-b-2 border-black shrink-0 bg-amber-400">
+              <div className="flex items-center gap-2">
+                <h2 className="font-serif text-2xl uppercase tracking-wider font-black text-black">Your Cart</h2>
+                <span>🪔</span>
+              </div>
+              <button 
+                onClick={closeCart} 
+                aria-label="Close cart" 
+                className="w-9 h-9 bg-white border-2 border-black rounded-lg flex items-center justify-center text-black hover:bg-stone-100 shadow-[2px_2px_0px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
+              >
+                <X size={20} strokeWidth={2.5} />
               </button>
             </div>
 
@@ -231,22 +238,26 @@ export default function CartDrawer() {
                   <p className="text-[10px] uppercase tracking-widest text-[#2d2d2d] opacity-60 text-center mt-2">Taxes and shipping calculated at checkout</p>
                 </div>
 
-                <Link href="/checkout" onClick={closeCart} className="block w-full bg-[#800020] text-white py-5 text-center text-xs tracking-widest uppercase font-bold hover:bg-[#E5B8B7] hover:text-[#800020] transition-colors mb-6 shadow-lg">
-                  Continue Checkout
+                <Link 
+                  href="/checkout" 
+                  onClick={closeCart} 
+                  className="block w-full bg-black text-amber-300 py-4 text-center text-xs tracking-wider uppercase font-black rounded-xl border-2 border-black shadow-[3px_3px_0px_0px_#f59e0b] hover:bg-stone-900 active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all mb-4 cursor-pointer"
+                >
+                  Proceed to Checkout 🪔
                 </Link>
 
                 {/* Trust Badges */}
-                <div className="flex flex-col gap-2 p-3 bg-stone-50 border border-stone-200 rounded-lg mb-4 text-[10px] uppercase tracking-widest text-[#2d2d2d] font-bold">
-                  <div className="flex items-center gap-2 justify-center text-[#b8860b]">
-                    <Gem size={14} /> 100% Authentic 22K Gold Plated
+                <div className="flex flex-col gap-2 p-3 bg-amber-50 border-2 border-black rounded-xl mb-2 text-[10px] uppercase tracking-wider text-black font-black">
+                  <div className="flex items-center gap-2 justify-center text-stone-950">
+                    <Gem size={14} className="stroke-[2.5]" /> 100% Authentic 22K Gold Plated / 50ML EDP
                   </div>
-                  <div className="flex items-center gap-2 justify-center text-emerald-600">
-                    <ShieldCheck size={14} /> Waterproof & Skin Friendly
+                  <div className="flex items-center gap-2 justify-center text-emerald-800">
+                    <ShieldCheck size={14} className="stroke-[2.5]" /> Waterproof & Skin Friendly • 12H+ Longevity
                   </div>
-                  <div className="flex items-center justify-center gap-4 text-stone-500 mt-1 pt-2 border-t border-stone-200">
-                    <div className="flex items-center gap-1.5"><Lock size={12} /> Secure Checkout</div>
-                    <div className="flex items-center gap-1.5 text-emerald-600 font-bold bg-emerald-50 px-1.5 py-0.5 rounded-sm border border-emerald-100">
-                      Cash On Delivery
+                  <div className="flex items-center justify-center gap-4 text-stone-700 mt-1 pt-2 border-t border-black/10">
+                    <div className="flex items-center gap-1.5"><Lock size={12} strokeWidth={2.5} /> Secure Checkout</div>
+                    <div className="flex items-center gap-1.5 text-black font-black bg-amber-300 px-2 py-0.5 rounded border border-black">
+                      Cash On Delivery Available
                     </div>
                   </div>
                 </div>

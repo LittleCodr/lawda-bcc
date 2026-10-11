@@ -2,15 +2,18 @@
 @import "tailwindcss";
 
 :root {
-  --color-ink: #1a1a1a;
-  --color-charcoal: #2d2d2d;
-  --color-paper: #FDF8F5; /* Blush pink background */
+  --color-ink: #121212;
+  --color-charcoal: #242424;
+  --color-paper: #FAF7F2; /* Warm premium festive canvas */
   --color-white: #ffffff;
-  --color-gold: #D4AF37;
-  --color-rose: #E5B8B7;
+  --color-gold: #F59E0B;
+  --color-saffron: #FB8500;
+  --color-diwali-gold: #FFB703;
+  --color-rose: #FDE8E8;
   --color-burgundy: #800020;
-  --color-muted: #8c8c8c;
-  --color-line: rgba(26, 26, 26, 0.1);
+  --color-emerald: #059669;
+  --color-muted: #737373;
+  --color-line: rgba(18, 18, 18, 0.15);
 }
 
 @theme inline {
@@ -18,8 +21,11 @@
   --color-charcoal: var(--color-charcoal);
   --color-paper: var(--color-paper);
   --color-gold: var(--color-gold);
+  --color-saffron: var(--color-saffron);
+  --color-diwali-gold: var(--color-diwali-gold);
   --color-rose: var(--color-rose);
   --color-burgundy: var(--color-burgundy);
+  --color-emerald: var(--color-emerald);
   --color-muted: var(--color-muted);
   --font-serif: "Playfair Display", serif;
   --font-sans: "Inter", sans-serif;
@@ -38,12 +44,65 @@ body {
 }
 
 ::selection {
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: #121212;
+  color: #FFB703;
 }
 
 .font-serif-display {
   font-family: "Playfair Display", serif;
+}
+
+/* Neubrutalism Helper Classes */
+.nb-card {
+  background: #ffffff;
+  border: 2.5px solid #121212;
+  box-shadow: 4px 4px 0px 0px #121212;
+  border-radius: 1rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nb-card:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0px 0px #121212;
+}
+
+.nb-card-static {
+  background: #ffffff;
+  border: 2.5px solid #121212;
+  box-shadow: 4px 4px 0px 0px #121212;
+  border-radius: 1rem;
+}
+
+.nb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 2px solid #121212;
+  box-shadow: 3px 3px 0px 0px #121212;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+}
+.nb-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px 0px #121212;
+}
+.nb-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0px 0px 0px 0px #121212;
+}
+
+.nb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 2px solid #121212;
+  box-shadow: 2px 2px 0px 0px #121212;
+  border-radius: 9999px;
 }
 
 /* thin custom scrollbar for horizontal rails */
@@ -55,15 +114,12 @@ body {
   to { transform: translateX(-50%); }
 }
 .animate-marquee {
-  animation: marquee 22s linear infinite;
+  animation: marquee 20s linear infinite;
 }
 
 .text-balance {
   text-wrap: balance;
 }
-
-
-
 
 .font-italianno {
   font-family: 'Italianno', cursive;

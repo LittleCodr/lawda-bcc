@@ -1,134 +1,114 @@
 import Link from "next/link";
-import Image from "next/image";
-import { ChevronRight, Gift, ArrowRight } from "lucide-react";
+import { ChevronRight, Gift, ArrowRight, Sparkles } from "lucide-react";
 
 export const metadata = {
-  title: "31 Personalized Raksha Bandhan Gift Ideas for Sisters & Brothers (2026)",
-  description: "Discover the best personalized Rakhi gifts for your sister or brother. Find unique custom jewelry, gift boxes, and meaningful presents under ₹299, ₹499, and ₹999 with fast delivery across India.",
+  title: "31 Luxury Diwali & Festive Personalized Gift Ideas (2026) | Octopus",
+  description: "Discover the best luxury Diwali gifts, 50ML EDP perfumes by Harsh Beniwal, custom jewelry, and festive hampers under ₹499, ₹999, and ₹1299 with fast delivery across India.",
 };
 
-export default function RakhiGiftIdeasPage() {
+export default function FestiveGiftIdeasPage() {
   return (
-    <div className="bg-white min-h-screen pb-32">
-      {/* Article Header */}
-      <div className="bg-[#f9f2ed] pt-24 pb-16 px-6">
+    <div className="bg-[#FFFDF9] min-h-screen pb-32">
+      {/* Header */}
+      <div className="bg-amber-100 border-b-2 border-black pt-20 pb-16 px-6">
         <div className="max-w-3xl mx-auto">
-          <nav className="flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest text-gray-400 mb-6">
-            <Link href="/" className="hover:text-[#800020] transition-colors">Home</Link>
+          <nav className="flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest text-stone-600 mb-6">
+            <Link href="/" className="hover:text-black transition-colors">Home</Link>
             <ChevronRight size={12} />
-            <Link href="/collections/rakhi-gifts" className="hover:text-[#800020] transition-colors">Rakhi Collection</Link>
+            <Link href="/collections/all" className="hover:text-black transition-colors">Gifting Guide</Link>
             <ChevronRight size={12} />
-            <span className="text-[#800020] truncate">31 Personalized Raksha Bandhan Gift Ideas</span>
+            <span className="text-black font-black truncate">Diwali Festive Gift Ideas</span>
           </nav>
           
-          <span className="bg-[#800020] text-white text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded-full mb-6 inline-block">Gift Guide</span>
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-[#2d2d2d] leading-tight mb-6">
-            31 Personalized Raksha Bandhan Gift Ideas for Sisters & Brothers (2026)
+          <div className="inline-flex items-center gap-2 bg-black text-amber-300 text-[10px] uppercase tracking-widest font-black px-3 py-1 rounded-full mb-6 border border-black shadow-[2px_2px_0px_0px_#000]">
+            <span>🪔 DIWALI FESTIVE EDITION 2026</span>
+          </div>
+          <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-black leading-tight mb-6 font-black">
+            31 Luxury Diwali & Festive Gift Ideas That Truly Impress
           </h1>
-          <p className="text-gray-600 text-lg md:text-xl font-medium leading-relaxed mb-8">
-            Skip the generic chocolates this year. From custom name necklaces to engraved wallets, here are the most thoughtful and unique gifts that look like a million bucks but start at just ₹299.
+          <p className="text-stone-800 text-base md:text-lg font-medium leading-relaxed mb-6">
+            Skip the generic sweet boxes this Diwali. From 50ML Eau De Parfums by Harsh Beniwal to bespoke 22K gold-plated jewelry, here are the most thoughtful festive presents that look like a million bucks.
           </p>
-          <div className="flex items-center gap-4 text-sm font-bold text-gray-500">
+          <div className="flex items-center gap-3 text-xs font-bold text-stone-600">
             <span>By Octopus Editorial Team</span>
             <span>•</span>
-            <span>August 2026</span>
+            <span>Diwali Festive Guide</span>
           </div>
         </div>
       </div>
 
-      {/* Article Body */}
-      <div className="max-w-3xl mx-auto px-6 mt-12 space-y-12 text-[#2d2d2d]">
-        <div className="prose prose-lg prose-stone max-w-none text-justify">
-          <p>
-            Raksha Bandhan is just around the corner (August 28th), and the pressure to find the perfect gift is on. Whether you're shopping for your annoying-but-lovable younger sister or your protective elder brother, finding something that truly says "I care" without breaking the bank can be a challenge.
+      {/* Body */}
+      <div className="max-w-3xl mx-auto px-6 mt-12 space-y-12 text-stone-900">
+        <div className="prose prose-stone max-w-none text-justify">
+          <p className="leading-relaxed">
+            The festival of lights is a time for celebration, warmth, and heartfelt gifting. Moving beyond mass-produced items by choosing personalized keepsakes and high-oil Eau De Parfum fragrances leaves an unforgettable impression.
           </p>
-          <p>
-            This year, <strong className="text-[#800020]">personalization is everything</strong>. Why give a standard off-the-shelf item when you can gift a custom-engraved piece of jewelry or a bespoke keepsake that they'll cherish forever? We've curated a list of 31 incredible <Link href="/collections/rakhi-gifts" className="text-[#800020] underline font-bold">Rakhi gifts</Link> that fit every budget and relationship dynamic.
+          <p className="leading-relaxed">
+            Whether you are curating gifts for family, loved ones, or corporate colleagues, Octopus offers deluxe festive gift packaging, authentic French formulations, and express pan-India shipping.
           </p>
         </div>
 
-        {/* Under 299 Section */}
-        <div>
-          <h2 className="font-serif text-3xl text-[#800020] border-b border-stone-200 pb-2 mb-6">Gifts Under ₹299 (Yes, Really!)</h2>
-          <p className="mb-6">You don't need to spend a fortune to show you care. These budget-friendly options pack a massive emotional punch.</p>
-          
-          <ul className="space-y-6">
-            <li className="bg-stone-50 p-6 rounded-xl border border-stone-100">
-              <h3 className="font-bold text-xl mb-2">1. The Custom Initial Keychain</h3>
-              <p className="text-gray-600 mb-4">A sleek, stainless steel keychain engraved with their initial. Perfect for their new car or house keys. It's practical, personal, and incredibly affordable.</p>
-              <Link href="/collections/rakhi-gifts-under-299" className="text-[#800020] font-bold text-sm uppercase tracking-widest flex items-center gap-2 hover:underline">
-                Shop Gifts Under ₹299 <ArrowRight size={16} />
-              </Link>
-            </li>
-            <li className="bg-stone-50 p-6 rounded-xl border border-stone-100">
-              <h3 className="font-bold text-xl mb-2">2. Engraved Metal Bookmark</h3>
-              <p className="text-gray-600 mb-4">Is your sibling a bookworm? A personalized bookmark with a snarky inside joke is the ultimate budget win.</p>
-            </li>
-            <li className="bg-stone-50 p-6 rounded-xl border border-stone-100">
-              <h3 className="font-bold text-xl mb-2">3. Mini Photo Magnet</h3>
-              <p className="text-gray-600 mb-4">Turn that embarrassing childhood photo into a high-quality fridge magnet.</p>
-            </li>
-          </ul>
+        {/* Perfumes Highlight Section */}
+        <div className="border-2 border-black rounded-xl p-6 bg-amber-50 shadow-[4px_4px_0px_0px_#000]">
+          <h2 className="font-serif text-2xl text-black font-black pb-2 mb-4 flex items-center gap-2">
+            <span>👑</span> Flagship Pick: Harsh Beniwal 50ML EDP Perfumes
+          </h2>
+          <p className="text-stone-700 mb-4 text-sm leading-relaxed">
+            Crafted with 25%+ imported French perfume oil concentration, these luxury fragrances provide 12+ hours of long-lasting sillage. Featured scents include Overlord (Dior Sauvage inspired), Paradox (Louis Vuitton Les Sables Roses inspired), and Promised (Baccarat Rouge 540 inspired).
+          </p>
+          <Link 
+            href="/harsh-beniwal/octopus/perfumes" 
+            className="inline-flex items-center gap-2 bg-black text-amber-300 px-6 py-3 rounded-lg text-xs font-black uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_0px_#000] hover:bg-stone-900 transition-all cursor-pointer"
+          >
+            Explore All 9 Fragrances <ArrowRight size={14} />
+          </Link>
         </div>
 
         {/* Under 499 Section */}
         <div>
-          <h2 className="font-serif text-3xl text-[#800020] border-b border-stone-200 pb-2 mb-6">Best Rakhi Gifts Under ₹499</h2>
-          <p className="mb-6">This is the sweet spot for gifting. High-quality, personalized items that look incredibly premium.</p>
-          
-          <ul className="space-y-6">
-            <li className="bg-stone-50 p-6 rounded-xl border border-stone-100">
-              <h3 className="font-bold text-xl mb-2">4. Personalized Name Necklace</h3>
-              <p className="text-gray-600 mb-4">Our absolute best-seller. Available in gold and silver finishes, these anti-tarnish necklaces are the <Link href="/collections/rakhi-gifts-for-sister" className="text-[#800020] font-bold underline">perfect Rakhi gift for sisters</Link>. They look like a ₹5000 piece but cost a fraction of that.</p>
-              <Link href="/collections/rakhi-gifts-under-499" className="text-[#800020] font-bold text-sm uppercase tracking-widest flex items-center gap-2 hover:underline">
-                Shop Name Necklaces <ArrowRight size={16} />
+          <h2 className="font-serif text-2xl text-black font-black border-b-2 border-black pb-2 mb-6">
+            Bespoke Gifts Under ₹499
+          </h2>
+          <ul className="space-y-4">
+            <li className="bg-white p-6 rounded-xl border-2 border-black shadow-[3px_3px_0px_0px_#000]">
+              <h3 className="font-black text-lg mb-2">1. Personalized 22K Gold Plated Name Necklace</h3>
+              <p className="text-stone-600 mb-4 text-sm">Our signature bestseller. Waterproof, anti-tarnish, and bespoke with any custom name.</p>
+              <Link href="/collections/name-necklaces" className="text-black font-black text-xs uppercase tracking-wider flex items-center gap-1.5 hover:text-amber-600">
+                Shop Name Necklaces <ArrowRight size={14} />
               </Link>
             </li>
-            <li className="bg-stone-50 p-6 rounded-xl border border-stone-100">
-              <h3 className="font-bold text-xl mb-2">5. Custom Leather Bracelet</h3>
-              <p className="text-gray-600 mb-4">A great option for brothers. A rugged, braided leather bracelet featuring a small metal clasp engraved with his initials or a short message.</p>
-              <Link href="/collections/rakhi-gifts-for-brother" className="text-[#800020] font-bold text-sm uppercase tracking-widest flex items-center gap-2 hover:underline">
-                Shop Brother Gifts <ArrowRight size={16} />
-              </Link>
-            </li>
-            <li className="bg-stone-50 p-6 rounded-xl border border-stone-100">
-              <h3 className="font-bold text-xl mb-2">6. Coordinate Ring</h3>
-              <p className="text-gray-600 mb-4">Engrave the coordinates of your childhood home on a sleek, minimalist ring.</p>
+            <li className="bg-white p-6 rounded-xl border-2 border-black shadow-[3px_3px_0px_0px_#000]">
+              <h3 className="font-black text-lg mb-2">2. Custom Laser Engraved Keychain</h3>
+              <p className="text-stone-600 text-sm">Solid stainless steel with initials or auspicious dates. Ideal everyday keepsake.</p>
             </li>
           </ul>
         </div>
 
         {/* Under 999 Section */}
         <div>
-          <h2 className="font-serif text-3xl text-[#800020] border-b border-stone-200 pb-2 mb-6">Premium Gifts Under ₹999</h2>
-          <p className="mb-6">Want to go all out this year? These gifts offer unparalleled luxury and craftsmanship.</p>
-          
-          <ul className="space-y-6">
-            <li className="bg-stone-50 p-6 rounded-xl border border-stone-100">
-              <h3 className="font-bold text-xl mb-2">7. The Ultimate Engraved Wallet</h3>
-              <p className="text-gray-600 mb-4">A premium vegan leather wallet engraved with his name. It's sophisticated, practical, and a massive step up from generic gifts.</p>
-              <Link href="/collections/rakhi-gifts-under-999" className="text-[#800020] font-bold text-sm uppercase tracking-widest flex items-center gap-2 hover:underline">
-                Shop Premium Gifts <ArrowRight size={16} />
+          <h2 className="font-serif text-2xl text-black font-black border-b-2 border-black pb-2 mb-6">
+            Luxury Gifts Under ₹999
+          </h2>
+          <ul className="space-y-4">
+            <li className="bg-white p-6 rounded-xl border-2 border-black shadow-[3px_3px_0px_0px_#000]">
+              <h3 className="font-black text-lg mb-2">3. Engraved Vegan Leather Wallet</h3>
+              <p className="text-stone-600 mb-4 text-sm">Sophisticated, practical wallet customized with precision laser engraving.</p>
+              <Link href="/collections/gifts-under-999" className="text-black font-black text-xs uppercase tracking-wider flex items-center gap-1.5 hover:text-amber-600">
+                Shop Luxury Gifts Under ₹999 <ArrowRight size={14} />
               </Link>
-            </li>
-            <li className="bg-stone-50 p-6 rounded-xl border border-stone-100">
-              <h3 className="font-bold text-xl mb-2">8. Photo Projection Necklace</h3>
-              <p className="text-gray-600 mb-4">A stunning piece of jewelry that hides a secret photo inside the center stone. When you shine a light through it, the photo is projected onto the wall. Mind-blowing and incredibly sentimental.</p>
-            </li>
-            <li className="bg-stone-50 p-6 rounded-xl border border-stone-100">
-              <h3 className="font-bold text-xl mb-2">9. Custom Soundwave Art Block</h3>
-              <p className="text-gray-600 mb-4">Record yourself saying "I love you" (or "You're adopted") and have the soundwave engraved onto a sleek acrylic block.</p>
             </li>
           </ul>
         </div>
 
-        {/* CTA */}
-        <div className="bg-[#800020] p-10 rounded-2xl text-white text-center mt-12">
-          <Gift size={48} className="mx-auto mb-6 text-[#E5B8B7]" strokeWidth={1.5} />
-          <h2 className="font-serif text-3xl mb-4">Need it before Raksha Bandhan?</h2>
-          <p className="mb-8 font-medium text-white/80">Order today and select Premium Delivery at checkout to guarantee arrival before August 28th.</p>
-          <Link href="/collections/rakhi-gifts" className="inline-block bg-white text-[#800020] px-8 py-4 font-bold uppercase tracking-widest text-xs hover:bg-[#E5B8B7] transition-colors shadow-lg">
-            Explore All Rakhi Gifts
+        {/* CTA Banner */}
+        <div className="bg-amber-400 border-3 border-black p-8 rounded-2xl text-black text-center shadow-[6px_6px_0px_0px_#000]">
+          <Gift size={40} className="mx-auto mb-4 text-black stroke-[2.5]" />
+          <h2 className="font-serif text-3xl font-black mb-2">Ready For Diwali Celebrations?</h2>
+          <p className="mb-6 font-bold text-stone-900 text-sm">
+            Use code <strong className="font-mono bg-black text-amber-300 px-2 py-0.5 rounded border border-black">DIWALI20</strong> at checkout for flat 20% OFF and free express delivery across India!
+          </p>
+          <Link href="/collections/all" className="inline-block bg-black text-amber-300 px-8 py-4 rounded-xl font-black uppercase tracking-wider text-xs border-2 border-black shadow-[3px_3px_0px_0px_#000] hover:bg-stone-900 transition-all cursor-pointer">
+            Explore Full Festive Collection 🪔
           </Link>
         </div>
 

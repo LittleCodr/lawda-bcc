@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, Clock, Gift, Sparkles, ShieldCheck } from "lucide-react";
+import { Clock, Sparkles, ShieldCheck, Truck } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export default function Marquee() {
@@ -8,7 +8,7 @@ export default function Marquee() {
 
   useEffect(() => {
     const updateTimer = () => {
-      // Countdown to the end of the day
+      // Countdown to midnight
       const now = new Date();
       const endOfDay = new Date();
       endOfDay.setHours(23, 59, 59, 999);
@@ -28,26 +28,40 @@ export default function Marquee() {
     return () => clearInterval(interval);
   }, []);
 
-  const items = Array.from({ length: 6 }).map((_, i) => i);
+  const items = Array.from({ length: 4 }).map((_, i) => i);
 
   return (
-    <div className="w-full overflow-hidden bg-red-600 text-white py-3 border-b border-red-700">
+    <div className="w-full overflow-hidden bg-amber-400 text-black py-2.5 border-y-2 border-black font-black">
       <div className="flex whitespace-nowrap animate-marquee items-center">
         {items.concat(items).map((_, i) => (
           <span
             key={i}
-            className="mx-4 md:mx-8 text-[9px] md:text-[11px] tracking-[0.2em] font-bold uppercase flex items-center gap-2 md:gap-4"
+            className="mx-4 md:mx-8 text-[11px] md:text-xs tracking-[0.15em] uppercase flex items-center gap-3 md:gap-5"
           >
-            <Heart size={14} className="text-yellow-300 fill-yellow-300 shrink-0" />
-            <span>SIBLING LOVE SALE! CODE ILYBEHENA FOR 15% OFF</span>
-            <span className="text-emerald-300 font-black tracking-widest">• CASH ON DELIVERY AVAILABLE</span>
-            <Sparkles size={14} className="text-yellow-300 shrink-0" />
-            <span className="text-yellow-200 font-black tracking-widest">PREMIUM 22K GOLD PLATED</span>
-            <ShieldCheck size={14} className="text-yellow-300 shrink-0" />
-            <span className="text-yellow-200 font-black tracking-widest">ANTI-TARNISH & WATERPROOF</span>
-            <Gift size={14} className="text-yellow-300 shrink-0" />
-            <span className="flex items-center gap-1"><Clock size={14} className="text-yellow-300 shrink-0" />
-            ENDS IN: {timeLeft || "00:00:00"}</span>
+            <span className="text-base">🪔</span>
+            <span className="font-black text-black">
+              DIWALI FESTIVE SALE: CODE <strong className="bg-black text-amber-300 px-2 py-0.5 rounded border border-black shadow-[1px_1px_0px_0px_#000]">DIWALI20</strong> FOR 20% OFF
+            </span>
+            <span className="text-stone-900 font-black">•</span>
+            <span className="flex items-center gap-1.5 font-bold text-stone-950">
+              <Sparkles size={14} className="text-black shrink-0" />
+              50ML EDP BY HARSH BENIWAL (25%+ FRENCH OILS)
+            </span>
+            <span className="text-stone-900 font-black">•</span>
+            <span className="flex items-center gap-1.5 font-bold text-stone-950">
+              <Truck size={14} className="text-black shrink-0" />
+              FREE EXPRESS DELIVERY & COD ACROSS INDIA
+            </span>
+            <span className="text-stone-900 font-black">•</span>
+            <span className="flex items-center gap-1.5 font-bold text-stone-950">
+              <ShieldCheck size={14} className="text-black shrink-0" />
+              100% ORIGINAL & DELUXE FESTIVE PACKAGING
+            </span>
+            <span className="text-stone-900 font-black">•</span>
+            <span className="flex items-center gap-1 text-[11px] bg-black text-amber-300 px-2 py-0.5 rounded font-mono font-bold">
+              <Clock size={12} className="shrink-0" />
+              ENDS IN: {timeLeft || "00:00:00"}
+            </span>
           </span>
         ))}
       </div>

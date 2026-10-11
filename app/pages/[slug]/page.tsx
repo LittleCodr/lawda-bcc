@@ -32,7 +32,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
       content = (
         <>
           <div className="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-10 shadow-sm border border-stone-200">
-            <Image src="/images/products/name-necklace-rakhi-gift-11.jpg" alt="Octopus Everlasting Gifts Craftsmanship" fill className="object-cover" />
+            <Image src="/harsh-beniwal/octopus/perfumes/images/overlord_lifestyle.png" alt="Octopus Everlasting Gifts Craftsmanship" fill className="object-cover" />
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
               <span className="text-white font-serif text-4xl md:text-5xl font-bold tracking-wide">Our Story</span>
             </div>

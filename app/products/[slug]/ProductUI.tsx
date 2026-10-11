@@ -469,20 +469,19 @@ export default function ProductUI({ product }: ProductUIProps) {
             </div>
           )}
 
-          {/* Rakhi Special Promo */}
-          {!isPerfume && isNamePersonalised && productTitleLower.includes('necklace') && product.handle !== 'fairy-name-necklace' && (
-            <div className="bg-[#FFEAEA] border border-[#800020]/20 rounded-xl p-4 mb-6 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-16 h-16 bg-[#800020]/5 rounded-bl-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500"></div>
-              <div className="flex items-start gap-4 relative z-10">
-                <div className="bg-white text-[#800020] p-2 rounded-lg shadow-sm">
-                  <Gift size={24} />
+          {/* Diwali Festive Special Promo */}
+          {(!isPerfume || isNamePersonalised) && product.handle !== 'fairy-name-necklace' && (
+            <div className="bg-amber-100 border-2 border-black rounded-xl p-4 mb-6 relative overflow-hidden shadow-[3px_3px_0px_0px_#000]">
+              <div className="flex items-start gap-3 relative z-10">
+                <div className="bg-amber-400 text-black p-2 rounded-lg border border-black shrink-0">
+                  <Gift size={22} strokeWidth={2.5} />
                 </div>
                 <div>
-                  <h4 className="text-[#800020] font-bold text-sm mb-1 uppercase tracking-widest flex items-center gap-2">
-                    <Sparkles size={14} className="inline-block" /> Rakhi Special
+                  <h4 className="text-black font-black text-xs sm:text-sm mb-1 uppercase tracking-wider flex items-center gap-1.5">
+                    <span>🪔</span> DIWALI FESTIVE SPECIAL • 20% OFF
                   </h4>
-                  <p className="text-[#2d2d2d] text-xs font-medium leading-relaxed">
-                    Brother, use secret code <strong className="font-black text-[#800020] bg-white px-2 py-0.5 rounded border border-[#800020]/20">ILYBEHENA</strong> at checkout to get an extra <strong className="text-[#800020]">15% OFF</strong> on orders above ₹499!
+                  <p className="text-stone-900 text-xs font-semibold leading-relaxed">
+                    Use code <strong className="font-mono bg-black text-amber-300 px-2 py-0.5 rounded border border-black">DIWALI20</strong> at checkout for flat <strong className="text-black">20% OFF</strong> on orders above ₹499!
                   </p>
                 </div>
               </div>
@@ -491,13 +490,13 @@ export default function ProductUI({ product }: ProductUIProps) {
 
 
           {/* Action Buttons */}
-          <div className="flex gap-4 mb-2">
+          <div className="flex gap-3 sm:gap-4 mb-3">
             <button
               onClick={handleAddToCart}
               disabled={isButtonDisabled}
-              className="flex-1 flex items-center justify-center gap-2 bg-[#800020] text-white py-4 px-2 uppercase tracking-widest text-[10px] font-bold rounded-lg hover:bg-[#600018] transition-colors shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 flex items-center justify-center gap-2 bg-[#800020] text-white py-4 px-3 uppercase tracking-wider text-[11px] font-black rounded-xl border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:bg-[#600018] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
-              <ShoppingBag size={16} className="shrink-0" />
+              <ShoppingBag size={16} className="shrink-0 stroke-[2.5]" />
               <span className="text-center leading-tight">
                 {!isAvailable
                   ? "Sold Out"
@@ -511,7 +510,7 @@ export default function ProductUI({ product }: ProductUIProps) {
             <button
               onClick={handleAddToCart}
               disabled={isButtonDisabled}
-              className="flex-1 flex items-center justify-center border border-[#800020] text-[#800020] py-4 px-2 uppercase tracking-widest text-[10px] font-bold rounded-lg hover:bg-[#800020] hover:text-white transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 flex items-center justify-center bg-amber-400 text-black py-4 px-3 uppercase tracking-wider text-[11px] font-black rounded-xl border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:bg-amber-300 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
               <span className="text-center leading-tight">Buy Now</span>
             </button>
@@ -519,20 +518,22 @@ export default function ProductUI({ product }: ProductUIProps) {
 
           {/* Trust Badges */}
           <div className="grid grid-cols-3 gap-2 mt-4">
-             <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-gray-50 p-2 rounded-lg border border-gray-100">
-                <Lock size={16} className="text-[#800020]" />
-                <span className="text-[8px] font-bold uppercase tracking-widest text-gray-600">
-                  {isPerfume ? "100% Original EDP" : "100% Secure Checkout"}
+             <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-white p-2.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_#000]">
+                <Lock size={16} className="text-[#800020] stroke-[2.5]" />
+                <span className="text-[9px] font-black uppercase tracking-wider text-black">
+                  {isPerfume ? "100% Original EDP" : "Secure Checkout"}
                 </span>
              </div>
-             <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-gray-50 p-2 rounded-lg border border-gray-100">
-                <Truck size={16} className="text-[#800020]" />
-                <span className="text-[8px] font-bold uppercase tracking-widest text-gray-600">Fast Dispatch</span>
+             <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-white p-2.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_#000]">
+                <ShieldCheck size={16} className="text-emerald-700 stroke-[2.5]" />
+                <span className="text-[9px] font-black uppercase tracking-wider text-black">
+                  {isPerfume ? "12H+ Longevity" : "Anti-Tarnish"}
+                </span>
              </div>
-             <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-gray-50 p-2 rounded-lg border border-gray-100">
-                <Sparkles size={16} className="text-[#800020]" />
-                <span className="text-[8px] font-bold uppercase tracking-widest text-gray-600">
-                  {isPerfume ? "12+ Hours Sillage" : "Premium Anti-Tarnish"}
+             <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-white p-2.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_#000]">
+                <Truck size={16} className="text-[#800020] stroke-[2.5]" />
+                <span className="text-[9px] font-black uppercase tracking-wider text-black">
+                  Fast Express Pan-India
                 </span>
              </div>
           </div>

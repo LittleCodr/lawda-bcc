@@ -1,8 +1,11 @@
-# Exclude test files and local data
-scratch/
-scripts/
-data/
+# Exclude scratch, scripts and media
+/scratch/
+/scripts/
 *.mp4
+
+# Ensure app data is never ignored
+!lib/data/
+!lib/data/**
 
 # Python and scraper scripts
 *.py

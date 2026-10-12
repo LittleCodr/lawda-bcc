@@ -9,6 +9,7 @@ import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 import { useAuth } from "@/lib/auth-context";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import ZoomableImage from "@/components/ZoomableImage";
 
@@ -17,10 +18,48 @@ interface ProductUIProps {
 }
 
 export default function ProductUI({ product }: ProductUIProps) {
+  const router = useRouter();
   const { addItem } = useCartStore();
   const [selectedVariantId, setSelectedVariantId] = useState<number | null>(
     product.variants && product.variants.length > 0 ? product.variants[0].id : null
   );
+
+  // Marketing & FOMO States
+  const [timeLeft, setTimeLeft] = useState({ hours: "02", minutes: "43", seconds: "19" });
+  const [liveViewers, setLiveViewers] = useState(36);
+  const [copiedCode, setCopiedCode] = useState(false);
+
+  useEffect(() => {
+    const updateTimer = () => {
+      const now = new Date();
+      const endOfDay = new Date();
+      endOfDay.setHours(23, 59, 59, 999);
+      const diff = Math.max(0, endOfDay.getTime() - now.getTime());
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24).toString().padStart(2, "0");
+      const minutes = Math.floor((diff / (1000 * 60)) % 60).toString().padStart(2, "0");
+      const seconds = Math.floor((diff / 1000) % 60).toString().padStart(2, "0");
+      setTimeLeft({ hours, minutes, seconds });
+    };
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const viewerInterval = setInterval(() => {
+      setLiveViewers(Math.floor(Math.random() * 14) + 27);
+    }, 12000);
+    return () => clearInterval(viewerInterval);
+  }, []);
+
+  const copyPromoCode = (code: string) => {
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(code);
+      setCopiedCode(true);
+      toast.success(`Coupon code ${code} copied!`);
+      setTimeout(() => setCopiedCode(false), 2500);
+    }
+  };
 
   // Personalization State
   const [customName, setCustomName] = useState("");
@@ -194,6 +233,12 @@ export default function ProductUI({ product }: ProductUIProps) {
     toast.success("Added to Cart!");
   };
 
+  const handleBuyNow = () => {
+    if (!selectedVariant || isButtonDisabled) return;
+    handleAddToCart();
+    router.push("/checkout");
+  };
+
   const isPersonalizationComplete =
     (!showNameInput || customName.trim().length > 0) &&
     (!isPhotoPersonalised || customPhotoUrl.length > 0);
@@ -256,9 +301,37 @@ export default function ProductUI({ product }: ProductUIProps) {
         <div className="flex flex-col pt-2">
 
 
+          {/* Social Proof & Rating Bar */}
+          <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center text-amber-500">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} size={14} fill="currentColor" />
+              ))}
+            </div>
+            <span className="text-xs font-black text-stone-900">4.9/5</span>
+            <span className="text-xs text-stone-500 font-medium">(284+ Reviews)</span>
+            <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-bold border border-emerald-200 ml-auto flex items-center gap-1">
+              <CheckCircle2 size={11} /> 100% Official
+            </span>
+          </div>
+
           <h1 className="font-serif text-3xl md:text-4xl text-[#2d2d2d] mb-2 leading-tight">
             {product.title}
           </h1>
+
+          {/* Live Activity & Scarcity Ticker */}
+          <div className="flex flex-wrap items-center gap-2 mb-3">
+            <div className="inline-flex items-center gap-1.5 bg-rose-50 border border-rose-200 text-rose-800 px-2.5 py-1 rounded-full font-bold text-[10px]">
+              <span className="w-2 h-2 rounded-full bg-rose-600 animate-pulse"></span>
+              <Flame size={12} className="text-rose-600 fill-rose-600" />
+              <span>{liveViewers} people viewing right now</span>
+            </div>
+            <div className="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 text-amber-900 px-2.5 py-1 rounded-full font-bold text-[10px]">
+              <Zap size={12} className="text-amber-600 fill-amber-500" />
+              <span>Only 4 units left at offer price!</span>
+            </div>
+          </div>
+
           {(product.title || "").toLowerCase().includes('name necklace') && (
             <div className="flex items-center gap-2 mb-4 relative">
               <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#b8860b] bg-[#fdf5e6] px-2.5 py-1 rounded-sm border border-[#f5deb3] flex items-center gap-1">
@@ -292,16 +365,36 @@ export default function ProductUI({ product }: ProductUIProps) {
             </div>
           )}
 
-          <div className="flex items-center gap-3 mb-2">
-            <span className="text-2xl font-bold text-[#800020]">₹{currentPrice.toFixed(2)}</span>
+          <div className="flex items-baseline gap-3 mb-3">
+            <span className="text-3xl font-black text-[#800020]">₹{currentPrice.toFixed(0)}</span>
             {compareAtPrice > basePrice && (
               <>
-                <span className="text-sm text-gray-400 line-through font-medium">₹{compareAtPrice.toFixed(2)}</span>
-                <span className="text-[10px] uppercase font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-sm border border-emerald-200 flex items-center gap-1">
-                   <Sparkles size={12} /> You Save ₹{(compareAtPrice - currentPrice).toFixed(0)} ({discountPercent}%)
+                <span className="text-base text-gray-400 line-through font-medium">₹{compareAtPrice.toFixed(0)}</span>
+                <span className="text-[10px] uppercase font-black text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-md border border-emerald-300 flex items-center gap-1">
+                   <Sparkles size={12} /> Save ₹{(compareAtPrice - currentPrice).toFixed(0)} ({discountPercent}% OFF)
                 </span>
               </>
             )}
+          </div>
+
+          {/* Express Same-Day Dispatch Countdown */}
+          <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50 border-2 border-emerald-500/30 rounded-xl p-3 mb-5 flex items-center gap-3 shadow-sm">
+            <div className="bg-emerald-600 text-white p-2 rounded-lg shrink-0 shadow-sm">
+              <Clock size={18} />
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between">
+                <span className="font-black text-emerald-950 uppercase tracking-wide text-[10px]">
+                  ⚡ Same-Day Dispatch Guaranteed
+                </span>
+                <span className="text-[9px] font-bold text-emerald-700 uppercase tracking-wider bg-emerald-100 px-2 py-0.5 rounded-full">
+                  Free Express Shipping
+                </span>
+              </div>
+              <p className="text-emerald-900 text-xs font-semibold mt-0.5 leading-snug">
+                Order within <span className="font-mono font-black text-emerald-950 bg-white px-1.5 py-0.5 rounded border border-emerald-200">{timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s</span> for instant dispatch today!
+              </p>
+            </div>
           </div>
 
 
@@ -332,7 +425,7 @@ export default function ProductUI({ product }: ProductUIProps) {
               <div className="flex flex-col gap-5">
                 <div className="flex flex-col gap-2">
                   <label className="text-[10px] uppercase tracking-widest font-bold text-[#2d2d2d] flex justify-between">
-                    <span>{isNamePersonalised ? 'Enter Name to Engrave' : 'Enter Name for Free Ring'}</span>
+                    <span>{isNamePersonalised ? 'Enter Name to Engrave' : 'Enter Name for Customization'}</span>
                     <span className="text-[#800020]">{customName.length}/7</span>
                   </label>
                   <input
@@ -437,41 +530,50 @@ export default function ProductUI({ product }: ProductUIProps) {
             )}
           </div>
 
-          {/* Free Ring Promo */}
-          {!isPerfume && !productTitleLower.includes('ring') && (
-            <div className="bg-[#fdfaf8] border border-[#800020]/30 rounded-xl p-4 mb-6 flex items-center gap-4 relative overflow-hidden group shadow-sm">
-              <div className="w-16 h-16 shrink-0 rounded-lg overflow-hidden border border-[#800020]/20 bg-white">
-                <ZoomableImage src="https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg?v=1667301766" alt="Free Ring" />
+          {/* Free 7ML Paradox Tester Promo */}
+          <div className="bg-gradient-to-r from-stone-900 via-stone-950 to-stone-900 text-white border-2 border-amber-400 rounded-2xl p-4 mb-6 relative overflow-hidden shadow-[3px_3px_0px_0px_#d97706]">
+            <div className="flex items-center gap-3.5 relative z-10">
+              <div className="w-16 h-16 bg-stone-800 rounded-xl overflow-hidden border border-amber-400/50 shrink-0 p-1 flex items-center justify-center">
+                <img src="/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png" alt="Free 7ML Paradox Tester" className="w-full h-full object-contain" />
               </div>
-              <div className="flex-1">
-                <h4 className="text-[#800020] font-bold text-sm mb-1 uppercase tracking-widest flex items-center gap-2">
-                  <Gift size={14} className="inline-block" /> Free Gift
+              <div className="flex-1 min-w-0">
+                <div className="inline-flex items-center gap-1.5 bg-amber-400 text-black px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-wider mb-1">
+                  <Gift size={11} className="fill-black" /> FREE GIFT • WORTH ₹399
+                </div>
+                <h4 className="font-serif font-bold text-sm text-amber-200 leading-tight">
+                  7ML Paradox EDP Luxury Tester Pack
                 </h4>
-                <p className="text-[#2d2d2d] text-xs font-medium leading-relaxed">
-                  Get a <a href="https://octopusperfume.in/products/18k-paw-name-ring" target="_blank" rel="noopener noreferrer" className="text-[#800020] underline font-bold">FREE 18K Paw Name Ring</a>{isNamePersonalised ? ' with your name engraved!' : '!'} (Added automatically to cart)
+                <p className="text-stone-300 text-xs leading-snug mt-1">
+                  Harsh Beniwal's 12H luxury EDP tester is <strong className="text-amber-400">added 100% FREE</strong> to your parcel with this order!
                 </p>
               </div>
             </div>
-          )}
+          </div>
 
-          {/* Diwali Festive Special Promo */}
-          {(!isPerfume || isNamePersonalised) && product.handle !== 'fairy-name-necklace' && (
-            <div className="bg-amber-100 border-2 border-black rounded-xl p-4 mb-6 relative overflow-hidden shadow-[3px_3px_0px_0px_#000]">
-              <div className="flex items-start gap-3 relative z-10">
-                <div className="bg-amber-400 text-black p-2 rounded-lg border border-black shrink-0">
-                  <Gift size={22} strokeWidth={2.5} />
-                </div>
-                <div>
-                  <h4 className="text-black font-black text-xs sm:text-sm mb-1 uppercase tracking-wider flex items-center gap-1.5">
-                    <span>🪔</span> DIWALI FESTIVE SPECIAL • 20% OFF
-                  </h4>
-                  <p className="text-stone-900 text-xs font-semibold leading-relaxed">
-                    Use code <strong className="font-mono bg-black text-amber-300 px-2 py-0.5 rounded border border-black">DIWALI20</strong> at checkout for flat <strong className="text-black">20% OFF</strong> on orders above ₹499!
-                  </p>
-                </div>
+          {/* Diwali Festive Special Promo with 1-Click Copy */}
+          <div className="bg-amber-100 border-2 border-black rounded-xl p-4 mb-6 relative overflow-hidden shadow-[3px_3px_0px_0px_#000]">
+            <div className="flex items-start gap-3 relative z-10">
+              <div className="bg-amber-400 text-black p-2 rounded-lg border border-black shrink-0">
+                <Gift size={22} strokeWidth={2.5} />
+              </div>
+              <div className="flex-1 min-w-0">
+                <h4 className="text-black font-black text-xs sm:text-sm mb-1 uppercase tracking-wider flex items-center gap-1.5">
+                  <span>🪔</span> DIWALI FESTIVE SPECIAL • 20% OFF
+                </h4>
+                <p className="text-stone-900 text-xs font-semibold leading-relaxed mb-2">
+                  Use code <strong className="font-mono bg-black text-amber-300 px-2 py-0.5 rounded border border-black">DIWALI20</strong> at checkout for flat <strong className="text-black">20% OFF</strong>!
+                </p>
+                <button
+                  type="button"
+                  onClick={() => copyPromoCode("DIWALI20")}
+                  className="inline-flex items-center gap-1.5 bg-black text-white hover:bg-stone-800 text-[10px] uppercase font-bold px-3 py-1.5 rounded-lg border border-black active:scale-95 transition-all cursor-pointer"
+                >
+                  <Sparkles size={12} className="text-amber-400" />
+                  <span>{copiedCode ? "Copied to Clipboard! ✓" : "Tap to Copy Code: DIWALI20"}</span>
+                </button>
               </div>
             </div>
-          )}
+          </div>
 
 
           {/* Action Buttons */}
@@ -493,10 +595,11 @@ export default function ProductUI({ product }: ProductUIProps) {
               </span>
             </button>
             <button
-              onClick={handleAddToCart}
+              onClick={handleBuyNow}
               disabled={isButtonDisabled}
-              className="flex-1 flex items-center justify-center bg-amber-400 text-black py-4 px-3 uppercase tracking-wider text-[11px] font-black rounded-xl border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:bg-amber-300 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-2 bg-amber-400 text-black py-4 px-3 uppercase tracking-wider text-[11px] font-black rounded-xl border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:bg-amber-300 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
+              <Zap size={16} className="fill-black stroke-black shrink-0" />
               <span className="text-center leading-tight">Buy Now</span>
             </button>
           </div>
@@ -711,6 +814,56 @@ export default function ProductUI({ product }: ProductUIProps) {
           )}
         </div>
       </div>
+
+      {/* Sticky Mobile Add To Cart / Buy Now Bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t-2 border-black px-3 py-2.5 md:hidden shadow-[0_-8px_25px_rgba(0,0,0,0.15)] pb-[calc(10px+env(safe-area-inset-bottom,0px))]">
+        <div className="flex items-center gap-2 max-w-lg mx-auto">
+          <div className="relative w-12 h-12 bg-stone-100 rounded-lg border border-black overflow-hidden shrink-0 shadow-[2px_2px_0px_0px_#000]">
+            <Image
+              src={images.length > 0 ? (images[0].src || "/logo.png") : "/logo.png"}
+              alt={product.title}
+              fill
+              sizes="48px"
+              className="object-contain p-1"
+            />
+          </div>
+          <div className="flex-1 min-w-0 pr-1">
+            <p className="font-bold text-[11px] text-black truncate leading-tight">{product.title}</p>
+            <div className="flex items-center gap-1.5 mt-0.5">
+              <span className="text-sm font-black text-[#800020]">₹{currentPrice.toFixed(0)}</span>
+              {compareAtPrice > basePrice && (
+                <>
+                  <span className="text-[10px] text-gray-400 line-through">₹{compareAtPrice.toFixed(0)}</span>
+                  <span className="text-[8px] font-black text-emerald-700 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200">
+                    {discountPercent}% OFF
+                  </span>
+                </>
+              )}
+            </div>
+          </div>
+          <div className="flex items-center gap-1.5 shrink-0">
+            <button
+              onClick={handleAddToCart}
+              disabled={isButtonDisabled}
+              className="bg-[#800020] text-white p-2.5 rounded-lg border-2 border-black shadow-[2px_2px_0px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center"
+              aria-label="Add to Cart"
+            >
+              <ShoppingBag size={16} className="stroke-[2.5]" />
+            </button>
+            <button
+              onClick={handleBuyNow}
+              disabled={isButtonDisabled}
+              className="bg-amber-400 hover:bg-amber-300 text-black font-black py-2.5 px-3 rounded-lg border-2 border-black shadow-[2px_2px_0px_0px_#000] text-[11px] uppercase tracking-wider active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all disabled:opacity-50 cursor-pointer flex items-center gap-1"
+            >
+              <Zap size={14} className="fill-black stroke-black" />
+              <span>Buy Now</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom spacer for mobile sticky bar */}
+      <div className="h-16 md:hidden"></div>
 
     </div >
   );

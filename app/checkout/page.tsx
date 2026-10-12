@@ -15,21 +15,21 @@ export default function CheckoutPage() {
   const { user, loading: authLoading, loginAnonymously } = useAuth();
   const router = useRouter();
 
-  const freeRings = items
-    .filter((item) => !(item.title || "").toLowerCase().includes("ring"))
-    .map((item) => ({
-      ...item,
-      id: `free-ring-${item.id}`,
-      cartItemId: `free-ring-${item.cartItemId || item.id}`,
-      title: "18K Paw Name Ring",
+  const freeTesterGift = items.length > 0 ? [
+    {
+      id: "free-tester-paradox",
+      cartItemId: "free-tester-paradox",
+      title: "FREE 7ML Paradox EDP Tester Pack",
       price: 0,
-      image: "https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg?v=1667301766",
-      variantTitle: undefined,
+      image: "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+      variantTitle: "Harsh Beniwal 7ML Luxury Pocket Tester (Worth ₹399)",
       isGift: false,
-      isFree: true
-    }));
+      isFree: true,
+      quantity: 1
+    }
+  ] : [];
   
-  const allDisplayItems = [...items, ...freeRings];
+  const allDisplayItems = [...items, ...freeTesterGift];
 
 
   const [loading, setLoading] = useState(false);

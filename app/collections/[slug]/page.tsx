@@ -257,26 +257,24 @@ export default async function CollectionPage(props: {
                 Shop our exclusive Diwali festive special: Handcrafted 22K Gold Plated Name Necklaces starting from just ₹199. Beautifully engraved, waterproof & anti-tarnish custom jewelry.
               </p>
 
-              {/* Free Ring Hero Promo */}
-              <div className="mt-8 bg-gradient-to-r from-[#fff7f0] to-[#fce3ce] border border-[#f5d0b5] rounded-xl relative overflow-hidden p-4 md:p-6 flex flex-col sm:flex-row items-center gap-6 shadow-md max-w-lg">
-                <div className="absolute inset-0 opacity-10 bg-[url('https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg')] bg-cover bg-center mix-blend-multiply pointer-events-none blur-sm grayscale"></div>
-                
-                <div className="relative w-28 h-28 md:w-32 md:h-32 bg-white rounded-lg overflow-hidden border-4 border-white shadow-lg shrink-0 z-10">
-                  <ZoomableImage src="https://cdn.shopify.com/s/files/1/0277/7019/2008/products/fpetnb-127-adjustable-paw-print-and-name-ring-1-1631952212-975255350.jpg?v=1667301766" alt="Free Ring" />
-                  <div className="absolute -bottom-1 -right-1 bg-[#d97706] text-white w-10 h-10 rounded-full flex flex-col items-center justify-center text-center shadow-md font-black leading-none border-2 border-white pointer-events-none transform rotate-12 scale-90">
-                    <span className="text-[6px] uppercase tracking-widest opacity-90">FREE</span>
+              {/* Free 7ML Paradox Perfume Tester Promo */}
+              <div className="mt-8 bg-gradient-to-r from-amber-50 to-stone-100 border border-amber-200 rounded-xl relative overflow-hidden p-4 md:p-6 flex flex-col sm:flex-row items-center gap-6 shadow-md max-w-lg">
+                <div className="relative w-28 h-28 md:w-32 md:h-32 bg-stone-900 rounded-lg overflow-hidden border-2 border-amber-400/40 shadow-lg shrink-0 z-10 flex items-center justify-center p-2">
+                  <img src="/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png" alt="Free 7ML Paradox EDP Tester Pack" className="w-full h-full object-contain" />
+                  <div className="absolute -bottom-1 -right-1 bg-amber-500 text-black w-10 h-10 rounded-full flex flex-col items-center justify-center text-center shadow-md font-black leading-none border-2 border-white pointer-events-none transform rotate-12 scale-90">
+                    <span className="text-[6px] uppercase tracking-widest font-black">FREE</span>
                   </div>
                 </div>
 
                 <div className="relative z-10 flex-1 text-center sm:text-left">
-                  <div className="inline-flex bg-[#f59e0b]/20 text-[#b45309] px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-3 border border-[#fcd34d] items-center gap-1.5 shadow-sm">
-                    <Gift size={12} className="shrink-0" /> FREE GIFT
+                  <div className="inline-flex bg-amber-400 text-black px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-2 border border-black items-center gap-1.5 shadow-sm">
+                    <Gift size={12} className="shrink-0" /> FREE GIFT • WORTH ₹399
                   </div>
-                  <h3 className="font-serif text-xl md:text-2xl mb-2 font-bold text-gray-900 leading-tight">
-                    18K Paw Name Ring
+                  <h3 className="font-serif text-xl md:text-2xl mb-1 font-bold text-gray-900 leading-tight">
+                    7ML Paradox EDP Tester Pack
                   </h3>
-                  <p className="text-gray-800 text-xs font-medium leading-relaxed mb-1">
-                    Value <span className="line-through opacity-70">₹499</span> — Automatically added to your cart with every name necklace!
+                  <p className="text-gray-700 text-xs font-medium leading-relaxed mb-1">
+                    Value <span className="line-through opacity-70">₹399</span> — Harsh Beniwal's iconic 12H luxury EDP tester added automatically to your cart for free!
                   </p>
                 </div>
               </div>

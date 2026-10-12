@@ -1,0 +1,27 @@
+# Exclude test files and local data
+scratch/
+scripts/
+data/
+*.mp4
+
+# Python and scraper scripts
+*.py
+*.mjs
+!eslint.config.mjs
+!postcss.config.mjs
+
+# Root utility, scraper & test scripts
+apply_random_prices2.js
+count-products.mjs
+download_perfumes.py
+modify_prices.js
+rename-deep.js
+rename.js
+test-*.js
+test-*.mjs
+update_store.js
+
+# Local scrape sources not required in Next.js bundle
+harsh-beniwal/octopus/perfumes/images/
+harsh-beniwal/octopus/perfumes/scraper.mjs
+harsh-beniwal/octopus/perfumes/README.md

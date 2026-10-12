@@ -85,7 +85,7 @@ export default function Footer() {
               OCTOPUS PERFUMES BY HARSH BENIWAL
             </p>
             <p className="text-sm text-stone-700 leading-relaxed max-w-sm mb-6 font-medium">
-              India&apos;s official house for high-concentration 50ML Eau De Parfum fragrances formulated by Harsh Beniwal and bespoke festive keepsakes.
+              India&apos;s official house for high-concentration 50ML Eau De Parfum fragrances formulated by Harsh Beniwal. Every order includes a complimentary 7ML Paradox EDP tester pack.
             </p>
 
             {/* Promo Pill Box */}

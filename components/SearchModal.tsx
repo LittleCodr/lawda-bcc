@@ -113,9 +113,7 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="font-serif text-lg text-stone-900 truncate group-hover:text-[#800020] transition-colors mb-0.5">{product.title}</h4>
-                    {(product.title || "").toLowerCase().includes("name necklace") && (
-                      <p className="text-[9px] uppercase tracking-widest text-[#b8860b] font-bold mb-1">22k Gold Plated • Anti Tarnish</p>
-                    )}
+                    <p className="text-[9px] uppercase tracking-widest text-amber-800 font-bold mb-1">25%+ French Oils • 12H Longevity</p>
                     <p className="text-xs font-bold text-[#800020]">₹{product.variants?.[0]?.price || "0"}</p>
                   </div>
                 </Link>
@@ -132,7 +130,7 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
               
               <div className="mt-8 flex flex-wrap justify-center gap-3">
                 <span className="text-xs font-bold text-stone-600 w-full mb-2">Popular Searches:</span>
-                {['Perfumes', 'Overlord', 'Diwali Gifts', 'Name Necklace', 'Bracelet', 'Wallet'].map(term => (
+                {['Perfumes', 'Overlord', 'Paradox', 'Promised', 'Mirage', 'Harsh Beniwal'].map(term => (
                   <button 
                     key={term}
                     onClick={() => setQuery(term)}

@@ -79,7 +79,7 @@ export default function DiwaliPopup() {
         {/* Content Body */}
         <div className="p-6 text-center bg-[#FAF7F2]">
           <p className="text-stone-800 text-xs md:text-sm font-semibold leading-relaxed mb-5">
-            Celebrate the Festival of Lights with timeless keepsakes! Handcrafted 22K gold plated personalized jewelry & luxury Harsh Beniwal perfumes.
+            Celebrate the Festival of Lights with Harsh Beniwal's official luxury fragrances! 100% Original 50ML Eau De Parfums with 25%+ French oils & 12H beast-mode projection. Plus a FREE 7ML Paradox tester with every order!
           </p>
 
           {/* Coupon Card Ticket */}
@@ -106,8 +106,8 @@ export default function DiwaliPopup() {
               <span className="text-emerald-700 font-bold flex items-center gap-1">
                 ✓ Flat 20% OFF on orders above ₹499
               </span>
-              <span className="text-stone-700 flex items-center gap-1">
-                ✓ FREE 18K Paw Ring automatically added
+              <span className="text-amber-800 font-bold flex items-center gap-1">
+                ✓ FREE 7ML Paradox EDP Tester Pack (Worth ₹399)
               </span>
               <span className="text-stone-700 flex items-center gap-1">
                 ✓ FREE Luxury Festive Packaging & Card

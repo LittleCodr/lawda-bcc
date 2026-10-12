@@ -10,62 +10,63 @@ import Marquee from "./Marquee";
 
 const NAV_MENU = [
   { 
-    label: "Harsh Beniwal Perfumes",
+    label: "Harsh Beniwal EDPs",
     href: "/harsh-beniwal/octopus/perfumes",
     badge: "🔥 Flagship",
     subLinks: [
-      { label: "All 50ML EDP Fragrances", href: "/harsh-beniwal/octopus/perfumes" },
+      { label: "All 9 EDP Fragrances (50ML)", href: "/harsh-beniwal/octopus/perfumes" },
       { label: "Overlord (Dior Sauvage DNA)", href: "/products/overlord" },
       { label: "Paradox (Louis Vuitton Les Sables Roses)", href: "/products/paradox" },
+      { label: "Promised (Baccarat Rouge 540 DNA)", href: "/products/promised" },
+      { label: "Outlaw (Tom Ford Ombré Leather DNA)", href: "/products/outlaw" },
+      { label: "Mirage (Louis Vuitton Ombre Nomade)", href: "/products/mirage" },
+      { label: "Somersault (Louis Vuitton Imagination)", href: "/products/somersault" },
       { label: "Rhapsody (Maison Margiela Jazz Club)", href: "/products/rhapsody" },
       { label: "Your Move (Tom Ford Oud Wood)", href: "/products/your-move" },
-      { label: "Somersault (Louis Vuitton Imagination)", href: "/products/somersault" },
-      { label: "Promised (Baccarat Rouge 540)", href: "/products/promised" },
-      { label: "Outlaw (Tom Ford Ombré Leather)", href: "/products/outlaw" },
-      { label: "Mirage (Louis Vuitton Ombre Nomade)", href: "/products/mirage" },
-      { label: "Darling (Dior Miss Dior)", href: "/products/darling-women" }
+      { label: "Darling Women (Miss Dior DNA)", href: "/products/darling-women" }
     ]
   },
   { 
-    label: "Diwali Gift Sets",
-    href: "/collections/all",
-    badge: "🪔 Festive",
+    label: "Fragrance Notes",
+    href: "/harsh-beniwal/octopus/perfumes",
+    badge: "✨ Sillage",
     subLinks: [
-      { label: "Diwali Royal Fragrance Hampers", href: "/harsh-beniwal/octopus/perfumes" },
-      { label: "Bespoke Jewelry Gift Boxes", href: "/collections/all" },
-      { label: "Anniversary & Couple Keepsakes", href: "/collections/anniversary-gifts-for-wife" },
-      { label: "Birthday Surprise Boxes", href: "/collections/birthday-gift-for-girlfriend" },
-      { label: "Luxury Gift Sets Under ₹999", href: "/collections/gifts-under-999" }
+      { label: "Fresh & Citrus (Overlord, Somersault)", href: "/products/overlord" },
+      { label: "Rich Amber & Smoky Oud (Paradox, Mirage)", href: "/products/paradox" },
+      { label: "Warm Spice & Saffron (Promised)", href: "/products/promised" },
+      { label: "Sensual Leather (Outlaw)", href: "/products/outlaw" },
+      { label: "Floral & Elegant (Darling Women)", href: "/products/darling-women" }
     ]
   },
   { 
-    label: "Gifts For Her",
-    href: "/collections/gifts-for-her",
+    label: "Perfumes For Her",
+    href: "/products/darling-women",
     subLinks: [
-      { label: "Custom Name Necklaces", href: "/collections/name-necklaces" },
-      { label: "Personalized Rings & Bracelets", href: "/collections/personalized-gifts-for-women" },
-      { label: "Romantic Anniversary Gifts", href: "/collections/anniversary-gifts-for-wife" },
-      { label: "Darling 50ML EDP Perfume", href: "/products/darling-women" }
+      { label: "Darling 50ML EDP (Floral & Seductive)", href: "/products/darling-women" },
+      { label: "Promised 50ML EDP (Sweet Amber & Jasmine)", href: "/products/promised" },
+      { label: "Paradox 50ML EDP (Luxury Rose & Amber)", href: "/products/paradox" },
+      { label: "Complimentary 7ML Paradox Tester", href: "/products/darling-women" }
     ]
   },
   { 
-    label: "Gifts For Him",
-    href: "/collections/gifts-for-him",
+    label: "Perfumes For Him",
+    href: "/harsh-beniwal/octopus/perfumes",
     subLinks: [
-      { label: "Luxury EDP Fragrances", href: "/harsh-beniwal/octopus/perfumes" },
-      { label: "Engraved Leather Wallets", href: "/collections/personalized-gifts-for-men" },
-      { label: "Custom Stainless Steel Keychains", href: "/collections/custom-keychain" },
-      { label: "Bold Cuff Bracelets", href: "/collections/personalized-gifts-for-men" }
+      { label: "Overlord 50ML EDP (Beast-Mode Sauvage DNA)", href: "/products/overlord" },
+      { label: "Outlaw 50ML EDP (Bold Ombre Leather)", href: "/products/outlaw" },
+      { label: "Your Move 50ML EDP (Smoky Oud Wood)", href: "/products/your-move" },
+      { label: "Mirage 50ML EDP (Desert Ombre Nomade)", href: "/products/mirage" }
     ]
   },
   {
-    label: "Budget",
-    href: "/collections/all",
+    label: "Festive Offers",
+    href: "/harsh-beniwal/octopus/perfumes",
+    badge: "🪔 20% OFF",
     subLinks: [
-      { label: "Gifts Under ₹499", href: "/collections/gifts-under-499" },
-      { label: "Gifts Under ₹999", href: "/collections/gifts-under-999" },
-      { label: "Gifts Under ₹1499", href: "/collections/gifts-under-1499" },
-      { label: "Luxury EDPs (₹1299)", href: "/harsh-beniwal/octopus/perfumes" }
+      { label: "Free 7ML Paradox Tester Pack (₹399 Value)", href: "/harsh-beniwal/octopus/perfumes" },
+      { label: "Single 50ML EDP @ ₹1,299", href: "/harsh-beniwal/octopus/perfumes" },
+      { label: "Code DIWALI20 for Extra 20% OFF", href: "/harsh-beniwal/octopus/perfumes" },
+      { label: "Free Express Pan-India Delivery", href: "/harsh-beniwal/octopus/perfumes" }
     ]
   }
 ];

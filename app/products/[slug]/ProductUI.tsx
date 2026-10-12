@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useCartStore } from "@/lib/store";
 import ProductImageGallery from "@/components/ProductImageGallery";
-import { Gift, ShieldCheck, Truck, Star, Heart, CheckCircle2, ChevronRight, ChevronDown, ShoppingBag, Zap, Clock, Smile, Award, Users, Flame, Sparkles, Gem, Info, Lock } from "lucide-react";
+import { Gift, ShieldCheck, Truck, Star, Heart, CheckCircle2, ChevronRight, ChevronDown, ShoppingBag, Zap, Clock, Smile, Award, Users, Flame, Sparkles, Gem, Lock } from "lucide-react";
 import { logAppEvent, db } from "@/lib/firebase";
 import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 import { useAuth } from "@/lib/auth-context";
@@ -74,7 +74,6 @@ export default function ProductUI({ product }: ProductUIProps) {
   const [isFavourite, setIsFavourite] = useState(false);
   const [isFavLoading, setIsFavLoading] = useState(false);
   const [isDescOpen, setIsDescOpen] = useState(false);
-  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
 
   useEffect(() => {
     if (!user) return;
@@ -332,38 +331,18 @@ export default function ProductUI({ product }: ProductUIProps) {
             </div>
           </div>
 
-          {(product.title || "").toLowerCase().includes('name necklace') && (
-            <div className="flex items-center gap-2 mb-4 relative">
-              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#b8860b] bg-[#fdf5e6] px-2.5 py-1 rounded-sm border border-[#f5deb3] flex items-center gap-1">
-                22k Gold Plated
-                <button onClick={() => setIsInfoModalOpen(true)} className="text-[#b8860b] hover:text-[#800020] transition-colors md:group">
-                   <Info size={12} />
-                   <div className="hidden md:group-hover:block absolute top-full left-0 mt-2 w-72 bg-white border border-[#b8860b]/30 shadow-xl rounded-lg p-4 z-50 normal-case tracking-normal">
-                      <p className="font-serif font-bold text-[#b8860b] mb-1">An Everlasting Keepsake</p>
-                      <p className="text-gray-600 text-xs leading-relaxed mb-2">This isn't just jewelry; it's a memory crafted to last forever. Triple-plated with real 22K Gold and sealed with an advanced anti-tarnish shield, it's designed to be worn daily without losing its shine.</p>
-                      <p className="text-gray-500 text-[10px] italic">Over 15,000+ sisters wear our pieces every day. Give a gift that stays as beautiful as your bond.</p>
-                   </div>
-                </button>
-              </span>
-              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-gray-600 bg-gray-100 px-2.5 py-1 rounded-sm border border-gray-200">
-                Anti Tarnish
-              </span>
-              
-              {/* Mobile Info Modal */}
-              {isInfoModalOpen && (
-                 <div className="md:hidden fixed inset-0 z-[100] flex items-end justify-center bg-black/50" onClick={() => setIsInfoModalOpen(false)}>
-                    <div className="bg-white w-full rounded-t-2xl p-6 border-t border-[#b8860b]/30 shadow-2xl animate-in slide-in-from-bottom" onClick={(e) => e.stopPropagation()}>
-                       <div className="flex justify-between items-center mb-4">
-                          <h3 className="font-serif font-bold text-xl text-[#b8860b]">An Everlasting Keepsake</h3>
-                          <button onClick={() => setIsInfoModalOpen(false)} className="text-gray-400 hover:text-gray-600">✕</button>
-                       </div>
-                       <p className="text-gray-600 text-sm leading-relaxed mb-4 text-justify">This isn't just jewelry; it's a memory crafted to last forever. Triple-plated with real 22K Gold and sealed with an advanced anti-tarnish shield, it's designed to be worn daily without losing its shine.</p>
-                       <p className="text-gray-500 text-xs italic bg-[#fdfaf8] p-3 rounded-lg border border-[#800020]/10">Over 15,000+ sisters wear our pieces every day. Give a gift that stays as beautiful as your bond.</p>
-                    </div>
-                 </div>
-              )}
-            </div>
-          )}
+          {/* Perfume Quality Badges */}
+          <div className="flex flex-wrap items-center gap-2 mb-4">
+            <span className="text-[10px] uppercase tracking-wider font-extrabold text-amber-900 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-300 flex items-center gap-1 shadow-sm">
+              <Sparkles size={12} className="text-amber-600" /> 25%+ French Fragrance Oils
+            </span>
+            <span className="text-[10px] uppercase tracking-wider font-extrabold text-stone-800 bg-stone-100 px-2.5 py-1 rounded-md border border-stone-300">
+              50ML Eau De Parfum
+            </span>
+            <span className="text-[10px] uppercase tracking-wider font-extrabold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-300">
+              12H+ Beast Longevity
+            </span>
+          </div>
 
           <div className="flex items-baseline gap-3 mb-3">
             <span className="text-3xl font-black text-[#800020]">₹{currentPrice.toFixed(0)}</span>
@@ -615,7 +594,7 @@ export default function ProductUI({ product }: ProductUIProps) {
              <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-white p-2.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_#000]">
                 <ShieldCheck size={16} className="text-emerald-700 stroke-[2.5]" />
                 <span className="text-[9px] font-black uppercase tracking-wider text-black">
-                  {isPerfume ? "12H+ Longevity" : "Anti-Tarnish"}
+                  12H+ Longevity
                 </span>
              </div>
              <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-white p-2.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_#000]">
@@ -745,23 +724,26 @@ export default function ProductUI({ product }: ProductUIProps) {
 
       </div>
 
-      {/* Social Proof Section */}
+      {/* Fragrance Lifestyle Proof Section */}
       <div className="mt-16 mb-8 max-w-[1200px] mx-auto">
         <div className="mb-6">
-          <p className="text-[10px] uppercase tracking-widest font-bold text-gray-500 mb-1">REAL GIFTING MOMENTS</p>
-          <h2 className="font-serif text-2xl md:text-3xl text-[#2d2d2d]">2 Lakh+ sisters have <span className="italic">received this gift</span></h2>
+          <p className="text-[10px] uppercase tracking-widest font-bold text-stone-500 mb-1">THE OCTOPUS LUXURY EXPERIENCE</p>
+          <h2 className="font-serif text-2xl md:text-3xl text-[#2d2d2d]">Crafted for presence, <span className="italic">loved by 50,000+ perfume lovers</span></h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4">
           {[
-            "https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Still_2026-03-18_155922_2.8.1.png?v=1774435784&width=300",
-            "https://cdn.shopify.com/s/files/1/0277/7019/2008/files/2_540119ee-180a-4c97-be0b-7471fa4138e2.jpg?v=1774435875&width=300",
-            "https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Name_Necklace_3.jpg?v=1774435972&width=300",
-            "https://cdn.shopify.com/s/files/1/0277/7019/2008/files/6.jpg?v=1774436053&width=300",
-            "https://cdn.shopify.com/s/files/1/0277/7019/2008/files/image_3_59ac7156-ef01-4ccf-8e70-b440a413b90d.png?v=1774436174&width=300",
-            "https://cdn.shopify.com/s/files/1/0277/7019/2008/files/image_4.png?v=1774436221&width=300"
-          ].map((src, index) => (
-            <div key={index} className="aspect-square relative rounded-xl overflow-hidden shadow-sm bg-gray-100">
-              <img src={src} alt={`Customer moment ${index + 1}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+            { src: "/harsh-beniwal/octopus/perfumes/images/overlord_lifestyle.png", title: "Overlord EDP" },
+            { src: "/harsh-beniwal/octopus/perfumes/images/paradox_lifestyle.png", title: "Paradox EDP" },
+            { src: "/harsh-beniwal/octopus/perfumes/images/promised_lifestyle.png", title: "Promised EDP" },
+            { src: "/harsh-beniwal/octopus/perfumes/images/outlaw_lifestyle.png", title: "Outlaw EDP" },
+            { src: "/harsh-beniwal/octopus/perfumes/images/mirage_lifestyle.png", title: "Mirage EDP" },
+            { src: "/harsh-beniwal/octopus/perfumes/images/rhapsody_lifestyle.png", title: "Rhapsody EDP" }
+          ].map((item, index) => (
+            <div key={index} className="aspect-square relative rounded-xl overflow-hidden shadow-sm bg-stone-900 border border-black/10 group">
+              <img src={item.src} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div className="absolute bottom-2 left-2 bg-black/75 backdrop-blur-sm text-amber-300 text-[10px] font-black px-2 py-0.5 rounded border border-amber-500/30">
+                {item.title}
+              </div>
             </div>
           ))}
         </div>
@@ -795,16 +777,24 @@ export default function ProductUI({ product }: ProductUIProps) {
           {activeTab === 'shipping' && (
             <div className="animate-in fade-in duration-300">
               <h4 className="text-sm font-bold text-gray-900 mb-2">Shipping Information</h4>
-              <p className="text-sm text-gray-600 mb-6 text-justify">Free standard shipping on all orders. Personalised items take 3-5 business days to craft before shipping to ensure perfection. Once shipped, domestic delivery takes 2-5 days across India, and international delivery takes up to 7 days.</p>
-              <h4 className="text-sm font-bold text-gray-900 mb-2">Returns Policy</h4>
-              <p className="text-sm text-gray-600 text-justify">Due to the personalized nature of our products, we do not accept returns unless the item is defective or incorrect. Please contact our support team within 48 hours of delivery if there are any issues.</p>
+              <p className="text-sm text-gray-600 mb-6 text-justify">Free express Pan-India shipping on all prepaid orders. Each 50ML Eau De Parfum bottle and free 7ML Paradox tester pack is carefully packaged in our crush-resistant luxury presentation box. Orders placed before 4:00 PM are dispatched on the same day via BlueDart / Delhivery / XpressBees air express.</p>
+              <h4 className="text-sm font-bold text-gray-900 mb-2">Transit Time</h4>
+              <p className="text-sm text-gray-600 text-justify">Metro cities: 2-3 business days. Rest of India: 3-5 business days. You will receive live SMS and WhatsApp tracking updates as soon as your shipment departs our warehouse.</p>
             </div>
           )}
           {activeTab === 'faqs' && (
             <div className="animate-in fade-in duration-300 space-y-4">
               <div>
-                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-1">Is this anti-tarnish?</h4>
-                <p className="text-sm text-gray-600">Yes, our jewelry is made from premium materials and is anti-tarnish and waterproof.</p>
+                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-1">How long does the fragrance last?</h4>
+                <p className="text-sm text-gray-600">Our Eau De Parfums are formulated with 25%+ imported French perfume oil concentration, providing 12+ hours of beast-mode longevity on clothes and 8+ hours on skin with magnetic sillage.</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-1">What is the complimentary 7ML Paradox tester?</h4>
+                <p className="text-sm text-gray-600">Every order comes with a free 7ML Paradox Eau De Parfum discovery tester pack (worth ₹399). It is pocket-friendly, travel-ready, and lets you experience another iconic scent from Harsh Beniwal's collection!</p>
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-1">Are these 100% authentic Harsh Beniwal perfumes?</h4>
+                <p className="text-sm text-gray-600">Yes, this is the official Octopus by Harsh Beniwal store. All perfumes are 100% original, IFRA certified, and dermatologist-tested safe for daily skin application.</p>
               </div>
               <div>
                 <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-1">What payment methods do you accept?</h4>

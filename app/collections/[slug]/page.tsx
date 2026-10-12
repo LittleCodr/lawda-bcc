@@ -225,7 +225,7 @@ export default async function CollectionPage(props: {
       )}
       <div className="bg-[#FDF8F5] min-h-screen">
         {/* Category Banner */}
-        {(slug === 'rakhi-name-necklaces' || slug === 'name-necklaces') ? (
+        {(slug === 'all' || slug.includes('festive') || slug.includes('diwali') || slug.includes('perfume') || slug === 'rakhi-name-necklaces' || slug === 'name-necklaces') ? (
           <div className="bg-[#f3efe9] py-16 px-6 md:px-16 lg:px-24 border-b border-[#E5B8B7]/30 relative overflow-hidden flex flex-col md:flex-row items-center justify-between min-h-[400px] gap-8">
             <div className="absolute right-0 top-0 bottom-0 w-1/2 bg-gradient-to-l from-[#e6dfd3] to-transparent pointer-events-none"></div>
             
@@ -237,24 +237,24 @@ export default async function CollectionPage(props: {
                 <ChevronRight size={12} />
                 <span className="truncate">{formattedTitle}</span>
                 <ChevronRight size={12} />
-                <span className="truncate">Starting from ₹199</span>
+                <span className="truncate">Luxury Perfumes</span>
               </nav>
               <div className="inline-flex items-center gap-1.5 bg-[#FFDE59] text-black border-2 border-black rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-wider mb-4 shadow-[2px_2px_0px_0px_#000]">
                 <span>🪔</span> DIWALI FESTIVE SPECIAL <span>✨</span>
               </div>
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-black mb-2 uppercase tracking-wide font-black leading-tight">
-                PERSONALIZED NAME NECKLACES
+              <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-black mb-2 uppercase tracking-wide font-black leading-tight">
+                {formattedTitle}
               </h1>
               <div className="flex items-center gap-4 mb-4">
                 <div className="h-0.5 w-12 bg-black"></div>
                 <h2 className="text-xl md:text-2xl font-black text-[#800020] uppercase tracking-wider">
-                  STARTING FROM ₹199
+                  OCTOPUS EAU DE PARFUM
                 </h2>
                 <div className="h-0.5 w-12 bg-black"></div>
               </div>
               
               <p className="text-stone-800 max-w-lg text-xs md:text-sm tracking-wide leading-relaxed font-semibold">
-                Shop our exclusive Diwali festive special: Handcrafted 22K Gold Plated Name Necklaces starting from just ₹199. Beautifully engraved, waterproof & anti-tarnish custom jewelry.
+                {description || "Explore 100% original 50ML Eau De Parfum fragrances crafted by Harsh Beniwal. Formulated with 25%+ French fragrance oils, 12H+ longevity, and a complimentary 7ML Paradox tester pack with every order."}
               </p>
 
               {/* Free 7ML Paradox Perfume Tester Promo */}
@@ -283,9 +283,9 @@ export default async function CollectionPage(props: {
             <div className="relative z-10 md:w-1/2 flex justify-center md:justify-end mt-8 md:mt-0 w-full">
               <FeaturedProductCarousel />
               {/* Decorative floating badge */}
-              <div className="absolute -bottom-6 -right-6 md:right-4 bg-[#800020] text-white w-24 h-24 rounded-full flex flex-col items-center justify-center text-center shadow-xl border-4 border-[#f3efe9] rotate-[-15deg] z-20 pointer-events-none">
-                <span className="text-[10px] font-bold uppercase tracking-widest leading-none mb-1">Only</span>
-                <span className="text-xl font-serif leading-none">₹199</span>
+              <div className="absolute -bottom-6 -right-6 md:right-4 bg-amber-400 text-black w-24 h-24 rounded-full flex flex-col items-center justify-center text-center shadow-xl border-4 border-black rotate-[-15deg] z-20 pointer-events-none">
+                <span className="text-[9px] font-black uppercase tracking-widest leading-none mb-1">EDP</span>
+                <span className="text-lg font-serif font-black leading-none">50ML</span>
               </div>
             </div>
           </div>
@@ -319,77 +319,58 @@ export default async function CollectionPage(props: {
             </div>
           </div>
 
-          {(slug === 'rakhi-name-necklaces' || slug === 'name-necklaces') && (
-            <>
-
-              {/* Highlight Sections */}
-              <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {/* Fairy Name Necklace Highlight Section */}
-                <div className="bg-gradient-to-br from-[#fcf0ee] to-[#fae6de] border border-[#f1dacd] rounded-xl relative overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 flex flex-col justify-between h-full group p-8">
-                  {/* Watermark/Background texture */}
-                  <div className="absolute inset-0 opacity-20 bg-[url('https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Fairynamenecklace3.webp')] bg-cover bg-center mix-blend-multiply pointer-events-none blur-sm grayscale"></div>
-                  
-                  <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full mb-6">
-                    <div className="inline-flex bg-[#fedcdc]/80 text-[#a03030] px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-6 shadow-sm items-center gap-1.5 backdrop-blur-sm border border-[#fca5a5]">
-                      <Flame size={12} className="fill-current text-[#dc2626] shrink-0" /> 
-                      <span className="whitespace-nowrap leading-tight">SOLD OVER 2000 PIECES!</span>
-                    </div>
-                    <h2 className="font-serif text-3xl md:text-4xl mb-3 leading-none font-bold text-gray-900 tracking-wide flex gap-2 items-center">
-                      Mega <span className="font-['Dancing_Script'] text-5xl md:text-6xl text-[#d75454] font-normal transform -rotate-2 -translate-y-2">Sale</span>
-                    </h2>
-                    <p className="text-gray-800 mb-6 text-xs md:text-sm font-medium tracking-wide">
-                      Get the exclusive <strong>Fairy Name Necklace</strong>.
-                    </p>
-                  </div>
-                  
-                  <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 z-10">
-                    <Link href="/products/fairy-name-necklace" className="inline-flex items-center justify-center gap-2 bg-[#801b34] text-white px-6 py-3 rounded-md font-black uppercase tracking-widest hover:bg-[#6b162b] transition-colors shadow-lg w-full md:w-auto text-[10px]">
-                      SHOP FOR ₹199 <ChevronRight size={14} />
-                    </Link>
-                    <div className="relative w-48 h-48 md:w-56 md:h-56 bg-white rounded-xl overflow-hidden border-4 border-white shadow-xl shrink-0 group-hover:scale-105 transition-transform duration-500">
-                      <img src="https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Fairynamenecklace3.webp?v=1745910455" alt="Fairy Name Necklace" className="w-full h-full object-cover" />
-                      <div className="absolute top-2 right-2 bg-[#801b34] text-white w-14 h-14 rounded-full flex flex-col items-center justify-center text-center shadow-lg font-black leading-none border-2 border-white">
-                        <span className="text-[8px] uppercase tracking-widest opacity-90 mb-0.5">ONLY</span>
-                        <span className="text-sm">₹199</span>
-                      </div>
-                    </div>
-                  </div>
+          {/* Fragrance Duo Highlight Sections */}
+          <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Overlord Highlight Section */}
+            <div className="bg-stone-900 border-2 border-black rounded-xl relative overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 flex flex-col justify-between h-full group p-8 shadow-[4px_4px_0px_0px_#000]">
+              <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full mb-6">
+                <div className="inline-flex bg-amber-400 text-black px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-6 shadow-sm items-center gap-1.5 border border-black">
+                  <Flame size={12} className="fill-current text-black shrink-0" /> 
+                  <span className="whitespace-nowrap leading-tight">HARSH BENIWAL SIGNATURE PICK</span>
                 </div>
-
-                {/* Ethereal Hollow Necklace Highlight Section */}
-                <div className="bg-gradient-to-br from-[#f6f0fd] to-[#ede1fb] border border-[#e5d0f6] rounded-xl relative overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200 flex flex-col justify-between h-full group p-8">
-                  {/* Watermark/Background texture */}
-                  <div className="absolute inset-0 opacity-20 bg-[url('https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Ethereal_Hollow_Necklace_-_Silver_G.webp')] bg-cover bg-center mix-blend-multiply pointer-events-none blur-sm grayscale"></div>
-                  
-                  <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full mb-6">
-                    <div className="inline-flex bg-[#e8d5f9]/80 text-[#7e3eaf] px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-6 shadow-sm items-center gap-1.5 backdrop-blur-sm border border-[#d8b4fe]">
-                      <Sparkles size={12} className="fill-current text-[#9333ea] shrink-0" /> 
-                      <span className="whitespace-nowrap leading-tight">TRENDING DESIGN!</span>
-                    </div>
-                    <h2 className="font-serif text-3xl md:text-4xl mb-3 leading-none font-bold text-gray-900 tracking-wide flex gap-2 items-center">
-                      Steal <span className="font-['Dancing_Script'] text-5xl md:text-6xl text-[#a855f7] font-normal transform -rotate-2 -translate-y-2">Deal</span>
-                    </h2>
-                    <p className="text-gray-800 mb-6 text-xs md:text-sm font-medium tracking-wide">
-                      Get the elegant <strong>Ethereal Hollow Necklace</strong>.
-                    </p>
-                  </div>
-                  
-                  <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 z-10">
-                    <Link href="/products/ethereal-hollow-necklace" className="inline-flex items-center justify-center gap-2 bg-[#7e3eaf] text-white px-6 py-3 rounded-md font-black uppercase tracking-widest hover:bg-[#6b2c99] transition-colors shadow-lg w-full md:w-auto text-[10px]">
-                      CLAIM FOR ₹99 <ChevronRight size={14} />
-                    </Link>
-                    <div className="relative w-48 h-48 md:w-56 md:h-56 bg-white rounded-xl overflow-hidden border-4 border-white shadow-xl shrink-0 group-hover:scale-105 transition-transform duration-500">
-                      <img src="https://cdn.shopify.com/s/files/1/0277/7019/2008/files/Ethereal_Hollow_Necklace_-_Silver_G.webp?v=1764585187" alt="Ethereal Hollow Necklace" className="w-full h-full object-cover" />
-                      <div className="absolute top-2 right-2 bg-[#7e3eaf] text-white w-14 h-14 rounded-full flex flex-col items-center justify-center text-center shadow-lg font-black leading-none border-2 border-white">
-                        <span className="text-[8px] uppercase tracking-widest opacity-90 mb-0.5">ONLY</span>
-                        <span className="text-sm">₹99</span>
-                      </div>
-                    </div>
-                  </div>
+                <h2 className="font-serif text-3xl md:text-4xl mb-3 leading-none font-black text-white tracking-wide">
+                  Overlord <span className="text-amber-400 font-sans text-xl md:text-2xl font-bold">50ML EDP</span>
+                </h2>
+                <p className="text-stone-300 mb-6 text-xs md:text-sm font-medium tracking-wide">
+                  Dior Sauvage DNA with 25%+ imported French oils. Electrifying citrus, spicy Sichuan pepper, and ambroxan. Includes free 7ML Paradox tester!
+                </p>
+              </div>
+              
+              <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 z-10">
+                <Link href="/products/overlord" className="inline-flex items-center justify-center gap-2 bg-amber-400 text-black px-6 py-3 rounded-lg font-black uppercase tracking-widest hover:bg-amber-300 transition-colors shadow-lg w-full md:w-auto text-[11px] border border-black">
+                  ORDER NOW FOR ₹1,299 <ChevronRight size={14} />
+                </Link>
+                <div className="relative w-44 h-44 md:w-52 md:h-52 bg-stone-950 rounded-xl overflow-hidden border-2 border-stone-700 shadow-xl shrink-0 group-hover:scale-105 transition-transform duration-500 p-2">
+                  <img src="/harsh-beniwal/octopus/perfumes/images/overlord_box.png" alt="Overlord 50ML EDP" className="w-full h-full object-contain" />
                 </div>
               </div>
-            </>
-          )}
+            </div>
+
+            {/* Paradox Highlight Section */}
+            <div className="bg-stone-900 border-2 border-black rounded-xl relative overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200 flex flex-col justify-between h-full group p-8 shadow-[4px_4px_0px_0px_#000]">
+              <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full mb-6">
+                <div className="inline-flex bg-amber-400 text-black px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-6 shadow-sm items-center gap-1.5 border border-black">
+                  <Sparkles size={12} className="fill-current text-black shrink-0" /> 
+                  <span className="whitespace-nowrap leading-tight">MOST VIRAL SCENT 🔥</span>
+                </div>
+                <h2 className="font-serif text-3xl md:text-4xl mb-3 leading-none font-black text-white tracking-wide">
+                  Paradox <span className="text-amber-400 font-sans text-xl md:text-2xl font-bold">50ML EDP</span>
+                </h2>
+                <p className="text-stone-300 mb-6 text-xs md:text-sm font-medium tracking-wide">
+                  LV Les Sables Roses DNA. Centifolia Rose, rare amber, and smoky agarwood oud. Includes free 7ML Paradox tester!
+                </p>
+              </div>
+              
+              <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 z-10">
+                <Link href="/products/paradox" className="inline-flex items-center justify-center gap-2 bg-amber-400 text-black px-6 py-3 rounded-lg font-black uppercase tracking-widest hover:bg-amber-300 transition-colors shadow-lg w-full md:w-auto text-[11px] border border-black">
+                  ORDER NOW FOR ₹1,299 <ChevronRight size={14} />
+                </Link>
+                <div className="relative w-44 h-44 md:w-52 md:h-52 bg-stone-950 rounded-xl overflow-hidden border-2 border-stone-700 shadow-xl shrink-0 group-hover:scale-105 transition-transform duration-500 p-2">
+                  <img src="/harsh-beniwal/octopus/perfumes/images/paradox_box.png" alt="Paradox 50ML EDP" className="w-full h-full object-contain" />
+                </div>
+              </div>
+            </div>
+          </div>
 
           {displayProducts.length > 0 ? (
             <>
@@ -442,9 +423,7 @@ export default async function CollectionPage(props: {
                       <h3 className="font-serif text-sm md:text-lg text-[#2d2d2d] group-hover:text-[#800020] transition-colors leading-tight mb-1 md:mb-2 font-bold line-clamp-2 md:line-clamp-none h-10 md:h-auto">
                         {product.title}
                       </h3>
-                      {(product.title || "").toLowerCase().includes("name necklace") && (
-                        <p className="text-[8px] uppercase tracking-widest text-[#b8860b] font-bold mb-2">22k Gold Plated • Anti Tarnish</p>
-                      )}
+                      <p className="text-[8px] uppercase tracking-widest text-amber-800 font-bold mb-2">25%+ French Oils • 12H Longevity</p>
                       <p className="text-sm font-bold text-[#800020] tracking-wide mb-3 md:mt-auto">
                         ₹{product.variants && product.variants.length > 0 ? product.variants[0].price : "0"}
                       </p>

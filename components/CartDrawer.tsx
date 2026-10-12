@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Minus, Plus, X, Lock, ShieldCheck, Gift, Clock, Gem } from "lucide-react";
+import { Minus, Plus, X, Lock, ShieldCheck, Gift, Clock, Gem, Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useCartStore } from "@/lib/store";
 
@@ -144,8 +144,8 @@ export default function CartDrawer() {
                                 )}
                               </div>
                               
-                              {(item.title || "").toLowerCase().includes("name necklace") && !item.isFree && (
-                                <p className="text-[9px] uppercase tracking-widest text-[#b8860b] font-bold mb-1">22k Gold Plated • Anti Tarnish</p>
+                              {!item.isFree && (
+                                <p className="text-[9px] uppercase tracking-widest text-amber-800 font-bold mb-1">25%+ French Oils • 12H Longevity</p>
                               )}
 
                               {item.variantTitle && (
@@ -249,10 +249,10 @@ export default function CartDrawer() {
                 {/* Trust Badges */}
                 <div className="flex flex-col gap-2 p-3 bg-amber-50 border-2 border-black rounded-xl mb-2 text-[10px] uppercase tracking-wider text-black font-black">
                   <div className="flex items-center gap-2 justify-center text-stone-950">
-                    <Gem size={14} className="stroke-[2.5]" /> 100% Authentic 22K Gold Plated / 50ML EDP
+                    <Sparkles size={14} className="stroke-[2.5] text-amber-600" /> 100% Authentic 50ML EDP • 25%+ French Oils
                   </div>
                   <div className="flex items-center gap-2 justify-center text-emerald-800">
-                    <ShieldCheck size={14} className="stroke-[2.5]" /> Waterproof & Skin Friendly • 12H+ Longevity
+                    <ShieldCheck size={14} className="stroke-[2.5]" /> IFRA Certified Skin Safe • 12H+ Beast-Mode Longevity
                   </div>
                   <div className="flex items-center justify-center gap-4 text-stone-700 mt-1 pt-2 border-t border-black/10">
                     <div className="flex items-center gap-1.5"><Lock size={12} strokeWidth={2.5} /> Secure Checkout</div>

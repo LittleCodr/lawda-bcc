@@ -216,7 +216,7 @@ export default function AccountPage() {
     doc.setFontSize(10);
     doc.setFont("helvetica", "normal");
     doc.setTextColor(secondaryColor[0], secondaryColor[1], secondaryColor[2]);
-    doc.text("Premium Personalized Jewelry", 14, 26);
+    doc.text("Luxury Eau De Parfums by Harsh Beniwal", 14, 26);
     
     // Invoice Title
     doc.setFont("helvetica", "bold");

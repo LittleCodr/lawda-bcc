@@ -419,8 +419,8 @@ export default function CheckoutPage() {
                     </div>
                     <div className="flex-1 flex flex-col justify-center">
                       <p className="font-serif text-lg leading-tight text-stone-900 mb-0.5">{item.title}</p>
-                      {(item.title || "").toLowerCase().includes("name necklace") && !item.isFree && (
-                        <p className="text-[9px] uppercase tracking-widest text-[#b8860b] font-bold mb-1">22k Gold Plated • Anti Tarnish</p>
+                      {!item.isFree && (
+                        <p className="text-[9px] uppercase tracking-widest text-amber-800 font-bold mb-1">25%+ French Oil EDP • 12H Longevity</p>
                       )}
                       {item.variantTitle && (
                         <p className="text-xs text-stone-500">{item.variantTitle}</p>
@@ -466,16 +466,6 @@ export default function CheckoutPage() {
                     <button
                       type="button"
                       onClick={() => {
-                        // Block coupons if Fairy Name Necklace is in cart
-                        const hasFairyNecklace = items.some(item =>
-                          item.id === "9174020817113" || (item.title && item.title.toLowerCase().includes("fairy name necklace"))
-                        );
-
-                        if (hasFairyNecklace) {
-                          setPromoError("Promo codes are not valid on Flash Mega Sale items (Fairy Name Necklace).");
-                          return;
-                        }
-
                         const cleanCode = promoCode.trim().toUpperCase();
                         const valid15 = ["DIWALI15", "FESTIVE15", "OCTOPUS15", "WELCOME15"];
                         const valid20 = ["DIWALI20", "OCTOPUS20"];

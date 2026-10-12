@@ -57,8 +57,8 @@ export async function sendOrderConfirmation(orderId: string, customerName: strin
       <div style="background-color: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.03);">
         <p style="font-size: 18px; color: #333; margin-top: 0;">Hey ${customerName},</p>
         <p style="font-size: 16px; color: #444; line-height: 1.6;">
-          Your beautiful jewelry is confirmed! We are absolutely thrilled to pack this for you. 
-          Our artisans are already preparing your order <strong>#${orderId.slice(0, 8)}</strong> with the utmost care and love.
+          Your luxury perfume order is confirmed! We are absolutely thrilled to pack this for you. 
+          Your 50ML Eau De Parfum and complimentary 7ML Paradox tester pack are being prepared for order <strong>#${orderId.slice(0, 8)}</strong> with the utmost care.
         </p>
         
         <div style="margin: 35px 0; border-top: 2px dashed #f0eaeb;"></div>

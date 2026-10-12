@@ -2,8 +2,8 @@ import Link from "next/link";
 import { ChevronRight, Gift, ArrowRight, Sparkles } from "lucide-react";
 
 export const metadata = {
-  title: "31 Luxury Diwali & Festive Personalized Gift Ideas (2026) | Octopus",
-  description: "Discover the best luxury Diwali gifts, 50ML EDP perfumes by Harsh Beniwal, custom jewelry, and festive hampers under ₹499, ₹999, and ₹1299 with fast delivery across India.",
+  title: "Luxury Diwali & Festive Fragrance Gift Guide (2026) | Octopus Perfumes",
+  description: "Discover why 50ML Eau De Parfums by Harsh Beniwal are 2026's top Diwali luxury gifts. Formulated with 25%+ French fragrance oils with a free 7ML Paradox tester pack.",
 };
 
 export default function FestiveGiftIdeasPage() {
@@ -15,24 +15,24 @@ export default function FestiveGiftIdeasPage() {
           <nav className="flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest text-stone-600 mb-6">
             <Link href="/" className="hover:text-black transition-colors">Home</Link>
             <ChevronRight size={12} />
-            <Link href="/collections/all" className="hover:text-black transition-colors">Gifting Guide</Link>
+            <Link href="/harsh-beniwal/octopus/perfumes" className="hover:text-black transition-colors">Perfumes</Link>
             <ChevronRight size={12} />
-            <span className="text-black font-black truncate">Diwali Festive Gift Ideas</span>
+            <span className="text-black font-black truncate">Diwali Fragrance Guide</span>
           </nav>
           
           <div className="inline-flex items-center gap-2 bg-black text-amber-300 text-[10px] uppercase tracking-widest font-black px-3 py-1 rounded-full mb-6 border border-black shadow-[2px_2px_0px_0px_#000]">
-            <span>🪔 DIWALI FESTIVE EDITION 2026</span>
+            <span>🪔 DIWALI FESTIVE PERFUME GUIDE 2026</span>
           </div>
           <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-black leading-tight mb-6 font-black">
-            31 Luxury Diwali & Festive Gift Ideas That Truly Impress
+            The Ultimate Festive Perfume Gift Guide
           </h1>
           <p className="text-stone-800 text-base md:text-lg font-medium leading-relaxed mb-6">
-            Skip the generic sweet boxes this Diwali. From 50ML Eau De Parfums by Harsh Beniwal to bespoke 22K gold-plated jewelry, here are the most thoughtful festive presents that look like a million bucks.
+            Skip the generic sweet boxes this Diwali. From 50ML Eau De Parfums by Harsh Beniwal to luxury fragrance discovery boxes, here are the most thoughtful festive presents that radiate status, elegance, and 12+ hour sillage.
           </p>
           <div className="flex items-center gap-3 text-xs font-bold text-stone-600">
-            <span>By Octopus Editorial Team</span>
+            <span>By Octopus Perfumery Team</span>
             <span>•</span>
-            <span>Diwali Festive Guide</span>
+            <span>Diwali Luxury Fragrance Guide</span>
           </div>
         </div>
       </div>
@@ -41,10 +41,10 @@ export default function FestiveGiftIdeasPage() {
       <div className="max-w-3xl mx-auto px-6 mt-12 space-y-12 text-stone-900">
         <div className="prose prose-stone max-w-none text-justify">
           <p className="leading-relaxed">
-            The festival of lights is a time for celebration, warmth, and heartfelt gifting. Moving beyond mass-produced items by choosing personalized keepsakes and high-oil Eau De Parfum fragrances leaves an unforgettable impression.
+            The festival of lights is a time for celebration, warmth, and meaningful gifting. High-concentration Eau De Parfum fragrances crafted with imported French oils leave a memorable olfactory signature that lingers long after festivities end.
           </p>
           <p className="leading-relaxed">
-            Whether you are curating gifts for family, loved ones, or corporate colleagues, Octopus offers deluxe festive gift packaging, authentic French formulations, and express pan-India shipping.
+            Whether you are curating gifts for family, loved ones, or colleagues, Octopus Perfumes offers deluxe festive packaging, 25%+ French oil formulations, a complimentary 7ML Paradox tester pack, and express pan-India shipping.
           </p>
         </div>
 
@@ -64,40 +64,41 @@ export default function FestiveGiftIdeasPage() {
           </Link>
         </div>
 
-        {/* Under 499 Section */}
+        {/* Bestseller Fragrance Picks */}
         <div>
           <h2 className="font-serif text-2xl text-black font-black border-b-2 border-black pb-2 mb-6">
-            Bespoke Gifts Under ₹499
+            Festive Bestseller Fragrance Duos
           </h2>
           <ul className="space-y-4">
             <li className="bg-white p-6 rounded-xl border-2 border-black shadow-[3px_3px_0px_0px_#000]">
-              <h3 className="font-black text-lg mb-2">1. Personalized 22K Gold Plated Name Necklace</h3>
-              <p className="text-stone-600 mb-4 text-sm">Our signature bestseller. Waterproof, anti-tarnish, and bespoke with any custom name.</p>
-              <Link href="/collections/name-necklaces" className="text-black font-black text-xs uppercase tracking-wider flex items-center gap-1.5 hover:text-amber-600">
-                Shop Name Necklaces <ArrowRight size={14} />
+              <h3 className="font-black text-lg mb-2">1. Overlord 50ML EDP (Daytime Seduction)</h3>
+              <p className="text-stone-600 mb-4 text-sm">Zesty Calabrian bergamot, spicy Sichuan pepper, and warm ambroxan. The ultimate crowd-pleasing signature fragrance.</p>
+              <Link href="/products/overlord" className="text-black font-black text-xs uppercase tracking-wider flex items-center gap-1.5 hover:text-amber-600">
+                Order Overlord @ ₹1,299 <ArrowRight size={14} />
               </Link>
             </li>
             <li className="bg-white p-6 rounded-xl border-2 border-black shadow-[3px_3px_0px_0px_#000]">
-              <h3 className="font-black text-lg mb-2">2. Custom Laser Engraved Keychain</h3>
-              <p className="text-stone-600 text-sm">Solid stainless steel with initials or auspicious dates. Ideal everyday keepsake.</p>
+              <h3 className="font-black text-lg mb-2">2. Paradox 50ML EDP (Evening Mystery)</h3>
+              <p className="text-stone-600 mb-4 text-sm">Damascena Rose blended with rare agarwood oud and rich amber. Intoxicating and magnetic for celebratory festive evenings.</p>
+              <Link href="/products/paradox" className="text-black font-black text-xs uppercase tracking-wider flex items-center gap-1.5 hover:text-amber-600">
+                Order Paradox @ ₹1,299 <ArrowRight size={14} />
+              </Link>
             </li>
           </ul>
         </div>
 
-        {/* Under 999 Section */}
+        {/* Free Tester Perk */}
         <div>
           <h2 className="font-serif text-2xl text-black font-black border-b-2 border-black pb-2 mb-6">
-            Luxury Gifts Under ₹999
+            Complimentary Festive Gift With Every Order
           </h2>
-          <ul className="space-y-4">
-            <li className="bg-white p-6 rounded-xl border-2 border-black shadow-[3px_3px_0px_0px_#000]">
-              <h3 className="font-black text-lg mb-2">3. Engraved Vegan Leather Wallet</h3>
-              <p className="text-stone-600 mb-4 text-sm">Sophisticated, practical wallet customized with precision laser engraving.</p>
-              <Link href="/collections/gifts-under-999" className="text-black font-black text-xs uppercase tracking-wider flex items-center gap-1.5 hover:text-amber-600">
-                Shop Luxury Gifts Under ₹999 <ArrowRight size={14} />
-              </Link>
-            </li>
-          </ul>
+          <div className="bg-white p-6 rounded-xl border-2 border-black shadow-[3px_3px_0px_0px_#000]">
+            <h3 className="font-black text-lg mb-2">3. Free 7ML Paradox EDP Tester Pack (₹399 Value)</h3>
+            <p className="text-stone-600 mb-4 text-sm">Every order automatically comes with a complimentary 7ML Paradox pocket tester. Perfect for travel, touchups, and gifting.</p>
+            <Link href="/harsh-beniwal/octopus/perfumes" className="text-black font-black text-xs uppercase tracking-wider flex items-center gap-1.5 hover:text-amber-600">
+              Claim Your Free Tester Pack <ArrowRight size={14} />
+            </Link>
+          </div>
         </div>
 
         {/* CTA Banner */}
@@ -107,8 +108,8 @@ export default function FestiveGiftIdeasPage() {
           <p className="mb-6 font-bold text-stone-900 text-sm">
             Use code <strong className="font-mono bg-black text-amber-300 px-2 py-0.5 rounded border border-black">DIWALI20</strong> at checkout for flat 20% OFF and free express delivery across India!
           </p>
-          <Link href="/collections/all" className="inline-block bg-black text-amber-300 px-8 py-4 rounded-xl font-black uppercase tracking-wider text-xs border-2 border-black shadow-[3px_3px_0px_0px_#000] hover:bg-stone-900 transition-all cursor-pointer">
-            Explore Full Festive Collection 🪔
+          <Link href="/harsh-beniwal/octopus/perfumes" className="inline-block bg-black text-amber-300 px-8 py-4 rounded-xl font-black uppercase tracking-wider text-xs border-2 border-black shadow-[3px_3px_0px_0px_#000] hover:bg-stone-900 transition-all cursor-pointer">
+            Explore All 9 Harsh Beniwal EDPs 🪔
           </Link>
         </div>
 

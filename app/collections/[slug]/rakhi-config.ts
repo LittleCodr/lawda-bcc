@@ -5,75 +5,75 @@ export const rakhiConfig: Record<string, {
   faqs: { q: string; a: string }[];
 }> = {
   "festive-gifts": {
-    title: "Diwali & Festive Luxury Gifts 2026",
-    description: "Celebrate Diwali with authentic luxury perfumes by Harsh Beniwal and bespoke personalized jewelry in signature gift boxes with fast Pan-India delivery.",
-    copy: "Diwali is the festival of lights, gratitude, and heartfelt celebrations. This festive season, elevate your gifting beyond mundane sweets by choosing thoughtful, everlasting presents: authentic 50ML Eau De Parfum fragrances crafted by Harsh Beniwal and custom-engraved 22K gold-plated jewelry. Whether you are looking for an opulent signature scent like Overlord or a delicate bespoke name necklace, our collection brings joy that lasts for years. Every order is nestles in our deluxe festive presentation box with express Pan-India shipping.",
+    title: "Diwali & Festive Luxury Fragrance Gifts 2026",
+    description: "Celebrate Diwali with authentic 50ML EDP luxury perfumes by Harsh Beniwal and complimentary 7ML Paradox tester packs in signature gift boxes with fast Pan-India delivery.",
+    copy: "Diwali is the festival of lights, gratitude, and heartfelt celebrations. This festive season, elevate your gifting beyond mundane sweets by choosing thoughtful, everlasting presents: authentic 50ML Eau De Parfum fragrances crafted by Harsh Beniwal with 25%+ French perfume oils. Whether you are looking for an opulent signature scent like Overlord or a mysterious amber oud like Paradox, our collection brings memories that linger for hours. Every order is nestled in our deluxe festive presentation box with express Pan-India shipping and a free 7ML Paradox discovery tester pack.",
     faqs: [
-      { q: "Can I personalize gifts for Diwali?", a: "Yes! You can customize our necklaces, rings, and wallets with names, initials, special dates, or auspicious mantras." },
-      { q: "Do you deliver in time for Diwali celebrations?", a: "Yes, we offer express delivery across India (2-4 days) to all pin codes with 100% secure online prepaid checkout." },
-      { q: "Are deluxe Diwali gift boxes included?", a: "Yes, our luxury gift options include signature packaging, ribbon bow ties, and custom festive greeting cards." },
       { q: "What concentration are the Harsh Beniwal perfumes?", a: "All Harsh Beniwal x Octopus fragrances are concentrated Eau De Parfum (EDP) with 25%+ imported French fragrance oils, delivering 12+ hours longevity." },
-      { q: "Can I send Diwali gifts directly to friends and family?", a: "Absolutely! Simply enter the recipient's shipping address at checkout, and we will deliver it beautifully wrapped directly to their doorstep." }
+      { q: "What is the complimentary gift with Diwali perfume orders?", a: "Every single order includes a free 7ML Paradox Eau De Parfum discovery tester pack (worth ₹399) inside the gift box." },
+      { q: "Do you deliver in time for Diwali celebrations?", a: "Yes, we offer express delivery across India (2-4 days) to all pin codes with 100% secure online prepaid checkout." },
+      { q: "Are deluxe festive gift boxes included?", a: "Yes, all our luxury EDP fragrances come packaged in heavy crush-resistant gift boxes ready for festive presentation." },
+      { q: "Can I send Diwali perfume gifts directly to friends and family?", a: "Absolutely! Simply enter the recipient's shipping address at checkout, and we will deliver it beautifully wrapped directly to their doorstep." }
     ]
   },
   "diwali-gifts": {
-    title: "Diwali Festive Luxury Gifts & Hampers",
-    description: "Celebrate Diwali with premium EDP perfumes by Harsh Beniwal and personalized keepsakes. Use code DIWALI20 for 20% OFF.",
-    copy: "Light up Diwali celebrations with meaningful luxury. From high-projection French Eau De Parfums to timeless anti-tarnish keepsakes, Octopus curates the finest festive presents for family, friends, and colleagues. Enjoy flat 20% OFF with code DIWALI20 and express delivery to every corner of India.",
+    title: "Diwali Festive Luxury Fragrances & Gift Boxes",
+    description: "Celebrate Diwali with premium 50ML EDP perfumes by Harsh Beniwal and free 7ML Paradox tester packs. Use code DIWALI20 for 20% OFF.",
+    copy: "Light up Diwali celebrations with meaningful luxury. From high-projection French Eau De Parfums to elegant presentation sets, Octopus curates the finest festive fragrance gifts for family, friends, and colleagues. Enjoy flat 20% OFF with code DIWALI20 and express delivery to every corner of India.",
     faqs: [
-      { q: "What are the best-selling Diwali gifts this year?", a: "Our Harsh Beniwal 50ML Eau De Parfums (Overlord, Paradox, Promised) and 22K Gold Plated Custom Name Necklaces are this season's top favorites." },
+      { q: "What are the best-selling Diwali perfumes this year?", a: "Our Harsh Beniwal 50ML Eau De Parfums (Overlord - Dior Sauvage DNA, Paradox - LV Les Sables Roses DNA, and Promised - Baccarat Rouge DNA) are this season's top favorites." },
       { q: "What are the payment options for festive orders?", a: "We support 100% secure prepaid checkout via UPI (Google Pay, PhonePe, Paytm), Credit/Debit cards, and Net Banking." },
-      { q: "Is there a festive discount code?", a: "Yes! Use coupon code DIWALI20 at checkout for an extra 20% discount on all orders above ₹499." }
+      { q: "Is there a festive discount code?", a: "Yes! Use coupon code DIWALI20 at checkout for an extra 20% discount on all orders." }
     ]
   },
   "rakhi-gifts": {
-    title: "Evergreen & Festive Luxury Keepsakes",
-    description: "Shop everlasting personalized jewelry, luxury perfumes, and curated gift boxes for all celebrations with express delivery across India.",
-    copy: "Every relationship deserves to be celebrated with meaning and style. Move beyond generic off-the-shelf items with bespoke keepsakes and high-oil EDP fragrances. Crafted with anti-tarnish 22k gold finishes and imported French perfume essences, our pieces are designed to become lifelong memories.",
+    title: "Signature Luxury Perfume Gifts",
+    description: "Shop everlasting 50ML Eau De Parfums by Harsh Beniwal and curated festive fragrance sets with express delivery across India.",
+    copy: "Every relationship deserves to be celebrated with presence and sophistication. Move beyond generic off-the-shelf items with authentic high-oil EDP fragrances. Crafted with imported French perfume essences and 25%+ oil concentration, our scents are designed to become lifelong memories.",
     faqs: [
-      { q: "Can I customize the jewelry pieces?", a: "Yes, each piece is precision-engraved with your custom names, initials, or heartfelt messages." },
+      { q: "How long does each perfume bottle last?", a: "Each 50ML bottle delivers over 750+ luxury sprays, lasting 3 to 6 months of daily wear." },
       { q: "How long does delivery take?", a: "Orders are dispatched via express courier and arrive in 2-4 days across India." }
     ]
   },
   "rakhi-for-him": {
-    title: "Luxury Fragrances & Gifts for Him",
-    description: "Shop premium EDP perfumes by Harsh Beniwal and personalized leather accessories for men.",
-    copy: "Discover masculine luxury designed for impact. From seductive woody and spicy fragrances like Overlord and Your Move to laser-engraved vegan leather wallets, our gifts for him combine rugged elegance and daily utility.",
+    title: "Luxury Fragrances for Him",
+    description: "Shop premium 50ML EDP perfumes by Harsh Beniwal for men with 12H+ beast-mode projection.",
+    copy: "Discover masculine luxury designed for impact. From seductive woody and spicy fragrances like Overlord and Your Move to rugged leather compositions like Outlaw, our perfumes for him combine commanding presence with all-day performance.",
     faqs: [
       { q: "What is the best perfume for men?", a: "Overlord (citrus & amber ambroxan) and Your Move (rich smoky oud wood) are our top-rated fragrances for men." },
-      { q: "Will the wallet engraving fade?", a: "Never. We use high-precision laser engraving that is permanent and wear-resistant." }
+      { q: "Do these perfumes project well in Indian weather?", a: "Yes, specifically formulated with 25%+ oil concentration to withstand heat and humidity with 12+ hours sillage." }
     ]
   },
   "rakhi-gifts-for-sister": {
-    title: "Festive & Milestone Gifts for Her",
-    description: "Personalized anti-tarnish jewelry, name necklaces, and luxury fragrances for women under ₹499 and ₹999.",
-    copy: "Surprise the special woman in your life with fine jewelry crafted for everyday elegance. Anti-tarnish, waterproof, and skin-friendly, our bespoke necklaces and bracelets sparkle with timeless charm.",
+    title: "Luxury Fragrances for Her",
+    description: "Discover seductive floral and amber Eau De Parfums by Harsh Beniwal for women with free 7ML Paradox tester pack.",
+    copy: "Surprise the special woman in your life with fine French perfumery crafted for everyday grace. Hypoallergenic, IFRA-certified skin safe, and beautifully blended, Darling and Promised radiate elegance and charm.",
     faqs: [
-      { q: "Is the jewelry waterproof and anti-tarnish?", a: "Yes, crafted from premium stainless steel with 18k/22k gold plating, safe for daily wear and showers." }
+      { q: "Are these fragrances safe for skin application?", a: "Yes, 100% IFRA certified and dermatologist tested, formulated with high quality French oils safe for daily skin and fabric wear." }
     ]
   },
   "rakhi-gifts-for-brother": {
-    title: "Curated Luxury Gifts for Him",
-    description: "Shop high-projection EDP perfumes, custom bracelets, and engraved wallets for men.",
-    copy: "Celebrate your bond with practical, sophisticated keepsakes that he will carry every day.",
+    title: "Curated Luxury Scents for Him",
+    description: "Shop high-projection 50ML EDP perfumes by Harsh Beniwal for men.",
+    copy: "Celebrate your bond with practical, sophisticated fragrances that command respect everywhere he goes.",
     faqs: [
-      { q: "Can I engrave his initials?", a: "Yes, all our personalized men's accessories allow custom initial or name engraving." }
+      { q: "Which scent is best for daily office and gym wear?", a: "Overlord and Somersault provide fresh, crisp, invigorating notes perfect for daytime wear." }
     ]
   },
   "rakhi-gifts-under-499": {
-    title: "Bespoke Gifts Under ₹499",
-    description: "Affordable luxury: 22K gold plated personalized necklaces and custom keychains under ₹499.",
-    copy: "Meaningful gifting doesn't require a fortune. Discover handcrafted custom jewelry and accessories starting under ₹499.",
+    title: "Discovery Fragrance Specials",
+    description: "Affordable luxury: 7ML Paradox EDP tester packs and festive discovery specials.",
+    copy: "Meaningful fragrance gifting doesn't require a fortune. Discover luxury French perfumery starting with complimentary discovery packs and value sets.",
     faqs: [
-      { q: "Are gifts under ₹499 good quality?", a: "Yes! We use the exact same anti-tarnish materials and precision laser engraving on all our pieces." }
+      { q: "How do I get the free 7ML Paradox tester?", a: "The free 7ML tester pack is automatically added to your cart with any 50ML Eau De Parfum purchase!" }
     ]
   },
   "rakhi-name-necklaces": {
-    title: "Personalized Custom Name Necklaces",
-    description: "Handcrafted 22K gold plated name necklaces. Waterproof, anti-tarnish, and bespoke with fast delivery.",
-    copy: "Our iconic custom name necklace is India's most beloved personalized accessory. Wear your name or the name of someone you cherish in exquisite cursive typography.",
+    title: "Signature Perfume Collection",
+    description: "Handcrafted 50ML Eau De Parfum fragrances by Harsh Beniwal. 25%+ French oils with fast express delivery.",
+    copy: "Our iconic perfume lineup is India's most beloved creator fragrance collaboration. Experience signature aromas that leave an indelible aura.",
     faqs: [
-      { q: "Can any name or language be engraved?", a: "Yes, we support names in English, Hindi, and custom scripts up to 12 characters." }
+      { q: "Can I gift a perfume to someone directly?", a: "Yes, simply enter the recipient's delivery address at checkout with free gift messaging." }
     ]
   }
 };

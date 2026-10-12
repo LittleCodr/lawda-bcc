@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Flame, Hourglass, Star, ShoppingBag, Gem } from "lucide-react";
+import { Flame, Hourglass, Star, ShoppingBag, Gem, Sparkles } from "lucide-react";
 import type { Product } from "@/lib/products";
 import { formatINR } from "@/lib/products";
 import { useCart } from "@/lib/cart-context";
@@ -94,8 +94,8 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
 
       {/* Product Info */}
       <div className="mt-4 px-1 flex flex-col gap-1 pb-1">
-        <p className="text-[9px] tracking-wider uppercase text-[#800020] font-black flex items-center gap-1">
-          <Gem size={11} className="stroke-[2.5]" /> 22K Gold Plated • Anti Tarnish
+        <p className="text-[9px] tracking-wider uppercase text-amber-800 font-black flex items-center gap-1">
+          <Sparkles size={11} className="stroke-[2.5] text-amber-600" /> 25%+ French Oils • 12H Longevity
         </p>
         <div className="flex items-start justify-between gap-2 mt-1">
           <Link href={`/products/${product.slug}`} className="flex-1">

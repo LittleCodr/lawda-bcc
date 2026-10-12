@@ -1,5 +1,4 @@
-import fs from "fs";
-import path from "path";
+
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
@@ -88,22 +87,7 @@ export default async function Home() {
     images: [{ src: "/harsh-beniwal/octopus/perfumes/images/overlord_box.png" }]
   };
 
-  // Optional secondary keepsakes
-  let jewelryProducts: any[] = [];
-  try {
-    const dataPath = path.join(process.cwd(), "lib", "data", "products.json");
-    if (fs.existsSync(dataPath)) {
-      const fileContent = fs.readFileSync(dataPath, "utf-8");
-      const allProducts = JSON.parse(fileContent);
-      jewelryProducts = allProducts.filter((p: any) => {
-        const typeStr = (p.product_type || "").toLowerCase();
-        const vendorStr = (p.vendor || "").toLowerCase();
-        return !typeStr.includes("perfume") && !vendorStr.includes("harsh beniwal");
-      }).slice(0, 4);
-    }
-  } catch (e) {
-    console.error("Error loading secondary products:", e);
-  }
+
 
   // Structured Data Schema for Google Search Dominance
   const organizationSchema = {
@@ -781,73 +765,134 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* 7. Secondary Festive Keepsakes & Jewelry Collection */}
-      {jewelryProducts.length > 0 && (
-        <section className="px-4 sm:px-6 md:px-12 py-16 max-w-[1440px] mx-auto border-t-2 border-black">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      {/* 7. Why Harsh Beniwal's Octopus Perfumes Outperform Section */}
+      <section className="px-4 sm:px-6 md:px-12 py-16 max-w-[1440px] mx-auto border-t-2 border-black">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div>
+            <div className="inline-flex items-center gap-2 bg-yellow-300 text-black px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_0px_#000] mb-3">
+              <span>👑 HARSH BENIWAL FORMULATION STANDARDS</span>
+            </div>
+            <h2 className="font-serif text-3xl sm:text-5xl font-black text-black">
+              Why 25%+ French Oils Outperform Ordinary Perfumes
+            </h2>
+            <p className="text-sm font-semibold text-stone-700 mt-2 max-w-2xl">
+              Commercial perfumes dilute cheap scents in alcohol that evaporate in 2 hours. Every 50ML Octopus Eau De Parfum is handcrafted with imported French essences engineered for all-day sillage in the Indian climate.
+            </p>
+          </div>
+
+          <Link
+            href="/harsh-beniwal/octopus/perfumes"
+            className="flex items-center gap-2 bg-black text-amber-300 px-6 py-3 rounded-xl font-black uppercase tracking-wider text-xs border-2 border-black shadow-[3px_3px_0px_0px_#000] hover:bg-stone-900 transition-all w-fit cursor-pointer"
+          >
+            <span>Explore All 9 EDPs</span>
+            <ArrowRight size={14} />
+          </Link>
+        </div>
+
+        {/* 3 Pillars Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div className="bg-white border-2 border-black rounded-2xl p-6 shadow-[4px_4px_0px_0px_#000] flex flex-col justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 bg-yellow-200 text-black px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_0px_#000] mb-3">
-                <span>✨ BESPOKE GIFT KEEPSAKES</span>
+              <div className="w-12 h-12 bg-amber-100 rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_#000] flex items-center justify-center text-2xl mb-4">
+                ⚗️
               </div>
-              <h2 className="font-serif text-3xl sm:text-5xl font-black text-black">
-                Personalized Keepsakes To Pair With Scents
-              </h2>
-              <p className="text-sm font-semibold text-stone-700 mt-2 max-w-xl">
-                Create the ultimate gift hamper with 22K gold-plated anti-tarnish custom name jewelry.
+              <h3 className="font-serif text-xl font-black text-black mb-2">25%+ French Fragrance Oils</h3>
+              <p className="text-xs text-stone-700 leading-relaxed font-medium mb-4">
+                Imported directly from Grasse, France. The ultra-high oil concentration means zero harsh chemical stinging and a rich, multifaceted drydown that evolves throughout your day.
               </p>
             </div>
-
-            <Link
-              href="/collections/all"
-              className="flex items-center gap-2 bg-white text-black px-6 py-3 rounded-xl font-black uppercase tracking-wider text-xs border-2 border-black shadow-[3px_3px_0px_0px_#000] hover:bg-stone-50 transition-all w-fit cursor-pointer"
-            >
-              <span>Explore All Keepsakes</span>
-              <ArrowRight size={14} />
-            </Link>
+            <div className="bg-amber-50 p-2.5 rounded-lg border border-amber-200 text-[10px] font-bold text-amber-900 uppercase tracking-wider">
+              vs. 8-12% oils in ordinary department store EDTs
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {jewelryProducts.map((product: any) => (
-              <Link 
-                href={`/products/${product.handle}`} 
-                key={product.id}
-                className="group bg-white border-2 border-black rounded-xl overflow-hidden shadow-[4px_4px_0px_0px_#000] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[6px_6px_0px_0px_#000] transition-all flex flex-col"
-              >
-                <div className="relative aspect-square bg-[#FAF7F2] border-b-2 border-black overflow-hidden p-4">
-                  {product.images && product.images.length > 0 ? (
-                    <Image 
-                      src={product.images[0].local_src || product.images[0].localPath || product.images[0].src}
-                      alt={product.title}
-                      fill
-                      unoptimized
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-xs">No Image</div>
-                  )}
-                </div>
+          <div className="bg-white border-2 border-black rounded-2xl p-6 shadow-[4px_4px_0px_0px_#000] flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 bg-emerald-100 rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_#000] flex items-center justify-center text-2xl mb-4">
+                ⏱️
+              </div>
+              <h3 className="font-serif text-xl font-black text-black mb-2">12H+ Beast-Mode Projection</h3>
+              <p className="text-xs text-stone-700 leading-relaxed font-medium mb-4">
+                Specifically formulated to thrive in Indian heat, humidity, and active days. Spray twice on collar and wrists; the magnetic scent trail stays on your garments until washed.
+              </p>
+            </div>
+            <div className="bg-emerald-50 p-2.5 rounded-lg border border-emerald-200 text-[10px] font-bold text-emerald-900 uppercase tracking-wider">
+              Lab-tested 12h fabric & 8h skin projection
+            </div>
+          </div>
 
-                <div className="p-4 flex flex-col flex-1 bg-white">
-                  <h4 className="font-serif text-sm font-black text-black mb-1 line-clamp-1 group-hover:text-amber-700 transition-colors">
-                    {product.title}
-                  </h4>
-                  <p className="text-[10px] font-bold text-amber-800 uppercase tracking-wider mb-2">
-                    22K Gold Plated • Anti-Tarnish
-                  </p>
-                  <div className="mt-auto flex items-center justify-between">
-                    <span className="text-sm font-black text-black">
-                      ₹{product.variants?.[0]?.price || "499"}
-                    </span>
-                    <span className="text-[10px] font-black uppercase bg-amber-100 text-black px-2 py-0.5 rounded border border-black">
-                      Customize
-                    </span>
-                  </div>
-                </div>
+          <div className="bg-white border-2 border-black rounded-2xl p-6 shadow-[4px_4px_0px_0px_#000] flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 bg-rose-100 rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_#000] flex items-center justify-center text-2xl mb-4">
+                🎁
+              </div>
+              <h3 className="font-serif text-xl font-black text-black mb-2">Free 7ML Paradox Tester Pack</h3>
+              <p className="text-xs text-stone-700 leading-relaxed font-medium mb-4">
+                Every bottle includes a complimentary 7ML Paradox EDP mini bottle (worth ₹399). Pocket-sized for travel, clubbing, and on-the-go touchups with zero extra charge.
+              </p>
+            </div>
+            <div className="bg-rose-50 p-2.5 rounded-lg border border-rose-200 text-[10px] font-bold text-rose-900 uppercase tracking-wider">
+              Automatically included with every order
+            </div>
+          </div>
+        </div>
+
+        {/* Harsh's Personal Bestseller Trio */}
+        <div className="bg-stone-900 text-white rounded-2xl p-6 md:p-10 border-2 border-black shadow-[6px_6px_0px_0px_#000]">
+          <div className="text-center max-w-xl mx-auto mb-8">
+            <span className="text-[10px] uppercase tracking-widest font-black text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/30">
+              HARSH BENIWAL&apos;S SIGNATURE PICKS
+            </span>
+            <h3 className="font-serif text-2xl md:text-3xl font-black mt-3 mb-2">
+              The 3 Bestsellers You Need To Experience
+            </h3>
+            <p className="text-xs text-stone-400">
+              Whether you want fresh daytime confidence, mysterious evening romance, or high-status luxury.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="bg-stone-800/80 rounded-xl p-5 border border-stone-700 flex flex-col">
+              <div className="relative aspect-square w-full mb-4 bg-stone-950 rounded-lg overflow-hidden p-4">
+                <Image src="/harsh-beniwal/octopus/perfumes/images/overlord_box.png" alt="Overlord EDP" fill className="object-contain p-2" />
+              </div>
+              <h4 className="font-serif font-black text-lg text-white">Overlord</h4>
+              <p className="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-2">Dior Sauvage DNA • Fresh & Bold</p>
+              <p className="text-xs text-stone-300 mb-4 flex-1">Crisp Calabrian bergamot, Sichuan pepper, and magnetic ambroxan. The ultimate daily compliments puller.</p>
+              <Link href="/products/overlord" className="w-full text-center py-2.5 bg-amber-400 text-black font-black uppercase text-xs rounded-lg hover:bg-amber-300 transition-colors">
+                Order Overlord (₹1,299)
               </Link>
-            ))}
+            </div>
+
+            <div className="bg-stone-800/80 rounded-xl p-5 border border-amber-500/50 shadow-lg flex flex-col relative">
+              <div className="absolute -top-3 right-4 bg-amber-400 text-black text-[9px] font-black uppercase px-2.5 py-0.5 rounded-full border border-black shadow-sm">
+                Most Viral 🔥
+              </div>
+              <div className="relative aspect-square w-full mb-4 bg-stone-950 rounded-lg overflow-hidden p-4">
+                <Image src="/harsh-beniwal/octopus/perfumes/images/paradox_box.png" alt="Paradox EDP" fill className="object-contain p-2" />
+              </div>
+              <h4 className="font-serif font-black text-lg text-white">Paradox</h4>
+              <p className="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-2">LV Les Sables Roses DNA • Amber Oud</p>
+              <p className="text-xs text-stone-300 mb-4 flex-1">Opulent Centifolia rose, smoky oud wood, and warm amber. Seductive, dark, and intoxicating.</p>
+              <Link href="/products/paradox" className="w-full text-center py-2.5 bg-amber-400 text-black font-black uppercase text-xs rounded-lg hover:bg-amber-300 transition-colors">
+                Order Paradox (₹1,299)
+              </Link>
+            </div>
+
+            <div className="bg-stone-800/80 rounded-xl p-5 border border-stone-700 flex flex-col">
+              <div className="relative aspect-square w-full mb-4 bg-stone-950 rounded-lg overflow-hidden p-4">
+                <Image src="/harsh-beniwal/octopus/perfumes/images/promised_box.png" alt="Promised EDP" fill className="object-contain p-2" />
+              </div>
+              <h4 className="font-serif font-black text-lg text-white">Promised</h4>
+              <p className="text-[10px] font-bold text-amber-400 uppercase tracking-wider mb-2">Baccarat Rouge 540 DNA • Sweet Luxury</p>
+              <p className="text-xs text-stone-300 mb-4 flex-1">Golden saffron, Egyptian jasmine, and warm amberwood. Smells like pure wealth and elegance.</p>
+              <Link href="/products/promised" className="w-full text-center py-2.5 bg-amber-400 text-black font-black uppercase text-xs rounded-lg hover:bg-amber-300 transition-colors">
+                Order Promised (₹1,299)
+              </Link>
+            </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* 8. FAQ Accordion Section */}
       <section className="px-4 sm:px-6 md:px-12 py-16 max-w-4xl mx-auto border-t-2 border-black">

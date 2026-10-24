@@ -31,35 +31,35 @@ export default function Marquee() {
   const items = Array.from({ length: 4 }).map((_, i) => i);
 
   return (
-    <div className="w-full overflow-hidden bg-amber-400 text-black py-2.5 border-y-2 border-black font-black">
+    <div className="w-full overflow-hidden bg-gradient-to-r from-amber-400/90 via-amber-300/95 to-yellow-400/90 backdrop-blur-md text-stone-950 py-2.5 border-y border-amber-400/30 font-bold shadow-sm">
       <div className="flex whitespace-nowrap animate-marquee items-center">
         {items.concat(items).map((_, i) => (
           <span
             key={i}
             className="mx-4 md:mx-8 text-[11px] md:text-xs tracking-[0.15em] uppercase flex items-center gap-3 md:gap-5"
           >
-            <span className="text-base">🪔</span>
-            <span className="font-black text-black">
-              DIWALI FESTIVE SALE: CODE <strong className="bg-black text-amber-300 px-2 py-0.5 rounded border border-black shadow-[1px_1px_0px_0px_#000]">DIWALI20</strong> FOR 20% OFF
+            <span className="text-base animate-soft-pulse">🪔</span>
+            <span className="font-extrabold text-stone-950">
+              DIWALI FESTIVE SALE: CODE <strong className="bg-stone-950/90 text-amber-300 px-2.5 py-0.5 rounded-full border border-white/10 shadow-sm backdrop-blur-sm font-mono text-xs">DIWALI20</strong> FOR 20% OFF
             </span>
-            <span className="text-stone-900 font-black">•</span>
-            <span className="flex items-center gap-1.5 font-bold text-stone-950">
-              <Sparkles size={14} className="text-black shrink-0" />
+            <span className="text-stone-700/60 font-black">•</span>
+            <span className="flex items-center gap-1.5 font-semibold text-stone-900">
+              <Sparkles size={14} className="text-amber-800 shrink-0" />
               50ML EDP BY HARSH BENIWAL (25%+ FRENCH OILS)
             </span>
-            <span className="text-stone-900 font-black">•</span>
-            <span className="flex items-center gap-1.5 font-bold text-stone-950">
-              <Truck size={14} className="text-black shrink-0" />
+            <span className="text-stone-700/60 font-black">•</span>
+            <span className="flex items-center gap-1.5 font-semibold text-stone-900">
+              <Truck size={14} className="text-amber-800 shrink-0" />
               FREE PAN-INDIA EXPRESS SHIPPING • 100% PREPAID SECURE
             </span>
-            <span className="text-stone-900 font-black">•</span>
-            <span className="flex items-center gap-1.5 font-bold text-stone-950">
-              <ShieldCheck size={14} className="text-black shrink-0" />
+            <span className="text-stone-700/60 font-black">•</span>
+            <span className="flex items-center gap-1.5 font-semibold text-stone-900">
+              <ShieldCheck size={14} className="text-amber-800 shrink-0" />
               100% ORIGINAL & DELUXE FESTIVE PACKAGING
             </span>
-            <span className="text-stone-900 font-black">•</span>
-            <span className="flex items-center gap-1 text-[11px] bg-black text-amber-300 px-2 py-0.5 rounded font-mono font-bold">
-              <Clock size={12} className="shrink-0" />
+            <span className="text-stone-700/60 font-black">•</span>
+            <span className="flex items-center gap-1 text-[11px] bg-stone-950/90 text-amber-300 px-2.5 py-0.5 rounded-full font-mono font-bold border border-white/10 shadow-sm">
+              <Clock size={12} className="shrink-0 text-amber-400" />
               ENDS IN: {timeLeft || "00:00:00"}
             </span>
           </span>

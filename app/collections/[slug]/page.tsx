@@ -239,41 +239,41 @@ export default async function CollectionPage(props: {
                 <ChevronRight size={12} />
                 <span className="truncate">Luxury Perfumes</span>
               </nav>
-              <div className="inline-flex items-center gap-1.5 bg-[#FFDE59] text-black border-2 border-black rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-wider mb-4 shadow-[2px_2px_0px_0px_#000]">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500/15 to-yellow-500/15 backdrop-blur-md text-amber-800 border border-amber-400/30 rounded-full px-3.5 py-1 text-[10px] font-bold uppercase tracking-wider mb-4 shadow-sm">
                 <span>🪔</span> DIWALI FESTIVE SPECIAL <span>✨</span>
               </div>
-              <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-black mb-2 uppercase tracking-wide font-black leading-tight">
+              <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-stone-950 mb-2 uppercase tracking-wide font-black leading-tight">
                 {formattedTitle}
               </h1>
               <div className="flex items-center gap-4 mb-4">
-                <div className="h-0.5 w-12 bg-black"></div>
-                <h2 className="text-xl md:text-2xl font-black text-[#800020] uppercase tracking-wider">
+                <div className="h-0.5 w-12 bg-amber-400/40 rounded-full"></div>
+                <h2 className="text-xl md:text-2xl font-black text-amber-800 uppercase tracking-wider">
                   OCTOPUS EAU DE PARFUM
                 </h2>
-                <div className="h-0.5 w-12 bg-black"></div>
+                <div className="h-0.5 w-12 bg-amber-400/40 rounded-full"></div>
               </div>
               
-              <p className="text-stone-800 max-w-lg text-xs md:text-sm tracking-wide leading-relaxed font-semibold">
+              <p className="text-stone-700 max-w-lg text-xs md:text-sm tracking-wide leading-relaxed font-medium">
                 {description || "Explore 100% original 50ML Eau De Parfum fragrances crafted by Harsh Beniwal. Formulated with 25%+ French fragrance oils, 12H+ longevity, and a complimentary 7ML Paradox tester pack with every order."}
               </p>
 
               {/* Free 7ML Paradox Perfume Tester Promo */}
-              <div className="mt-8 bg-gradient-to-r from-amber-50 to-stone-100 border border-amber-200 rounded-xl relative overflow-hidden p-4 md:p-6 flex flex-col sm:flex-row items-center gap-6 shadow-md max-w-lg">
-                <div className="relative w-28 h-28 md:w-32 md:h-32 bg-stone-900 rounded-lg overflow-hidden border-2 border-amber-400/40 shadow-lg shrink-0 z-10 flex items-center justify-center p-2">
+              <div className="mt-8 backdrop-blur-2xl bg-gradient-to-r from-white/90 via-amber-50/70 to-yellow-50/40 border border-white/90 rounded-3xl relative overflow-hidden p-5 md:p-6 flex flex-col sm:flex-row items-center gap-6 shadow-xl shadow-amber-500/5 max-w-lg">
+                <div className="relative w-28 h-28 md:w-32 md:h-32 bg-stone-900 rounded-2xl overflow-hidden border border-amber-400/40 shadow-lg shrink-0 z-10 flex items-center justify-center p-2 backdrop-blur-sm">
                   <img src="/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png" alt="Free 7ML Paradox EDP Tester Pack" className="w-full h-full object-contain" />
-                  <div className="absolute -bottom-1 -right-1 bg-amber-500 text-black w-10 h-10 rounded-full flex flex-col items-center justify-center text-center shadow-md font-black leading-none border-2 border-white pointer-events-none transform rotate-12 scale-90">
+                  <div className="absolute -bottom-1 -right-1 bg-gradient-to-r from-amber-500 to-yellow-500 text-stone-950 w-10 h-10 rounded-full flex flex-col items-center justify-center text-center shadow-md font-black leading-none border-2 border-white pointer-events-none transform rotate-12 scale-90">
                     <span className="text-[6px] uppercase tracking-widest font-black">FREE</span>
                   </div>
                 </div>
 
                 <div className="relative z-10 flex-1 text-center sm:text-left">
-                  <div className="inline-flex bg-amber-400 text-black px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-2 border border-black items-center gap-1.5 shadow-sm">
+                  <div className="inline-flex bg-gradient-to-r from-amber-400 to-yellow-400 text-stone-950 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-2 shadow-sm items-center gap-1.5">
                     <Gift size={12} className="shrink-0" /> FREE GIFT • WORTH ₹399
                   </div>
-                  <h3 className="font-serif text-xl md:text-2xl mb-1 font-bold text-gray-900 leading-tight">
+                  <h3 className="font-serif text-xl md:text-2xl mb-1 font-bold text-stone-900 leading-tight">
                     7ML Paradox EDP Tester Pack
                   </h3>
-                  <p className="text-gray-700 text-xs font-medium leading-relaxed mb-1">
+                  <p className="text-stone-600 text-xs font-medium leading-relaxed mb-1">
                     Value <span className="line-through opacity-70">₹399</span> — Harsh Beniwal's iconic 12H luxury EDP tester added automatically to your cart for free!
                   </p>
                 </div>
@@ -283,7 +283,7 @@ export default async function CollectionPage(props: {
             <div className="relative z-10 md:w-1/2 flex justify-center md:justify-end mt-8 md:mt-0 w-full">
               <FeaturedProductCarousel />
               {/* Decorative floating badge */}
-              <div className="absolute -bottom-6 -right-6 md:right-4 bg-amber-400 text-black w-24 h-24 rounded-full flex flex-col items-center justify-center text-center shadow-xl border-4 border-black rotate-[-15deg] z-20 pointer-events-none">
+              <div className="absolute -bottom-6 -right-6 md:right-4 bg-gradient-to-br from-amber-400 via-amber-300 to-yellow-400 text-stone-950 w-24 h-24 rounded-full flex flex-col items-center justify-center text-center shadow-xl shadow-amber-500/25 border-2 border-white/80 rotate-[-15deg] z-20 pointer-events-none">
                 <span className="text-[9px] font-black uppercase tracking-widest leading-none mb-1">EDP</span>
                 <span className="text-lg font-serif font-black leading-none">50ML</span>
               </div>
@@ -309,12 +309,12 @@ export default async function CollectionPage(props: {
 
         <div className="mx-auto max-w-[1440px] px-6 md:px-12 py-16">
           {/* Toolbar */}
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-12 border-b border-[#E5B8B7]/30 pb-4">
-            <p className="text-xs uppercase tracking-widest text-[#2d2d2d] font-bold">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-12 border-b border-amber-900/10 pb-4">
+            <p className="text-xs uppercase tracking-widest text-stone-600 font-bold">
               Showing {displayProducts.length > 0 ? startIndex + 1 : 0} - {Math.min(startIndex + PRODUCTS_PER_PAGE, totalProducts)} of {totalProducts} Products
             </p>
             <div className="flex items-center gap-2 text-xs uppercase tracking-widest font-bold">
-              <label htmlFor="sort" className="text-gray-500">Sort By:</label>
+              <label htmlFor="sort" className="text-stone-500">Sort By:</label>
               <SortSelect slug={slug} queryParam={queryParam || undefined} defaultSort={sortParam} />
             </div>
           </div>
@@ -322,10 +322,10 @@ export default async function CollectionPage(props: {
           {/* Fragrance Duo Highlight Sections */}
           <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Overlord Highlight Section */}
-            <div className="bg-stone-900 border-2 border-black rounded-xl relative overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 delay-100 flex flex-col justify-between h-full group p-8 shadow-[4px_4px_0px_0px_#000]">
+            <div className="backdrop-blur-2xl bg-gradient-to-br from-stone-950 via-stone-900 to-stone-950 border border-stone-800 rounded-3xl relative overflow-hidden flex flex-col justify-between h-full group p-8 shadow-2xl hover:border-amber-400/30 transition-all">
               <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full mb-6">
-                <div className="inline-flex bg-amber-400 text-black px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-6 shadow-sm items-center gap-1.5 border border-black">
-                  <Flame size={12} className="fill-current text-black shrink-0" /> 
+                <div className="inline-flex bg-amber-400/20 text-amber-300 px-3.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest mb-6 border border-amber-400/30 items-center gap-1.5">
+                  <Flame size={12} className="fill-current text-amber-400 shrink-0" /> 
                   <span className="whitespace-nowrap leading-tight">HARSH BENIWAL SIGNATURE PICK</span>
                 </div>
                 <h2 className="font-serif text-3xl md:text-4xl mb-3 leading-none font-black text-white tracking-wide">
@@ -337,20 +337,20 @@ export default async function CollectionPage(props: {
               </div>
               
               <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 z-10">
-                <Link href="/products/overlord" className="inline-flex items-center justify-center gap-2 bg-amber-400 text-black px-6 py-3 rounded-lg font-black uppercase tracking-widest hover:bg-amber-300 transition-colors shadow-lg w-full md:w-auto text-[11px] border border-black">
+                <Link href="/products/overlord" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 px-6 py-3.5 rounded-2xl font-black uppercase tracking-wider hover:scale-[1.02] transition-all shadow-xl shadow-amber-500/20 w-full md:w-auto text-[11px]">
                   ORDER NOW FOR ₹1,299 <ChevronRight size={14} />
                 </Link>
-                <div className="relative w-44 h-44 md:w-52 md:h-52 bg-stone-950 rounded-xl overflow-hidden border-2 border-stone-700 shadow-xl shrink-0 group-hover:scale-105 transition-transform duration-500 p-2">
+                <div className="relative w-44 h-44 md:w-52 md:h-52 bg-stone-950/80 rounded-2xl overflow-hidden border border-white/10 shadow-xl shrink-0 group-hover:scale-105 transition-transform duration-500 p-2">
                   <img src="/harsh-beniwal/octopus/perfumes/images/overlord_box.png" alt="Overlord 50ML EDP" className="w-full h-full object-contain" />
                 </div>
               </div>
             </div>
 
             {/* Paradox Highlight Section */}
-            <div className="bg-stone-900 border-2 border-black rounded-xl relative overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200 flex flex-col justify-between h-full group p-8 shadow-[4px_4px_0px_0px_#000]">
+            <div className="backdrop-blur-2xl bg-gradient-to-br from-stone-950 via-stone-900 to-stone-950 border border-amber-400/40 rounded-3xl relative overflow-hidden flex flex-col justify-between h-full group p-8 shadow-2xl shadow-amber-500/10 hover:border-amber-400/60 transition-all">
               <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full mb-6">
-                <div className="inline-flex bg-amber-400 text-black px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-6 shadow-sm items-center gap-1.5 border border-black">
-                  <Sparkles size={12} className="fill-current text-black shrink-0" /> 
+                <div className="inline-flex bg-gradient-to-r from-amber-500 to-yellow-500 text-stone-950 px-3.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-6 shadow-sm items-center gap-1.5">
+                  <Sparkles size={12} className="fill-stone-950 text-stone-950 shrink-0" /> 
                   <span className="whitespace-nowrap leading-tight">MOST VIRAL SCENT 🔥</span>
                 </div>
                 <h2 className="font-serif text-3xl md:text-4xl mb-3 leading-none font-black text-white tracking-wide">
@@ -362,10 +362,10 @@ export default async function CollectionPage(props: {
               </div>
               
               <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 z-10">
-                <Link href="/products/paradox" className="inline-flex items-center justify-center gap-2 bg-amber-400 text-black px-6 py-3 rounded-lg font-black uppercase tracking-widest hover:bg-amber-300 transition-colors shadow-lg w-full md:w-auto text-[11px] border border-black">
+                <Link href="/products/paradox" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 px-6 py-3.5 rounded-2xl font-black uppercase tracking-wider hover:scale-[1.02] transition-all shadow-xl shadow-amber-500/25 w-full md:w-auto text-[11px]">
                   ORDER NOW FOR ₹1,299 <ChevronRight size={14} />
                 </Link>
-                <div className="relative w-44 h-44 md:w-52 md:h-52 bg-stone-950 rounded-xl overflow-hidden border-2 border-stone-700 shadow-xl shrink-0 group-hover:scale-105 transition-transform duration-500 p-2">
+                <div className="relative w-44 h-44 md:w-52 md:h-52 bg-stone-950/80 rounded-2xl overflow-hidden border border-white/10 shadow-xl shrink-0 group-hover:scale-105 transition-transform duration-500 p-2">
                   <img src="/harsh-beniwal/octopus/perfumes/images/paradox_box.png" alt="Paradox 50ML EDP" className="w-full h-full object-contain" />
                 </div>
               </div>
@@ -519,11 +519,11 @@ export default async function CollectionPage(props: {
               <div>
                 <h2 className="font-serif text-2xl md:text-3xl text-stone-900 mb-6 text-center font-bold">Popular Festive Collections</h2>
                 <div className="flex flex-wrap justify-center gap-3">
-                  <Link href="/collections/diwali-gifts" className="bg-[#FFDE59] text-black border-2 border-black px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">🪔 Diwali Gift Sets</Link>
-                  <Link href="/harsh-beniwal/octopus/perfumes" className="bg-white text-black border-2 border-black px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">🔥 Harsh Beniwal Perfumes</Link>
-                  <Link href="/collections/gifts-for-her" className="bg-white text-black border-2 border-black px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">Gifts for Her</Link>
-                  <Link href="/collections/gifts-for-him" className="bg-white text-black border-2 border-black px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">Gifts for Him</Link>
-                  <Link href="/collections/gifts-under-499" className="bg-white text-black border-2 border-black px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider shadow-[2px_2px_0px_0px_#000] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none transition-all">Gifts Under ₹499</Link>
+                  <Link href="/collections/diwali-gifts" className="backdrop-blur-md bg-gradient-to-r from-amber-400/20 via-yellow-400/20 to-amber-400/20 text-amber-900 border border-amber-400/40 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm hover:scale-105 hover:shadow-md transition-all">🪔 Diwali Gift Sets</Link>
+                  <Link href="/harsh-beniwal/octopus/perfumes" className="backdrop-blur-md bg-white/80 hover:bg-white text-stone-900 border border-white/80 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm hover:scale-105 hover:shadow-md transition-all">🔥 Harsh Beniwal Perfumes</Link>
+                  <Link href="/collections/gifts-for-her" className="backdrop-blur-md bg-white/80 hover:bg-white text-stone-900 border border-white/80 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm hover:scale-105 hover:shadow-md transition-all">Gifts for Her</Link>
+                  <Link href="/collections/gifts-for-him" className="backdrop-blur-md bg-white/80 hover:bg-white text-stone-900 border border-white/80 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm hover:scale-105 hover:shadow-md transition-all">Gifts for Him</Link>
+                  <Link href="/collections/gifts-under-499" className="backdrop-blur-md bg-white/80 hover:bg-white text-stone-900 border border-white/80 px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm hover:scale-105 hover:shadow-md transition-all">Gifts Under ₹499</Link>
                 </div>
               </div>
             </div>

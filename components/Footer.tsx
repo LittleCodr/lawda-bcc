@@ -34,37 +34,37 @@ const SUPPORT_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#FFFDF9] text-black relative overflow-hidden border-t-3 border-black mt-20">
+    <footer className="backdrop-blur-xl bg-white/70 text-stone-900 relative overflow-hidden border-t border-white/60 mt-20 shadow-[0_-10px_30px_rgba(0,0,0,0.03)]">
       
-      {/* Top Neubrutalist Trust Strip */}
-      <div className="border-b-2 border-black bg-amber-200 py-6 px-6">
+      {/* Top Glassmorphic Trust Strip */}
+      <div className="border-b border-amber-300/30 bg-gradient-to-r from-amber-200/50 via-amber-100/50 to-yellow-100/50 backdrop-blur-md py-6 px-6">
         <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center md:text-left">
           <div className="flex items-center justify-center md:justify-start gap-3">
-            <span className="text-xl">🪔</span>
+            <span className="text-xl animate-soft-pulse">🪔</span>
             <div>
-              <p className="text-xs font-black uppercase tracking-wider">Diwali Festive Ready</p>
-              <p className="text-[10px] text-stone-700 font-bold">Signature Gift Hampers</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-stone-900">Diwali Festive Ready</p>
+              <p className="text-[10px] text-stone-600 font-medium">Signature Gift Hampers</p>
             </div>
           </div>
           <div className="flex items-center justify-center md:justify-start gap-3">
-            <Sparkles size={20} className="text-black stroke-[2.5]" />
+            <Sparkles size={20} className="text-amber-600 stroke-[2]" />
             <div>
-              <p className="text-xs font-black uppercase tracking-wider">25%+ French Oils</p>
-              <p className="text-[10px] text-stone-700 font-bold">12+ Hours High Projection</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-stone-900">25%+ French Oils</p>
+              <p className="text-[10px] text-stone-600 font-medium">12+ Hours High Projection</p>
             </div>
           </div>
           <div className="flex items-center justify-center md:justify-start gap-3">
-            <Truck size={20} className="text-black stroke-[2.5]" />
+            <Truck size={20} className="text-amber-600 stroke-[2]" />
             <div>
-              <p className="text-xs font-black uppercase tracking-wider">Pan-India Express</p>
-              <p className="text-[10px] text-stone-700 font-bold">Free Express Shipping</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-stone-900">Pan-India Express</p>
+              <p className="text-[10px] text-stone-600 font-medium">Free Express Shipping</p>
             </div>
           </div>
           <div className="flex items-center justify-center md:justify-start gap-3">
-            <ShieldCheck size={20} className="text-black stroke-[2.5]" />
+            <ShieldCheck size={20} className="text-emerald-700 stroke-[2]" />
             <div>
-              <p className="text-xs font-black uppercase tracking-wider">100% Authentic</p>
-              <p className="text-[10px] text-stone-700 font-bold">Official Harsh Beniwal Collab</p>
+              <p className="text-xs font-bold uppercase tracking-wider text-stone-900">100% Authentic</p>
+              <p className="text-[10px] text-stone-600 font-medium">Official Harsh Beniwal Collab</p>
             </div>
           </div>
         </div>
@@ -76,33 +76,33 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="md:col-span-5 flex flex-col items-start">
             <div className="flex items-center gap-2 mb-4">
-              <h2 className="font-serif text-3xl md:text-4xl tracking-widest uppercase font-black text-black">
+              <h2 className="font-serif text-3xl md:text-4xl tracking-widest uppercase font-black bg-gradient-to-r from-stone-950 via-stone-850 to-amber-950 bg-clip-text text-transparent">
                 OCTOPUS
               </h2>
-              <span className="text-xl">🪔</span>
+              <span className="text-xl animate-soft-pulse">🪔</span>
             </div>
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-800 mb-4">
               OCTOPUS PERFUMES BY HARSH BENIWAL
             </p>
-            <p className="text-sm text-stone-700 leading-relaxed max-w-sm mb-6 font-medium">
+            <p className="text-sm text-stone-600 leading-relaxed max-w-sm mb-6 font-medium">
               India&apos;s official house for high-concentration 50ML Eau De Parfum fragrances formulated by Harsh Beniwal. Every order includes a complimentary 7ML Paradox EDP tester pack.
             </p>
 
-            {/* Promo Pill Box */}
-            <div className="bg-amber-100 border-2 border-black rounded-xl p-3.5 shadow-[3px_3px_0px_0px_#000] w-full max-w-xs">
-              <span className="text-[10px] font-black uppercase tracking-wider text-black block mb-1">
+            {/* Promo Pill Box with Glassmorphism */}
+            <div className="bg-gradient-to-br from-amber-50/90 to-yellow-50/90 backdrop-blur-md border border-amber-200/80 rounded-2xl p-4 shadow-sm w-full max-w-xs">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-amber-900 block mb-1">
                 🪔 Festive Coupon:
               </span>
               <div className="flex items-center justify-between">
-                <span className="font-mono text-base font-black text-black">DIWALI20</span>
-                <span className="text-[10px] bg-black text-amber-300 px-2 py-0.5 rounded font-black">20% OFF</span>
+                <span className="font-mono text-base font-bold text-stone-950">DIWALI20</span>
+                <span className="text-[10px] bg-stone-950 text-amber-300 px-2.5 py-0.5 rounded-full font-bold shadow-sm">20% OFF</span>
               </div>
             </div>
           </div>
 
           {/* Perfumes & Festive */}
           <div className="md:col-span-3">
-            <p className="text-xs tracking-widest uppercase text-black mb-6 font-black border-b-2 border-black pb-2 inline-block">
+            <p className="text-xs tracking-widest uppercase text-stone-900 mb-6 font-bold border-b border-amber-400/50 pb-2 inline-block">
               Fragrances & Gifts
             </p>
             <ul className="space-y-3">
@@ -110,7 +110,7 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-xs font-bold text-stone-800 hover:text-black hover:translate-x-1 transition-all inline-block"
+                    className="text-xs font-medium text-stone-600 hover:text-amber-800 hover:translate-x-1 transition-all inline-block"
                   >
                     • {l.label}
                   </Link>
@@ -121,7 +121,7 @@ export default function Footer() {
 
           {/* Relationships */}
           <div className="md:col-span-2">
-            <p className="text-xs tracking-widest uppercase text-black mb-6 font-black border-b-2 border-black pb-2 inline-block">
+            <p className="text-xs tracking-widest uppercase text-stone-900 mb-6 font-bold border-b border-amber-400/50 pb-2 inline-block">
               Recipients
             </p>
             <ul className="space-y-3">
@@ -129,7 +129,7 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-xs font-bold text-stone-800 hover:text-black hover:translate-x-1 transition-all inline-block"
+                    className="text-xs font-medium text-stone-600 hover:text-amber-800 hover:translate-x-1 transition-all inline-block"
                   >
                     • {l.label}
                   </Link>
@@ -140,7 +140,7 @@ export default function Footer() {
 
           {/* Support */}
           <div className="md:col-span-2">
-            <p className="text-xs tracking-widest uppercase text-black mb-6 font-black border-b-2 border-black pb-2 inline-block">
+            <p className="text-xs tracking-widest uppercase text-stone-900 mb-6 font-bold border-b border-amber-400/50 pb-2 inline-block">
               Support
             </p>
             <ul className="space-y-3">
@@ -160,7 +160,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t-2 border-black flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] font-bold text-stone-700 tracking-wider uppercase">
+        <div className="mt-16 pt-8 border-t border-amber-900/10 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] font-bold text-stone-700 tracking-wider uppercase">
           <span>© {new Date().getFullYear()} OCTOPUS PERFUMES BY HARSH BENIWAL. ALL RIGHTS RESERVED.</span>
           <span className="flex items-center gap-2">
             <span>FREE PAN-INDIA DELIVERY</span>

@@ -393,7 +393,7 @@ export default function CheckoutPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#800020] text-white py-4 text-xs tracking-[0.2em] uppercase font-bold hover:bg-[#600018] transition-colors disabled:opacity-50 mt-4 flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                  className="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 py-4 rounded-2xl text-xs tracking-[0.15em] uppercase font-black shadow-xl shadow-amber-500/25 hover:shadow-amber-500/40 hover:scale-[1.01] transition-all disabled:opacity-50 mt-4 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   {loading ? "Processing..." : (
                     <>
@@ -460,7 +460,7 @@ export default function CheckoutPage() {
                     onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
                     disabled={promoApplied}
                     placeholder="Enter code"
-                    className="w-full border-2 border-black rounded-lg px-4 py-2.5 bg-white focus:outline-none focus:bg-amber-50 transition-colors text-sm font-bold uppercase shadow-[2px_2px_0px_0px_#000]"
+                    className="w-full border border-stone-300 rounded-xl px-4 py-2.5 bg-white/80 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-amber-400/50 focus:border-amber-400 transition-all text-sm font-bold uppercase shadow-sm"
                   />
                   {!promoApplied ? (
                     <button
@@ -481,7 +481,7 @@ export default function CheckoutPage() {
                           setPromoError("Invalid promo code. Use DIWALI15 for 15% OFF or DIWALI20.");
                         }
                       }}
-                      className="bg-black text-amber-300 border-2 border-black rounded-lg px-6 text-xs uppercase tracking-wider font-black shadow-[2px_2px_0px_0px_#f59e0b] hover:bg-stone-900 active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all cursor-pointer"
+                      className="bg-gradient-to-r from-stone-950 to-stone-900 text-amber-300 rounded-xl px-6 text-xs uppercase tracking-wider font-bold shadow-md hover:scale-[1.02] active:scale-95 transition-all cursor-pointer border border-stone-800"
                     >
                       Apply
                     </button>
@@ -492,7 +492,7 @@ export default function CheckoutPage() {
                         setPromoApplied(false);
                         setPromoCode("");
                       }}
-                      className="bg-red-100 text-red-700 border-2 border-black rounded-lg px-6 text-xs uppercase tracking-wider font-black shadow-[2px_2px_0px_0px_#000] hover:bg-red-200 transition-colors cursor-pointer"
+                      className="bg-rose-500/10 text-rose-700 border border-rose-300/60 rounded-xl px-6 text-xs uppercase tracking-wider font-bold shadow-sm hover:bg-rose-500/20 transition-all cursor-pointer"
                     >
                       Remove
                     </button>

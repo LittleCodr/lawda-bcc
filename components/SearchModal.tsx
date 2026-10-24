@@ -56,15 +56,15 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-stone-900/40 backdrop-blur-sm flex justify-center items-start pt-[10vh] px-4 animate-in fade-in duration-200">
-      <div className="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[80vh]">
+    <div className="fixed inset-0 z-50 bg-stone-950/50 backdrop-blur-md flex justify-center items-start pt-[10vh] px-4 animate-in fade-in duration-200">
+      <div className="backdrop-blur-2xl bg-white/90 w-full max-w-2xl rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.15)] border border-white/80 overflow-hidden flex flex-col max-h-[80vh]">
         {/* Search Input Area */}
         <div className="p-4 border-b border-stone-100 flex items-center gap-4 relative">
           <Search size={20} className="text-stone-400 shrink-0" />
           <input
             ref={inputRef}
             type="text"
-            placeholder="Search for everlasting gifts..."
+            placeholder="Search for fragrances, scents, notes..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="flex-1 text-lg font-serif outline-none bg-transparent placeholder:text-stone-300 text-stone-900"
@@ -86,7 +86,7 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
         </div>
 
         {/* Search Results */}
-        <div className="overflow-y-auto flex-1 p-4 bg-stone-50">
+        <div className="overflow-y-auto flex-1 p-4 bg-stone-50/50">
           {loading ? (
             <div className="flex flex-col items-center justify-center py-12 text-[#800020]">
               <Loader2 className="animate-spin mb-4" size={32} />
@@ -100,9 +100,9 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
                   href={`/products/${product.handle}`}
                   key={product.id}
                   onClick={onClose}
-                  className="flex items-center gap-4 p-3 bg-white rounded-xl hover:shadow-md border border-transparent hover:border-[#E5B8B7] transition-all group"
+                  className="flex items-center gap-4 p-3 bg-white/80 backdrop-blur-md rounded-2xl hover:shadow-md border border-white/80 hover:border-amber-300/60 transition-all group"
                 >
-                  <div className="relative w-16 h-16 rounded-md overflow-hidden bg-[#FDF8F5] shrink-0">
+                  <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-[#FDF8F5] shrink-0 border border-stone-100">
                     <Image
                       src={product.images?.[0]?.local_src || product.images?.[0]?.localPath || product.images?.[0]?.src || "/logo.png"}
                       alt={product.title}
@@ -112,9 +112,9 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-serif text-lg text-stone-900 truncate group-hover:text-[#800020] transition-colors mb-0.5">{product.title}</h4>
+                    <h4 className="font-serif text-lg text-stone-900 truncate group-hover:text-amber-800 transition-colors mb-0.5">{product.title}</h4>
                     <p className="text-[9px] uppercase tracking-widest text-amber-800 font-bold mb-1">25%+ French Oils • 12H Longevity</p>
-                    <p className="text-xs font-bold text-[#800020]">₹{product.variants?.[0]?.price || "0"}</p>
+                    <p className="text-xs font-bold text-amber-700">₹{product.variants?.[0]?.price || "0"}</p>
                   </div>
                 </Link>
               ))}
@@ -128,13 +128,13 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
             <div className="text-center py-12">
               <p className="text-sm uppercase tracking-widest font-bold text-stone-400">Start typing to search...</p>
               
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <div className="mt-8 flex flex-wrap justify-center gap-2.5">
                 <span className="text-xs font-bold text-stone-600 w-full mb-2">Popular Searches:</span>
                 {['Perfumes', 'Overlord', 'Paradox', 'Promised', 'Mirage', 'Harsh Beniwal'].map(term => (
                   <button 
                     key={term}
                     onClick={() => setQuery(term)}
-                    className="px-4 py-2 bg-white border-2 border-black rounded-lg text-xs font-black uppercase tracking-wider text-black shadow-[2px_2px_0px_0px_#000] hover:bg-amber-100 hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_0px_#000] active:translate-x-0 active:translate-y-0 active:shadow-none transition-all cursor-pointer"
+                    className="px-4 py-2 bg-white/80 backdrop-blur-md border border-stone-200/80 rounded-full text-xs font-bold uppercase tracking-wider text-stone-800 shadow-sm hover:bg-amber-100 hover:border-amber-300 hover:text-amber-950 hover:shadow-md active:scale-95 transition-all cursor-pointer"
                   >
                     {term}
                   </button>

@@ -43,19 +43,19 @@ export default function CartDrawer() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 320, damping: 34 }}
-            className="fixed right-0 top-0 z-[70] h-full w-full sm:w-[440px] bg-[#FFFDF9] flex flex-col shadow-[8px_0px_0px_0px_#000] border-l-3 border-black"
+            className="fixed right-0 top-0 z-[70] h-full w-full sm:w-[450px] backdrop-blur-2xl bg-white/95 flex flex-col shadow-2xl border-l border-white/60"
           >
-            <div className="flex items-center justify-between px-6 h-[72px] border-b-2 border-black shrink-0 bg-amber-400">
+            <div className="flex items-center justify-between px-6 h-[72px] border-b border-amber-300/40 shrink-0 bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 backdrop-blur-md">
               <div className="flex items-center gap-2">
-                <h2 className="font-serif text-2xl uppercase tracking-wider font-black text-black">Your Cart</h2>
-                <span>🪔</span>
+                <h2 className="font-serif text-2xl uppercase tracking-wider font-extrabold text-stone-950">Your Cart</h2>
+                <span className="animate-soft-pulse">🪔</span>
               </div>
               <button 
                 onClick={closeCart} 
                 aria-label="Close cart" 
-                className="w-9 h-9 bg-white border-2 border-black rounded-lg flex items-center justify-center text-black hover:bg-stone-100 shadow-[2px_2px_0px_0px_#000] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all"
+                className="w-9 h-9 bg-white/90 backdrop-blur-sm border border-stone-200/80 rounded-xl flex items-center justify-center text-stone-900 hover:bg-white shadow-sm active:scale-95 transition-all cursor-pointer"
               >
-                <X size={20} strokeWidth={2.5} />
+                <X size={18} strokeWidth={2.2} />
               </button>
             </div>
 
@@ -241,22 +241,22 @@ export default function CartDrawer() {
                 <Link 
                   href="/checkout" 
                   onClick={closeCart} 
-                  className="block w-full bg-black text-amber-300 py-4 text-center text-xs tracking-wider uppercase font-black rounded-xl border-2 border-black shadow-[3px_3px_0px_0px_#f59e0b] hover:bg-stone-900 active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all mb-4 cursor-pointer"
+                  className="block w-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 py-4 text-center text-xs tracking-wider uppercase font-extrabold rounded-2xl shadow-xl shadow-amber-500/25 hover:shadow-2xl hover:shadow-amber-500/40 hover:scale-[1.01] active:scale-[0.99] transition-all mb-4 cursor-pointer border border-amber-300/60"
                 >
                   Proceed to Checkout 🪔
                 </Link>
 
                 {/* Trust Badges */}
-                <div className="flex flex-col gap-2 p-3 bg-amber-50 border-2 border-black rounded-xl mb-2 text-[10px] uppercase tracking-wider text-black font-black">
+                <div className="flex flex-col gap-2 p-3.5 bg-gradient-to-br from-amber-50/90 to-yellow-50/90 backdrop-blur-md border border-amber-200/80 rounded-2xl mb-2 text-[10px] uppercase tracking-wider text-stone-900 font-bold shadow-sm">
                   <div className="flex items-center gap-2 justify-center text-stone-950">
-                    <Sparkles size={14} className="stroke-[2.5] text-amber-600" /> 100% Authentic 50ML EDP • 25%+ French Oils
+                    <Sparkles size={14} className="stroke-[2.2] text-amber-600" /> 100% Authentic 50ML EDP • 25%+ French Oils
                   </div>
                   <div className="flex items-center gap-2 justify-center text-emerald-800">
-                    <ShieldCheck size={14} className="stroke-[2.5]" /> IFRA Certified Skin Safe • 12H+ Beast-Mode Longevity
+                    <ShieldCheck size={14} className="stroke-[2.2]" /> IFRA Certified Skin Safe • 12H+ Beast-Mode Longevity
                   </div>
-                  <div className="flex items-center justify-center gap-4 text-stone-700 mt-1 pt-2 border-t border-black/10">
-                    <div className="flex items-center gap-1.5"><Lock size={12} strokeWidth={2.5} /> Secure Checkout</div>
-                    <div className="flex items-center gap-1.5 text-black font-black bg-amber-300 px-2 py-0.5 rounded border border-black">
+                  <div className="flex items-center justify-center gap-4 text-stone-700 mt-1 pt-2 border-t border-amber-200/60">
+                    <div className="flex items-center gap-1.5"><Lock size={12} strokeWidth={2.2} /> Secure Checkout</div>
+                    <div className="flex items-center gap-1.5 text-amber-950 font-bold bg-amber-200/80 px-2.5 py-0.5 rounded-full border border-amber-300/80">
                       100% Secure Prepaid (UPI/Cards)
                     </div>
                   </div>

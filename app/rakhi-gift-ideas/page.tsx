@@ -20,10 +20,10 @@ export default function FestiveGiftIdeasPage() {
             <span className="text-black font-black truncate">Diwali Fragrance Guide</span>
           </nav>
           
-          <div className="inline-flex items-center gap-2 bg-black text-amber-300 text-[10px] uppercase tracking-widest font-black px-3 py-1 rounded-full mb-6 border border-black shadow-[2px_2px_0px_0px_#000]">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500/15 to-yellow-500/15 backdrop-blur-md text-amber-800 text-[10px] uppercase tracking-widest font-bold px-3.5 py-1.5 rounded-full mb-6 border border-amber-400/30 shadow-sm">
             <span>🪔 DIWALI FESTIVE PERFUME GUIDE 2026</span>
           </div>
-          <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-black leading-tight mb-6 font-black">
+          <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl text-stone-950 leading-tight mb-6 font-black tracking-tight">
             The Ultimate Festive Perfume Gift Guide
           </h1>
           <p className="text-stone-800 text-base md:text-lg font-medium leading-relaxed mb-6">
@@ -49,16 +49,16 @@ export default function FestiveGiftIdeasPage() {
         </div>
 
         {/* Perfumes Highlight Section */}
-        <div className="border-2 border-black rounded-xl p-6 bg-amber-50 shadow-[4px_4px_0px_0px_#000]">
-          <h2 className="font-serif text-2xl text-black font-black pb-2 mb-4 flex items-center gap-2">
+        <div className="backdrop-blur-2xl bg-gradient-to-br from-amber-400/20 via-white/80 to-amber-100/30 border border-amber-400/40 rounded-3xl p-6 sm:p-8 shadow-xl shadow-amber-500/5">
+          <h2 className="font-serif text-2xl text-stone-950 font-black pb-2 mb-4 flex items-center gap-2">
             <span>👑</span> Flagship Pick: Harsh Beniwal 50ML EDP Perfumes
           </h2>
-          <p className="text-stone-700 mb-4 text-sm leading-relaxed">
+          <p className="text-stone-700 mb-6 text-sm leading-relaxed">
             Crafted with 25%+ imported French perfume oil concentration, these luxury fragrances provide 12+ hours of long-lasting sillage. Featured scents include Overlord (Dior Sauvage inspired), Paradox (Louis Vuitton Les Sables Roses inspired), and Promised (Baccarat Rouge 540 inspired).
           </p>
           <Link 
             href="/harsh-beniwal/octopus/perfumes" 
-            className="inline-flex items-center gap-2 bg-black text-amber-300 px-6 py-3 rounded-lg text-xs font-black uppercase tracking-wider border-2 border-black shadow-[2px_2px_0px_0px_#000] hover:bg-stone-900 transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 text-amber-300 px-6 py-3.5 rounded-2xl text-xs font-bold uppercase tracking-wider shadow-lg shadow-black/15 hover:scale-105 transition-all cursor-pointer border border-stone-800"
           >
             Explore All 9 Fragrances <ArrowRight size={14} />
           </Link>
@@ -66,21 +66,21 @@ export default function FestiveGiftIdeasPage() {
 
         {/* Bestseller Fragrance Picks */}
         <div>
-          <h2 className="font-serif text-2xl text-black font-black border-b-2 border-black pb-2 mb-6">
+          <h2 className="font-serif text-2xl text-stone-900 font-bold border-b border-amber-900/10 pb-2 mb-6">
             Festive Bestseller Fragrance Duos
           </h2>
           <ul className="space-y-4">
-            <li className="bg-white p-6 rounded-xl border-2 border-black shadow-[3px_3px_0px_0px_#000]">
-              <h3 className="font-black text-lg mb-2">1. Overlord 50ML EDP (Daytime Seduction)</h3>
-              <p className="text-stone-600 mb-4 text-sm">Zesty Calabrian bergamot, spicy Sichuan pepper, and warm ambroxan. The ultimate crowd-pleasing signature fragrance.</p>
-              <Link href="/products/overlord" className="text-black font-black text-xs uppercase tracking-wider flex items-center gap-1.5 hover:text-amber-600">
+            <li className="backdrop-blur-xl bg-white/80 p-6 sm:p-7 rounded-3xl border border-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <h3 className="font-bold text-lg mb-2 text-stone-900">1. Overlord 50ML EDP (Daytime Seduction)</h3>
+              <p className="text-stone-600 mb-4 text-sm leading-relaxed">Zesty Calabrian bergamot, spicy Sichuan pepper, and warm ambroxan. The ultimate crowd-pleasing signature fragrance.</p>
+              <Link href="/products/overlord" className="text-amber-800 font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 hover:text-amber-600 transition-colors">
                 Order Overlord @ ₹1,299 <ArrowRight size={14} />
               </Link>
             </li>
-            <li className="bg-white p-6 rounded-xl border-2 border-black shadow-[3px_3px_0px_0px_#000]">
-              <h3 className="font-black text-lg mb-2">2. Paradox 50ML EDP (Evening Mystery)</h3>
-              <p className="text-stone-600 mb-4 text-sm">Damascena Rose blended with rare agarwood oud and rich amber. Intoxicating and magnetic for celebratory festive evenings.</p>
-              <Link href="/products/paradox" className="text-black font-black text-xs uppercase tracking-wider flex items-center gap-1.5 hover:text-amber-600">
+            <li className="backdrop-blur-xl bg-white/80 p-6 sm:p-7 rounded-3xl border border-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <h3 className="font-bold text-lg mb-2 text-stone-900">2. Paradox 50ML EDP (Evening Mystery)</h3>
+              <p className="text-stone-600 mb-4 text-sm leading-relaxed">Damascena Rose blended with rare agarwood oud and rich amber. Intoxicating and magnetic for celebratory festive evenings.</p>
+              <Link href="/products/paradox" className="text-amber-800 font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 hover:text-amber-600 transition-colors">
                 Order Paradox @ ₹1,299 <ArrowRight size={14} />
               </Link>
             </li>
@@ -89,26 +89,26 @@ export default function FestiveGiftIdeasPage() {
 
         {/* Free Tester Perk */}
         <div>
-          <h2 className="font-serif text-2xl text-black font-black border-b-2 border-black pb-2 mb-6">
+          <h2 className="font-serif text-2xl text-stone-900 font-bold border-b border-amber-900/10 pb-2 mb-6">
             Complimentary Festive Gift With Every Order
           </h2>
-          <div className="bg-white p-6 rounded-xl border-2 border-black shadow-[3px_3px_0px_0px_#000]">
-            <h3 className="font-black text-lg mb-2">3. Free 7ML Paradox EDP Tester Pack (₹399 Value)</h3>
-            <p className="text-stone-600 mb-4 text-sm">Every order automatically comes with a complimentary 7ML Paradox pocket tester. Perfect for travel, touchups, and gifting.</p>
-            <Link href="/harsh-beniwal/octopus/perfumes" className="text-black font-black text-xs uppercase tracking-wider flex items-center gap-1.5 hover:text-amber-600">
+          <div className="backdrop-blur-xl bg-white/80 p-6 sm:p-7 rounded-3xl border border-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <h3 className="font-bold text-lg mb-2 text-stone-900">3. Free 7ML Paradox EDP Tester Pack (₹399 Value)</h3>
+            <p className="text-stone-600 mb-4 text-sm leading-relaxed">Every order automatically comes with a complimentary 7ML Paradox pocket tester. Perfect for travel, touchups, and gifting.</p>
+            <Link href="/harsh-beniwal/octopus/perfumes" className="text-amber-800 font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 hover:text-amber-600 transition-colors">
               Claim Your Free Tester Pack <ArrowRight size={14} />
             </Link>
           </div>
         </div>
 
         {/* CTA Banner */}
-        <div className="bg-amber-400 border-3 border-black p-8 rounded-2xl text-black text-center shadow-[6px_6px_0px_0px_#000]">
-          <Gift size={40} className="mx-auto mb-4 text-black stroke-[2.5]" />
-          <h2 className="font-serif text-3xl font-black mb-2">Ready For Diwali Celebrations?</h2>
-          <p className="mb-6 font-bold text-stone-900 text-sm">
-            Use code <strong className="font-mono bg-black text-amber-300 px-2 py-0.5 rounded border border-black">DIWALI20</strong> at checkout for flat 20% OFF and free express delivery across India!
+        <div className="backdrop-blur-2xl bg-gradient-to-br from-amber-400/30 via-amber-300/40 to-yellow-400/30 border border-amber-400/60 p-8 sm:p-12 rounded-3xl text-stone-950 text-center shadow-2xl shadow-amber-500/20 relative overflow-hidden">
+          <Gift size={40} className="mx-auto mb-4 text-amber-800 stroke-[2.2]" />
+          <h2 className="font-serif text-3xl font-black mb-2 tracking-tight">Ready For Diwali Celebrations?</h2>
+          <p className="mb-6 font-medium text-stone-800 text-sm">
+            Use code <strong className="font-mono bg-stone-900 text-amber-300 px-2.5 py-1 rounded-lg border border-stone-800 shadow-sm">DIWALI20</strong> at checkout for flat 20% OFF and free express delivery across India!
           </p>
-          <Link href="/harsh-beniwal/octopus/perfumes" className="inline-block bg-black text-amber-300 px-8 py-4 rounded-xl font-black uppercase tracking-wider text-xs border-2 border-black shadow-[3px_3px_0px_0px_#000] hover:bg-stone-900 transition-all cursor-pointer">
+          <Link href="/harsh-beniwal/octopus/perfumes" className="inline-block bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 text-amber-300 px-8 py-4 rounded-2xl font-bold uppercase tracking-wider text-xs shadow-xl shadow-black/25 hover:scale-105 transition-all cursor-pointer border border-stone-800">
             Explore All 9 Harsh Beniwal EDPs 🪔
           </Link>
         </div>

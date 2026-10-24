@@ -7,14 +7,21 @@ import scrapedPerfumes from "@/harsh-beniwal/octopus/perfumes/scraped_products.j
 const PAGE_URL = "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes";
 
 export const metadata: Metadata = {
-  title: "Harsh Beniwal Octopus Perfumes | 100% Original 50ML EDP Collection",
+  title: "Buy Octopus Perfume by Harsh Beniwal | Official Website India (50ML EDP)",
   description:
-    "Explore the official Octopus Perfumes collection curated by Harsh Beniwal. 50ML Eau De Parfum luxury formulations inspired by Sauvage, Baccarat Rouge 540, Ombre Nomade, Imagination & more. Free express delivery in India.",
+    "Buy 100% original Octopus perfume by Harsh Beniwal on the official website. Check Octopus perfumes price & Harsh Beniwal perfume price (₹1,299). 25%+ French oils, 12H+ longevity, verified reviews & free shipping in India.",
   keywords: [
+    "Harsh Beniwal perfume",
+    "Octopus perfume",
+    "Octopus perfume by Harsh Beniwal",
+    "Buy Octopus perfume",
+    "Octopus perfume official website",
+    "Octopus perfumes price",
+    "Octopus perfume review",
+    "Harsh Beniwal perfume price",
+    "Octopus perfume India",
+    "BuyOctopus",
     "harsh beniwal octopus perfumes",
-    "harsh beniwal perfume",
-    "octopus perfumes",
-    "octopus perfume by harsh beniwal",
     "overlord perfume",
     "promised perfume harsh beniwal",
     "somersault perfume",
@@ -127,6 +134,38 @@ export default function HarshBeniwalPerfumesPage() {
     "mainEntity": [
       {
         "@type": "Question",
+        "name": "Where can I buy Octopus perfume online?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can buy Octopus perfume directly on the Octopus perfume official website (https://www.octopusperfume.in / BuyOctopus). Buying through the official website guarantees genuine 50ML EDP bottles crafted by Harsh Beniwal, a free 7ML Paradox tester pack, and free express shipping across India."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the Octopus perfumes price and Harsh Beniwal perfume price?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The official Octopus perfumes price is ₹1,299 for a 50ML Eau De Parfum (discounted from MRP ₹2,099). You can also apply coupon code OCTOPUS20 for flat 20% OFF. This brings Harsh Beniwal perfume price down to an unbeatable value for 25%+ French oil concentration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What do customer reviews say about Octopus perfume by Harsh Beniwal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Verified Octopus perfume reviews give the brand 4.9/5 stars. Customers across India commend its beast-mode 12+ hour longevity, skin-safe IFRA certified French oils, and presentation quality matching ₹15,000+ luxury niche fragrances."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this the Octopus perfume official website?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, https://www.octopusperfume.in (BuyOctopus) is the only official website for authentic Octopus Perfumes created in collaboration with Harsh Beniwal."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "What is Harsh Beniwal's association with Octopus Perfumes?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -135,34 +174,10 @@ export default function HarshBeniwalPerfumesPage() {
       },
       {
         "@type": "Question",
-        "name": "What is the concentration and oil percentage of these perfumes?",
+        "name": "How fast is Octopus perfume India shipping?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "All Octopus Perfumes are formulated as Eau De Parfum (EDP) with 25%+ high fragrance oil concentration, providing 12+ hours of consistent projection and refined sillage."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What luxury fragrances are these perfumes inspired by?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The collection includes accords inspired by the world's most sought-after niche fragrances: Overlord (Sauvage), Promised (Baccarat Rouge 540), Somersault (Louis Vuitton Imagination), Mirage (Louis Vuitton Ombre Nomade), Outlaw (Tom Ford Ombre Leather), Your Move (Tom Ford Oud Wood), Rhapsody (Maison Margiela Jazz Club), Paradox (LV Les Sables Roses), and Darling (Miss Dior)."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are Octopus Perfumes safe on sensitive skin?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. All formulations are IFRA compliant, dermatologically tested, non-irritating, cruelty-free, and blended with premium imported fragrance oils."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the shipping time and payment options?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We provide Free Express Delivery across India within 2 to 5 business days. All orders are processed securely online via UPI, Credit/Debit Cards, and NetBanking."
+          "text": "Octopus perfume India offers Free Pan-India Express Delivery within 2 to 5 business days with 100% secure online prepaid payments (UPI, Cards, NetBanking)."
         }
       }
     ]

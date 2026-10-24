@@ -510,14 +510,14 @@ export default function ProductUI({ product }: ProductUIProps) {
           </div>
 
           {/* Free 7ML Paradox Tester Promo */}
-          <div className="bg-gradient-to-r from-stone-900 via-stone-950 to-stone-900 text-white border-2 border-amber-400 rounded-2xl p-4 mb-6 relative overflow-hidden shadow-[3px_3px_0px_0px_#d97706]">
+          <div className="backdrop-blur-2xl bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 text-white border border-amber-400/50 rounded-2xl p-4 mb-6 relative overflow-hidden shadow-xl shadow-amber-500/10">
             <div className="flex items-center gap-3.5 relative z-10">
-              <div className="w-16 h-16 bg-stone-800 rounded-xl overflow-hidden border border-amber-400/50 shrink-0 p-1 flex items-center justify-center">
+              <div className="w-16 h-16 bg-stone-800/80 rounded-xl overflow-hidden border border-amber-400/30 shrink-0 p-1 flex items-center justify-center backdrop-blur-sm">
                 <img src="/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png" alt="Free 7ML Paradox Tester" className="w-full h-full object-contain" />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="inline-flex items-center gap-1.5 bg-amber-400 text-black px-2 py-0.5 rounded text-[9px] font-black uppercase tracking-wider mb-1">
-                  <Gift size={11} className="fill-black" /> FREE GIFT • WORTH ₹399
+                <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-400 to-yellow-400 text-stone-950 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider mb-1 shadow-sm">
+                  <Gift size={11} className="fill-stone-950" /> FREE GIFT • WORTH ₹399
                 </div>
                 <h4 className="font-serif font-bold text-sm text-amber-200 leading-tight">
                   7ML Paradox EDP Luxury Tester Pack
@@ -530,22 +530,22 @@ export default function ProductUI({ product }: ProductUIProps) {
           </div>
 
           {/* Diwali Festive Special Promo with 1-Click Copy */}
-          <div className="bg-amber-100 border-2 border-black rounded-xl p-4 mb-6 relative overflow-hidden shadow-[3px_3px_0px_0px_#000]">
+          <div className="backdrop-blur-xl bg-gradient-to-r from-amber-500/15 via-yellow-500/10 to-amber-500/15 border border-amber-400/40 rounded-2xl p-4 sm:p-5 mb-6 relative overflow-hidden shadow-lg shadow-amber-500/5">
             <div className="flex items-start gap-3 relative z-10">
-              <div className="bg-amber-400 text-black p-2 rounded-lg border border-black shrink-0">
-                <Gift size={22} strokeWidth={2.5} />
+              <div className="bg-amber-400/20 text-amber-800 p-2.5 rounded-xl border border-amber-400/30 shrink-0 backdrop-blur-md">
+                <Gift size={22} strokeWidth={2.2} />
               </div>
               <div className="flex-1 min-w-0">
-                <h4 className="text-black font-black text-xs sm:text-sm mb-1 uppercase tracking-wider flex items-center gap-1.5">
+                <h4 className="text-stone-950 font-bold text-xs sm:text-sm mb-1 uppercase tracking-wider flex items-center gap-1.5">
                   <span>🪔</span> DIWALI FESTIVE SPECIAL • 20% OFF
                 </h4>
-                <p className="text-stone-900 text-xs font-semibold leading-relaxed mb-2">
-                  Use code <strong className="font-mono bg-black text-amber-300 px-2 py-0.5 rounded border border-black">DIWALI20</strong> at checkout for flat <strong className="text-black">20% OFF</strong>!
+                <p className="text-stone-800 text-xs font-medium leading-relaxed mb-2">
+                  Use code <strong className="font-mono bg-stone-900 text-amber-300 px-2 py-0.5 rounded-md border border-stone-800 shadow-sm">DIWALI20</strong> at checkout for flat <strong className="text-stone-950 font-bold">20% OFF</strong>!
                 </p>
                 <button
                   type="button"
                   onClick={() => copyPromoCode("DIWALI20")}
-                  className="inline-flex items-center gap-1.5 bg-black text-white hover:bg-stone-800 text-[10px] uppercase font-bold px-3 py-1.5 rounded-lg border border-black active:scale-95 transition-all cursor-pointer"
+                  className="inline-flex items-center gap-1.5 bg-gradient-to-r from-stone-950 to-stone-900 text-white hover:text-amber-300 text-[10px] uppercase font-bold px-3.5 py-1.5 rounded-xl border border-stone-800 shadow-sm hover:scale-[1.02] active:scale-95 transition-all cursor-pointer"
                 >
                   <Sparkles size={12} className="text-amber-400" />
                   <span>{copiedCode ? "Copied to Clipboard! ✓" : "Tap to Copy Code: DIWALI20"}</span>
@@ -554,15 +554,14 @@ export default function ProductUI({ product }: ProductUIProps) {
             </div>
           </div>
 
-
           {/* Action Buttons */}
           <div className="flex gap-3 sm:gap-4 mb-3">
             <button
               onClick={handleAddToCart}
               disabled={isButtonDisabled}
-              className="flex-1 flex items-center justify-center gap-2 bg-[#800020] text-white py-4 px-3 uppercase tracking-wider text-[11px] font-black rounded-xl border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:bg-[#600018] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-stone-900 to-stone-950 text-white py-4 px-3 uppercase tracking-wider text-[11px] font-bold rounded-2xl border border-stone-800 shadow-lg shadow-black/15 hover:border-amber-400/40 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
-              <ShoppingBag size={16} className="shrink-0 stroke-[2.5]" />
+              <ShoppingBag size={16} className="shrink-0 stroke-[2.2]" />
               <span className="text-center leading-tight">
                 {!isAvailable
                   ? "Sold Out"
@@ -576,30 +575,30 @@ export default function ProductUI({ product }: ProductUIProps) {
             <button
               onClick={handleBuyNow}
               disabled={isButtonDisabled}
-              className="flex-1 flex items-center justify-center gap-2 bg-amber-400 text-black py-4 px-3 uppercase tracking-wider text-[11px] font-black rounded-xl border-2 border-black shadow-[4px_4px_0px_0px_#000] hover:bg-amber-300 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 py-4 px-3 uppercase tracking-wider text-[11px] font-black rounded-2xl shadow-xl shadow-amber-500/25 hover:shadow-amber-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
-              <Zap size={16} className="fill-black stroke-black shrink-0" />
+              <Zap size={16} className="fill-stone-950 stroke-stone-950 shrink-0" />
               <span className="text-center leading-tight">Buy Now</span>
             </button>
           </div>
 
           {/* Trust Badges */}
           <div className="grid grid-cols-3 gap-2 mt-4">
-             <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-white p-2.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_#000]">
-                <Lock size={16} className="text-[#800020] stroke-[2.5]" />
-                <span className="text-[9px] font-black uppercase tracking-wider text-black">
+             <div className="flex flex-col items-center justify-center text-center gap-1.5 backdrop-blur-xl bg-white/80 p-3 rounded-2xl border border-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-md transition-shadow">
+                <Lock size={16} className="text-amber-700 stroke-[2.2]" />
+                <span className="text-[9px] font-bold uppercase tracking-wider text-stone-800">
                   {isPerfume ? "100% Original EDP" : "Secure Checkout"}
                 </span>
              </div>
-             <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-white p-2.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_#000]">
-                <ShieldCheck size={16} className="text-emerald-700 stroke-[2.5]" />
-                <span className="text-[9px] font-black uppercase tracking-wider text-black">
+             <div className="flex flex-col items-center justify-center text-center gap-1.5 backdrop-blur-xl bg-white/80 p-3 rounded-2xl border border-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-md transition-shadow">
+                <ShieldCheck size={16} className="text-emerald-700 stroke-[2.2]" />
+                <span className="text-[9px] font-bold uppercase tracking-wider text-stone-800">
                   12H+ Longevity
                 </span>
              </div>
-             <div className="flex flex-col items-center justify-center text-center gap-1.5 bg-white p-2.5 rounded-xl border-2 border-black shadow-[2px_2px_0px_0px_#000]">
-                <Truck size={16} className="text-[#800020] stroke-[2.5]" />
-                <span className="text-[9px] font-black uppercase tracking-wider text-black">
+             <div className="flex flex-col items-center justify-center text-center gap-1.5 backdrop-blur-xl bg-white/80 p-3 rounded-2xl border border-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-md transition-shadow">
+                <Truck size={16} className="text-amber-700 stroke-[2.2]" />
+                <span className="text-[9px] font-bold uppercase tracking-wider text-stone-800">
                   Fast Express Pan-India
                 </span>
              </div>
@@ -806,9 +805,9 @@ export default function ProductUI({ product }: ProductUIProps) {
       </div>
 
       {/* Sticky Mobile Add To Cart / Buy Now Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t-2 border-black px-3 py-2.5 md:hidden shadow-[0_-8px_25px_rgba(0,0,0,0.15)] pb-[calc(10px+env(safe-area-inset-bottom,0px))]">
-        <div className="flex items-center gap-2 max-w-lg mx-auto">
-          <div className="relative w-12 h-12 bg-stone-100 rounded-lg border border-black overflow-hidden shrink-0 shadow-[2px_2px_0px_0px_#000]">
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-2xl border-t border-white/80 px-3.5 py-2.5 md:hidden shadow-[0_-10px_30px_rgba(0,0,0,0.08)] pb-[calc(10px+env(safe-area-inset-bottom,0px))]">
+        <div className="flex items-center gap-2.5 max-w-lg mx-auto">
+          <div className="relative w-12 h-12 bg-white/90 rounded-xl border border-white/80 overflow-hidden shrink-0 shadow-sm">
             <Image
               src={images.length > 0 ? (images[0].src || "/logo.png") : "/logo.png"}
               alt={product.title}
@@ -818,34 +817,34 @@ export default function ProductUI({ product }: ProductUIProps) {
             />
           </div>
           <div className="flex-1 min-w-0 pr-1">
-            <p className="font-bold text-[11px] text-black truncate leading-tight">{product.title}</p>
+            <p className="font-bold text-[11px] text-stone-950 truncate leading-tight">{product.title}</p>
             <div className="flex items-center gap-1.5 mt-0.5">
-              <span className="text-sm font-black text-[#800020]">₹{currentPrice.toFixed(0)}</span>
+              <span className="text-sm font-black text-amber-700">₹{currentPrice.toFixed(0)}</span>
               {compareAtPrice > basePrice && (
                 <>
-                  <span className="text-[10px] text-gray-400 line-through">₹{compareAtPrice.toFixed(0)}</span>
-                  <span className="text-[8px] font-black text-emerald-700 bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200">
+                  <span className="text-[10px] text-stone-400 line-through">₹{compareAtPrice.toFixed(0)}</span>
+                  <span className="text-[8px] font-bold text-emerald-800 bg-emerald-500/10 px-1.5 py-0.5 rounded-full border border-emerald-400/30">
                     {discountPercent}% OFF
                   </span>
                 </>
               )}
             </div>
           </div>
-          <div className="flex items-center gap-1.5 shrink-0">
+          <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={handleAddToCart}
               disabled={isButtonDisabled}
-              className="bg-[#800020] text-white p-2.5 rounded-lg border-2 border-black shadow-[2px_2px_0px_0px_#000] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center"
+              className="bg-stone-900 text-white p-3 rounded-xl border border-stone-800 shadow-sm active:scale-95 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center hover:bg-stone-800"
               aria-label="Add to Cart"
             >
-              <ShoppingBag size={16} className="stroke-[2.5]" />
+              <ShoppingBag size={16} className="stroke-[2.2]" />
             </button>
             <button
               onClick={handleBuyNow}
               disabled={isButtonDisabled}
-              className="bg-amber-400 hover:bg-amber-300 text-black font-black py-2.5 px-3 rounded-lg border-2 border-black shadow-[2px_2px_0px_0px_#000] text-[11px] uppercase tracking-wider active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all disabled:opacity-50 cursor-pointer flex items-center gap-1"
+              className="bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 font-black py-2.5 px-4 rounded-xl shadow-lg shadow-amber-500/25 text-[11px] uppercase tracking-wider active:scale-95 transition-all disabled:opacity-50 cursor-pointer flex items-center gap-1.5"
             >
-              <Zap size={14} className="fill-black stroke-black" />
+              <Zap size={14} className="fill-stone-950 stroke-stone-950" />
               <span>Buy Now</span>
             </button>
           </div>

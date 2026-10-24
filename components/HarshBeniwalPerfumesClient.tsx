@@ -128,10 +128,10 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
             <button
               key={tab.id}
               onClick={() => setFilter(tab.id)}
-              className={`px-4 py-2 rounded-full text-xs uppercase tracking-wider font-semibold transition-all ${
+              className={`px-4 py-2 rounded-full text-xs uppercase tracking-wider font-bold transition-all duration-300 ${
                 filter === tab.id
-                  ? "bg-stone-950 text-amber-300 shadow-md scale-105"
-                  : "bg-stone-100 text-stone-700 hover:bg-stone-200"
+                  ? "bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 shadow-lg shadow-amber-500/25 scale-105 font-black"
+                  : "backdrop-blur-md bg-white/80 text-stone-700 hover:bg-white border border-white/80 shadow-xs"
               }`}
             >
               {tab.label}
@@ -148,22 +148,22 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
           return (
             <article
               key={perfume.handle}
-              className="group bg-white rounded-2xl border border-stone-200/80 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden hover:-translate-y-1"
+              className="group backdrop-blur-xl bg-white/80 rounded-3xl border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.04)] hover:shadow-2xl hover:border-amber-400/40 hover:-translate-y-1.5 transition-all duration-300 flex flex-col overflow-hidden"
             >
               {/* Image Container */}
-              <div className="relative aspect-square bg-gradient-to-b from-stone-50 to-stone-100 overflow-hidden p-4 sm:p-6 flex items-center justify-center">
+              <div className="relative aspect-square bg-gradient-to-b from-stone-50/50 to-stone-100/50 overflow-hidden p-4 sm:p-6 flex items-center justify-center">
                 {/* Badges */}
                 <div className="absolute top-3 left-3 z-20 flex flex-col gap-1.5">
-                  <span className="inline-flex items-center gap-1 bg-stone-950/90 text-amber-300 backdrop-blur-sm text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">
+                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 text-amber-300 backdrop-blur-sm text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">
                     <Sparkles size={11} /> 50ML EDP
                   </span>
-                  <span className="inline-flex items-center gap-1 bg-red-600 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm">
+                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-rose-500 to-red-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm">
                     Save {perfume.discountPercent}%
                   </span>
                 </div>
 
                 <div className="absolute top-3 right-3 z-20">
-                  <span className="text-[10px] font-semibold bg-white/90 backdrop-blur-sm text-stone-800 px-2.5 py-1 rounded-full shadow-sm">
+                  <span className="text-[10px] font-bold bg-white/90 backdrop-blur-md text-stone-800 px-3 py-1 rounded-full shadow-sm border border-white/80">
                     {perfume.gender}
                   </span>
                 </div>
@@ -207,7 +207,7 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
               <div className="p-6 flex flex-col flex-1">
                 {/* Accord Inspiration */}
                 <div className="mb-2">
-                  <span className="text-[11px] font-medium text-amber-800 bg-amber-50/80 border border-amber-200/60 px-2.5 py-0.5 rounded-md inline-block">
+                  <span className="text-[11px] font-semibold text-amber-800 bg-amber-500/10 border border-amber-400/20 px-2.5 py-0.5 rounded-full inline-block backdrop-blur-sm">
                     Inspired by: <strong>{perfume.inspiredBy}</strong>
                   </span>
                 </div>
@@ -218,7 +218,7 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
                     {perfume.title}
                   </h3>
                 </Link>
-                <p className="text-xs text-stone-500 mt-1 line-clamp-2 leading-relaxed">
+                <p className="text-xs text-stone-600 mt-1 line-clamp-2 leading-relaxed">
                   {perfume.tagline}
                 </p>
 
@@ -252,14 +252,14 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
                 <div className="mt-auto pt-6 flex items-center justify-between gap-3">
                   <div>
                     <div className="flex items-baseline gap-2">
-                      <span className="font-serif text-2xl font-bold text-stone-950">
+                      <span className="font-serif text-2xl font-black text-stone-950">
                         ₹{perfume.price}
                       </span>
                       <span className="text-xs text-stone-400 line-through">
                         ₹{perfume.compareAtPrice}
                       </span>
                     </div>
-                    <span className="text-[10px] text-emerald-600 font-semibold block">
+                    <span className="text-[10px] text-emerald-700 font-semibold block">
                       Free Express Delivery
                     </span>
                   </div>
@@ -267,13 +267,13 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleAddToCart(perfume)}
-                      className="px-4 py-2.5 bg-stone-950 hover:bg-stone-800 text-amber-300 text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg flex items-center gap-1.5 active:scale-95"
+                      className="px-4 py-2.5 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 text-xs font-black uppercase tracking-wider rounded-xl transition-all shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:scale-105 flex items-center gap-1.5 active:scale-95"
                     >
                       <ShoppingBag size={14} /> Buy Now
                     </button>
                     <Link
                       href={`/products/${perfume.handle}`}
-                      className="p-2.5 rounded-xl border border-stone-200 hover:border-stone-400 text-stone-700 hover:text-stone-950 transition-colors"
+                      className="p-2.5 rounded-xl backdrop-blur-md bg-white/80 border border-white/80 hover:bg-white text-stone-700 hover:text-stone-950 transition-colors shadow-sm"
                       title="View Details"
                     >
                       <ArrowRight size={15} />
@@ -342,11 +342,11 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
           {faqs.map((faq, idx) => (
             <div
               key={idx}
-              className="border border-stone-200 rounded-2xl bg-white overflow-hidden transition-all shadow-xs"
+              className="backdrop-blur-xl bg-white/80 border border-white/80 rounded-2xl overflow-hidden transition-all shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-md"
             >
               <button
                 onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
-                className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-semibold text-stone-900 hover:text-amber-800 transition-colors"
+                className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-stone-900 hover:text-amber-800 transition-colors"
               >
                 <span className="text-base">{faq.q}</span>
                 <ChevronDown

@@ -23,7 +23,7 @@ export default function FeaturedProductCarousel() {
   }, []);
 
   return (
-    <Link href="/harsh-beniwal/octopus/perfumes" className="group relative w-full max-w-[450px] aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border-[6px] border-black bg-stone-900 block rotate-2 hover:rotate-0 transition-transform duration-500 cursor-pointer">
+    <Link href="/harsh-beniwal/octopus/perfumes" className="group relative w-full max-w-[450px] aspect-[4/3] rounded-3xl overflow-hidden backdrop-blur-2xl bg-gradient-to-br from-stone-900/90 via-stone-950/90 to-stone-900/90 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.3)] block hover:scale-[1.02] hover:border-amber-400/40 transition-all duration-500 cursor-pointer">
       <AnimatePresence mode="popLayout">
         <motion.div
           key={currentIndex}

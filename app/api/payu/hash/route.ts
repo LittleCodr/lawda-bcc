@@ -18,7 +18,7 @@ export async function POST(req: Request) {
     const productinfo = rawProductInfo.replace(/[^a-zA-Z0-9 ]/g, "").trim() || "Order Payment";
 
     const udf1 = (body.udf1 || "octopusperfumes").toString().replace(/[^a-zA-Z0-9_-]/g, "").trim();
-    const udf2 = "";
+    const udf2 = (body.userId || "").toString().replace(/[^a-zA-Z0-9_-]/g, "").trim();
     const udf3 = "";
     const udf4 = "";
     const udf5 = "";

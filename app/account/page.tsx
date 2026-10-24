@@ -127,16 +127,16 @@ export default function AccountPage() {
           const diffInHours = diffInMs / (1000 * 60 * 60);
           const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
 
-          let dynamicStatus = rawData.status || "Order Processing";
+          let dynamicStatus = rawData.status === "Paid" ? "Order Confirmed & Processing" : (rawData.status || "Order Processing");
           
-          if (diffInHours >= 10 && diffInDays < 6) {
-            dynamicStatus = "Order on the way";
-          } else if (diffInDays >= 6 && diffInDays < 7) {
-            dynamicStatus = "Out for delivery";
-          } else if (diffInDays >= 7 && diffInDays < 10) {
-            dynamicStatus = "Delivery partner was unable to connect to the customer, will try again delivery today";
-          } else if (diffInDays >= 10) {
-            dynamicStatus = "Order completion failed, package returning to seller.";
+          if (rawData.status === "Paid") {
+            if (diffInHours >= 6 && diffInDays < 2) {
+              dynamicStatus = "Dispatched via Express Air";
+            } else if (diffInDays >= 2 && diffInDays < 4) {
+              dynamicStatus = "Out for Delivery";
+            } else if (diffInDays >= 4) {
+              dynamicStatus = "Delivered";
+            }
           }
 
           return {

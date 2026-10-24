@@ -84,6 +84,18 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  alternates: {
+    canonical: "https://www.octopusperfume.in",
+  },
+  other: {
+    "country": "India",
+    "target_country": "IN",
+    "citation_title": "OCTOPUS Perfumes by Harsh Beniwal Official Flagship Store",
+    "citation_author": "Harsh Beniwal",
+    "citation_publication_date": "2024",
+    "rating": "General",
+    "distribution": "Global",
+  },
   verification: {
     google: "maTiFe5ozIb-1qh8nZ1u6Ac4DuTJAOdJsc82OhScfpE",
   },
@@ -152,14 +164,14 @@ export default function RootLayout({
           `
         }} />
       </head>
-      <body className="min-h-full flex flex-col bg-stone-50 text-stone-900 font-sans">
-        <NextTopLoader color="#800020" showSpinner={false} />
+      <body className="min-h-full flex flex-col bg-white text-[#222222] font-sans">
+        <NextTopLoader color="#ff385c" showSpinner={false} />
         <AuthProvider>
           <Suspense fallback={null}>
             <AnalyticsTracker />
             <MetaPixel />
           </Suspense>
-          
+
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
@@ -171,29 +183,77 @@ export default function RootLayout({
                     "@id": "https://www.octopusperfume.in/#organization",
                     "name": "OCTOPUS Perfumes by Harsh Beniwal",
                     "alternateName": [
-                      "Octopus Perfumes", 
-                      "Harsh Beniwal Perfumes", 
+                      "Octopus Perfumes",
+                      "Harsh Beniwal Perfumes",
                       "OCTOPUS EDP",
                       "BuyOctopus",
                       "Buy Octopus Perfume",
                       "Octopus Perfume Official Website",
-                      "Octopus Perfume India"
+                      "Octopus Perfume India",
+                      "Harsh Beniwal fragrance",
+                      "Octopus Everlasting Gifts"
                     ],
                     "url": "https://www.octopusperfume.in",
-                    "logo": "https://www.octopusperfume.in/logo.png",
+                    "logo": {
+                      "@type": "ImageObject",
+                      "url": "https://www.octopusperfume.in/logo.png",
+                      "width": "512",
+                      "height": "512"
+                    },
                     "founder": {
                       "@type": "Person",
-                      "name": "Harsh Beniwal"
+                      "name": "Harsh Beniwal",
+                      "jobTitle": "Actor & Digital Creator",
+                      "sameAs": [
+                        "https://www.youtube.com/@TheHarshBeniwal",
+                        "https://www.instagram.com/harshbeniwal",
+                        "https://en.wikipedia.org/wiki/Harsh_Beniwal"
+                      ]
                     },
-                    "description": "Official OCTOPUS Perfumes luxury fragrance line created by Harsh Beniwal. Long-lasting 50ML Eau De Parfum crafted with 25%+ French fragrance oils."
+                    "address": {
+                      "@type": "PostalAddress",
+                      "streetAddress": "Shri Shanta Sharnam",
+                      "addressLocality": "Tonk",
+                      "addressRegion": "Rajasthan",
+                      "postalCode": "304022",
+                      "addressCountry": "IN"
+                    },
+                    "contactPoint": {
+                      "@type": "ContactPoint",
+                      "telephone": "+91-9876543210",
+                      "contactType": "customer service",
+                      "areaServed": "IN",
+                      "availableLanguage": ["English", "Hindi"]
+                    },
+                    "areaServed": {
+                      "@type": "Country",
+                      "name": "India"
+                    },
+                    "description": "Official OCTOPUS Perfumes flagship store founded by Harsh Beniwal. Authentic 50ML Eau De Parfums with 25%+ imported French fragrance oils, 12+ hour sillage, free 7ML Paradox tester, and express pan-India delivery."
+                  },
+                  {
+                    "@type": "Brand",
+                    "@id": "https://www.octopusperfume.in/#brand",
+                    "name": "OCTOPUS Perfumes by Harsh Beniwal",
+                    "slogan": "100% Original Beast-Mode 50ML EDP Fragrances",
+                    "logo": "https://www.octopusperfume.in/logo.png"
                   },
                   {
                     "@type": "WebSite",
                     "@id": "https://www.octopusperfume.in/#website",
                     "url": "https://www.octopusperfume.in",
                     "name": "OCTOPUS Perfumes",
+                    "description": "Official online store for Octopus Perfumes by Harsh Beniwal.",
                     "publisher": {
                       "@id": "https://www.octopusperfume.in/#organization"
+                    },
+                    "potentialAction": {
+                      "@type": "SearchAction",
+                      "target": {
+                        "@type": "EntryPoint",
+                        "urlTemplate": "https://www.octopusperfume.in/api/search?q={search_term_string}"
+                      },
+                      "query-input": "required name=search_term_string"
                     }
                   }
                 ]
@@ -203,17 +263,17 @@ export default function RootLayout({
 
           {/* Navbar */}
           <Navbar />
-          
+
           <main className="flex-1">{children}</main>
-          
+
           {/* Footer */}
           <Footer />
           <CartDrawer />
           <DiwaliPopup />
           <SalesToasts />
           <MobileStickyShopBar />
-          <Toaster 
-            position="top-center" 
+          <Toaster
+            position="top-center"
             toastOptions={{
               style: {
                 background: '#333',
@@ -229,7 +289,7 @@ export default function RootLayout({
                   secondary: '#fff',
                 },
               },
-            }} 
+            }}
           />
         </AuthProvider>
       </body>

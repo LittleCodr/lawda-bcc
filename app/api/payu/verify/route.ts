@@ -1,18 +1,23 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
+import { db } from "@/lib/firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { sendOrderConfirmation } from "@/lib/brevo";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { orderId } = body;
+    const rawOrderId = body.orderId || body.txnid;
 
-    if (!orderId) {
+    if (!rawOrderId) {
       return NextResponse.json(
         { success: false, error: "Missing orderId" },
         { status: 400 }
       );
     }
+
+    const baseOrderIdMatch = rawOrderId.match(/(ORD-\d{13})/);
+    const orderId = baseOrderIdMatch ? baseOrderIdMatch[1] : rawOrderId;
 
     const key = process.env.PAYU_MERCHANT_KEY || "BfDKZe";
     const salt = process.env.PAYU_MERCHANT_SALT || "iQ7BOSg394ZQQKY2Mu5evsBnwobF4shg";
@@ -26,13 +31,13 @@ export async function POST(req: Request) {
 
     const command = "verify_payment";
     // Hash for verify_payment: key|command|var1|salt
-    const hashString = `${key}|${command}|${orderId}|${salt}`;
+    const hashString = `${key}|${command}|${rawOrderId}|${salt}`;
     const hash = crypto.createHash("sha512").update(hashString).digest("hex");
 
     const params = new URLSearchParams();
     params.append("key", key);
     params.append("command", command);
-    params.append("var1", orderId);
+    params.append("var1", rawOrderId);
     params.append("hash", hash);
 
     const payuRes = await fetch(
@@ -48,85 +53,94 @@ export async function POST(req: Request) {
 
     // PayU returns status 1 for successful lookup
     if (payuData.status === 1) {
-      const transaction = payuData.transaction_details?.[orderId];
+      const transaction = payuData.transaction_details?.[rawOrderId] || payuData.transaction_details?.[orderId];
       if (
         transaction &&
         transaction.status === "success" &&
-        transaction.unmappedstatus === "captured"
+        (transaction.unmappedstatus === "captured" || transaction.unmappedstatus === "success" || transaction.field9?.includes("SUCCESS"))
       ) {
-        // Send Telegram notification
-        try {
-          const amount = transaction.amt || transaction.transaction_amount || "Unknown";
-          const customerName = transaction.firstname || "Unknown";
-          const customerEmail = transaction.udf1 || transaction.email || "N/A";
-          const customerPhone = transaction.udf2 || transaction.phone || "N/A";
-          const productInfo = transaction.udf3 || transaction.productinfo || "N/A";
-          const paymentMode = transaction.mode || "Unknown";
-          
-          const message = `✅ *New Order Paid!*\n\n` +
-            `*Order ID:* \`${orderId}\`\n` +
-            `*Amount:* ₹${amount}\n` +
-            `*Payment Mode:* ${paymentMode}\n\n` +
-            `*Customer Details:*\n` +
-            `*Name:* ${customerName}\n` +
-            `*Email:* ${customerEmail}\n` +
-            `*Phone:* ${customerPhone}\n\n` +
-            `*Product Details:*\n` +
-            `${productInfo}`;
+        const amount = transaction.amt || transaction.transaction_amount || "1.00";
+        const customerName = transaction.firstname || "Customer";
+        const customerEmail = transaction.email || (transaction.udf1 && transaction.udf1 !== "octopusperfumes" ? transaction.udf1 : "") || "N/A";
+        const customerPhone = transaction.phone || transaction.udf2 || "N/A";
+        const productInfo = transaction.productinfo || transaction.udf3 || "Octopus Perfume 50ML EDP";
+        const paymentMode = transaction.mode || "UPI";
 
-          await fetch(
-            `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
-            {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                chat_id: process.env.TELEGRAM_CHAT_ID,
-                text: message,
-                parse_mode: "Markdown",
-              }),
+        // Update Order in Firestore Server-Side
+        const paymentUpdate = {
+          orderId,
+          status: "Paid",
+          paymentMethod: "payu",
+          payuTxnId: rawOrderId,
+          mihpayid: transaction.mihpayid,
+          bankRefNum: transaction.bank_ref_num || null,
+          paymentMode,
+          amountPaid: Number(amount) || 1,
+          paidAt: new Date(),
+          updatedAt: new Date(),
+        };
+
+        let orderData: any = { ...paymentUpdate };
+
+        try {
+          // 1. Update root orders collection
+          await setDoc(doc(db, "orders", orderId), paymentUpdate, { merge: true });
+
+          // 2. Fetch full root order details to return to client
+          const rootSnap = await getDoc(doc(db, "orders", orderId));
+          if (rootSnap.exists()) {
+            orderData = { ...rootSnap.data(), ...paymentUpdate };
+            const userId = rootSnap.data().userId;
+            if (userId) {
+              await setDoc(doc(db, "users", userId, "orders", orderId), paymentUpdate, { merge: true });
             }
-          );
-        } catch (telegramErr) {
-          console.error("Telegram notification error:", telegramErr);
+          }
+        } catch (dbErr) {
+          console.error("Error updating Firestore in verify route:", dbErr);
         }
 
-        // Send Brevo Email Confirmation
-        try {
-          const amount = transaction.amt || transaction.transaction_amount || "Unknown";
-          const customerName = transaction.firstname || "Unknown";
-          const customerEmail = transaction.udf1 || transaction.email || "N/A";
-          const productInfo = transaction.udf3 || transaction.productinfo || "N/A";
-          
-          if (customerEmail !== "N/A") {
-            const emailResult = await sendOrderConfirmation(orderId, customerName, customerEmail, amount, productInfo);
-            
-            // If Brevo email fails (e.g. due to IP whitelist restrictions), notify Admin via Telegram
-            if (!emailResult.success) {
-              const errMsg = `⚠️ *Email Failed to Send!*\n\n*Order:* \`${orderId}\`\n*Customer:* ${customerEmail}\n*Reason:* ${emailResult.error || "Unknown Error"}\n\n_Check your Brevo API key and IP whitelisting settings!_`;
-              await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        // Send Telegram Notification
+        if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
+          try {
+            const message = `✅ *New Order Paid & Verified!*\n\n` +
+              `*Order ID:* \`${orderId}\`\n` +
+              `*Amount:* ₹${amount}\n` +
+              `*Payment ID:* \`${transaction.mihpayid}\`\n` +
+              `*Mode:* ${paymentMode}\n\n` +
+              `*Customer Details:*\n` +
+              `*Name:* ${customerName}\n` +
+              `*Email:* ${customerEmail}\n` +
+              `*Phone:* ${customerPhone}\n\n` +
+              `*Product Details:*\n` +
+              `${productInfo}`;
+
+            await fetch(
+              `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
+              {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                   chat_id: process.env.TELEGRAM_CHAT_ID,
-                  text: errMsg,
+                  text: message,
                   parse_mode: "Markdown",
                 }),
-              });
-            }
+              }
+            );
+          } catch (telegramErr) {
+            console.error("Telegram notification error:", telegramErr);
           }
-        } catch (emailErr: any) {
-          console.error("Brevo email notification error:", emailErr);
-          try {
-             const errMsg = `⚠️ *Email Failed to Send!*\n\n*Order:* \`${orderId}\`\n*Reason:* ${emailErr.message || "Catch Block Error"}`;
-             await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ chat_id: process.env.TELEGRAM_CHAT_ID, text: errMsg, parse_mode: "Markdown" }),
-             });
-          } catch(e) {}
         }
 
-        return NextResponse.json({ success: true, transaction });
+        // Send Brevo Email Confirmation
+        if (customerEmail && customerEmail.includes("@")) {
+          try {
+            await sendOrderConfirmation(orderId, customerName, customerEmail, amount, productInfo);
+          } catch (emailErr) {
+            console.error("Brevo email notification error:", emailErr);
+          }
+        }
+
+        return NextResponse.json({ success: true, transaction, order: orderData });
       }
     }
 

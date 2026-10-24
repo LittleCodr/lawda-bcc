@@ -190,8 +190,7 @@ export default function CheckoutPage() {
         updatedAt: new Date()
       }, { merge: true });
 
-      // Write to Firestore (single batched write to minimize quota)
-      await setDoc(doc(db, "users", user.uid, "orders", orderId), {
+      const orderPayload = {
         orderId,
         userId: user.uid,
         status: "pending_payment",
@@ -206,9 +205,27 @@ export default function CheckoutPage() {
         discountAmount: totalDiscount,
         abandonedEmailSent: false,
         createdAt: new Date(),
-      });
+      };
 
-      // Fetch PayU Hash
+      // Write to both root orders collection and user orders subcollection
+      await Promise.all([
+        setDoc(doc(db, "orders", orderId), orderPayload),
+        setDoc(doc(db, "users", user.uid, "orders", orderId), orderPayload),
+      ]);
+
+      if (typeof window !== "undefined") {
+        try {
+          sessionStorage.setItem("last_order_id", orderId);
+          sessionStorage.setItem("last_order_data", JSON.stringify({
+            orderId,
+            items: allDisplayItems,
+            total: finalTotal,
+            shipping: formData
+          }));
+        } catch (e) {}
+      }
+
+      // Fetch PayU Hash with userId in udf2
       const cartSummary = items.map(i => `${i.title} (${i.quantity})`).join(", ");
       const hashRes = await fetch("/api/payu/hash", {
         method: "POST",
@@ -222,6 +239,7 @@ export default function CheckoutPage() {
           firstname: formData.name,
           productinfo: cartSummary,
           cartSummary: cartSummary,
+          userId: user.uid,
         }),
       });
 
@@ -229,20 +247,6 @@ export default function CheckoutPage() {
       if (hashData.error) {
         throw new Error(hashData.error);
       }
-
-      // Log Purchase Event
-      logAppEvent("purchase", {
-        transaction_id: orderId,
-        currency: "INR",
-        value: finalTotal,
-        items: allDisplayItems.map((i: any) => ({
-          item_id: i.id,
-          item_name: i.title,
-          quantity: i.quantity,
-          price: i.price,
-          item_variant: i.variantTitle
-        }))
-      });
 
       clearCart();
 

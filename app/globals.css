@@ -2,218 +2,261 @@
 @import "tailwindcss";
 
 :root {
-  --color-ink: #121212;
-  --color-charcoal: #242424;
-  --color-paper: #FAF7F2; /* Warm premium festive canvas */
+  /* Airbnb Canonical Brand & Accent Tokens */
+  --color-primary: #ff385c; /* Rausch */
+  --color-primary-active: #e00b41;
+  --color-primary-disabled: #ffd1da;
+  --color-luxe: #460479;
+  --color-plus: #92174d;
+
+  /* Surfaces */
+  --color-canvas: #ffffff; /* Pure White Floor */
+  --color-surface-soft: #f7f7f7;
+  --color-surface-strong: #f2f2f2;
+
+  /* Hairlines & Dividers */
+  --color-hairline: #dddddd;
+  --color-hairline-soft: #ebebeb;
+  --color-border-strong: #c1c1c1;
+
+  /* Text & Typography */
+  --color-ink: #222222;
+  --color-body: #3f3f3f;
+  --color-muted: #6a6a6a;
+  --color-muted-soft: #929292;
+  --color-star-rating: #222222;
+  --color-on-primary: #ffffff;
+
+  /* Legacy mappings for seamless app-wide propagation */
+  --color-charcoal: #222222;
+  --color-paper: #ffffff;
   --color-white: #ffffff;
-  --color-gold: #F59E0B;
-  --color-saffron: #FB8500;
-  --color-diwali-gold: #FFB703;
-  --color-rose: #FDE8E8;
-  --color-burgundy: #800020;
-  --color-emerald: #059669;
-  --color-muted: #737373;
-  --color-line: rgba(18, 18, 18, 0.15);
+  --color-gold: #ff385c;
+  --color-saffron: #ff385c;
+  --color-diwali-gold: #ff385c;
+  --color-rose: #fff0f3;
+  --color-burgundy: #ff385c;
+  --color-emerald: #188038;
+  --color-line: #ebebeb;
 }
 
 @theme inline {
+  --color-rausch: var(--color-primary);
+  --color-rausch-active: var(--color-primary-active);
+  --color-rausch-disabled: var(--color-primary-disabled);
+  --color-canvas: var(--color-canvas);
+  --color-surface-soft: var(--color-surface-soft);
+  --color-surface-strong: var(--color-surface-strong);
+  --color-hairline: var(--color-hairline);
+  --color-hairline-soft: var(--color-hairline-soft);
+  --color-border-strong: var(--color-border-strong);
   --color-ink: var(--color-ink);
-  --color-charcoal: var(--color-charcoal);
+  --color-body: var(--color-body);
+  --color-muted: var(--color-muted);
+  --color-muted-soft: var(--color-muted-soft);
+
   --color-paper: var(--color-paper);
   --color-gold: var(--color-gold);
-  --color-saffron: var(--color-saffron);
-  --color-diwali-gold: var(--color-diwali-gold);
-  --color-rose: var(--color-rose);
-  --color-burgundy: var(--color-burgundy);
-  --color-emerald: var(--color-emerald);
-  --color-muted: var(--color-muted);
   --font-serif: "Playfair Display", serif;
-  --font-sans: "Inter", sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
-  background: var(--color-paper);
+  background: #ffffff;
+  color: #222222;
 }
 
 body {
-  background: radial-gradient(at 0% 0%, rgba(254, 243, 199, 0.45) 0px, transparent 50%),
-              radial-gradient(at 100% 0%, rgba(253, 232, 232, 0.4) 0px, transparent 50%),
-              radial-gradient(at 50% 100%, rgba(254, 240, 138, 0.3) 0px, transparent 50%),
-              #FAF7F2;
-  background-attachment: fixed;
-  color: var(--color-ink);
-  font-family: "Inter", sans-serif;
+  background: #ffffff;
+  color: #222222;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
 }
 
 ::selection {
-  background: #f59e0b;
-  color: #000000;
+  background: #ffd1da;
+  color: #222222;
 }
 
-.font-serif-display {
-  font-family: "Playfair Display", serif;
+/* Airbnb Canonical Single Shadow Tier */
+.shadow-airbnb {
+  box-shadow: rgba(0, 0, 0, 0.02) 0 0 0 1px, rgba(0, 0, 0, 0.04) 0 2px 6px 0, rgba(0, 0, 0, 0.1) 0 4px 8px 0;
 }
 
-/* Glassmorphism System & Minimalist Helper Classes */
-.glass {
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+.shadow-airbnb-hover {
+  box-shadow: rgba(0, 0, 0, 0.04) 0 0 0 1px, rgba(0, 0, 0, 0.08) 0 6px 16px 0, rgba(0, 0, 0, 0.12) 0 10px 24px 0;
 }
 
-.glass-dark {
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  background: rgba(18, 18, 18, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.35);
-}
-
-.glass-amber {
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  background: rgba(254, 243, 199, 0.65);
-  border: 1px solid rgba(245, 158, 11, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(245, 158, 11, 0.12);
-}
-
-.glass-card {
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(255, 255, 255, 0.4);
-  border-radius: 1.5rem;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.glass-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 45px -10px rgba(245, 158, 11, 0.2), 0 0 0 1px rgba(245, 158, 11, 0.3);
-  border-color: rgba(245, 158, 11, 0.35);
-}
-
-.glass-card-static {
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.06);
-  border-radius: 1.5rem;
-}
-
-/* Backward compatibility mapping with glassmorphism overrides */
-.nb-card {
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  background: rgba(255, 255, 255, 0.82);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.06);
-  border-radius: 1.5rem;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.nb-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 45px -10px rgba(245, 158, 11, 0.2);
-  border-color: rgba(245, 158, 11, 0.3);
-}
-
-.nb-card-static {
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  background: rgba(255, 255, 255, 0.82);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.06);
-  border-radius: 1.5rem;
-}
-
-.nb-btn {
+/* Buttons */
+.btn-primary, .btn-rausch, .btn-vibrant-amber, .nb-btn {
+  background-color: #ff385c;
+  color: #ffffff;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 14px 24px;
+  font-size: 15px;
+  line-height: 1.25;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  background: linear-gradient(135deg, #18181b 0%, #09090b 100%);
-  color: #fef3c7;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.25);
-  border-radius: 0.875rem;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-primary:hover, .btn-rausch:hover, .btn-vibrant-amber:hover, .nb-btn:hover {
+  background-color: #e00b41;
+}
+.btn-primary:active, .btn-rausch:active, .btn-vibrant-amber:active, .nb-btn:active {
+  background-color: #c10034;
+  transform: scale(0.98);
+}
+
+.btn-pill-rausch {
+  background-color: #ff385c;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 10px 20px;
+  font-size: 14px;
+  transition: all 0.2s ease;
   cursor: pointer;
 }
-.nb-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px -4px rgba(245, 158, 11, 0.35);
-  color: #fbbf24;
+.btn-pill-rausch:hover {
+  background-color: #e00b41;
 }
-.nb-btn:active {
-  transform: translateY(0);
+
+.btn-secondary-airbnb {
+  background-color: #ffffff;
+  color: #222222;
+  border: 1px solid #222222;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 12px 22px;
+  font-size: 14px;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.btn-secondary-airbnb:hover {
+  background-color: #f7f7f7;
+}
+
+.btn-tertiary-text {
+  background: transparent;
+  color: #222222;
+  font-weight: 600;
+  text-decoration: underline;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Airbnb Property Card */
+.property-card-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.property-photo-plate {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  background-color: #f7f7f7;
+}
+
+/* Floating "Guest favorite" Badge */
+.guest-favorite-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  background-color: #ffffff;
+  color: #222222;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 0 0 1px, rgba(0, 0, 0, 0.04) 0 2px 6px 0, rgba(0, 0, 0, 0.1) 0 4px 8px 0;
+}
+
+/* Heart Save Button */
+.heart-save-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  transition: transform 0.2s ease;
+}
+.heart-save-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Search Bar Pill */
+.search-bar-pill {
+  background-color: #ffffff;
+  border-radius: 9999px;
+  border: 1px solid #dddddd;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 0 0 1px, rgba(0, 0, 0, 0.04) 0 2px 6px 0, rgba(0, 0, 0, 0.1) 0 4px 8px 0;
+  transition: box-shadow 0.2s ease;
+}
+.search-bar-pill:hover {
+  box-shadow: rgba(0, 0, 0, 0.04) 0 0 0 1px, rgba(0, 0, 0, 0.08) 0 6px 16px 0, rgba(0, 0, 0, 0.12) 0 10px 24px 0;
+}
+
+/* Search Orb */
+.search-orb {
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background-color: #ff385c;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease;
+}
+.search-orb:hover {
+  background-color: #e00b41;
+}
+
+/* Backward-compatible utility classes mapped to Airbnb tokens */
+.glass, .glass-card, .glass-card-static, .nb-card, .nb-card-static {
+  background: #ffffff;
+  border: 1px solid #ebebeb;
+  border-radius: 14px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 0 0 1px, rgba(0, 0, 0, 0.04) 0 2px 6px 0, rgba(0, 0, 0, 0.06) 0 4px 8px 0;
+}
+.glass-card:hover, .nb-card:hover {
+  box-shadow: rgba(0, 0, 0, 0.04) 0 0 0 1px, rgba(0, 0, 0, 0.08) 0 6px 16px 0, rgba(0, 0, 0, 0.12) 0 10px 24px 0;
+}
+
+.glass-dark, .btn-glass-dark {
+  background: #222222;
+  color: #ffffff;
+  border-radius: 12px;
+}
+
+.glass-blue, .glass-amber, .glass-yellow, .glass-green, .glass-red {
+  background: #f7f7f7;
+  border: 1px solid #ebebeb;
+  border-radius: 12px;
 }
 
 .nb-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  background: rgba(254, 243, 199, 0.8);
-  border: 1px solid rgba(245, 158, 11, 0.3);
-  box-shadow: 0 4px 12px 0 rgba(245, 158, 11, 0.15);
+  background: #f7f7f7;
+  color: #222222;
+  border: 1px solid #dddddd;
   border-radius: 9999px;
-}
-
-/* Glass Buttons & Vibrant Pills */
-.btn-vibrant-amber {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  color: #09090b;
-  font-weight: 800;
-  border-radius: 1rem;
-  box-shadow: 0 8px 24px -4px rgba(245, 158, 11, 0.4);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.btn-vibrant-amber:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 32px -4px rgba(245, 158, 11, 0.55);
-}
-
-.btn-glass-dark {
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  background: linear-gradient(135deg, rgba(24, 24, 27, 0.95) 0%, rgba(9, 9, 11, 0.95) 100%);
-  color: #fef3c7;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.3);
-  border-radius: 1rem;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.btn-glass-dark:hover {
-  transform: translateY(-2px);
-  border-color: rgba(245, 158, 11, 0.4);
-  box-shadow: 0 14px 32px -4px rgba(245, 158, 11, 0.3);
-}
-
-.btn-glass-light {
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  background: rgba(255, 255, 255, 0.85);
-  color: #18181b;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.08);
-  border-radius: 1rem;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.btn-glass-light:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 14px 32px -4px rgba(0, 0, 0, 0.12);
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
 }
 
 /* Subtle Shimmer & Glow Animations */

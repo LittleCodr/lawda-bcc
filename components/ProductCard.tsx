@@ -12,6 +12,7 @@ import { useCart } from "@/lib/cart-context";
 export default function ProductCard({ product, index = 0 }: { product: Product; index?: number }) {
   const { addItem } = useCart();
   const [isHovered, setIsHovered] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const allImages = [
     product.images.hero,
@@ -25,36 +26,31 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
     if (isHovered && allImages.length > 1) {
       interval = setInterval(() => {
         setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
-      }, 1200);
+      }, 1400);
     } else {
       setCurrentImageIndex(0);
     }
     return () => clearInterval(interval);
   }, [isHovered, allImages.length]);
 
-  const badge = index % 3 === 0 
-    ? { icon: <Flame size={12} className="text-rose-600 fill-rose-500" />, label: "Selling Fast", style: "bg-rose-50/90 text-rose-900 border-rose-200/70" }
-    : index % 3 === 1 
-    ? { icon: <Hourglass size={12} className="text-amber-600" />, label: `Only ${(index % 5) + 2} Left`, style: "bg-amber-50/90 text-amber-900 border-amber-200/70" }
-    : { icon: <Star size={12} className="text-amber-500 fill-amber-400" />, label: "Diwali Hit", style: "bg-yellow-50/90 text-yellow-950 border-yellow-200/70" };
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: (index % 4) * 0.08 }}
-      className="group flex flex-col backdrop-blur-xl bg-white/80 border border-white/80 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_45px_-10px_rgba(245,158,11,0.2)] rounded-3xl p-3.5 hover:-translate-y-1.5 transition-all duration-500 relative overflow-hidden"
+      transition={{ duration: 0.4, delay: (index % 4) * 0.06 }}
+      className="group flex flex-col relative"
     >
-      <Link href={`/products/${product.slug}`} className="block relative overflow-hidden rounded-2xl bg-gradient-to-b from-stone-50 to-stone-100/70 border border-stone-200/50">
-        <div 
-          className="relative aspect-[4/5] w-full"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          {/* Frosted Glass Badge */}
-          <span className={`absolute top-3 left-3 z-10 border ${badge.style} backdrop-blur-md text-[10px] tracking-wider uppercase px-3 py-1 flex items-center gap-1.5 font-bold rounded-full shadow-sm`}>
-            {badge.icon} {badge.label}
+      {/* Photo Plate with 14px corner clipping */}
+      <div 
+        className="relative aspect-square w-full rounded-[14px] overflow-hidden bg-[#f7f7f7] group-hover:shadow-airbnb-hover transition-shadow duration-300"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <Link href={`/products/${product.slug}`} className="block w-full h-full relative">
+          {/* Floating "Guest favorite" Badge top-left */}
+          <span className="guest-favorite-badge flex items-center gap-1.5">
+            <span>Guest favorite</span>
           </span>
 
           {/* Images */}
@@ -62,64 +58,105 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
             <Image
               key={src}
               src={src}
-              alt={`${product.name} - image ${idx + 1}`}
+              alt={`${product.name} - Harsh Beniwal EDP`}
               fill
               unoptimized
               quality={100}
-              sizes="(max-width: 768px) 50vw, 33vw"
-              className={`object-cover transition-all duration-500 ease-out ${
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+              className={`object-contain p-4 transition-all duration-500 ease-out ${
                 idx === currentImageIndex ? "opacity-100 scale-100" : "opacity-0 scale-105"
               }`}
             />
           ))}
 
-          {/* Hover overlay with quick-add */}
-          <div className="absolute inset-x-3 bottom-3 translate-y-[120%] group-hover:translate-y-0 transition-transform duration-300 ease-out z-10">
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                addItem(product);
-              }}
-              className="w-full bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 text-amber-300 py-3 rounded-xl text-[11px] font-bold tracking-wider uppercase flex items-center justify-center gap-2 border border-stone-800 shadow-xl hover:shadow-amber-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer backdrop-blur-md"
-            >
-              <ShoppingBag size={14} className="stroke-[2.2]" />
-              Quick Add
-            </button>
-          </div>
+          {/* Image Dots Indicator */}
+          {allImages.length > 1 && (
+            <div className="absolute bottom-3 inset-x-0 flex justify-center gap-1.5 z-10 pointer-events-none">
+              {allImages.map((_, dotIdx) => (
+                <span
+                  key={dotIdx}
+                  className={`w-1.5 h-1.5 rounded-full transition-all ${
+                    dotIdx === currentImageIndex ? "bg-white scale-125 shadow-xs" : "bg-white/60"
+                  }`}
+                />
+              ))}
+            </div>
+          )}
+        </Link>
 
-          {/* Subtle bottom gradient on hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
+        {/* Heart Wishlist Save Button top-right */}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            setIsSaved(!isSaved);
+          }}
+          aria-label={isSaved ? "Remove from wishlist" : "Save to wishlist"}
+          className="heart-save-btn cursor-pointer"
+        >
+          <svg
+            viewBox="0 0 32 32"
+            aria-hidden="true"
+            role="presentation"
+            focusable="false"
+            className={`w-6 h-6 stroke-[2] transition-colors ${
+              isSaved
+                ? "fill-[#ff385c] stroke-[#ff385c]"
+                : "fill-black/30 stroke-white hover:fill-black/50"
+            }`}
+          >
+            <path d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05A6.98 6.98 0 0 0 9 4a6.98 6.98 0 0 0-7 7c0 7 7 12.27 14 17z"></path>
+          </svg>
+        </button>
+
+        {/* Quick Add Overlay on Hover */}
+        <div className="absolute inset-x-3 bottom-3 translate-y-[120%] group-hover:translate-y-0 transition-transform duration-250 ease-out z-20">
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              addItem(product);
+            }}
+            className="w-full bg-[#ff385c] hover:bg-[#e00b41] text-white py-2.5 rounded-[8px] text-[13px] font-medium tracking-wide flex items-center justify-center gap-2 shadow-md cursor-pointer transition-colors"
+          >
+            <ShoppingBag size={14} strokeWidth={2.2} />
+            Quick Reserve
+          </button>
         </div>
-      </Link>
+      </div>
 
-      {/* Product Info */}
-      <div className="mt-4 px-1.5 flex flex-col gap-1 pb-1">
-        <p className="text-[10px] tracking-wider uppercase text-amber-700 font-bold flex items-center gap-1">
-          <Sparkles size={11} className="stroke-[2] text-amber-500" /> 25%+ French Oils • 12H Longevity
-        </p>
-        <div className="flex items-start justify-between gap-2 mt-1">
-          <Link href={`/products/${product.slug}`} className="flex-1">
-            <h3 className="font-serif text-base sm:text-lg font-bold text-stone-900 group-hover:text-amber-800 transition-colors leading-tight line-clamp-2">
+      {/* Meta Block Beneath Photo */}
+      <div className="mt-3 flex flex-col gap-0.5">
+        <div className="flex items-baseline justify-between gap-2">
+          <Link href={`/products/${product.slug}`} className="flex-1 truncate">
+            <h3 className="text-[15px] font-semibold text-[#222222] hover:text-[#ff385c] transition-colors truncate">
               {product.name}
             </h3>
           </Link>
-          <div className="flex flex-col items-end shrink-0">
-            <span className="text-sm font-extrabold text-stone-950 bg-gradient-to-r from-amber-400 to-amber-300 px-2.5 py-0.5 rounded-xl border border-amber-300/50 shadow-sm">
-              {formatINR(product.price)}
-            </span>
-            {product.compareAtPrice > product.price && (
-              <div className="flex items-center gap-1.5 mt-1">
-                <span className="text-[10px] text-stone-400 line-through font-medium">
-                  {formatINR(product.compareAtPrice)}
-                </span>
-                <span className="text-[9px] font-bold text-rose-600 uppercase">
-                  {Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)}% OFF
-                </span>
-              </div>
-            )}
+          <div className="flex items-center gap-1 text-[13px] font-semibold text-[#222222] shrink-0">
+            <span className="text-[11px]">★</span>
+            <span>4.92</span>
           </div>
         </div>
-        <p className="text-[10px] tracking-wider uppercase text-stone-400 font-semibold mt-0.5">{product.gender}</p>
+
+        <p className="text-[14px] text-[#6a6a6a] truncate">
+          25%+ French Oils • 12H Longevity
+        </p>
+
+        <p className="text-[14px] text-[#6a6a6a] truncate">
+          Includes free 7ML Paradox tester
+        </p>
+
+        <div className="flex items-baseline gap-2 mt-1">
+          <span className="text-[15px] font-semibold text-[#222222]">
+            {formatINR(product.price)}
+          </span>
+          <span className="text-[13px] text-[#6a6a6a]">total</span>
+          {product.compareAtPrice > product.price && (
+            <span className="text-[12px] text-[#ff385c] font-medium ml-auto">
+              Save {Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)}%
+            </span>
+          )}
+        </div>
       </div>
     </motion.div>
   );

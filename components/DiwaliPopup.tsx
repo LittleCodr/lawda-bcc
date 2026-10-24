@@ -44,9 +44,9 @@ export default function DiwaliPopup() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-950/60 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-in fade-in duration-150">
       <div 
-        className="relative w-full max-w-md backdrop-blur-2xl bg-white/95 border border-white/80 rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.25)] overflow-hidden animate-in zoom-in-95 duration-200"
+        className="relative w-full max-w-md bg-white border border-[#ebebeb] rounded-[16px] shadow-2xl overflow-hidden animate-in zoom-in-95 duration-150"
         role="dialog"
         aria-modal="true"
       >
@@ -54,81 +54,62 @@ export default function DiwaliPopup() {
         <button
           onClick={() => setIsOpen(false)}
           aria-label="Close popup"
-          className="absolute top-4 right-4 z-20 w-9 h-9 bg-white/80 backdrop-blur-sm border border-stone-200/80 rounded-full flex items-center justify-center text-stone-800 hover:bg-white shadow-sm transition-all active:scale-95 cursor-pointer"
+          className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full flex items-center justify-center text-[#222222] hover:bg-[#f7f7f7] transition-colors cursor-pointer"
         >
-          <X size={18} strokeWidth={2.2} />
+          <X size={18} strokeWidth={2} />
         </button>
 
-        {/* Festive Header Banner */}
-        <div className="bg-gradient-to-r from-[#800020] via-[#a00028] to-[#b8860b] p-7 text-center text-white border-b border-amber-300/30 relative overflow-hidden">
-          {/* Subtle decorative glow */}
-          <div className="absolute -top-12 -left-12 w-32 h-32 bg-yellow-400/25 rounded-full blur-2xl pointer-events-none" />
-          <div className="absolute -bottom-12 -right-12 w-32 h-32 bg-yellow-400/25 rounded-full blur-2xl pointer-events-none" />
-
-          {/* Festive Badge */}
-          <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-400 to-yellow-300 text-stone-950 rounded-full px-3.5 py-1 text-[10px] font-bold uppercase tracking-wider mb-3 shadow-sm border border-amber-300/50">
-            <span>🪔</span> SHUBH DIWALI DHAMAKA <span>✨</span>
+        {/* Content Body */}
+        <div className="p-8 text-left bg-white">
+          <div className="inline-flex items-center gap-1.5 bg-[#f7f7f7] border border-[#dddddd] text-[#ff385c] rounded-full px-3 py-1 text-[11px] font-semibold mb-3">
+            <span>Special Invitation</span>
           </div>
 
-          <h2 className="font-serif text-3xl font-extrabold text-white tracking-wide leading-tight mb-1 drop-shadow-sm">
-            Light Up Their World
+          <h2 className="text-[24px] font-bold text-[#222222] leading-tight mb-2">
+            20% OFF Harsh Beniwal EDPs
           </h2>
-          <p className="text-amber-200 text-xs uppercase tracking-widest font-bold">
-            Grand Diwali Festive Gifting Offer
-          </p>
-        </div>
-
-        {/* Content Body */}
-        <div className="p-6 text-center bg-gradient-to-b from-[#FAF7F2] to-white/90">
-          <p className="text-stone-700 text-xs md:text-sm font-medium leading-relaxed mb-5">
-            Celebrate the Festival of Lights with Harsh Beniwal's official luxury fragrances! 100% Original 50ML Eau De Parfums with 25%+ French oils & 12H beast-mode projection. Plus a FREE 7ML Paradox tester with every order!
+          
+          <p className="text-[14px] text-[#6a6a6a] leading-relaxed mb-6">
+            Explore 100% original 50ML Eau De Parfums with 25%+ French fragrance oils and 12+ hour projection. Every order automatically includes a complimentary 7ML Paradox tester pack.
           </p>
 
           {/* Coupon Card Ticket */}
-          <div className="bg-white/80 backdrop-blur-md border border-amber-300/60 rounded-2xl p-4 mb-5 shadow-sm relative">
-            <div className="flex items-center justify-between text-left mb-2">
+          <div className="bg-[#f7f7f7] border border-[#dddddd] rounded-[12px] p-4 mb-6">
+            <div className="flex items-center justify-between mb-3">
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-[#800020] block">
-                  Limited Festive Code
+                <span className="text-[11px] font-semibold text-[#6a6a6a] block">
+                  Exclusive Promo Code
                 </span>
-                <span className="text-2xl font-black text-stone-900 tracking-wider font-mono">
+                <span className="text-xl font-bold text-[#222222] font-mono tracking-wider">
                   DIWALI20
                 </span>
               </div>
               <button
                 onClick={copyCode}
-                className="flex items-center gap-1.5 bg-gradient-to-r from-amber-400 to-amber-500 text-stone-950 rounded-xl px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-wider shadow-sm hover:shadow-md hover:scale-[1.02] active:scale-95 transition-all cursor-pointer"
+                className="btn-secondary-airbnb py-2 px-3.5 text-xs flex items-center gap-1.5"
               >
-                {copied ? <Check size={14} className="text-emerald-700" /> : <Copy size={14} />}
-                {copied ? "Copied" : "Copy"}
+                {copied ? <Check size={14} className="text-[#188038]" /> : <Copy size={14} />}
+                {copied ? "Copied" : "Copy Code"}
               </button>
             </div>
             
-            <div className="border-t border-stone-200/80 pt-2 flex flex-col gap-1 text-[11px] text-stone-600 font-medium text-left">
-              <span className="text-emerald-700 font-semibold flex items-center gap-1">
-                ✓ Flat 20% OFF on orders above ₹499
-              </span>
-              <span className="text-amber-800 font-semibold flex items-center gap-1">
-                ✓ FREE 7ML Paradox EDP Tester Pack (Worth ₹399)
-              </span>
-              <span className="text-stone-600 flex items-center gap-1">
-                ✓ FREE Luxury Festive Packaging & Card
-              </span>
+            <div className="border-t border-[#ebebeb] pt-2.5 flex flex-col gap-1 text-[12px] text-[#6a6a6a]">
+              <span>✓ Flat 20% OFF on all perfume orders</span>
+              <span>✓ Complimentary 7ML Paradox tester (₹399 value)</span>
+              <span>✓ Free Pan-India express delivery</span>
             </div>
           </div>
 
           {/* Primary Action Button */}
           <button
             onClick={copyCode}
-            className="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 py-4 rounded-2xl text-xs font-extrabold uppercase tracking-[0.15em] shadow-xl shadow-amber-500/25 hover:shadow-2xl hover:shadow-amber-500/40 hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer border border-amber-300/60"
+            className="w-full bg-[#ff385c] hover:bg-[#e00b41] text-white py-3.5 rounded-[8px] text-[15px] font-medium transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer"
           >
-            <Sparkles size={16} className="text-amber-900" />
-            Claim 20% Discount Now
-            <Gift size={16} className="text-amber-900" />
+            Claim 20% Discount
           </button>
           
-          <p className="mt-3 text-[10px] text-stone-500 uppercase tracking-widest font-semibold">
-            ⚡ Fast Pan-India Express Delivery • 100% Genuine Harsh Beniwal EDP
+          <p className="mt-3 text-[12px] text-[#929292] text-center font-normal">
+            100% Genuine Harsh Beniwal EDP • Dispatched via express logistics
           </p>
         </div>
       </div>

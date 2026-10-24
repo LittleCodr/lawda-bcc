@@ -319,55 +319,56 @@ export default async function CollectionPage(props: {
             </div>
           </div>
 
-          {/* Fragrance Duo Highlight Sections */}
+          {/* Fragrance Duo Highlight Sections - Airbnb Photo-First Duo */}
           <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Overlord Highlight Section */}
-            <div className="backdrop-blur-2xl bg-gradient-to-br from-stone-950 via-stone-900 to-stone-950 border border-stone-800 rounded-3xl relative overflow-hidden flex flex-col justify-between h-full group p-8 shadow-2xl hover:border-amber-400/30 transition-all">
-              <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full mb-6">
-                <div className="inline-flex bg-amber-400/20 text-amber-300 px-3.5 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest mb-6 border border-amber-400/30 items-center gap-1.5">
-                  <Flame size={12} className="fill-current text-amber-400 shrink-0" /> 
-                  <span className="whitespace-nowrap leading-tight">HARSH BENIWAL SIGNATURE PICK</span>
+            <div className="bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-[14px] p-6 sm:p-7 shadow-airbnb flex flex-col justify-between group">
+              <div className="flex-1 flex flex-col items-start text-left mb-6">
+                <div className="inline-flex bg-[#f7f7f7] text-[#222222] border border-[#ebebeb] px-3 py-1 rounded-full text-[11px] font-semibold mb-4 items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-[#ff385c]"></span>
+                  <span>Harsh Beniwal Signature Pick</span>
                 </div>
-                <h2 className="font-serif text-3xl md:text-4xl mb-3 leading-none font-black text-white tracking-wide">
-                  Overlord <span className="text-amber-400 font-sans text-xl md:text-2xl font-bold">50ML EDP</span>
+                <h2 className="text-[22px] sm:text-[26px] font-bold text-[#222222] mb-2 leading-tight">
+                  Overlord <span className="text-[#6a6a6a] text-lg font-normal">50ML EDP</span>
                 </h2>
-                <p className="text-stone-300 mb-6 text-xs md:text-sm font-medium tracking-wide">
-                  Dior Sauvage DNA with 25%+ imported French oils. Electrifying citrus, spicy Sichuan pepper, and ambroxan. Includes free 7ML Paradox tester!
+                <p className="text-[#3f3f3f] text-sm leading-relaxed mb-4">
+                  Dior Sauvage DNA formulated with 25%+ imported French oils. Electrifying citrus, spicy Sichuan pepper, and ambroxan. Includes free 7ML Paradox tester!
                 </p>
               </div>
               
-              <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 z-10">
-                <Link href="/products/overlord" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 px-6 py-3.5 rounded-2xl font-black uppercase tracking-wider hover:scale-[1.02] transition-all shadow-xl shadow-amber-500/20 w-full md:w-auto text-[11px]">
-                  ORDER NOW FOR ₹1,299 <ChevronRight size={14} />
-                </Link>
-                <div className="relative w-44 h-44 md:w-52 md:h-52 bg-stone-950/80 rounded-2xl overflow-hidden border border-white/10 shadow-xl shrink-0 group-hover:scale-105 transition-transform duration-500 p-2">
-                  <img src="/harsh-beniwal/octopus/perfumes/images/overlord_box.png" alt="Overlord 50ML EDP" className="w-full h-full object-contain" />
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#ebebeb]">
+                <div>
+                  <span className="text-xs text-[#6a6a6a] line-through mr-1.5">₹2,099</span>
+                  <span className="text-lg font-bold text-[#222222]">₹1,299</span>
                 </div>
+                <Link href="/products/overlord" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#ff385c] hover:bg-[#e00b41] text-white px-5 py-2.5 rounded-lg font-medium text-xs transition-colors">
+                  Reserve Now <ChevronRight size={14} />
+                </Link>
               </div>
             </div>
 
             {/* Paradox Highlight Section */}
-            <div className="backdrop-blur-2xl bg-gradient-to-br from-stone-950 via-stone-900 to-stone-950 border border-amber-400/40 rounded-3xl relative overflow-hidden flex flex-col justify-between h-full group p-8 shadow-2xl shadow-amber-500/10 hover:border-amber-400/60 transition-all">
-              <div className="z-10 flex-1 flex flex-col items-center md:items-start text-center md:text-left w-full mb-6">
-                <div className="inline-flex bg-gradient-to-r from-amber-500 to-yellow-500 text-stone-950 px-3.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-6 shadow-sm items-center gap-1.5">
-                  <Sparkles size={12} className="fill-stone-950 text-stone-950 shrink-0" /> 
-                  <span className="whitespace-nowrap leading-tight">MOST VIRAL SCENT 🔥</span>
+            <div className="bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-[14px] p-6 sm:p-7 shadow-airbnb flex flex-col justify-between group">
+              <div className="flex-1 flex flex-col items-start text-left mb-6">
+                <div className="inline-flex bg-[#fff0f3] text-[#ff385c] border border-[#ffd1da] px-3 py-1 rounded-full text-[11px] font-semibold mb-4 items-center gap-1.5">
+                  <span>Guest favorite 🔥</span>
                 </div>
-                <h2 className="font-serif text-3xl md:text-4xl mb-3 leading-none font-black text-white tracking-wide">
-                  Paradox <span className="text-amber-400 font-sans text-xl md:text-2xl font-bold">50ML EDP</span>
+                <h2 className="text-[22px] sm:text-[26px] font-bold text-[#222222] mb-2 leading-tight">
+                  Paradox <span className="text-[#6a6a6a] text-lg font-normal">50ML EDP</span>
                 </h2>
-                <p className="text-stone-300 mb-6 text-xs md:text-sm font-medium tracking-wide">
+                <p className="text-[#3f3f3f] text-sm leading-relaxed mb-4">
                   LV Les Sables Roses DNA. Centifolia Rose, rare amber, and smoky agarwood oud. Includes free 7ML Paradox tester!
                 </p>
               </div>
               
-              <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 z-10">
-                <Link href="/products/paradox" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 px-6 py-3.5 rounded-2xl font-black uppercase tracking-wider hover:scale-[1.02] transition-all shadow-xl shadow-amber-500/25 w-full md:w-auto text-[11px]">
-                  ORDER NOW FOR ₹1,299 <ChevronRight size={14} />
-                </Link>
-                <div className="relative w-44 h-44 md:w-52 md:h-52 bg-stone-950/80 rounded-2xl overflow-hidden border border-white/10 shadow-xl shrink-0 group-hover:scale-105 transition-transform duration-500 p-2">
-                  <img src="/harsh-beniwal/octopus/perfumes/images/paradox_box.png" alt="Paradox 50ML EDP" className="w-full h-full object-contain" />
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#ebebeb]">
+                <div>
+                  <span className="text-xs text-[#6a6a6a] line-through mr-1.5">₹2,099</span>
+                  <span className="text-lg font-bold text-[#222222]">₹1,299</span>
                 </div>
+                <Link href="/products/paradox" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#ff385c] hover:bg-[#e00b41] text-white px-5 py-2.5 rounded-lg font-medium text-xs transition-colors">
+                  Reserve Now <ChevronRight size={14} />
+                </Link>
               </div>
             </div>
           </div>

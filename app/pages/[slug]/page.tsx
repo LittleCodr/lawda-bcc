@@ -43,21 +43,21 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           <p>We understand that every individual is unique, and every relationship tells a different story. That is why our products are not just items; they are tangible memories, meticulously crafted to reflect the profound bonds you share with your loved ones. Whether it is a signature 50ML Eau De Parfum crafted with French perfume oils, a bespoke discovery scent, or an elegantly packaged fragrance gift box, every product that leaves our facility carries with it a promise of quality, exclusivity, and heartfelt emotion.</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
-            <div className="bg-[#f9f2ed] p-8 rounded-xl border border-[#E5B8B7]/30">
-              <ShieldCheck className="text-[#800020] mb-4" size={32} />
-              <h3 className="font-serif text-xl text-stone-900 mt-0 mb-2">Our Craftsmanship</h3>
-              <p className="text-sm text-stone-600 mb-0">Our commitment to excellence is unwavering. We collaborate with master artisans and employ cutting-edge engraving and printing technologies to ensure that every personalization detail is executed with flawless precision.</p>
+            <div className="bg-[#f7f7f7] p-8 rounded-[14px] border border-[#ebebeb]">
+              <ShieldCheck className="text-[#ff385c] mb-4" size={32} />
+              <h3 className="font-sans font-bold text-xl text-[#222222] mt-0 mb-2">Our Craftsmanship</h3>
+              <p className="text-sm text-[#3f3f3f] mb-0">Our commitment to excellence is unwavering. We collaborate with master artisans and employ cutting-edge engraving and printing technologies to ensure that every personalization detail is executed with flawless precision.</p>
             </div>
-            <div className="bg-[#f9f2ed] p-8 rounded-xl border border-[#E5B8B7]/30">
-              <Heart className="text-[#800020] mb-4" size={32} />
-              <h3 className="font-serif text-xl text-stone-900 mt-0 mb-2">Customer Delight</h3>
-              <p className="text-sm text-stone-600 mb-0">We do not merely sell gifts; we curate experiences. From the moment you land on our website to the instant our premium, signature packaging is unboxed, every touchpoint is optimized to deliver unparalleled delight.</p>
+            <div className="bg-[#f7f7f7] p-8 rounded-[14px] border border-[#ebebeb]">
+              <Heart className="text-[#ff385c] mb-4" size={32} />
+              <h3 className="font-sans font-bold text-xl text-[#222222] mt-0 mb-2">Customer Delight</h3>
+              <p className="text-sm text-[#3f3f3f] mb-0">We do not merely sell gifts; we curate experiences. From the moment you land on our website to the instant our premium, signature packaging is unboxed, every touchpoint is optimized to deliver unparalleled delight.</p>
             </div>
           </div>
 
           <h2>Corporate Information & Legal Entity</h2>
           <p>Octopus Everlasting Gifts operates under full compliance with all relevant corporate and commercial laws in India. For any legal inquiries, corporate collaborations, or official correspondence, please refer to our registered headquarters:</p>
-          <div className="bg-stone-50 p-6 rounded-xl border-l-4 border-[#800020] my-6">
+          <div className="bg-[#f7f7f7] p-6 rounded-[14px] border border-[#ebebeb] my-6">
             <p className="font-bold text-stone-900 mb-2">Registered Address for Verification:</p>
             <p className="mb-0 text-sm">Octopus Everlasting Gifts<br />Shri Shanta Sharnam<br />Tonk, Rajasthan, 304022<br />India</p>
           </div>
@@ -72,22 +72,22 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           
           <div className="space-y-8">
             <div>
-              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#800020] text-white text-sm font-bold">1</span> Comprehensive Introduction</h2>
+              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#ff385c] text-white text-sm font-bold">1</span> Comprehensive Introduction</h2>
               <p>Welcome to Octopus Everlasting Gifts (accessible at octopusperfume.in). These comprehensive Terms and Conditions ("Terms", "Agreement") constitute a legally binding contract between you (the "User", "Customer", "Visitor") and Octopus Everlasting Gifts ("we", "us", "our", "the Company"). By accessing, browsing, registering an account, or placing an order on our platform, you categorically acknowledge that you have read, understood, and unequivocally agreed to be bound by these Terms in their entirety. If you harbor any objections to these Terms, you are explicitly prohibited from using our services and must immediately cease all access to the platform.</p>
             </div>
             
             <div>
-              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#800020] text-white text-sm font-bold">2</span> Intellectual Property</h2>
+              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#ff385c] text-white text-sm font-bold">2</span> Intellectual Property</h2>
               <p>The entire contents of the Octopus Everlasting Gifts website—including but not limited to textual content, graphical assets, logos, button icons, high-resolution imagery, audio clips, digital downloads, data compilations, and proprietary software—are the exclusive intellectual property of Octopus Everlasting Gifts or its certified content suppliers. These assets are protected under the Indian Copyright Act, 1957, as well as international copyright and trademark laws.</p>
             </div>
             
             <div>
-              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#800020] text-white text-sm font-bold">3</span> Detailed Product Descriptions</h2>
+              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#ff385c] text-white text-sm font-bold">3</span> Detailed Product Descriptions</h2>
               <p>While we expend extraordinary effort to ensure the absolute accuracy of all product descriptions, high-definition imagery, and pricing information, the Company does not warrant that product descriptions or other content is completely error-free, current, or reliable. All prices are listed in Indian Rupees (INR) and are inclusive of applicable taxes unless stated otherwise.</p>
             </div>
             
             <div>
-              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#800020] text-white text-sm font-bold">4</span> Bespoke Personalization Policies</h2>
+              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#ff385c] text-white text-sm font-bold">4</span> Bespoke Personalization Policies</h2>
               <p>As our core offering relies on customization, you are solely responsible for ensuring the absolute accuracy of all personalization inputs (e.g., names, dates, spelling, grammar) submitted during the checkout process. Octopus Everlasting Gifts will not be held liable for typographical errors submitted by the customer.</p>
             </div>
           </div>
@@ -98,25 +98,25 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
       content = (
         <>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            <div className="bg-[#f9f2ed] p-6 rounded-xl flex flex-col items-center text-center shadow-sm border border-[#E5B8B7]/30">
-              <Calendar size={32} strokeWidth={1.5} className="text-[#800020] mb-3" />
-              <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-1">Return Window</span>
-              <span className="font-serif text-lg text-gray-900">1 Day</span>
+            <div className="bg-[#f7f7f7] p-6 rounded-[14px] flex flex-col items-center text-center border border-[#ebebeb]">
+              <Calendar size={32} strokeWidth={1.5} className="text-[#ff385c] mb-3" />
+              <span className="text-[10px] uppercase font-bold text-[#6a6a6a] tracking-wider mb-1">Return Window</span>
+              <span className="font-bold text-lg text-[#222222]">1 Day</span>
             </div>
-            <div className="bg-[#f9f2ed] p-6 rounded-xl flex flex-col items-center text-center shadow-sm border border-[#E5B8B7]/30">
-              <RefreshCcw size={32} strokeWidth={1.5} className="text-[#800020] mb-3" />
-              <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-1">Exchanges</span>
-              <span className="font-serif text-lg text-gray-900">Accepted</span>
+            <div className="bg-[#f7f7f7] p-6 rounded-[14px] flex flex-col items-center text-center border border-[#ebebeb]">
+              <RefreshCcw size={32} strokeWidth={1.5} className="text-[#ff385c] mb-3" />
+              <span className="text-[10px] uppercase font-bold text-[#6a6a6a] tracking-wider mb-1">Exchanges</span>
+              <span className="font-bold text-lg text-[#222222]">Accepted</span>
             </div>
-            <div className="bg-[#f9f2ed] p-6 rounded-xl flex flex-col items-center text-center shadow-sm border border-[#E5B8B7]/30">
-              <Box size={32} strokeWidth={1.5} className="text-[#800020] mb-3" />
-              <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-1">Return Label</span>
-              <span className="font-serif text-lg text-gray-900">Included & Free</span>
+            <div className="bg-[#f7f7f7] p-6 rounded-[14px] flex flex-col items-center text-center border border-[#ebebeb]">
+              <Box size={32} strokeWidth={1.5} className="text-[#ff385c] mb-3" />
+              <span className="text-[10px] uppercase font-bold text-[#6a6a6a] tracking-wider mb-1">Return Label</span>
+              <span className="font-bold text-lg text-[#222222]">Included & Free</span>
             </div>
-            <div className="bg-[#f9f2ed] p-6 rounded-xl flex flex-col items-center text-center shadow-sm border border-[#E5B8B7]/30">
-              <Banknote size={32} strokeWidth={1.5} className="text-[#800020] mb-3" />
-              <span className="text-[10px] uppercase font-bold text-gray-500 tracking-wider mb-1">Restocking Fee</span>
-              <span className="font-serif text-lg text-gray-900">No Cost</span>
+            <div className="bg-[#f7f7f7] p-6 rounded-[14px] flex flex-col items-center text-center border border-[#ebebeb]">
+              <Banknote size={32} strokeWidth={1.5} className="text-[#ff385c] mb-3" />
+              <span className="text-[10px] uppercase font-bold text-[#6a6a6a] tracking-wider mb-1">Restocking Fee</span>
+              <span className="font-bold text-lg text-[#222222]">No Cost</span>
             </div>
           </div>
 
@@ -150,31 +150,31 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
     case "shipping-policy":
       content = (
         <>
-          <div className="flex flex-col md:flex-row justify-between items-center bg-[#f9f2ed] p-8 rounded-2xl mb-12 gap-6 relative border border-[#E5B8B7]/30 shadow-sm">
+          <div className="flex flex-col md:flex-row justify-between items-center bg-[#f7f7f7] p-8 rounded-[14px] mb-12 gap-6 relative border border-[#ebebeb]">
              <div className="flex flex-col items-center text-center max-w-[200px] z-10 relative">
-               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border-2 border-[#800020]">
-                 <Box size={24} className="text-[#800020]" />
+               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 border border-[#ebebeb] shadow-airbnb">
+                 <Box size={24} className="text-[#ff385c]" />
                </div>
-               <h3 className="font-serif text-lg text-stone-900 mt-0 mb-2">1. Processing</h3>
-               <p className="text-xs text-stone-600 leading-relaxed mb-0 font-medium">3-5 days for personalized crafting</p>
+               <h3 className="font-sans font-bold text-lg text-[#222222] mt-0 mb-2">1. Processing</h3>
+               <p className="text-xs text-[#6a6a6a] leading-relaxed mb-0 font-medium">3-5 days for personalized crafting</p>
              </div>
              
-             <div className="hidden md:block absolute top-16 left-1/4 right-1/4 h-[2px] bg-[#E5B8B7] z-0"></div>
+             <div className="hidden md:block absolute top-16 left-1/4 right-1/4 h-[1px] bg-[#ebebeb] z-0"></div>
              
              <div className="flex flex-col items-center text-center max-w-[200px] z-10 relative">
-               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border-2 border-[#800020]">
-                 <Truck size={24} className="text-[#800020]" />
+               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 border border-[#ebebeb] shadow-airbnb">
+                 <Truck size={24} className="text-[#ff385c]" />
                </div>
-               <h3 className="font-serif text-lg text-stone-900 mt-0 mb-2">2. Dispatch</h3>
-               <p className="text-xs text-stone-600 leading-relaxed mb-0 font-medium">Handed over to top-tier couriers</p>
+               <h3 className="font-sans font-bold text-lg text-[#222222] mt-0 mb-2">2. Dispatch</h3>
+               <p className="text-xs text-[#6a6a6a] leading-relaxed mb-0 font-medium">Handed over to top-tier couriers</p>
              </div>
              
              <div className="flex flex-col items-center text-center max-w-[200px] z-10 relative">
-               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm border-2 border-[#800020]">
-                 <CheckCircle2 size={24} className="text-[#800020]" />
+               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 border border-[#ebebeb] shadow-airbnb">
+                 <CheckCircle2 size={24} className="text-[#ff385c]" />
                </div>
-               <h3 className="font-serif text-lg text-stone-900 mt-0 mb-2">3. Delivery</h3>
-               <p className="text-xs text-stone-600 leading-relaxed mb-0 font-medium">2-7 business days across India</p>
+               <h3 className="font-sans font-bold text-lg text-[#222222] mt-0 mb-2">3. Delivery</h3>
+               <p className="text-xs text-[#6a6a6a] leading-relaxed mb-0 font-medium">2-7 business days across India</p>
              </div>
           </div>
           
@@ -184,20 +184,20 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           <h2>2. Comprehensive Processing Timelines</h2>
           <p>Unlike off-the-shelf e-commerce, bespoke gifting requires meticulous craftsmanship. When you place an order, it enters our production queue where it undergoes structural drafting, engraving/printing, polishing, quality assurance, and finally, premium gift wrapping.</p>
           
-          <div className="bg-stone-50 border-l-4 border-[#800020] p-6 my-6 rounded-r-xl">
+          <div className="bg-[#f7f7f7] border-l-4 border-[#ff385c] p-6 my-6 rounded-r-[14px]">
             <ul className="m-0 p-0 list-none space-y-4">
               <li className="flex items-start gap-3">
-                <div className="mt-1 w-2 h-2 rounded-full bg-[#800020] shrink-0"></div>
+                <div className="mt-1.5 w-2 h-2 rounded-full bg-[#ff385c] shrink-0"></div>
                 <div>
-                  <strong className="block text-stone-900">Personalized/Customized Orders</strong>
-                  <span className="text-stone-600 text-sm">Require a mandatory processing window of 3 to 5 business days prior to dispatch.</span>
+                  <strong className="block text-[#222222]">Personalized/Customized Orders</strong>
+                  <span className="text-[#3f3f3f] text-sm">Require a mandatory processing window of 3 to 5 business days prior to dispatch.</span>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <div className="mt-1 w-2 h-2 rounded-full bg-[#800020] shrink-0"></div>
+                <div className="mt-1.5 w-2 h-2 rounded-full bg-[#ff385c] shrink-0"></div>
                 <div>
-                  <strong className="block text-stone-900">Non-Personalized Orders</strong>
-                  <span className="text-stone-600 text-sm">Are typically processed and dispatched within 1 to 2 business days.</span>
+                  <strong className="block text-[#222222]">Non-Personalized Orders</strong>
+                  <span className="text-[#3f3f3f] text-sm">Are typically processed and dispatched within 1 to 2 business days.</span>
                 </div>
               </li>
             </ul>
@@ -255,46 +255,46 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           <p className="lead text-lg font-medium text-stone-500 mb-8">We are here to help. Reach out to our dedicated support team with any questions, concerns, or bespoke gifting requests.</p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
-            <div className="bg-[#f9f2ed] p-8 rounded-xl border border-[#E5B8B7]/30 flex flex-col items-center text-center">
-              <Mail className="text-[#800020] mb-4" size={32} />
-              <h3 className="font-serif text-xl text-stone-900 mt-0 mb-2">Email Support</h3>
-              <p className="text-sm text-stone-600 mb-4">For order inquiries, cancellations (within 2 hours), and general questions, email us at:</p>
-              <a href="mailto:support@octopusperfume.in" className="font-bold text-[#800020] text-lg hover:underline">support@octopusperfume.in</a>
-              <p className="text-xs text-stone-500 mt-4 mb-0">We aim to reply within 24 hours.</p>
+            <div className="bg-[#f7f7f7] p-8 rounded-[14px] border border-[#ebebeb] flex flex-col items-center text-center">
+              <Mail className="text-[#ff385c] mb-4" size={32} />
+              <h3 className="font-sans font-bold text-xl text-[#222222] mt-0 mb-2">Email Support</h3>
+              <p className="text-sm text-[#6a6a6a] mb-4">For order inquiries, cancellations (within 2 hours), and general questions, email us at:</p>
+              <a href="mailto:support@octopusperfume.in" className="font-semibold text-[#ff385c] text-lg hover:underline">support@octopusperfume.in</a>
+              <p className="text-xs text-[#929292] mt-4 mb-0">We aim to reply within 24 hours.</p>
             </div>
             
-            <div className="bg-[#f9f2ed] p-8 rounded-xl border border-[#E5B8B7]/30 flex flex-col items-center text-center">
-              <Phone className="text-[#800020] mb-4" size={32} />
-              <h3 className="font-serif text-xl text-stone-900 mt-0 mb-2">Phone Support</h3>
-              <p className="text-sm text-stone-600 mb-4">Need immediate assistance? Our customer support agents are available Monday to Saturday (10 AM - 6 PM IST):</p>
-              <a href="tel:+919876543210" className="font-bold text-[#800020] text-lg hover:underline">+91 98765 43210</a>
-              <p className="text-xs text-stone-500 mt-4 mb-0">Standard call rates apply.</p>
+            <div className="bg-[#f7f7f7] p-8 rounded-[14px] border border-[#ebebeb] flex flex-col items-center text-center">
+              <Phone className="text-[#ff385c] mb-4" size={32} />
+              <h3 className="font-sans font-bold text-xl text-[#222222] mt-0 mb-2">Phone Support</h3>
+              <p className="text-sm text-[#6a6a6a] mb-4">Need immediate assistance? Our customer support agents are available Monday to Saturday (10 AM - 6 PM IST):</p>
+              <a href="tel:+919876543210" className="font-semibold text-[#ff385c] text-lg hover:underline">+91 98765 43210</a>
+              <p className="text-xs text-[#929292] mt-4 mb-0">Standard call rates apply.</p>
             </div>
           </div>
           
           <h2>Corporate Headquarters</h2>
           <p>If you wish to send us mail, corporate inquiries, or written correspondence, please use our registered address below:</p>
-          <div className="bg-stone-50 p-6 rounded-xl border-l-4 border-[#800020] my-6">
-            <p className="font-bold text-stone-900 mb-2">Octopus Everlasting Gifts</p>
-            <p className="mb-0 text-sm leading-relaxed">
+          <div className="bg-[#f7f7f7] p-6 rounded-[14px] border border-[#ebebeb] my-6">
+            <p className="font-bold text-[#222222] mb-2">Octopus Everlasting Gifts</p>
+            <p className="mb-0 text-sm leading-relaxed text-[#3f3f3f]">
               Shri Shanta Sharnam<br />
               Tonk, Rajasthan, 304022<br />
               India
             </p>
           </div>
-          <p className="text-sm text-stone-600 mt-8">Note: This address is strictly for corporate correspondence and returns processing. We do not operate a physical retail storefront at this location.</p>
+          <p className="text-sm text-[#6a6a6a] mt-8">Note: This address is strictly for corporate correspondence and returns processing. We do not operate a physical retail storefront at this location.</p>
         </>
       );
       break;
     default:
       content = (
         <div className="text-center py-20">
-          <FileText size={48} className="mx-auto text-stone-300 mb-6" />
-          <h2 className="text-2xl font-serif text-stone-900 mb-4">Legal Document Not Found</h2>
-          <p className="text-stone-500">
+          <FileText size={48} className="mx-auto text-[#6a6a6a] mb-6" />
+          <h2 className="text-2xl font-bold text-[#222222] mb-4">Legal Document Not Found</h2>
+          <p className="text-[#6a6a6a]">
             The requested document could not be located in our directory. If you believe this is an error, please contact Octopus Everlasting Gifts support.
           </p>
-          <Link href="/" className="inline-block mt-8 bg-[#800020] text-white px-8 py-3 text-xs uppercase tracking-widest font-bold rounded-sm">
+          <Link href="/" className="inline-block mt-8 bg-[#ff385c] hover:bg-[#e00b41] text-white px-8 py-3 text-sm font-semibold rounded-lg shadow-sm transition-colors">
             Return to Homepage
           </Link>
         </div>
@@ -302,34 +302,34 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
   }
 
   return (
-    <div className="bg-stone-50 min-h-screen pt-24 pb-32">
-      <div className="mx-auto max-w-[1200px] px-6 md:px-12">
+    <div className="bg-white min-h-screen pt-12 pb-32">
+      <div className="mx-auto max-w-[1280px] px-6 md:px-12">
         <div className="flex flex-col lg:flex-row gap-12">
           
           {/* Sidebar Navigation */}
           <div className="w-full lg:w-1/4 shrink-0">
-            <div className="sticky top-32 bg-white rounded-2xl border border-stone-200 p-6 shadow-sm">
-              <h3 className="font-serif text-xl text-stone-900 mb-6 pb-4 border-b border-stone-100">Legal & Policies</h3>
+            <div className="sticky top-28 bg-white rounded-[14px] border border-[#ebebeb] p-6 shadow-airbnb">
+              <h3 className="font-bold text-lg text-[#222222] mb-6 pb-4 border-b border-[#ebebeb]">Legal & Policies</h3>
               <nav className="flex flex-col gap-2">
                 {SIDEBAR_LINKS.map((link) => (
                   <Link 
                     key={link.slug} 
                     href={`/pages/${link.slug}`}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                       slug === link.slug 
-                        ? 'bg-[#800020] text-white font-bold shadow-md' 
-                        : 'text-stone-600 hover:bg-[#f9f2ed] hover:text-[#800020]'
+                        ? 'bg-[#ff385c] text-white font-medium shadow-sm' 
+                        : 'text-[#222222] hover:bg-[#f7f7f7]'
                     }`}
                   >
                     {link.icon}
-                    <span className="text-sm tracking-wide">{link.title}</span>
+                    <span className="text-sm font-medium">{link.title}</span>
                   </Link>
                 ))}
               </nav>
               
-              <div className="mt-8 pt-6 border-t border-stone-100">
-                <p className="text-xs text-stone-500 font-medium leading-relaxed mb-4">Need help? Our support team is available 24/7 to assist you with any policy questions.</p>
-                <Link href="/pages/contact" className="text-xs font-bold uppercase tracking-widest text-[#800020] flex items-center gap-1 hover:gap-2 transition-all">
+              <div className="mt-8 pt-6 border-t border-[#ebebeb]">
+                <p className="text-xs text-[#6a6a6a] font-normal leading-relaxed mb-4">Need help? Our support team is available 24/7 to assist you with any policy questions.</p>
+                <Link href="/pages/contact" className="text-xs font-semibold text-[#ff385c] flex items-center gap-1 hover:gap-2 transition-all">
                   Contact Support <ChevronRight size={14} />
                 </Link>
               </div>
@@ -338,12 +338,12 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
 
           {/* Main Content Area */}
           <div className="w-full lg:w-3/4">
-            <div className="bg-white rounded-2xl p-8 md:p-12 border border-stone-200 shadow-sm">
-              <h1 className="font-serif text-3xl md:text-5xl text-stone-900 mb-10 pb-6 border-b border-stone-100">
+            <div className="bg-white rounded-[14px] p-8 md:p-12 border border-[#ebebeb] shadow-airbnb">
+              <h1 className="font-bold text-2xl md:text-3xl text-[#222222] mb-8 pb-4 border-b border-[#ebebeb]">
                 {title}
               </h1>
 
-              <div className="prose prose-stone prose-lg prose-p:leading-relaxed prose-p:text-justify prose-p:mb-6 prose-headings:font-serif prose-headings:text-[#800020] prose-headings:mt-10 prose-headings:mb-5 max-w-none text-stone-700">
+              <div className="prose prose-stone prose-lg prose-p:leading-relaxed prose-p:text-justify prose-p:mb-6 prose-headings:font-bold prose-headings:text-[#222222] prose-headings:mt-8 prose-headings:mb-4 max-w-none text-[#3f3f3f]">
                 {content}
               </div>
             </div>

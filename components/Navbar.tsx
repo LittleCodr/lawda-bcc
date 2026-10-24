@@ -87,25 +87,21 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top Glassmorphic Announcement Bar */}
-      <Link 
-        href="/harsh-beniwal/octopus/perfumes" 
-        className="group w-full bg-gradient-to-r from-amber-500/90 via-amber-400/95 to-yellow-400/90 backdrop-blur-md text-stone-950 py-2.5 px-4 hidden md:flex items-center justify-center gap-6 text-[11px] font-bold uppercase tracking-wider border-b border-amber-500/20 shadow-sm hover:opacity-95 transition-all"
-      >
+      {/* Top Subtle Brand Notification Hairline */}
+      <div className="w-full bg-[#f7f7f7] border-b border-[#ebebeb] text-[#222222] py-2 px-4 hidden md:flex items-center justify-center gap-6 text-[12px] font-medium">
         <div className="flex items-center gap-2">
-          <span>🪔</span>
-          <span>DIWALI FESTIVE SALE: 20% OFF ALL PERFUMES</span>
+          <span className="w-2 h-2 rounded-full bg-[#ff385c]"></span>
+          <span>100% Original 50ML Eau De Parfums by Harsh Beniwal</span>
         </div>
-        <div className="flex items-center gap-2 bg-stone-950/90 text-amber-300 px-3 py-0.5 rounded-full border border-white/10 shadow-sm backdrop-blur-sm">
-          USE CODE <strong className="font-mono text-yellow-300 underline">DIWALI20</strong>
+        <span className="text-[#dddddd]">•</span>
+        <div className="flex items-center gap-1.5 text-[#222222]">
+          <span>Use code</span>
+          <strong className="font-mono bg-[#ffffff] border border-[#dddddd] text-[#ff385c] px-2 py-0.5 rounded-md text-[11px] font-bold">DIWALI20</strong>
+          <span>for 20% OFF</span>
         </div>
-        <div className="flex items-center gap-2 text-stone-900 font-semibold">
-          <Truck size={14} className="stroke-[2.5]" /> FREE PAN-INDIA EXPRESS SHIPPING • 100% PREPAID SECURE
-        </div>
-        <div className="flex items-center gap-1 font-extrabold text-stone-950 group-hover:translate-x-1 transition-transform">
-          EXPLORE 9 EDP SCENTS →
-        </div>
-      </Link>
+        <span className="text-[#dddddd]">•</span>
+        <div className="text-[#6a6a6a]">Free Pan-India Express Shipping on all prepaid orders</div>
+      </div>
       
       {/* Mobile Marquee Strip */}
       <div className="block md:hidden">
@@ -114,161 +110,158 @@ export default function Navbar() {
         </Link>
       </div>
       
-      {/* Main Glass Navbar */}
+      {/* Main Airbnb Top Navigation (80px height, pure white, 1px bottom hairline) */}
       <header
-        className={`sticky top-0 w-full z-40 transition-all duration-300 backdrop-blur-xl bg-white/75 border-b border-white/60 ${
-          scrolled ? "shadow-[0_10px_30px_rgba(0,0,0,0.06)] bg-white/85" : ""
+        className={`sticky top-0 w-full z-40 transition-all duration-200 bg-white border-b border-[#ebebeb] ${
+          scrolled ? "shadow-airbnb" : ""
         }`}
       >
-        <div className="mx-auto max-w-[1440px] px-4 md:px-8 py-3.5 flex items-center justify-between">
+        <div className="mx-auto max-w-[1440px] px-6 md:px-10 h-20 flex items-center justify-between">
           
-          {/* Left Side: Mobile Menu Button & Desktop Navigation */}
-          <div className="flex-1 relative z-10 flex items-center">
-            <button
-              className="xl:hidden p-2.5 -ml-2 text-stone-900 bg-white/80 backdrop-blur-md border border-stone-200/70 rounded-xl shadow-sm hover:shadow-md hover:bg-white active:scale-95 transition-all"
-              aria-label="Open menu"
-              onClick={() => setMobileOpen(true)}
-            >
-              <Menu size={20} strokeWidth={2.5} />
-            </button>
-
-            <nav className="hidden xl:flex items-center gap-6">
-              {NAV_MENU.map((item) => (
-                <div
-                  key={item.label}
-                  className="relative group"
-                  onMouseEnter={() => setActiveMenu(item.label)}
-                  onMouseLeave={() => setActiveMenu(null)}
-                >
-                  <Link
-                    href={item.href}
-                    className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-stone-800 hover:text-amber-600 py-3 transition-colors"
-                  >
-                    {item.label}
-                    {item.badge && (
-                      <span className="text-[9px] bg-amber-100/90 text-amber-900 px-2 py-0.5 rounded-full border border-amber-300/60 font-bold backdrop-blur-sm">
-                        {item.badge}
-                      </span>
-                    )}
-                    <ChevronDown size={14} strokeWidth={2} className={`transition-transform duration-200 opacity-60 ${activeMenu === item.label ? 'rotate-180 opacity-100' : ''}`} />
-                  </Link>
-                  
-                  {/* Glassmorphic Dropdown Menu */}
-                  <div className={`absolute top-full left-0 w-72 backdrop-blur-2xl bg-white/90 border border-white/80 shadow-[0_20px_45px_rgba(0,0,0,0.08)] rounded-2xl transition-all duration-300 origin-top overflow-hidden p-2 ${
-                    activeMenu === item.label ? 'opacity-100 scale-100 pointer-events-auto translate-y-1' : 'opacity-0 scale-95 pointer-events-none translate-y-0'
-                  }`}>
-                    <div className="py-1">
-                      {item.subLinks.map((sub) => (
-                        <Link
-                          key={sub.label}
-                          href={sub.href}
-                          className="block px-4 py-2.5 text-xs font-semibold uppercase tracking-wide text-stone-700 hover:text-amber-900 hover:bg-amber-50/80 rounded-xl transition-all"
-                        >
-                          {sub.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </nav>
-          </div>
-
-          {/* Center: Brand Logo */}
+          {/* Flush Left: Brand Wordmark */}
           <Link
             href="/"
-            className="flex flex-col items-center group z-20 w-fit whitespace-nowrap px-2"
+            className="flex flex-col items-start group shrink-0"
           >
             <div className="flex items-center gap-1.5">
-              <span className="font-serif text-2xl sm:text-3xl font-black tracking-widest uppercase bg-gradient-to-r from-stone-900 via-stone-800 to-amber-950 bg-clip-text text-transparent">
+              <span className="font-serif text-2xl font-bold tracking-tight text-[#ff385c] group-hover:text-[#e00b41] transition-colors">
                 OCTOPUS
               </span>
-              <span className="text-base animate-soft-pulse">🪔</span>
             </div>
-            <span className="text-[9px] font-bold uppercase tracking-[0.22em] text-amber-700 -mt-1">
-              BY HARSH BENIWAL • LUXURY EDP
+            <span className="text-[10px] font-semibold tracking-wide text-[#6a6a6a] -mt-1">
+              by Harsh Beniwal
             </span>
           </Link>
 
-          {/* Right Side: Actions (Search, Account, Cart) */}
-          <div className="flex items-center gap-2 sm:gap-3 flex-1 justify-end relative z-10 text-stone-800">
-            <button 
-              aria-label="Search" 
-              onClick={() => setSearchOpen(true)} 
-              className="p-2 sm:px-3.5 sm:py-2 bg-white/80 backdrop-blur-md border border-stone-200/70 rounded-xl shadow-sm hover:shadow-md hover:bg-white active:scale-95 transition-all flex items-center gap-2 cursor-pointer"
+          {/* Dead Center: Signature Airbnb Pill-Shaped Search Bar */}
+          <div className="hidden lg:flex items-center">
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="search-bar-pill flex items-center h-12 pl-6 pr-2 py-2 gap-4 text-left cursor-pointer"
             >
-              <Search size={17} strokeWidth={2.2} className="text-stone-700" />
-              <span className="hidden sm:inline text-[11px] uppercase font-bold tracking-wider text-stone-700">Search</span>
+              <div className="flex flex-col pr-3 border-r border-[#ebebeb]">
+                <span className="text-[12px] font-semibold text-[#222222]">Any Scent</span>
+                <span className="text-[12px] text-[#6a6a6a] truncate max-w-[100px]">9 Niche EDPs</span>
+              </div>
+              <div className="flex flex-col pr-3 border-r border-[#ebebeb]">
+                <span className="text-[12px] font-semibold text-[#222222]">Longevity</span>
+                <span className="text-[12px] text-[#6a6a6a]">12+ Hours</span>
+              </div>
+              <div className="flex flex-col pr-2">
+                <span className="text-[12px] font-semibold text-[#222222]">For Whom</span>
+                <span className="text-[12px] text-[#6a6a6a]">Him / Her / Unisex</span>
+              </div>
+              <div className="search-orb shrink-0 w-8 h-8 rounded-full bg-[#ff385c] text-white flex items-center justify-center ml-2">
+                <Search size={14} strokeWidth={2.5} />
+              </div>
             </button>
+          </div>
 
-            <Link 
-              href="/account" 
-              aria-label="Account" 
-              className="p-2 sm:px-3.5 sm:py-2 bg-white/80 backdrop-blur-md border border-stone-200/70 rounded-xl shadow-sm hover:shadow-md hover:bg-white active:scale-95 transition-all flex items-center gap-2"
+          {/* Flush Right: Product Navigation & Account/Cart Pills */}
+          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+            <Link
+              href="/harsh-beniwal/octopus/perfumes"
+              className="hidden sm:inline-block text-[14px] font-medium text-[#222222] hover:bg-[#f7f7f7] px-3.5 py-2.5 rounded-full transition-colors"
             >
-              <User size={17} strokeWidth={2.2} className="text-stone-700" />
-              <span className="hidden sm:inline text-[11px] uppercase font-bold tracking-wider text-stone-700">Account</span>
+              Explore 9 EDPs
             </Link>
 
-            <button
-              aria-label="Cart"
-              className="p-2 sm:px-4 sm:py-2 bg-gradient-to-r from-stone-950 to-stone-900 text-amber-300 border border-stone-800 rounded-xl shadow-[0_4px_16px_rgba(0,0,0,0.18)] hover:shadow-[0_8px_24px_rgba(245,158,11,0.25)] hover:scale-[1.02] active:scale-95 transition-all flex items-center gap-2 relative cursor-pointer"
-              onClick={() => setIsOpen(true)}
+            <Link
+              href="/products/paradox"
+              className="hidden md:inline-flex items-center gap-1.5 text-[12px] font-medium text-[#222222] bg-[#f7f7f7] hover:bg-[#ebebeb] px-3 py-1.5 rounded-full transition-colors"
             >
-              <ShoppingBag size={17} strokeWidth={2.2} />
-              <span className="hidden sm:inline text-[11px] uppercase font-bold tracking-wider">Cart</span>
-              {totalItems() > 0 && (
-                <span className="ml-1 px-2 py-0.5 bg-gradient-to-r from-amber-400 to-amber-500 text-stone-950 font-black text-[10px] rounded-full shadow-sm">
-                  {totalItems()}
-                </span>
-              )}
+              <Gift size={13} className="text-[#ff385c]" />
+              Free 7ML Tester Included
+            </Link>
+
+            {/* Mobile Search Trigger */}
+            <button
+              onClick={() => setSearchOpen(true)}
+              className="lg:hidden p-2 text-[#222222] hover:bg-[#f7f7f7] rounded-full transition-colors"
+              aria-label="Search"
+            >
+              <Search size={20} strokeWidth={2} />
+            </button>
+
+            {/* Combined User & Cart Pill (Airbnb Account Menu Style) */}
+            <div className="flex items-center border border-[#dddddd] rounded-full p-1 pl-3 shadow-airbnb hover:shadow-airbnb-hover transition-all bg-white gap-2">
+              <Link 
+                href="/account" 
+                aria-label="Account"
+                className="text-[#222222] hover:text-[#ff385c] text-[13px] font-medium pr-1"
+              >
+                <User size={18} strokeWidth={2} />
+              </Link>
+              <span className="h-4 w-px bg-[#dddddd]"></span>
+              <button
+                onClick={() => setIsOpen(true)}
+                className="flex items-center gap-1.5 bg-[#222222] hover:bg-[#000000] text-white px-3 py-1.5 rounded-full text-[12px] font-semibold transition-all cursor-pointer"
+                aria-label="Shopping Cart"
+              >
+                <ShoppingBag size={14} strokeWidth={2.2} />
+                <span>Cart</span>
+                {totalItems() > 0 && (
+                  <span className="w-5 h-5 rounded-full bg-[#ff385c] text-white font-bold text-[10px] flex items-center justify-center -mr-1">
+                    {totalItems()}
+                  </span>
+                )}
+              </button>
+            </div>
+
+            {/* Mobile Hamburger Drawer Trigger */}
+            <button
+              className="xl:hidden p-2 text-[#222222] hover:bg-[#f7f7f7] rounded-full transition-colors -mr-2"
+              aria-label="Open menu"
+              onClick={() => setMobileOpen(true)}
+            >
+              <Menu size={22} strokeWidth={2} />
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation Drawer with Glassmorphism */}
         {mobileOpen && (
-          <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-md flex xl:hidden animate-in fade-in duration-200">
-            <div className="w-[85%] max-w-sm backdrop-blur-2xl bg-white/90 border-r border-white/60 h-full flex flex-col shadow-2xl overflow-y-auto">
+          <div className="fixed inset-0 z-50 bg-[#202124]/60 backdrop-blur-md flex xl:hidden animate-in fade-in duration-200">
+            <div className="w-[85%] max-w-sm backdrop-blur-2xl bg-white/95 border-r border-[#DADCE0] h-full flex flex-col shadow-2xl overflow-y-auto">
               
               {/* Drawer Header */}
-              <div className="h-16 flex items-center justify-between px-6 border-b border-amber-300/40 bg-gradient-to-r from-amber-400 to-yellow-400 shrink-0">
+              <div className="h-16 flex items-center justify-between px-6 border-b border-[#DADCE0] bg-gradient-to-r from-[#1A73E8] to-[#4285F4] shrink-0 text-white">
                 <div className="flex items-center gap-2">
-                  <span className="font-serif text-xl font-black uppercase text-stone-950 tracking-wider">OCTOPUS</span>
-                  <span>🪔</span>
+                  <span className="font-serif text-xl font-black uppercase tracking-wider text-white">OCTOPUS</span>
+                  <span className="w-2 h-2 rounded-full bg-[#FBBC05]"></span>
                 </div>
                 <button 
                   onClick={() => setMobileOpen(false)} 
                   aria-label="Close menu" 
-                  className="w-8 h-8 bg-white/90 backdrop-blur-sm border border-stone-200 rounded-lg flex items-center justify-center shadow-sm active:scale-95 cursor-pointer"
+                  className="w-8 h-8 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg flex items-center justify-center text-white active:scale-95 cursor-pointer"
                 >
-                  <X size={18} strokeWidth={2.2} className="text-stone-900" />
+                  <X size={18} strokeWidth={2.2} />
                 </button>
               </div>
 
               {/* Drawer Links */}
               <div className="p-6 space-y-4 flex-1">
                 {NAV_MENU.map((item) => (
-                  <div key={item.label} className="backdrop-blur-md bg-white/70 border border-stone-200/60 rounded-2xl p-4 shadow-sm">
+                  <div key={item.label} className="backdrop-blur-md bg-[#F8F9FA] border border-[#DADCE0] rounded-2xl p-4 shadow-xs">
                     <Link
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
-                      className="text-sm uppercase tracking-wider font-bold text-stone-900 flex items-center justify-between mb-3"
+                      className="text-sm uppercase tracking-wider font-bold text-[#202124] flex items-center justify-between mb-3"
                     >
                       <span>{item.label}</span>
                       {item.badge && (
-                        <span className="text-[9px] bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full border border-amber-300 font-bold">
+                        <span className="text-[9px] bg-[#E8F0FE] text-[#1A73E8] px-2 py-0.5 rounded-full border border-[#4285F4]/30 font-bold">
                           {item.badge}
                         </span>
                       )}
                     </Link>
-                    <div className="flex flex-col gap-2 pl-2 border-l border-amber-300">
+                    <div className="flex flex-col gap-2 pl-2 border-l border-[#4285F4]/40">
                       {item.subLinks.map(sub => (
                         <Link
                           key={sub.label}
                           href={sub.href}
                           onClick={() => setMobileOpen(false)}
-                          className="text-xs uppercase tracking-wide font-medium text-stone-700 hover:text-amber-700 py-1"
+                          className="text-xs uppercase tracking-wide font-medium text-[#5F6368] hover:text-[#1A73E8] py-1"
                         >
                           • {sub.label}
                         </Link>
@@ -278,12 +271,12 @@ export default function Navbar() {
                 ))}
 
                 {/* Mobile Promo Box */}
-                <div className="bg-gradient-to-br from-amber-50 to-yellow-50/80 backdrop-blur-md border border-amber-200/80 rounded-2xl p-4 text-center shadow-sm">
-                  <p className="text-[11px] font-bold uppercase tracking-wider text-amber-900 mb-1">
-                    🪔 DIWALI CELEBRATION OFFER
+                <div className="bg-[#E8F0FE] backdrop-blur-md border border-[#4285F4]/30 rounded-2xl p-4 text-center shadow-xs">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-[#1A73E8] mb-1">
+                    FESTIVE CELEBRATION OFFER
                   </p>
-                  <p className="text-xs text-stone-800 font-medium mb-2">
-                    Use code <strong className="font-mono bg-stone-900 text-amber-300 px-2 py-0.5 rounded-full text-xs">DIWALI20</strong> for 20% OFF!
+                  <p className="text-xs text-[#202124] font-medium mb-2">
+                    Use code <strong className="font-mono bg-[#1A73E8] text-white px-2 py-0.5 rounded-full text-xs">DIWALI20</strong> for 20% OFF!
                   </p>
                 </div>
               </div>

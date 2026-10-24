@@ -56,18 +56,20 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-stone-950/50 backdrop-blur-md flex justify-center items-start pt-[10vh] px-4 animate-in fade-in duration-200">
-      <div className="backdrop-blur-2xl bg-white/90 w-full max-w-2xl rounded-3xl shadow-[0_25px_60px_rgba(0,0,0,0.15)] border border-white/80 overflow-hidden flex flex-col max-h-[80vh]">
+    <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex justify-center items-start pt-[10vh] px-4 animate-in fade-in duration-150">
+      <div className="bg-white w-full max-w-2xl rounded-[16px] shadow-2xl border border-[#ebebeb] overflow-hidden flex flex-col max-h-[80vh]">
         {/* Search Input Area */}
-        <div className="p-4 border-b border-stone-100 flex items-center gap-4 relative">
-          <Search size={20} className="text-stone-400 shrink-0" />
+        <div className="p-4 border-b border-[#ebebeb] flex items-center gap-3 relative">
+          <div className="w-8 h-8 rounded-full bg-[#ff385c] text-white flex items-center justify-center shrink-0">
+            <Search size={16} strokeWidth={2.5} />
+          </div>
           <input
             ref={inputRef}
             type="text"
-            placeholder="Search for fragrances, scents, notes..."
+            placeholder="Search perfumes, accords, fragrance notes..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="flex-1 text-lg font-serif outline-none bg-transparent placeholder:text-stone-300 text-stone-900"
+            className="flex-1 text-[16px] outline-none bg-transparent placeholder:text-[#929292] text-[#222222]"
             onKeyDown={(e) => {
               if (e.key === "Enter" && query.trim()) {
                 onClose();
@@ -76,65 +78,64 @@ export default function SearchModal({ isOpen, onClose }: { isOpen: boolean; onCl
             }}
           />
           {query && (
-            <button onClick={() => setQuery("")} className="p-2 hover:bg-stone-100 rounded-full text-stone-500">
+            <button onClick={() => setQuery("")} className="p-1.5 hover:bg-[#f7f7f7] rounded-full text-[#6a6a6a] cursor-pointer">
               <X size={16} />
             </button>
           )}
-          <button onClick={onClose} className="p-2 hover:bg-stone-100 rounded-full text-stone-900 ml-2">
-            <X size={20} />
+          <button onClick={onClose} className="p-1.5 hover:bg-[#f7f7f7] rounded-full text-[#222222] ml-1 cursor-pointer">
+            <X size={18} />
           </button>
         </div>
 
         {/* Search Results */}
-        <div className="overflow-y-auto flex-1 p-4 bg-stone-50/50">
+        <div className="overflow-y-auto flex-1 p-4 bg-white">
           {loading ? (
-            <div className="flex flex-col items-center justify-center py-12 text-[#800020]">
-              <Loader2 className="animate-spin mb-4" size={32} />
-              <p className="text-xs uppercase tracking-widest font-bold text-stone-500">Searching...</p>
+            <div className="flex flex-col items-center justify-center py-12 text-[#ff385c]">
+              <Loader2 className="animate-spin mb-3" size={28} />
+              <p className="text-xs font-medium text-[#6a6a6a]">Searching collection...</p>
             </div>
           ) : results.length > 0 ? (
-            <div className="space-y-4">
-              <p className="text-xs font-bold uppercase tracking-widest text-stone-400 mb-2">Products</p>
+            <div className="space-y-2">
+              <p className="text-xs font-semibold text-[#6a6a6a] px-2 mb-2">Fragrance Results</p>
               {results.map((product) => (
                 <Link
                   href={`/products/${product.handle}`}
                   key={product.id}
                   onClick={onClose}
-                  className="flex items-center gap-4 p-3 bg-white/80 backdrop-blur-md rounded-2xl hover:shadow-md border border-white/80 hover:border-amber-300/60 transition-all group"
+                  className="flex items-center gap-4 p-3 rounded-[12px] hover:bg-[#f7f7f7] border border-transparent hover:border-[#ebebeb] transition-all group"
                 >
-                  <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-[#FDF8F5] shrink-0 border border-stone-100">
+                  <div className="relative w-14 h-14 rounded-[8px] overflow-hidden bg-[#f7f7f7] shrink-0 border border-[#ebebeb] p-1">
                     <Image
                       src={product.images?.[0]?.local_src || product.images?.[0]?.localPath || product.images?.[0]?.src || "/logo.png"}
                       alt={product.title}
                       fill
                       unoptimized
-                      className={`${(product.images?.[0]?.local_src || product.images?.[0]?.src || '').includes('perfume') || (product.images?.[0]?.src || '').endsWith('.png') ? 'object-contain p-1' : 'object-cover'} group-hover:scale-110 transition-transform`}
+                      className="object-contain"
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h4 className="font-serif text-lg text-stone-900 truncate group-hover:text-amber-800 transition-colors mb-0.5">{product.title}</h4>
-                    <p className="text-[9px] uppercase tracking-widest text-amber-800 font-bold mb-1">25%+ French Oils • 12H Longevity</p>
-                    <p className="text-xs font-bold text-amber-700">₹{product.variants?.[0]?.price || "0"}</p>
+                    <h4 className="text-[15px] font-semibold text-[#222222] group-hover:text-[#ff385c] transition-colors truncate">{product.title}</h4>
+                    <p className="text-[12px] text-[#6a6a6a] truncate">50ML Eau De Parfum • 25%+ French Oils</p>
+                    <p className="text-[13px] font-semibold text-[#222222] mt-0.5">₹{product.variants?.[0]?.price || "1299"}</p>
                   </div>
                 </Link>
               ))}
             </div>
           ) : query ? (
             <div className="text-center py-12">
-              <p className="font-serif text-xl text-stone-900 mb-2">No results found for &quot;{query}&quot;</p>
-              <p className="text-sm text-stone-500">Try checking your spelling or use more general terms</p>
+              <p className="text-[16px] font-semibold text-[#222222] mb-1">No matches for &quot;{query}&quot;</p>
+              <p className="text-sm text-[#6a6a6a]">Try searching for Overlord, Paradox, Promised, or fresh notes</p>
             </div>
           ) : (
-            <div className="text-center py-12">
-              <p className="text-sm uppercase tracking-widest font-bold text-stone-400">Start typing to search...</p>
+            <div className="text-center py-10">
+              <p className="text-sm text-[#6a6a6a] font-medium mb-6">Popular perfume searches</p>
               
-              <div className="mt-8 flex flex-wrap justify-center gap-2.5">
-                <span className="text-xs font-bold text-stone-600 w-full mb-2">Popular Searches:</span>
-                {['Perfumes', 'Overlord', 'Paradox', 'Promised', 'Mirage', 'Harsh Beniwal'].map(term => (
+              <div className="flex flex-wrap justify-center gap-2">
+                {['Overlord (Sauvage)', 'Paradox (Les Sables Roses)', 'Promised (BR540)', 'Mirage', 'Harsh Beniwal', 'Oud Wood'].map(term => (
                   <button 
                     key={term}
-                    onClick={() => setQuery(term)}
-                    className="px-4 py-2 bg-white/80 backdrop-blur-md border border-stone-200/80 rounded-full text-xs font-bold uppercase tracking-wider text-stone-800 shadow-sm hover:bg-amber-100 hover:border-amber-300 hover:text-amber-950 hover:shadow-md active:scale-95 transition-all cursor-pointer"
+                    onClick={() => setQuery(term.split(' ')[0])}
+                    className="px-3.5 py-1.5 bg-[#f7f7f7] hover:bg-[#ebebeb] border border-[#dddddd] rounded-full text-xs font-medium text-[#222222] transition-colors cursor-pointer"
                   >
                     {term}
                   </button>

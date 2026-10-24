@@ -34,104 +34,102 @@ const SUPPORT_LINKS = [
 
 export default function Footer() {
   return (
-    <footer className="backdrop-blur-xl bg-white/70 text-stone-900 relative overflow-hidden border-t border-white/60 mt-20 shadow-[0_-10px_30px_rgba(0,0,0,0.03)]">
+    <footer className="bg-white text-[#222222] border-t border-[#ebebeb] mt-20">
       
-      {/* Top Glassmorphic Trust Strip */}
-      <div className="border-b border-amber-300/30 bg-gradient-to-r from-amber-200/50 via-amber-100/50 to-yellow-100/50 backdrop-blur-md py-6 px-6">
-        <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center md:text-left">
-          <div className="flex items-center justify-center md:justify-start gap-3">
-            <span className="text-xl animate-soft-pulse">🪔</span>
+      {/* Top Subtle Value Proposition Strip (Airbnb Amenity Style) */}
+      <div className="border-b border-[#ebebeb] bg-[#f7f7f7] py-6 px-6">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-left">
+          <div className="flex items-start gap-3">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#ff385c] mt-1 shrink-0"></span>
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-stone-900">Diwali Festive Ready</p>
-              <p className="text-[10px] text-stone-600 font-medium">Signature Gift Hampers</p>
+              <p className="text-[14px] font-semibold text-[#222222]">25%+ French Oils</p>
+              <p className="text-[13px] text-[#6a6a6a]">High-concentration Eau De Parfum</p>
             </div>
           </div>
-          <div className="flex items-center justify-center md:justify-start gap-3">
-            <Sparkles size={20} className="text-amber-600 stroke-[2]" />
+          <div className="flex items-start gap-3">
+            <Sparkles size={16} className="text-[#222222] mt-0.5 shrink-0" />
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-stone-900">25%+ French Oils</p>
-              <p className="text-[10px] text-stone-600 font-medium">12+ Hours High Projection</p>
+              <p className="text-[14px] font-semibold text-[#222222]">12+ Hours Longevity</p>
+              <p className="text-[13px] text-[#6a6a6a]">Beast-mode projection for Indian weather</p>
             </div>
           </div>
-          <div className="flex items-center justify-center md:justify-start gap-3">
-            <Truck size={20} className="text-amber-600 stroke-[2]" />
+          <div className="flex items-start gap-3">
+            <Truck size={16} className="text-[#222222] mt-0.5 shrink-0" />
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-stone-900">Pan-India Express</p>
-              <p className="text-[10px] text-stone-600 font-medium">Free Express Shipping</p>
+              <p className="text-[14px] font-semibold text-[#222222]">Free Pan-India Delivery</p>
+              <p className="text-[13px] text-[#6a6a6a]">Dispatched via express air logistics</p>
             </div>
           </div>
-          <div className="flex items-center justify-center md:justify-start gap-3">
-            <ShieldCheck size={20} className="text-emerald-700 stroke-[2]" />
+          <div className="flex items-start gap-3">
+            <ShieldCheck size={16} className="text-[#222222] mt-0.5 shrink-0" />
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-stone-900">100% Authentic</p>
-              <p className="text-[10px] text-stone-600 font-medium">Official Harsh Beniwal Collab</p>
+              <p className="text-[14px] font-semibold text-[#222222]">100% Original</p>
+              <p className="text-[13px] text-[#6a6a6a]">Official Harsh Beniwal creation</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-12 pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
+      <div className="mx-auto max-w-[1440px] px-6 md:px-12 pt-14 pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
           
-          {/* Brand Info */}
-          <div className="md:col-span-5 flex flex-col items-start">
-            <div className="flex items-center gap-2 mb-4">
-              <h2 className="font-serif text-3xl md:text-4xl tracking-widest uppercase font-black bg-gradient-to-r from-stone-950 via-stone-850 to-amber-950 bg-clip-text text-transparent">
+          {/* Brand Info & Mission */}
+          <div className="md:col-span-5 flex flex-col items-start pr-4">
+            <Link href="/" className="mb-3">
+              <span className="font-serif text-2xl font-bold tracking-tight text-[#ff385c]">
                 OCTOPUS
-              </h2>
-              <span className="text-xl animate-soft-pulse">🪔</span>
-            </div>
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-800 mb-4">
-              OCTOPUS PERFUMES BY HARSH BENIWAL
+              </span>
+            </Link>
+            <p className="text-[13px] font-semibold uppercase tracking-wider text-[#222222] mb-2">
+              Octopus Perfumes by Harsh Beniwal
             </p>
-            <p className="text-sm text-stone-600 leading-relaxed max-w-sm mb-6 font-medium">
-              India&apos;s official house for high-concentration 50ML Eau De Parfum fragrances formulated by Harsh Beniwal. Every order includes a complimentary 7ML Paradox EDP tester pack.
+            <p className="text-[14px] text-[#6a6a6a] leading-relaxed max-w-sm mb-6">
+              Official Indian house for high-concentration 50ML Eau De Parfum fragrances crafted by Harsh Beniwal. Every bottle order includes a complimentary 7ML Paradox discovery tester pack.
             </p>
 
-            {/* Promo Pill Box with Glassmorphism */}
-            <div className="bg-gradient-to-br from-amber-50/90 to-yellow-50/90 backdrop-blur-md border border-amber-200/80 rounded-2xl p-4 shadow-sm w-full max-w-xs">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-amber-900 block mb-1">
-                🪔 Festive Coupon:
-              </span>
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-base font-bold text-stone-950">DIWALI20</span>
-                <span className="text-[10px] bg-stone-950 text-amber-300 px-2.5 py-0.5 rounded-full font-bold shadow-sm">20% OFF</span>
+            <div className="bg-[#f7f7f7] border border-[#dddddd] rounded-[10px] p-3.5 max-w-xs w-full flex items-center justify-between">
+              <div>
+                <span className="text-[11px] font-semibold text-[#6a6a6a] block">Festive Coupon Code</span>
+                <span className="font-mono text-[14px] font-bold text-[#222222]">DIWALI20</span>
               </div>
+              <span className="bg-[#ff385c] text-white text-[11px] font-semibold px-2.5 py-1 rounded-full">
+                20% OFF
+              </span>
             </div>
           </div>
 
-          {/* Perfumes & Festive */}
+          {/* Fragrances */}
           <div className="md:col-span-3">
-            <p className="text-xs tracking-widest uppercase text-stone-900 mb-6 font-bold border-b border-amber-400/50 pb-2 inline-block">
-              Fragrances & Gifts
-            </p>
+            <h4 className="text-[14px] font-semibold text-[#222222] mb-4">
+              Fragrances
+            </h4>
             <ul className="space-y-3">
               {FRAGRANCES_AND_GIFTS.map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-xs font-medium text-stone-600 hover:text-amber-800 hover:translate-x-1 transition-all inline-block"
+                    className="text-[14px] text-[#6a6a6a] hover:text-[#222222] hover:underline transition-colors block"
                   >
-                    • {l.label}
+                    {l.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Relationships */}
+          {/* Recipient Collections */}
           <div className="md:col-span-2">
-            <p className="text-xs tracking-widest uppercase text-stone-900 mb-6 font-bold border-b border-amber-400/50 pb-2 inline-block">
-              Recipients
-            </p>
+            <h4 className="text-[14px] font-semibold text-[#222222] mb-4">
+              Gifting
+            </h4>
             <ul className="space-y-3">
               {GIFTS_BY_RELATIONSHIP.map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-xs font-medium text-stone-600 hover:text-amber-800 hover:translate-x-1 transition-all inline-block"
+                    className="text-[14px] text-[#6a6a6a] hover:text-[#222222] hover:underline transition-colors block"
                   >
-                    • {l.label}
+                    {l.label}
                   </Link>
                 </li>
               ))}
@@ -140,17 +138,17 @@ export default function Footer() {
 
           {/* Support */}
           <div className="md:col-span-2">
-            <p className="text-xs tracking-widest uppercase text-stone-900 mb-6 font-bold border-b border-amber-400/50 pb-2 inline-block">
+            <h4 className="text-[14px] font-semibold text-[#222222] mb-4">
               Support
-            </p>
+            </h4>
             <ul className="space-y-3">
               {SUPPORT_LINKS.map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-xs font-bold text-stone-800 hover:text-black hover:translate-x-1 transition-all inline-block"
+                    className="text-[14px] text-[#6a6a6a] hover:text-[#222222] hover:underline transition-colors block"
                   >
-                    • {l.label}
+                    {l.label}
                   </Link>
                 </li>
               ))}
@@ -159,16 +157,29 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-amber-900/10 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] font-bold text-stone-700 tracking-wider uppercase">
-          <span>© {new Date().getFullYear()} OCTOPUS PERFUMES BY HARSH BENIWAL. ALL RIGHTS RESERVED.</span>
-          <span className="flex items-center gap-2">
-            <span>FREE PAN-INDIA DELIVERY</span>
+        {/* Airbnb Legal Band */}
+        <div className="mt-14 pt-6 border-t border-[#ebebeb] flex flex-col md:flex-row items-center justify-between gap-4 text-[13px] text-[#6a6a6a]">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span>© {new Date().getFullYear()} Octopus Perfumes by Harsh Beniwal, Inc.</span>
             <span>•</span>
-            <span>100% PREPAID ONLY</span>
+            <Link href="/pages/privacy-policy" className="hover:underline">Privacy</Link>
             <span>•</span>
-            <span>100% SECURE CHECKOUT</span>
-          </span>
+            <Link href="/pages/terms-conditions" className="hover:underline">Terms</Link>
+            <span>•</span>
+            <Link href="/sitemap.xml" className="hover:underline">Sitemap</Link>
+          </div>
+          
+          <div className="flex items-center gap-4 text-[#222222] font-semibold text-[13px]">
+            <span className="flex items-center gap-1.5 cursor-pointer hover:underline">
+              <span>English (IN)</span>
+            </span>
+            <span>•</span>
+            <span className="cursor-pointer hover:underline">₹ INR</span>
+            <span>•</span>
+            <span className="text-[#188038] font-normal text-xs flex items-center gap-1">
+              <ShieldCheck size={14} /> 100% Prepaid Secure
+            </span>
+          </div>
         </div>
       </div>
     </footer>

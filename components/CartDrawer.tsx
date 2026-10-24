@@ -43,46 +43,45 @@ export default function CartDrawer() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 320, damping: 34 }}
-            className="fixed right-0 top-0 z-[70] h-full w-full sm:w-[450px] backdrop-blur-2xl bg-white/95 flex flex-col shadow-2xl border-l border-white/60"
+            className="fixed right-0 top-0 z-[70] h-full w-full sm:w-[450px] bg-white flex flex-col shadow-2xl border-l border-[#ebebeb]"
           >
-            <div className="flex items-center justify-between px-6 h-[72px] border-b border-amber-300/40 shrink-0 bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 backdrop-blur-md">
+            {/* Airbnb Style Drawer Header */}
+            <div className="flex items-center justify-between px-6 h-18 border-b border-[#ebebeb] shrink-0 bg-white">
               <div className="flex items-center gap-2">
-                <h2 className="font-serif text-2xl uppercase tracking-wider font-extrabold text-stone-950">Your Cart</h2>
-                <span className="animate-soft-pulse">🪔</span>
+                <h2 className="text-[18px] font-semibold text-[#222222]">Your Cart</h2>
+                {itemCount > 0 && (
+                  <span className="text-xs text-[#6a6a6a]">({itemCount} {itemCount === 1 ? 'item' : 'items'})</span>
+                )}
               </div>
               <button 
                 onClick={closeCart} 
                 aria-label="Close cart" 
-                className="w-9 h-9 bg-white/90 backdrop-blur-sm border border-stone-200/80 rounded-xl flex items-center justify-center text-stone-900 hover:bg-white shadow-sm active:scale-95 transition-all cursor-pointer"
+                className="w-8 h-8 rounded-full flex items-center justify-center text-[#222222] hover:bg-[#f7f7f7] transition-colors cursor-pointer"
               >
-                <X size={18} strokeWidth={2.2} />
+                <X size={18} strokeWidth={2} />
               </button>
             </div>
 
             {/* Timer & Gamification Bar */}
             {items.length > 0 && (
-              <div className="px-6 py-4 bg-white shrink-0 border-b border-[#E5B8B7]/30 flex flex-col gap-3">
-                <div className="flex items-center justify-between text-xs font-bold uppercase tracking-widest">
-                  <span className="text-orange-600 flex items-center gap-1"><Clock size={14} /> Cart Reserved For</span>
-                  <span className="text-orange-600 font-mono text-sm">{minutes}:{seconds.toString().padStart(2, '0')}</span>
+              <div className="px-6 py-3.5 bg-[#f7f7f7] shrink-0 border-b border-[#ebebeb] flex flex-col gap-2.5">
+                <div className="flex items-center justify-between text-xs font-medium">
+                  <span className="text-[#222222] flex items-center gap-1.5"><Clock size={13} className="text-[#ff385c]" /> Cart reserved for</span>
+                  <span className="text-[#ff385c] font-mono font-semibold text-xs">{minutes}:{seconds.toString().padStart(2, '0')}</span>
                 </div>
 
-                <div className="flex flex-col gap-1.5">
-                  <div className="flex justify-between text-[10px] uppercase font-bold text-stone-500">
-                    <span>Buy 2: 15% Off</span>
-                    <span>Buy 3+: 33% Off</span>
-                  </div>
-                  <div className="w-full bg-stone-100 h-2 rounded-full overflow-hidden">
+                <div className="flex flex-col gap-1">
+                  <div className="w-full bg-[#ebebeb] h-1.5 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-emerald-500 transition-all duration-700"
+                      className="h-full bg-[#ff385c] transition-all duration-500"
                       style={{ width: `${progressPercent}%` }}
                     />
                   </div>
-                  <div className="text-[10px] text-center mt-1 font-medium text-[#800020]">
-                    {itemCount === 0 ? "Add items to unlock discounts!" :
-                      itemCount === 1 ? "Add 1 more item to unlock 15% OFF!" :
-                        itemCount === 2 ? "Add 1 more item to unlock 33% OFF!" :
-                          "You've unlocked the maximum 33% OFF!"}
+                  <div className="text-[11px] text-center text-[#6a6a6a] font-medium">
+                    {itemCount === 0 ? "Add items to unlock festive discounts" :
+                      itemCount === 1 ? "Add 1 more EDP to unlock 15% OFF" :
+                        itemCount === 2 ? "Add 1 more EDP to unlock 33% OFF" :
+                          "You've unlocked the maximum 33% discount!"}
                   </div>
                 </div>
               </div>
@@ -90,27 +89,27 @@ export default function CartDrawer() {
 
             <div className="flex-1 overflow-y-auto px-6 py-6">
               {items.length === 0 ? (
-                <div className="h-full flex flex-col items-center justify-center gap-6 text-center py-16">
-                  <p className="text-[#2d2d2d] text-sm uppercase tracking-widest font-medium opacity-70">Your cart is empty</p>
+                <div className="h-full flex flex-col items-center justify-center gap-5 text-center py-16">
+                  <p className="text-[#6a6a6a] text-sm font-medium">Your cart is empty</p>
                   <Link
-                    href="/collections/all"
+                    href="/harsh-beniwal/octopus/perfumes"
                     onClick={closeCart}
-                    className="text-xs tracking-widest uppercase border border-[#800020] text-[#800020] px-8 py-4 hover:bg-[#800020] hover:text-white transition-all shadow-sm"
+                    className="btn-secondary-airbnb"
                   >
-                    Find the Perfect Gift
+                    Explore Harsh Beniwal Fragrances
                   </Link>
                 </div>
               ) : (
-                <ul className="space-y-8">
+                <ul className="space-y-6">
                   {(() => {
                     const freeTesterGift = items.length > 0 ? [
                       {
                         id: "free-tester-paradox",
                         cartItemId: "free-tester-paradox",
-                        title: "FREE 7ML Paradox EDP Tester Pack",
+                        title: "FREE 7ML Paradox EDP Tester",
                         price: 0,
                         image: "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
-                        variantTitle: "Harsh Beniwal 7ML Luxury Pocket Tester (Worth ₹399)",
+                        variantTitle: "Complimentary Pocket Tester (₹399 Value)",
                         isGift: false,
                         isFree: true,
                         quantity: 1
@@ -122,86 +121,50 @@ export default function CartDrawer() {
                     return allDisplayItems.map((item: any) => {
                       const uniqueId = item.cartItemId || `${item.id}-${item.variantId || 'default'}`;
                       return (
-                        <li key={uniqueId} className="flex gap-5 group">
-                          <div className="relative w-28 h-32 bg-white shrink-0 rounded-sm overflow-hidden border border-[#E5B8B7]/40 shadow-sm">
+                        <li key={uniqueId} className="flex gap-4 group pb-6 border-b border-[#ebebeb] last:border-b-0">
+                          <div className="relative w-20 h-20 bg-[#f7f7f7] shrink-0 rounded-[10px] overflow-hidden border border-[#ebebeb]">
                             <Image 
                               src={item.image || "/logo.png"} 
                               alt={item.title} 
                               fill 
                               unoptimized 
-                              sizes="112px" 
-                              className={`${(item.image || '').includes('perfume') || (item.image || '').endsWith('.png') ? 'object-contain p-2' : 'object-cover'} group-hover:scale-105 transition-transform duration-500`} 
+                              sizes="80px" 
+                              className="object-contain p-2" 
                             />
                           </div>
-                          <div className="flex-1 flex flex-col justify-between py-1">
+                          <div className="flex-1 flex flex-col justify-between">
                             <div>
-                              <div className="flex items-start justify-between mb-1">
-                                <p className="font-serif text-lg text-[#2d2d2d] leading-tight pr-4">{item.title}</p>
+                              <div className="flex items-start justify-between">
+                                <p className="text-[15px] font-semibold text-[#222222] leading-snug pr-2">{item.title}</p>
                                 {!item.isFree && (
-                                  <button onClick={() => removeItem(uniqueId)} aria-label="Remove" className="text-[#E5B8B7] hover:text-[#800020] transition-colors -mt-1 -mr-2 p-2 shrink-0">
-                                    <X size={18} strokeWidth={1.5} />
+                                  <button onClick={() => removeItem(uniqueId)} aria-label="Remove" className="text-[#929292] hover:text-[#222222] transition-colors p-1 shrink-0">
+                                    <X size={16} strokeWidth={2} />
                                   </button>
                                 )}
                               </div>
                               
-                              {!item.isFree && (
-                                <p className="text-[9px] uppercase tracking-widest text-amber-800 font-bold mb-1">25%+ French Oils • 12H Longevity</p>
-                              )}
-
-                              {item.variantTitle && (
-                                <p className="text-xs uppercase tracking-widest font-bold text-[#800020] mt-1">{item.variantTitle}</p>
-                              )}
-
-                              {/* Personalization Details */}
-                              {(item.customName || item.customPhotoUrl) && (
-                                <div className="mt-3 flex flex-col gap-2 border-t border-[#E5B8B7]/30 pt-3">
-                                  {item.customName && (
-                                    <div className="flex justify-between items-center">
-                                      <span className="text-[10px] uppercase tracking-widest text-[#2d2d2d] opacity-70">Engraving</span>
-                                      <span className="text-[11px] font-bold text-[#2d2d2d]">{item.customName}</span>
-                                    </div>
-                                  )}
-                                  {item.customPhotoUrl && (
-                                    <div className="flex justify-between items-center">
-                                      <span className="text-[10px] uppercase tracking-widest text-[#2d2d2d] opacity-70">Photo</span>
-                                      <div className="w-8 h-8 rounded-sm overflow-hidden border border-[#E5B8B7]">
-                                        <img src={item.customPhotoUrl} alt="Custom Memory" className="w-full h-full object-cover" />
-                                      </div>
-                                    </div>
-                                  )}
-                                </div>
-                              )}
-
-                              {/* Gift Packaging */}
-                              {item.isGift && !item.isFree && (
-                                <div className="mt-3 flex items-center gap-1.5 text-[10px] uppercase tracking-widest font-bold text-[#800020] bg-[#FDF8F5] border border-[#E5B8B7] w-fit px-2 py-1 rounded-sm shadow-sm">
-                                  <Gift size={12} strokeWidth={2} />
-                                  Premium Packaging
-                                </div>
-                              )}
+                              <p className="text-[12px] text-[#6a6a6a] mt-0.5">{item.variantTitle || "50ML Eau De Parfum"}</p>
 
                               {item.isFree ? (
-                                <p className="text-sm font-bold text-emerald-600 mt-3 flex items-center gap-1 uppercase tracking-widest">
-                                  <Gift size={14} /> FREE
+                                <p className="text-xs font-bold text-[#ff385c] mt-2 flex items-center gap-1 uppercase tracking-wide">
+                                  <Gift size={13} /> FREE GIFT
                                 </p>
                               ) : (
-                                <p className="text-sm font-medium text-[#2d2d2d] mt-3">₹{item.price.toFixed(2)}</p>
+                                <p className="text-[14px] font-semibold text-[#222222] mt-2">₹{item.price.toFixed(0)}</p>
                               )}
                             </div>
 
-                            <div className="mt-4 flex items-center justify-between">
+                            <div className="mt-3 flex items-center justify-between">
                               {item.isFree ? (
-                                <div className="text-xs uppercase tracking-widest font-bold text-stone-400">
-                                  Qty: {item.quantity}
-                                </div>
+                                <span className="text-xs text-[#6a6a6a]">Qty: 1</span>
                               ) : (
-                                <div className="flex items-center gap-4 border border-[#E5B8B7] w-fit px-3 py-1.5 rounded-sm bg-white">
-                                  <button onClick={() => updateQuantity(uniqueId, item.quantity - 1)} aria-label="Decrease" className="text-[#2d2d2d] hover:text-[#800020]">
-                                    <Minus size={14} strokeWidth={1.5} />
+                                <div className="flex items-center gap-3 border border-[#dddddd] w-fit px-2.5 py-1 rounded-[8px] bg-white">
+                                  <button onClick={() => updateQuantity(uniqueId, item.quantity - 1)} aria-label="Decrease" className="text-[#222222] hover:text-[#ff385c] p-0.5">
+                                    <Minus size={13} strokeWidth={2} />
                                   </button>
-                                  <span className="text-xs font-medium w-6 text-center text-[#2d2d2d]">{item.quantity}</span>
-                                  <button onClick={() => updateQuantity(uniqueId, item.quantity + 1)} aria-label="Increase" className="text-[#2d2d2d] hover:text-[#800020]">
-                                    <Plus size={14} strokeWidth={1.5} />
+                                  <span className="text-xs font-semibold w-5 text-center text-[#222222]">{item.quantity}</span>
+                                  <button onClick={() => updateQuantity(uniqueId, item.quantity + 1)} aria-label="Increase" className="text-[#222222] hover:text-[#ff385c] p-0.5">
+                                    <Plus size={13} strokeWidth={2} />
                                   </button>
                                 </div>
                               )}
@@ -216,50 +179,40 @@ export default function CartDrawer() {
             </div>
 
             {items.length > 0 && (
-              <div className="px-6 py-8 border-t border-[#E5B8B7]/30 shrink-0 bg-white shadow-[0_-10px_40px_rgba(0,0,0,0.03)]">
-                <div className="space-y-3 mb-8">
-                  <div className="flex items-baseline justify-between border-b border-[#E5B8B7]/20 pb-2">
-                    <span className="text-xs tracking-widest uppercase text-[#2d2d2d] font-bold">Subtotal</span>
-                    <span className="text-xl font-serif text-[#800020]">₹{totalPrice().toFixed(2)}</span>
+              <div className="px-6 py-6 border-t border-[#ebebeb] shrink-0 bg-white">
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-baseline justify-between text-sm">
+                    <span className="text-[#6a6a6a]">Subtotal</span>
+                    <span className="font-semibold text-[#222222]">₹{totalPrice().toFixed(0)}</span>
                   </div>
 
                   {autoDiscountAmount && autoDiscountAmount() > 0 && (
-                    <div className="flex items-baseline justify-between border-b border-[#E5B8B7]/20 pb-2 text-emerald-600">
-                      <span className="text-xs tracking-widest uppercase font-bold">Auto Discount ({autoDiscountPercentage()}%)</span>
-                      <span className="text-xl font-serif">-₹{autoDiscountAmount().toFixed(2)}</span>
+                    <div className="flex items-baseline justify-between text-sm text-[#188038]">
+                      <span>Discount ({autoDiscountPercentage()}%)</span>
+                      <span className="font-semibold">-₹{autoDiscountAmount().toFixed(0)}</span>
                     </div>
                   )}
 
-                  <div className="flex items-baseline justify-between pt-1">
-                    <span className="text-xs tracking-widest uppercase text-[#2d2d2d] font-bold">Total</span>
-                    <span className="text-2xl font-serif text-[#800020]">₹{discountedTotal ? discountedTotal().toFixed(2) : totalPrice().toFixed(2)}</span>
+                  <div className="flex items-baseline justify-between pt-2 border-t border-[#ebebeb] text-base">
+                    <span className="font-semibold text-[#222222]">Total</span>
+                    <span className="text-xl font-bold text-[#222222]">₹{(discountedTotal ? discountedTotal() : totalPrice()).toFixed(0)}</span>
                   </div>
 
-                  <p className="text-[10px] uppercase tracking-widest text-[#2d2d2d] opacity-60 text-center mt-2">Taxes and shipping calculated at checkout</p>
+                  <p className="text-[11px] text-[#6a6a6a] text-center pt-1">Free Pan-India express delivery included</p>
                 </div>
 
                 <Link 
                   href="/checkout" 
                   onClick={closeCart} 
-                  className="block w-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 py-4 text-center text-xs tracking-wider uppercase font-extrabold rounded-2xl shadow-xl shadow-amber-500/25 hover:shadow-2xl hover:shadow-amber-500/40 hover:scale-[1.01] active:scale-[0.99] transition-all mb-4 cursor-pointer border border-amber-300/60"
+                  className="block w-full bg-[#ff385c] hover:bg-[#e00b41] text-white py-3.5 rounded-[8px] text-[16px] font-medium text-center transition-colors shadow-xs mb-3"
                 >
-                  Proceed to Checkout 🪔
+                  Proceed to Checkout
                 </Link>
 
-                {/* Trust Badges */}
-                <div className="flex flex-col gap-2 p-3.5 bg-gradient-to-br from-amber-50/90 to-yellow-50/90 backdrop-blur-md border border-amber-200/80 rounded-2xl mb-2 text-[10px] uppercase tracking-wider text-stone-900 font-bold shadow-sm">
-                  <div className="flex items-center gap-2 justify-center text-stone-950">
-                    <Sparkles size={14} className="stroke-[2.2] text-amber-600" /> 100% Authentic 50ML EDP • 25%+ French Oils
-                  </div>
-                  <div className="flex items-center gap-2 justify-center text-emerald-800">
-                    <ShieldCheck size={14} className="stroke-[2.2]" /> IFRA Certified Skin Safe • 12H+ Beast-Mode Longevity
-                  </div>
-                  <div className="flex items-center justify-center gap-4 text-stone-700 mt-1 pt-2 border-t border-amber-200/60">
-                    <div className="flex items-center gap-1.5"><Lock size={12} strokeWidth={2.2} /> Secure Checkout</div>
-                    <div className="flex items-center gap-1.5 text-amber-950 font-bold bg-amber-200/80 px-2.5 py-0.5 rounded-full border border-amber-300/80">
-                      100% Secure Prepaid (UPI/Cards)
-                    </div>
-                  </div>
+                <div className="flex items-center justify-center gap-4 text-[11px] text-[#6a6a6a] pt-2">
+                  <div className="flex items-center gap-1"><Lock size={12} /> Secure Checkout</div>
+                  <span>•</span>
+                  <div className="flex items-center gap-1"><ShieldCheck size={12} /> 100% Genuine Harsh Beniwal EDP</div>
                 </div>
               </div>
             )}

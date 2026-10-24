@@ -106,14 +106,14 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
 
   return (
     <div className="space-y-16">
-      {/* Filters Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-stone-200 pb-6">
+      {/* Category Filter Pills (Airbnb Category Strip) */}
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#ebebeb] pb-6">
         <div>
-          <h2 className="text-2xl font-serif font-bold text-stone-900 tracking-tight">
+          <h2 className="text-[22px] font-semibold text-[#222222] tracking-tight">
             The Complete 50ML EDP Lineup
           </h2>
-          <p className="text-sm text-stone-600 mt-1">
-            Showing all {filteredPerfumes.length} official fragrances by Harsh Beniwal
+          <p className="text-[14px] text-[#6a6a6a] mt-1">
+            Showing all {filteredPerfumes.length} official niche fragrances by Harsh Beniwal
           </p>
         </div>
 
@@ -128,10 +128,10 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
             <button
               key={tab.id}
               onClick={() => setFilter(tab.id)}
-              className={`px-4 py-2 rounded-full text-xs uppercase tracking-wider font-bold transition-all duration-300 ${
+              className={`px-4 py-2 rounded-full text-[13px] font-medium transition-all cursor-pointer ${
                 filter === tab.id
-                  ? "bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 shadow-lg shadow-amber-500/25 scale-105 font-black"
-                  : "backdrop-blur-md bg-white/80 text-stone-700 hover:bg-white border border-white/80 shadow-xs"
+                  ? "bg-[#222222] text-white border border-[#222222]"
+                  : "bg-white text-[#222222] border border-[#dddddd] hover:border-[#222222]"
               }`}
             >
               {tab.label}
@@ -140,7 +140,7 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
         </div>
       </div>
 
-      {/* Product Grid */}
+      {/* Product Grid (Airbnb 3-Column / 4-Column Layout) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredPerfumes.map((perfume) => {
           const primaryImg = perfume.images?.[0]?.local_src || perfume.images?.[0]?.localPath || perfume.images?.[0]?.url || "/logo.png";
@@ -148,137 +148,76 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
           return (
             <article
               key={perfume.handle}
-              className="group backdrop-blur-xl bg-white/80 rounded-3xl border border-white/80 shadow-[0_10px_30px_rgba(0,0,0,0.04)] hover:shadow-2xl hover:border-amber-400/40 hover:-translate-y-1.5 transition-all duration-300 flex flex-col overflow-hidden"
+              className="group flex flex-col relative"
             >
-              {/* Image Container */}
-              <div className="relative aspect-square bg-gradient-to-b from-stone-50/50 to-stone-100/50 overflow-hidden p-4 sm:p-6 flex items-center justify-center">
-                {/* Badges */}
-                <div className="absolute top-3 left-3 z-20 flex flex-col gap-1.5">
-                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 text-amber-300 backdrop-blur-sm text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm">
-                    <Sparkles size={11} /> 50ML EDP
-                  </span>
-                  <span className="inline-flex items-center gap-1 bg-gradient-to-r from-rose-500 to-red-500 text-white text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full shadow-sm">
-                    Save {perfume.discountPercent}%
-                  </span>
+              {/* Photo Plate (14px Corner Clipping) */}
+              <div className="relative aspect-square rounded-[14px] overflow-hidden bg-[#f7f7f7] group-hover:shadow-airbnb-hover transition-shadow duration-300">
+                {/* Floating "Guest favorite" Badge */}
+                <div className="guest-favorite-badge">
+                  <span>Guest favorite</span>
                 </div>
 
                 <div className="absolute top-3 right-3 z-20">
-                  <span className="text-[10px] font-bold bg-white/90 backdrop-blur-md text-stone-800 px-3 py-1 rounded-full shadow-sm border border-white/80">
+                  <span className="text-[11px] font-medium bg-white text-[#222222] px-2.5 py-0.5 rounded-full shadow-xs">
                     {perfume.gender}
                   </span>
                 </div>
 
                 <Link
                   href={`/products/${perfume.handle}`}
-                  className="w-full h-full relative flex items-center justify-center"
+                  className="w-full h-full relative flex items-center justify-center p-6"
                 >
-                  {/* Primary Bottle Image */}
                   <Image
                     src={primaryImg}
-                    alt={`${perfume.title} - 100% Original Bottle by Harsh Beniwal`}
+                    alt={`${perfume.title} - Harsh Beniwal EDP`}
                     fill
                     unoptimized
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-contain p-4 group-hover:opacity-0 group-hover:scale-105 transition-all duration-500 z-10"
+                    className="object-contain p-4 group-hover:scale-105 transition-all duration-400"
                   />
-
-                  {/* Secondary Lifestyle / Hero Image on Hover */}
-                  {secondaryImg !== primaryImg && (
-                    <Image
-                      src={secondaryImg}
-                      alt={`${perfume.title} - Lifestyle Edition`}
-                      fill
-                      unoptimized
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-contain p-2 opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 z-10"
-                    />
-                  )}
                 </Link>
 
-                {/* Multi-image indicator badge */}
-                {perfume.images && perfume.images.length > 1 && (
-                  <div className="absolute bottom-2.5 right-3 z-20 opacity-0 group-hover:opacity-100 transition-opacity bg-stone-900/60 backdrop-blur-sm text-white text-[9px] px-2 py-0.5 rounded-full">
-                    +{perfume.images.length - 1} photos
-                  </div>
-                )}
+                {/* Quick Add CTA Bar */}
+                <div className="absolute inset-x-3 bottom-3 translate-y-[120%] group-hover:translate-y-0 transition-transform duration-200 z-20">
+                  <button
+                    onClick={() => handleAddToCart(perfume)}
+                    className="w-full bg-[#ff385c] hover:bg-[#e00b41] text-white py-2.5 rounded-[8px] text-[13px] font-medium flex items-center justify-center gap-2 shadow-xs transition-colors cursor-pointer"
+                  >
+                    <ShoppingBag size={14} /> Quick Reserve
+                  </button>
+                </div>
               </div>
 
-              {/* Content Body */}
-              <div className="p-6 flex flex-col flex-1">
-                {/* Accord Inspiration */}
-                <div className="mb-2">
-                  <span className="text-[11px] font-semibold text-amber-800 bg-amber-500/10 border border-amber-400/20 px-2.5 py-0.5 rounded-full inline-block backdrop-blur-sm">
-                    Inspired by: <strong>{perfume.inspiredBy}</strong>
-                  </span>
+              {/* Meta Content */}
+              <div className="mt-3 flex flex-col gap-1">
+                <div className="flex items-baseline justify-between gap-2">
+                  <Link href={`/products/${perfume.handle}`} className="flex-1 truncate">
+                    <h3 className="text-[15px] font-semibold text-[#222222] hover:text-[#ff385c] transition-colors truncate">
+                      {perfume.title}
+                    </h3>
+                  </Link>
+                  <div className="flex items-center gap-1 text-[13px] font-semibold text-[#222222] shrink-0">
+                    <span className="text-[11px]">★</span>
+                    <span>{perfume.rating.value}</span>
+                  </div>
                 </div>
 
-                {/* Title & Tagline */}
-                <Link href={`/products/${perfume.handle}`}>
-                  <h3 className="font-serif text-2xl font-bold text-stone-950 hover:text-amber-700 transition-colors">
-                    {perfume.title}
-                  </h3>
-                </Link>
-                <p className="text-xs text-stone-600 mt-1 line-clamp-2 leading-relaxed">
-                  {perfume.tagline}
+                <p className="text-[13px] text-[#6a6a6a] truncate">
+                  Inspired by {perfume.inspiredBy}
                 </p>
 
-                {/* Rating */}
-                <div className="flex items-center gap-2 mt-3 text-xs text-stone-600">
-                  <div className="flex items-center text-amber-500">
-                    <Star size={13} fill="currentColor" />
-                    <span className="ml-1 font-bold text-stone-900">{perfume.rating.value}</span>
-                  </div>
-                  <span className="text-stone-300">|</span>
-                  <span className="text-stone-500">({perfume.rating.count} verified reviews)</span>
-                </div>
+                <p className="text-[13px] text-[#6a6a6a] truncate">
+                  25%+ French Oils • 12H Longevity
+                </p>
 
-                {/* Olfactory Notes Mini Preview */}
-                <div className="mt-4 pt-3 border-t border-stone-100 space-y-1.5 text-[11px]">
-                  <div className="flex items-start gap-1.5">
-                    <span className="font-semibold text-stone-800 w-12 shrink-0">Top:</span>
-                    <span className="text-stone-600 truncate">{perfume.notes.top}</span>
-                  </div>
-                  <div className="flex items-start gap-1.5">
-                    <span className="font-semibold text-stone-800 w-12 shrink-0">Heart:</span>
-                    <span className="text-stone-600 truncate">{perfume.notes.heart}</span>
-                  </div>
-                  <div className="flex items-start gap-1.5">
-                    <span className="font-semibold text-stone-800 w-12 shrink-0">Base:</span>
-                    <span className="text-stone-600 truncate">{perfume.notes.base}</span>
-                  </div>
-                </div>
-
-                {/* Price & CTA */}
-                <div className="mt-auto pt-6 flex items-center justify-between gap-3">
-                  <div>
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-serif text-2xl font-black text-stone-950">
-                        ₹{perfume.price}
-                      </span>
-                      <span className="text-xs text-stone-400 line-through">
-                        ₹{perfume.compareAtPrice}
-                      </span>
-                    </div>
-                    <span className="text-[10px] text-emerald-700 font-semibold block">
-                      Free Express Delivery
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => handleAddToCart(perfume)}
-                      className="px-4 py-2.5 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 text-xs font-black uppercase tracking-wider rounded-xl transition-all shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:scale-105 flex items-center gap-1.5 active:scale-95"
-                    >
-                      <ShoppingBag size={14} /> Buy Now
-                    </button>
-                    <Link
-                      href={`/products/${perfume.handle}`}
-                      className="p-2.5 rounded-xl backdrop-blur-md bg-white/80 border border-white/80 hover:bg-white text-stone-700 hover:text-stone-950 transition-colors shadow-sm"
-                      title="View Details"
-                    >
-                      <ArrowRight size={15} />
-                    </Link>
-                  </div>
+                <div className="flex items-baseline gap-2 mt-1">
+                  <span className="text-[15px] font-semibold text-[#222222]">
+                    ₹{perfume.price}
+                  </span>
+                  <span className="text-[13px] text-[#6a6a6a]">total</span>
+                  <span className="text-[12px] text-[#ff385c] font-medium ml-auto">
+                    Save {perfume.discountPercent}%
+                  </span>
                 </div>
               </div>
             </article>
@@ -286,78 +225,72 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
         })}
       </div>
 
-      {/* Brand & Quality Highlights Section */}
-      <section className="bg-gradient-to-br from-stone-900 via-stone-950 to-amber-950/60 text-white rounded-3xl p-8 md:p-12 shadow-xl border border-amber-500/20">
-        <div className="max-w-3xl mx-auto text-center space-y-4">
-          <span className="text-xs font-bold uppercase tracking-widest text-amber-400">
-            Crafted Without Compromise
+      {/* Brand & Quality Highlights Section (Airbnb Host Card / Editorial Band) */}
+      <section className="bg-[#f7f7f7] border border-[#ebebeb] rounded-[16px] p-8 md:p-12 text-[#222222]">
+        <div className="max-w-2xl mx-auto text-center space-y-3">
+          <span className="text-[12px] font-semibold uppercase tracking-wider text-[#ff385c]">
+            Formulation Standard
           </span>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold">
-            Why Harsh Beniwal Chose Octopus Perfumes
+          <h2 className="text-[26px] md:text-[30px] font-semibold text-[#222222]">
+            Why Harsh Beniwal Formulated Octopus
           </h2>
-          <p className="text-sm md:text-base text-stone-300 leading-relaxed">
-            Every bottle is an ode to high-performance artisanal perfumery. Sourced with natural absolute oils, matured for optimal maceration, and packaged in weighted luxury monocartons designed to turn heads everywhere you go.
+          <p className="text-[15px] text-[#6a6a6a] leading-relaxed">
+            Every bottle is blended with imported French absolute perfume oils, macerated for maximum depth, and bottled at 25%+ Eau De Parfum concentration to withstand humid Indian conditions with 12+ hours of consistent sillage.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10 pt-10 border-t border-stone-800 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10 pt-10 border-t border-[#dddddd] text-center">
           <div className="space-y-1">
-            <div className="font-serif text-3xl font-bold text-amber-400">25%+</div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-stone-300">Oil Concentration</div>
-            <div className="text-[11px] text-stone-400">True Eau De Parfum strength</div>
+            <div className="text-[28px] font-bold text-[#222222]">25%+</div>
+            <div className="text-[13px] font-semibold text-[#222222]">Oil Concentration</div>
+            <div className="text-[12px] text-[#6a6a6a]">Eau De Parfum grade</div>
           </div>
           <div className="space-y-1">
-            <div className="font-serif text-3xl font-bold text-amber-400">12+ Hrs</div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-stone-300">Wear Longevity</div>
-            <div className="text-[11px] text-stone-400">Tested in humid climate</div>
+            <div className="text-[28px] font-bold text-[#222222]">12+ Hrs</div>
+            <div className="text-[13px] font-semibold text-[#222222]">Projection & Sillage</div>
+            <div className="text-[12px] text-[#6a6a6a]">All-day wear guarantee</div>
           </div>
           <div className="space-y-1">
-            <div className="font-serif text-3xl font-bold text-amber-400">IFRA</div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-stone-300">Certified Safe</div>
-            <div className="text-[11px] text-stone-400">Non-irritating & clean</div>
+            <div className="text-[28px] font-bold text-[#222222]">IFRA</div>
+            <div className="text-[13px] font-semibold text-[#222222]">Certified Safe</div>
+            <div className="text-[12px] text-[#6a6a6a]">Dermatologically clean</div>
           </div>
           <div className="space-y-1">
-            <div className="font-serif text-3xl font-bold text-amber-400">0% Gas</div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-stone-300">Pure Perfume</div>
-            <div className="text-[11px] text-stone-400">100% liquid fine fragrance</div>
+            <div className="text-[28px] font-bold text-[#222222]">100% Free</div>
+            <div className="text-[13px] font-semibold text-[#222222]">7ML Paradox Tester</div>
+            <div className="text-[12px] text-[#6a6a6a]">Included with every order</div>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="max-w-4xl mx-auto space-y-6 pt-6">
-        <div className="text-center space-y-2">
-          <span className="text-xs font-bold uppercase tracking-widest text-amber-700">
-            Got Questions?
-          </span>
-          <h2 className="font-serif text-3xl font-bold text-stone-900">
+      {/* FAQ Section (Airbnb Clean Accordion Style) */}
+      <section className="max-w-3xl mx-auto space-y-6 pt-6">
+        <div className="text-left space-y-1 pb-4 border-b border-[#ebebeb]">
+          <h2 className="text-[22px] font-semibold text-[#222222]">
             Frequently Asked Questions
           </h2>
-          <p className="text-sm text-stone-600">
-            Everything you need to know about Octopus Perfumes by Harsh Beniwal
+          <p className="text-[14px] text-[#6a6a6a]">
+            Everything you need to know about ordering Harsh Beniwal perfumes
           </p>
         </div>
 
-        <div className="space-y-3 mt-6">
+        <div className="divide-y divide-[#ebebeb]">
           {faqs.map((faq, idx) => (
-            <div
-              key={idx}
-              className="backdrop-blur-xl bg-white/80 border border-white/80 rounded-2xl overflow-hidden transition-all shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-md"
-            >
+            <div key={idx} className="py-4">
               <button
                 onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}
-                className="w-full px-6 py-4 text-left flex items-center justify-between gap-4 font-bold text-stone-900 hover:text-amber-800 transition-colors"
+                className="w-full text-left flex items-center justify-between gap-4 font-medium text-[16px] text-[#222222] hover:text-[#ff385c] transition-colors cursor-pointer py-1"
               >
-                <span className="text-base">{faq.q}</span>
+                <span>{faq.q}</span>
                 <ChevronDown
                   size={18}
-                  className={`text-stone-400 transition-transform duration-300 ${
-                    activeFaq === idx ? "rotate-180 text-amber-700" : ""
+                  className={`text-[#6a6a6a] transition-transform duration-200 shrink-0 ${
+                    activeFaq === idx ? "rotate-180 text-[#222222]" : ""
                   }`}
                 />
               </button>
               {activeFaq === idx && (
-                <div className="px-6 pb-5 text-sm text-stone-600 leading-relaxed border-t border-stone-100 pt-3">
+                <div className="pt-3 pb-2 text-[14px] text-[#6a6a6a] leading-relaxed">
                   {faq.a}
                 </div>
               )}

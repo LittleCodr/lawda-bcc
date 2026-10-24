@@ -31,36 +31,36 @@ export default function Marquee() {
   const items = Array.from({ length: 4 }).map((_, i) => i);
 
   return (
-    <div className="w-full overflow-hidden bg-gradient-to-r from-amber-400/90 via-amber-300/95 to-yellow-400/90 backdrop-blur-md text-stone-950 py-2.5 border-y border-amber-400/30 font-bold shadow-sm">
+    <div className="w-full overflow-hidden bg-white text-[#222222] py-2.5 border-y border-[#ebebeb] font-medium">
       <div className="flex whitespace-nowrap animate-marquee items-center">
         {items.concat(items).map((_, i) => (
           <span
             key={i}
-            className="mx-4 md:mx-8 text-[11px] md:text-xs tracking-[0.15em] uppercase flex items-center gap-3 md:gap-5"
+            className="mx-4 md:mx-8 text-[12px] tracking-normal flex items-center gap-3 md:gap-5"
           >
-            <span className="text-base animate-soft-pulse">🪔</span>
-            <span className="font-extrabold text-stone-950">
-              DIWALI FESTIVE SALE: CODE <strong className="bg-stone-950/90 text-amber-300 px-2.5 py-0.5 rounded-full border border-white/10 shadow-sm backdrop-blur-sm font-mono text-xs">DIWALI20</strong> FOR 20% OFF
+            <span className="w-2 h-2 rounded-full bg-[#ff385c]"></span>
+            <span className="font-semibold text-[#222222]">
+              Festive Offer: Code <strong className="bg-[#f7f7f7] border border-[#dddddd] text-[#ff385c] px-2.5 py-0.5 rounded-full font-mono text-[11px] font-bold">DIWALI20</strong> for 20% OFF
             </span>
-            <span className="text-stone-700/60 font-black">•</span>
-            <span className="flex items-center gap-1.5 font-semibold text-stone-900">
-              <Sparkles size={14} className="text-amber-800 shrink-0" />
-              50ML EDP BY HARSH BENIWAL (25%+ FRENCH OILS)
+            <span className="text-[#dddddd]">•</span>
+            <span className="flex items-center gap-1.5 text-[#6a6a6a]">
+              <Sparkles size={13} className="text-[#ff385c] shrink-0" />
+              50ML EDP by Harsh Beniwal (25%+ French Oils)
             </span>
-            <span className="text-stone-700/60 font-black">•</span>
-            <span className="flex items-center gap-1.5 font-semibold text-stone-900">
-              <Truck size={14} className="text-amber-800 shrink-0" />
-              FREE PAN-INDIA EXPRESS SHIPPING • 100% PREPAID SECURE
+            <span className="text-[#dddddd]">•</span>
+            <span className="flex items-center gap-1.5 text-[#6a6a6a]">
+              <Truck size={13} className="text-[#222222] shrink-0" />
+              Free Pan-India Express Delivery
             </span>
-            <span className="text-stone-700/60 font-black">•</span>
-            <span className="flex items-center gap-1.5 font-semibold text-stone-900">
-              <ShieldCheck size={14} className="text-amber-800 shrink-0" />
-              100% ORIGINAL & DELUXE FESTIVE PACKAGING
+            <span className="text-[#dddddd]">•</span>
+            <span className="flex items-center gap-1.5 text-[#6a6a6a]">
+              <ShieldCheck size={13} className="text-[#222222] shrink-0" />
+              Complimentary 7ML Paradox Tester Included
             </span>
-            <span className="text-stone-700/60 font-black">•</span>
-            <span className="flex items-center gap-1 text-[11px] bg-stone-950/90 text-amber-300 px-2.5 py-0.5 rounded-full font-mono font-bold border border-white/10 shadow-sm">
-              <Clock size={12} className="shrink-0 text-amber-400" />
-              ENDS IN: {timeLeft || "00:00:00"}
+            <span className="text-[#dddddd]">•</span>
+            <span className="flex items-center gap-1 text-[11px] bg-[#f7f7f7] text-[#222222] px-2.5 py-0.5 rounded-full font-mono border border-[#ebebeb]">
+              <Clock size={11} className="shrink-0 text-[#ff385c]" />
+              Ends in: {timeLeft || "00:00:00"}
             </span>
           </span>
         ))}

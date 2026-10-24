@@ -63,27 +63,27 @@ export default function LiveSalesPopups() {
 
   return (
     <div
-      className={`fixed bottom-6 left-6 z-50 bg-paper border border-ink/20 shadow-2xl p-4 flex gap-4 max-w-sm transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-        visible ? "translate-y-0 opacity-100 scale-100" : "translate-y-8 opacity-0 scale-95 pointer-events-none"
+      className={`fixed bottom-6 left-6 z-50 bg-white border border-[#ebebeb] shadow-airbnb p-3.5 rounded-[12px] flex gap-3.5 max-w-sm transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        visible ? "translate-y-0 opacity-100 scale-100" : "translate-y-6 opacity-0 scale-95 pointer-events-none"
       }`}
     >
-      <div className="bg-amber-500/10 text-amber-600 rounded-full w-10 h-10 flex items-center justify-center shrink-0 self-start mt-1">
-        <ShoppingCart size={18} strokeWidth={2} />
+      <div className="bg-[#fff0f3] text-[#ff385c] rounded-full w-9 h-9 flex items-center justify-center shrink-0 self-start mt-0.5">
+        <ShoppingCart size={16} strokeWidth={2} />
       </div>
-      <div>
-        <div className="flex items-center justify-between gap-4 mb-1">
-          <p className="text-sm font-medium">Someone in {popup.city}</p>
-          <button onClick={() => setVisible(false)} className="text-ink/40 hover:text-ink">
-            <X size={14} />
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center justify-between gap-3 mb-0.5">
+          <p className="text-[13px] font-semibold text-[#222222]">Verified order in {popup.city}</p>
+          <button onClick={() => setVisible(false)} className="text-[#929292] hover:text-[#222222] p-0.5 cursor-pointer">
+            <X size={13} />
           </button>
         </div>
-        <p className="text-xs text-ink/70 leading-relaxed mt-1">
-          {popup.name} purchased <strong className="text-ink">{popup.product}</strong>
-          {popup.promo && <span className="text-emerald-600 font-bold ml-1 text-[11px] block mt-0.5">{popup.promo}</span>}
+        <p className="text-[12px] text-[#6a6a6a] leading-tight">
+          {popup.name} reserved <strong className="text-[#222222] font-semibold">{popup.product} EDP</strong>
+          {popup.promo && <span className="text-[#ff385c] font-medium ml-1 inline-block">{popup.promo}</span>}
         </p>
-        <div className="flex items-center gap-1.5 mt-2 text-[10px] uppercase tracking-widest text-ink/50 font-medium">
+        <div className="flex items-center gap-1.5 mt-1 text-[11px] text-[#929292]">
           <MapPin size={10} />
-          <span>Verified Buyer • {popup.time}</span>
+          <span>{popup.time} • Free Express Shipping</span>
         </div>
       </div>
     </div>

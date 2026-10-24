@@ -245,469 +245,130 @@ export default function ProductUI({ product }: ProductUIProps) {
   const isButtonDisabled = !isAvailable || !selectedVariant || !isPersonalizationComplete || isUploading;
 
   return (
-    <div className="bg-white">
-      {/* Breadcrumbs */}
-      <nav className="flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest text-gray-400 mb-8 mt-4">
-        <Link href="/" className="hover:text-[#800020] transition-colors">Home</Link>
-        <ChevronRight size={12} />
-        <Link href={isPerfume ? "/harsh-beniwal/octopus/perfumes" : "/collections/all"} className="hover:text-[#800020] transition-colors">
-          {isPerfume ? "Harsh Beniwal Octopus Perfumes" : "Gifts"}
+    <div className="bg-white text-[#222222] min-h-screen">
+      {/* Breadcrumbs - Airbnb Subtle Hairline Path */}
+      <nav className="flex items-center gap-2 text-[13px] text-[#6a6a6a] mb-6 mt-4">
+        <Link href="/" className="hover:text-[#222222] hover:underline transition-colors">Home</Link>
+        <span>/</span>
+        <Link href={isPerfume ? "/harsh-beniwal/octopus/perfumes" : "/collections/all"} className="hover:text-[#222222] hover:underline transition-colors">
+          {isPerfume ? "Octopus Perfumes" : "Collections"}
         </Link>
-        <ChevronRight size={12} />
-        <span className="text-[#800020] truncate">{product.title}</span>
+        <span>/</span>
+        <span className="text-[#222222] font-medium truncate">{product.title}</span>
       </nav>
 
-      {/* Main 2-Column Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+      {/* Main 2-Column Airbnb Listing Detail Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
-        {/* Left Column: Image Gallery */}
-        <div className="flex flex-col gap-6 lg:sticky top-24">
+        {/* Left Column (~64%): Image Gallery & Amenity Rows */}
+        <div className="lg:col-span-7 flex flex-col gap-6">
           <div className="relative">
-            <div className="absolute top-4 left-4 z-10 bg-[#800020] text-white text-[9px] uppercase tracking-widest font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shadow-md">
-              <Flame size={12} fill="currentColor" /> Bestseller
+            {/* Floating Guest Favorite Badge */}
+            <div className="guest-favorite-badge">
+              Guest favorite
             </div>
+            
             <button
               onClick={toggleFavourite}
               disabled={isFavLoading}
-              className="absolute top-4 right-4 z-10 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform text-gray-400 hover:text-[#800020] disabled:opacity-50 disabled:scale-100"
+              aria-label="Save to wishlist"
+              className="heart-save-btn disabled:opacity-50"
             >
-              <Heart size={20} fill={isFavourite ? "#800020" : "transparent"} className={isFavourite ? "text-[#800020]" : ""} />
+              <Heart size={18} fill={isFavourite ? "#ff385c" : "transparent"} className={isFavourite ? "text-[#ff385c]" : "text-[#222222]"} />
             </button>
+
             <ProductImageGallery images={images} selectedImageId={activeImageId} />
           </div>
 
-          {/* Trust Banner Below Image */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#fdfaf8] rounded-2xl p-4 border border-[#800020]/5">
-            <div className="flex items-center gap-3">
-              <Truck size={18} className="text-[#800020]" />
-              <div className="flex flex-col">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-gray-800">Free Express Shipping</span>
-                <span className="text-[9px] text-gray-500">Pan-India delivery in 2-4 days</span>
+          {/* Airbnb Amenity Rows */}
+          <div className="border-y border-[#ebebeb] py-2 divide-y divide-[#ebebeb]">
+            <div className="flex items-center gap-3.5 py-3.5">
+              <Sparkles size={20} className="text-[#ff385c] shrink-0" />
+              <div>
+                <span className="text-[15px] font-semibold text-[#222222] block">25%+ French Fragrance Oils</span>
+                <span className="text-[13px] text-[#6a6a6a]">Imported perfume essence for rich, all-day drydown</span>
               </div>
             </div>
-            <div className="hidden sm:block w-[1px] h-8 bg-gray-200"></div>
-            <div className="flex items-center gap-3">
-              <Sparkles size={18} className="text-amber-600" />
-              <div className="flex flex-col">
-                <span className="text-[10px] font-bold uppercase tracking-widest text-stone-900">100% French EDP Oils</span>
-                <span className="text-[9px] text-stone-500">12+ Hours Projection</span>
+            <div className="flex items-center gap-3.5 py-3.5">
+              <Clock size={20} className="text-[#222222] shrink-0" />
+              <div>
+                <span className="text-[15px] font-semibold text-[#222222] block">12+ Hours Proven Longevity</span>
+                <span className="text-[13px] text-[#6a6a6a]">Beast-mode projection specially formulated for Indian weather</span>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Right Column: Product Details */}
-        <div className="flex flex-col pt-2">
-
-
-          {/* Social Proof & Rating Bar */}
-          <div className="flex items-center gap-2 mb-2">
-            <div className="flex items-center text-amber-500">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} size={14} fill="currentColor" />
-              ))}
+            <div className="flex items-center gap-3.5 py-3.5">
+              <Gift size={20} className="text-[#ff385c] shrink-0" />
+              <div>
+                <span className="text-[15px] font-semibold text-[#222222] block">Free 7ML Paradox Discovery Tester (Worth ₹399)</span>
+                <span className="text-[13px] text-[#6a6a6a]">Automatically included in every parcel at zero extra charge</span>
+              </div>
             </div>
-            <span className="text-xs font-black text-stone-900">4.9/5</span>
-            <span className="text-xs text-stone-500 font-medium">(284+ Reviews)</span>
-            <span className="text-[10px] text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full font-bold border border-emerald-200 ml-auto flex items-center gap-1">
-              <CheckCircle2 size={11} /> 100% Official
-            </span>
-          </div>
-
-          <h1 className="font-serif text-3xl md:text-4xl text-[#2d2d2d] mb-2 leading-tight">
-            {product.title}
-          </h1>
-
-          {/* Live Activity & Scarcity Ticker */}
-          <div className="flex flex-wrap items-center gap-2 mb-3">
-            <div className="inline-flex items-center gap-1.5 bg-rose-50 border border-rose-200 text-rose-800 px-2.5 py-1 rounded-full font-bold text-[10px]">
-              <span className="w-2 h-2 rounded-full bg-rose-600 animate-pulse"></span>
-              <Flame size={12} className="text-rose-600 fill-rose-600" />
-              <span>{liveViewers} people viewing right now</span>
-            </div>
-            <div className="inline-flex items-center gap-1.5 bg-amber-50 border border-amber-200 text-amber-900 px-2.5 py-1 rounded-full font-bold text-[10px]">
-              <Zap size={12} className="text-amber-600 fill-amber-500" />
-              <span>Only 4 units left at offer price!</span>
-            </div>
-          </div>
-
-          {/* Perfume Quality Badges */}
-          <div className="flex flex-wrap items-center gap-2 mb-4">
-            <span className="text-[10px] uppercase tracking-wider font-extrabold text-amber-900 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-300 flex items-center gap-1 shadow-sm">
-              <Sparkles size={12} className="text-amber-600" /> 25%+ French Fragrance Oils
-            </span>
-            <span className="text-[10px] uppercase tracking-wider font-extrabold text-stone-800 bg-stone-100 px-2.5 py-1 rounded-md border border-stone-300">
-              50ML Eau De Parfum
-            </span>
-            <span className="text-[10px] uppercase tracking-wider font-extrabold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-300">
-              12H+ Beast Longevity
-            </span>
-          </div>
-
-          <div className="flex items-baseline gap-3 mb-3">
-            <span className="text-3xl font-black text-[#800020]">₹{currentPrice.toFixed(0)}</span>
-            {compareAtPrice > basePrice && (
-              <>
-                <span className="text-base text-gray-400 line-through font-medium">₹{compareAtPrice.toFixed(0)}</span>
-                <span className="text-[10px] uppercase font-black text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-md border border-emerald-300 flex items-center gap-1">
-                   <Sparkles size={12} /> Save ₹{(compareAtPrice - currentPrice).toFixed(0)} ({discountPercent}% OFF)
-                </span>
-              </>
-            )}
-          </div>
-
-          {/* Express Same-Day Dispatch Countdown */}
-          <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50 border-2 border-emerald-500/30 rounded-xl p-3 mb-5 flex items-center gap-3 shadow-sm">
-            <div className="bg-emerald-600 text-white p-2 rounded-lg shrink-0 shadow-sm">
-              <Clock size={18} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center justify-between">
-                <span className="font-black text-emerald-950 uppercase tracking-wide text-[10px]">
-                  ⚡ Same-Day Dispatch Guaranteed
-                </span>
-                <span className="text-[9px] font-bold text-emerald-700 uppercase tracking-wider bg-emerald-100 px-2 py-0.5 rounded-full">
-                  Free Express Shipping
-                </span>
-              </div>
-              <p className="text-emerald-900 text-xs font-semibold mt-0.5 leading-snug">
-                Order within <span className="font-mono font-black text-emerald-950 bg-white px-1.5 py-0.5 rounded border border-emerald-200">{timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s</span> for instant dispatch today!
-              </p>
-            </div>
-          </div>
-
-
-          {/* Configurations */}
-          <div className="flex flex-col gap-6 mb-8">
-
-            {product.variants && product.variants.length > 1 && (
-              <div className="flex flex-col gap-3">
-                <label className="text-[10px] uppercase tracking-widest font-bold text-[#2d2d2d]">Select Option</label>
-                <div className="flex flex-wrap gap-2">
-                  {product.variants.map((variant: any) => (
-                    <button
-                      key={variant.id}
-                      onClick={() => setSelectedVariantId(variant.id)}
-                      className={`px-4 py-2 text-[10px] uppercase tracking-widest font-bold border rounded-md transition-all duration-300 ${selectedVariantId === variant.id
-                        ? "border-[#800020] bg-[#800020] text-white shadow-sm"
-                        : "border-gray-200 text-gray-600 hover:border-[#800020]"
-                        }`}
-                    >
-                      {variant.title}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {showNameInput && (
-              <div className="flex flex-col gap-5">
-                <div className="flex flex-col gap-2">
-                  <label className="text-[10px] uppercase tracking-widest font-bold text-[#2d2d2d] flex justify-between">
-                    <span>{isNamePersonalised ? 'Enter Name to Engrave' : 'Enter Name for Customization'}</span>
-                    <span className="text-[#800020]">{customName.length}/7</span>
-                  </label>
-                  <input
-                    type="text"
-                    maxLength={7}
-                    value={customName}
-                    onChange={(e) => setCustomName(e.target.value)}
-                    placeholder="e.g. SOPHIA"
-                    className="border border-gray-200 focus:border-[#800020] bg-gray-50/50 rounded-lg px-4 py-3 text-sm text-[#2d2d2d] font-bold outline-none transition-all placeholder:text-gray-400 placeholder:font-normal"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-2">
-                  <label className="text-[10px] uppercase tracking-widest font-bold text-[#2d2d2d]">Select Font</label>
-                  <div className="flex flex-wrap gap-2">
-                    {['font-italianno', 'font-alexbrush', 'font-pinyon', 'font-tangerine', 'font-satisfy'].map(fontClass => (
-                      <button
-                        key={fontClass}
-                        onClick={() => setCustomFont(fontClass)}
-                        className={`px-3 py-2 border rounded-md text-center transition-all flex-1 min-w-[30%] ${customFont === fontClass
-                          ? 'border-[#800020] bg-[#fdfaf8] text-[#800020] shadow-sm'
-                          : 'border-gray-200 text-gray-500 hover:border-[#800020]'
-                          }`}
-                      >
-                        <span className={`text-2xl leading-none ${fontClass}`}>
-                          {fontClass === 'font-italianno' ? 'Italianno' :
-                            fontClass === 'font-alexbrush' ? 'Alex Brush' :
-                              fontClass === 'font-pinyon' ? 'Pinyon' :
-                                fontClass === 'font-tangerine' ? 'Tangerine' : 'Satisfy'}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {customName && (
-                  <div className="bg-[#fdfaf8] border border-[#800020]/20 rounded-lg p-6 flex flex-col items-center justify-center gap-2 shadow-sm relative overflow-hidden mt-2">
-                    <span className="text-[9px] uppercase tracking-widest text-[#800020] font-bold absolute top-2 left-3">Live Preview</span>
-                    <p className={`text-3xl text-stone-800 ${customFont} mt-2 text-center break-all`}>
-                      {customName}
-                    </p>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {isPhotoPersonalised && (
-              <div className="flex flex-col gap-2">
-                <label className="text-[10px] uppercase tracking-widest font-bold text-[#2d2d2d]">Upload Photo</label>
-                {customPhotoUrl ? (
-                  <div className="relative w-24 h-24 rounded-lg overflow-hidden border border-gray-200 group">
-                    <img src={customPhotoUrl} alt="Custom Memory" className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <button onClick={() => setCustomPhotoUrl("")} className="text-white text-[10px] tracking-widest uppercase font-bold border border-white px-2 py-1 rounded-md hover:bg-white hover:text-black">Remove</button>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="relative border-2 border-dashed border-gray-200 hover:border-[#800020] rounded-lg p-6 text-center transition-colors bg-gray-50/50 group">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleFileUpload}
-                      disabled={isUploading}
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
-                    />
-                    {isUploading ? (
-                      <div className="flex flex-col items-center gap-2 text-[#800020]">
-                        <div className="w-5 h-5 border-2 border-gray-200 border-t-[#800020] rounded-full animate-spin"></div>
-                        <span className="text-[10px] uppercase tracking-widest font-bold">Uploading...</span>
-                      </div>
-                    ) : (
-                      <div className="flex flex-col items-center gap-1 text-gray-500 group-hover:text-[#800020] transition-colors">
-                        <span className="text-xl font-light leading-none">+</span>
-                        <span className="text-[10px] uppercase tracking-widest font-bold">Tap to Upload Photo</span>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* Upsell: Gift Packaging */}
-            {!isPerfume && (
-              <div
-                onClick={() => setIsGift(!isGift)}
-                className={`border rounded-lg p-4 flex items-center justify-between cursor-pointer transition-all duration-300 group ${isGift ? 'border-[#800020] bg-[#fdfaf8] shadow-sm' : 'border-gray-200 hover:border-[#800020]'}`}
-              >
-                <div className="flex items-center gap-3">
-                  <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors shrink-0 ${isGift ? 'border-[#800020] bg-[#800020]' : 'border-gray-300'}`}>
-                    {isGift && <div className="w-1.5 h-1.5 bg-white rounded-full"></div>}
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Gift size={20} className={isGift ? 'text-[#800020]' : 'text-gray-400 group-hover:text-[#800020] transition-colors'} strokeWidth={1.5} />
-                    <div className="flex flex-col">
-                      <span className="text-sm font-bold text-[#2d2d2d]">Make it a Gift</span>
-                      <span className="text-[9px] uppercase tracking-widest text-gray-500 mt-0.5">Premium Box + Card</span>
-                    </div>
-                  </div>
-                </div>
-                <span className="text-xs font-bold text-[#800020]">+₹249</span>
-              </div>
-            )}
-          </div>
-
-          {/* Free 7ML Paradox Tester Promo */}
-          <div className="backdrop-blur-2xl bg-gradient-to-r from-stone-950 via-stone-900 to-stone-950 text-white border border-amber-400/50 rounded-2xl p-4 mb-6 relative overflow-hidden shadow-xl shadow-amber-500/10">
-            <div className="flex items-center gap-3.5 relative z-10">
-              <div className="w-16 h-16 bg-stone-800/80 rounded-xl overflow-hidden border border-amber-400/30 shrink-0 p-1 flex items-center justify-center backdrop-blur-sm">
-                <img src="/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png" alt="Free 7ML Paradox Tester" className="w-full h-full object-contain" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-400 to-yellow-400 text-stone-950 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-wider mb-1 shadow-sm">
-                  <Gift size={11} className="fill-stone-950" /> FREE GIFT • WORTH ₹399
-                </div>
-                <h4 className="font-serif font-bold text-sm text-amber-200 leading-tight">
-                  7ML Paradox EDP Luxury Tester Pack
-                </h4>
-                <p className="text-stone-300 text-xs leading-snug mt-1">
-                  Harsh Beniwal's 12H luxury EDP tester is <strong className="text-amber-400">added 100% FREE</strong> to your parcel with this order!
-                </p>
+            <div className="flex items-center gap-3.5 py-3.5">
+              <Truck size={20} className="text-[#222222] shrink-0" />
+              <div>
+                <span className="text-[15px] font-semibold text-[#222222] block">Free Pan-India Express Delivery</span>
+                <span className="text-[13px] text-[#6a6a6a]">Dispatched today via BlueDart & Delhivery within 2-4 business days</span>
               </div>
             </div>
           </div>
 
-          {/* Diwali Festive Special Promo with 1-Click Copy */}
-          <div className="backdrop-blur-xl bg-gradient-to-r from-amber-500/15 via-yellow-500/10 to-amber-500/15 border border-amber-400/40 rounded-2xl p-4 sm:p-5 mb-6 relative overflow-hidden shadow-lg shadow-amber-500/5">
-            <div className="flex items-start gap-3 relative z-10">
-              <div className="bg-amber-400/20 text-amber-800 p-2.5 rounded-xl border border-amber-400/30 shrink-0 backdrop-blur-md">
-                <Gift size={22} strokeWidth={2.2} />
-              </div>
-              <div className="flex-1 min-w-0">
-                <h4 className="text-stone-950 font-bold text-xs sm:text-sm mb-1 uppercase tracking-wider flex items-center gap-1.5">
-                  <span>🪔</span> DIWALI FESTIVE SPECIAL • 20% OFF
-                </h4>
-                <p className="text-stone-800 text-xs font-medium leading-relaxed mb-2">
-                  Use code <strong className="font-mono bg-stone-900 text-amber-300 px-2 py-0.5 rounded-md border border-stone-800 shadow-sm">DIWALI20</strong> at checkout for flat <strong className="text-stone-950 font-bold">20% OFF</strong>!
-                </p>
-                <button
-                  type="button"
-                  onClick={() => copyPromoCode("DIWALI20")}
-                  className="inline-flex items-center gap-1.5 bg-gradient-to-r from-stone-950 to-stone-900 text-white hover:text-amber-300 text-[10px] uppercase font-bold px-3.5 py-1.5 rounded-xl border border-stone-800 shadow-sm hover:scale-[1.02] active:scale-95 transition-all cursor-pointer"
-                >
-                  <Sparkles size={12} className="text-amber-400" />
-                  <span>{copiedCode ? "Copied to Clipboard! ✓" : "Tap to Copy Code: DIWALI20"}</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex gap-3 sm:gap-4 mb-3">
-            <button
-              onClick={handleAddToCart}
-              disabled={isButtonDisabled}
-              className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-stone-900 to-stone-950 text-white py-4 px-3 uppercase tracking-wider text-[11px] font-bold rounded-2xl border border-stone-800 shadow-lg shadow-black/15 hover:border-amber-400/40 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-            >
-              <ShoppingBag size={16} className="shrink-0 stroke-[2.2]" />
-              <span className="text-center leading-tight">
-                {!isAvailable
-                  ? "Sold Out"
-                  : isUploading
-                    ? "Uploading..."
-                    : !isPersonalizationComplete
-                      ? "Personalize to Add"
-                      : "Add to Cart"}
-              </span>
-            </button>
-            <button
-              onClick={handleBuyNow}
-              disabled={isButtonDisabled}
-              className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 py-4 px-3 uppercase tracking-wider text-[11px] font-black rounded-2xl shadow-xl shadow-amber-500/25 hover:shadow-amber-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-            >
-              <Zap size={16} className="fill-stone-950 stroke-stone-950 shrink-0" />
-              <span className="text-center leading-tight">Buy Now</span>
-            </button>
-          </div>
-
-          {/* Trust Badges */}
-          <div className="grid grid-cols-3 gap-2 mt-4">
-             <div className="flex flex-col items-center justify-center text-center gap-1.5 backdrop-blur-xl bg-white/80 p-3 rounded-2xl border border-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-md transition-shadow">
-                <Lock size={16} className="text-amber-700 stroke-[2.2]" />
-                <span className="text-[9px] font-bold uppercase tracking-wider text-stone-800">
-                  {isPerfume ? "100% Original EDP" : "Secure Checkout"}
-                </span>
-             </div>
-             <div className="flex flex-col items-center justify-center text-center gap-1.5 backdrop-blur-xl bg-white/80 p-3 rounded-2xl border border-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-md transition-shadow">
-                <ShieldCheck size={16} className="text-emerald-700 stroke-[2.2]" />
-                <span className="text-[9px] font-bold uppercase tracking-wider text-stone-800">
-                  12H+ Longevity
-                </span>
-             </div>
-             <div className="flex flex-col items-center justify-center text-center gap-1.5 backdrop-blur-xl bg-white/80 p-3 rounded-2xl border border-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-md transition-shadow">
-                <Truck size={16} className="text-amber-700 stroke-[2.2]" />
-                <span className="text-[9px] font-bold uppercase tracking-wider text-stone-800">
-                  Fast Express Pan-India
-                </span>
-             </div>
-          </div>
-          
-          {/* Fragrance Specifications for Perfumes / Delivery Tracker for Keepsakes */}
-          {isPerfume ? (
-            <div className="mt-8 mb-6 bg-gradient-to-br from-stone-900 to-stone-950 text-white rounded-2xl p-6 border border-amber-500/20 shadow-xl">
+          {/* Fragrance Specifications for Perfumes */}
+          {isPerfume && (
+            <div className="bg-[#f7f7f7] text-[#222222] rounded-[14px] p-6 border border-[#ebebeb] shadow-airbnb">
               <div className="flex items-center gap-2 mb-2">
-                <Sparkles size={16} className="text-amber-400" />
-                <span className="text-[10px] uppercase tracking-widest text-amber-400 font-bold">Harsh Beniwal x Octopus • 25%+ French Oil Concentration</span>
+                <Sparkles size={16} className="text-[#ff385c]" />
+                <span className="text-[11px] uppercase tracking-wider text-[#ff385c] font-bold">Harsh Beniwal x Octopus • 25%+ French Oil Concentration</span>
               </div>
-              <p className="text-xs text-stone-300 leading-relaxed mb-4">
+              <p className="text-xs text-[#6a6a6a] leading-relaxed mb-4">
                 {product.tagline || product.scentStory || "Crafted with imported French fragrance oils. 50ML Eau De Parfum formulated for maximum longevity, magnetic sillage, and IFRA skin safety."}
               </p>
               
               {product.notes && (
-                <div className="pt-3 border-t border-stone-800 grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-left sm:text-center">
-                  <div className="bg-stone-800/60 p-2.5 rounded-lg border border-stone-700/50">
-                    <span className="text-[9px] uppercase tracking-wider text-stone-400 font-bold block mb-0.5">Top Notes</span>
-                    <span className="text-[11px] text-amber-200 font-medium block">{product.notes.top || "Citrus, Fresh Zest"}</span>
+                <div className="pt-3 border-t border-[#dddddd] grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-left sm:text-center">
+                  <div className="bg-white p-3 rounded-lg border border-[#ebebeb]">
+                    <span className="text-[10px] uppercase tracking-wider text-[#6a6a6a] font-bold block mb-0.5">Top Notes</span>
+                    <span className="text-[12px] text-[#222222] font-semibold block">{product.notes.top || "Citrus, Fresh Zest"}</span>
                   </div>
-                  <div className="bg-stone-800/60 p-2.5 rounded-lg border border-stone-700/50">
-                    <span className="text-[9px] uppercase tracking-wider text-stone-400 font-bold block mb-0.5">Heart Notes</span>
-                    <span className="text-[11px] text-amber-200 font-medium block">{product.notes.heart || "Aromatic Spices, Florals"}</span>
+                  <div className="bg-white p-3 rounded-lg border border-[#ebebeb]">
+                    <span className="text-[10px] uppercase tracking-wider text-[#6a6a6a] font-bold block mb-0.5">Heart Notes</span>
+                    <span className="text-[12px] text-[#222222] font-semibold block">{product.notes.heart || "Aromatic Spices, Florals"}</span>
                   </div>
-                  <div className="bg-stone-800/60 p-2.5 rounded-lg border border-stone-700/50">
-                    <span className="text-[9px] uppercase tracking-wider text-stone-400 font-bold block mb-0.5">Base Notes</span>
-                    <span className="text-[11px] text-amber-200 font-medium block">{product.notes.base || "Amber, Woody Ambroxan"}</span>
+                  <div className="bg-white p-3 rounded-lg border border-[#ebebeb]">
+                    <span className="text-[10px] uppercase tracking-wider text-[#6a6a6a] font-bold block mb-0.5">Base Notes</span>
+                    <span className="text-[12px] text-[#222222] font-semibold block">{product.notes.base || "Amber, Woody Ambroxan"}</span>
                   </div>
                 </div>
               )}
             </div>
-          ) : (
-            <>
-              {/* Premium Progress Tracker */}
-              <div className="mt-8 mb-10 bg-gradient-to-br from-[#fdfaf8] to-white rounded-2xl p-6 border border-[#800020]/10 shadow-[0_8px_30px_rgb(128,0,32,0.04)] relative overflow-hidden">
-                <div className="absolute -right-10 -top-10 w-40 h-40 bg-[#800020]/5 rounded-full blur-3xl pointer-events-none"></div>
-                <div className="relative max-w-sm mx-auto">
-                  <div className="absolute top-3 left-1/6 right-1/6 h-[2px] bg-gray-200 rounded-full"></div>
-                  <div className="absolute top-3 left-1/6 w-1/3 h-[2px] bg-gradient-to-r from-[#800020] to-[#d81b60] rounded-full shadow-[0_0_8px_rgba(128,0,32,0.3)]"></div>
-                  <div className="flex justify-between relative z-10">
-                    <div className="flex flex-col items-center flex-1 group">
-                      <div className="w-6 h-6 rounded-full bg-white border-[3px] border-[#800020] flex items-center justify-center shadow-[0_0_12px_rgba(128,0,32,0.2)] relative transition-transform duration-300 group-hover:scale-110">
-                        <div className="w-2 h-2 rounded-full bg-[#800020]"></div>
-                        <div className="absolute -inset-1.5 rounded-full border border-[#800020]/30 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
-                      </div>
-                      <div className="text-center mt-3">
-                        <span className="block text-[10px] font-black text-gray-900 uppercase tracking-widest mb-1 transition-colors group-hover:text-[#800020]">Order Placed</span>
-                        <span className="block text-[9px] font-bold text-[#800020] bg-[#800020]/5 border border-[#800020]/10 px-2 py-0.5 rounded-full inline-block shadow-sm">Today</span>
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-center flex-1 group">
-                      <div className="w-6 h-6 rounded-full bg-white border-[3px] border-gray-200 flex items-center justify-center transition-all duration-300 group-hover:border-gray-300 group-hover:scale-110">
-                        <div className="w-1.5 h-1.5 rounded-full bg-gray-200 group-hover:bg-gray-300 transition-colors"></div>
-                      </div>
-                      <div className="text-center mt-3">
-                        <span className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 transition-colors group-hover:text-gray-600">Shipped</span>
-                        <span className="block text-[9px] font-medium text-gray-500">Tomorrow Eve</span>
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-center flex-1 group">
-                      <div className="w-6 h-6 rounded-full bg-white border-[3px] border-gray-200 flex items-center justify-center transition-all duration-300 group-hover:border-gray-300 group-hover:scale-110">
-                      </div>
-                      <div className="text-center mt-3">
-                        <span className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1 transition-colors group-hover:text-gray-600">Delivered</span>
-                        <span className="block text-[9px] font-medium text-gray-500">In 3-5 Days</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-6 pt-4 border-t border-[#800020]/5 flex justify-center relative z-10">
-                   <div className="bg-white/80 backdrop-blur-sm border border-[#800020]/10 shadow-sm rounded-full px-4 py-1.5 flex items-center gap-2 hover:shadow-md transition-shadow">
-                     <Sparkles size={12} className="text-[#800020] animate-pulse" />
-                     <span className="text-[10px] font-medium text-gray-700 italic">Handcrafted to order. Not picked from a shelf.</span>
-                   </div>
-                </div>
-              </div>
-              <p className="text-center text-xs font-serif italic text-gray-500 mt-4 mb-6">"Imagine her smile when she opens this personalized keepsake. Guaranteed to be her favorite gift."</p>
-            </>
           )}
 
           {/* Accordion Description */}
-          <div className="mb-8 border border-stone-200 rounded-lg overflow-hidden bg-white mt-4">
+          <div className="border border-[#ebebeb] rounded-[14px] overflow-hidden bg-white">
             <button
               onClick={() => setIsDescOpen(!isDescOpen)}
-              className="w-full flex items-center justify-between p-4 bg-stone-50 hover:bg-stone-100 transition-colors"
+              className="w-full flex items-center justify-between p-4 bg-[#f7f7f7] hover:bg-[#ebebeb] transition-colors"
             >
-              <span className="font-bold text-[#2d2d2d] uppercase tracking-widest text-[10px]">
-                {isPerfume ? "Fragrance Story & Notes" : "Product Description"}
+              <span className="font-semibold text-[#222222] text-xs uppercase tracking-wider">
+                {isPerfume ? "Fragrance Story & Olfactory Notes" : "Product Description"}
               </span>
               <ChevronDown size={16} className={`transition-transform duration-300 ${isDescOpen ? 'rotate-180' : ''}`} />
             </button>
-            <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isDescOpen ? 'max-h-[5000px] opacity-100 border-t border-stone-200' : 'max-h-0 opacity-0'}`}>
+            <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isDescOpen ? 'max-h-[5000px] opacity-100 border-t border-[#ebebeb]' : 'max-h-0 opacity-0'}`}>
               <div className="p-6 leading-relaxed">
                 {isPerfume && product.scentStory && (
-                  <div className="mb-4 text-sm text-stone-700 leading-relaxed font-sans">
-                    <p className="font-semibold text-stone-900 mb-2">The Scent Story:</p>
-                    <p className="text-stone-600">{product.scentStory}</p>
+                  <div className="mb-4 text-sm text-[#3f3f3f] leading-relaxed font-sans">
+                    <p className="font-semibold text-[#222222] mb-1">The Scent Story:</p>
+                    <p className="text-[#6a6a6a]">{product.scentStory}</p>
                   </div>
                 )}
                 <div
-                  className="prose prose-sm text-gray-600 leading-relaxed max-w-none text-justify"
+                  className="prose prose-sm text-[#6a6a6a] leading-relaxed max-w-none text-justify"
                   dangerouslySetInnerHTML={{ __html: product.body_html || product.descriptionHtml || product.descriptionText || "" }}
                 />
                 {isPerfume && Array.isArray(product.goodToKnow) && product.goodToKnow.length > 0 && (
-                  <div className="mt-4 pt-4 border-t border-stone-100">
-                    <p className="font-semibold text-stone-900 text-xs uppercase tracking-wider mb-2">Good To Know:</p>
-                    <ul className="list-disc pl-5 text-xs text-stone-600 space-y-1">
+                  <div className="mt-4 pt-4 border-t border-[#ebebeb]">
+                    <p className="font-semibold text-[#222222] text-xs uppercase tracking-wider mb-2">Good To Know:</p>
+                    <ul className="list-disc pl-5 text-xs text-[#6a6a6a] space-y-1">
                       {product.goodToKnow.map((item: string, i: number) => (
                         <li key={i}>{item}</li>
                       ))}
@@ -720,6 +381,237 @@ export default function ProductUI({ product }: ProductUIProps) {
 
         </div>
 
+        {/* Right Column (~36%): Sticky Airbnb Reservation Card */}
+        <div className="lg:col-span-5 lg:sticky top-24">
+          <div className="bg-white border border-[#dddddd] rounded-[14px] p-6 sm:p-7 shadow-airbnb">
+            
+            {/* Price & Rating Header */}
+            <div className="flex items-baseline justify-between mb-4 pb-4 border-b border-[#ebebeb]">
+              <div>
+                <span className="text-[24px] sm:text-[28px] font-bold text-[#222222]">
+                  ₹{currentPrice.toFixed(0)}
+                </span>
+                <span className="text-[14px] text-[#6a6a6a] font-normal"> / 50ML EDP</span>
+                {compareAtPrice > basePrice && (
+                  <div className="flex items-center gap-2 mt-1">
+                    <span className="text-[13px] text-[#6a6a6a] line-through">₹{compareAtPrice.toFixed(0)}</span>
+                    <span className="text-[11px] font-bold text-[#ff385c] bg-[#fff0f3] px-2 py-0.5 rounded-full">
+                      Save ₹{(compareAtPrice - currentPrice).toFixed(0)} ({discountPercent}% OFF)
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              <div className="text-right">
+                <div className="flex items-center justify-end gap-1 text-[14px] font-bold text-[#222222]">
+                  <span>★</span>
+                  <span>4.92</span>
+                </div>
+                <span className="text-[12px] text-[#6a6a6a] underline">284 reviews</span>
+              </div>
+            </div>
+
+            {/* Listing Title & Category */}
+            <h1 className="text-[20px] font-semibold text-[#222222] mb-1 leading-snug">
+              {product.title}
+            </h1>
+            <p className="text-[13px] text-[#6a6a6a] mb-4">
+              Harsh Beniwal 100% Original 50ML Eau De Parfum Collection
+            </p>
+
+            {/* Same-day dispatch live ticker */}
+            <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-lg p-3 mb-5 flex items-center justify-between text-xs">
+              <span className="text-[#222222] font-medium flex items-center gap-1.5">
+                <Clock size={14} className="text-[#ff385c]" /> Same-day dispatch
+              </span>
+              <span className="font-mono font-bold text-[#222222]">
+                {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s
+              </span>
+            </div>
+
+            {/* Option / Variant Selector */}
+            {product.variants && product.variants.length > 1 && (
+              <div className="mb-4">
+                <label className="text-[12px] font-semibold uppercase text-[#222222] block mb-2">Select Variant</label>
+                <div className="flex flex-wrap gap-2">
+                  {product.variants.map((variant: any) => (
+                    <button
+                      key={variant.id}
+                      onClick={() => setSelectedVariantId(variant.id)}
+                      className={`px-3.5 py-2 text-xs font-medium rounded-lg border transition-all ${
+                        selectedVariantId === variant.id
+                          ? "border-[#222222] bg-[#222222] text-white shadow-sm"
+                          : "border-[#dddddd] text-[#222222] hover:border-[#222222]"
+                      }`}
+                    >
+                      {variant.title}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {showNameInput && (
+              <div className="mb-4 space-y-3">
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[12px] font-semibold uppercase text-[#222222] flex justify-between">
+                    <span>{isNamePersonalised ? 'Name to Engrave' : 'Custom Name'}</span>
+                    <span className="text-[#6a6a6a] font-normal">{customName.length}/7</span>
+                  </label>
+                  <input
+                    type="text"
+                    maxLength={7}
+                    value={customName}
+                    onChange={(e) => setCustomName(e.target.value)}
+                    placeholder="e.g. HARSH"
+                    className="border border-[#dddddd] focus:border-[#222222] rounded-lg px-3.5 py-2.5 text-sm text-[#222222] font-semibold outline-none transition-all placeholder:text-[#929292] placeholder:font-normal"
+                  />
+                </div>
+
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[12px] font-semibold uppercase text-[#222222]">Select Font</label>
+                  <div className="flex flex-wrap gap-2">
+                    {['font-italianno', 'font-alexbrush', 'font-pinyon', 'font-tangerine', 'font-satisfy'].map(fontClass => (
+                      <button
+                        key={fontClass}
+                        onClick={() => setCustomFont(fontClass)}
+                        className={`px-3 py-1.5 border rounded-lg text-center transition-all flex-1 min-w-[28%] ${
+                          customFont === fontClass
+                            ? 'border-[#222222] bg-[#f7f7f7] text-[#222222] font-bold'
+                            : 'border-[#dddddd] text-[#6a6a6a] hover:border-[#222222]'
+                        }`}
+                      >
+                        <span className={`text-xl leading-none ${fontClass}`}>Preview</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {customName && (
+                  <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-lg p-3 text-center">
+                    <span className="text-[10px] uppercase text-[#6a6a6a] block mb-1">Engraving Preview</span>
+                    <p className={`text-2xl text-[#222222] ${customFont}`}>{customName}</p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {isPhotoPersonalised && (
+              <div className="mb-4 flex flex-col gap-1.5">
+                <label className="text-[12px] font-semibold uppercase text-[#222222]">Upload Photo</label>
+                {customPhotoUrl ? (
+                  <div className="relative w-20 h-20 rounded-lg overflow-hidden border border-[#dddddd] group">
+                    <img src={customPhotoUrl} alt="Custom Memory" className="w-full h-full object-cover" />
+                    <button 
+                      onClick={() => setCustomPhotoUrl("")} 
+                      className="absolute inset-0 bg-black/60 text-white text-[10px] font-bold flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ) : (
+                  <div className="relative border border-dashed border-[#dddddd] hover:border-[#222222] rounded-lg p-4 text-center bg-[#f7f7f7] cursor-pointer">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileUpload}
+                      disabled={isUploading}
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
+                    />
+                    <span className="text-xs text-[#6a6a6a] font-medium">
+                      {isUploading ? "Uploading..." : "+ Tap to choose photo"}
+                    </span>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Free Gift Strip */}
+            <div className="bg-[#fff0f3] border border-[#ffd1da] rounded-lg p-3 mb-5 flex items-center gap-3">
+              <Gift size={22} className="text-[#ff385c] shrink-0" />
+              <div className="text-left flex-1 min-w-0">
+                <span className="text-[12px] font-bold text-[#ff385c] uppercase block">
+                  Free 7ML Paradox Tester Included
+                </span>
+                <span className="text-[11px] text-[#6a6a6a] block leading-tight">
+                  Worth ₹399 · Co-created by Harsh Beniwal
+                </span>
+              </div>
+            </div>
+
+            {/* Promo Code Coupon Strip */}
+            <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-lg p-3 mb-5 flex items-center justify-between">
+              <div>
+                <span className="text-[11px] font-semibold text-[#6a6a6a] uppercase block">Coupon: DIWALI20 / OCTOPUS20</span>
+                <span className="text-[13px] font-bold text-[#222222]">Flat 20% OFF at Checkout</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => copyPromoCode("OCTOPUS20")}
+                className="px-3 py-1 bg-white border border-[#dddddd] hover:border-[#222222] rounded-md text-[11px] font-semibold text-[#222222] transition-colors"
+              >
+                {copiedCode ? "Copied! ✓" : "Copy"}
+              </button>
+            </div>
+
+            {/* Primary Airbnb Rausch CTA Button */}
+            <div className="space-y-2 mb-5">
+              <button
+                onClick={handleBuyNow}
+                disabled={isButtonDisabled}
+                className="w-full bg-[#ff385c] hover:bg-[#e00b41] text-white py-3.5 rounded-lg text-[15px] font-medium shadow-none transition-colors disabled:bg-[#ffd1da] disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
+              >
+                <span>Reserve / Buy Now</span>
+              </button>
+
+              <button
+                onClick={handleAddToCart}
+                disabled={isButtonDisabled}
+                className="w-full bg-white text-[#222222] border border-[#222222] hover:bg-[#f7f7f7] py-3.5 rounded-lg text-[15px] font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
+              >
+                <ShoppingBag size={16} />
+                <span>Add to Cart</span>
+              </button>
+            </div>
+
+            {/* Fee Breakdown Stack (Airbnb Style) */}
+            <div className="space-y-2 text-[14px] text-[#6a6a6a] pt-4 border-t border-[#ebebeb]">
+              <div className="flex justify-between">
+                <span>₹{currentPrice.toFixed(0)} × 1 bottle</span>
+                <span className="text-[#222222] font-medium">₹{currentPrice.toFixed(0)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span>7ML Paradox Tester Pack (₹399 value)</span>
+                <span className="text-emerald-700 font-semibold">FREE</span>
+              </div>
+              <div className="flex justify-between">
+                <span>Pan-India Express Shipping</span>
+                <span className="text-emerald-700 font-semibold">FREE</span>
+              </div>
+              <div className="flex justify-between pt-3 border-t border-[#ebebeb] text-[16px] font-bold text-[#222222]">
+                <span>Total</span>
+                <span>₹{currentPrice.toFixed(0)}</span>
+              </div>
+            </div>
+
+            {/* 3 Micro Trust Notes */}
+            <div className="grid grid-cols-3 gap-2 mt-5 pt-4 border-t border-[#ebebeb] text-center text-[11px] text-[#6a6a6a]">
+              <div>
+                <Lock size={14} className="mx-auto text-[#222222] mb-1" />
+                <span>100% Original</span>
+              </div>
+              <div>
+                <Clock size={14} className="mx-auto text-[#222222] mb-1" />
+                <span>12H Longevity</span>
+              </div>
+              <div>
+                <Truck size={14} className="mx-auto text-[#222222] mb-1" />
+                <span>Free Express</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
       </div>
 
@@ -804,48 +696,32 @@ export default function ProductUI({ product }: ProductUIProps) {
         </div>
       </div>
 
-      {/* Sticky Mobile Add To Cart / Buy Now Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-2xl border-t border-white/80 px-3.5 py-2.5 md:hidden shadow-[0_-10px_30px_rgba(0,0,0,0.08)] pb-[calc(10px+env(safe-area-inset-bottom,0px))]">
-        <div className="flex items-center gap-2.5 max-w-lg mx-auto">
-          <div className="relative w-12 h-12 bg-white/90 rounded-xl border border-white/80 overflow-hidden shrink-0 shadow-sm">
-            <Image
-              src={images.length > 0 ? (images[0].src || "/logo.png") : "/logo.png"}
-              alt={product.title}
-              fill
-              sizes="48px"
-              className="object-contain p-1"
-            />
-          </div>
-          <div className="flex-1 min-w-0 pr-1">
-            <p className="font-bold text-[11px] text-stone-950 truncate leading-tight">{product.title}</p>
-            <div className="flex items-center gap-1.5 mt-0.5">
-              <span className="text-sm font-black text-amber-700">₹{currentPrice.toFixed(0)}</span>
-              {compareAtPrice > basePrice && (
-                <>
-                  <span className="text-[10px] text-stone-400 line-through">₹{compareAtPrice.toFixed(0)}</span>
-                  <span className="text-[8px] font-bold text-emerald-800 bg-emerald-500/10 px-1.5 py-0.5 rounded-full border border-emerald-400/30">
-                    {discountPercent}% OFF
-                  </span>
-                </>
-              )}
+      {/* Airbnb Sticky Mobile Reservation Bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#ebebeb] px-4 py-3 md:hidden shadow-airbnb pb-[calc(12px+env(safe-area-inset-bottom,0px))]">
+        <div className="flex items-center justify-between gap-3 max-w-lg mx-auto">
+          <div>
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-[17px] font-bold text-[#222222]">₹{currentPrice.toFixed(0)}</span>
+              <span className="text-[12px] text-[#6a6a6a]">/ bottle</span>
             </div>
+            <span className="text-[11px] text-[#6a6a6a] block">Free 7ML tester & delivery</span>
           </div>
-          <div className="flex items-center gap-2 shrink-0">
+
+          <div className="flex items-center gap-2">
             <button
               onClick={handleAddToCart}
               disabled={isButtonDisabled}
-              className="bg-stone-900 text-white p-3 rounded-xl border border-stone-800 shadow-sm active:scale-95 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center hover:bg-stone-800"
+              className="bg-white text-[#222222] border border-[#222222] p-2.5 rounded-lg active:scale-95 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center"
               aria-label="Add to Cart"
             >
-              <ShoppingBag size={16} className="stroke-[2.2]" />
+              <ShoppingBag size={18} />
             </button>
             <button
               onClick={handleBuyNow}
               disabled={isButtonDisabled}
-              className="bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 font-black py-2.5 px-4 rounded-xl shadow-lg shadow-amber-500/25 text-[11px] uppercase tracking-wider active:scale-95 transition-all disabled:opacity-50 cursor-pointer flex items-center gap-1.5"
+              className="bg-[#ff385c] hover:bg-[#e00b41] text-white font-medium py-2.5 px-5 rounded-lg text-[14px] shadow-none active:scale-95 transition-all disabled:bg-[#ffd1da] cursor-pointer"
             >
-              <Zap size={14} className="fill-stone-950 stroke-stone-950" />
-              <span>Buy Now</span>
+              <span>Reserve</span>
             </button>
           </div>
         </div>

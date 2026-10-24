@@ -354,37 +354,37 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-stone-200">
-                  <h3 className="font-serif text-2xl mb-6 text-stone-900">Delivery Method</h3>
-                  <div className="space-y-4">
+                <div className="pt-4 border-t border-[#ebebeb]">
+                  <h3 className="text-[18px] font-semibold mb-4 text-[#222222]">Delivery Method</h3>
+                  <div className="space-y-3">
                     {formData.country === "India" ? (
-                      <label className="flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors border-[#800020] bg-[#FDF8F5]">
-                        <input type="radio" name="delivery" value="standard" checked={deliveryMethod === 'standard'} onChange={() => setDeliveryMethod('standard')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
+                      <label className="flex items-center gap-4 p-4 border rounded-[10px] cursor-pointer transition-colors border-[#222222] bg-[#f7f7f7]">
+                        <input type="radio" name="delivery" value="standard" checked={deliveryMethod === 'standard'} onChange={() => setDeliveryMethod('standard')} className="w-4 h-4 accent-[#ff385c] cursor-pointer" />
                         <div className="flex flex-col">
-                          <span className="font-bold text-sm text-stone-900">Free Express Pan-India Delivery</span>
-                          <span className="text-xs text-stone-500">2-4 business days with real-time tracking</span>
+                          <span className="font-semibold text-sm text-[#222222]">Free Express Pan-India Delivery</span>
+                          <span className="text-xs text-[#6a6a6a]">2-4 business days with real-time tracking</span>
                         </div>
                       </label>
                     ) : (
-                      <label className={`flex items-center gap-4 p-4 border rounded-lg cursor-pointer transition-colors ${deliveryMethod === 'international' ? 'border-[#800020] bg-[#FDF8F5]' : 'border-stone-200 hover:border-[#800020]'}`}>
-                        <input type="radio" name="delivery" value="international" checked={deliveryMethod === 'international'} onChange={() => setDeliveryMethod('international')} className="w-4 h-4 text-[#800020] focus:ring-[#800020] cursor-pointer" />
+                      <label className={`flex items-center gap-4 p-4 border rounded-[10px] cursor-pointer transition-colors ${deliveryMethod === 'international' ? 'border-[#222222] bg-[#f7f7f7]' : 'border-[#ebebeb] hover:border-[#222222]'}`}>
+                        <input type="radio" name="delivery" value="international" checked={deliveryMethod === 'international'} onChange={() => setDeliveryMethod('international')} className="w-4 h-4 accent-[#ff385c] cursor-pointer" />
                         <div className="flex flex-col">
-                          <span className="font-bold text-sm text-stone-900">International Delivery (+₹1500)</span>
-                          <span className="text-xs text-stone-500">Within 7 days worldwide</span>
+                          <span className="font-semibold text-sm text-[#222222]">International Delivery (+₹1500)</span>
+                          <span className="text-xs text-[#6a6a6a]">Within 7 days worldwide</span>
                         </div>
                       </label>
                     )}
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-stone-200">
-                  <h3 className="font-serif text-2xl mb-6 text-stone-900">Payment Method</h3>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-4 p-4 border rounded-lg border-[#800020] bg-[#FDF8F5]">
-                      <input type="radio" name="payment" value="prepaid" checked readOnly className="w-4 h-4 text-[#800020] focus:ring-[#800020]" />
+                <div className="pt-4 border-t border-[#ebebeb]">
+                  <h3 className="text-[18px] font-semibold mb-4 text-[#222222]">Payment Method</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-4 p-4 border rounded-[10px] border-[#222222] bg-[#f7f7f7]">
+                      <input type="radio" name="payment" value="prepaid" checked readOnly className="w-4 h-4 accent-[#ff385c]" />
                       <div className="flex flex-col">
-                        <span className="font-bold text-sm text-stone-900">100% Secure Online Payment (Prepaid)</span>
-                        <span className="text-xs text-stone-500">Instant checkout via UPI (Google Pay, PhonePe, Paytm), Cards & Netbanking.</span>
+                        <span className="font-semibold text-sm text-[#222222]">100% Secure Online Payment (Prepaid)</span>
+                        <span className="text-xs text-[#6a6a6a]">Instant checkout via UPI (Google Pay, PhonePe, Paytm), Cards & Netbanking.</span>
                       </div>
                     </div>
                   </div>
@@ -393,11 +393,11 @@ export default function CheckoutPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-400 text-stone-950 py-4 rounded-2xl text-xs tracking-[0.15em] uppercase font-black shadow-xl shadow-amber-500/25 hover:shadow-amber-500/40 hover:scale-[1.01] transition-all disabled:opacity-50 mt-4 flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full bg-[#ff385c] hover:bg-[#e00b41] text-white py-4 rounded-lg text-[15px] font-medium transition-colors disabled:bg-[#ffd1da] mt-6 flex items-center justify-center gap-2 cursor-pointer shadow-none"
                 >
                   {loading ? "Processing..." : (
                     <>
-                      <Lock size={14} /> Pay ₹{finalTotal} Securely
+                      <Lock size={16} /> Pay ₹{finalTotal} Securely
                     </>
                   )}
                 </button>
@@ -481,7 +481,7 @@ export default function CheckoutPage() {
                           setPromoError("Invalid promo code. Use DIWALI15 for 15% OFF or DIWALI20.");
                         }
                       }}
-                      className="bg-gradient-to-r from-stone-950 to-stone-900 text-amber-300 rounded-xl px-6 text-xs uppercase tracking-wider font-bold shadow-md hover:scale-[1.02] active:scale-95 transition-all cursor-pointer border border-stone-800"
+                      className="bg-[#222222] hover:bg-black text-white rounded-lg px-6 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer"
                     >
                       Apply
                     </button>
@@ -492,15 +492,15 @@ export default function CheckoutPage() {
                         setPromoApplied(false);
                         setPromoCode("");
                       }}
-                      className="bg-rose-500/10 text-rose-700 border border-rose-300/60 rounded-xl px-6 text-xs uppercase tracking-wider font-bold shadow-sm hover:bg-rose-500/20 transition-all cursor-pointer"
+                      className="bg-[#fff0f3] text-[#ff385c] border border-[#ffd1da] rounded-lg px-6 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer"
                     >
                       Remove
                     </button>
                   )}
                 </div>
-                {promoError && <p className="text-red-600 font-bold text-xs mt-2">{promoError}</p>}
+                {promoError && <p className="text-[#c13515] font-semibold text-xs mt-2">{promoError}</p>}
                 {promoApplied && (
-                  <p className="text-emerald-700 font-black text-xs mt-2 flex items-center gap-1.5 bg-emerald-50 border border-emerald-300 px-3 py-1.5 rounded-lg w-fit">
+                  <p className="text-emerald-700 font-bold text-xs mt-2 flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-lg w-fit">
                     <CheckCircle2 size={14} className="text-emerald-600" /> 
                     <span>{promoCode === "DIWALI20" ? "🪔 Diwali Festive 20% OFF Applied!" : "Promo code applied successfully!"}</span>
                   </p>

@@ -554,27 +554,28 @@ export default function ProductUI({ product }: ProductUIProps) {
               </button>
             </div>
 
-            {/* Primary Airbnb Rausch CTA Button */}
-            <div className="space-y-2 mb-5">
+            {/* Primary Action Buttons */}
+            <div className="space-y-2.5 mb-5">
               <button
                 onClick={handleBuyNow}
                 disabled={isButtonDisabled}
-                className="w-full bg-[#ff385c] hover:bg-[#e00b41] text-white py-3.5 rounded-lg text-[15px] font-medium shadow-none transition-colors disabled:bg-[#ffd1da] disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
+                className="w-full bg-[#ff385c] hover:bg-[#e00b41] active:scale-[0.99] text-white py-3.5 rounded-lg text-[15px] font-semibold shadow-sm hover:shadow-md transition-all disabled:bg-[#ffd1da] disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
               >
-                <span>Reserve / Buy Now</span>
+                <Zap size={17} className="fill-white" />
+                <span>Buy Now (Instant Checkout)</span>
               </button>
 
               <button
                 onClick={handleAddToCart}
                 disabled={isButtonDisabled}
-                className="w-full bg-white text-[#222222] border border-[#222222] hover:bg-[#f7f7f7] py-3.5 rounded-lg text-[15px] font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
+                className="w-full bg-white text-[#222222] border border-[#222222] hover:bg-[#f7f7f7] active:scale-[0.99] py-3.5 rounded-lg text-[15px] font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
               >
-                <ShoppingBag size={16} />
+                <ShoppingBag size={17} />
                 <span>Add to Cart</span>
               </button>
             </div>
 
-            {/* Fee Breakdown Stack (Airbnb Style) */}
+            {/* Fee Breakdown Stack */}
             <div className="space-y-2 text-[14px] text-[#6a6a6a] pt-4 border-t border-[#ebebeb]">
               <div className="flex justify-between">
                 <span>₹{currentPrice.toFixed(0)} × 1 bottle</span>
@@ -618,10 +619,10 @@ export default function ProductUI({ product }: ProductUIProps) {
       {/* Fragrance Lifestyle Proof Section */}
       <div className="mt-16 mb-8 max-w-[1200px] mx-auto">
         <div className="mb-6">
-          <p className="text-[10px] uppercase tracking-widest font-bold text-stone-500 mb-1">THE OCTOPUS LUXURY EXPERIENCE</p>
-          <h2 className="font-serif text-2xl md:text-3xl text-[#2d2d2d]">Crafted for presence, <span className="italic">loved by 50,000+ perfume lovers</span></h2>
+          <p className="text-[10px] uppercase tracking-widest font-bold text-[#ff385c] mb-1">THE OCTOPUS LUXURY EXPERIENCE</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#222222]">Crafted for presence, <span className="font-normal italic text-[#6a6a6a]">loved by 50,000+ perfume lovers</span></h2>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
           {[
             { src: "/harsh-beniwal/octopus/perfumes/images/overlord_lifestyle.png", title: "Overlord EDP" },
             { src: "/harsh-beniwal/octopus/perfumes/images/paradox_lifestyle.png", title: "Paradox EDP" },
@@ -630,9 +631,9 @@ export default function ProductUI({ product }: ProductUIProps) {
             { src: "/harsh-beniwal/octopus/perfumes/images/mirage_lifestyle.png", title: "Mirage EDP" },
             { src: "/harsh-beniwal/octopus/perfumes/images/rhapsody_lifestyle.png", title: "Rhapsody EDP" }
           ].map((item, index) => (
-            <div key={index} className="aspect-square relative rounded-xl overflow-hidden shadow-sm bg-stone-900 border border-black/10 group">
+            <div key={index} className="aspect-square relative rounded-[14px] overflow-hidden shadow-airbnb bg-[#f7f7f7] border border-[#ebebeb] group">
               <img src={item.src} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div className="absolute bottom-2 left-2 bg-black/75 backdrop-blur-sm text-amber-300 text-[10px] font-black px-2 py-0.5 rounded border border-amber-500/30">
+              <div className="absolute bottom-2.5 left-2.5 bg-black/75 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-md">
                 {item.title}
               </div>
             </div>
@@ -641,15 +642,15 @@ export default function ProductUI({ product }: ProductUIProps) {
       </div>
 
       {/* Tabs Section */}
-      <div className="mt-16 max-w-4xl border border-gray-200 rounded-xl overflow-hidden">
-        <div className="flex items-center border-b border-gray-200 bg-gray-50/50">
+      <div className="mt-16 max-w-4xl border border-[#ebebeb] rounded-[14px] overflow-hidden shadow-airbnb">
+        <div className="flex items-center border-b border-[#ebebeb] bg-[#f7f7f7]">
           {['details', 'shipping', 'faqs'].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`flex-1 py-4 text-[10px] uppercase tracking-widest font-bold transition-colors ${activeTab === tab
-                ? 'bg-white text-[#800020] border-b-2 border-[#800020]'
-                : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800'
+              className={`flex-1 py-4 text-[11px] uppercase tracking-wider font-bold transition-all ${activeTab === tab
+                ? 'bg-white text-[#ff385c] border-b-2 border-[#ff385c]'
+                : 'text-[#6a6a6a] hover:bg-[#ebebeb] hover:text-[#222222]'
                 }`}
             >
               {tab === 'details' ? 'Product Details' :
@@ -660,75 +661,112 @@ export default function ProductUI({ product }: ProductUIProps) {
         <div className="p-8 bg-white min-h-[200px]">
           {activeTab === 'details' && (
             <div className="animate-in fade-in duration-300">
-              <h4 className="text-sm font-bold text-gray-900 mb-2">Product Details</h4>
-              <div className="prose prose-sm text-gray-600 text-justify" dangerouslySetInnerHTML={{ __html: product.body_html || "" }} />
+              <h4 className="text-sm font-bold text-[#222222] mb-3">Product Details & Specs</h4>
+              <div className="prose prose-sm text-[#3f3f3f] text-justify leading-relaxed" dangerouslySetInnerHTML={{ __html: product.body_html || "" }} />
             </div>
           )}
 
           {activeTab === 'shipping' && (
-            <div className="animate-in fade-in duration-300">
-              <h4 className="text-sm font-bold text-gray-900 mb-2">Shipping Information</h4>
-              <p className="text-sm text-gray-600 mb-6 text-justify">Free express Pan-India shipping on all prepaid orders. Each 50ML Eau De Parfum bottle and free 7ML Paradox tester pack is carefully packaged in our crush-resistant luxury presentation box. Orders placed before 4:00 PM are dispatched on the same day via BlueDart / Delhivery / XpressBees air express.</p>
-              <h4 className="text-sm font-bold text-gray-900 mb-2">Transit Time</h4>
-              <p className="text-sm text-gray-600 text-justify">Metro cities: 2-3 business days. Rest of India: 3-5 business days. You will receive live SMS and WhatsApp tracking updates as soon as your shipment departs our warehouse.</p>
+            <div className="animate-in fade-in duration-300 space-y-4">
+              <div>
+                <h4 className="text-sm font-bold text-[#222222] mb-1.5">Free Express Pan-India Shipping</h4>
+                <p className="text-sm text-[#3f3f3f] leading-relaxed">Free express Pan-India shipping on all prepaid orders. Each 50ML Eau De Parfum bottle and free 7ML Paradox tester pack is carefully packaged in our crush-resistant luxury presentation box. Orders placed before 4:00 PM are dispatched same-day via BlueDart / Delhivery / XpressBees air express.</p>
+              </div>
+              <div>
+                <h4 className="text-sm font-bold text-[#222222] mb-1.5">Transit Times</h4>
+                <p className="text-sm text-[#3f3f3f] leading-relaxed">Metro cities: 2-3 business days. Rest of India: 3-5 business days. You will receive live SMS and WhatsApp tracking updates as soon as your shipment departs our warehouse.</p>
+              </div>
             </div>
           )}
           {activeTab === 'faqs' && (
             <div className="animate-in fade-in duration-300 space-y-4">
               <div>
-                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-1">How long does the fragrance last?</h4>
-                <p className="text-sm text-gray-600">Our Eau De Parfums are formulated with 25%+ imported French perfume oil concentration, providing 12+ hours of beast-mode longevity on clothes and 8+ hours on skin with magnetic sillage.</p>
+                <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">How long does the fragrance last?</h4>
+                <p className="text-sm text-[#3f3f3f] leading-relaxed">Our Eau De Parfums are formulated with 25%+ imported French perfume oil concentration, providing 12+ hours of beast-mode longevity on clothes and 8+ hours on skin with magnetic sillage.</p>
               </div>
               <div>
-                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-1">What is the complimentary 7ML Paradox tester?</h4>
-                <p className="text-sm text-gray-600">Every order comes with a free 7ML Paradox Eau De Parfum discovery tester pack (worth ₹399). It is pocket-friendly, travel-ready, and lets you experience another iconic scent from Harsh Beniwal's collection!</p>
+                <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">What is the complimentary 7ML Paradox tester?</h4>
+                <p className="text-sm text-[#3f3f3f] leading-relaxed">Every order comes with a free 7ML Paradox Eau De Parfum discovery tester pack (worth ₹399). It is pocket-friendly, travel-ready, and lets you experience another iconic scent from Harsh Beniwal's collection!</p>
               </div>
               <div>
-                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-1">Are these 100% authentic Harsh Beniwal perfumes?</h4>
-                <p className="text-sm text-gray-600">Yes, this is the official Octopus by Harsh Beniwal store. All perfumes are 100% original, IFRA certified, and dermatologist-tested safe for daily skin application.</p>
+                <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">Are these 100% authentic Harsh Beniwal perfumes?</h4>
+                <p className="text-sm text-[#3f3f3f] leading-relaxed">Yes, this is the official Octopus by Harsh Beniwal store. All perfumes are 100% original, IFRA certified, and dermatologist-tested safe for daily skin application.</p>
               </div>
               <div>
-                <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-1">What payment methods do you accept?</h4>
-                <p className="text-sm text-gray-600">We accept 100% secure online prepaid payments including UPI (Google Pay, PhonePe, Paytm), Credit/Debit Cards, and Net Banking with free express shipping across India.</p>
+                <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">What payment methods do you accept?</h4>
+                <p className="text-sm text-[#3f3f3f] leading-relaxed">We accept 100% secure online prepaid payments including UPI (Google Pay, PhonePe, Paytm), Credit/Debit Cards, and Net Banking with free express shipping across India.</p>
               </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* Airbnb Sticky Mobile Reservation Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-[#ebebeb] px-4 py-3 md:hidden shadow-airbnb pb-[calc(12px+env(safe-area-inset-bottom,0px))]">
-        <div className="flex items-center justify-between gap-3 max-w-lg mx-auto">
-          <div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-[17px] font-bold text-[#222222]">₹{currentPrice.toFixed(0)}</span>
-              <span className="text-[12px] text-[#6a6a6a]">/ bottle</span>
+      {/* Supercharged Mobile Sticky Pricing & Instant Buy Bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-[#dddddd] px-3.5 sm:px-5 py-3 lg:hidden shadow-[0_-8px_30px_rgba(0,0,0,0.12)] pb-[calc(12px+env(safe-area-inset-bottom,0px))]">
+        <div className="flex items-center justify-between gap-3 max-w-2xl mx-auto">
+          
+          {/* Left: Product Thumbnail & Live Price Stack */}
+          <div className="flex items-center gap-2.5 min-w-0">
+            {images.length > 0 && (
+              <div className="relative w-11 h-11 shrink-0 rounded-lg overflow-hidden bg-[#f7f7f7] border border-[#ebebeb]">
+                <Image
+                  src={images[0].src}
+                  alt={product.title}
+                  fill
+                  className="object-contain p-1"
+                  unoptimized
+                />
+              </div>
+            )}
+            <div className="min-w-0 flex flex-col">
+              <div className="flex items-center gap-1.5 truncate">
+                <span className="text-[17px] sm:text-[19px] font-bold text-[#222222] leading-none">
+                  ₹{currentPrice.toFixed(0)}
+                </span>
+                {compareAtPrice > currentPrice && (
+                  <span className="text-[12px] text-[#929292] line-through leading-none">
+                    ₹{compareAtPrice.toFixed(0)}
+                  </span>
+                )}
+                {discountPercent > 0 && (
+                  <span className="text-[10px] font-bold text-[#ff385c] bg-[#fff0f3] px-1.5 py-0.5 rounded leading-none">
+                    {discountPercent}% OFF
+                  </span>
+                )}
+              </div>
+              <span className="text-[11px] text-[#6a6a6a] truncate mt-0.5 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                In Stock • Free 7ML Tester Pack
+              </span>
             </div>
-            <span className="text-[11px] text-[#6a6a6a] block">Free 7ML tester & delivery</span>
           </div>
 
-          <div className="flex items-center gap-2">
+          {/* Right: Instant Buy & Add to Cart Buttons */}
+          <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={handleAddToCart}
               disabled={isButtonDisabled}
-              className="bg-white text-[#222222] border border-[#222222] p-2.5 rounded-lg active:scale-95 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center"
+              className="bg-white text-[#222222] border border-[#dddddd] hover:border-[#222222] p-2.5 sm:px-3 sm:py-2.5 rounded-lg active:scale-95 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-1.5 font-medium text-xs shadow-xs"
               aria-label="Add to Cart"
+              title="Add to Cart"
             >
-              <ShoppingBag size={18} />
+              <ShoppingBag size={17} />
+              <span className="hidden sm:inline">Add</span>
             </button>
             <button
               onClick={handleBuyNow}
               disabled={isButtonDisabled}
-              className="bg-[#ff385c] hover:bg-[#e00b41] text-white font-medium py-2.5 px-5 rounded-lg text-[14px] shadow-none active:scale-95 transition-all disabled:bg-[#ffd1da] cursor-pointer"
+              className="bg-[#ff385c] hover:bg-[#e00b41] active:scale-95 text-white font-semibold py-2.5 px-4 sm:px-6 rounded-lg text-[13px] sm:text-[14px] shadow-sm hover:shadow-md transition-all disabled:bg-[#ffd1da] cursor-pointer flex items-center gap-1.5"
             >
-              <span>Reserve</span>
+              <Zap size={15} className="fill-white" />
+              <span>Buy Now</span>
             </button>
           </div>
         </div>
       </div>
 
       {/* Bottom spacer for mobile sticky bar */}
-      <div className="h-16 md:hidden"></div>
+      <div className="h-20 lg:hidden"></div>
 
     </div >
   );

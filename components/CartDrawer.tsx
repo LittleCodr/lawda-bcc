@@ -66,7 +66,7 @@ export default function CartDrawer() {
             {items.length > 0 && (
               <div className="px-6 py-3.5 bg-[#f7f7f7] shrink-0 border-b border-[#ebebeb] flex flex-col gap-2.5">
                 <div className="flex items-center justify-between text-xs font-medium">
-                  <span className="text-[#222222] flex items-center gap-1.5"><Clock size={13} className="text-[#ff385c]" /> Cart reserved for</span>
+                  <span className="text-[#222222] flex items-center gap-1.5"><Clock size={13} className="text-[#ff385c]" /> Items held in cart for</span>
                   <span className="text-[#ff385c] font-mono font-semibold text-xs">{minutes}:{seconds.toString().padStart(2, '0')}</span>
                 </div>
 

@@ -98,6 +98,7 @@ import { AuthProvider } from "@/lib/auth-context";
 import { Suspense } from "react";
 import DiwaliPopup from "@/components/DiwaliPopup";
 import SalesToasts from "@/components/SalesToasts";
+import MobileStickyShopBar from "@/components/MobileStickyShopBar";
 
 export default function RootLayout({
   children,
@@ -210,6 +211,7 @@ export default function RootLayout({
           <CartDrawer />
           <DiwaliPopup />
           <SalesToasts />
+          <MobileStickyShopBar />
           <Toaster 
             position="top-center" 
             toastOptions={{

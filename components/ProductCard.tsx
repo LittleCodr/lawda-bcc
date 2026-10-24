@@ -109,17 +109,17 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
           </svg>
         </button>
 
-        {/* Quick Add Overlay on Hover */}
-        <div className="absolute inset-x-3 bottom-3 translate-y-[120%] group-hover:translate-y-0 transition-transform duration-250 ease-out z-20">
+        {/* Quick Add Overlay on Hover (Desktop) */}
+        <div className="absolute inset-x-3 bottom-3 translate-y-[120%] group-hover:translate-y-0 transition-transform duration-250 ease-out z-20 hidden sm:block">
           <button
             onClick={(e) => {
               e.preventDefault();
               addItem(product);
             }}
-            className="w-full bg-[#ff385c] hover:bg-[#e00b41] text-white py-2.5 rounded-[8px] text-[13px] font-medium tracking-wide flex items-center justify-center gap-2 shadow-md cursor-pointer transition-colors"
+            className="w-full bg-[#ff385c] hover:bg-[#e00b41] active:scale-95 text-white py-2.5 rounded-[8px] text-[13px] font-semibold tracking-wide flex items-center justify-center gap-2 shadow-md cursor-pointer transition-all"
           >
             <ShoppingBag size={14} strokeWidth={2.2} />
-            Quick Reserve
+            Add to Cart
           </button>
         </div>
       </div>
@@ -156,6 +156,26 @@ export default function ProductCard({ product, index = 0 }: { product: Product; 
               Save {Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)}%
             </span>
           )}
+        </div>
+
+        {/* Mobile Fast Action Buttons */}
+        <div className="mt-2.5 flex items-center gap-2 sm:hidden">
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              addItem(product);
+            }}
+            className="flex-1 bg-[#ff385c] active:bg-[#e00b41] text-white py-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 active:scale-95 transition-all shadow-xs cursor-pointer"
+          >
+            <ShoppingBag size={13} />
+            <span>Add to Cart</span>
+          </button>
+          <Link
+            href={`/products/${product.slug}`}
+            className="px-3.5 py-2 bg-white text-[#222222] border border-[#dddddd] rounded-lg text-xs font-semibold active:scale-95 transition-all text-center"
+          >
+            Details
+          </Link>
         </div>
       </div>
     </motion.div>

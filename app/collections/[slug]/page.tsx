@@ -3,7 +3,7 @@ import path from "path";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ChevronRight, Gift, ChevronDown, Flame, Sparkles } from "lucide-react";
+import { ChevronRight, Gift, ChevronDown, Flame, Sparkles, ShoppingBag } from "lucide-react";
 import { rakhiConfig } from "./rakhi-config";
 import SortSelect from "@/components/SortSelect";
 import FeaturedProductCarousel from "@/components/FeaturedProductCarousel";
@@ -341,8 +341,8 @@ export default async function CollectionPage(props: {
                   <span className="text-xs text-[#6a6a6a] line-through mr-1.5">₹2,099</span>
                   <span className="text-lg font-bold text-[#222222]">₹1,299</span>
                 </div>
-                <Link href="/products/overlord" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#ff385c] hover:bg-[#e00b41] text-white px-5 py-2.5 rounded-lg font-medium text-xs transition-colors">
-                  Reserve Now <ChevronRight size={14} />
+                <Link href="/products/overlord" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#ff385c] hover:bg-[#e00b41] active:scale-95 text-white px-5 py-2.5 rounded-lg font-semibold text-xs shadow-xs transition-all">
+                  Buy Now <ChevronRight size={14} />
                 </Link>
               </div>
             </div>
@@ -366,8 +366,8 @@ export default async function CollectionPage(props: {
                   <span className="text-xs text-[#6a6a6a] line-through mr-1.5">₹2,099</span>
                   <span className="text-lg font-bold text-[#222222]">₹1,299</span>
                 </div>
-                <Link href="/products/paradox" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#ff385c] hover:bg-[#e00b41] text-white px-5 py-2.5 rounded-lg font-medium text-xs transition-colors">
-                  Reserve Now <ChevronRight size={14} />
+                <Link href="/products/paradox" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#ff385c] hover:bg-[#e00b41] active:scale-95 text-white px-5 py-2.5 rounded-lg font-semibold text-xs shadow-xs transition-all">
+                  Buy Now <ChevronRight size={14} />
                 </Link>
               </div>
             </div>
@@ -375,10 +375,10 @@ export default async function CollectionPage(props: {
 
           {displayProducts.length > 0 ? (
             <>
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-3 gap-y-6 md:gap-x-8 md:gap-y-12">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
                 {displayProducts.map((product: any) => (
-                  <Link href={`/products/${product.handle}`} key={product.id} className="group flex flex-col h-full bg-white border border-[#E5B8B7]/30 hover:border-[#E5B8B7] transition-all duration-300 shadow-sm hover:shadow-xl rounded-lg md:rounded-sm overflow-hidden">
-                    <div className="relative aspect-[4/5] bg-[#FDF8F5] overflow-hidden">
+                  <Link href={`/products/${product.handle}`} key={product.id} className="group flex flex-col h-full bg-white border border-[#ebebeb] hover:border-[#dddddd] transition-all duration-300 shadow-airbnb hover:shadow-airbnb-hover rounded-[14px] overflow-hidden">
+                    <div className="relative aspect-square bg-[#f7f7f7] overflow-hidden">
                       {product.images && product.images.length > 0 ? (
                         <>
                           <Image 
@@ -391,7 +391,7 @@ export default async function CollectionPage(props: {
                               product.product_type?.toLowerCase() === 'perfume' 
                                 ? "object-contain p-4" 
                                 : "object-cover"
-                            } ${product.images.length > 1 ? "group-hover:opacity-0" : "group-hover:scale-105"} transition-all duration-700 ease-out z-10`} 
+                            } ${product.images.length > 1 ? "group-hover:opacity-0" : "group-hover:scale-105"} transition-all duration-500 ease-out z-10`} 
                           />
                           {product.images.length > 1 && (
                             <Image 
@@ -402,35 +402,31 @@ export default async function CollectionPage(props: {
                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
                               className={`${
                                 product.product_type?.toLowerCase() === 'perfume' 
-                                  ? "object-contain p-4" 
-                                  : "object-cover"
-                              } opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out z-10`} 
+                                ? "object-contain p-4" 
+                                : "object-cover"
+                            } opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 ease-out z-10`} 
                             />
                           )}
                         </>
                       ) : (
-                        <div className="w-full h-full flex items-center justify-center text-[#E5B8B7]">No Image</div>
+                        <div className="w-full h-full flex items-center justify-center text-[#6a6a6a]">No Image</div>
                       )}
-                      
-                      {/* Hover Overlay Button */}
-                      <div className="absolute inset-0 bg-[#800020]/0 group-hover:bg-[#800020]/5 transition-colors duration-300 flex items-end justify-center p-6">
-                        <span className="bg-white/90 backdrop-blur-sm text-[#800020] px-8 py-3 text-xs uppercase tracking-widest font-bold translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 shadow-lg border border-[#E5B8B7]/30">
-                          Personalize It
-                        </span>
-                      </div>
                     </div>
                     
-                    <div className="p-3 md:p-6 flex flex-col flex-1 text-center bg-white">
-                      <h3 className="font-serif text-sm md:text-lg text-[#2d2d2d] group-hover:text-[#800020] transition-colors leading-tight mb-1 md:mb-2 font-bold line-clamp-2 md:line-clamp-none h-10 md:h-auto">
+                    <div className="p-3.5 md:p-5 flex flex-col flex-1 text-left bg-white">
+                      <h3 className="text-sm md:text-base font-semibold text-[#222222] group-hover:text-[#ff385c] transition-colors leading-snug mb-1 line-clamp-2">
                         {product.title}
                       </h3>
-                      <p className="text-[8px] uppercase tracking-widest text-amber-800 font-bold mb-2">25%+ French Oils • 12H Longevity</p>
-                      <p className="text-sm font-bold text-[#800020] tracking-wide mb-3 md:mt-auto">
-                        ₹{product.variants && product.variants.length > 0 ? product.variants[0].price : "0"}
-                      </p>
+                      <p className="text-[11px] text-[#6a6a6a] mb-2">25%+ French Oils • 12H Longevity</p>
+                      <div className="flex items-baseline gap-2 mt-auto mb-3">
+                        <span className="text-base font-bold text-[#222222]">
+                          ₹{product.variants && product.variants.length > 0 ? product.variants[0].price : "0"}
+                        </span>
+                        <span className="text-xs text-[#6a6a6a]">total</span>
+                      </div>
                       
-                      <button className="w-full bg-[#FDF8F5] text-[#800020] border border-[#E5B8B7] py-2 md:py-3 text-[9px] md:text-[10px] uppercase tracking-widest font-bold group-hover:bg-[#800020] group-hover:text-white transition-all duration-300 rounded-sm mt-auto shadow-sm group-hover:shadow-md">
-                        Customize
+                      <button className="w-full bg-[#ff385c] hover:bg-[#e00b41] active:scale-95 text-white py-2.5 rounded-lg text-xs font-semibold transition-all shadow-xs cursor-pointer flex items-center justify-center gap-1.5">
+                        <ShoppingBag size={14} /> Buy Now
                       </button>
                     </div>
                   </Link>
@@ -439,9 +435,9 @@ export default async function CollectionPage(props: {
 
               {/* Pagination Controls */}
               {totalPages > 1 && (
-                <div className="mt-20 flex justify-center items-center gap-2">
+                <div className="mt-16 flex justify-center items-center gap-2">
                   {validPage > 1 && (
-                    <Link href={`/collections/${slug}?page=${validPage - 1}`} className="px-6 py-3 border border-[#E5B8B7] text-[#800020] font-bold text-xs uppercase tracking-widest hover:bg-[#E5B8B7]/20 transition-colors">
+                    <Link href={`/collections/${slug}?page=${validPage - 1}`} className="px-5 py-2.5 border border-[#ebebeb] text-[#222222] font-semibold text-xs rounded-lg hover:border-[#222222] transition-colors">
                       Previous
                     </Link>
                   )}

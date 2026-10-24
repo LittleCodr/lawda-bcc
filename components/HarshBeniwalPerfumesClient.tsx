@@ -177,13 +177,13 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
                   />
                 </Link>
 
-                {/* Quick Add CTA Bar */}
-                <div className="absolute inset-x-3 bottom-3 translate-y-[120%] group-hover:translate-y-0 transition-transform duration-200 z-20">
+                {/* Quick Add CTA Bar (Desktop) */}
+                <div className="absolute inset-x-3 bottom-3 translate-y-[120%] group-hover:translate-y-0 transition-transform duration-200 z-20 hidden sm:block">
                   <button
                     onClick={() => handleAddToCart(perfume)}
-                    className="w-full bg-[#ff385c] hover:bg-[#e00b41] text-white py-2.5 rounded-[8px] text-[13px] font-medium flex items-center justify-center gap-2 shadow-xs transition-colors cursor-pointer"
+                    className="w-full bg-[#ff385c] hover:bg-[#e00b41] active:scale-95 text-white py-2.5 rounded-[8px] text-[13px] font-semibold flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer"
                   >
-                    <ShoppingBag size={14} /> Quick Reserve
+                    <ShoppingBag size={14} /> Add to Cart
                   </button>
                 </div>
               </div>
@@ -218,6 +218,23 @@ export default function HarshBeniwalPerfumesClient({ perfumes }: HarshBeniwalPer
                   <span className="text-[12px] text-[#ff385c] font-medium ml-auto">
                     Save {perfume.discountPercent}%
                   </span>
+                </div>
+
+                {/* Mobile Direct Action Buttons */}
+                <div className="mt-2.5 flex items-center gap-2 sm:hidden">
+                  <button
+                    onClick={() => handleAddToCart(perfume)}
+                    className="flex-1 bg-[#ff385c] active:bg-[#e00b41] text-white py-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 active:scale-95 transition-all shadow-xs cursor-pointer"
+                  >
+                    <ShoppingBag size={13} />
+                    <span>Add to Cart</span>
+                  </button>
+                  <Link
+                    href={`/products/${perfume.handle}`}
+                    className="px-3.5 py-2 bg-white text-[#222222] border border-[#dddddd] rounded-lg text-xs font-semibold active:scale-95 transition-all text-center"
+                  >
+                    Details
+                  </Link>
                 </div>
               </div>
             </article>

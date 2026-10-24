@@ -42,6 +42,18 @@ export default function FeaturedProductCarousel() {
           />
         </motion.div>
       </AnimatePresence>
+
+      {/* Indicator dots */}
+      <div className="absolute bottom-3 inset-x-0 flex justify-center gap-1.5 z-10 pointer-events-none">
+        {perfumeImages.map((_, idx) => (
+          <span
+            key={idx}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              idx === currentIndex ? "bg-[#ff385c] w-4" : "bg-black/20 w-1.5"
+            }`}
+          />
+        ))}
+      </div>
     </Link>
   );
 }

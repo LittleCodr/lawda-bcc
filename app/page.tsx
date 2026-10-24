@@ -322,19 +322,19 @@ export default async function Home() {
               </span>
             </div>
 
-            {/* Airbnb Primary & Secondary Action Buttons */}
+            {/* Primary & Secondary Action Buttons */}
             <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
               <Link 
                 href="/harsh-beniwal/octopus/perfumes" 
-                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#ff385c] hover:bg-[#e00b41] text-white px-7 py-3.5 rounded-lg font-medium text-[15px] shadow-none hover:shadow-airbnb transition-all cursor-pointer"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#ff385c] hover:bg-[#e00b41] active:scale-95 text-white px-7 py-3.5 rounded-lg font-semibold text-[15px] shadow-sm hover:shadow-md transition-all cursor-pointer"
               >
-                <span>Reserve 50ML EDP</span>
+                <span>Buy 50ML EDP • ₹999</span>
                 <ArrowRight size={16} />
               </Link>
 
               <Link 
                 href={`/harsh-beniwal/octopus/perfumes/${heroPerfume.handle}`} 
-                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white text-[#222222] border border-[#222222] hover:bg-[#f7f7f7] px-6 py-3.5 rounded-lg font-medium text-[15px] transition-all cursor-pointer"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white text-[#222222] border border-[#222222] hover:bg-[#f7f7f7] active:scale-95 px-6 py-3.5 rounded-lg font-semibold text-[15px] transition-all cursor-pointer"
               >
                 <span>Overlord (Sauvage DNA)</span>
               </Link>
@@ -407,9 +407,10 @@ export default async function Home() {
 
               <Link
                 href={`/harsh-beniwal/octopus/perfumes/${heroPerfume.handle}`}
-                className="mt-4 w-full flex items-center justify-center gap-2 bg-[#ff385c] hover:bg-[#e00b41] text-white py-3 rounded-lg font-medium text-[14px] transition-colors"
+                className="mt-4 w-full flex items-center justify-center gap-2 bg-[#ff385c] hover:bg-[#e00b41] active:scale-95 text-white py-3 rounded-lg font-semibold text-[14px] shadow-sm transition-all"
               >
-                <span>Reserve Now</span>
+                <Zap size={15} className="fill-white" />
+                <span>Buy Now • ₹999</span>
               </Link>
 
             </div>
@@ -569,9 +570,9 @@ export default async function Home() {
 
                     <Link
                       href={`/harsh-beniwal/octopus/perfumes/${perfume.handle}`}
-                      className="px-3.5 py-1.5 bg-[#ff385c] hover:bg-[#e00b41] text-white rounded-lg text-xs font-medium transition-colors"
+                      className="px-4 py-2 bg-[#ff385c] hover:bg-[#e00b41] active:scale-95 text-white rounded-lg text-xs font-semibold shadow-xs transition-all flex items-center gap-1 cursor-pointer"
                     >
-                      Reserve
+                      <span>Buy Now</span>
                     </Link>
                   </div>
 
@@ -731,9 +732,9 @@ export default async function Home() {
               </div>
               <Link
                 href="/harsh-beniwal/octopus/perfumes"
-                className="bg-[#ff385c] hover:bg-[#e00b41] text-white px-4 py-2 rounded-lg text-xs font-medium transition-colors"
+                className="bg-[#ff385c] hover:bg-[#e00b41] active:scale-95 text-white px-5 py-2.5 rounded-lg text-xs font-semibold shadow-xs transition-all flex items-center gap-1 cursor-pointer"
               >
-                Reserve Now
+                Buy Now
               </Link>
             </div>
           </div>

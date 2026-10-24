@@ -78,7 +78,7 @@ export default function LiveSalesPopups() {
           </button>
         </div>
         <p className="text-[12px] text-[#6a6a6a] leading-tight">
-          {popup.name} reserved <strong className="text-[#222222] font-semibold">{popup.product} EDP</strong>
+          {popup.name} just ordered <strong className="text-[#222222] font-semibold">{popup.product} EDP</strong>
           {popup.promo && <span className="text-[#ff385c] font-medium ml-1 inline-block">{popup.promo}</span>}
         </p>
         <div className="flex items-center gap-1.5 mt-1 text-[11px] text-[#929292]">

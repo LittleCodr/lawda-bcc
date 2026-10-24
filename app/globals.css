@@ -276,6 +276,21 @@ body {
   animation: float-gentle 5s ease-in-out infinite;
 }
 
+.transition-spring {
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.active-press {
+  transition: transform 0.15s ease-out;
+}
+.active-press:active {
+  transform: scale(0.96);
+}
+
+.pb-safe {
+  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+}
+
 /* thin custom scrollbar for horizontal rails */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

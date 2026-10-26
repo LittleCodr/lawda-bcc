@@ -116,7 +116,6 @@ export const metadata: Metadata = {
 import CartDrawer from "@/components/CartDrawer";
 import AnalyticsTracker from "@/components/AnalyticsTracker";
 import MetaPixel from "@/components/MetaPixel";
-import NextTopLoader from "nextjs-toploader";
 
 import { AuthProvider } from "@/lib/auth-context";
 import { Suspense } from "react";
@@ -133,11 +132,12 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`font-sans h-full antialiased`}>
       <head>
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&family=Pacifico&family=Dancing+Script:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet" />
-        <Script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" strategy="afterInteractive" />
-        <Script id="onesignal-init" strategy="afterInteractive" dangerouslySetInnerHTML={{
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <Script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" strategy="lazyOnload" />
+        <Script id="onesignal-init" strategy="lazyOnload" dangerouslySetInnerHTML={{
           __html: `
             window.OneSignalDeferred = window.OneSignalDeferred || [];
             OneSignalDeferred.push(async function(OneSignal) {
@@ -149,12 +149,12 @@ export default function RootLayout({
                 },
               });
 
-              // Automatically prompt user after 3 seconds if they haven't opted in
+              // Automatically prompt user after 5 seconds if they haven't opted in
               setTimeout(() => {
                 if (!OneSignal.User.PushSubscription.optedIn) {
                   OneSignal.Slidedown.promptPush();
                 }
-              }, 3000);
+              }, 5000);
 
               // Listen for subscription changes
               OneSignal.User.PushSubscription.addEventListener("change", async (event) => {
@@ -178,7 +178,6 @@ export default function RootLayout({
         }} />
       </head>
       <body className="min-h-full flex flex-col bg-white text-[#222222] font-sans">
-        <NextTopLoader color="#ff385c" showSpinner={false} />
         <AuthProvider>
           <Suspense fallback={null}>
             <AnalyticsTracker />

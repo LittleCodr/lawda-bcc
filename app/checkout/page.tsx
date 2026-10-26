@@ -7,13 +7,18 @@ import { useRouter } from "next/navigation";
 import { ShieldCheck, Lock, CheckCircle2, Sparkles, Clock } from "lucide-react";
 import { useCartStore } from "@/lib/store";
 import { useAuth } from "@/lib/auth-context";
-import { logAppEvent, db } from "@/lib/firebase";
+import { logAppEvent, db, auth } from "@/lib/firebase";
 import { doc, setDoc } from "firebase/firestore";
 
 export default function CheckoutPage() {
   const { items, totalPrice, clearCart, autoDiscountAmount: getAutoDiscountAmount, autoDiscountPercentage: getAutoDiscountPercentage } = useCartStore();
   const { user, loading: authLoading, loginAnonymously } = useAuth();
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const freeTesterGift = items.length > 0 ? [
     {
@@ -110,15 +115,7 @@ export default function CheckoutPage() {
     }
   }, [items, finalTotal]);
 
-  if (authLoading || !user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-stone-50">
-        <div className="w-8 h-8 border-2 border-[#E5B8B7] border-t-[#800020] rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-
-  if (items.length === 0) {
+  if (mounted && items.length === 0) {
     return (
       <div className="mx-auto max-w-3xl px-5 py-32 text-center bg-stone-50 min-h-screen">
         <h1 className="font-serif text-4xl mb-6 text-stone-900">Your Cart is Empty</h1>
@@ -146,7 +143,6 @@ export default function CheckoutPage() {
 
   const handlePayment = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user) return;
 
     // Additional JS Validation
     if (!/^\d{10}$/.test(formData.phone.trim())) {
@@ -160,6 +156,17 @@ export default function CheckoutPage() {
 
     setLoading(true);
     try {
+      let activeUser = user || auth.currentUser;
+      if (!activeUser) {
+        try {
+          await loginAnonymously();
+          activeUser = auth.currentUser;
+        } catch (authErr) {
+          console.warn("Silent anonymous login fallback:", authErr);
+        }
+      }
+      const activeUserId = activeUser?.uid || `guest_${Date.now()}`;
+
       logAppEvent("add_payment_info", {
         currency: "INR",
         value: finalTotal,
@@ -176,23 +183,29 @@ export default function CheckoutPage() {
       const payUAmount = isAdmin ? 1 : finalTotal;
       const orderTotal = finalTotal;
 
-      // Associate email to anonymous account
-      await setDoc(doc(db, "users", user.uid), {
-        email: formData.email,
-        name: formData.name,
-        phone: formData.phone,
-        address: {
-          address: formData.address,
-          city: formData.city,
-          state: formData.state,
-          zip: formData.zip,
-        },
-        updatedAt: new Date()
-      }, { merge: true });
+      if (activeUser?.uid) {
+        // Associate email to anonymous account
+        try {
+          await setDoc(doc(db, "users", activeUser.uid), {
+            email: formData.email,
+            name: formData.name,
+            phone: formData.phone,
+            address: {
+              address: formData.address,
+              city: formData.city,
+              state: formData.state,
+              zip: formData.zip,
+            },
+            updatedAt: new Date()
+          }, { merge: true });
+        } catch (e) {
+          console.warn("Could not sync user profile:", e);
+        }
+      }
 
       const orderPayload = {
         orderId,
-        userId: user.uid,
+        userId: activeUserId,
         status: "pending_payment",
         total: orderTotal,
         amountPaid: 0,
@@ -208,10 +221,11 @@ export default function CheckoutPage() {
       };
 
       // Write to both root orders collection and user orders subcollection
-      await Promise.all([
-        setDoc(doc(db, "orders", orderId), orderPayload),
-        setDoc(doc(db, "users", user.uid, "orders", orderId), orderPayload),
-      ]);
+      const orderPromises = [setDoc(doc(db, "orders", orderId), orderPayload)];
+      if (activeUser?.uid) {
+        orderPromises.push(setDoc(doc(db, "users", activeUser.uid, "orders", orderId), orderPayload));
+      }
+      await Promise.all(orderPromises);
 
       if (typeof window !== "undefined") {
         try {
@@ -239,7 +253,7 @@ export default function CheckoutPage() {
           firstname: formData.name,
           productinfo: cartSummary,
           cartSummary: cartSummary,
-          userId: user.uid,
+          userId: activeUserId,
         }),
       });
 

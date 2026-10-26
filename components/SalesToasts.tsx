@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, X } from "lucide-react";
 
@@ -23,9 +24,14 @@ const CITIES = [
 const PRICES = [799, 999, 1299, 1499, 1999, 2499, 2999];
 
 export default function SalesToasts() {
+  const pathname = usePathname();
   const [toast, setToast] = useState<{ name: string; city: string; price: number; id: number } | null>(null);
 
   useEffect(() => {
+    if (pathname && (pathname.startsWith("/checkout") || pathname.startsWith("/account"))) {
+      return;
+    }
+
     let timeoutId: NodeJS.Timeout;
 
     const showToast = () => {
@@ -48,7 +54,11 @@ export default function SalesToasts() {
     timeoutId = setTimeout(showToast, Math.floor(Math.random() * 5000) + 5000);
 
     return () => clearTimeout(timeoutId);
-  }, []);
+  }, [pathname]);
+
+  if (pathname && (pathname.startsWith("/checkout") || pathname.startsWith("/account"))) {
+    return null;
+  }
 
   return (
     <AnimatePresence>

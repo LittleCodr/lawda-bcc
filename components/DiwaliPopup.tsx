@@ -1,14 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { X, Sparkles, Copy, Check, Gift, Truck, ShieldCheck, Flame } from "lucide-react";
 import toast from "react-hot-toast";
 
 export default function DiwaliPopup() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
+    if (pathname && (pathname.startsWith("/checkout") || pathname.startsWith("/account"))) {
+      return;
+    }
     // Show popup after 1.8 seconds on first visit of session
     const timer = setTimeout(() => {
       const hasSeenPopup = sessionStorage.getItem("diwaliPopupSeen");
@@ -19,9 +24,9 @@ export default function DiwaliPopup() {
     }, 1800);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [pathname]);
 
-  if (!isOpen) return null;
+  if (!isOpen || (pathname && (pathname.startsWith("/checkout") || pathname.startsWith("/account")))) return null;
 
   const copyCode = () => {
     navigator.clipboard.writeText("DIWALI20");

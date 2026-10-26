@@ -203,6 +203,7 @@ export default function CartDrawer() {
 
                 <Link 
                   href="/checkout" 
+                  prefetch={true}
                   onClick={closeCart} 
                   className="block w-full bg-[#ff385c] hover:bg-[#e00b41] text-white py-3.5 rounded-[8px] text-[16px] font-medium text-center transition-colors shadow-xs mb-3"
                 >

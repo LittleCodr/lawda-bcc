@@ -30,6 +30,10 @@ export default function ProductUI({ product }: ProductUIProps) {
   const [copiedCode, setCopiedCode] = useState(false);
 
   useEffect(() => {
+    router.prefetch("/checkout");
+  }, [router]);
+
+  useEffect(() => {
     const updateTimer = () => {
       const now = new Date();
       const endOfDay = new Date();

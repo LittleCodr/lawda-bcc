@@ -12,8 +12,8 @@ import ZoomableImage from "@/components/ZoomableImage";
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const formattedSlug = slug === 'all' ? 'All Gifts' : slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-  const title = rakhiConfig[slug] ? `${rakhiConfig[slug].title} | Octopus Everlasting Gifts` : `${formattedSlug} | Octopus Everlasting Gifts`;
-  const description = rakhiConfig[slug]?.description || `Shop ${formattedSlug.toLowerCase()} at Octopus Everlasting Gifts. Everlasting gifts for every relationship and budget.`;
+  const title = rakhiConfig[slug] ? `${rakhiConfig[slug].title} | Octopus Perfumes by Harsh Beniwal` : `${formattedSlug} | Octopus Perfumes by Harsh Beniwal`;
+  const description = rakhiConfig[slug]?.description || `Shop ${formattedSlug.toLowerCase()} at Octopus Perfumes by Harsh Beniwal. 100% original 50ML EDP luxury fragrances with free 7ML Paradox tester pack.`;
   const collectionUrl = `https://www.octopusperfume.in/collections/${slug}`;
 
   return {
@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title,
       description,
       url: collectionUrl,
-      siteName: "Octopus Everlasting Gifts",
+      siteName: "Octopus Perfumes by Harsh Beniwal",
       images: [
         {
           url: "/logo.png",

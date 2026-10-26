@@ -7,9 +7,9 @@ import scrapedPerfumes from "@/harsh-beniwal/octopus/perfumes/scraped_products.j
 const PAGE_URL = "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes";
 
 export const metadata: Metadata = {
-  title: "Buy Octopus Perfume by Harsh Beniwal | Official Website India (50ML EDP)",
+  title: "Buy Octopus Perfume by Harsh Beniwal | Diwali 2026 Festive Sale (50ML EDP)",
   description:
-    "Buy 100% original Octopus perfume by Harsh Beniwal on the official website. Check Octopus perfumes price & Harsh Beniwal perfume price (₹1,299). 25%+ French oils, 12H+ longevity, verified reviews & free shipping in India.",
+    "Buy 100% original Octopus perfume by Harsh Beniwal on the official website. Flat 20% OFF with code DIWALI20 (₹1,039). 25%+ French oils, 12H+ longevity, free 7ML Paradox tester & express Diwali shipping in India.",
   keywords: [
     "Harsh Beniwal perfume",
     "Octopus perfume",
@@ -32,7 +32,11 @@ export const metadata: Metadata = {
     "paradox perfume",
     "darling perfume",
     "harsh beniwal cologne",
-    "buy octopus perfume online"
+    "buy octopus perfume online",
+    "diwali perfume gifts",
+    "diwali gift hampers 2026",
+    "diwali discount on octopus perfumes",
+    "coupon code DIWALI20"
   ],
   alternates: {
     canonical: PAGE_URL,

@@ -4,11 +4,21 @@ import { ChevronRight, Gift, ArrowRight, Sparkles } from "lucide-react";
 export const metadata = {
   title: "Luxury Diwali & Festive Fragrance Gift Guide (2026) | Octopus Perfumes",
   description: "Discover why 50ML Eau De Parfums by Harsh Beniwal are 2026's top Diwali luxury gifts. Formulated with 25%+ French fragrance oils with a free 7ML Paradox tester pack.",
+  alternates: {
+    canonical: "https://www.octopusperfume.in/diwali-gift-ideas",
+  },
 };
 
 export default function FestiveGiftIdeasPage() {
   return (
     <div className="bg-white text-[#222222] min-h-screen pb-24">
+      {/* Festive Redirect Notice Banner */}
+      <div className="bg-gradient-to-r from-amber-500 to-amber-600 text-white text-center py-2.5 px-4 text-xs font-bold">
+        <span>🪔 Explore the latest 2026 Diwali Luxury Perfume Gift Guide & Hampers! </span>
+        <Link href="/diwali-gift-ideas" className="underline ml-1 hover:text-amber-100">
+          View 2026 Diwali Guide &rarr;
+        </Link>
+      </div>
       {/* Header */}
       <div className="bg-[#f7f7f7] border-b border-[#ebebeb] pt-12 pb-12 px-6">
         <div className="max-w-3xl mx-auto">

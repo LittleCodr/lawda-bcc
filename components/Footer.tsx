@@ -13,14 +13,14 @@ const GIFTS_BY_RELATIONSHIP = [
 ];
 
 const FRAGRANCES_AND_GIFTS = [
+  { href: "/diwali-gifts", label: "🪔 Diwali Fragrance Hampers 2026" },
+  { href: "/diwali-gift-ideas", label: "Diwali Perfume Gifting Guide" },
   { href: "/harsh-beniwal/octopus/perfumes", label: "Harsh Beniwal Perfumes" },
   { href: "/products/overlord", label: "Overlord (Dior Sauvage DNA)" },
   { href: "/products/paradox", label: "Paradox (Les Sables Roses)" },
   { href: "/products/promised", label: "Promised (Baccarat Rouge 540)" },
   { href: "/products/rhapsody", label: "Rhapsody (Jazz Club)" },
-  { href: "/collections/all", label: "Diwali Festive Gift Sets" },
-  { href: "/collections/gifts-under-499", label: "Gifts Under ₹499" },
-  { href: "/collections/gifts-under-999", label: "Gifts Under ₹999" },
+  { href: "/collections/all", label: "All Festive Gift Sets" },
 ];
 
 const SUPPORT_LINKS = [

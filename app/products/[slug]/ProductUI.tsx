@@ -526,31 +526,36 @@ export default function ProductUI({ product }: ProductUIProps) {
               </div>
             )}
 
-            {/* Free Gift Strip */}
-            <div className="bg-[#fff0f3] border border-[#ffd1da] rounded-lg p-3 mb-5 flex items-center gap-3">
-              <Gift size={22} className="text-[#ff385c] shrink-0" />
+            {/* Free Gift Strip - Diwali Festive Edition */}
+            <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-300 rounded-xl p-3.5 mb-4 flex items-center gap-3 shadow-2xs">
+              <span className="text-2xl shrink-0">🪔</span>
               <div className="text-left flex-1 min-w-0">
-                <span className="text-[12px] font-bold text-[#ff385c] uppercase block">
-                  Free 7ML Paradox Tester Included
+                <span className="text-[12px] font-bold text-amber-900 uppercase block">
+                  Diwali Gift: Free 7ML Paradox Tester Included
                 </span>
-                <span className="text-[11px] text-[#6a6a6a] block leading-tight">
-                  Worth ₹399 · Co-created by Harsh Beniwal
+                <span className="text-[11px] text-[#3f3f3f] block leading-tight">
+                  Worth ₹399 · Deluxe Festive Gift Packaging · Express Pan-India Delivery
                 </span>
               </div>
             </div>
 
-            {/* Promo Code Coupon Strip */}
-            <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-lg p-3 mb-5 flex items-center justify-between">
+            {/* Promo Code Coupon Strip - DIWALI20 */}
+            <div className="bg-white border-2 border-amber-300/80 rounded-xl p-3 mb-5 flex items-center justify-between shadow-2xs">
               <div>
-                <span className="text-[11px] font-semibold text-[#6a6a6a] uppercase block">Coupon: DIWALI20 / OCTOPUS20</span>
-                <span className="text-[13px] font-bold text-[#222222]">Flat 20% OFF at Checkout</span>
+                <span className="text-[11px] font-bold text-amber-800 uppercase block">
+                  Diwali Festive Coupon
+                </span>
+                <span className="text-[14px] font-extrabold text-[#222222] font-mono">
+                  DIWALI20
+                </span>
+                <span className="text-[11px] font-semibold text-[#ff385c] ml-1.5">(20% Instant OFF)</span>
               </div>
               <button
                 type="button"
-                onClick={() => copyPromoCode("OCTOPUS20")}
-                className="px-3 py-1 bg-white border border-[#dddddd] hover:border-[#222222] rounded-md text-[11px] font-semibold text-[#222222] transition-colors"
+                onClick={() => copyPromoCode("DIWALI20")}
+                className="px-3.5 py-1.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-lg text-[11px] font-bold transition-all shadow-xs active:scale-95 cursor-pointer"
               >
-                {copiedCode ? "Copied! ✓" : "Copy"}
+                {copiedCode ? "Copied! ✓" : "Copy Code"}
               </button>
             </div>
 

@@ -22,10 +22,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const isPerfume = product.product_type?.toLowerCase() === 'perfume' || (product.tags || []).some((t: string) => typeof t === 'string' && t.toLowerCase() === 'perfume');
   const title = isPerfume 
-    ? `${product.title} - 50ML EDP | Official Harsh Beniwal OCTOPUS Perfumes`
+    ? `${product.title} 50ML EDP by Harsh Beniwal | Diwali Luxury Fragrance Gift 2026`
     : `${product.title} | Personalized Keepsake | Octopus Everlasting Gifts`;
   const cleanDescription = isPerfume
-    ? `Buy 100% original ${product.title} 50ML Eau De Parfum by Harsh Beniwal. 25%+ French oils, 12+ hour beast-mode longevity. Includes FREE 7ML Paradox tester pack + Free express shipping in India!`
+    ? `Buy 100% original ${product.title} 50ML Eau De Parfum by Harsh Beniwal for Diwali 2026. 25%+ French oils, 12H+ beast-mode sillage. Flat 20% OFF with code DIWALI20 + Free 7ML Paradox tester pack + Deluxe Diwali gift packaging & Express Pan-India Delivery!`
     : (product.body_html?.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().substring(0, 160) || "Handcrafted personalized gifts with free pan-India delivery.");
   const imageUrl = product.images && product.images.length > 0 ? (product.images[0].local_src || product.images[0].src) : "/logo.png";
   const absoluteImageUrl = imageUrl.startsWith("http") ? imageUrl : `https://www.octopusperfume.in${imageUrl}`;

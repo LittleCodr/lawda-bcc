@@ -9,19 +9,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Static routes
   const routes = [
     '',
+    '/diwali-gifts',
+    '/diwali-gift-ideas',
+    '/collections/diwali-gifts',
+    '/collections/festive-gifts',
+    '/harsh-beniwal/octopus/perfumes',
+    '/collections/all',
     '/pages/about-us',
     '/pages/contact',
     '/pages/privacy-policy',
     '/pages/returns-refund-policy',
     '/pages/shipping-policy',
     '/pages/terms-conditions',
-    '/harsh-beniwal/octopus/perfumes',
-    '/collections/all',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: (route === '' || route === '/harsh-beniwal/octopus/perfumes') ? ('daily' as const) : ('weekly' as const),
-    priority: route === '' || route === '/harsh-beniwal/octopus/perfumes' ? 1 : route === '/collections/all' ? 0.9 : 0.6,
+    changeFrequency: (route === '' || route === '/diwali-gifts' || route === '/harsh-beniwal/octopus/perfumes' || route === '/collections/diwali-gifts') ? ('daily' as const) : ('weekly' as const),
+    priority: (route === '' || route === '/diwali-gifts') ? 1.0 : (route === '/harsh-beniwal/octopus/perfumes' || route === '/collections/diwali-gifts' || route === '/diwali-gift-ideas') ? 0.95 : route === '/collections/all' ? 0.9 : 0.6,
   }))
 
   // Dynamic product routes from legacy products.ts

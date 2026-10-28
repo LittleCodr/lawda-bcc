@@ -306,3 +306,4 @@ if (process.argv[1]?.endsWith('extract_catalog.mjs')) {
     process.exit(1);
   });
 }
+

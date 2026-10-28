@@ -114,3 +114,4 @@ export function runDryRun() {
 if (process.argv[1]?.endsWith('dry_run.mjs')) {
   runDryRun();
 }
+

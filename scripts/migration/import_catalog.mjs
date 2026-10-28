@@ -121,3 +121,4 @@ export function runImport() {
 if (process.argv[1]?.endsWith('import_catalog.mjs')) {
   runImport();
 }
+

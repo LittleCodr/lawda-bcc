@@ -156,3 +156,4 @@ if (process.argv[1]?.endsWith('reconcile_and_verify.mjs')) {
     process.exit(1);
   });
 }
+

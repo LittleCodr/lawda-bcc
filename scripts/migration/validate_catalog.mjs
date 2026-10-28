@@ -260,3 +260,4 @@ export function runValidation() {
 if (process.argv[1]?.endsWith('validate_catalog.mjs')) {
   runValidation();
 }
+

@@ -118,3 +118,4 @@ Run via `npx tsx scripts/seo-audit.mjs`:
 =================================================
 🎉 All SEO and data integrity quality gates passed!
 ```
+

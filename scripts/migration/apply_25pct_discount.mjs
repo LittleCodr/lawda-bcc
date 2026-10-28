@@ -142,3 +142,4 @@ export function apply25PctDiscount() {
 if (process.argv[1]?.endsWith('apply_25pct_discount.mjs')) {
   apply25PctDiscount();
 }
+

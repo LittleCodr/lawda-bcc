@@ -34,3 +34,4 @@ ${brandUrls.join("\n")}
     },
   });
 }
+

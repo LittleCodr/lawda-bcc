@@ -76,3 +76,4 @@ export function getBrandBySlug(slug: string): BrandInfo | null {
   const brands = getAllBrands();
   return brands.find(b => b.slug === slug || slugifyBrand(b.name) === slug) || null;
 }
+

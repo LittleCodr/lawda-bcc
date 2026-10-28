@@ -137,3 +137,4 @@ if (passedChecks !== totalChecks) {
 } else {
   console.log("🎉 All SEO and data integrity quality gates passed!\n");
 }
+

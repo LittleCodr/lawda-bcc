@@ -48,6 +48,8 @@ export default function robots(): MetadataRoute.Robots {
     sitemap: [
       'https://www.octopusperfume.in/sitemap.xml',
       'https://www.octopusperfume.in/sitemap_perfumes.xml',
+      'https://www.octopusperfume.in/sitemap_brands.xml',
+      'https://www.octopusperfume.in/sitemap_collections.xml',
     ],
     host: 'https://www.octopusperfume.in',
   }

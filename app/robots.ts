@@ -45,7 +45,10 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/checkout/', '/account/'],
       },
     ],
-    sitemap: 'https://www.octopusperfume.in/sitemap.xml',
+    sitemap: [
+      'https://www.octopusperfume.in/sitemap.xml',
+      'https://www.octopusperfume.in/sitemap_perfumes.xml',
+    ],
     host: 'https://www.octopusperfume.in',
   }
 }

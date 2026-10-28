@@ -8,6 +8,7 @@ import { rakhiConfig } from "./rakhi-config";
 import SortSelect from "@/components/SortSelect";
 import FeaturedProductCarousel from "@/components/FeaturedProductCarousel";
 import ZoomableImage from "@/components/ZoomableImage";
+import ProductCardCarousel from "@/components/ProductCardCarousel";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -384,40 +385,11 @@ export default async function CollectionPage(props: {
               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
                 {displayProducts.map((product: any) => (
                   <Link href={`/products/${product.handle}`} key={product.id} className="group flex flex-col h-full bg-white border border-[#ebebeb] hover:border-[#dddddd] transition-all duration-300 shadow-airbnb hover:shadow-airbnb-hover rounded-[14px] overflow-hidden">
-                    <div className="relative aspect-square bg-[#f7f7f7] overflow-hidden">
-                      {product.images && product.images.length > 0 ? (
-                        <>
-                          <Image 
-                            src={product.images[0].local_src || product.images[0].localPath || product.images[0].src} 
-                            alt={product.title} 
-                            fill 
-                            unoptimized
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
-                            className={`${
-                              product.product_type?.toLowerCase() === 'perfume' 
-                                ? "object-contain p-4" 
-                                : "object-cover"
-                            } ${product.images.length > 1 ? "group-hover:opacity-0" : "group-hover:scale-105"} transition-all duration-500 ease-out z-10`} 
-                          />
-                          {product.images.length > 1 && (
-                            <Image 
-                              src={product.images[1].local_src || product.images[1].localPath || product.images[1].src} 
-                              alt={`${product.title} - Preview`} 
-                              fill 
-                              unoptimized
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
-                              className={`${
-                                product.product_type?.toLowerCase() === 'perfume' 
-                                ? "object-contain p-4" 
-                                : "object-cover"
-                            } opacity-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 ease-out z-10`} 
-                            />
-                          )}
-                        </>
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-[#6a6a6a]">No Image</div>
-                      )}
-                    </div>
+                    <ProductCardCarousel 
+                      images={product.images || []} 
+                      title={product.title} 
+                      isPerfume={Boolean((product.product_type || "").toLowerCase().includes("perfume") || (product.tags || []).some((t: string) => typeof t === "string" && t.toLowerCase().includes("perfume")))} 
+                    />
                     
                     <div className="p-3.5 md:p-5 flex flex-col flex-1 text-left bg-white">
                       <h3 className="text-sm md:text-base font-semibold text-[#222222] group-hover:text-[#ff385c] transition-colors leading-snug mb-1 line-clamp-2">

@@ -282,7 +282,12 @@ export default function ProductUI({ product }: ProductUIProps) {
               <Heart size={18} fill={isFavourite ? "#ff385c" : "transparent"} className={isFavourite ? "text-[#ff385c]" : "text-[#222222]"} />
             </button>
 
-            <ProductImageGallery images={images} selectedImageId={activeImageId} />
+            <ProductImageGallery 
+              images={images} 
+              selectedImageId={activeImageId} 
+              productTitle={product.title} 
+              isPerfume={isPerfume} 
+            />
           </div>
 
           {/* Airbnb Amenity Rows */}

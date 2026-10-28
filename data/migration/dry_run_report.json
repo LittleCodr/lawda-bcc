@@ -1,0 +1,97 @@
+{
+  "executedAt": "2026-10-28T12:38:26.852Z",
+  "dryRunStatus": "PASSED",
+  "catalogImpact": {
+    "existingProductsCount": 630,
+    "expectedInsertsCount": 1704,
+    "expectedUpdatesCount": 0,
+    "expectedSkippedCount": 3,
+    "conflictsCount": 0,
+    "projectedTotalProducts": 2334,
+    "projectedTotalVariants": 3342,
+    "projectedTotalImages": 6696,
+    "collectionsDiscovered": 185
+  },
+  "storageImpact": {
+    "currentProductsJsonBytes": 2692347,
+    "currentProductsJsonMB": "2.57 MB",
+    "projectedProductsJsonBytes": 9504442,
+    "projectedProductsJsonMB": "9.06 MB",
+    "imageStorageStrategy": "CDN Direct with Next.js unoptimized remote delivery (0 byte disk risk)"
+  },
+  "safetyGuarantees": [
+    "Zero existing products overwritten or deleted",
+    "All 9 Harsh Beniwal core signature perfumes preserved intact",
+    "Zero unverified/0.00 priced products allowed into active sale",
+    "No database schema breakage or foreign key mismatch",
+    "Zero payment, auth, or checkout code modified"
+  ],
+  "sampleInserts": [
+    {
+      "id": 10347512135855,
+      "handle": "lattafa-khamrah-mira-eau-de-parfum-for-women",
+      "title": "Lattafa Khamrah Mira Eau de Parfum for Women",
+      "vendor": "Lattafa",
+      "variantsCount": 1,
+      "imagesCount": 1,
+      "minPrice": "3300.00"
+    },
+    {
+      "id": 10347511808175,
+      "handle": "afnan-stardust",
+      "title": "Afnan Stardust",
+      "vendor": "Afnan",
+      "variantsCount": 1,
+      "imagesCount": 1,
+      "minPrice": "3250.00"
+    },
+    {
+      "id": 10347506794671,
+      "handle": "lattafa-atlas-glacial-valley",
+      "title": "Lattafa Atlas Glacial Valley",
+      "vendor": "Lattafa",
+      "variantsCount": 1,
+      "imagesCount": 1,
+      "minPrice": "3000.00"
+    },
+    {
+      "id": 10347506598063,
+      "handle": "lattafa-atlas-canyon",
+      "title": "Lattafa Atlas Canyon",
+      "vendor": "Lattafa",
+      "variantsCount": 1,
+      "imagesCount": 1,
+      "minPrice": "3000.00"
+    },
+    {
+      "id": 10346145644719,
+      "handle": "rasasi-hawas-boa-eau-de-parfum-for-men",
+      "title": "Rasasi Hawas Boa Eau de Parfum for Men",
+      "vendor": "Rasasi",
+      "variantsCount": 1,
+      "imagesCount": 1,
+      "minPrice": "4000.00"
+    }
+  ],
+  "skippedRecords": [
+    {
+      "id": 8607305760943,
+      "handle": "armaf-odyssey-mega-eau-de-parfum",
+      "title": "Armaf Odyssey Mega Eau de Parfum",
+      "reason": "Missing or unverified price (0.00 INR)"
+    },
+    {
+      "id": 8595122585775,
+      "handle": "ibraq-french-tobacco-edp-200ml",
+      "title": "Ibraq French Tobacco EDP 200ml",
+      "reason": "Missing or unverified price (0.00 INR)"
+    },
+    {
+      "id": 8562302124207,
+      "handle": "french-avenue-zenith-blue-eau-de-parfum-for-men",
+      "title": "French Avenue Zenith Blue Eau de Parfum for Men",
+      "reason": "Missing or unverified price (0.00 INR)"
+    }
+  ],
+  "conflicts": []
+}

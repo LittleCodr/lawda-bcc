@@ -48,6 +48,16 @@ const nextConfig: NextConfig = {
         hostname: "buyoctopus.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "www.perfumenetwork.in",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "perfumenetwork.in",
+        pathname: "/**",
+      },
     ],
   },
   async redirects() {

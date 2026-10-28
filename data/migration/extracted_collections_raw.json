@@ -1,0 +1,2022 @@
+[
+  {
+    "id": 268765659311,
+    "title": "100ml",
+    "handle": "size-100ml",
+    "description": "",
+    "published_at": "2021-05-29T01:21:00-04:00",
+    "updated_at": "2026-09-28T20:00:58-04:00",
+    "image": null,
+    "products_count": 6
+  },
+  {
+    "id": 268825559215,
+    "title": "125ml",
+    "handle": "size-125ml",
+    "description": "",
+    "published_at": "2021-05-30T08:00:20-04:00",
+    "updated_at": "2025-11-12T22:29:16-05:00",
+    "image": null,
+    "products_count": 0
+  },
+  {
+    "id": 268765823151,
+    "title": "150ml",
+    "handle": "size-150ml",
+    "description": "",
+    "published_at": "2021-05-29T01:21:01-04:00",
+    "updated_at": "2025-11-12T22:29:16-05:00",
+    "image": null,
+    "products_count": 0
+  },
+  {
+    "id": 268765757615,
+    "title": "200ml",
+    "handle": "size-200ml",
+    "description": "",
+    "published_at": "2021-05-29T01:21:01-04:00",
+    "updated_at": "2026-06-03T15:51:47-04:00",
+    "image": null,
+    "products_count": 1
+  },
+  {
+    "id": 293795496111,
+    "title": "24 Scentstory",
+    "handle": "24-scentstory",
+    "description": "",
+    "published_at": "2022-07-31T23:51:54-04:00",
+    "updated_at": "2026-09-07T08:25:58-04:00",
+    "image": null,
+    "products_count": 2
+  },
+  {
+    "id": 269735264431,
+    "title": "30ml",
+    "handle": "size-30ml",
+    "description": "",
+    "published_at": "2021-06-08T17:38:57-04:00",
+    "updated_at": "2025-11-12T22:29:16-05:00",
+    "image": null,
+    "products_count": 0
+  },
+  {
+    "id": 268765724847,
+    "title": "50ml",
+    "handle": "size-50ml",
+    "description": "",
+    "published_at": "2021-05-29T01:21:00-04:00",
+    "updated_at": "2025-11-12T22:29:15-05:00",
+    "image": null,
+    "products_count": 0
+  },
+  {
+    "id": 268765692079,
+    "title": "60ml",
+    "handle": "size-60ml",
+    "description": "",
+    "published_at": "2021-05-29T01:21:00-04:00",
+    "updated_at": "2025-11-12T22:29:15-05:00",
+    "image": null,
+    "products_count": 0
+  },
+  {
+    "id": 268823199919,
+    "title": "65ml",
+    "handle": "size-65ml",
+    "description": "",
+    "published_at": "2021-05-30T06:31:47-04:00",
+    "updated_at": "2025-11-12T22:29:16-05:00",
+    "image": null,
+    "products_count": 0
+  },
+  {
+    "id": 268765888687,
+    "title": "75ml",
+    "handle": "size-75ml",
+    "description": null,
+    "published_at": "2021-05-29T01:21:02-04:00",
+    "updated_at": "2025-11-12T22:29:16-05:00",
+    "image": null,
+    "products_count": 0
+  },
+  {
+    "id": 268765855919,
+    "title": "80ml",
+    "handle": "size-80ml",
+    "description": "",
+    "published_at": "2021-05-29T01:21:02-04:00",
+    "updated_at": "2025-11-12T22:29:16-05:00",
+    "image": null,
+    "products_count": 0
+  },
+  {
+    "id": 268823232687,
+    "title": "85ml",
+    "handle": "size-85ml",
+    "description": "",
+    "published_at": "2021-05-30T06:31:47-04:00",
+    "updated_at": "2025-11-12T22:29:16-05:00",
+    "image": null,
+    "products_count": 0
+  },
+  {
+    "id": 268765790383,
+    "title": "90ml",
+    "handle": "size-90ml",
+    "description": "",
+    "published_at": "2021-05-29T01:21:01-04:00",
+    "updated_at": "2025-11-12T22:29:16-05:00",
+    "image": null,
+    "products_count": 0
+  },
+  {
+    "id": 309307146415,
+    "title": "Acqua di Parma",
+    "handle": "acqua-di-parma",
+    "description": "<meta charset=\"UTF-8\"><span data-mce-fragment=\"1\">Embrace luxury with Acqua di Parma parfums—a symphony of exquisite notes. Crafted with rare ingredients, their alluring scents linger, enveloping you in elegance and refinement. Experience a world where beauty and style unite in captivating harmony.</span>\n\n\n\n<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/514eb46682254c0db97b337807c3bf98/514eb46682254c0db97b337807c3bf98.m3u8\"></video>",
+    "published_at": "2023-07-03T01:05:24-04:00",
+    "updated_at": "2026-09-28T20:01:20-04:00",
+    "image": {
+      "id": 1619125469359,
+      "created_at": "2023-07-03T01:05:23-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/2Untitled_design.png?v=1688360723",
+      "alt": null
+    },
+    "products_count": 46
+  },
+  {
+    "id": 283912798383,
+    "title": "Afnan",
+    "handle": "afnan",
+    "description": "<meta charset=\"UTF-8\">\n<p data-mce-fragment=\"1\">AFNAN Perfumes is a brand and a business, that since <span data-mce-fragment=\"1\">2007, </span>has showcased that is more than just perfumes, it is design, experience, expertise and more.</p>\n<p data-mce-fragment=\"1\"><span data-mce-fragment=\"1\">AFNAN Perfumes</span> has provided essential memories for local and international markets, bringing to life key experiences through each design. Our designs reflect the unique and crafted experience our scents and packaging offer to the market<br data-mce-fragment=\"1\">as well as our heritage and unique quality.</p>",
+    "published_at": "2022-01-20T02:20:54-05:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 54
+  },
+  {
+    "id": 349422878895,
+    "title": "AFNAN 9PM COLLECTION",
+    "handle": "afnan-9pm-collection",
+    "description": "",
+    "published_at": "2025-04-28T04:06:52-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 3
+  },
+  {
+    "id": 339557154991,
+    "title": "Ahmed Al Maghribi",
+    "handle": "ahmed-al-maghribi",
+    "description": "",
+    "published_at": "2024-12-15T03:41:21-05:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 35
+  },
+  {
+    "id": 268765298863,
+    "title": "All",
+    "handle": "all",
+    "description": "",
+    "published_at": "2021-05-29T01:18:03-04:00",
+    "updated_at": "2026-10-28T08:03:14-04:00",
+    "image": null,
+    "products_count": 2689
+  },
+  {
+    "id": 305826726063,
+    "title": "All above 499",
+    "handle": "all-above-499",
+    "description": "",
+    "published_at": "2022-12-27T14:29:12-05:00",
+    "updated_at": "2026-10-28T08:03:14-04:00",
+    "image": null,
+    "products_count": 2516
+  },
+  {
+    "id": 268083757231,
+    "title": "Amouage",
+    "handle": "amouage",
+    "description": "<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\nborder-radius: 0px;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline unmuted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/e3757fab0a0b40faabb2910f485938f9/e3757fab0a0b40faabb2910f485938f9.m3u8\"></video>\n",
+    "published_at": "2021-05-24T10:42:05-04:00",
+    "updated_at": "2026-09-28T20:01:20-04:00",
+    "image": null,
+    "products_count": 69
+  },
+  {
+    "id": 363732566191,
+    "title": "Arabiyat Prestige",
+    "handle": "arabiyat-prestige",
+    "description": "",
+    "published_at": "2026-02-06T01:44:06-05:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 26
+  },
+  {
+    "id": 268829982895,
+    "title": "Aramis",
+    "handle": "aramis",
+    "description": "<p><meta charset=\"UTF-8\"><span data-mce-fragment=\"1\">Aramis was launched in 1966. The nose behind this fragrance is Bernard Chant. </span><span data-mce-fragment=\"1\">Aramis was the first prestige men's fragrance to be sold in department stores. The brand continues to be a defining pillar of The Estée Lauder Companies as an industry leader in the men’s fragrance and grooming category. Aramis has maintained its equity, global brand ranking and classic appeal through the years. The Aramis Fragrance and Grooming collection embodies classic masculinity and sophistication that transcend time.</span></p>\n<p><span data-mce-fragment=\"1\">Shop <a href=\"https://www.perfumenetwork.in/collections/aramis\" target=\"_blank\" rel=\"noopener noreferrer\">Aramis Perfumes</a> today at <a href=\"https://www.perfumenetwork.in\" target=\"_blank\" title=\"Shop Aramis Perfumes for Men and Women online in India\" rel=\"noopener noreferrer\">Perfume Network India</a>.</span></p>",
+    "published_at": "2021-05-30T10:22:37-04:00",
+    "updated_at": "2026-07-31T06:19:01-04:00",
+    "image": null,
+    "products_count": 3
+  },
+  {
+    "id": 305831936175,
+    "title": "Armaf",
+    "handle": "armaf",
+    "description": "",
+    "published_at": "2022-12-28T00:35:08-05:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 49
+  },
+  {
+    "id": 370702745775,
+    "title": "Armaf Club de Nuit",
+    "handle": "armaf-club-de-nuit",
+    "description": "",
+    "published_at": "2026-06-29T04:16:50-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 2
+  },
+  {
+    "id": 312719048879,
+    "title": "Aromatherapy",
+    "handle": "aromatherapy",
+    "description": "",
+    "published_at": "2023-11-18T01:16:44-05:00",
+    "updated_at": "2026-10-09T07:15:04-04:00",
+    "image": null,
+    "products_count": 5
+  },
+  {
+    "id": 272393535663,
+    "title": "Aromatic",
+    "handle": "aromatic",
+    "description": "",
+    "published_at": "2021-07-10T10:17:48-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 16
+  },
+  {
+    "id": 353246347439,
+    "title": "Aromatix",
+    "handle": "aromatix",
+    "description": "",
+    "published_at": "2025-07-24T02:09:05-04:00",
+    "updated_at": "2026-10-23T07:13:21-04:00",
+    "image": null,
+    "products_count": 4
+  },
+  {
+    "id": 352895336623,
+    "title": "Attars",
+    "handle": "attars",
+    "description": "",
+    "published_at": "2025-07-19T07:13:39-04:00",
+    "updated_at": "2026-09-28T20:01:20-04:00",
+    "image": null,
+    "products_count": 39
+  },
+  {
+    "id": 305898422447,
+    "title": "Azzaro",
+    "handle": "azzaro",
+    "description": "<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\nborder-radius: 15px;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/f737ef8a4e6447e0a40a4ee95c418597/f737ef8a4e6447e0a40a4ee95c418597.m3u8\"></video>",
+    "published_at": "2023-01-01T02:11:22-05:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": {
+      "id": 1617130946735,
+      "created_at": "2023-03-19T02:35:35-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/A04196FC9EF2430F61E68F666EE7A993_video_dashinit.gif?v=1679207736",
+      "alt": null
+    },
+    "products_count": 17
+  },
+  {
+    "id": 370476908719,
+    "title": "Azzaro Most Wanted",
+    "handle": "azzaro-most-wanted",
+    "description": "",
+    "published_at": "2026-06-20T09:30:36-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 3
+  },
+  {
+    "id": 268830015663,
+    "title": "Bentley",
+    "handle": "bentley",
+    "description": "One of the best car brands, and one of those car brands that knows how to make a fragrance for men and women apart from making sexy cars. Enjoy fragrances from the house of Bentley today at <a href=\"https://www.perfumenetwork.in\" target=\"_blank\" title=\"Shop Bentley Perfumes for men and women\" rel=\"noopener noreferrer\">Perfume Network India</a>.",
+    "published_at": "2021-05-30T10:22:38-04:00",
+    "updated_at": "2026-08-05T07:15:16-04:00",
+    "image": null,
+    "products_count": 12
+  },
+  {
+    "id": 308838858927,
+    "title": "Best for Men",
+    "handle": "best-for-men",
+    "description": "",
+    "published_at": "2023-05-16T05:48:52-04:00",
+    "updated_at": "2026-10-28T08:03:14-04:00",
+    "image": null,
+    "products_count": 75
+  },
+  {
+    "id": 281408438447,
+    "title": "BEST OF RASASI",
+    "handle": "best-of-rasasi",
+    "description": "",
+    "published_at": "2021-11-13T09:12:02-05:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 9
+  },
+  {
+    "id": 274533613743,
+    "title": "BEST SELLERS",
+    "handle": "best-sellers",
+    "description": "",
+    "published_at": "2021-07-22T08:29:46-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 27
+  },
+  {
+    "id": 274471649455,
+    "title": "BODY COLLECTION",
+    "handle": "body",
+    "description": "",
+    "published_at": "2021-07-21T13:34:51-04:00",
+    "updated_at": "2026-09-28T20:00:55-04:00",
+    "image": null,
+    "products_count": 5
+  },
+  {
+    "id": 282490798255,
+    "title": "Budget Friendly",
+    "handle": "under-1000",
+    "description": "",
+    "published_at": "2021-12-17T04:17:41-05:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 703
+  },
+  {
+    "id": 268823134383,
+    "title": "Burberry",
+    "handle": "burberry",
+    "description": "<meta charset=\"UTF-8\">\n<p data-mce-fragment=\"1\">British luxury brand Burberry<a href=\"https://www.24s.com/en-us/women/brands/burberry\" data-mce-fragment=\"1\" data-mce-href=\"https://www.24s.com/en-us/women/brands/burberry\"><strong data-mce-fragment=\"1\"> </strong></a>is the most renowned brand.  In 1856, the Premium fashion house was known worldwide for its world-famous leather jackets, high fashion clothes, fragrances, fashion accessories, cosmetics, and sunglasses. With its forever going digital retail spaces and its stylish online streaming initiatives, Burberry proceeds to get recognition. Although their signature verified trends remain the top seller for men’s jackets, the brand has also wandered into new product lines, namely the collections of watches and perfumes.</p>\n<p data-mce-fragment=\"1\">Selecting a perfect perfume can take time and be overwhelming. Happily, you can’t go wrong with Burberry perfumes. Get a unique scent that will make you feel sexy and elegant.</p>\n<p data-mce-fragment=\"1\">Shop <a title=\"Shop Burberry Perfumes Online at Perfume Network India\" href=\"https://www.perfumenetwork.in/collections/burberry\" target=\"_blank\">Burberry Perfumes</a> today at <a title=\"Shop Perfumes for Men and Women Online in India at Perfume Network.\" href=\"https://www.perfumenetwork.in\">Perfume Network India</a>.</p>\n<p data-mce-fragment=\"1\"><br></p>\n\n<style>\n\nvideo { \n\ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\n\n}\n\n</style>\n\n\n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/4282ebe7064048b09c4de1b21a716279/4282ebe7064048b09c4de1b21a716279.m3u8\"></video>",
+    "published_at": "2021-05-30T06:31:35-04:00",
+    "updated_at": "2026-10-24T07:14:28-04:00",
+    "image": null,
+    "products_count": 32
+  },
+  {
+    "id": 289443512495,
+    "title": "Buy 3 Get 1 Free",
+    "handle": "buy-3-get-1-free",
+    "description": "",
+    "published_at": "2022-05-16T06:37:49-04:00",
+    "updated_at": "2026-09-28T20:01:02-04:00",
+    "image": null,
+    "products_count": 11
+  },
+  {
+    "id": 280137629871,
+    "title": "Buy Middle Eastern Perfumes Online India — Lattafa, Rasasi, Afnan, Armaf | Perfume Network India",
+    "handle": "aroma-of-middle-east",
+    "description": "",
+    "published_at": "2021-10-03T07:00:46-04:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 571
+  },
+  {
+    "id": 330573709487,
+    "title": "Buy Perfumes for Men Online India — Designer, Middle Eastern & Niche | Perfume Network India",
+    "handle": "men-collection",
+    "description": "",
+    "published_at": "2024-08-10T03:45:20-04:00",
+    "updated_at": "2026-10-28T08:03:14-04:00",
+    "image": null,
+    "products_count": 2024
+  },
+  {
+    "id": 330573840559,
+    "title": "Buy Perfumes for Women Online India — Designer & Middle Eastern | Perfume Network India",
+    "handle": "women-collection",
+    "description": "",
+    "published_at": "2024-08-10T03:50:06-04:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 793
+  },
+  {
+    "id": 268089819311,
+    "title": "Bvlgari",
+    "handle": "bvlagri",
+    "description": "<p><span>Bvlgari is an Italian luxury goods house fouded by Sotirios Voulgaris in 1884. The company name is a derivative of the founder's last name. </span></p>\n<p><br><meta charset=\"UTF-8\"><span data-mce-fragment=\"1\">Initially famed for its magnificent jewelry, the brand has expanded its offerings to include watches, accessories, handbags, hotels and fragrances. The first fragrance offered by the brand was Eau Parfumée au Thé Vert in 1992.</span></p>\n<p><br><span data-mce-fragment=\"1\"><meta charset=\"UTF-8\">Designer <b>Bvlgari</b> has <b>129</b> perfumes in our fragrance base. The earliest edition was created in 1992 and the newest is from 2022.</span></p>\n<p><span data-mce-fragment=\"1\">Shop <a href=\"https://www.perfumenetwork.in/collections/bvlagri\" target=\"_blank\" title=\"Shop Bvlgari Perfumes today at Perfume Network India.\" rel=\"noopener noreferrer\">Bvlgari Perfumes</a> today at <a href=\"https://www.perfumenetwork.in\" title=\"Shop perfumes for men and women online at Perfume Network India\">Perfume Network India</a>.</span></p>",
+    "published_at": "2021-05-24T12:14:13-04:00",
+    "updated_at": "2026-10-22T07:14:18-04:00",
+    "image": {
+      "id": 1613588103343,
+      "created_at": "2022-07-25T06:52:31-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/custom_resized_b6b24943-6aec-4e6f-bf5e-e76353890312.jpg?v=1658746352",
+      "alt": null
+    },
+    "products_count": 32
+  },
+  {
+    "id": 285442867375,
+    "title": "Calvin Klein",
+    "handle": "calvin-klein",
+    "description": "<p><span data-mce-fragment=\"1\">Calvin Klein Inc. is an American fashion brand started by Calvin Klein at the end of the 1960s. The brand is famous for its minimalism and classic style, and helped launch the craze for designer jeans in the 1970s when Klein began adding his name on the back pocket.</span></p>\n<p data-mce-fragment=\"1\">The company's first perfume, Calvin, was launched in 1981. Calvin Klein has since launched a series of successful perfumes that, for many, capture the spirit of the decades in which they were introduced, including Obsession (1985 for Women, 1986 for Men), cK One (one of the first fragrances marketed as unisex, in 1994), and Euphoria (2005 for women, 2006 for Men). Klein's license for perfumes now belongs to Coty.</p>\n<p data-mce-fragment=\"1\">Shop all <a title=\"Buy Calvin Klein Perfumes for Men and Women Online in India at Perfume Network India.\" href=\"https://www.perfumenetwork.in/collections/calvin-klein\" data-mce-href=\"https://www.perfumenetwork.in/collections/calvin-klein\">Calvin Klein Perfumes</a> today at <a title=\"Buy perfumes for men and women online in India at best prices at Perfume Network India.\" href=\"https://www.perfumenetwork.in\" data-mce-href=\"https://www.perfumenetwork.in\">Perfume Network India</a>.</p>\n<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\nborder-radius: 15px;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline unmuted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/34d2e1ffae3e4399b43e22ff378e7aff/34d2e1ffae3e4399b43e22ff378e7aff.m3u8\"></video>",
+    "published_at": "2022-02-18T07:53:48-05:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": {
+      "id": 1613644464303,
+      "created_at": "2022-07-29T09:27:46-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/Screenshot_2022-07-29_at_6.54.30_PM.png?v=1659101267",
+      "alt": null
+    },
+    "products_count": 33
+  },
+  {
+    "id": 305832100015,
+    "title": "Carolina Herrera",
+    "handle": "carolina-herrera",
+    "description": "",
+    "published_at": "2022-12-28T00:45:38-05:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 32
+  },
+  {
+    "id": 309042184367,
+    "title": "Cartier",
+    "handle": "cartier",
+    "description": "<meta charset=\"UTF-8\">\n<h1>Cartier Perfumes: Exquisite Fragrances Crafted with Timeless Elegance</h1>\n<p>Since its establishment in 1847, Cartier has been renowned for its exceptional craftsmanship, exquisite designs, and unwavering commitment to luxury. Transcending its mastery in jewelry and watches, Cartier has extended its artistry to the realm of perfumery, creating a collection of fragrances that embody the brand's essence of sophistication and refinement.</p>\n<p><meta charset=\"UTF-8\"><span>Cartier perfumes are the olfactory embodiments of Cartier's iconic heritage, capturing the essence of timeless elegance and evoking emotions with every spritz. Each fragrance is meticulously crafted using the finest ingredients, paying homage to Cartier's meticulous attention to detail and devotion to quality.</span></p>",
+    "published_at": "2023-06-06T04:01:56-04:00",
+    "updated_at": "2026-10-02T07:13:59-04:00",
+    "image": {
+      "id": 1618533187759,
+      "created_at": "2023-06-06T04:01:55-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/kaydn-ito-mk-wAlDYK7U-unsplash.jpg?v=1686038720",
+      "alt": "Cartier Boutique"
+    },
+    "products_count": 6
+  },
+  {
+    "id": 281407389871,
+    "title": "Chanel",
+    "handle": "chanel-2",
+    "description": "<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\nborder-radius: 15px;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/b8ed666996ea41d8a7263f53c0b93c4d/b8ed666996ea41d8a7263f53c0b93c4d.m3u8\"></video>",
+    "published_at": "2021-11-13T08:14:30-05:00",
+    "updated_at": "2025-11-28T08:44:25-05:00",
+    "image": {
+      "id": 1613588070575,
+      "created_at": "2022-07-25T06:44:48-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/alexandra-mazilu-F6ZVT8aa7pI-unsplash.jpg?v=1658745984",
+      "alt": null
+    },
+    "products_count": 0
+  },
+  {
+    "id": 305863917743,
+    "title": "Chloe",
+    "handle": "chloe",
+    "description": "",
+    "published_at": "2022-12-29T00:50:05-05:00",
+    "updated_at": "2026-08-22T00:58:27-04:00",
+    "image": null,
+    "products_count": 11
+  },
+  {
+    "id": 272351101103,
+    "title": "Chopard",
+    "handle": "chopard",
+    "description": "",
+    "published_at": "2021-07-09T15:09:39-04:00",
+    "updated_at": "2026-10-27T07:16:22-04:00",
+    "image": null,
+    "products_count": 5
+  },
+  {
+    "id": 281407422639,
+    "title": "Christian Dior",
+    "handle": "christian-dior",
+    "description": "<h1><span data-mce-fragment=\"1\">The spirit of Christian Dior is reflected in each of the House's products and in the care taken at every stage of their production. From Grasse to Paris to the Dior Gardens, Parfums Christian Dior enhances the most beautiful ingredients so that each of its creations helps shape its global aura.</span></h1>\n<p><meta charset=\"UTF-8\"><span>The House of Dior, founded in 1946, changed the face of ladies’ style forever when its New Look was unveiled in the halls of 30 Avenue Montaigne on February 12, 1947. The revolutionary look was accompanied by a fragrance, <strong>Miss Dior</strong>, the finishing touch designed to “leave a trail of desire in a woman’s wake”. This timeless perfume was the <strong>first fragrance</strong> created by a visionary brand which invented the concept of global beauty with its Rouge Dior and subsequent cosmetic lines.</span></p>\n<p>Shop <a href=\"https://www.perfumenetwork.in/collections/christian-dior\" title=\"Shop Christian Dior Perfumes for Men and Women Online at Perfume Network India.\">Christian Dior Perfumes</a> today at <a href=\"https://www.perfumenetwork.in\" title=\"Shop Perfumes for Men and Women Online at Perfume Network India.\">Perfume Network India</a>.</p>",
+    "published_at": "2021-11-13T08:14:53-05:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": {
+      "id": 1613588824239,
+      "created_at": "2022-07-25T08:19:20-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/Baesthetic.jpg?v=1658751654",
+      "alt": "Shop Christian Dior Perfumes today at Perfume Network India."
+    },
+    "products_count": 47
+  },
+  {
+    "id": 272351166639,
+    "title": "Citrus",
+    "handle": "citrus",
+    "description": "",
+    "published_at": "2021-07-09T15:09:54-04:00",
+    "updated_at": "2026-10-25T07:13:56-04:00",
+    "image": null,
+    "products_count": 15
+  },
+  {
+    "id": 372623737007,
+    "title": "CK One",
+    "handle": "ck-one",
+    "description": null,
+    "published_at": "2026-08-06T05:05:12-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 1
+  },
+  {
+    "id": 271047950511,
+    "title": "Classics",
+    "handle": "classics",
+    "description": "",
+    "published_at": "2021-06-24T12:46:43-04:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 9
+  },
+  {
+    "id": 272557015215,
+    "title": "Cleanse",
+    "handle": "cleanse",
+    "description": "",
+    "published_at": "2021-07-11T07:38:07-04:00",
+    "updated_at": "2026-09-28T20:01:20-04:00",
+    "image": null,
+    "products_count": 17
+  },
+  {
+    "id": 268830048431,
+    "title": "Clinique",
+    "handle": "clinique",
+    "description": "",
+    "published_at": "2021-05-30T10:22:38-04:00",
+    "updated_at": "2026-09-28T20:01:00-04:00",
+    "image": null,
+    "products_count": 5
+  },
+  {
+    "id": 281287229615,
+    "title": "Coach",
+    "handle": "coach",
+    "description": "<meta charset=\"UTF-8\">\n<p data-mce-fragment=\"1\" class=\"entry-title\">Coach was founded in a Manhattan Loft in 1941. Today, Coach is a fashion and accessories force to be reckoned with. But the ultimate accessory, of course, is fragrance and they are one of the Best in the Game.<br></p>\n<p><meta charset=\"UTF-8\"><span>Its creators were the dynamic and talented duo </span><strong>Anne Flipo</strong><span> and</span><strong> Juliette Karagueuzoglou</strong><span>, who have created a fragrance full of contrasts. A dazzling, sparkling raspberry note gives way to armfuls of creamy Turkish roses, before drying down to a skin-cocooning suede musk base. </span><span lang=\"EN-US\">Stuart Vevers commented: ‘I wanted to create a fragrance that represents <strong>Coach</strong>’s free-spirited attitude, crafting a scent that is individual, authentic and cool.’ And he’s achieved just that: appropriately enough, the olfactory equivalent of a baseball home run.</span></p>\n<p><span lang=\"EN-US\">Shop <a href=\"https://www.perfumenetwork.in/collections/coach\" title=\"Shop coach perfumes for men and women online in India at Perfume Network India\">Coach Perfumes</a> today at <a href=\"https://www.perfumenetwork.in\" title=\"Shop perfumes for men and women online at Perfume Network India\">Perfume Network India</a>.</span></p>",
+    "published_at": "2021-11-08T03:59:53-05:00",
+    "updated_at": "2026-10-17T07:18:49-04:00",
+    "image": {
+      "id": 1613588136111,
+      "created_at": "2022-07-25T07:09:42-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/coach.jpg?v=1658747383",
+      "alt": null
+    },
+    "products_count": 8
+  },
+  {
+    "id": 318882775215,
+    "title": "Collection for You",
+    "handle": "reserved10-1",
+    "description": "",
+    "published_at": "2024-02-09T01:00:56-05:00",
+    "updated_at": "2026-10-28T08:03:14-04:00",
+    "image": null,
+    "products_count": 1520
+  },
+  {
+    "id": 370720571567,
+    "title": "COOLWATER",
+    "handle": "coolwater",
+    "description": "",
+    "published_at": "2026-06-29T06:12:29-04:00",
+    "updated_at": "2026-10-07T07:17:09-04:00",
+    "image": null,
+    "products_count": 1
+  },
+  {
+    "id": 310224322735,
+    "title": "Costume National",
+    "handle": "costume-national",
+    "description": "",
+    "published_at": "2023-09-21T08:02:10-04:00",
+    "updated_at": "2026-10-11T07:15:34-04:00",
+    "image": null,
+    "products_count": 7
+  },
+  {
+    "id": 308121272495,
+    "title": "Creed",
+    "handle": "creed",
+    "description": "<strong><meta charset=\"UTF-8\">Founded in 1760, Creed is a legendary fragrance house based in Paris, with a rich history of creating exquisite fragrances fit for royalty. With a commitment to using only the highest quality ingredients sourced from around the world, each of Creed's fragrances is a masterpiece of olfactory artistry. From bold and alluring scents for men to delicate and captivating fragrances for women, Creed offers a diverse range of luxury fragrances that epitomize refinement and sophistication. Its use of natural essences further elevates its fragrances, making them truly unparalleled in their opulence and elegance. For those seeking the pinnacle of luxury in fragrance, Creed remains an iconic choice.</strong>",
+    "published_at": "2023-04-11T02:03:45-04:00",
+    "updated_at": "2026-10-20T07:13:40-04:00",
+    "image": {
+      "id": 1617579376815,
+      "created_at": "2023-04-11T02:03:59-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/CREED_BOUTIQUE_20-01-17_030.jpg?v=1681193040",
+      "alt": null
+    },
+    "products_count": 18
+  },
+  {
+    "id": 272352608431,
+    "title": "David Beckham",
+    "handle": "david-beckham",
+    "description": "",
+    "published_at": "2021-07-09T15:41:52-04:00",
+    "updated_at": "2026-09-28T20:00:58-04:00",
+    "image": null,
+    "products_count": 8
+  },
+  {
+    "id": 293955600559,
+    "title": "Davidoff",
+    "handle": "davidoff",
+    "description": "",
+    "published_at": "2022-08-05T01:55:39-04:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 22
+  },
+  {
+    "id": 370782437551,
+    "title": "DEO500",
+    "handle": "deo500",
+    "description": "",
+    "published_at": "2026-07-01T05:40:25-04:00",
+    "updated_at": "2026-10-27T07:16:22-04:00",
+    "image": null,
+    "products_count": 5
+  },
+  {
+    "id": 289440071855,
+    "title": "Deodorants",
+    "handle": "deodorants",
+    "description": "<meta charset=\"UTF-8\">\n<p data-mce-fragment=\"1\">Deodorants are formulated to eliminate armpit odour but not perspiration. They’re typically alcohol-based. When applied, they turn your skin acidic, which makes it less attractive to bacteria.</p>\n<p data-mce-fragment=\"1\">Deodorants also commonly contain perfume to mask odor.</p>",
+    "published_at": "2022-05-16T01:18:56-04:00",
+    "updated_at": "2026-10-22T07:14:18-04:00",
+    "image": null,
+    "products_count": 39
+  },
+  {
+    "id": 330573152431,
+    "title": "Deodorants",
+    "handle": "deodorants-1",
+    "description": "",
+    "published_at": "2024-08-10T03:34:31-04:00",
+    "updated_at": "2026-10-27T07:16:22-04:00",
+    "image": null,
+    "products_count": 117
+  },
+  {
+    "id": 272539058351,
+    "title": "Deosticks",
+    "handle": "deosticks",
+    "description": "",
+    "published_at": "2021-07-11T03:17:29-04:00",
+    "updated_at": "2026-09-28T20:01:16-04:00",
+    "image": null,
+    "products_count": 25
+  },
+  {
+    "id": 309511323823,
+    "title": "Designer",
+    "handle": "designer",
+    "description": "",
+    "published_at": "2023-07-20T02:39:06-04:00",
+    "updated_at": "2026-10-28T08:03:14-04:00",
+    "image": null,
+    "products_count": 937
+  },
+  {
+    "id": 283507949743,
+    "title": "Discovery",
+    "handle": "disovery",
+    "description": "",
+    "published_at": "2022-01-11T13:08:58-05:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 243
+  },
+  {
+    "id": 268832768175,
+    "title": "DKNY",
+    "handle": "dkny",
+    "description": "",
+    "published_at": "2021-05-30T11:37:33-04:00",
+    "updated_at": "2026-09-28T20:01:17-04:00",
+    "image": null,
+    "products_count": 5
+  },
+  {
+    "id": 305831968943,
+    "title": "Dolce & Gabbana",
+    "handle": "dolce-gabbana",
+    "description": "",
+    "published_at": "2022-12-28T00:37:27-05:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 27
+  },
+  {
+    "id": 272672260271,
+    "title": "Dunhill",
+    "handle": "dunhill",
+    "description": "<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\nborder-radius: 15px;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/3d261174961d48228728f0c5fe1d65eb/3d261174961d48228728f0c5fe1d65eb.m3u8\"></video>",
+    "published_at": "2021-07-12T16:01:02-04:00",
+    "updated_at": "2026-10-23T07:13:20-04:00",
+    "image": null,
+    "products_count": 6
+  },
+  {
+    "id": 363733024943,
+    "title": "Emporio Armani",
+    "handle": "emporio-armani",
+    "description": "",
+    "published_at": "2026-02-06T02:08:08-05:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 7
+  },
+  {
+    "id": 290128920751,
+    "title": "Encre Noire",
+    "handle": "encre-noire",
+    "description": "",
+    "published_at": "2022-05-31T05:51:31-04:00",
+    "updated_at": "2026-10-27T07:16:22-04:00",
+    "image": null,
+    "products_count": 3
+  },
+  {
+    "id": 331279892655,
+    "title": "Engrave",
+    "handle": "engrave",
+    "description": "",
+    "published_at": "2024-08-19T13:52:07-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 41
+  },
+  {
+    "id": 333779468463,
+    "title": "Engraving Products",
+    "handle": "engraving-products",
+    "description": "",
+    "published_at": "2024-09-26T02:13:26-04:00",
+    "updated_at": "2025-11-12T22:29:22-05:00",
+    "image": null,
+    "products_count": 0
+  },
+  {
+    "id": 308184907951,
+    "title": "Ermenegildo Zegna",
+    "handle": "ermenegildo-zegna",
+    "description": "<p><meta charset=\"UTF-8\"><strong>Ermenegildo Zegna is a luxury fashion house that is known for producing exceptional fragrances for men. The brand's perfumes are crafted with the utmost care and attention to detail, using only the finest ingredients from around the world. </strong></p>\n<p><strong><meta charset=\"UTF-8\">Ermenegildo Zegna's fragrances are designed to complement the modern man's lifestyle, whether he is attending a formal event or going on a casual outing. With a range of scents to choose from, each fragrance is unique and reflects a different mood and personality.</strong></p>",
+    "published_at": "2023-04-12T02:57:23-04:00",
+    "updated_at": "2026-09-28T20:01:13-04:00",
+    "image": {
+      "id": 1617592287407,
+      "created_at": "2023-04-12T02:57:22-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/ERMENEGILDO-ZEGNA-STORE-BERLIN2.jpg?v=1681282642",
+      "alt": null
+    },
+    "products_count": 6
+  },
+  {
+    "id": 305863852207,
+    "title": "Estee Lauder",
+    "handle": "estee-lauder",
+    "description": "",
+    "published_at": "2022-12-29T00:33:03-05:00",
+    "updated_at": "2026-09-28T20:01:11-04:00",
+    "image": null,
+    "products_count": 6
+  },
+  {
+    "id": 271129936047,
+    "title": "Everyday",
+    "handle": "everyday",
+    "description": "",
+    "published_at": "2021-06-25T13:23:56-04:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 13
+  },
+  {
+    "id": 371658064047,
+    "title": "extra1000",
+    "handle": "extra1000-1",
+    "description": null,
+    "published_at": "2026-07-22T04:01:09-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 4
+  },
+  {
+    "id": 271001288879,
+    "title": "Favorites",
+    "handle": "favorites",
+    "description": "<h3>Collection of fine fragrances, which are an easy blind buy for anyone looking to buy the finest fragrances created by mankind, to make you smell sexy.</h3>",
+    "published_at": "2021-06-23T22:28:25-04:00",
+    "updated_at": "2026-10-23T07:13:21-04:00",
+    "image": {
+      "id": 1613664845999,
+      "created_at": "2022-07-31T08:40:06-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/favourites.jpg?v=1659271207",
+      "alt": null
+    },
+    "products_count": 9
+  },
+  {
+    "id": 271134130351,
+    "title": "Floral",
+    "handle": "floral",
+    "description": "",
+    "published_at": "2021-06-25T14:44:34-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 25
+  },
+  {
+    "id": 290417868975,
+    "title": "FRAGRANCE10",
+    "handle": "fragrance10",
+    "description": "",
+    "published_at": "2022-06-08T02:46:18-04:00",
+    "updated_at": "2026-06-10T11:19:02-04:00",
+    "image": null,
+    "products_count": 4
+  },
+  {
+    "id": 371693093039,
+    "title": "Free Gift",
+    "handle": "free-gift",
+    "description": null,
+    "published_at": "2026-07-23T14:57:22-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 2
+  },
+  {
+    "id": 355770499247,
+    "title": "French Avenue",
+    "handle": "french-avenue",
+    "description": "",
+    "published_at": "2025-08-30T05:10:04-04:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 46
+  },
+  {
+    "id": 349132783791,
+    "title": "FREQUENTLY BOUGHT TOGETHER",
+    "handle": "frequently-bought-together",
+    "description": "",
+    "published_at": "2025-04-24T03:08:41-04:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 13
+  },
+  {
+    "id": 271134064815,
+    "title": "Fresh",
+    "handle": "fresh",
+    "description": "<br>",
+    "published_at": "2021-06-25T14:43:45-04:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 19
+  },
+  {
+    "id": 272384589999,
+    "title": "Fruity",
+    "handle": "fruity",
+    "description": "",
+    "published_at": "2021-07-10T06:41:51-04:00",
+    "updated_at": "2026-10-25T07:13:56-04:00",
+    "image": null,
+    "products_count": 6
+  },
+  {
+    "id": 282456424623,
+    "title": "Gift Sets",
+    "handle": "gift-sets",
+    "description": "",
+    "published_at": "2021-12-16T05:24:37-05:00",
+    "updated_at": "2026-09-28T20:01:00-04:00",
+    "image": null,
+    "products_count": 18
+  },
+  {
+    "id": 281407455407,
+    "title": "Giorgio Armani",
+    "handle": "giorgio-armani",
+    "description": "<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\nborder-radius: 15px;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/c27b5db96d954027b74d1c363f39351a/c27b5db96d954027b74d1c363f39351a.m3u8\"></video>",
+    "published_at": "2021-11-13T08:15:18-05:00",
+    "updated_at": "2026-10-24T07:14:26-04:00",
+    "image": {
+      "id": 1613588922543,
+      "created_at": "2022-07-25T08:27:54-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/mathias-reding-pwOZ34u2VmI-unsplash.jpg?v=1658752075",
+      "alt": null
+    },
+    "products_count": 22
+  },
+  {
+    "id": 305863884975,
+    "title": "Givenchy",
+    "handle": "givenchy",
+    "description": "<style><!--\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\nmargin-bottom: 10px;\nborder-radius: 10px;\n\n \n}\n \n--></style>\n<video muted=\"\" playsinline=\"\" loop=\"loop\" autoplay=\"autoplay\"> \n<source src=\"https://cdn.shopify.com/videos/c/vp/837f4385ef274306a625293d955128b0/837f4385ef274306a625293d955128b0.m3u8\"></video> <br>",
+    "published_at": "2022-12-29T00:36:45-05:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": {
+      "id": 1617592385711,
+      "created_at": "2023-04-12T03:41:50-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/GIVENCHY-SOHO_FACADE-06.22-2.jpg?v=1681285311",
+      "alt": null
+    },
+    "products_count": 12
+  },
+  {
+    "id": 371185778863,
+    "title": "GOOD GIRL",
+    "handle": "good-girl",
+    "description": null,
+    "published_at": "2026-07-09T02:08:10-04:00",
+    "updated_at": "2026-10-25T07:13:56-04:00",
+    "image": null,
+    "products_count": 2
+  },
+  {
+    "id": 272557080751,
+    "title": "Groom",
+    "handle": "groom",
+    "description": "",
+    "published_at": "2021-07-11T07:38:22-04:00",
+    "updated_at": "2026-09-28T20:01:01-04:00",
+    "image": null,
+    "products_count": 10
+  },
+  {
+    "id": 274941149359,
+    "title": "Gucci",
+    "handle": "gucci",
+    "description": "<p><span data-mce-fragment=\"1\">The House of Gucci was founded by Guccio Gucci in 1921. Inspired by the beautiful luggage he had seen travelers carrying while working at the Savoy Hotel in London, Gucci returned to Florence with a goal of combining the refined elegance of the wealthy travelers he observed with the fine craftmanship of traditional Florentine artisans.</span></p>\n<p><span>The company's first fragrance, Gucci No. 1 for women, was introduced in 1974. A series of fragrances for men and women have since been launched, with many taking legendary status amongst perfume collectors, including Gucci 3 and L'Arte di Gucci. Tom Ford served as the company's creator director in mid-90s through the early 21st century. Creative director Frida Giannini took over for Ford and since 2015, Alessandro Michele has been at the helm.</span></p>\n<p>Shop <a href=\"https://www.perfumenetwork.in/collections/gucci\" target=\"_blank\" title=\"Shop Gucci Perfumes for Men and Women Online at Perfume Network India.\" rel=\"noopener noreferrer\">Gucci Perfumes</a> today at <a href=\"https://www.perfumenetwork.in\" title=\"Shop Perfumes for Men and Women Online at Perfume Network India \">Perfume Network India</a>.</p>\n<p> </p>",
+    "published_at": "2021-07-28T14:36:49-04:00",
+    "updated_at": "2026-09-28T20:01:16-04:00",
+    "image": {
+      "id": 1613588758703,
+      "created_at": "2022-07-25T07:46:38-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/kristina-karyugina-NIFa3DbVsX4-unsplash.jpg?v=1658749599",
+      "alt": null
+    },
+    "products_count": 20
+  },
+  {
+    "id": 268743671983,
+    "title": "Guerlain",
+    "handle": "guerlain",
+    "description": "<p><meta charset=\"UTF-8\"><br></p>\n<style><!--\nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\nborder-radius: 15px;\n \n}\n--></style>\n<video autoplay=\"autoplay\" loop=\"loop\" playsinline=\"\" muted=\"\"> \n<source src=\"https://cdn.shopify.com/videos/c/vp/f582e8e419004c88a0e6b752603e4b8c/f582e8e419004c88a0e6b752603e4b8c.m3u8\"></video>",
+    "published_at": "2021-05-28T15:21:12-04:00",
+    "updated_at": "2026-10-23T07:13:20-04:00",
+    "image": {
+      "id": 1613588791471,
+      "created_at": "2022-07-25T08:10:42-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/7.jpg?v=1658751126",
+      "alt": "Shop Guerlain Perfumes for Men and Women Online at Perfume Network India."
+    },
+    "products_count": 38
+  },
+  {
+    "id": 304527147183,
+    "title": "Guerlain Gift",
+    "handle": "guerlain-gift",
+    "description": "",
+    "published_at": "2022-11-23T04:18:39-05:00",
+    "updated_at": "2026-10-23T07:13:20-04:00",
+    "image": null,
+    "products_count": 12
+  },
+  {
+    "id": 272384622767,
+    "title": "Guess",
+    "handle": "guess",
+    "description": "<p><span data-mce-fragment=\"1\"><meta charset=\"UTF-8\">GUESS is an American fashion brand created by brothers Georges, Armand, Paul and Maurice Marciano. Moroccan-born and French-raised, the brothers moved to California in 1977 to launch a business, using seed money provided by the family who owned Jordache Jeans. The first GUESS jeans—the \"Marilyn\"—were stone-washed and featured distinctive zippers at the ankle. As the designer jeans trend of the late 1970s continued in full swing in the early 1980s, GUESS introduced a captivating product at just the right time. The brand was introduced to the American market through retailer Bloomingdale's.</span></p>\n<p><span data-mce-fragment=\"1\">The first GUESS fragrance, \"Original\" Guess for women, was introduced in the late 1980s through a partnership with Revlon. Parlux held the fragrance license for Guess from 2003 until 2009, when Guess began producing fragrances for men and women in conjunction with Coty.</span></p>\n<p><span data-mce-fragment=\"1\">The earliest edition was created in 1980s and the newest is from 2022.</span></p>\n<p><span data-mce-fragment=\"1\">Shop all <strong><a href=\"https://www.perfumenetwork.in/collections/guess\" title=\"Shop Guess Perfumes for Men and Women Online in India at Perfume Network India.\">Guess Perfumes</a></strong> today at <strong><a href=\"https://www.perfumenetwork.in\" title=\"Shop Perfumes for Men and Women online in India at Perfume Network India.\">Perfume Network India.</a></strong></span></p>\n<p> </p>",
+    "published_at": "2021-07-10T06:42:06-04:00",
+    "updated_at": "2026-10-10T07:15:09-04:00",
+    "image": {
+      "id": 1613648298159,
+      "created_at": "2022-07-29T14:51:35-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/chi-xiang-eYXX2nR3biM-unsplash.jpg?v=1659120841",
+      "alt": "Shop Guess Perfumes for Men and Women Online in India at Perfume Network India."
+    },
+    "products_count": 22
+  },
+  {
+    "id": 269762986159,
+    "title": "Guy Laroche",
+    "handle": "guy-laroche",
+    "description": "",
+    "published_at": "2021-06-09T01:47:41-04:00",
+    "updated_at": "2026-08-23T07:12:51-04:00",
+    "image": null,
+    "products_count": 2
+  },
+  {
+    "id": 317660135599,
+    "title": "Gym Fragrances",
+    "handle": "gym-fragrances",
+    "description": "<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\nborder-radius: 15px;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline unmuted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/9f41233058d64dd4840748c91653e0ce/9f41233058d64dd4840748c91653e0ce.m3u8\"></video>",
+    "published_at": "2024-01-23T12:35:52-05:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 60
+  },
+  {
+    "id": 272557146287,
+    "title": "Hair",
+    "handle": "groom-1",
+    "description": "",
+    "published_at": "2021-07-11T07:38:42-04:00",
+    "updated_at": "2025-11-12T22:29:18-05:00",
+    "image": null,
+    "products_count": 0
+  },
+  {
+    "id": 269382844591,
+    "title": "Hermes",
+    "handle": "hermes",
+    "description": "<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/9e349e846ae2412ca2ba48391e39da86/9e349e846ae2412ca2ba48391e39da86.m3u8\"></video>\n\n\n<p><meta charset=\"UTF-8\"><span data-mce-fragment=\"1\">Hermes is one of </span><strong data-mce-fragment=\"1\">the oldest fashion brands in the world</strong><span data-mce-fragment=\"1\">, founded in 1837 in Paris. Today, just like 180 years ago, every Hermes product reflects refined handicrafts and quality that pay homage to this brand’s </span><strong data-mce-fragment=\"1\">rich heritage and history</strong><span data-mce-fragment=\"1\">.</span></p>\n<p><meta charset=\"UTF-8\"><span>After the death of Emile-Maurice in 1951, the company’s management was taken over for the first time by someone who was not a direct descendant of Hermes. Robert Dumas was connected to the family through marriage, and to strengthen that connection more, he added his wife’s surname to his, thus becoming Dumas-Hermes. Respecting the house’s tradition, </span><strong>Robert also introduced novelties: the first perfume was launched, and the famous Brides de Gala scarf was made, produced more than 70,000 times</strong></p>\n<p>Hermes is also an old perfume house. The first perfumes appeared on the market in the 1950s. The perfume creation of the magical Edmond Roudnitska was intended for women and men and was called Eau d’Hermes.</p>\n<p>﻿Shop <a href=\"https://www.perfumenetwork.in/collections/hermes\" title=\"Shop Hermes Perfumes for Men and Women Online in India at Perfume Network India.\">Hermes Perfumes</a> today at <a href=\"https://www.perfumenetwork.in\" title=\"Shop Perfumes for Men and Women Online in India at Perfume Network India\">Perfume Network India</a>.</p>\n<p><strong><span><br></span></strong></p>",
+    "published_at": "2021-06-03T05:12:16-04:00",
+    "updated_at": "2026-10-19T07:13:42-04:00",
+    "image": {
+      "id": 1613588955311,
+      "created_at": "2022-07-25T08:36:18-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/modern-affliction-qzGiVZTTsrc-unsplash.jpg?v=1658752579",
+      "alt": null
+    },
+    "products_count": 47
+  },
+  {
+    "id": 290334769327,
+    "title": "Hermes Gift Collection",
+    "handle": "hermes-gift-collection",
+    "description": "",
+    "published_at": "2022-06-05T23:50:20-04:00",
+    "updated_at": "2026-10-19T07:13:42-04:00",
+    "image": null,
+    "products_count": 30
+  },
+  {
+    "id": 304498507951,
+    "title": "Hermes Men",
+    "handle": "hermes-men",
+    "description": "",
+    "published_at": "2022-11-23T00:59:06-05:00",
+    "updated_at": "2026-10-02T07:13:59-04:00",
+    "image": null,
+    "products_count": 6
+  },
+  {
+    "id": 304499523759,
+    "title": "Hermes Women",
+    "handle": "hermes-women",
+    "description": "",
+    "published_at": "2022-11-23T01:08:02-05:00",
+    "updated_at": "2026-09-28T20:01:02-04:00",
+    "image": null,
+    "products_count": 4
+  },
+  {
+    "id": 268080185519,
+    "title": "Home page",
+    "handle": "frontpage",
+    "description": null,
+    "published_at": "2021-05-24T09:37:30-04:00",
+    "updated_at": "2026-10-24T07:14:28-04:00",
+    "image": null,
+    "products_count": 2
+  },
+  {
+    "id": 268825526447,
+    "title": "Hugo Boss",
+    "handle": "hugo-boss",
+    "description": "",
+    "published_at": "2021-05-30T08:00:14-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 38
+  },
+  {
+    "id": 268825493679,
+    "title": "Issey Miyake",
+    "handle": "issey-miyake",
+    "description": "<p><meta charset=\"UTF-8\"><span data-mce-fragment=\"1\">Though his designs – particularly his signature ‘pleats’ – are loved by women all over the world, it was the launch of a certain perfume, in 1992, which truly put </span><strong data-mce-fragment=\"1\">Issey Miyake</strong><span data-mce-fragment=\"1\"> on the map.</span></p>\n<p><span>What many of us love <strong>Issey Miyake</strong> for most are infinitely wearable fragrances – a journey which began with the light, aquatic floral <strong>L’Eau d’Issey</strong> for women, composed by <strong>Jacques Cavallier</strong>. The name was play on words, as it turns out: in French, it sounds like ‘odyssey…’ Involved in every detail of the fragrance which would bear his name, Issey Miyake designed the bottle himself, based on a view of the moon behind the Eiffel Tower from his Paris apartment. And since that first ‘water-inspired’ fragrance, meanwhile – a timeless harmony of woods and flowers – there have been other <strong>L’Eau d’Issey</strong> innovations</span></p>\n<p>Shop all <a title=\"Shop all Issey Miyake Perfumes for Men and Women Online in India at Perfume Network India.\" href=\"https://www.perfumenetwork.in/collections/issey-miyake\">Issey Miyake Perfumes</a> today at <a title=\"Shop Perfumes for Men and Women Online in India at Perfume Network India.\" href=\"https://www.perfumenetwork.in\">Perfume Network India</a>.</p>\n<p> </p>\n\n<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/0b0c6be3c96d45b2beee752a6d9e0e3f/0b0c6be3c96d45b2beee752a6d9e0e3f.m3u8\"></video>",
+    "published_at": "2021-05-30T08:00:14-04:00",
+    "updated_at": "2026-10-28T08:03:14-04:00",
+    "image": {
+      "id": 1613644398767,
+      "created_at": "2022-07-29T09:09:21-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/Screenshot_2022-07-29_at_6.32.59_PM.png?v=1659100162",
+      "alt": null
+    },
+    "products_count": 27
+  },
+  {
+    "id": 272387080367,
+    "title": "Jaguar",
+    "handle": "jaguar",
+    "description": "<meta charset=\"UTF-8\">\n<div class=\"styled__CharWrapper-sc-1eu1dd2-6 jMngxK\" data-mce-fragment=\"1\">\n<p>The perfumes draw on the DNA of the Jaguar aesthetic and its iconic heritage. They are a constant source of surprise and inspiration, combining powerful character and proud dynamism.</p>\n<p>Each Jaguar Fragrances line stylishly symbolizes a strong personality and reflects a distinctive, modern scent and design philosophy, to satisfy a wide range of tastes. All the perfumes were created for successful, self-confident men who bold enough to wear a strong, masculine fragrance produced in the classic perfumery tradition.</p>\n</div>\n<div class=\"styled__CharWrapper-sc-1eu1dd2-6 jMngxK\" data-mce-fragment=\"1\">\n<strong data-mce-fragment=\"1\"><br data-mce-fragment=\"1\"></strong>Shop all <strong data-mce-fragment=\"1\"><a href=\"https://www.perfumenetwork.in/collections/jaguar\" title=\"Shop Jaguar Perfumes for Men and Women Online in India at Perfume Network India.\" data-mce-fragment=\"1\" data-mce-href=\"https://www.perfumenetwork.in/collections/jaguar\">Jaguar Perfumes</a></strong> today at <strong data-mce-fragment=\"1\"><a href=\"https://www.perfumenetwork.in\" title=\"Shop Perfumes for Men and Women Online in India at Perfume Network India.\" data-mce-fragment=\"1\" data-mce-href=\"https://www.perfumenetwork.in\">Perfume Network India.</a></strong>\n</div>",
+    "published_at": "2021-07-10T08:02:53-04:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": {
+      "id": 1613696762031,
+      "created_at": "2022-08-02T05:08:11-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/jeff-tumale-AzX4hRFGCeE-unsplash.jpg?v=1659431292",
+      "alt": "Shop Jaguar Perfumes for Men and Women Online in India at Perfume Network India "
+    },
+    "products_count": 15
+  },
+  {
+    "id": 371189022895,
+    "title": "JAZZ CLUB",
+    "handle": "jazz-club",
+    "description": "",
+    "published_at": "2026-07-09T05:23:09-04:00",
+    "updated_at": "2026-10-27T07:16:20-04:00",
+    "image": null,
+    "products_count": 14
+  },
+  {
+    "id": 282729021615,
+    "title": "Jean Paul Gaultier",
+    "handle": "jean-paul-gaultier",
+    "description": "",
+    "published_at": "2021-12-25T10:39:28-05:00",
+    "updated_at": "2026-10-27T07:16:22-04:00",
+    "image": null,
+    "products_count": 22
+  },
+  {
+    "id": 371719209135,
+    "title": "Jean Paul Le Male Series",
+    "handle": "jean-paul-le-male-series",
+    "description": null,
+    "published_at": "2026-07-24T04:23:04-04:00",
+    "updated_at": "2026-10-13T07:16:26-04:00",
+    "image": null,
+    "products_count": 3
+  },
+  {
+    "id": 305832067247,
+    "title": "Jimmy Choo",
+    "handle": "jimmy-choo",
+    "description": "",
+    "published_at": "2022-12-28T00:44:52-05:00",
+    "updated_at": "2026-10-14T07:15:05-04:00",
+    "image": null,
+    "products_count": 13
+  },
+  {
+    "id": 312671109295,
+    "title": "Kernlo",
+    "handle": "kernlo",
+    "description": "",
+    "published_at": "2023-11-16T03:22:58-05:00",
+    "updated_at": "2026-10-09T07:15:04-04:00",
+    "image": null,
+    "products_count": 5
+  },
+  {
+    "id": 355416211631,
+    "title": "Khadlaj",
+    "handle": "khadlaj",
+    "description": "",
+    "published_at": "2025-08-23T06:18:07-04:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 40
+  },
+  {
+    "id": 308121239727,
+    "title": "Kilian",
+    "handle": "kilian",
+    "description": "<strong><meta charset=\"UTF-8\"></strong>\n<div class=\"group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]\">\n<div class=\"text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto\">\n<div class=\"relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]\">\n<div class=\"flex flex-grow flex-col gap-3\">\n<div class=\"min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap\">\n<div class=\"markdown prose w-full break-words dark:prose-invert light\">\n<p><strong>Kilian Perfumes is a luxury fragrance brand that is highly regarded for its sophisticated and complex scent profiles. The brand is known for using high-quality ingredients sourced from around the world, including rare and exotic materials such as oud and ambergris. Kilian Perfumes' fragrances are often categorized as floral, oriental, woody, or fresh, with each scent offering a unique and nuanced blend of notes. Kilian Perfumes' packaging is sleek and elegant, with many fragrances offered in refillable bottles to reduce waste. Kilian Perfumes is a brand that offers luxury fragrances with a focus on quality, creativity, and sustainability.</strong></p>\n</div>\n</div>\n</div>\n<div class=\"flex justify-between lg:block\">\n<div class=\"text-gray-400 flex self-end lg:self-center justify-center mt-2 gap-2 md:gap-3 lg:gap-1 lg:absolute lg:top-0 lg:translate-x-full lg:right-0 lg:mt-0 lg:pl-2 visible\"><br></div>\n</div>\n</div>\n</div>\n</div>\n\n<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/65ecc9c44b034be88670955d75947da9/65ecc9c44b034be88670955d75947da9.m3u8\"></video>",
+    "published_at": "2023-04-11T01:52:20-04:00",
+    "updated_at": "2026-09-28T20:01:20-04:00",
+    "image": {
+      "id": 1617578164399,
+      "created_at": "2023-04-11T01:54:11-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/KILIAN-Paris-Boutique-Press-Release-2.jpg?v=1681192452",
+      "alt": null
+    },
+    "products_count": 39
+  },
+  {
+    "id": 269390479535,
+    "title": "Lacoste",
+    "handle": "lacoste",
+    "description": "",
+    "published_at": "2021-06-03T08:47:04-04:00",
+    "updated_at": "2026-09-28T20:01:08-04:00",
+    "image": null,
+    "products_count": 14
+  },
+  {
+    "id": 279843242159,
+    "title": "Lattafa",
+    "handle": "lattafa",
+    "description": "",
+    "published_at": "2024-04-28T02:12:39-04:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 153
+  },
+  {
+    "id": 349421928623,
+    "title": "Lattafa Khamrah Series",
+    "handle": "lattafa-khamrah-series",
+    "description": "",
+    "published_at": "2025-04-28T02:58:31-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 3
+  },
+  {
+    "id": 306087067823,
+    "title": "Loved by Everyone",
+    "handle": "loved-by-everyone",
+    "description": "",
+    "published_at": "2023-01-15T08:20:38-05:00",
+    "updated_at": "2026-10-28T08:03:14-04:00",
+    "image": null,
+    "products_count": 11
+  },
+  {
+    "id": 282800586927,
+    "title": "Luxury Experience",
+    "handle": "luxury-experience",
+    "description": "",
+    "published_at": "2021-12-28T12:20:53-05:00",
+    "updated_at": "2026-10-28T08:03:14-04:00",
+    "image": null,
+    "products_count": 1233
+  },
+  {
+    "id": 308780761263,
+    "title": "Maison Crivelli",
+    "handle": "maison-crivelli",
+    "description": "<h1>\n<meta charset=\"UTF-8\">Maison Crivelli is a house of perfumes that captures the essence of luxury and exoticism in every bottle. Each fragrance is a journey to a far-off land, evoking the richness and diversity of the world's most exotic locales.</h1>\n<p>The scents of Maison Crivelli are as luxurious as they are exotic, transporting you to a world of indulgence and sophistication. With notes of rare and precious ingredients like Indian sandalwood, Turkish rose, and Madagascan vanilla, these fragrances offer a truly immersive sensory experience.</p>\n<p><meta charset=\"UTF-8\"><span data-mce-fragment=\"1\">Embrace the essence of luxury and exoticism with Maison Crivelli's exquisite selection of perfumes. Lose yourself in the hypnotic aromas of far-off lands, and experience the pure indulgence of these expertly crafted fragrances.</span> </p>\n\n<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/35dd97dee5bf40978de2dc1da00c49ec/35dd97dee5bf40978de2dc1da00c49ec.m3u8\"></video>",
+    "published_at": "2023-05-12T15:19:25-04:00",
+    "updated_at": "2026-09-28T20:01:17-04:00",
+    "image": {
+      "id": 1618019942575,
+      "created_at": "2023-05-12T15:19:24-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/Maison-Crivelli-Gamme-fond-blanc-1-HD-RVB-carre-2048x2048.jpg?v=1683919165",
+      "alt": null
+    },
+    "products_count": 17
+  },
+  {
+    "id": 283911913647,
+    "title": "Maison Margiela",
+    "handle": "maison-margiela",
+    "description": "<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\nborder-radius: 15px;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/53788aace9e144408aaf80b88d4a4b94/53788aace9e144408aaf80b88d4a4b94.m3u8\"></video>",
+    "published_at": "2022-01-20T01:53:15-05:00",
+    "updated_at": "2026-10-27T07:16:20-04:00",
+    "image": {
+      "id": 1618019385519,
+      "created_at": "2023-05-12T14:56:38-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/ignant-design-interior-mmshanghai-16-min-2048x1536.jpg?v=1683917798",
+      "alt": null
+    },
+    "products_count": 16
+  },
+  {
+    "id": 309385199791,
+    "title": "Memo Paris",
+    "handle": "memo-paris",
+    "description": "<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/aa1fff9ef8af49ad8a946c49910fca68/aa1fff9ef8af49ad8a946c49910fca68.m3u8\"></video>",
+    "published_at": "2023-07-07T03:48:46-04:00",
+    "updated_at": "2026-09-28T20:01:17-04:00",
+    "image": null,
+    "products_count": 37
+  },
+  {
+    "id": 270449279151,
+    "title": "Men",
+    "handle": "men",
+    "description": "<meta charset=\"UTF-8\">\n<p data-mce-fragment=\"1\">Men’s fragrances have come a long way since their ancient origins.</p>\n<p data-mce-fragment=\"1\">Once upon a time, pleasantly scented potions were a matter of necessity. One’s nose was constantly assaulted by the unpleasant odours of smoke, rotting food, and open sewers. And that was just the people – imagine what the actual sewers smelled like.</p>\n<p data-mce-fragment=\"1\">Today, colognes don’t perform such a purely practical purpose, that’s more or less deodorant’s responsibility, which leaves a much more interesting purpose for cologne: helping you get lucky. Pair the right scent with the right man and some kind of sorcery happens. If you don’t know what we’re talking about, you just haven’t met the one yet (<strong>scent, that is</strong>). No, but seriously, colognes and men’s fragrances can drastically improve your appeal, not just in the dating department but at work as well.</p>\n<p data-mce-fragment=\"1\"><meta charset=\"UTF-8\"><span>Join us on a journey through the history of men’s fragrances, from the world’s first recorded chemist to today’s billion-dollar industry.</span></p>",
+    "published_at": "2021-06-19T04:20:51-04:00",
+    "updated_at": "2026-10-28T08:03:14-04:00",
+    "image": {
+      "id": 1613664682159,
+      "created_at": "2022-07-31T07:53:11-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/pexels-raffa-silva-2714326.jpg?v=1659268473",
+      "alt": null
+    },
+    "products_count": 688
+  },
+  {
+    "id": 272519332015,
+    "title": "Mercedes Benz",
+    "handle": "mercedes-benz",
+    "description": "",
+    "published_at": "2021-07-10T15:40:21-04:00",
+    "updated_at": "2026-10-20T07:13:43-04:00",
+    "image": null,
+    "products_count": 10
+  },
+  {
+    "id": 272393699503,
+    "title": "Michael Kors",
+    "handle": "michael-kors",
+    "description": "",
+    "published_at": "2021-07-10T10:24:15-04:00",
+    "updated_at": "2026-09-28T20:00:55-04:00",
+    "image": null,
+    "products_count": 10
+  },
+  {
+    "id": 372179140783,
+    "title": "Minis",
+    "handle": "minis",
+    "description": null,
+    "published_at": "2026-07-27T05:41:00-04:00",
+    "updated_at": "2026-10-12T07:18:29-04:00",
+    "image": null,
+    "products_count": 4
+  },
+  {
+    "id": 330808393903,
+    "title": "Miu Miu",
+    "handle": "miu-miu",
+    "description": "",
+    "published_at": "2024-08-11T03:27:26-04:00",
+    "updated_at": "2026-09-07T08:26:01-04:00",
+    "image": null,
+    "products_count": 3
+  },
+  {
+    "id": 285700554927,
+    "title": "Mont Blanc",
+    "handle": "mont-blanc",
+    "description": "<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/7972519c9e1b46a097e27dd81c0c2fee/7972519c9e1b46a097e27dd81c0c2fee.m3u8\"></video>",
+    "published_at": "2022-02-24T07:06:48-05:00",
+    "updated_at": "2026-10-27T07:16:22-04:00",
+    "image": null,
+    "products_count": 13
+  },
+  {
+    "id": 282730463407,
+    "title": "Montale",
+    "handle": "montale",
+    "description": "",
+    "published_at": "2021-12-25T13:15:44-05:00",
+    "updated_at": "2026-09-28T20:01:06-04:00",
+    "image": null,
+    "products_count": 13
+  },
+  {
+    "id": 491138711727,
+    "title": "Mykonos",
+    "handle": "mykonos",
+    "description": null,
+    "published_at": "2026-09-29T14:30:55-04:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 13
+  },
+  {
+    "id": 305864114351,
+    "title": "Narciso Rodriguez",
+    "handle": "narciso-rodriguez",
+    "description": "<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\nborder-radius: 15px;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/8a44ab701219428f88a0fa69964c540a/8a44ab701219428f88a0fa69964c540a.m3u8\"></video>",
+    "published_at": "2022-12-29T00:56:14-05:00",
+    "updated_at": "2026-10-26T07:17:35-04:00",
+    "image": null,
+    "products_count": 18
+  },
+  {
+    "id": 282876739759,
+    "title": "Nasomatto",
+    "handle": "nasomatto",
+    "description": "<br>",
+    "published_at": "2022-01-01T00:00:03-05:00",
+    "updated_at": "2026-09-28T20:01:16-04:00",
+    "image": null,
+    "products_count": 17
+  },
+  {
+    "id": 291443638447,
+    "title": "Nautica",
+    "handle": "nautica",
+    "description": "<p>Nautica is a very well known fashion brand and a fashion brand which actually knows how to do fragrance. Famous for Nautica Voyage and it's affordability. Also has good performing deodorants.</p>\n<p>Try these famous fragrances today at <a href=\"https://www.perfumenetwork.in\" target=\"_blank\" title=\"Enjoy the best olfactory experience at Perfume Network India\" rel=\"noopener noreferrer\">Perfume Network India</a>.</p>",
+    "published_at": "2022-06-29T02:41:02-04:00",
+    "updated_at": "2026-10-17T07:18:49-04:00",
+    "image": null,
+    "products_count": 11
+  },
+  {
+    "id": 270065467567,
+    "title": "New Arrivals",
+    "handle": "discover",
+    "description": "",
+    "published_at": "2021-06-14T03:20:18-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 14
+  },
+  {
+    "id": 309511225519,
+    "title": "Niche",
+    "handle": "niche",
+    "description": "",
+    "published_at": "2023-07-20T02:24:29-04:00",
+    "updated_at": "2026-10-22T07:14:20-04:00",
+    "image": null,
+    "products_count": 547
+  },
+  {
+    "id": 271129706671,
+    "title": "Niche Houses",
+    "handle": "niche-houses",
+    "description": "",
+    "published_at": "2021-06-25T13:19:26-04:00",
+    "updated_at": "2026-05-19T19:32:22-04:00",
+    "image": null,
+    "products_count": 1
+  },
+  {
+    "id": 282743406767,
+    "title": "Nishane",
+    "handle": "nishane",
+    "description": "<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/0c953f6517f94315b3fe055b322f30ca/0c953f6517f94315b3fe055b322f30ca.m3u8\"></video>",
+    "published_at": "2021-12-26T01:47:13-05:00",
+    "updated_at": "2026-10-19T07:13:42-04:00",
+    "image": {
+      "id": 1609064349871,
+      "created_at": "2022-01-01T04:38:48-05:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/WHICH_MALE_ARE_YOU_4.png?v=1641030498",
+      "alt": null
+    },
+    "products_count": 26
+  },
+  {
+    "id": 272556916911,
+    "title": "Nourish",
+    "handle": "nourish",
+    "description": "",
+    "published_at": "2021-07-11T07:37:40-04:00",
+    "updated_at": "2026-09-07T07:51:38-04:00",
+    "image": null,
+    "products_count": 5
+  },
+  {
+    "id": 271133999279,
+    "title": "Oriental",
+    "handle": "oriental",
+    "description": "",
+    "published_at": "2021-06-25T14:42:31-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 28
+  },
+  {
+    "id": 305832034479,
+    "title": "Paco Rabanne",
+    "handle": "paco-rabanne",
+    "description": "<meta charset=\"UTF-8\">\n<p>Paco Rabanne is a prestigious haute couture and fragrance brand that epitomizes luxury and sophistication. Established in 1966 by the legendary Spanish designer Francisco \"Paco\" Rabaneda Cuervo, the brand is renowned for its bold and avant-garde creations, as well as its iconic fragrances that embody opulence and refinement.</p>\n<p>Paco Rabanne perfumes are crafted with the finest ingredients and characterized by their daring and complex blends of aromas. Each scent is a work of art, designed to evoke the senses and envelop the wearer in a world of indulgence and extravagance. The brand's fragrance offerings range from the classic and timeless to the daring and contemporary, providing a scent for every occasion and style.</p>",
+    "published_at": "2022-12-28T00:43:45-05:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": {
+      "id": 1617817075887,
+      "created_at": "2023-04-29T04:33:05-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/08.jpg?v=1682757186",
+      "alt": null
+    },
+    "products_count": 37
+  },
+  {
+    "id": 370594185391,
+    "title": "Paco Rabanne One Million",
+    "handle": "paco-rabanne-one-million",
+    "description": "",
+    "published_at": "2026-06-26T06:47:11-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 5
+  },
+  {
+    "id": 337657692335,
+    "title": "Pardevo",
+    "handle": "pardevo",
+    "description": "",
+    "published_at": "2024-11-17T00:50:27-05:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 5
+  },
+  {
+    "id": 362705649839,
+    "title": "PARDEVO",
+    "handle": "pardevo-1",
+    "description": "",
+    "published_at": "2026-01-12T14:52:36-05:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 5
+  },
+  {
+    "id": 308720533679,
+    "title": "Parfums de Marly",
+    "handle": "parfums-de-marly",
+    "description": "<meta charset=\"UTF-8\"><strong>Parfums de Marly, a luxurious fragrance brand established in 2009 in France, draws its inspiration from the distinguished equestrian heritage of the 18th century French court.</strong>\n<p> </p>\n<p><span>The brand's fragrances pay homage to the nobility and horses of that era, exuding elegance and sophistication. Parfums de Marly offers an extensive collection of fragrances for both men and women, employing only the finest, high-quality ingredients sourced from around the globe. These opulent and refined scents are expertly crafted by renowned perfumers, resulting in unique and enduring fragrances. With its ever-increasing popularity among connoisseurs.</span></p>\n<p> </p>\n\n<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/13bd9ca127a146659156d0cc4fba7ceb/13bd9ca127a146659156d0cc4fba7ceb.m3u8\"></video>",
+    "published_at": "2023-05-08T12:14:53-04:00",
+    "updated_at": "2026-10-22T07:14:18-04:00",
+    "image": {
+      "id": 1617936056495,
+      "created_at": "2023-05-08T12:14:52-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/DSC_1659_0_0_jpg_webp.jpg?v=1683562493",
+      "alt": null
+    },
+    "products_count": 21
+  },
+  {
+    "id": 268823167151,
+    "title": "Perfume Network India",
+    "handle": "perfume-network-india",
+    "description": null,
+    "published_at": "2021-05-30T06:31:35-04:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 138
+  },
+  {
+    "id": 370594676911,
+    "title": "POLO BLUE",
+    "handle": "polo-blue",
+    "description": "",
+    "published_at": "2026-06-26T07:21:25-04:00",
+    "updated_at": "2026-10-26T07:17:35-04:00",
+    "image": null,
+    "products_count": 3
+  },
+  {
+    "id": 282530349231,
+    "title": "Prada",
+    "handle": "prada",
+    "description": "<meta charset=\"UTF-8\">\n<p data-mce-fragment=\"1\">For sure, clothes by Prada are lusted-over, everywhere. Accessories, too, of course. But one hugely successful facet of the <strong data-mce-fragment=\"1\">Prada</strong> story is the collection of fragrances, created in the last decade or so. <strong data-mce-fragment=\"1\">Prada Amber</strong> (a.k.a. <strong data-mce-fragment=\"1\">Prada Eau de Parfum</strong>) was unveiled in 2004: a ‘new age’ in the history of amber fragrances, taking an ingredient rooted in ancient perfumery, reworked for our times by ‘star’ perfumers <strong data-mce-fragment=\"1\">Max Gavarry</strong> and <strong data-mce-fragment=\"1\">Carlos Benaïm</strong>.</p>\n<p data-mce-fragment=\"1\"><meta charset=\"UTF-8\"><span>As long ago as 2003, meanwhile, </span><strong>Prada</strong><span> began offering exclusive (and numbered) ‘artisan fragrances’ through their boutiques, and a handful of department stores, each focusing on a single note: </span><strong>Orange Flower</strong><span>, </span><strong>Tuberose</strong><span>, </span><strong>Opoponax</strong><span>, </span><strong>Violet</strong><span>, etc. And in 2015, they revisited this idea with a complete, breathtaking collection, created by Daniela Andrier and known as</span><strong> Les Infusions de Prada. </strong></p>\n<p data-mce-fragment=\"1\">﻿Shop all <a href=\"https://www.perfumenetwork.in/collections/prada\" title=\"Shop Prada perfumes for men and women today at Perfume Network India.\">Prada Perfumes</a> today at <a href=\"https://www.perfumenetwork.in\" title=\"Shop perfumes for men and women online in India at Perfume Network India.\">Perfume Network India</a>.</p>",
+    "published_at": "2021-12-18T00:07:20-05:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": {
+      "id": 1613644365999,
+      "created_at": "2022-07-29T08:55:06-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/ryan-gardner-yKaz9Cyccqo-unsplash.jpg?v=1659099307",
+      "alt": null
+    },
+    "products_count": 26
+  },
+  {
+    "id": 372753432751,
+    "title": "Promo Collection",
+    "handle": "promo-collection",
+    "description": null,
+    "published_at": "2026-08-11T05:21:28-04:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 29
+  },
+  {
+    "id": 333350043823,
+    "title": "Ralph Lauren",
+    "handle": "ralph-lauren",
+    "description": "",
+    "published_at": "2024-09-19T03:45:45-04:00",
+    "updated_at": "2026-10-26T07:17:35-04:00",
+    "image": null,
+    "products_count": 11
+  },
+  {
+    "id": 277101346991,
+    "title": "Rasasi",
+    "handle": "rasasi",
+    "description": "<span data-mce-fragment=\"1\">Over almost four decades, the company has built a solid foundation of pioneering entrepreneurial vigor, creating some of the best and most exclusive fragrances, which have established a worldwide reputation for quality, luxury and elegance.<br><br><meta charset=\"UTF-8\"></span>\n<p data-mce-fragment=\"1\"> </p>\n<p data-mce-fragment=\"1\"><meta charset=\"UTF-8\"><span data-mce-fragment=\"1\">Buy </span><a title=\"Buy Rasasi Perfume for Men and Women Online in India\" href=\"https://www.perfumenetwork.in/collections/rasasi\" data-mce-fragment=\"1\" data-mce-href=\"https://www.perfumenetwork.in/collections/rasasi\">Rasasi Perfume</a><span data-mce-fragment=\"1\"> for Men and Women Online in India at </span><span data-mce-fragment=\"1\"></span><a title=\"Buy Perfumes for men and women online in India at Perfume Network\" href=\"https://www.perfumenetwork.in\" data-mce-fragment=\"1\" target=\"_blank\" data-mce-href=\"https://www.perfumenetwork.in\">Perfume Network India</a></p>",
+    "published_at": "2021-08-24T10:15:17-04:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 90
+  },
+  {
+    "id": 492462375087,
+    "title": "Rasasi Hawas Collection",
+    "handle": "rasasi-hawas-collection",
+    "description": null,
+    "published_at": "2026-10-20T14:43:50-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 19
+  },
+  {
+    "id": 363733156015,
+    "title": "Rayhaan",
+    "handle": "rayhaan",
+    "description": "",
+    "published_at": "2026-02-06T02:21:10-05:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 19
+  },
+  {
+    "id": 308185071791,
+    "title": "Rosendo Mateu",
+    "handle": "rosendo-mateu",
+    "description": "<meta charset=\"UTF-8\"><span>Rosendo Mateu is a pinnacle of luxury fragrance, offering an exquisite collection of scents for the discerning individual. Each fragrance is meticulously crafted with the finest ingredients to create a symphony of aromas that exudes sophistication and refinement. With an unwavering commitment to quality and an attention to detail that is second to none, Rosendo Mateu fragrances are the epitome of luxury. Whether you seek a signature scent or a special gift for a loved one, Rosendo Mateu offers a fragrance to complement every taste and occasion. Indulge in the luxurious world of Rosendo Mateu and experience the ultimate expression of olfactory elegance.</span>",
+    "published_at": "2023-04-12T03:24:19-04:00",
+    "updated_at": "2026-09-28T20:01:02-04:00",
+    "image": {
+      "id": 1617592352943,
+      "created_at": "2023-04-12T03:26:05-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/rosendomateu_desktop_about_1140x600_c5802747-a711-4287-a9ea-828ca0c89615.jpg?v=1681284365",
+      "alt": null
+    },
+    "products_count": 6
+  },
+  {
+    "id": 363732926639,
+    "title": "Rue Broca",
+    "handle": "rue-broca",
+    "description": "",
+    "published_at": "2026-02-06T02:03:46-05:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 2
+  },
+  {
+    "id": 280978325679,
+    "title": "Salvatore Ferragamo",
+    "handle": "salvatore-ferragamo-1",
+    "description": "<p>S<span data-mce-fragment=\"1\">alvatore Ferragamo was an Italian shoe designer noted for his creative and scientific approach to footwear design. His shop initially offered shoe repair and made-to-measure shoes, but he began designing footwear for the film industry and became known as the \"shoemaker to the stars.</span></p>\n<p><span data-mce-fragment=\"1\">Setting up a shop in Florence, Ferragamo catered to the wealthiest of clients, including celebrities and notable political figures of the day. Ferragamo passed away in 1960, but the Ferragamo company has remained in family hands and expanded its empire to include bags, eyewear, accessories, watches, ready-to-wear clothing and perfumes.</span></p>\n<p><span data-mce-fragment=\"1\">The first fragrance, Salvatore Ferragamo for women, was launched in 1998. In 2001, Ferragamo Parfums was established, which releases fragrances under the Ferragamo and Incanto names.</span></p>\n<p><span data-mce-fragment=\"1\">Shop <a href=\"https://www.perfumenetwork.in/collections/salvatore-ferragamo-1\" target=\"_blank\" title=\"Shop Salvatore Ferragamo perfumes online at Perfume Network India\" rel=\"noopener noreferrer\">Salvatore Ferragamo Fragrances</a> for Men and Women today at <a href=\"https://www.perfumenetwork.in\" title=\"Shop Perfumes for Men and Women Online in India at Perfume Network India.\">Perfume Network India</a>.</span></p>",
+    "published_at": "2021-10-25T03:06:48-04:00",
+    "updated_at": "2026-09-28T20:01:12-04:00",
+    "image": {
+      "id": 1613588365487,
+      "created_at": "2022-07-25T07:24:11-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/343444702_se9FmyG6U-SgvR010F4M4BY1llM1w-C8mGTif8qPZiw.jpg?v=1658748251",
+      "alt": null
+    },
+    "products_count": 26
+  },
+  {
+    "id": 361890644143,
+    "title": "Sampling Set",
+    "handle": "sampling-set",
+    "description": "",
+    "published_at": "2025-12-23T00:16:31-05:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 305
+  },
+  {
+    "id": 272552591535,
+    "title": "Shower Gel",
+    "handle": "shower-gel",
+    "description": "",
+    "published_at": "2021-07-11T06:47:40-04:00",
+    "updated_at": "2026-09-28T20:00:54-04:00",
+    "image": null,
+    "products_count": 1
+  },
+  {
+    "id": 285338861743,
+    "title": "special collection",
+    "handle": "special",
+    "description": "",
+    "published_at": "2022-02-16T01:11:44-05:00",
+    "updated_at": "2026-10-28T08:03:14-04:00",
+    "image": null,
+    "products_count": 2650
+  },
+  {
+    "id": 293804474543,
+    "title": "SPECIALS",
+    "handle": "specials",
+    "description": "",
+    "published_at": "2022-08-01T09:58:04-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 111
+  },
+  {
+    "id": 274702893231,
+    "title": "Spicy",
+    "handle": "spicy",
+    "description": "",
+    "published_at": "2021-07-25T07:46:10-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 5
+  },
+  {
+    "id": 271001419951,
+    "title": "Summer Essentials",
+    "handle": "summer-essentials",
+    "description": "",
+    "published_at": "2021-06-23T22:31:11-04:00",
+    "updated_at": "2026-10-28T08:03:14-04:00",
+    "image": null,
+    "products_count": 23
+  },
+  {
+    "id": 305876926639,
+    "title": "Swiss Arabian",
+    "handle": "swiss-arabian",
+    "description": "",
+    "published_at": "2022-12-30T01:57:18-05:00",
+    "updated_at": "2026-10-18T07:13:40-04:00",
+    "image": null,
+    "products_count": 38
+  },
+  {
+    "id": 281289293999,
+    "title": "THANKYOU",
+    "handle": "thankyou",
+    "description": "",
+    "published_at": "2021-11-08T06:33:01-05:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 113
+  },
+  {
+    "id": 316515418287,
+    "title": "The Best for Women",
+    "handle": "the-best-for-women",
+    "description": "",
+    "published_at": "2024-01-06T11:54:24-05:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 7
+  },
+  {
+    "id": 349510303919,
+    "title": "THE BEST OF MIDDLE EAST",
+    "handle": "the-best-of-middle-east",
+    "description": "",
+    "published_at": "2025-05-01T07:02:19-04:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 18
+  },
+  {
+    "id": 356737908911,
+    "title": "The Best Perfumes for Women",
+    "handle": "the-best-perfumes-for-women",
+    "description": "",
+    "published_at": "2025-09-14T04:25:01-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 16
+  },
+  {
+    "id": 316122038447,
+    "title": "The Bestsellers of All Time",
+    "handle": "the-bestsellers-of-all-time",
+    "description": "",
+    "published_at": "2024-01-02T13:09:27-05:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 21
+  },
+  {
+    "id": 305742020783,
+    "title": "The Dior Sauvage Collection",
+    "handle": "the-sauvage-collection",
+    "description": "<h3><meta charset=\"UTF-8\"></h3>\n<div class=\"flex-1 overflow-hidden\">\n<div class=\"react-scroll-to-bottom--css-jmqfv-79elbk h-full dark:bg-gray-800\">\n<div class=\"react-scroll-to-bottom--css-jmqfv-1n7m0yu\">\n<div class=\"flex flex-col items-center text-sm h-full dark:bg-gray-800\">\n<div class=\"text-base gap-4 md:gap-6 m-auto md:max-w-2xl lg:max-w-2xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0\">\n<div class=\"relative flex w-[calc(100%-50px)] md:flex-col lg:w-[calc(100%-115px)]\">\n<div class=\"min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap\">\n<div class=\"markdown prose w-full break-words dark:prose-invert light\">\n<p>The Dior Sauvage collection is a range of luxurious, masculine fragrances from the iconic French fashion house. These scents are inspired by the wild and untamed spirit of the great outdoors, and are designed to evoke a sense of adventure and freedom. The collection features a variety of different fragrances, each with its own unique blend of top, heart, and base notes. From the fresh and invigorating Dior Sauvage EDP, to the warm and sensual Dior Sauvage Parfum, there is a fragrance to suit every taste. With sleek and elegant packaging, the Dior Sauvage collection is the perfect choice for any man who wants to make a statement.</p>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div>\n</div>\n<style><!--\nvideo { \n\ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\n\n}\n--></style>\n<div class=\"absolute bottom-0 left-0 w-full border-t md:border-t-0 dark:border-white/20 md:border-transparent md:dark:border-transparent md:bg-vert-light-gradient bg-white dark:bg-gray-800 md:!bg-transparent dark:md:bg-vert-dark-gradient\"><video muted=\"\" playsinline=\"\" loop=\"loop\" autoplay=\"autoplay\"> \n<source src=\"https://cdn.shopify.com/videos/c/vp/dfaae549666a49f0b2e08ea7f7214af9/dfaae549666a49f0b2e08ea7f7214af9.m3u8\"></video></div>",
+    "published_at": "2022-12-22T04:39:47-05:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 9
+  },
+  {
+    "id": 349451747503,
+    "title": "The Rasasi Hawas Collection",
+    "handle": "the-rasasi-hawas-collection",
+    "description": "",
+    "published_at": "2025-04-29T05:57:00-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 4
+  },
+  {
+    "id": 268765397167,
+    "title": "Thierry Mugler",
+    "handle": "thierry-mugler",
+    "description": "",
+    "published_at": "2021-05-29T01:19:02-04:00",
+    "updated_at": "2026-09-28T20:01:13-04:00",
+    "image": null,
+    "products_count": 11
+  },
+  {
+    "id": 330944577711,
+    "title": "Tiffany & Co.",
+    "handle": "tiffany-co",
+    "description": "",
+    "published_at": "2024-08-14T09:05:42-04:00",
+    "updated_at": "2026-09-28T20:01:18-04:00",
+    "image": null,
+    "products_count": 6
+  },
+  {
+    "id": 274771378351,
+    "title": "Tom Ford",
+    "handle": "tom-ford",
+    "description": "<p><meta charset=\"UTF-8\"><span data-mce-fragment=\"1\">The designer created Tom Ford Beauty in partnership with The Estée Lauder Companies Executive Group President, John Demsey and launched in 2006 with the now-iconic Black Orchid—a scent originally positioned for women but adopted by men. This was followed by the introduction of Ford’s premium Private Blend range in 2007 with a selection of 12 scents, many of which remain best-sellers today: Tuscan Leather, Oud Wood, Neroli Portofino and Tobacco Vanille. </span></p>\n<p><span data-mce-fragment=\"1\">Similar to the way that Ford had revolutionized fashion when he became creative director of Gucci in 1994 by bringing back sensuality and modernizing notions of decadence, the unveiling of Private Blend was groundbreaking: It shifted the dialogue around what a designer fragrance could be, and raised the bar on could be accomplished within the realm of luxury niche perfume. Tom Ford Private Blend represents creativity without constraints—the palette of exquisite ingredients and the storytelling behind each scent makes them compelling not for connoisseurs, but also inspires the fragrance-curious to explore, to begin to learn the language. </span></p>\n<p><span data-mce-fragment=\"1\">Buy all <a href=\"https://www.perfumenetwork.in/collections/tom-ford\" title=\"Buy Tom Ford Perfumes for Men and Women Online in India at Perfume Network India\">Tom Ford Perfumes</a> today at <a href=\"https://www.perfumenetwork.in\" title=\"Buy Perfumes for men and women online in India at Perfume Network India.\">Perfume Network India.</a></span></p>",
+    "published_at": "2021-07-26T12:18:34-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": {
+      "id": 1613644628143,
+      "created_at": "2022-07-29T10:40:14-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/tumblr_mwiz21QQ8A1sittf3o1_1280.jpg?v=1659105894",
+      "alt": null
+    },
+    "products_count": 37
+  },
+  {
+    "id": 283701805231,
+    "title": "Travel Sizes",
+    "handle": "travel-sizes",
+    "description": "",
+    "published_at": "2022-01-14T11:35:12-05:00",
+    "updated_at": "2025-11-12T22:29:19-05:00",
+    "image": null,
+    "products_count": 0
+  },
+  {
+    "id": 272378790063,
+    "title": "Unisex",
+    "handle": "unisex",
+    "description": "",
+    "published_at": "2021-07-10T04:14:00-04:00",
+    "updated_at": "2026-10-11T07:15:36-04:00",
+    "image": null,
+    "products_count": 5
+  },
+  {
+    "id": 305831903407,
+    "title": "United Colors of Benetton",
+    "handle": "united-colors-of-benetton",
+    "description": "",
+    "published_at": "2022-12-28T00:32:37-05:00",
+    "updated_at": "2026-09-28T20:01:07-04:00",
+    "image": null,
+    "products_count": 20
+  },
+  {
+    "id": 284852519087,
+    "title": "Valentine Collection",
+    "handle": "valentine-collection",
+    "description": "",
+    "published_at": "2022-02-05T16:02:50-05:00",
+    "updated_at": "2026-10-28T08:03:14-04:00",
+    "image": {
+      "id": 1609692610735,
+      "created_at": "2022-02-05T16:12:25-05:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/his-hers-fragrances-l.jpg?v=1644095545",
+      "alt": null
+    },
+    "products_count": 135
+  },
+  {
+    "id": 308273578159,
+    "title": "Valentino",
+    "handle": "valentino",
+    "description": "<strong><meta charset=\"UTF-8\"></strong>\n<div class=\"group w-full text-gray-800 dark:text-gray-100 border-b border-black/10 dark:border-gray-900/50 bg-gray-50 dark:bg-[#444654]\">\n<div class=\"text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0 m-auto\">\n<div class=\"relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]\">\n<div class=\"flex flex-grow flex-col gap-3\">\n<div class=\"min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap\">\n<div class=\"markdown prose w-full break-words dark:prose-invert light\">\n<p><strong>Valentino, the epitome of opulent fashion, has created a range of fragrances that exude luxurious elegance. Each perfume in the collection is crafted with the utmost attention to detail, using only the finest ingredients to create a sensory experience that is second to none. From the masculine notes of iris, leather, and vanilla found in Valentino Uomo Intense, to the feminine and sensual blend of jasmine, vanilla, and pink pepper in Valentino Born in Roma, every scent embodies the sophisticated glamour of the Valentino brand. Immerse yourself in the luxurious world of Valentino perfumes and indulge in the rich sensory experience that awaits.</strong></p>\n</div>\n</div>\n</div>\n<div class=\"flex justify-between lg:block\">\n<div class=\"text-gray-400 flex self-end lg:self-center justify-center mt-2 gap-2 md:gap-3 lg:gap-1 lg:absolute lg:top-0 lg:translate-x-full lg:right-0 lg:mt-0 lg:pl-2 visible\"></div>\n</div>\n</div>\n</div>\n</div>",
+    "published_at": "2023-04-18T04:32:57-04:00",
+    "updated_at": "2026-10-25T07:13:56-04:00",
+    "image": {
+      "id": 1617672601775,
+      "created_at": "2023-04-18T04:32:56-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/8.20.22-Valentino-Store-Front.jpg?v=1681806777",
+      "alt": null
+    },
+    "products_count": 13
+  },
+  {
+    "id": 282800554159,
+    "title": "Value for Money",
+    "handle": "under-5000",
+    "description": "",
+    "published_at": "2021-12-28T12:19:26-05:00",
+    "updated_at": "2026-10-28T08:03:15-04:00",
+    "image": null,
+    "products_count": 811
+  },
+  {
+    "id": 268765495471,
+    "title": "Versace",
+    "handle": "versace",
+    "description": "<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\nborder-radius: 15px;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/c36afebcdfda437686cf49794847dfc2/c36afebcdfda437686cf49794847dfc2.m3u8\"></video>",
+    "published_at": "2021-05-29T01:19:03-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 24
+  },
+  {
+    "id": 282794786991,
+    "title": "Viktor & Rolf",
+    "handle": "viktor-rolf",
+    "description": "<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\nborder-radius: 15px;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/14c68d06e0ed4770802029e1d4128d3f/14c68d06e0ed4770802029e1d4128d3f.m3u8\"></video>",
+    "published_at": "2021-12-28T04:29:19-05:00",
+    "updated_at": "2026-10-18T07:13:40-04:00",
+    "image": null,
+    "products_count": 11
+  },
+  {
+    "id": 276841332911,
+    "title": "WELCOME25",
+    "handle": "welcome25",
+    "description": "",
+    "published_at": "2021-08-20T23:04:31-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": null,
+    "products_count": 50
+  },
+  {
+    "id": 270999126191,
+    "title": "Women",
+    "handle": "women",
+    "description": "<h3>\" A women who doesn't wear a fragrance, has no future\" - Coco Chanel﻿</h3>",
+    "published_at": "2021-06-23T21:57:28-04:00",
+    "updated_at": "2026-10-28T07:11:52-04:00",
+    "image": {
+      "id": 1613664714927,
+      "created_at": "2022-07-31T08:02:17-04:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/pexels-alexander-krivitskiy-1682411.jpg?v=1659270340",
+      "alt": null
+    },
+    "products_count": 266
+  },
+  {
+    "id": 271133933743,
+    "title": "Woody",
+    "handle": "woody",
+    "description": "",
+    "published_at": "2021-06-25T14:41:36-04:00",
+    "updated_at": "2026-10-27T07:16:22-04:00",
+    "image": null,
+    "products_count": 47
+  },
+  {
+    "id": 268779421871,
+    "title": "wrapin",
+    "handle": "wrapin",
+    "description": null,
+    "published_at": "2021-05-29T08:06:23-04:00",
+    "updated_at": "2025-11-12T22:29:16-05:00",
+    "image": null,
+    "products_count": 0
+  },
+  {
+    "id": 305740742831,
+    "title": "Xerjoff",
+    "handle": "xerjoff",
+    "description": "<h1>Xerjoff's fragrances are crafted with the finest and rarest ingredients, from the luxurious and rare Cambodian oud in \"Zafar\" to the hypnotic and intoxicating notes of jasmine and ylang-ylang in \"Damarose.\" With every spritz, you'll experience a sensory journey like no other, evoking the true essence of pure indulgence.</h1>\n<p><meta charset=\"UTF-8\"><span>Xerjoff's perfumes are not just fragrances; they are an invitation to immerse yourself in a world of luxury and sophistication. Each detail, from the intricate design of the bottles to the meticulously crafted blends within, has been thoughtfully considered to create a truly opulent experience.</span></p>\n<p><span><br></span></p>\n\n<style>\n \nvideo { \n \ndisplay: block;\nmargin: 0 auto;\nwidth: 100%;\nheight: 50%;\n \n}\n \n</style>\n \n \n<video autoplay loop playsinline muted> \n<source src=\"https://cdn.shopify.com/videos/c/vp/3011b5c596284ddd928b619d029ddf3f/3011b5c596284ddd928b619d029ddf3f.m3u8\"></video>",
+    "published_at": "2022-12-22T02:11:05-05:00",
+    "updated_at": "2026-09-28T20:01:20-04:00",
+    "image": {
+      "id": 1615845458095,
+      "created_at": "2022-12-22T02:11:04-05:00",
+      "src": "https://cdn.shopify.com/s/files/1/0572/8183/9279/collections/TORINO.jpg?v=1671693065",
+      "alt": null
+    },
+    "products_count": 47
+  },
+  {
+    "id": 305832001711,
+    "title": "Yves Saint Laurent",
+    "handle": "yves-saint-laurent-1",
+    "description": "<meta charset=\"UTF-8\">\n<p data-mce-fragment=\"1\"><span data-mce-fragment=\"1\">In 1971 </span><strong data-mce-fragment=\"1\">Yves Saint Laurent</strong><span data-mce-fragment=\"1\"> launched his first fragrance for men, </span><strong data-mce-fragment=\"1\">Pour Homme</strong><span data-mce-fragment=\"1\"> – posing nude for the visual, in stark representation of the values of the Yves Saint Laurent House, comfort and sophistication coupled with modernity and audacity. In the same year, he created a fragrance for the independent, free-spirited woman who shopped at his new boutique: </span><strong data-mce-fragment=\"1\">Rive Gauche</strong><span data-mce-fragment=\"1\">. At a time when fragrances were presented in classically feminine bottles, best stored on the dressing table at home, it was the first fragrance to be launched packaged in a tin can – and all these years later, it’s still the only fragrance packaged that way.</span></p>\n<p data-mce-fragment=\"1\"><meta charset=\"UTF-8\"><strong data-mce-fragment=\"1\">Yves Saint Lauren</strong><span data-mce-fragment=\"1\">t retains its reputation for absolute creativity – in fragrance, with Black Opium, Mon Parfum and many more.</span></p>\n<p data-mce-fragment=\"1\">Shop all <strong data-mce-fragment=\"1\"><a title=\"Shop Yves Saint Laurent perfumes for men and women online in india at perfume network india\" href=\"https://www.perfumenetwork.in/collections/yves-saint-laurent\" data-mce-fragment=\"1\" data-mce-href=\"https://www.perfumenetwork.in/collections/yves-saint-laurent\">Yves Saint Laurent Perfumes</a></strong> today at <strong data-mce-fragment=\"1\"><a title=\"Buy Perfumes for Men and Women Online in India at Perfume Network India.\" href=\"https://www.perfumenetwork.in\" data-mce-fragment=\"1\" data-mce-href=\"https://www.perfumenetwork.in\">Perfume Network India.</a></strong></p>",
+    "published_at": "2022-12-28T00:40:46-05:00",
+    "updated_at": "2026-10-28T07:11:53-04:00",
+    "image": null,
+    "products_count": 12
+  }
+]

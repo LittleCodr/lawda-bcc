@@ -97,8 +97,14 @@ export default async function CollectionPage(props: {
       filteredProducts = filteredProducts.filter(p => {
         const titleStr = (p.title || "").toLowerCase();
         const typeStr = (p.product_type || "").toLowerCase();
+        const vendorStr = (p.vendor || "").toLowerCase();
         const tagsStr = (Array.isArray(p.tags) ? p.tags.join(" ") : (p.tags || "")).toLowerCase();
         
+        // Exact vendor match
+        if (vendorStr === searchStr || vendorStr.replace(/[^a-z0-9]/g, '') === searchStr.replace(/[^a-z0-9]/g, '')) {
+          return true;
+        }
+
         // Intent mappings
         if (slug.includes('festive') || slug.includes('diwali')) {
           return true; // Show all products for festive and diwali collections
@@ -110,13 +116,13 @@ export default async function CollectionPage(props: {
         }
 
         if (slug.includes('gifts-for-her') || slug.includes('girlfriend') || slug.includes('wife') || slug.includes('women') || slug.includes('sister')) {
-          return ['necklace', 'earring', 'ring', 'anklet', 'bracelet', 'darling'].some(t => 
-            typeStr.includes(t) || titleStr.includes(t)
+          return ['necklace', 'earring', 'ring', 'anklet', 'bracelet', 'darling', 'women', 'for her', 'femme'].some(t => 
+            typeStr.includes(t) || titleStr.includes(t) || tagsStr.includes(t)
           );
         }
         if (slug.includes('gifts-for-him') || slug.includes('boyfriend') || slug.includes('husband') || slug.includes('men') || slug.includes('brother')) {
-          return ['cufflink', 'wallet', 'men', 'bracelet', 'keychain', 'perfume', 'edp'].some(t => 
-            typeStr.includes(t) || titleStr.includes(t)
+          return ['cufflink', 'wallet', 'men', 'bracelet', 'keychain', 'perfume', 'edp', 'for him', 'homme'].some(t => 
+            typeStr.includes(t) || titleStr.includes(t) || tagsStr.includes(t)
           );
         }
 
@@ -142,10 +148,10 @@ export default async function CollectionPage(props: {
         const words = searchStr.split(' ').filter(w => !ignoreWords.includes(w) && w.length > 2);
         
         if (words.length > 0) {
-          return words.some(w => titleStr.includes(w) || typeStr.includes(w) || tagsStr.includes(w));
+          return words.some(w => titleStr.includes(w) || typeStr.includes(w) || vendorStr.includes(w) || tagsStr.includes(w));
         }
 
-        return titleStr.includes(searchStr) || typeStr.includes(searchStr) || tagsStr.includes(searchStr);
+        return titleStr.includes(searchStr) || typeStr.includes(searchStr) || vendorStr.includes(searchStr) || tagsStr.includes(searchStr);
       });
     }
   }

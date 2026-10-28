@@ -20,13 +20,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: "Product Not Found | Octopus Everlasting Gifts" };
   }
 
-  const isPerfume = product.product_type?.toLowerCase() === 'perfume' || (product.tags || []).some((t: string) => typeof t === 'string' && t.toLowerCase() === 'perfume');
-  const title = isPerfume 
+  const isHarshBeniwal = product.vendor === "Octopus Perfumes by Harsh Beniwal" || ['overlord', 'paradox', 'rhapsody', 'your-move', 'somersault', 'promised', 'outlaw', 'mirage', 'darling-women'].includes(product.handle);
+  const isPerfume = isHarshBeniwal || (product.product_type || '').toLowerCase().includes('perfume') || (product.tags || []).some((t: string) => typeof t === 'string' && t.toLowerCase().includes('perfume'));
+  const title = isHarshBeniwal 
     ? `${product.title} 50ML EDP by Harsh Beniwal | Diwali Luxury Fragrance Gift 2026`
+    : isPerfume
+    ? `${product.title} | Luxury Fragrance | Octopus Perfumes`
     : `${product.title} | Personalized Keepsake | Octopus Everlasting Gifts`;
-  const cleanDescription = isPerfume
+  const cleanDescription = isHarshBeniwal
     ? `Buy 100% original ${product.title} 50ML Eau De Parfum by Harsh Beniwal for Diwali 2026. 25%+ French oils, 12H+ beast-mode sillage. Flat 20% OFF with code DIWALI20 + Free 7ML Paradox tester pack + Deluxe Diwali gift packaging & Express Pan-India Delivery!`
-    : (product.body_html?.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().substring(0, 160) || "Handcrafted personalized gifts with free pan-India delivery.");
+    : (product.body_html?.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim().substring(0, 160) || `${product.title} - 100% authentic fragrance with express pan-India delivery.`);
   const imageUrl = product.images && product.images.length > 0 ? (product.images[0].local_src || product.images[0].src) : "/logo.png";
   const absoluteImageUrl = imageUrl.startsWith("http") ? imageUrl : `https://www.octopusperfume.in${imageUrl}`;
   const productUrl = `https://www.octopusperfume.in/products/${slug}`;
@@ -41,7 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title,
       description: cleanDescription,
       url: productUrl,
-      siteName: isPerfume ? "Octopus Perfumes by Harsh Beniwal" : "Octopus Everlasting Gifts",
+      siteName: isHarshBeniwal ? "Octopus Perfumes by Harsh Beniwal" : (isPerfume ? "Octopus Luxury Perfumes" : "Octopus Everlasting Gifts"),
       images: [
         {
           url: absoluteImageUrl,
@@ -79,7 +82,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     notFound();
   }
 
-  const isPerfume = product.product_type?.toLowerCase() === 'perfume' || (product.tags || []).some((t: string) => typeof t === 'string' && t.toLowerCase() === 'perfume');
+  const isHarshBeniwal = product.vendor === "Octopus Perfumes by Harsh Beniwal" || ['overlord', 'paradox', 'rhapsody', 'your-move', 'somersault', 'promised', 'outlaw', 'mirage', 'darling-women'].includes(product.handle);
+  const isPerfume = isHarshBeniwal || (product.product_type || '').toLowerCase().includes('perfume') || (product.tags || []).some((t: string) => typeof t === 'string' && t.toLowerCase().includes('perfume'));
 
   // Derive price for schema
   let minPrice = "0";
@@ -107,7 +111,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     "mpn": product.variants?.[0]?.sku || `OCT-${product.id}`,
     "brand": {
       "@type": "Brand",
-      "name": isPerfume ? "Octopus Perfumes by Harsh Beniwal" : "Octopus Everlasting Gifts"
+      "name": product.vendor || (isPerfume ? "Octopus Perfumes" : "Octopus Everlasting Gifts")
     },
     "offers": {
       "@type": "Offer",
@@ -119,7 +123,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       "availability": "https://schema.org/InStock",
       "seller": {
         "@type": "Organization",
-        "name": isPerfume ? "Octopus Perfumes by Harsh Beniwal" : "Octopus Everlasting Gifts"
+        "name": isHarshBeniwal ? "Octopus Perfumes by Harsh Beniwal" : (product.vendor || "Octopus Luxury Perfumes")
       },
       "shippingDetails": {
         "@type": "OfferShippingDetails",

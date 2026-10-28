@@ -1,0 +1,1116 @@
+{
+  "inventoryDate": "2026-10-28T12:37:41.406Z",
+  "rationale": "Catalog migration exclusively targets products and authorized product collections. Non-product pages, articles, and blogs are catalogued for archival/reference and excluded from product catalog import to preserve copyright, terms of service, and prevent content pollution.",
+  "pages": [
+    {
+      "loc": "https://www.perfumenetwork.in/pages/terms-and-conditions",
+      "lastmod": "2026-05-19T13:12:29-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/privacy-policy",
+      "lastmod": "2021-06-10T12:05:32-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/swym-share-wishlist",
+      "lastmod": "2021-05-29T03:26:49-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/shipping-and-returns",
+      "lastmod": "2025-09-22T01:19:28-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/contact-us",
+      "lastmod": "2025-12-11T00:42:09-05:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/search-results-page",
+      "lastmod": "2021-12-01T11:16:33-05:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/sca-affiliate-empty-page",
+      "lastmod": "2022-01-20T13:47:14-05:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/profile",
+      "lastmod": "2022-06-12T02:32:17-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/profile-edit",
+      "lastmod": "2022-06-12T02:32:18-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/set-password",
+      "lastmod": "2022-06-12T02:32:18-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/edit-notifications",
+      "lastmod": "2022-06-12T02:32:19-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/reward",
+      "lastmod": "2022-06-12T02:32:23-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/copy-of-shipping-and-returns",
+      "lastmod": "2023-02-06T03:46:32-05:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/shipping-and-returns-policy",
+      "lastmod": "2026-05-19T13:08:08-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/nnnn",
+      "lastmod": "2023-02-06T03:50:19-05:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/copy-of-terms-and-conditions",
+      "lastmod": "2023-02-06T03:55:58-05:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/personalised-gifting",
+      "lastmod": "2024-08-25T12:12:45-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/engraving",
+      "lastmod": "2024-09-26T02:23:53-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/faqs",
+      "lastmod": "2026-03-19T01:19:41-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/track-order",
+      "lastmod": "2025-08-05T16:42:30-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/copy-of-track-my-order-1",
+      "lastmod": "2025-08-24T13:51:47-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/kp-account",
+      "lastmod": "2026-03-05T01:20:01-05:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/reviews-1",
+      "lastmod": "2026-06-10T16:47:47-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/faqs-1",
+      "lastmod": "2026-07-26T07:11:06-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/pages/contact",
+      "lastmod": "2026-08-26T00:10:10-04:00",
+      "changefreq": "weekly",
+      "images": []
+    }
+  ],
+  "blogs": [
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news",
+      "lastmod": "2026-10-02T06:20:22-04:00",
+      "changefreq": "weekly",
+      "images": []
+    }
+  ],
+  "articles": [
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/picking-the-right-fragrance-for-the-indian-weather",
+      "lastmod": "2021-08-29T06:04:01-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/kadir-celep-23XqRslJgVI-unsplash.jpg?v=1630165069",
+          "title": "Picking the right fragrance for the Indian weather",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/whats-the-difference-between-deodorant-deostick-and-perfume",
+      "lastmod": "2022-01-09T02:33:25-05:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/where-should-you-apply-your-perfume",
+      "lastmod": "2022-04-10T14:54:55-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/rsz_pexels-cottonbro-4659792.jpg?v=1649616895",
+          "title": "Where should you apply your perfume?",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-perfumes-for-men-in-india",
+      "lastmod": "2022-06-07T02:04:07-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/tron-le-hWZCczs66jQ-unsplash.jpg?v=1654581847",
+          "title": "Best Perfumes for Men in India",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/does-size-matter",
+      "lastmod": "2022-04-10T15:16:10-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/Does_Size_Matter.png?v=1649618170",
+          "title": "Does Size Matter?",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/3-reasons-why-you-need-to-find-your-signature-scent",
+      "lastmod": "2022-06-07T02:03:14-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/pexels-cottonbro-4612154_f1e05741-ebe7-4ff8-8d5a-a02f114af04d.jpg?v=1654580934",
+          "title": "3 Reasons Why You Need to Find Your Signature Scent",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/niche-perfumes-are-they-worth-your-money",
+      "lastmod": "2022-06-12T04:25:51-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/custom_resized_094f6261-747c-4db5-882f-7eaab579a953.jpg?v=1654748701",
+          "title": "Niche Perfumes - Are They Worth Your Money?",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/top-office-perfumes-for-men-in-india-the-5-best-scents-to-make-an-impression",
+      "lastmod": "2022-06-16T02:38:07-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/custom_resized_ec08a0c6-2001-4aff-ac55-3430f15e893a.jpg?v=1655095806",
+          "title": "Top Office Perfumes for Men in India – The 5 Best Scents to Make an Impression",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/how-is-perfume-made-the-secrets-of-fragrance-creation",
+      "lastmod": "2022-08-12T07:26:19-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/custom_resized_407d2307-3b6a-46e1-b93c-2e5661130c82.jpg?v=1660196117",
+          "title": "How are Perfumes Made? The Secrets of Fragrance Creation",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-perfumes-for-women-in-india-the-top-10",
+      "lastmod": "2022-06-29T04:12:48-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/custom_resized_ba77dcbe-2c82-4f9c-b01b-a24b17c3ff9e.jpg?v=1656490368",
+          "title": "Best Perfumes for Women in India: The Top 10",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/looking-for-the-perfect-perfume-check-out-our-beginners-guide-to-finding-the-best-perfume-for-you",
+      "lastmod": "2022-07-14T04:53:07-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/custom_resized_c1a6c0e8-dd67-4150-aece-ef55bc8e7615.jpg?v=1657788783",
+          "title": "Looking for the perfect perfume? Check out our beginner&apos;s guide to finding the best perfume for you!",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/the-top-3-summer-perfumes-for-men",
+      "lastmod": "2022-08-04T01:54:22-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/saud-edum-5sTxCIF2qZg-unsplash.jpg?v=1659173012",
+          "title": "The Top 3 Summer Perfumes for Men in India",
+          "caption": "Top 3 summer perfumes for men"
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/do-fragrances-have-an-expiry-date",
+      "lastmod": "2022-08-08T09:32:11-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/laura-chouette-mqUhF0yIxwk-unsplash.jpg?v=1659952863",
+          "title": "Do perfumes have an expiry date?",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/fragrances-that-are-better-than-dior-sauvage-alternatives-for-dior-sauvage",
+      "lastmod": "2022-08-04T05:13:35-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/9836d370-4e08-4365-874d-62dcc2d615ec.jpg?v=1659604294",
+          "title": "Fragrances that are better than Dior Sauvage - Alternatives for Dior Sauvage",
+          "caption": "Dior Sauvage available at Perfume Network India"
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/5-reasons-why-you-need-afnan-9pm-in-your-perfume-collection",
+      "lastmod": "2022-07-25T01:46:40-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/03_9PM_1080x1350_c057dc6b-c59b-4a7c-bf9b-03dfd7ccbf97.jpg?v=1658341374",
+          "title": "5 Reasons why you need Afnan 9PM in your Perfume Collection",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/what-perfumes-are-worn-by-celebrities",
+      "lastmod": "2022-08-23T02:50:34-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/why-are-perfumes-expensive",
+      "lastmod": "2022-09-05T01:49:35-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/custom_resized_5e95382d-b2a3-4d89-9954-9a4b68776ec8.jpg?v=1662356942",
+          "title": "Why are perfumes expensive?",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-fall-perfumes-for-men",
+      "lastmod": "2022-09-09T02:47:22-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/custom_resized_ea530e0a-5b32-41f3-8793-51ba6aa7226f.jpg?v=1662706010",
+          "title": "Best Fall Perfumes for Men 2022",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-perfumes-for-women-under-10-000-2022",
+      "lastmod": "2022-09-13T02:47:39-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/b94f11e538091808d836cbaebc281249.gif?v=1662969798",
+          "title": "Best Perfume for Women Under ₹10,000 (2022)",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-lattafa-perfumes-for-men-sept-2022",
+      "lastmod": "2022-09-26T04:10:20-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-perfumes-for-2023",
+      "lastmod": "2022-12-18T03:19:43-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/dior_beauty_brand.jpg?v=1671284298",
+          "title": "BEST PERFUMES FOR 2023",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/what-perfumes-are-worn-by-celebrities-boxing-edition",
+      "lastmod": "2023-01-27T08:22:06-05:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/the-art-of-fragrance-the-top-mens-perfumes-for-immediate-impact",
+      "lastmod": "2023-01-20T02:36:40-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/ConvertOut-Resized-wright-brand-bacon-NVBL6aulKBY-unsplash.jpg?v=1674200035",
+          "title": "The Art of Fragrance: The Top Men&apos;s Perfumes for Immediate Impact",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/valentines-day-gifting-guide-2023",
+      "lastmod": "2023-02-08T02:39:37-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/pexels-dziana-hasanbekava-6401684.png?v=1675841945",
+          "title": "Valentine&apos;s Day Gifting Guide 2023",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/creating-a-lasting-impression-the-importance-of-a-signature-fragrance-in-2023",
+      "lastmod": "2023-03-06T02:32:03-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/darryl-low-IihqitOqdjE-unsplash.jpg?v=1678087682",
+          "title": "Creating a Lasting Impression: The Importance of a Signature Fragrance in 2023",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/exploring-niche-perfume-brands-hidden-gems-in-the-fragrance-world",
+      "lastmod": "2023-07-31T02:12:10-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/Snapinsta.app_315656929_840615870468412_1858072232539042729_n_1024.jpg?v=1688913797",
+          "title": "Exploring Niche Perfume Brands: Hidden Gems in the Fragrance World",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/unveiling-the-secrets-of-niche-perfumes-what-makes-them-unique",
+      "lastmod": "2023-07-10T10:25:21-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/Snapinsta.app_192748518_156870343119743_7881793374350585257_n_1080.jpg?v=1688918013",
+          "title": "Unveiling the Secrets of Niche Perfumes: What Makes Them Unique?",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/julien-sprecher-redefining-luxury-in-niche-perfumery",
+      "lastmod": "2023-07-15T01:48:33-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/cfd8c1c54f8a6af2a9479496c36b8b75.jpg?v=1689066753",
+          "title": "Julien Sprecher : Redefining Luxury in Niche Perfumery",
+          "caption": "Julien Sprecher"
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/maison-martin-margiela-a-pioneering-force-in-luxury-niche-perfumery",
+      "lastmod": "2023-07-21T03:03:40-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/Reiner-9682_jpg.webp?v=1689070312",
+          "title": "Maison Martin Margiela: A Pioneering Force in Luxury Niche Perfumery",
+          "caption": "Maison Martin Margiela"
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/francois-demachy-a-creative-maestro-shaping-the-fragrance-industry",
+      "lastmod": "2023-08-23T04:16:00-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/20180717114757-12233326-MaisonChristianDior2_resized_773x1158_3adc1bcc-0a0d-4bae-8caa-065ab03351f8.webp?v=1692778192",
+          "title": "Francois Demachy: A Creative Maestro Shaping the Fragrance Industry",
+          "caption": "Francois Demachy"
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/elevate-your-autumn-essence-the-pinnacle-of-mens-fragrances-for-fall",
+      "lastmod": "2023-09-28T02:45:56-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/adam-przeniewski-ikuCEleRRCI-unsplash.jpg?v=1695883226",
+          "title": "Elevate Your Autumn Essence: The Pinnacle of Men&apos;s Fragrances for Fall 2023",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/h",
+      "lastmod": "2023-10-10T03:41:23-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/7-compelling-reasons-to-shop-at-perfume-network",
+      "lastmod": "2023-10-17T04:49:11-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/Facetune_16-10-2023-15-36-33_2-min.png?v=1697532551",
+          "title": "7 Compelling Reasons to Shop at Perfume Network",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/top-10-best-perfumes-for-men-in-india-2023",
+      "lastmod": "2023-10-18T07:41:49-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/anima-visual-fDdLLX8gsIs-unsplash.jpg?v=1697629306",
+          "title": "Top 5 Best Perfumes for Men in India 2023",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/the-5-best-perfumes-for-women-in-2023",
+      "lastmod": "2023-10-20T03:31:41-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/aiony-haust-owp8uQgoK8U-unsplash.jpg?v=1697787101",
+          "title": "The 5 Best Perfumes for Women in 2023",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/scented-identities-unveiling-the-top-5-perfumes-for-different-personalities",
+      "lastmod": "2023-10-21T03:37:36-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/exploring-the-signature-scents-of-indian-cricket-stars-at-the-world-cup-2023",
+      "lastmod": "2023-10-23T03:12:26-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/Untitled_design.png?v=1698045072",
+          "title": "The Signature Scents of Indian Cricket Stars at the World Cup 2023",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-fragrances-you-need-to-buy-this-diwali-for-men-2023",
+      "lastmod": "2023-11-06T03:48:52-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/souravi-sinha-vYAqeXg63Yo-unsplash.jpg?v=1699260492",
+          "title": "Best Fragrances You Need to Buy this Diwali for Men 2023",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/discover-the-world-of-essential-oils-natures-best-kept-secrets-unveiled",
+      "lastmod": "2023-11-18T01:47:02-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/custom_resized_6bf0263e-51c5-4987-a868-362bd4a25c2a.jpg?v=1700290022",
+          "title": "Discover the World of Essential Oils: Nature&apos;s Best Kept Secrets Unveiled",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/enchanting-winter-scents-elevate-your-aura-with-2023s-finest-fragrances",
+      "lastmod": "2023-11-25T02:38:33-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/custom_resized_5e91063c-3874-4e22-b015-ef0ebc0ea6a0.jpg?v=1700897913",
+          "title": "Winter Fragrance Wonders: Top Perfumes for a Luxurious 2023 Cold Season",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/alternatives-to-chanel-bleu-de-chanel",
+      "lastmod": "2023-11-28T00:59:05-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/custom_resized_deb8db62-702e-40a0-a462-2bb899f68119.jpg?v=1701150825",
+          "title": "Alternatives to Chanel Bleu de Chanel",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/the-best-long-lasting-perfumes-for-women-discover-your-signature-scent",
+      "lastmod": "2023-12-04T04:18:46-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/lance-reis-5ycQD13aSWQ-unsplash.jpg?v=1701681524",
+          "title": "The Best Long-Lasting Perfumes for Women: Discover Your Signature Scent",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/maison-margielas-olfactory-symphony-exclusive-fragrances-at-perfume-network-india",
+      "lastmod": "2023-12-10T03:52:31-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/mm_frag_replica_11.11.2023_visual_woody-notes_2160x2700_d52f064b-4cca-4456-b04f-8f6a94863729.jpg?v=1702198096",
+          "title": "Maison Margiela&apos;s Olfactory Symphony: Exclusive Fragrances at Perfume Network India",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/embrace-winter-elegance-5-captivating-womens-perfumes-for-the-season",
+      "lastmod": "2024-01-09T05:30:12-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/velizar-ivanov-ljsJAxN5R80-unsplash.jpg?v=1704791774",
+          "title": "Embrace Winter Elegance: 5 Captivating Women&apos;s Perfumes for the Season",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/introduction-to-mens-perfumes",
+      "lastmod": "2024-03-16T05:07:39-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/2-3-rectangle-pexels-nadin-sh-8694541-jpg_custom_resized.jpg?v=1710579410",
+          "title": "Best Perfumes for Men",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/embrace-the-essence-of-summer-top-5-mens-fragrances-for-2024",
+      "lastmod": "2024-04-02T04:15:02-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/Snapinsta.app_424613770_715134530761085_8672453901492061462_n_1080.jpg?v=1712045615",
+          "title": "Embrace the Essence of Summer: Top 5 Men&apos;s Fragrances for 2024",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/introduction-to-niche-perfumery-in-india",
+      "lastmod": "2024-04-03T04:14:22-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/Snapinsta.app_434086870_648168580758821_4474776874693351641_n_1080.jpg?v=1712130979",
+          "title": "Introduction to Niche Perfumery in India",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-summer-fragrances-for-men-under-5-000",
+      "lastmod": "2024-05-31T05:45:36-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/Snapinsta.app_419045035_1866437007149293_5420488502710870453_n_1080.jpg?v=1717148696",
+          "title": "Best Summer Fragrances for Men Under ₹5,000",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/gifting-guide-for-rakhi-2024",
+      "lastmod": "2024-08-08T06:00:39-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/Ritualistic-Raksha-Bandhan-Ceremony.jpg?v=1723111239",
+          "title": "Gifting guide for Rakhi 2024",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-men-fragrances-2025",
+      "lastmod": "2025-01-06T04:12:57-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/christopher-campbell-i4OHxtxiMtk-unsplash.jpg?v=1736154777",
+          "title": "BEST MEN FRAGRANCES 2025",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-perfumes-for-women-for-2025",
+      "lastmod": "2025-01-07T08:07:23-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/ConvertOut-Resized-pexels-wendelmoretti-1845160.jpg?v=1736169039",
+          "title": "Best Perfumes for Women for 2025",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/elevate-your-fragrance-game-the-best-maison-margiela-scents-to-try-in-2025",
+      "lastmod": "2025-01-18T05:20:25-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/Cqyh9J-WcAISANL.jpg?v=1737195625",
+          "title": "The Best Maison Margiela Fragrances for 2025",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-upcoming-perfume-brands-to-watch-in-2025",
+      "lastmod": "2025-08-08T08:30:53-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/quenti.png?v=1754656253",
+          "title": "Best Upcoming Perfume Brands to Watch in 2025",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/top-5-tom-ford-perfumes-you-must-own-in-2025",
+      "lastmod": "2025-08-12T03:43:45-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/97.png?v=1754984625",
+          "title": "Top 5 Tom Ford Perfumes You Must Own in 2025",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-everyday-fragrances-for-women-smell-like-a-goddess-every-day",
+      "lastmod": "2025-08-13T03:38:36-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/90.png?v=1755070716",
+          "title": "Best Everyday Fragrances for Women: Smell Like a Goddess, Every Day",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/the-best-amouage-fragrances-of-all-time-3-for-men-3-for-women",
+      "lastmod": "2025-08-24T06:02:01-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/1_5dc5ce8f-dcf7-4a09-af0d-9f7bfa1df22a.png?v=1756029721",
+          "title": "The Best Amouage Fragrances of All Time — 3 for Men &amp; 3 for Women",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/gucci-bloom-alessandro-michele-s-dream-garden-bottled",
+      "lastmod": "2025-08-30T04:09:57-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-winter-perfumes-for-women-in-india-2025",
+      "lastmod": "2025-10-24T06:03:04-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-middle-eastern-perfumes-2025",
+      "lastmod": "2025-11-10T04:59:48-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/saj-shafique-YM6YxnRZenQ-unsplash.jpg?v=1762768788",
+          "title": "Best Middle Eastern Perfumes 2025",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-long-lasting-perfumes-for-men-in-india-2026-tested-ranked",
+      "lastmod": "2026-03-03T02:12:28-05:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-perfumes-under-2-500-in-india-2025-middle-eastern-luxury",
+      "lastmod": "2026-03-03T02:11:51-05:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/edp-vs-edt-vs-extrait-de-parfum-which-one-should-you-buy",
+      "lastmod": "2026-03-03T02:11:18-05:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/how-to-apply-perfume-correctly-india",
+      "lastmod": "2026-03-04T21:49:03-05:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/french-avenue-liquid-brun-review-india-2026",
+      "lastmod": "2026-03-06T02:06:09-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/Generated_Image_November_07_2025_-_8_01PM_2026-01-12_08_33_43_586436_png_2a6398aa-d5c1-44f8-8b0d-d00e9ab49974.jpg?v=1772780769",
+          "title": "French Avenue Liquid Brun Review India (2026)",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/azzaro-the-most-wanted-parfum-review-india-2026-what-2-400-buyers-say",
+      "lastmod": "2026-03-08T01:38:13-05:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/Snapinsta_app_284879885_412350280743323_1747758129351452572_n_1024_2026-03-08_06_35_11_913932_jpg.png?v=1772951893",
+          "title": "Azzaro The Most Wanted Parfum Review India (2026) — What 2,400+ Buyers Say",
+          "caption": "Azzaro The Most Wanted Parfum"
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/rasasi-hawas-ice-review-india-2026-rated-4-8-stars-by-250-buyers",
+      "lastmod": "2026-03-08T03:27:30-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/1_hawas.png?v=1772954850",
+          "title": "Rasasi Hawas Ice Review India (2026) — Rated 4.8 Stars by 250 Buyers",
+          "caption": "Rasasi Hawas Ice"
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/davidoff-cool-water-review-india-2026-the-aquatic-classic-still-worth-it",
+      "lastmod": "2026-03-24T06:33:40-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/emporio-armani-stronger-with-you-intensely-review-india-2026-warm-sweet-worth-it",
+      "lastmod": "2026-03-23T02:40:15-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/afnan-supremacy-collectors-edition-review-india-2026-4-9-stars-rated-excellent-for-compliments",
+      "lastmod": "2026-03-10T06:27:58-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/0coll_2026-03-10_06_40_07_409422_png.png?v=1773138478",
+          "title": "Afnan Supremacy Collector&apos;s Edition Review India (2026) — 4.9 Stars, Rated Excellent for Compliments",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/burberry-goddess-edp-review-india-2026",
+      "lastmod": "2026-03-09T00:46:40-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/lattafa-angham-review-india-2026-5-0-stars-the-burberry-goddess-alternative-that-outlasts-the-original",
+      "lastmod": "2026-03-14T01:22:52-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/0angham_amain.jpg?v=1773465772",
+          "title": "Lattafa Angham Review India (2026) — 5.0 Stars, The Burberry Goddess Alternative That Outlasts the Original",
+          "caption": "Lattafa Angham"
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/emporio-armani-stronger-with-you-absolutely-review-india",
+      "lastmod": "2026-03-15T12:55:22-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/rasasi-hawas-vs-hawas-ice-which-one-should-you-buy-india-2026",
+      "lastmod": "2026-03-15T12:53:34-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/afnan-supremacy-collectors-edition-vs-armaf-club-de-nuit-pure-parfum",
+      "lastmod": "2026-03-16T03:45:44-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/how-to-carry-perfume-when-travelling-flight-india",
+      "lastmod": "2026-03-18T13:33:36-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/rasasi-hawas-vs-armaf-club-de-nuit-pure-parfum-india",
+      "lastmod": "2026-04-07T06:01:45-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-perfumes-for-women-indian-summer",
+      "lastmod": "2026-03-24T07:12:12-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/mor-shani-hls5WV8Gqv0-unsplash.jpg?v=1774350732",
+          "title": "7 Best Perfumes for Women for Indian Summers (2026) — Fresh, Long-Lasting &amp; Under ₹8,000",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-perfumes-for-men-under-3000-india",
+      "lastmod": "2026-04-27T05:55:08-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/lucas-gouvea-aoEwuEH7YAs-unsplash_bf950f58-2dc6-4416-9128-e72107d3388e.jpg?v=1777283708",
+          "title": "8 Best Perfumes for Men Under ₹3,000 in India (2026) — Rated by Real Buyers",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/best-middle-eastern-perfumes-for-women-india",
+      "lastmod": "2026-03-31T02:24:17-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/what-is-ambroxan-perfume-india",
+      "lastmod": "2026-04-07T06:38:43-04:00",
+      "changefreq": "weekly",
+      "images": [
+        {
+          "loc": "https://cdn.shopify.com/s/files/1/0572/8183/9279/articles/fulvio-ciccolo-ZXLz6YNLt-8-unsplash.jpg?v=1775558323",
+          "title": "What Is Ambroxan? Why It&apos;s in Every Perfume You Love Right Now — India 2026",
+          "caption": null
+        }
+      ]
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/lattafa-perfumes-india-complete-buying-guide-2026",
+      "lastmod": "2026-04-13T05:44:49-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/invictus-aqua-discontinued-best-alternative-india",
+      "lastmod": "2026-04-15T05:48:06-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/rabanne-million-red-for-her-parfum",
+      "lastmod": "2026-09-03T06:52:31-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/chloe-le-nectar-parfum-intense",
+      "lastmod": "2026-09-03T07:28:42-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/jean-paul-gaultier-fleur-du-male-2026",
+      "lastmod": "2026-09-09T04:21:36-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/nishane-thorns-become-roses",
+      "lastmod": "2026-09-10T03:13:24-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/acqua-di-parma-cedro-virtuoso",
+      "lastmod": "2026-09-10T08:37:40-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/blogs-news-issey-miyake-eau-essentielle-2026",
+      "lastmod": "2026-09-11T14:30:53-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/the-silence-of-transparent-fragrances",
+      "lastmod": "2026-09-15T04:22:27-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/burberry-goddess-amber-vanilla",
+      "lastmod": "2026-09-15T04:27:53-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/perfume-ingredients-banned-restricted-2026-2030",
+      "lastmod": "2026-09-16T03:40:33-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/cecred-temple-oud-hair-perfume",
+      "lastmod": "2026-09-18T02:51:24-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/dolce-gabbana-velvet-amber-sage-notes-launch-first-look",
+      "lastmod": "2026-09-23T05:19:09-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/toouch-naughty-paper-new-perfume-2026",
+      "lastmod": "2026-09-24T05:05:26-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/4-middle-eastern-perfumes-to-know-2026",
+      "lastmod": "2026-09-24T06:20:46-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/afnan-stardust-perfume",
+      "lastmod": "2026-09-25T06:17:52-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/dior-poison-eau-de-toilette",
+      "lastmod": "2026-09-29T05:45:14-04:00",
+      "changefreq": "weekly",
+      "images": []
+    },
+    {
+      "loc": "https://www.perfumenetwork.in/blogs/news/rabanne-1-million-black-perfume",
+      "lastmod": "2026-10-02T06:20:22-04:00",
+      "changefreq": "weekly",
+      "images": []
+    }
+  ],
+  "agenticDiscovery": [
+    {
+      "loc": "https://www.perfumenetwork.in/agents.md",
+      "lastmod": null,
+      "changefreq": "weekly",
+      "images": []
+    }
+  ]
+}

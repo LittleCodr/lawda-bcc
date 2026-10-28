@@ -125,7 +125,8 @@ export default function ProductUI({ product }: ProductUIProps) {
 
   const productTitleLower = (product.title || "").toLowerCase();
   const perfumeHandles = ['overlord', 'paradox', 'rhapsody', 'your-move', 'somersault', 'promised', 'outlaw', 'mirage', 'darling-women'];
-  const isPerfume = perfumeHandles.includes(product.handle) || product.product_type?.toLowerCase() === 'perfume' || (product.tags || []).some((t: string) => typeof t === 'string' && (t.toLowerCase().includes('perfume') || t.toLowerCase().includes('harsh beniwal')));
+  const isHarshBeniwal = perfumeHandles.includes(product.handle) || product.vendor === "Octopus Perfumes by Harsh Beniwal";
+  const isPerfume = isHarshBeniwal || (product.product_type || '').toLowerCase().includes('perfume') || (product.tags || []).some((t: string) => typeof t === 'string' && (t.toLowerCase().includes('perfume') || t.toLowerCase().includes('harsh beniwal')));
   const isNamePersonalised = !isPerfume && (productTitleLower.includes('name') || productTitleLower.includes('initial') || product.handle === '12-in-1-jhumkas-box');
   const isPhotoPersonalised = !isPerfume && (productTitleLower.includes('photo') || productTitleLower.includes('picture'));
   const isRing = productTitleLower.includes('ring');
@@ -625,30 +626,32 @@ export default function ProductUI({ product }: ProductUIProps) {
 
       </div>
 
-      {/* Fragrance Lifestyle Proof Section */}
-      <div className="mt-16 mb-8 max-w-[1200px] mx-auto">
-        <div className="mb-6">
-          <p className="text-[10px] uppercase tracking-widest font-bold text-[#ff385c] mb-1">THE OCTOPUS LUXURY EXPERIENCE</p>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#222222]">Crafted for presence, <span className="font-normal italic text-[#6a6a6a]">loved by 50,000+ perfume lovers</span></h2>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-          {[
-            { src: "/harsh-beniwal/octopus/perfumes/images/overlord_lifestyle.png", title: "Overlord EDP" },
-            { src: "/harsh-beniwal/octopus/perfumes/images/paradox_lifestyle.png", title: "Paradox EDP" },
-            { src: "/harsh-beniwal/octopus/perfumes/images/promised_lifestyle.png", title: "Promised EDP" },
-            { src: "/harsh-beniwal/octopus/perfumes/images/outlaw_lifestyle.png", title: "Outlaw EDP" },
-            { src: "/harsh-beniwal/octopus/perfumes/images/mirage_lifestyle.png", title: "Mirage EDP" },
-            { src: "/harsh-beniwal/octopus/perfumes/images/rhapsody_lifestyle.png", title: "Rhapsody EDP" }
-          ].map((item, index) => (
-            <div key={index} className="aspect-square relative rounded-[14px] overflow-hidden shadow-airbnb bg-[#f7f7f7] border border-[#ebebeb] group">
-              <img src={item.src} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div className="absolute bottom-2.5 left-2.5 bg-black/75 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-md">
-                {item.title}
+      {/* Fragrance Lifestyle Proof Section - Harsh Beniwal Signature Edition */}
+      {isHarshBeniwal && (
+        <div className="mt-16 mb-8 max-w-[1200px] mx-auto">
+          <div className="mb-6">
+            <p className="text-[10px] uppercase tracking-widest font-bold text-[#ff385c] mb-1">THE OCTOPUS LUXURY EXPERIENCE</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#222222]">Crafted for presence, <span className="font-normal italic text-[#6a6a6a]">loved by 50,000+ perfume lovers</span></h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+            {[
+              { src: "/harsh-beniwal/octopus/perfumes/images/overlord_lifestyle.png", title: "Overlord EDP" },
+              { src: "/harsh-beniwal/octopus/perfumes/images/paradox_lifestyle.png", title: "Paradox EDP" },
+              { src: "/harsh-beniwal/octopus/perfumes/images/promised_lifestyle.png", title: "Promised EDP" },
+              { src: "/harsh-beniwal/octopus/perfumes/images/outlaw_lifestyle.png", title: "Outlaw EDP" },
+              { src: "/harsh-beniwal/octopus/perfumes/images/mirage_lifestyle.png", title: "Mirage EDP" },
+              { src: "/harsh-beniwal/octopus/perfumes/images/rhapsody_lifestyle.png", title: "Rhapsody EDP" }
+            ].map((item, index) => (
+              <div key={index} className="aspect-square relative rounded-[14px] overflow-hidden shadow-airbnb bg-[#f7f7f7] border border-[#ebebeb] group">
+                <img src={item.src} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div className="absolute bottom-2.5 left-2.5 bg-black/75 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-md">
+                  {item.title}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Tabs Section */}
       <div className="mt-16 max-w-4xl border border-[#ebebeb] rounded-[14px] overflow-hidden shadow-airbnb">

@@ -1,0 +1,51 @@
+{
+  "timestamp": "2026-10-28T12:42:12.352Z",
+  "sitemaps": {
+    "totalDiscovered": 7,
+    "processedSitemaps": [
+      "https://www.perfumenetwork.in/sitemap_agentic_discovery.xml",
+      "https://www.perfumenetwork.in/sitemap_products_1.xml?from=6734808645807&to=7554959409327",
+      "https://www.perfumenetwork.in/sitemap_products_2.xml?from=7554960392367&to=10347512135855",
+      "https://www.perfumenetwork.in/sitemap_pages_1.xml?from=81828970671&to=116421296303",
+      "https://www.perfumenetwork.in/sitemap_collections_1.xml?from=268080185519&to=492462375087",
+      "https://www.perfumenetwork.in/sitemap_blogs_1.xml",
+      "https://www.perfumenetwork.in/sitemap_articles_1.xml"
+    ],
+    "uniqueProductUrls": 1707,
+    "uniqueCollectionsUrls": 185,
+    "uniquePagesUrls": 25,
+    "uniqueArticlesUrls": 98
+  },
+  "catalog": {
+    "preMigrationProducts": 630,
+    "extractedSourceProducts": 1707,
+    "importedApprovedProducts": 1704,
+    "quarantinedUnverifiedProducts": 3,
+    "totalCatalogProducts": 2334,
+    "totalCatalogVariants": 3342,
+    "totalCatalogImages": 6696,
+    "totalMigratedCollections": 185
+  },
+  "verificationChecks": {
+    "allSitemapApprovedProductsInCatalog": true,
+    "zeroZeroPricedInActiveSale": true,
+    "allVariantsLinkedToProducts": true,
+    "allImagesHaveValidSrc": true,
+    "allHandlesUnique": true,
+    "allIdsUnique": true,
+    "legacyHarshBeniwalProductsIntact": true,
+    "legacyPersonalizedProductsIntact": true
+  },
+  "sampleSpotChecks": [
+    {
+      "handle": "lattafa-khamrah-mira-eau-de-parfum-for-women",
+      "title": "Lattafa Khamrah Mira Eau de Parfum for Women",
+      "importedPrice": "3300.00",
+      "liveSourcePrice": "3300.00",
+      "priceMatch": true,
+      "variantsCount": 1,
+      "imagesCount": 1
+    }
+  ],
+  "discrepancies": []
+}

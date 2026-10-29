@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/collections/festive-gifts',
     '/harsh-beniwal/octopus/perfumes',
     '/collections/all',
+    '/brands',
     '/pages/about-us',
     '/pages/contact',
     '/pages/privacy-policy',

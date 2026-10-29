@@ -252,14 +252,39 @@ export default function ProductUI({ product }: ProductUIProps) {
   return (
     <div className="bg-white text-[#222222] min-h-screen">
       {/* Breadcrumbs - Airbnb Subtle Hairline Path */}
-      <nav className="flex items-center gap-2 text-[13px] text-[#6a6a6a] mb-6 mt-4">
+      <nav className="flex items-center gap-2 text-[13px] text-[#6a6a6a] mb-6 mt-4 flex-wrap">
         <Link href="/" className="hover:text-[#222222] hover:underline transition-colors">Home</Link>
         <span>/</span>
-        <Link href={isPerfume ? "/harsh-beniwal/octopus/perfumes" : "/collections/all"} className="hover:text-[#222222] hover:underline transition-colors">
-          {isPerfume ? "Octopus Perfumes" : "Collections"}
-        </Link>
-        <span>/</span>
-        <span className="text-[#222222] font-medium truncate">{product.title}</span>
+        {isHarshBeniwal ? (
+          <>
+            <Link href="/harsh-beniwal/octopus/perfumes" className="hover:text-[#222222] hover:underline transition-colors">
+              Octopus Perfumes
+            </Link>
+            <span>/</span>
+          </>
+        ) : product.vendor && product.vendor !== "EVERLASTING" && product.vendor !== "Everlasting" ? (
+          <>
+            <Link href="/brands" className="hover:text-[#222222] hover:underline transition-colors">
+              Brands
+            </Link>
+            <span>/</span>
+            <Link 
+              href={`/brands/${product.vendor.toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}`} 
+              className="hover:text-[#222222] hover:underline transition-colors"
+            >
+              {product.vendor}
+            </Link>
+            <span>/</span>
+          </>
+        ) : (
+          <>
+            <Link href="/collections/all" className="hover:text-[#222222] hover:underline transition-colors">
+              Collections
+            </Link>
+            <span>/</span>
+          </>
+        )}
+        <span className="text-[#222222] font-medium truncate max-w-[200px] sm:max-w-xs">{product.title}</span>
       </nav>
 
       {/* Main 2-Column Airbnb Listing Detail Layout */}
@@ -282,7 +307,12 @@ export default function ProductUI({ product }: ProductUIProps) {
               <Heart size={18} fill={isFavourite ? "#ff385c" : "transparent"} className={isFavourite ? "text-[#ff385c]" : "text-[#222222]"} />
             </button>
 
-            <ProductImageGallery images={images} selectedImageId={activeImageId} />
+            <ProductImageGallery 
+              images={images} 
+              selectedImageId={activeImageId} 
+              productTitle={product.title} 
+              isPerfume={isPerfume} 
+            />
           </div>
 
           {/* Airbnb Amenity Rows */}

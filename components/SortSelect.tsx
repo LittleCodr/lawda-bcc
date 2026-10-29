@@ -3,7 +3,17 @@
 import { ChevronDown } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export default function SortSelect({ slug, queryParam, defaultSort }: { slug: string, queryParam?: string, defaultSort: string }) {
+export default function SortSelect({
+  slug,
+  queryParam,
+  defaultSort,
+  basePath,
+}: {
+  slug?: string;
+  queryParam?: string;
+  defaultSort: string;
+  basePath?: string;
+}) {
   const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -11,7 +21,8 @@ export default function SortSelect({ slug, queryParam, defaultSort }: { slug: st
     const url = new URLSearchParams();
     if (queryParam) url.set("q", queryParam);
     url.set("sort", sort);
-    router.push(`/collections/${slug}?${url.toString()}`);
+    const targetBase = basePath || `/collections/${slug || ""}`;
+    router.push(`${targetBase}?${url.toString()}`);
   };
 
   return (

@@ -9,44 +9,59 @@ import Marquee from "./Marquee";
 
 const NAV_MENU = [
   { 
-    label: "Diwali Gift Sets",
-    href: "/diwali-gifts",
-    badge: "🪔 20% OFF",
+    label: "All Perfumes",
+    href: "/collections/all",
+    badge: "2,300+ Bottles",
     subLinks: [
-      { label: "Diwali Fragrance Hampers 2026", href: "/diwali-gifts" },
-      { label: "Royal Couple Hamper (Overlord + Darling)", href: "/diwali-gifts" },
-      { label: "Emperor's Connoisseur Trio (Sauvage + BR540 + Ombre)", href: "/diwali-gifts" },
-      { label: "Corporate Diwali Gifting Boxes", href: "/diwali-gifts" },
-      { label: "Diwali Fragrance Gifting Guide 2026", href: "/diwali-gift-ideas" },
+      { label: "Explore Entire Catalog", href: "/collections/all" },
+      { label: "Best-Selling Fragrances", href: "/collections/all?sort=price-desc" },
+      { label: "Men's Beast-Mode Scents", href: "/collections/all" },
+      { label: "Women's Luxury Florals", href: "/collections/all" },
+      { label: "Under ₹1,999 Budget Beasts", href: "/collections/all?sort=price-asc" },
+      { label: "High-Concentration Extraits", href: "/collections/all" },
+    ]
+  },
+  { 
+    label: "Fragrance Brands",
+    href: "/brands",
+    badge: "130+ Houses",
+    subLinks: [
+      { label: "Browse All 136 Perfume Brands", href: "/brands" },
+      { label: "Lattafa Perfumes (Dubai)", href: "/brands/lattafa" },
+      { label: "Armaf & Club De Nuit", href: "/brands/armaf" },
+      { label: "Afnan & 9PM Collection", href: "/brands/afnan" },
+      { label: "Rasasi (Hawas & Dubai Royalty)", href: "/brands/rasasi" },
+      { label: "French Avenue (Paris Corner)", href: "/brands/french-avenue" },
+      { label: "Christian Dior Haute Parfumerie", href: "/brands/christian-dior" },
+      { label: "Tom Ford Private Blend", href: "/brands/tom-ford" },
     ]
   },
   { 
     label: "Harsh Beniwal EDPs",
     href: "/harsh-beniwal/octopus/perfumes",
-    badge: "🔥 Flagship",
+    badge: "🔥 In-House",
     subLinks: [
-      { label: "All 9 EDP Fragrances (50ML)", href: "/harsh-beniwal/octopus/perfumes" },
+      { label: "All 9 Flagship Fragrances (50ML)", href: "/harsh-beniwal/octopus/perfumes" },
       { label: "Overlord (Dior Sauvage DNA)", href: "/products/overlord" },
-      { label: "Paradox (Louis Vuitton Les Sables Roses)", href: "/products/paradox" },
+      { label: "Paradox (LV Les Sables Roses)", href: "/products/paradox" },
       { label: "Promised (Baccarat Rouge 540 DNA)", href: "/products/promised" },
       { label: "Outlaw (Tom Ford Ombré Leather DNA)", href: "/products/outlaw" },
-      { label: "Mirage (Louis Vuitton Ombre Nomade)", href: "/products/mirage" },
-      { label: "Somersault (Louis Vuitton Imagination)", href: "/products/somersault" },
+      { label: "Mirage (LV Ombre Nomade DNA)", href: "/products/mirage" },
+      { label: "Somersault (LV Imagination DNA)", href: "/products/somersault" },
       { label: "Rhapsody (Maison Margiela Jazz Club)", href: "/products/rhapsody" },
       { label: "Your Move (Tom Ford Oud Wood)", href: "/products/your-move" },
       { label: "Darling Women (Miss Dior DNA)", href: "/products/darling-women" }
     ]
   },
   { 
-    label: "Fragrance Notes",
-    href: "/harsh-beniwal/octopus/perfumes",
-    badge: "✨ Sillage",
+    label: "Perfumes For Him",
+    href: "/collections/all",
     subLinks: [
-      { label: "Fresh & Citrus (Overlord, Somersault)", href: "/products/overlord" },
-      { label: "Rich Amber & Smoky Oud (Paradox, Mirage)", href: "/products/paradox" },
-      { label: "Warm Spice & Saffron (Promised)", href: "/products/promised" },
-      { label: "Sensual Leather (Outlaw)", href: "/products/outlaw" },
-      { label: "Floral & Elegant (Darling Women)", href: "/products/darling-women" }
+      { label: "Overlord 50ML EDP (Beast-Mode Sauvage)", href: "/products/overlord" },
+      { label: "Armaf Club De Nuit Collection", href: "/brands/armaf" },
+      { label: "Afnan 9PM Eau De Parfum", href: "/brands/afnan" },
+      { label: "Rasasi Hawas for Him", href: "/brands/rasasi" },
+      { label: "Outlaw 50ML EDP (Bold Leather)", href: "/products/outlaw" },
     ]
   },
   { 
@@ -56,17 +71,8 @@ const NAV_MENU = [
       { label: "Darling 50ML EDP (Floral & Seductive)", href: "/products/darling-women" },
       { label: "Promised 50ML EDP (Sweet Amber & Jasmine)", href: "/products/promised" },
       { label: "Paradox 50ML EDP (Luxury Rose & Amber)", href: "/products/paradox" },
-      { label: "Complimentary 7ML Paradox Tester", href: "/products/darling-women" }
-    ]
-  },
-  { 
-    label: "Perfumes For Him",
-    href: "/harsh-beniwal/octopus/perfumes",
-    subLinks: [
-      { label: "Overlord 50ML EDP (Beast-Mode Sauvage DNA)", href: "/products/overlord" },
-      { label: "Outlaw 50ML EDP (Bold Ombre Leather)", href: "/products/outlaw" },
-      { label: "Your Move 50ML EDP (Smoky Oud Wood)", href: "/products/your-move" },
-      { label: "Mirage 50ML EDP (Desert Ombre Nomade)", href: "/products/mirage" }
+      { label: "Lattafa Yara & Floral Delights", href: "/brands/lattafa" },
+      { label: "Complimentary 7ML Paradox Tester Included", href: "/products/darling-women" }
     ]
   }
 ];
@@ -86,32 +92,32 @@ export default function Navbar() {
 
   return (
     <>
-      {/* Top Festive Brand Notification Hairline - Diwali Themed */}
-      <div className="w-full bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700 text-white py-2 px-4 flex items-center justify-center gap-3 sm:gap-6 text-[12px] font-medium shadow-xs">
+      {/* Top Brand Notification Hairline - Luxury Fragrance House */}
+      <div className="w-full bg-stone-900 text-stone-200 py-2 px-4 flex items-center justify-center gap-3 sm:gap-6 text-[12px] font-medium shadow-xs border-b border-stone-800">
         <div className="flex items-center gap-1.5">
-          <span className="text-sm">🪔</span>
-          <span className="font-bold tracking-wide">Shubh Deepavali 2026 Sale</span>
-          <span className="hidden md:inline text-amber-200">·</span>
-          <span className="hidden md:inline">Harsh Beniwal Fragrances</span>
+          <Sparkles size={13} className="text-amber-400" />
+          <span className="font-bold tracking-wide text-white">Flat 25% OFF on 130+ Luxury Fragrance Houses</span>
+          <span className="hidden md:inline text-stone-600">·</span>
+          <span className="hidden md:inline text-stone-300">Harsh Beniwal & Designer Brands</span>
         </div>
-        <span className="text-amber-300/60 hidden sm:inline">•</span>
+        <span className="text-stone-600 hidden sm:inline">•</span>
         <div className="flex items-center gap-1.5">
-          <span>Use code</span>
-          <strong className="font-mono bg-white text-amber-900 border border-amber-300 px-2 py-0.5 rounded-md text-[11px] font-bold shadow-xs">
-            DIWALI20
+          <span className="text-stone-300">Use code</span>
+          <strong className="font-mono bg-amber-400 text-stone-950 px-2 py-0.5 rounded text-[11px] font-bold shadow-xs">
+            LUXURY25
           </strong>
-          <span>for Flat 20% OFF</span>
+          <span className="text-stone-300 hidden sm:inline">for Flat 25% OFF</span>
         </div>
-        <span className="text-amber-300/60 hidden lg:inline">•</span>
-        <div className="text-amber-100 hidden lg:flex items-center gap-1">
-          <Gift size={13} className="text-amber-200" />
-          <span>Free 7ML Paradox Tester + Deluxe Festive Box Included</span>
+        <span className="text-stone-600 hidden lg:inline">•</span>
+        <div className="text-stone-300 hidden lg:flex items-center gap-1">
+          <Gift size={13} className="text-amber-400" />
+          <span>Free 7ML Paradox Tester Included</span>
         </div>
       </div>
       
       {/* Mobile Marquee Strip */}
       <div className="block md:hidden">
-        <Link href="/diwali-gifts">
+        <Link href="/collections/all">
           <Marquee />
         </Link>
       </div>
@@ -119,7 +125,7 @@ export default function Navbar() {
       {/* Main Top Navigation (80px height, pure white, 1px bottom hairline) */}
       <header
         className={`sticky top-0 w-full z-40 transition-all duration-200 bg-white border-b border-[#ebebeb] ${
-          scrolled ? "shadow-airbnb" : ""
+          scrolled ? "shadow-sm" : ""
         }`}
       >
         <div className="mx-auto max-w-[1440px] px-4 sm:px-6 md:px-10 h-20 flex items-center justify-between">
@@ -129,90 +135,85 @@ export default function Navbar() {
             href="/"
             className="flex flex-col items-start group shrink-0"
           >
-            <div className="flex items-center gap-1.5">
-              <span className="font-serif text-2xl font-bold tracking-tight text-[#ff385c] group-hover:text-[#e00b41] transition-colors">
-                OCTOPUS
-              </span>
-              <span className="text-xs">🪔</span>
-            </div>
-            <span className="text-[10px] font-semibold tracking-wide text-[#6a6a6a] -mt-1">
-              by Harsh Beniwal
+            <span className="font-serif tracking-[0.2em] text-xl sm:text-2xl font-bold uppercase text-[#222222] group-hover:text-stone-900 transition-colors">
+              OCTOPUS
+            </span>
+            <span className="text-[10px] uppercase font-bold tracking-[0.25em] text-[#6a6a6a] -mt-1 group-hover:text-amber-600 transition-colors">
+              HAUTE PARFUMERIE
             </span>
           </Link>
 
-          {/* Dead Center: Search Bar */}
-          <div className="hidden lg:flex items-center">
+          {/* Desktop Center Navigation with Hover Dropdowns */}
+          <nav className="hidden xl:flex items-center gap-7">
+            {NAV_MENU.map((item) => (
+              <div key={item.label} className="relative group py-6">
+                <Link
+                  href={item.href}
+                  className="text-[13px] font-medium text-[#222222] hover:text-amber-700 transition-colors tracking-wide flex items-center gap-1 cursor-pointer"
+                >
+                  <span>{item.label}</span>
+                  {item.badge && (
+                    <span className="text-[9px] bg-stone-900 text-amber-400 px-1.5 py-0.5 rounded-full font-bold ml-0.5">
+                      {item.badge}
+                    </span>
+                  )}
+                  <ChevronDown size={13} className="text-[#6a6a6a] group-hover:rotate-180 group-hover:text-amber-700 transition-transform duration-200" />
+                </Link>
+
+                {/* Dropdown Menu */}
+                <div className="absolute top-full left-0 w-72 bg-white rounded-xl shadow-xl border border-[#ebebeb] p-3 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                  <div className="flex flex-col gap-1">
+                    {item.subLinks.map((sub) => (
+                      <Link
+                        key={sub.label}
+                        href={sub.href}
+                        className="text-xs font-medium text-[#222222] hover:bg-stone-50 hover:text-amber-700 px-3 py-2 rounded-lg transition-colors flex items-center justify-between"
+                      >
+                        <span>{sub.label}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </nav>
+
+          {/* Right Area: Search Pill, Account, Cart, Mobile Menu */}
+          <div className="flex items-center gap-2 sm:gap-3.5">
+            {/* Search Pill */}
             <button
               onClick={() => setSearchOpen(true)}
-              className="search-bar-pill flex items-center h-12 pl-6 pr-2 py-2 gap-4 text-left cursor-pointer"
+              className="flex items-center gap-3 border border-[#dddddd] hover:border-stone-400/80 bg-white hover:bg-stone-50 rounded-full py-2 px-3.5 sm:px-4 shadow-xs hover:shadow-sm transition-all duration-200 cursor-pointer text-[#222222]"
+              aria-label="Search perfumes"
             >
-              <div className="flex flex-col pr-3 border-r border-[#ebebeb]">
-                <span className="text-[12px] font-semibold text-[#222222]">Diwali Gifts</span>
-                <span className="text-[12px] text-[#6a6a6a] truncate max-w-[100px]">9 Niche EDPs</span>
-              </div>
-              <div className="flex flex-col pr-3 border-r border-[#ebebeb]">
-                <span className="text-[12px] font-semibold text-[#222222]">Longevity</span>
-                <span className="text-[12px] text-[#6a6a6a]">12+ Hours</span>
-              </div>
-              <div className="flex flex-col pr-2">
-                <span className="text-[12px] font-semibold text-[#222222]">Offer Code</span>
-                <span className="text-[12px] text-amber-700 font-bold">DIWALI20</span>
-              </div>
-              <div className="search-orb shrink-0 w-8 h-8 rounded-full bg-[#ff385c] text-white flex items-center justify-center ml-2">
-                <Search size={14} strokeWidth={2.5} />
-              </div>
-            </button>
-          </div>
-
-          {/* Flush Right: Product Navigation & Festive Links */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            {/* Diwali Festive Highlights Button */}
-            <Link
-              href="/diwali-gifts"
-              className="hidden sm:inline-flex items-center gap-1.5 bg-gradient-to-r from-amber-50 via-orange-50 to-amber-50 border border-amber-300 text-amber-900 hover:border-amber-400 text-[13px] font-bold px-3.5 py-2 rounded-full shadow-2xs transition-all hover:scale-102"
-            >
-              <span>🪔</span>
-              <span>Diwali Gift Sets</span>
-              <span className="bg-amber-600 text-white text-[9px] px-1.5 py-0.2 rounded-full font-extrabold uppercase">
-                20% OFF
+              <Search size={15} className="text-[#222222]" strokeWidth={2.2} />
+              <span className="text-[13px] font-medium hidden sm:inline text-[#222222]">
+                Search 2,300+ perfumes...
               </span>
-            </Link>
-
-            <Link
-              href="/harsh-beniwal/octopus/perfumes"
-              className="hidden md:inline-block text-[14px] font-medium text-[#222222] hover:bg-[#f7f7f7] px-3 py-2 rounded-full transition-colors"
-            >
-              Explore 9 EDPs
-            </Link>
-
-            {/* Mobile Search Trigger */}
-            <button
-              onClick={() => setSearchOpen(true)}
-              className="lg:hidden p-2 text-[#222222] hover:bg-[#f7f7f7] rounded-full transition-colors"
-              aria-label="Search"
-            >
-              <Search size={20} strokeWidth={2} />
+              <kbd className="hidden md:inline-flex items-center gap-0.5 bg-[#f7f7f7] text-[#6a6a6a] text-[10px] px-2 py-0.5 rounded-md font-mono border border-[#ebebeb]">
+                ⌘K
+              </kbd>
             </button>
 
-            {/* Combined User & Cart Pill */}
-            <div className="flex items-center border border-[#dddddd] rounded-full p-1 pl-3 shadow-airbnb hover:shadow-airbnb-hover transition-all bg-white gap-2">
+            {/* Account & Cart Buttons */}
+            <div className="flex items-center gap-1 sm:gap-2">
               <Link 
                 href="/account" 
                 aria-label="Account"
-                className="text-[#222222] hover:text-[#ff385c] text-[13px] font-medium pr-1"
+                className="text-[#222222] hover:text-amber-700 text-[13px] font-medium p-2 rounded-full hover:bg-stone-50 transition-colors"
               >
                 <User size={18} strokeWidth={2} />
               </Link>
               <span className="h-4 w-px bg-[#dddddd]"></span>
               <button
                 onClick={() => setIsOpen(true)}
-                className="flex items-center gap-1.5 bg-[#222222] hover:bg-[#000000] text-white px-3 py-1.5 rounded-full text-[12px] font-semibold transition-all cursor-pointer"
+                className="flex items-center gap-1.5 bg-stone-900 hover:bg-black text-white px-3.5 py-2 rounded-full text-[12px] font-semibold transition-all cursor-pointer shadow-xs active:scale-95"
                 aria-label="Shopping Cart"
               >
                 <ShoppingBag size={14} strokeWidth={2.2} />
                 <span>Cart</span>
                 {totalItems() > 0 && (
-                  <span className="w-5 h-5 rounded-full bg-[#ff385c] text-white font-bold text-[10px] flex items-center justify-center -mr-1">
+                  <span className="w-5 h-5 rounded-full bg-amber-500 text-stone-950 font-bold text-[10px] flex items-center justify-center -mr-1">
                     {totalItems()}
                   </span>
                 )}
@@ -235,41 +236,41 @@ export default function Navbar() {
           <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex xl:hidden animate-in fade-in duration-200">
             <div className="w-[85%] max-w-sm bg-white border-r border-[#ebebeb] h-full flex flex-col shadow-2xl overflow-y-auto">
               
-              {/* Drawer Header with Festive Touch */}
-              <div className="h-16 flex items-center justify-between px-6 border-b border-[#ebebeb] bg-gradient-to-r from-amber-600 to-amber-700 text-white shrink-0">
+              {/* Drawer Header */}
+              <div className="h-16 flex items-center justify-between px-6 border-b border-[#ebebeb] bg-stone-900 text-white shrink-0">
                 <div className="flex items-center gap-2">
                   <span className="font-serif text-xl font-bold uppercase tracking-wider text-white">OCTOPUS</span>
-                  <span>🪔</span>
+                  <span className="text-amber-400">✨</span>
                 </div>
                 <button 
                   onClick={() => setMobileOpen(false)} 
                   aria-label="Close menu" 
-                  className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center text-white active:scale-95 cursor-pointer"
+                  className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center text-white active:scale-95 cursor-pointer"
                 >
                   <X size={18} strokeWidth={2.2} />
                 </button>
               </div>
 
               {/* Mobile Promo Box */}
-              <div className="p-4 bg-amber-50 border-b border-amber-200">
-                <div className="flex items-center gap-2 text-amber-900 font-bold text-xs uppercase tracking-wide mb-1">
-                  <span>🪔</span>
-                  <span>Diwali Festive Sale Active</span>
+              <div className="p-4 bg-stone-50 border-b border-stone-200">
+                <div className="flex items-center gap-2 text-stone-900 font-bold text-xs uppercase tracking-wide mb-1">
+                  <Sparkles size={13} className="text-amber-600" />
+                  <span>Flat 25% OFF Code</span>
                 </div>
-                <p className="text-[12px] text-[#3f3f3f] leading-snug mb-2">
-                  Use coupon <strong className="font-mono bg-white px-2 py-0.5 rounded border border-amber-300 text-amber-900">DIWALI20</strong> for 20% OFF!
+                <p className="text-[12px] text-stone-600 leading-snug mb-2">
+                  Use coupon <strong className="font-mono bg-white px-2 py-0.5 rounded border border-stone-300 text-stone-900">LUXURY25</strong> for 25% OFF on all brands!
                 </p>
                 <Link
-                  href="/diwali-gifts"
+                  href="/collections/all"
                   onClick={() => setMobileOpen(false)}
-                  className="inline-flex items-center justify-center w-full py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold text-xs rounded-lg shadow-xs"
+                  className="inline-flex items-center justify-center w-full py-2 bg-stone-900 hover:bg-black text-white font-semibold text-xs rounded-lg shadow-xs"
                 >
-                  Shop Diwali Gift Sets &rarr;
+                  Shop Entire Catalog &rarr;
                 </Link>
               </div>
 
               {/* Drawer Links */}
-              <div className="p-5 space-y-3.5 flex-1">
+              <div className="p-5 space-y-3 flex-1">
                 {NAV_MENU.map((item) => (
                   <div key={item.label} className="bg-[#f7f7f7] border border-[#ebebeb] rounded-xl p-3.5">
                     <Link
@@ -279,18 +280,18 @@ export default function Navbar() {
                     >
                       <span>{item.label}</span>
                       {item.badge && (
-                        <span className="text-[9px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full border border-amber-300 font-bold">
+                        <span className="text-[9px] bg-stone-900 text-amber-400 px-2 py-0.5 rounded-full font-bold">
                           {item.badge}
                         </span>
                       )}
                     </Link>
-                    <div className="flex flex-col gap-1.5 pl-2 border-l border-amber-300/80">
+                    <div className="flex flex-col gap-1.5 pl-2 border-l border-stone-300">
                       {item.subLinks.map(sub => (
                         <Link
                           key={sub.label}
                           href={sub.href}
                           onClick={() => setMobileOpen(false)}
-                          className="text-xs tracking-wide font-medium text-[#6a6a6a] hover:text-[#ff385c] py-0.5"
+                          className="text-xs tracking-wide font-medium text-[#6a6a6a] hover:text-stone-900 py-0.5"
                         >
                           • {sub.label}
                         </Link>

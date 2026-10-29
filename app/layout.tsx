@@ -119,8 +119,6 @@ import MetaPixel from "@/components/MetaPixel";
 
 import { AuthProvider } from "@/lib/auth-context";
 import { Suspense } from "react";
-import DiwaliPopup from "@/components/DiwaliPopup";
-import DiwaliAmbience from "@/components/DiwaliAmbience";
 import SalesToasts from "@/components/SalesToasts";
 import MobileStickyShopBar from "@/components/MobileStickyShopBar";
 
@@ -268,40 +266,11 @@ export default function RootLayout({
                       },
                       "query-input": "required name=search_term_string"
                     }
-                  },
-                  {
-                    "@type": "SaleEvent",
-                    "@id": "https://www.octopusperfume.in/#diwali-sale-2026",
-                    "name": "Diwali Luxury Fragrance Sale 2026",
-                    "description": "Celebrate Diwali 2026 with Harsh Beniwal's luxury 50ML Eau De Parfums. Flat 20% discount with code DIWALI20, complimentary 7ML Paradox tester pack, and deluxe festive gift box packaging with express delivery across India.",
-                    "startDate": "2026-10-15T00:00:00+05:30",
-                    "endDate": "2026-11-15T23:59:59+05:30",
-                    "eventStatus": "https://schema.org/EventScheduled",
-                    "eventAttendanceMode": "https://schema.org/OnlineEventAttendanceMode",
-                    "location": {
-                      "@type": "VirtualLocation",
-                      "url": "https://www.octopusperfume.in"
-                    },
-                    "organizer": {
-                      "@id": "https://www.octopusperfume.in/#organization"
-                    },
-                    "offers": {
-                      "@type": "Offer",
-                      "url": "https://www.octopusperfume.in/diwali-gifts",
-                      "priceCurrency": "INR",
-                      "price": "999",
-                      "availability": "https://schema.org/InStock",
-                      "validFrom": "2026-10-15T00:00:00+05:30",
-                      "priceValidUntil": "2026-11-15T23:59:59+05:30"
-                    }
                   }
                 ]
               })
             }}
           />
-
-          {/* Ambient Diwali Floating Lights & Diya Accents */}
-          <DiwaliAmbience />
 
           {/* Navbar */}
           <Navbar />
@@ -311,7 +280,6 @@ export default function RootLayout({
           {/* Footer */}
           <Footer />
           <CartDrawer />
-          <DiwaliPopup />
           <SalesToasts />
           <MobileStickyShopBar />
           <Toaster

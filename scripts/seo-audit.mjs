@@ -101,6 +101,21 @@ check(
   `Found ${duplicateHandles} duplicate handles`
 );
 
+// Test 6: In-Stock Availability for All Products & Variants
+let outOfStockVariants = 0;
+for (const p of products) {
+  for (const v of p.variants || []) {
+    if (v.available === false) {
+      outOfStockVariants++;
+    }
+  }
+}
+check(
+  "Restock Audit: 100% of Catalog Variants are In-Stock",
+  outOfStockVariants === 0,
+  `Found ${outOfStockVariants} out-of-stock variants`
+);
+
 // 2. Audit Brand Data
 import { getAllBrands } from "../lib/brands.ts";
 const brands = getAllBrands();

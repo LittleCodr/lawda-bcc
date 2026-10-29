@@ -2,8 +2,10 @@ import productsData from "@/lib/data/products.json";
 
 export const dynamic = "force-dynamic";
 
-export async function GET() {
-  const DOMAIN = "https://www.octopusperfume.in";
+export async function GET(request: Request) {
+  const host = request.headers.get("x-forwarded-host") || request.headers.get("host");
+  const proto = request.headers.get("x-forwarded-proto") || (host?.includes("localhost") ? "http" : "https");
+  const DOMAIN = host ? `${proto}://${host}` : "https://www.octopusperfume.in";
 
   // Filter out any invalid items
   const validProducts = (productsData as any[]).filter(

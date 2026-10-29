@@ -8,7 +8,6 @@ import { rakhiConfig } from "./rakhi-config";
 import SortSelect from "@/components/SortSelect";
 import FeaturedProductCarousel from "@/components/FeaturedProductCarousel";
 import ZoomableImage from "@/components/ZoomableImage";
-import ProductCardCarousel from "@/components/ProductCardCarousel";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -385,11 +384,24 @@ export default async function CollectionPage(props: {
               <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
                 {displayProducts.map((product: any) => (
                   <Link href={`/products/${product.handle}`} key={product.id} className="group flex flex-col h-full bg-white border border-[#ebebeb] hover:border-[#dddddd] transition-all duration-300 shadow-airbnb hover:shadow-airbnb-hover rounded-[14px] overflow-hidden">
-                    <ProductCardCarousel 
-                      images={product.images || []} 
-                      title={product.title} 
-                      isPerfume={Boolean((product.product_type || "").toLowerCase().includes("perfume") || (product.tags || []).some((t: string) => typeof t === "string" && t.toLowerCase().includes("perfume")))} 
-                    />
+                    <div className="relative aspect-square bg-[#f7f7f7] overflow-hidden">
+                      {product.images && product.images.length > 0 ? (
+                        <Image 
+                          src={product.images[0].local_src || product.images[0].localPath || product.images[0].src} 
+                          alt={product.title} 
+                          fill 
+                          unoptimized
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                          className={`${
+                            Boolean((product.product_type || "").toLowerCase().includes("perfume") || (product.tags || []).some((t: string) => typeof t === "string" && t.toLowerCase().includes("perfume")))
+                              ? "object-contain p-4" 
+                              : "object-cover"
+                          } group-hover:scale-105 transition-all duration-300 ease-out`} 
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-[#6a6a6a]">No Image</div>
+                      )}
+                    </div>
                     
                     <div className="p-3.5 md:p-5 flex flex-col flex-1 text-left bg-white">
                       <h3 className="text-sm md:text-base font-semibold text-[#222222] group-hover:text-[#ff385c] transition-colors leading-snug mb-1 line-clamp-2">

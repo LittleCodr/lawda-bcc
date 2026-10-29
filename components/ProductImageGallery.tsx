@@ -46,24 +46,6 @@ export default function ProductImageGallery({
   // Build the complete display list of slides
   const displayImages: GalleryImage[] = [...(images || [])];
 
-  // If a perfume only has 1 image, supplement with verified luxury assurance presentation slides
-  if (isPerfume && displayImages.length === 1) {
-    displayImages.push(
-      {
-        src: "/harsh-beniwal/octopus/perfumes/images/overlord_box.png",
-        alt: `${productTitle} - Deluxe Fragrance Packaging Box & Seal`,
-        isFeatureSlide: true,
-        slideType: "authenticity",
-      },
-      {
-        src: "/harsh-beniwal/octopus/perfumes/images/paradox_lifestyle.png",
-        alt: `${productTitle} - 25%+ French Oil Concentration & 12H Beast-Mode Longevity`,
-        isFeatureSlide: true,
-        slideType: "shipping",
-      }
-    );
-  }
-
   // Reset loading state when index changes
   useEffect(() => {
     setIsImgLoading(true);

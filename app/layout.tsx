@@ -109,7 +109,7 @@ export const metadata: Metadata = {
     "distribution": "Global",
   },
   verification: {
-    google: "maTiFe5ozIb-1qh8nZ1u6Ac4DuTJAOdJsc82OhScfpE",
+    google: ["5aIetIuABLCTsPQxJA8B9V2ok8kB2svuMyaziUcrj7I", "maTiFe5ozIb-1qh8nZ1u6Ac4DuTJAOdJsc82OhScfpE"],
   },
 };
 
@@ -132,6 +132,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`font-sans h-full antialiased`}>
       <head>
+        <meta name="google-site-verification" content="5aIetIuABLCTsPQxJA8B9V2ok8kB2svuMyaziUcrj7I" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

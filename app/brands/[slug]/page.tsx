@@ -1,10 +1,10 @@
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ChevronRight, Sparkles, ShieldCheck, Truck, ShoppingBag, ArrowLeft } from "lucide-react";
 import { getBrandBySlug, getAllBrands, slugifyBrand } from "@/lib/brands";
-import ProductCardCarousel from "@/components/ProductCardCarousel";
 import SortSelect from "@/components/SortSelect";
 
 interface PageProps {
@@ -232,11 +232,20 @@ export default async function BrandPage({ params, searchParams }: PageProps) {
                     key={product.id}
                     className="group flex flex-col h-full bg-white border border-[#ebebeb] hover:border-[#dddddd] transition-all duration-300 shadow-airbnb hover:shadow-airbnb-hover rounded-[14px] overflow-hidden"
                   >
-                    <ProductCardCarousel
-                      images={product.images || []}
-                      title={product.title}
-                      isPerfume={true}
-                    />
+                    <div className="relative aspect-square bg-[#f7f7f7] overflow-hidden">
+                      {product.images && product.images.length > 0 ? (
+                        <Image
+                          src={product.images[0].local_src || product.images[0].localPath || product.images[0].src}
+                          alt={product.title}
+                          fill
+                          unoptimized
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw"
+                          className="object-contain p-4 group-hover:scale-105 transition-all duration-300 ease-out"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-[#6a6a6a]">No Image</div>
+                      )}
+                    </div>
 
                     <div className="p-3.5 md:p-5 flex flex-col flex-1 text-left bg-white">
                       <div className="text-[10px] uppercase font-bold tracking-wider text-stone-400 mb-1">

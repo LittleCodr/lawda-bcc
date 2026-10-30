@@ -18,11 +18,12 @@ const SIGNATURE_FRAGRANCES = [
   { href: "/collections/all", label: "Explore 2,300+ Perfumes" },
   { href: "/harsh-beniwal/octopus/perfumes", label: "Harsh Beniwal 9 Flagship EDPs" },
   { href: "/products/overlord", label: "Overlord (Dior Sauvage DNA)" },
+  { href: "/products/rhapsody", label: "Rhapsody (Spicy Citrus & Amber)" },
   { href: "/products/paradox", label: "Paradox (LV Les Sables Roses)" },
   { href: "/products/promised", label: "Promised (Baccarat Rouge 540)" },
   { href: "/products/outlaw", label: "Outlaw (Tom Ford Ombré Leather)" },
-  { href: "/products/darling-women", label: "Darling Women (Miss Dior DNA)" },
   { href: "/products/mirage", label: "Mirage (LV Ombre Nomade)" },
+  { href: "/octopus-perfume-coupon-code", label: "Octopus Coupon Codes (25% OFF)" },
 ];
 
 const SUPPORT_LINKS = [
@@ -90,15 +91,15 @@ export default function Footer() {
               India&apos;s premier online luxury perfumery. Sourcing 2,300+ authentic fragrances from 136 world-class perfume houses alongside the official Harsh Beniwal signature collection.
             </p>
 
-            <div className="bg-[#f7f7f7] border border-[#dddddd] rounded-xl p-3.5 max-w-xs w-full flex items-center justify-between">
+            <Link href="/octopus-perfume-coupon-code" className="bg-[#f7f7f7] hover:bg-[#efefef] transition-colors border border-[#dddddd] rounded-xl p-3.5 max-w-xs w-full flex items-center justify-between group">
               <div>
-                <span className="text-[11px] font-semibold text-[#6a6a6a] block">Exclusive Coupon Code</span>
+                <span className="text-[11px] font-semibold text-[#6a6a6a] block group-hover:text-amber-800 transition-colors">Octopus Perfume Coupon Code</span>
                 <span className="font-mono text-[14px] font-bold text-[#222222]">LUXURY25</span>
               </div>
               <span className="bg-stone-900 text-amber-400 text-[11px] font-bold px-2.5 py-1 rounded-full">
                 25% OFF
               </span>
-            </div>
+            </Link>
           </div>
 
           {/* Fragrance Brands */}

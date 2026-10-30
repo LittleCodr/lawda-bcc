@@ -310,7 +310,7 @@ export default async function Home() {
             ))}
           </div>
 
-          <div className="hidden lg:flex items-center gap-2 shrink-0 border-l border-[#ebebeb] pl-4">
+          <Link href="/octopus-perfume-coupon-code" className="hidden lg:flex items-center gap-2 shrink-0 border-l border-[#ebebeb] pl-4 hover:opacity-90 transition-opacity">
             <span className="text-[12px] text-stone-600 font-bold flex items-center gap-1">
               <span>🏷️</span> Code:
             </span>
@@ -318,7 +318,7 @@ export default async function Home() {
               LUXURY25
             </span>
             <span className="text-[12px] font-bold text-amber-700">Flat 25% OFF</span>
-          </div>
+          </Link>
         </div>
       </section>
 

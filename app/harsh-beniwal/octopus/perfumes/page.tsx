@@ -7,44 +7,54 @@ import scrapedPerfumes from "@/harsh-beniwal/octopus/perfumes/scraped_products.j
 const PAGE_URL = "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes";
 
 export const metadata: Metadata = {
-  title: "Buy Octopus Perfume by Harsh Beniwal | Diwali 2026 Festive Sale (50ML EDP)",
+  title: "Octopus Perfume by Harsh Beniwal | Official Brand Store & Prices (50ML EDP)",
   description:
-    "Buy 100% original Octopus perfume by Harsh Beniwal on the official website. Flat 20% OFF with code DIWALI20 (₹1,039). 25%+ French oils, 12H+ longevity, free 7ML Paradox tester & express Diwali shipping in India.",
+    "Buy 100% original Octopus perfume by Harsh Beniwal on the official flagship store (BuyOctopus). 50ML EDPs formulated with 25%+ French fragrance oils, 12H+ beast-mode sillage. Use code LUXURY25 for 25% OFF + Free 7ML Paradox tester & express pan-India delivery.",
   keywords: [
-    "Harsh Beniwal perfume",
-    "Octopus perfume",
-    "Octopus perfume by Harsh Beniwal",
-    "Buy Octopus perfume",
-    "Octopus perfume official website",
-    "Octopus perfumes price",
-    "Octopus perfume review",
-    "Harsh Beniwal perfume price",
-    "Octopus perfume India",
-    "BuyOctopus",
-    "harsh beniwal octopus perfumes",
+    "octopus perfume",
+    "octopus perfume coupon code",
+    "harsh beniwal perfume",
+    "octopus rhapsody",
+    "octopus overlord",
+    "octopus overload perfume",
+    "buy octopus perfume",
+    "octopus harsh beniwal",
+    "octopus overlord perfume",
     "overlord perfume",
-    "promised perfume harsh beniwal",
+    "octopus mirage perfume",
+    "octopus fragrance",
+    "rhapsody octopus",
+    "harsh beniwal perfume brand",
+    "octopus paradox perfume",
+    "octopus promised perfume",
+    "octopus outlaw perfume",
+    "harsh beniwal perfume coupon code",
+    "octopus coupon code",
+    "Octopus perfume by Harsh Beniwal",
+    "Octopus perfume official website",
+    "BuyOctopus",
+    "Octopus perfumes price",
+    "Harsh Beniwal perfume price",
+    "Octopus perfume review",
+    "Octopus perfume India",
+    "overlord",
+    "rhapsody",
+    "mirage",
+    "paradox",
+    "promised",
+    "outlaw",
     "somersault perfume",
-    "rhapsody perfume",
-    "mirage perfume",
-    "outlaw perfume",
     "your move perfume",
-    "paradox perfume",
     "darling perfume",
-    "harsh beniwal cologne",
-    "buy octopus perfume online",
-    "diwali perfume gifts",
-    "diwali gift hampers 2026",
-    "diwali discount on octopus perfumes",
-    "coupon code DIWALI20"
+    "coupon code LUXURY25"
   ],
   alternates: {
     canonical: PAGE_URL,
   },
   openGraph: {
-    title: "Harsh Beniwal Octopus Perfumes | 100% Original 50ML EDP Collection",
+    title: "Octopus Perfume by Harsh Beniwal | Official 50ML EDP Flagship Store",
     description:
-      "Official Octopus Perfumes by Harsh Beniwal. Formulated with 25%+ French fragrance oils, 12+ hour longevity. Best prices across India.",
+      "Buy 100% original Octopus Perfumes by Harsh Beniwal. 25%+ French fragrance oils, 12+ hour beast-mode longevity. 25% OFF with code LUXURY25 + Free 7ML tester.",
     url: PAGE_URL,
     siteName: "Octopus Perfumes by Harsh Beniwal",
     images: [
@@ -60,9 +70,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Harsh Beniwal Octopus Perfumes | 100% Original 50ML EDP",
+    title: "Octopus Perfume by Harsh Beniwal | Official 50ML EDP Flagship Store",
     description:
-      "Official Octopus Perfumes by Harsh Beniwal. Formulated with 25%+ French fragrance oils, 12+ hour longevity. Best prices across India.",
+      "Buy 100% original Octopus Perfumes by Harsh Beniwal. 25%+ French oils, 12+ hour sillage. Code LUXURY25 for 25% OFF.",
     images: ["/harsh-beniwal/octopus/perfumes/images/overlord_box.png"],
   },
 };
@@ -138,7 +148,15 @@ export default function HarshBeniwalPerfumesPage() {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Where can I buy Octopus perfume online?",
+        "name": "What is the best Octopus perfume coupon code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The highest-value official Octopus perfume coupon code is LUXURY25, which gives an instant flat 25% OFF on all 50ML EDP perfumes by Harsh Beniwal (bringing price down to ₹974). You can also use code OCTOPUS20 for 20% OFF. Both include a free 7ML Paradox tester pack and free pan-India delivery."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where can I buy authentic Octopus perfume online?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "You can buy Octopus perfume directly on the Octopus perfume official website (https://www.octopusperfume.in / BuyOctopus). Buying through the official website guarantees genuine 50ML EDP bottles crafted by Harsh Beniwal, a free 7ML Paradox tester pack, and free express shipping across India."
@@ -146,10 +164,18 @@ export default function HarshBeniwalPerfumesPage() {
       },
       {
         "@type": "Question",
+        "name": "What are the most popular Octopus perfumes by Harsh Beniwal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The top-selling Octopus fragrances created with Harsh Beniwal are Overlord (smoky leather & dark woods), Rhapsody (spicy citrus & amber), Mirage (refreshing aquatic & mineral notes), Paradox (amber vanilla & tonka bean), Promised (aromatic lavender & cedarwood), and Outlaw (bold tobacco & oud)."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "What is the Octopus perfumes price and Harsh Beniwal perfume price?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The official Octopus perfumes price is ₹1,299 for a 50ML Eau De Parfum (discounted from MRP ₹2,099). You can also apply coupon code OCTOPUS20 for flat 20% OFF. This brings Harsh Beniwal perfume price down to an unbeatable value for 25%+ French oil concentration."
+          "text": "The official Octopus perfumes price is ₹1,299 for a 50ML Eau De Parfum (discounted from MRP ₹2,099). When you apply coupon code LUXURY25, the price drops to ₹974 with free express shipping across India."
         }
       },
       {
@@ -181,7 +207,7 @@ export default function HarshBeniwalPerfumesPage() {
         "name": "How fast is Octopus perfume India shipping?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Octopus perfume India offers Free Pan-India Express Delivery within 2 to 5 business days with 100% secure online prepaid payments (UPI, Cards, NetBanking)."
+          "text": "Octopus perfume India offers Free Pan-India Express Delivery within 2 to 4 business days with 100% secure online prepaid payments (UPI, Cards, NetBanking)."
         }
       }
     ]

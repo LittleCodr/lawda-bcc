@@ -60,7 +60,11 @@ export default function CheckoutPage() {
   const cartDiscountPercent = getAutoDiscountPercentage ? getAutoDiscountPercentage() : 0;
   const deliveryFee = deliveryMethod === "international" ? 1500 : 0;
   const promoDiscountAmount = promoApplied 
-    ? (["DIWALI20", "OCTOPUS20"].includes(promoCode.trim().toUpperCase()) ? Math.floor(baseTotal * 0.20) : Math.floor(baseTotal * 0.15)) 
+    ? (["LUXURY25", "OCTOPUS25"].includes(promoCode.trim().toUpperCase())
+        ? Math.floor(baseTotal * 0.25)
+        : (["DIWALI20", "OCTOPUS20", "OCTOPUS"].includes(promoCode.trim().toUpperCase()) 
+            ? Math.floor(baseTotal * 0.20) 
+            : Math.floor(baseTotal * 0.15))) 
     : 0;
   const totalDiscount = cartAutoDiscount + promoDiscountAmount;
   const isAdmin = user?.email && ["littlecodr@gmail.com", "srijanrai966@gmail.com", "coderdracwound@gmail.com"].includes(user.email.toLowerCase());
@@ -485,9 +489,10 @@ export default function CheckoutPage() {
                       type="button"
                       onClick={() => {
                         const cleanCode = promoCode.trim().toUpperCase();
+                        const valid25 = ["LUXURY25", "OCTOPUS25"];
+                        const valid20 = ["DIWALI20", "OCTOPUS20", "OCTOPUS"];
                         const valid15 = ["DIWALI15", "FESTIVE15", "OCTOPUS15", "WELCOME15"];
-                        const valid20 = ["DIWALI20", "OCTOPUS20"];
-                        if (valid15.includes(cleanCode) || valid20.includes(cleanCode)) {
+                        if (valid25.includes(cleanCode) || valid20.includes(cleanCode) || valid15.includes(cleanCode)) {
                           if (baseTotal <= 499) {
                             setPromoError("This promo code is only valid on orders above ₹499.");
                             return;
@@ -496,7 +501,7 @@ export default function CheckoutPage() {
                           setPromoApplied(true);
                           setPromoError("");
                         } else {
-                          setPromoError("Invalid promo code. Use DIWALI15 for 15% OFF or DIWALI20.");
+                          setPromoError("Invalid promo code. Use LUXURY25 for 25% OFF!");
                         }
                       }}
                       className="bg-[#222222] hover:bg-black text-white rounded-lg px-6 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer"

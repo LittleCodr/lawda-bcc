@@ -561,33 +561,33 @@ export default function ProductUI({ product }: ProductUIProps) {
               </div>
             )}
 
-            {/* Free Gift Strip - Diwali Festive Edition */}
+            {/* Free Gift Strip - Haute Parfumerie Edition */}
             <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-300 rounded-xl p-3.5 mb-4 flex items-center gap-3 shadow-2xs">
-              <span className="text-2xl shrink-0">🪔</span>
+              <span className="text-2xl shrink-0">✨</span>
               <div className="text-left flex-1 min-w-0">
                 <span className="text-[12px] font-bold text-amber-900 uppercase block">
-                  Diwali Gift: Free 7ML Paradox Tester Included
+                  Complimentary Gift: Free 7ML Paradox Tester Included
                 </span>
                 <span className="text-[11px] text-[#3f3f3f] block leading-tight">
-                  Worth ₹399 · Deluxe Festive Gift Packaging · Express Pan-India Delivery
+                  Worth ₹399 · Deluxe Signature Gift Packaging · Express Pan-India Delivery
                 </span>
               </div>
             </div>
 
-            {/* Promo Code Coupon Strip - DIWALI20 */}
+            {/* Promo Code Coupon Strip - LUXURY25 */}
             <div className="bg-white border-2 border-amber-300/80 rounded-xl p-3 mb-5 flex items-center justify-between shadow-2xs">
               <div>
                 <span className="text-[11px] font-bold text-amber-800 uppercase block">
-                  Diwali Festive Coupon
+                  Exclusive Luxury Coupon
                 </span>
                 <span className="text-[14px] font-extrabold text-[#222222] font-mono">
-                  DIWALI20
+                  LUXURY25
                 </span>
-                <span className="text-[11px] font-semibold text-[#ff385c] ml-1.5">(20% Instant OFF)</span>
+                <span className="text-[11px] font-semibold text-[#ff385c] ml-1.5">(25% Instant OFF)</span>
               </div>
               <button
                 type="button"
-                onClick={() => copyPromoCode("DIWALI20")}
+                onClick={() => copyPromoCode("LUXURY25")}
                 className="px-3.5 py-1.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-lg text-[11px] font-bold transition-all shadow-xs active:scale-95 cursor-pointer"
               >
                 {copiedCode ? "Copied! ✓" : "Copy Code"}

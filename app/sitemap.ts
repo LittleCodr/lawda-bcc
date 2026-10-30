@@ -9,13 +9,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Static routes
   const routes = [
     '',
-    '/diwali-gifts',
-    '/diwali-gift-ideas',
-    '/collections/diwali-gifts',
-    '/collections/festive-gifts',
     '/harsh-beniwal/octopus/perfumes',
+    '/octopus-perfume-coupon-code',
     '/collections/all',
     '/brands',
+    '/diwali-gifts',
+    '/diwali-gift-ideas',
+    '/collections/festive-gifts',
     '/pages/about-us',
     '/pages/contact',
     '/pages/privacy-policy',
@@ -25,8 +25,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: (route === '' || route === '/diwali-gifts' || route === '/harsh-beniwal/octopus/perfumes' || route === '/collections/diwali-gifts') ? ('daily' as const) : ('weekly' as const),
-    priority: (route === '' || route === '/diwali-gifts') ? 1.0 : (route === '/harsh-beniwal/octopus/perfumes' || route === '/collections/diwali-gifts' || route === '/diwali-gift-ideas') ? 0.95 : route === '/collections/all' ? 0.9 : 0.6,
+    changeFrequency: (route === '' || route === '/harsh-beniwal/octopus/perfumes' || route === '/octopus-perfume-coupon-code') ? ('daily' as const) : ('weekly' as const),
+    priority: (route === '' || route === '/harsh-beniwal/octopus/perfumes' || route === '/octopus-perfume-coupon-code') ? 1.0 : (route === '/collections/all' || route === '/brands') ? 0.9 : 0.7,
   }))
 
   // Dynamic product routes from legacy products.ts

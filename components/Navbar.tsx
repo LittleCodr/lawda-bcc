@@ -101,13 +101,13 @@ export default function Navbar() {
           <span className="hidden md:inline text-stone-300">Harsh Beniwal & Designer Brands</span>
         </div>
         <span className="text-stone-600 hidden sm:inline">•</span>
-        <div className="flex items-center gap-1.5">
+        <Link href="/octopus-perfume-coupon-code" className="flex items-center gap-1.5 hover:opacity-90 transition-opacity">
           <span className="text-stone-300">Use code</span>
           <strong className="font-mono bg-amber-400 text-stone-950 px-2 py-0.5 rounded text-[11px] font-bold shadow-xs">
             LUXURY25
           </strong>
           <span className="text-stone-300 hidden sm:inline">for Flat 25% OFF</span>
-        </div>
+        </Link>
         <span className="text-stone-600 hidden lg:inline">•</span>
         <div className="text-stone-300 hidden lg:flex items-center gap-1">
           <Gift size={13} className="text-amber-400" />

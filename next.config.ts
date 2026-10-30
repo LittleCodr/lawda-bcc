@@ -107,6 +107,22 @@ const nextConfig: NextConfig = {
         destination: 'https://octopusperfume.in/:path*',
         permanent: true,
       },
+      // Coupon redirects for SEO & UX
+      {
+        source: '/coupons',
+        destination: '/octopus-perfume-coupon-code',
+        permanent: true,
+      },
+      {
+        source: '/coupon-codes',
+        destination: '/octopus-perfume-coupon-code',
+        permanent: true,
+      },
+      {
+        source: '/octopus-coupon-code',
+        destination: '/octopus-perfume-coupon-code',
+        permanent: true,
+      },
       // Redirect www → non-www (canonical)
       {
         source: '/:path*',

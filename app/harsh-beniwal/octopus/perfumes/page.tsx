@@ -6,6 +6,8 @@ import scrapedPerfumes from "@/harsh-beniwal/octopus/perfumes/scraped_products.j
 
 const PAGE_URL = "https://www.octopusperfume.in/harsh-beniwal/octopus/perfumes";
 
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: "Octopus Perfume by Harsh Beniwal | Official Brand Store & Prices (50ML EDP)",
   description:

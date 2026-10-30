@@ -1,11 +1,12 @@
 import productsData from "@/lib/data/products.json";
 
-export const dynamic = "force-dynamic";
+// Revalidate once every 24 hours to cache on Vercel Edge CDN and eliminate function CPU & Fast Origin Transfer costs
+export const revalidate = 86400;
 
 export async function GET(request: Request) {
-  const host = request.headers.get("x-forwarded-host") || request.headers.get("host");
-  const proto = request.headers.get("x-forwarded-proto") || (host?.includes("localhost") ? "http" : "https");
-  const DOMAIN = host ? `${proto}://${host}` : "https://www.octopusperfume.in";
+  const host = request?.headers?.get("x-forwarded-host") || request?.headers?.get("host");
+  const proto = request?.headers?.get("x-forwarded-proto") || (host?.includes("localhost") ? "http" : "https");
+  const DOMAIN = host && !host.includes("vercel.app") ? `${proto}://${host}` : "https://www.octopusperfume.in";
 
   // Filter out any invalid items
   const validProducts = (productsData as any[]).filter(

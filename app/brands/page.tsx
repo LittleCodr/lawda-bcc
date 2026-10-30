@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getAllBrands } from "@/lib/brands";
 import { ChevronRight, Sparkles, ShieldCheck } from "lucide-react";
 
+export const revalidate = 86400;
+
 export const metadata = {
   title: "All Perfume Brands & Fragrance Houses | Octopus Perfumes India",
   description:

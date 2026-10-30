@@ -5,6 +5,19 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ChevronRight, ShieldCheck, Truck, RefreshCcw, Heart, Info, FileText, Lock, Box, Banknote, Calendar, CheckCircle2, Mail, Phone } from "lucide-react";
 
+export const revalidate = 86400;
+
+export function generateStaticParams() {
+  return [
+    { slug: "about-us" },
+    { slug: "contact" },
+    { slug: "shipping-policy" },
+    { slug: "returns-refund-policy" },
+    { slug: "privacy-policy" },
+    { slug: "terms-conditions" },
+  ];
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   return { title: `${slug.replace(/-/g, ' ').toUpperCase()} | Octopus Everlasting Gifts` };

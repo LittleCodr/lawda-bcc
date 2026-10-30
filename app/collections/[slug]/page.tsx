@@ -9,6 +9,23 @@ import SortSelect from "@/components/SortSelect";
 import FeaturedProductCarousel from "@/components/FeaturedProductCarousel";
 import ZoomableImage from "@/components/ZoomableImage";
 
+export const revalidate = 86400;
+
+let cachedProducts: any[] | null = null;
+function getProducts(): any[] {
+  if (cachedProducts) return cachedProducts;
+  try {
+    const dataPath = path.join(process.cwd(), "lib", "data", "products.json");
+    if (fs.existsSync(dataPath)) {
+      cachedProducts = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
+      return cachedProducts || [];
+    }
+  } catch (e) {
+    console.error("Error reading products:", e);
+  }
+  return [];
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const formattedSlug = slug === 'all' ? 'All Gifts' : slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
@@ -54,16 +71,8 @@ export default async function CollectionPage(props: {
   const { slug } = await props.params;
   const searchParams = await props.searchParams;
   
-  let products: any[] = [];
-  try {
-    const dataPath = path.join(process.cwd(), "lib", "data", "products.json");
-    if (fs.existsSync(dataPath)) {
-      const fileContent = fs.readFileSync(dataPath, "utf-8");
-      products = JSON.parse(fileContent);
-    }
-  } catch (e) {
-    console.error("Error loading products:", e);
-  }
+  // Load products from in-memory cache
+  const products = getProducts();
 
   // Filter products based on search param 'q' if present
   let filteredProducts = products;

@@ -3,6 +3,26 @@ import path from "path";
 import { notFound } from "next/navigation";
 import ProductUI from "./ProductUI";
 
+// Cache catalog in module memory to eliminate disk I/O and redundant 6MB JSON parsing
+let cachedCatalog: any[] | null = null;
+function getCatalog(): any[] {
+  if (cachedCatalog) return cachedCatalog;
+  try {
+    const dataPath = path.join(process.cwd(), "lib", "data", "products.json");
+    if (fs.existsSync(dataPath)) {
+      cachedCatalog = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
+      return cachedCatalog || [];
+    }
+  } catch (e) {
+    console.error("Error loading products:", e);
+  }
+  return [];
+}
+
+// Enable Incremental Static Regeneration (24-hour cache on Vercel Edge / CDN)
+// Subsequent visits are served as pure static HTML from Vercel Edge with zero CPU/function cost
+export const revalidate = 86400;
+
 function getProductSEOInfo(product: any, slug: string) {
   const isHarshBeniwal = product.vendor === "Octopus Perfumes by Harsh Beniwal" || 
     ['overlord', 'paradox', 'rhapsody', 'your-move', 'somersault', 'promised', 'outlaw', 'mirage', 'darling-women'].includes(slug);
@@ -373,15 +393,8 @@ function getProductSEOInfo(product: any, slug: string) {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   
-  let product = null;
-  try {
-    const dataPath = path.join(process.cwd(), "lib", "data", "products.json");
-    if (fs.existsSync(dataPath)) {
-      const fileContent = fs.readFileSync(dataPath, "utf-8");
-      const products = JSON.parse(fileContent);
-      product = products.find((p: any) => p.handle === slug || p.id.toString() === slug);
-    }
-  } catch (e) {}
+  const products = getCatalog();
+  const product = products.find((p: any) => p.handle === slug || p.id.toString() === slug);
 
   if (!product) {
     return { title: "Product Not Found | Octopus Luxury Perfumes & Gifts" };
@@ -427,15 +440,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   
-  let product = null;
-  try {
-    const dataPath = path.join(process.cwd(), "lib", "data", "products.json");
-    if (fs.existsSync(dataPath)) {
-      const fileContent = fs.readFileSync(dataPath, "utf-8");
-      const products = JSON.parse(fileContent);
-      product = products.find((p: any) => p.handle === slug || p.id.toString() === slug);
-    }
-  } catch (e) {}
+  const products = getCatalog();
+  const product = products.find((p: any) => p.handle === slug || p.id.toString() === slug);
 
   if (!product) {
     notFound();

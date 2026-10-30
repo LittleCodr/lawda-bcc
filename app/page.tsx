@@ -23,6 +23,8 @@ import {
 import scrapedPerfumes from "@/harsh-beniwal/octopus/perfumes/scraped_products.json";
 import { getAllBrands } from "@/lib/brands";
 
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: "OCTOPUS Haute Parfumerie | 2,300+ Luxury Designer & Niche Perfumes India",
   description: "Shop 100% authentic luxury fragrances from 130+ world-class perfume houses (Lattafa, Armaf, Afnan, Dior, Rasasi, Tom Ford) and official Harsh Beniwal signature collection. Flat 25% OFF with code LUXURY25. Free 7ML Paradox tester + express pan-India delivery.",

@@ -1,6 +1,6 @@
 import { getAllBrands } from "@/lib/brands";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 86400;
 
 export async function GET() {
   const DOMAIN = "https://www.octopusperfume.in";

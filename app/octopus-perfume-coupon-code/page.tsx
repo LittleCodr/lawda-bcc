@@ -5,6 +5,8 @@ import CouponCodeClient from "@/components/CouponCodeClient";
 
 const PAGE_URL = "https://www.octopusperfume.in/octopus-perfume-coupon-code";
 
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: "Octopus Perfume Coupon Code & Discounts (2026) | 25% OFF Harsh Beniwal Perfumes",
   description:

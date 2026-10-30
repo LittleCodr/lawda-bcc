@@ -7,6 +7,23 @@ import { ChevronRight, Sparkles, ShieldCheck, Truck, ShoppingBag, ArrowLeft } fr
 import { getBrandBySlug, getAllBrands, slugifyBrand } from "@/lib/brands";
 import SortSelect from "@/components/SortSelect";
 
+export const revalidate = 86400;
+
+let cachedProducts: any[] | null = null;
+function getProducts(): any[] {
+  if (cachedProducts) return cachedProducts;
+  try {
+    const dataPath = path.join(process.cwd(), "lib", "data", "products.json");
+    if (fs.existsSync(dataPath)) {
+      cachedProducts = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
+      return cachedProducts || [];
+    }
+  } catch (e) {
+    console.error("Error reading products:", e);
+  }
+  return [];
+}
+
 interface PageProps {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -64,16 +81,8 @@ export default async function BrandPage({ params, searchParams }: PageProps) {
     notFound();
   }
 
-  // Load products
-  const dataPath = path.join(process.cwd(), "lib", "data", "products.json");
-  let allProducts: any[] = [];
-  try {
-    if (fs.existsSync(dataPath)) {
-      allProducts = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
-    }
-  } catch (e) {
-    console.error("Error reading products:", e);
-  }
+  // Load products from in-memory cache
+  const allProducts = getProducts();
 
   // Filter products by this brand
   const brandSlugNorm = slugifyBrand(brand.name);

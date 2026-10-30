@@ -2,6 +2,8 @@ import { notFound } from "next/navigation";
 import ProductUI from "@/app/products/[slug]/ProductUI";
 import scrapedPerfumes from "@/harsh-beniwal/octopus/perfumes/scraped_products.json";
 
+export const revalidate = 86400;
+
 export function generateStaticParams() {
   return (scrapedPerfumes as any[]).map((p) => ({
     slug: p.handle,

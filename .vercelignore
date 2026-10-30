@@ -1,6 +1,7 @@
 # Exclude scratch, scripts and media
 /scratch/
 /scripts/
+/data/migration/
 *.mp4
 
 # Ensure app data is never ignored
@@ -23,6 +24,8 @@ rename.js
 test-*.js
 test-*.mjs
 update_store.js
+SEO_IMPLEMENTATION_REPORT.md
+migration_report.md
 
 # Local scrape sources not required in Next.js bundle
 harsh-beniwal/octopus/perfumes/images/

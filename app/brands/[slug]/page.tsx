@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: "Brand Not Found | Octopus Perfumes" };
   }
 
-  const title = `Buy ${brand.name} Perfumes Online India | Flat 25% OFF | 100% Authentic | Octopus Perfumes`;
+  const title = `Buy ${brand.name} Perfumes Online India | 100% Authentic | Octopus Perfumes`;
   const description = `${brand.description.substring(0, 155)} Buy 100% original ${brand.name} with free tester & express Pan-India delivery.`;
   const canonicalUrl = `https://www.octopusperfume.in/brands/${slug}`;
 
@@ -193,7 +193,7 @@ export default async function BrandPage({ params, searchParams }: PageProps) {
                 </p>
                 <div className="flex flex-wrap gap-3 text-xs text-stone-600 font-medium">
                   <span className="bg-white/80 px-3 py-1.5 rounded-lg border border-stone-200">
-                    🔥 Flat 25% Instant OFF Applied
+                    🏷️ Extra 25% OFF with Code LUXURY25
                   </span>
                   <span className="bg-white/80 px-3 py-1.5 rounded-lg border border-stone-200">
                     🎁 Free 7ML Paradox Tester Pack

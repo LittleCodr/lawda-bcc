@@ -40,22 +40,21 @@ check(
   `Found ${zeroPriceProducts.length} items with price <= 0`
 );
 
-// Test 2: Price Ending Rule (0 or 9) for migrated catalog
+// Test 2: Original Selling Price Integrity for migrated catalog
 const migratedProducts = products.filter(p => p.source_url && p.source_url.includes("perfumenetwork.in"));
-let badPriceEndings = 0;
+let invalidPrices = 0;
 for (const p of migratedProducts) {
   for (const v of p.variants || []) {
-    const num = Math.round(Number(v.price));
-    const lastDigit = Math.abs(num % 10);
-    if (lastDigit !== 0 && lastDigit !== 9) {
-      badPriceEndings++;
+    const num = Number(v.price);
+    if (isNaN(num) || num <= 0) {
+      invalidPrices++;
     }
   }
 }
 check(
-  "25% Discount Price Rule: All Migrated Variants End in 0 or 9",
-  badPriceEndings === 0,
-  `Found ${badPriceEndings} variants not ending in 0 or 9`
+  "Original Price Integrity: All Migrated Variants Have Valid Non-Zero Selling Prices",
+  invalidPrices === 0,
+  `Found ${invalidPrices} variants with invalid price`
 );
 
 // Test 3: Compare-at Price Integrity

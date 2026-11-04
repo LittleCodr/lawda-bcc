@@ -7,7 +7,7 @@ export const revalidate = 86400;
 export const metadata = {
   title: "All Perfume Brands & Fragrance Houses | Octopus Perfumes India",
   description:
-    "Explore 130+ luxury, designer, and Middle Eastern perfume houses. 100% original authentic fragrances with flat 25% OFF, free 7ML Paradox tester & express Pan-India shipping.",
+    "Explore 130+ luxury, designer, and Middle Eastern perfume houses. 100% original authentic fragrances with flat 25% OFF, complimentary luxury tester & express Pan-India shipping.",
   alternates: {
     canonical: "https://www.octopusperfume.in/brands",
   },

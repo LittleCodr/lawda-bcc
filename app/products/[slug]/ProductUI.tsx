@@ -126,7 +126,8 @@ export default function ProductUI({ product }: ProductUIProps) {
   const productTitleLower = (product.title || "").toLowerCase();
   const perfumeHandles = ['overlord', 'paradox', 'rhapsody', 'your-move', 'somersault', 'promised', 'outlaw', 'mirage', 'darling-women'];
   const isHarshBeniwal = perfumeHandles.includes(product.handle) || product.vendor === "Octopus Perfumes by Harsh Beniwal";
-  const isPerfume = isHarshBeniwal || (product.product_type || '').toLowerCase().includes('perfume') || (product.tags || []).some((t: string) => typeof t === 'string' && (t.toLowerCase().includes('perfume') || t.toLowerCase().includes('harsh beniwal')));
+  const isEverlasting = (product.vendor || "").toLowerCase().includes("everlasting") || ['925-silver-snake-anklet', 'name-necklace', '12-in-1-jhumkas-box'].includes(product.handle);
+  const isPerfume = isHarshBeniwal || (!isEverlasting && (product.vendor !== "EVERLASTING" && product.vendor !== "Everlasting")) || (product.product_type || '').toLowerCase().includes('perfume') || (product.tags || []).some((t: string) => typeof t === 'string' && (t.toLowerCase().includes('perfume') || t.toLowerCase().includes('harsh beniwal')));
   const isNamePersonalised = !isPerfume && (productTitleLower.includes('name') || productTitleLower.includes('initial') || product.handle === '12-in-1-jhumkas-box');
   const isPhotoPersonalised = !isPerfume && (productTitleLower.includes('photo') || productTitleLower.includes('picture'));
   const isRing = productTitleLower.includes('ring');
@@ -320,21 +321,31 @@ export default function ProductUI({ product }: ProductUIProps) {
             <div className="flex items-center gap-3.5 py-3.5">
               <Sparkles size={20} className="text-[#ff385c] shrink-0" />
               <div>
-                <span className="text-[15px] font-semibold text-[#222222] block">25%+ French Fragrance Oils</span>
-                <span className="text-[13px] text-[#6a6a6a]">Imported perfume essence for rich, all-day drydown</span>
+                <span className="text-[15px] font-semibold text-[#222222] block">
+                  {isHarshBeniwal ? "25%+ French Fragrance Oils" : (isPerfume ? "100% Original Authentic Fragrance" : "Premium Handcrafted Quality")}
+                </span>
+                <span className="text-[13px] text-[#6a6a6a]">
+                  {isHarshBeniwal ? "Imported perfume essence for rich, all-day drydown" : (isPerfume ? "Directly sourced in original manufacturer packaging with verified batch codes" : "Exquisite craftsmanship & durable finish")}
+                </span>
               </div>
             </div>
             <div className="flex items-center gap-3.5 py-3.5">
               <Clock size={20} className="text-[#222222] shrink-0" />
               <div>
-                <span className="text-[15px] font-semibold text-[#222222] block">12+ Hours Proven Longevity</span>
-                <span className="text-[13px] text-[#6a6a6a]">Beast-mode projection specially formulated for Indian weather</span>
+                <span className="text-[15px] font-semibold text-[#222222] block">
+                  {isPerfume ? "12+ Hours Proven Longevity" : "Lifetime Keepsake Quality"}
+                </span>
+                <span className="text-[13px] text-[#6a6a6a]">
+                  {isPerfume ? "Rich projection specially formulated for long-lasting performance" : "Designed to preserve treasured memories forever"}
+                </span>
               </div>
             </div>
             <div className="flex items-center gap-3.5 py-3.5">
               <Gift size={20} className="text-[#ff385c] shrink-0" />
               <div>
-                <span className="text-[15px] font-semibold text-[#222222] block">Free 7ML Paradox Discovery Tester (Worth ₹399)</span>
+                <span className="text-[15px] font-semibold text-[#222222] block">
+                  {isHarshBeniwal ? "Free 7ML Paradox Discovery Tester (Worth ₹399)" : (isPerfume ? "Complimentary Luxury Discovery Sample (Worth ₹399)" : "Complimentary Luxury Keepsake Box")}
+                </span>
                 <span className="text-[13px] text-[#6a6a6a]">Automatically included in every parcel at zero extra charge</span>
               </div>
             </div>
@@ -350,13 +361,29 @@ export default function ProductUI({ product }: ProductUIProps) {
           {/* Fragrance Specifications for Perfumes */}
           {isPerfume && (
             <div className="bg-[#f7f7f7] text-[#222222] rounded-[14px] p-6 border border-[#ebebeb] shadow-airbnb">
-              <div className="flex items-center gap-2 mb-2">
-                <Sparkles size={16} className="text-[#ff385c]" />
-                <span className="text-[11px] uppercase tracking-wider text-[#ff385c] font-bold">Harsh Beniwal x Octopus • 25%+ French Oil Concentration</span>
-              </div>
-              <p className="text-xs text-[#6a6a6a] leading-relaxed mb-4">
-                {product.tagline || product.scentStory || "Crafted with imported French fragrance oils. 50ML Eau De Parfum formulated for maximum longevity, magnetic sillage, and IFRA skin safety."}
-              </p>
+              {isHarshBeniwal ? (
+                <>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sparkles size={16} className="text-[#ff385c]" />
+                    <span className="text-[11px] uppercase tracking-wider text-[#ff385c] font-bold">Harsh Beniwal x Octopus • 25%+ French Oil Concentration</span>
+                  </div>
+                  <p className="text-xs text-[#6a6a6a] leading-relaxed mb-4">
+                    {product.tagline || product.scentStory || "Crafted with imported French fragrance oils. 50ML Eau De Parfum formulated for maximum longevity, magnetic sillage, and IFRA skin safety."}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <div className="flex items-center gap-2 mb-2">
+                    <Sparkles size={16} className="text-amber-700" />
+                    <span className="text-[11px] uppercase tracking-wider text-amber-800 font-bold">
+                      100% Original Authentic Guarantee • {product.vendor || "Haute Parfumerie"}
+                    </span>
+                  </div>
+                  <p className="text-xs text-[#6a6a6a] leading-relaxed mb-4">
+                    {product.tagline || product.scentStory || `100% original and genuine fragrance sourced in official sealed brand packaging with verified batch codes, authentic tamper-evident seal, and guaranteed longevity.`}
+                  </p>
+                </>
+              )}
               
               {product.notes && (
                 <div className="pt-3 border-t border-[#dddddd] grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-left sm:text-center">
@@ -451,7 +478,11 @@ export default function ProductUI({ product }: ProductUIProps) {
               {product.title}
             </h1>
             <p className="text-[13px] text-[#6a6a6a] mb-4">
-              Harsh Beniwal 100% Original 50ML Eau De Parfum Collection
+              {isHarshBeniwal 
+                ? "Harsh Beniwal 100% Original 50ML Eau De Parfum Collection" 
+                : isPerfume 
+                  ? (product.vendor ? `${product.vendor} • 100% Original Authentic Fragrance` : "100% Original Authentic Fragrance")
+                  : (product.vendor || "Everlasting Luxury Keepsake Collection")}
             </p>
 
             {/* Same-day dispatch live ticker */}
@@ -566,7 +597,11 @@ export default function ProductUI({ product }: ProductUIProps) {
               <span className="text-2xl shrink-0">✨</span>
               <div className="text-left flex-1 min-w-0">
                 <span className="text-[12px] font-bold text-amber-900 uppercase block">
-                  Complimentary Gift: Free 7ML Paradox Tester Included
+                  {isHarshBeniwal 
+                    ? "Complimentary Gift: Free 7ML Paradox Tester Included" 
+                    : isPerfume 
+                      ? "Complimentary Gift: Luxury Discovery Sample Included" 
+                      : "Complimentary Gift: Luxury Keepsake Packaging Included"}
                 </span>
                 <span className="text-[11px] text-[#3f3f3f] block leading-tight">
                   Worth ₹399 · Deluxe Signature Gift Packaging · Express Pan-India Delivery
@@ -618,11 +653,17 @@ export default function ProductUI({ product }: ProductUIProps) {
             {/* Fee Breakdown Stack */}
             <div className="space-y-2 text-[14px] text-[#6a6a6a] pt-4 border-t border-[#ebebeb]">
               <div className="flex justify-between">
-                <span>₹{currentPrice.toFixed(0)} × 1 bottle</span>
+                <span>₹{currentPrice.toFixed(0)} × 1 {isPerfume ? "bottle" : "item"}</span>
                 <span className="text-[#222222] font-medium">₹{currentPrice.toFixed(0)}</span>
               </div>
               <div className="flex justify-between">
-                <span>7ML Paradox Tester Pack (₹399 value)</span>
+                <span>
+                  {isHarshBeniwal 
+                    ? "7ML Paradox Tester Pack (₹399 value)" 
+                    : isPerfume 
+                      ? "Luxury Discovery Sample (₹399 value)" 
+                      : "Signature Gift Packaging (₹399 value)"}
+                </span>
                 <span className="text-emerald-700 font-semibold">FREE</span>
               </div>
               <div className="flex justify-between">
@@ -712,7 +753,13 @@ export default function ProductUI({ product }: ProductUIProps) {
             <div className="animate-in fade-in duration-300 space-y-4">
               <div>
                 <h4 className="text-sm font-bold text-[#222222] mb-1.5">Free Express Pan-India Shipping</h4>
-                <p className="text-sm text-[#3f3f3f] leading-relaxed">Free express Pan-India shipping on all prepaid orders. Each 50ML Eau De Parfum bottle and free 7ML Paradox tester pack is carefully packaged in our crush-resistant luxury presentation box. Orders placed before 4:00 PM are dispatched same-day via BlueDart / Delhivery / XpressBees air express.</p>
+                <p className="text-sm text-[#3f3f3f] leading-relaxed">
+                  {isHarshBeniwal 
+                    ? "Free express Pan-India shipping on all prepaid orders. Each 50ML Eau De Parfum bottle and free 7ML Paradox tester pack is carefully packaged in our crush-resistant luxury presentation box. Orders placed before 4:00 PM are dispatched same-day via BlueDart / Delhivery / XpressBees air express."
+                    : isPerfume 
+                      ? `Free express Pan-India shipping on all prepaid orders. Each bottle of ${product.title} is carefully packaged in a damage-resistant luxury presentation box along with a complimentary discovery fragrance sample. Orders placed before 4:00 PM are dispatched same-day via BlueDart / Delhivery / XpressBees air express.`
+                      : "Free express Pan-India shipping on all prepaid orders. Each item is carefully packaged in our crush-resistant luxury presentation box. Orders placed before 4:00 PM are dispatched same-day via BlueDart / Delhivery / XpressBees air express."}
+                </p>
               </div>
               <div>
                 <h4 className="text-sm font-bold text-[#222222] mb-1.5">Transit Times</h4>
@@ -722,18 +769,48 @@ export default function ProductUI({ product }: ProductUIProps) {
           )}
           {activeTab === 'faqs' && (
             <div className="animate-in fade-in duration-300 space-y-4">
-              <div>
-                <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">How long does the fragrance last?</h4>
-                <p className="text-sm text-[#3f3f3f] leading-relaxed">Our Eau De Parfums are formulated with 25%+ imported French perfume oil concentration, providing 12+ hours of beast-mode longevity on clothes and 8+ hours on skin with magnetic sillage.</p>
-              </div>
-              <div>
-                <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">What is the complimentary 7ML Paradox tester?</h4>
-                <p className="text-sm text-[#3f3f3f] leading-relaxed">Every order comes with a free 7ML Paradox Eau De Parfum discovery tester pack (worth ₹399). It is pocket-friendly, travel-ready, and lets you experience another iconic scent from Harsh Beniwal's collection!</p>
-              </div>
-              <div>
-                <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">Are these 100% authentic Harsh Beniwal perfumes?</h4>
-                <p className="text-sm text-[#3f3f3f] leading-relaxed">Yes, this is the official Octopus by Harsh Beniwal store. All perfumes are 100% original, IFRA certified, and dermatologist-tested safe for daily skin application.</p>
-              </div>
+              {isHarshBeniwal ? (
+                <>
+                  <div>
+                    <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">How long does the fragrance last?</h4>
+                    <p className="text-sm text-[#3f3f3f] leading-relaxed">Our Eau De Parfums are formulated with 25%+ imported French perfume oil concentration, providing 12+ hours of beast-mode longevity on clothes and 8+ hours on skin with magnetic sillage.</p>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">What is the complimentary 7ML Paradox tester?</h4>
+                    <p className="text-sm text-[#3f3f3f] leading-relaxed">Every order comes with a free 7ML Paradox Eau De Parfum discovery tester pack (worth ₹399). It is pocket-friendly, travel-ready, and lets you experience another iconic scent from Harsh Beniwal&apos;s collection!</p>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">Are these 100% authentic Harsh Beniwal perfumes?</h4>
+                    <p className="text-sm text-[#3f3f3f] leading-relaxed">Yes, this is the official Octopus by Harsh Beniwal store. All perfumes are 100% original, IFRA certified, and dermatologist-tested safe for daily skin application.</p>
+                  </div>
+                </>
+              ) : isPerfume ? (
+                <>
+                  <div>
+                    <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">Is this {product.vendor || 'fragrance'} 100% original and authentic?</h4>
+                    <p className="text-sm text-[#3f3f3f] leading-relaxed">Yes, 100% genuine and authentic. Sourced directly from verified authorized distributors in original sealed manufacturer packaging with verifiable batch codes.</p>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">How long does this perfume last?</h4>
+                    <p className="text-sm text-[#3f3f3f] leading-relaxed">Longevity depends on the fragrance family and concentration, typically offering 8 to 12+ hours of performance and distinct sillage formulated for long-lasting wear.</p>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">What is included with my perfume order?</h4>
+                    <p className="text-sm text-[#3f3f3f] leading-relaxed">Each order arrives securely wrapped in damage-resistant luxury packaging and includes a complimentary luxury discovery sample plus free pan-India express delivery.</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">Is this item 100% genuine?</h4>
+                    <p className="text-sm text-[#3f3f3f] leading-relaxed">Yes, all items in our collection are handcrafted to the highest luxury standards and verified for quality before dispatch.</p>
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">What is the return and replacement policy?</h4>
+                    <p className="text-sm text-[#3f3f3f] leading-relaxed">We provide a 7-day hassle-free return and replacement policy. If your package arrives damaged or defective, we provide an immediate free replacement.</p>
+                  </div>
+                </>
+              )}
               <div>
                 <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">What payment methods do you accept?</h4>
                 <p className="text-sm text-[#3f3f3f] leading-relaxed">We accept 100% secure online prepaid payments including UPI (Google Pay, PhonePe, Paytm), Credit/Debit Cards, and Net Banking with free express shipping across India.</p>
@@ -778,7 +855,11 @@ export default function ProductUI({ product }: ProductUIProps) {
               </div>
               <span className="text-[11px] text-[#6a6a6a] truncate mt-0.5 flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                In Stock • Free 7ML Tester Pack
+                {isHarshBeniwal 
+                  ? "In Stock • Free 7ML Paradox Tester" 
+                  : isPerfume 
+                    ? "In Stock • Free Luxury Discovery Sample" 
+                    : "In Stock • Free Signature Gift Packaging"}
               </span>
             </div>
           </div>

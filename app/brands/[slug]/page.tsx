@@ -196,7 +196,7 @@ export default async function BrandPage({ params, searchParams }: PageProps) {
                     🏷️ Extra 25% OFF with Code LUXURY25
                   </span>
                   <span className="bg-white/80 px-3 py-1.5 rounded-lg border border-stone-200">
-                    🎁 Free 7ML Paradox Tester Pack
+                    {brand.slug === "octopus" ? "🎁 Free 7ML Paradox Tester Pack" : "🎁 Complimentary Luxury Tester Pack"}
                   </span>
                   <span className="bg-white/80 px-3 py-1.5 rounded-lg border border-stone-200">
                     🚀 Free Express Pan-India Delivery

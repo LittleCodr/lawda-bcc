@@ -29,8 +29,15 @@ function getProducts(): any[] {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const formattedSlug = slug === 'all' ? 'All Gifts' : slug.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-  const title = rakhiConfig[slug] ? `${rakhiConfig[slug].title} | Octopus Perfumes by Harsh Beniwal` : `${formattedSlug} | Octopus Perfumes by Harsh Beniwal`;
-  const description = rakhiConfig[slug]?.description || `Shop ${formattedSlug.toLowerCase()} at Octopus Perfumes by Harsh Beniwal. 100% original 50ML EDP luxury fragrances with free 7ML Paradox tester pack.`;
+  const isHBCollection = slug.includes('harsh-beniwal') || slug.includes('octopus');
+  const title = rakhiConfig[slug] 
+    ? `${rakhiConfig[slug].title} | Octopus Perfumes by Harsh Beniwal` 
+    : isHBCollection 
+      ? `${formattedSlug} | Octopus Perfumes by Harsh Beniwal` 
+      : `${formattedSlug} | Luxury Fragrances & Keepsakes | Octopus`;
+  const description = rakhiConfig[slug]?.description || (isHBCollection 
+    ? `Shop ${formattedSlug.toLowerCase()} at Octopus Perfumes by Harsh Beniwal. 100% original 50ML EDP luxury fragrances with free 7ML Paradox tester pack.`
+    : `Shop ${formattedSlug.toLowerCase()} at Octopus Luxury Store. 100% authentic designer fragrances and luxury keepsakes with express pan-India delivery.`);
   const collectionUrl = `https://www.octopusperfume.in/collections/${slug}`;
 
   return {
@@ -43,7 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title,
       description,
       url: collectionUrl,
-      siteName: "Octopus Perfumes by Harsh Beniwal",
+      siteName: isHBCollection ? "Octopus Perfumes by Harsh Beniwal" : "Octopus Luxury Store",
       images: [
         {
           url: "/logo.png",
@@ -263,19 +270,21 @@ export default async function CollectionPage(props: {
               <div className="flex items-center gap-4 mb-4">
                 <div className="h-0.5 w-12 bg-amber-400/40 rounded-full"></div>
                 <h2 className="text-xl md:text-2xl font-black text-amber-800 uppercase tracking-wider">
-                  OCTOPUS EAU DE PARFUM
+                  {slug.includes('harsh-beniwal') || slug.includes('octopus') ? "OCTOPUS EAU DE PARFUM" : "LUXURY PERFUMES & GIFTS"}
                 </h2>
                 <div className="h-0.5 w-12 bg-amber-400/40 rounded-full"></div>
               </div>
               
               <p className="text-stone-700 max-w-lg text-xs md:text-sm tracking-wide leading-relaxed font-medium">
-                {description || "Explore 100% original 50ML Eau De Parfum fragrances crafted by Harsh Beniwal. Formulated with 25%+ French fragrance oils, 12H+ longevity, and a complimentary 7ML Paradox tester pack with every order."}
+                {description || (slug.includes('harsh-beniwal') || slug.includes('octopus')
+                  ? "Explore 100% original 50ML Eau De Parfum fragrances crafted by Harsh Beniwal. Formulated with 25%+ French fragrance oils, 12H+ longevity, and a complimentary 7ML Paradox tester pack with every order."
+                  : "Explore 100% authentic luxury perfumes, designer fragrances, and handcrafted keepsakes with complimentary discovery gifts and express pan-India delivery.")}
               </p>
 
-              {/* Free 7ML Paradox Perfume Tester Promo */}
+              {/* Free Perfume Tester Promo */}
               <div className="mt-8 backdrop-blur-2xl bg-gradient-to-r from-white/90 via-amber-50/70 to-yellow-50/40 border border-white/90 rounded-3xl relative overflow-hidden p-5 md:p-6 flex flex-col sm:flex-row items-center gap-6 shadow-xl shadow-amber-500/5 max-w-lg">
                 <div className="relative w-28 h-28 md:w-32 md:h-32 bg-stone-900 rounded-2xl overflow-hidden border border-amber-400/40 shadow-lg shrink-0 z-10 flex items-center justify-center p-2 backdrop-blur-sm">
-                  <img src="/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png" alt="Free 7ML Paradox EDP Tester Pack" className="w-full h-full object-contain" />
+                  <img src="/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png" alt="Free Luxury Tester Pack" className="w-full h-full object-contain" />
                   <div className="absolute -bottom-1 -right-1 bg-gradient-to-r from-amber-500 to-yellow-500 text-stone-950 w-10 h-10 rounded-full flex flex-col items-center justify-center text-center shadow-md font-black leading-none border-2 border-white pointer-events-none transform rotate-12 scale-90">
                     <span className="text-[6px] uppercase tracking-widest font-black">FREE</span>
                   </div>
@@ -286,10 +295,12 @@ export default async function CollectionPage(props: {
                     <Gift size={12} className="shrink-0" /> FREE GIFT • WORTH ₹399
                   </div>
                   <h3 className="font-serif text-xl md:text-2xl mb-1 font-bold text-stone-900 leading-tight">
-                    7ML Paradox EDP Tester Pack
+                    {slug.includes('harsh-beniwal') || slug.includes('octopus') ? "7ML Paradox EDP Tester Pack" : "Deluxe Fragrance Discovery Tester"}
                   </h3>
                   <p className="text-stone-600 text-xs font-medium leading-relaxed mb-1">
-                    Value <span className="line-through opacity-70">₹399</span> — Harsh Beniwal's iconic 12H luxury EDP tester added automatically to your cart for free!
+                    {slug.includes('harsh-beniwal') || slug.includes('octopus') 
+                      ? "Value ₹399 — Harsh Beniwal's iconic 12H luxury EDP tester added automatically to your cart for free!"
+                      : "Value ₹399 — Premium luxury EDP discovery sample pack added automatically to your order for free!"}
                   </p>
                 </div>
               </div>
@@ -334,59 +345,61 @@ export default async function CollectionPage(props: {
             </div>
           </div>
 
-          {/* Fragrance Duo Highlight Sections - Airbnb Photo-First Duo */}
-          <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Overlord Highlight Section */}
-            <div className="bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-[14px] p-6 sm:p-7 shadow-airbnb flex flex-col justify-between group">
-              <div className="flex-1 flex flex-col items-start text-left mb-6">
-                <div className="inline-flex bg-[#f7f7f7] text-[#222222] border border-[#ebebeb] px-3 py-1 rounded-full text-[11px] font-semibold mb-4 items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-[#ff385c]"></span>
-                  <span>Harsh Beniwal Signature Pick</span>
+          {/* Fragrance Duo Highlight Sections - Only on relevant festive & official collections */}
+          {(slug === 'all' || slug.includes('festive') || slug.includes('diwali') || slug.includes('harsh-beniwal') || slug.includes('octopus')) && (
+            <div className="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Overlord Highlight Section */}
+              <div className="bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-[14px] p-6 sm:p-7 shadow-airbnb flex flex-col justify-between group">
+                <div className="flex-1 flex flex-col items-start text-left mb-6">
+                  <div className="inline-flex bg-[#f7f7f7] text-[#222222] border border-[#ebebeb] px-3 py-1 rounded-full text-[11px] font-semibold mb-4 items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#ff385c]"></span>
+                    <span>Harsh Beniwal Signature Pick</span>
+                  </div>
+                  <h2 className="text-[22px] sm:text-[26px] font-bold text-[#222222] mb-2 leading-tight">
+                    Overlord <span className="text-[#6a6a6a] text-lg font-normal">50ML EDP</span>
+                  </h2>
+                  <p className="text-[#3f3f3f] text-sm leading-relaxed mb-4">
+                    Dior Sauvage DNA formulated with 25%+ imported French oils. Electrifying citrus, spicy Sichuan pepper, and ambroxan. Includes free 7ML Paradox tester!
+                  </p>
                 </div>
-                <h2 className="text-[22px] sm:text-[26px] font-bold text-[#222222] mb-2 leading-tight">
-                  Overlord <span className="text-[#6a6a6a] text-lg font-normal">50ML EDP</span>
-                </h2>
-                <p className="text-[#3f3f3f] text-sm leading-relaxed mb-4">
-                  Dior Sauvage DNA formulated with 25%+ imported French oils. Electrifying citrus, spicy Sichuan pepper, and ambroxan. Includes free 7ML Paradox tester!
-                </p>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#ebebeb]">
-                <div>
-                  <span className="text-xs text-[#6a6a6a] line-through mr-1.5">₹2,099</span>
-                  <span className="text-lg font-bold text-[#222222]">₹1,299</span>
+                
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#ebebeb]">
+                  <div>
+                    <span className="text-xs text-[#6a6a6a] line-through mr-1.5">₹2,099</span>
+                    <span className="text-lg font-bold text-[#222222]">₹1,299</span>
+                  </div>
+                  <Link href="/products/overlord" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#ff385c] hover:bg-[#e00b41] active:scale-95 text-white px-5 py-2.5 rounded-lg font-semibold text-xs shadow-xs transition-all">
+                    Buy Now <ChevronRight size={14} />
+                  </Link>
                 </div>
-                <Link href="/products/overlord" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#ff385c] hover:bg-[#e00b41] active:scale-95 text-white px-5 py-2.5 rounded-lg font-semibold text-xs shadow-xs transition-all">
-                  Buy Now <ChevronRight size={14} />
-                </Link>
               </div>
-            </div>
 
-            {/* Paradox Highlight Section */}
-            <div className="bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-[14px] p-6 sm:p-7 shadow-airbnb flex flex-col justify-between group">
-              <div className="flex-1 flex flex-col items-start text-left mb-6">
-                <div className="inline-flex bg-[#fff0f3] text-[#ff385c] border border-[#ffd1da] px-3 py-1 rounded-full text-[11px] font-semibold mb-4 items-center gap-1.5">
-                  <span>Guest favorite 🔥</span>
+              {/* Paradox Highlight Section */}
+              <div className="bg-white border border-[#ebebeb] hover:border-[#dddddd] rounded-[14px] p-6 sm:p-7 shadow-airbnb flex flex-col justify-between group">
+                <div className="flex-1 flex flex-col items-start text-left mb-6">
+                  <div className="inline-flex bg-[#fff0f3] text-[#ff385c] border border-[#ffd1da] px-3 py-1 rounded-full text-[11px] font-semibold mb-4 items-center gap-1.5">
+                    <span>Guest favorite 🔥</span>
+                  </div>
+                  <h2 className="text-[22px] sm:text-[26px] font-bold text-[#222222] mb-2 leading-tight">
+                    Paradox <span className="text-[#6a6a6a] text-lg font-normal">50ML EDP</span>
+                  </h2>
+                  <p className="text-[#3f3f3f] text-sm leading-relaxed mb-4">
+                    LV Les Sables Roses DNA. Centifolia Rose, rare amber, and smoky agarwood oud. Includes free 7ML Paradox tester!
+                  </p>
                 </div>
-                <h2 className="text-[22px] sm:text-[26px] font-bold text-[#222222] mb-2 leading-tight">
-                  Paradox <span className="text-[#6a6a6a] text-lg font-normal">50ML EDP</span>
-                </h2>
-                <p className="text-[#3f3f3f] text-sm leading-relaxed mb-4">
-                  LV Les Sables Roses DNA. Centifolia Rose, rare amber, and smoky agarwood oud. Includes free 7ML Paradox tester!
-                </p>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#ebebeb]">
-                <div>
-                  <span className="text-xs text-[#6a6a6a] line-through mr-1.5">₹2,099</span>
-                  <span className="text-lg font-bold text-[#222222]">₹1,299</span>
+                
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-[#ebebeb]">
+                  <div>
+                    <span className="text-xs text-[#6a6a6a] line-through mr-1.5">₹2,099</span>
+                    <span className="text-lg font-bold text-[#222222]">₹1,299</span>
+                  </div>
+                  <Link href="/products/paradox" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#ff385c] hover:bg-[#e00b41] active:scale-95 text-white px-5 py-2.5 rounded-lg font-semibold text-xs shadow-xs transition-all">
+                    Buy Now <ChevronRight size={14} />
+                  </Link>
                 </div>
-                <Link href="/products/paradox" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#ff385c] hover:bg-[#e00b41] active:scale-95 text-white px-5 py-2.5 rounded-lg font-semibold text-xs shadow-xs transition-all">
-                  Buy Now <ChevronRight size={14} />
-                </Link>
               </div>
             </div>
-          </div>
+          )}
 
           {displayProducts.length > 0 ? (
             <>

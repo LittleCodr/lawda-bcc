@@ -1,4 +1,10 @@
-export async function sendBrevoEmail(toEmail: string, toName: string, subject: string, htmlContent: string) {
+export async function sendBrevoEmail(
+  toEmail: string, 
+  toName: string, 
+  subject: string, 
+  htmlContent: string,
+  textContent?: string
+) {
   const apiKey = process.env.BREVO_API_KEY;
   if (!apiKey) {
     console.error("BREVO_API_KEY is not defined");
@@ -6,6 +12,18 @@ export async function sendBrevoEmail(toEmail: string, toName: string, subject: s
   }
 
   try {
+    const payload: any = {
+      sender: { name: "Octopus Luxury Perfumes", email: "orders@octopusperfume.in" },
+      to: [{ email: toEmail, name: toName || "Valued Customer" }],
+      replyTo: { name: "Octopus Perfumes Concierge", email: "orders@octopusperfume.in" },
+      subject: subject,
+      htmlContent: htmlContent,
+    };
+
+    if (textContent) {
+      payload.textContent = textContent;
+    }
+
     const response = await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
       headers: {
@@ -13,12 +31,7 @@ export async function sendBrevoEmail(toEmail: string, toName: string, subject: s
         "api-key": apiKey,
         "content-type": "application/json",
       },
-      body: JSON.stringify({
-        sender: { name: "Octopus Gifts", email: "hello@octopusperfume.in" },
-        to: [{ email: toEmail, name: toName || "Beautiful" }],
-        subject: subject,
-        htmlContent: htmlContent,
-      }),
+      body: JSON.stringify(payload),
     });
 
     const data = await response.json();

@@ -9,6 +9,7 @@ import type { Product as LegacyProduct } from "@/lib/products";
 import { useCartStore } from "@/lib/store";
 import WishlistButton from "@/components/WishlistButton";
 import { trackEcommerceEvent } from "@/lib/analytics";
+import { useBlackFridayActive } from "@/lib/black-friday";
 
 type CardInput = ProductSummary | LegacyProduct;
 
@@ -82,6 +83,7 @@ export default function ProductCard({
   priority?: boolean;
 }) {
   const { addItem, setIsOpen } = useCartStore();
+  const isBlackFriday = useBlackFridayActive();
   const [justAdded, setJustAdded] = useState(false);
 
   const p = normalizeCardProduct(product);
@@ -117,7 +119,13 @@ export default function ProductCard({
   };
 
   return (
-    <article className="group flex flex-col h-full bg-white border border-[#E8E6E1] hover:border-[#D4CFC7] rounded-[8px] overflow-hidden shadow-luxury hover:shadow-luxury-hover transition-all duration-200">
+    <article
+      className={`group flex flex-col h-full bg-white border ${
+        isBlackFriday && p.discountPct > 0
+          ? "bf-card-border hover:border-[#9A7953]"
+          : "border-[#E8E6E1] hover:border-[#D4CFC7]"
+      } rounded-[8px] overflow-hidden shadow-luxury hover:shadow-luxury-hover transition-all duration-200`}
+    >
       {/* Studio Image Container */}
       <div className="relative aspect-[4/5] w-full bg-[#F7F6F3] overflow-hidden">
         <Link
@@ -153,9 +161,15 @@ export default function ProductCard({
               Sold Out
             </span>
           ) : p.discountPct > 0 ? (
-            <span className="inline-block bg-[#B83232] text-white text-[10px] font-bold uppercase tracking-[0.06em] px-2 py-0.5 rounded-[4px]">
-              -{p.discountPct}% Off
-            </span>
+            isBlackFriday ? (
+              <span className="bf-badge-glow inline-block bg-[#141210] text-[#D4AF7A] border text-[10px] font-bold uppercase tracking-[0.06em] px-2 py-0.5 rounded-[4px]">
+                Black Friday · -{p.discountPct}%
+              </span>
+            ) : (
+              <span className="inline-block bg-[#B83232] text-white text-[10px] font-bold uppercase tracking-[0.06em] px-2 py-0.5 rounded-[4px]">
+                -{p.discountPct}% Off
+              </span>
+            )
           ) : p.isFlagship ? (
             <span className="inline-block bg-[#9A7953] text-white text-[10px] font-semibold uppercase tracking-[0.08em] px-2 py-0.5 rounded-[4px]">
               25% Oil EDP

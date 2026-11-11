@@ -116,7 +116,7 @@ export default function FestiveGiftIdeasPage() {
           <Gift size={36} className="mx-auto mb-3 text-[#ff385c]" />
           <h2 className="text-[22px] font-bold mb-2 text-[#222222]">Ready For Diwali Celebrations?</h2>
           <p className="mb-6 text-[#6a6a6a] text-sm">
-            Use code <strong className="font-mono bg-white text-[#222222] px-2 py-0.5 rounded border border-[#dddddd]">DIWALI20</strong> at checkout for flat 20% OFF and free express delivery across India!
+            Use code <strong className="font-mono bg-white text-[#222222] px-2 py-0.5 rounded border border-[#dddddd]">OCTOPUS5</strong> at checkout for 5% OFF on minimum orders of ₹5,000+ with free express delivery across India!
           </p>
           <Link href="/harsh-beniwal/octopus/perfumes" className="inline-block bg-[#ff385c] hover:bg-[#e00b41] text-white px-7 py-3.5 rounded-lg font-medium text-sm transition-colors">
             Explore All 9 Harsh Beniwal EDPs

@@ -33,6 +33,7 @@ import {
 import { db } from "@/lib/firebase";
 import { useCartStore } from "@/lib/store";
 import { trackEcommerceEvent } from "@/lib/analytics";
+import { useBlackFridayActive } from "@/lib/black-friday";
 import {
   formatPriceINR,
   type EnrichedProduct,
@@ -67,6 +68,7 @@ export default function ProductUI({
 }: ProductUIProps) {
   const router = useRouter();
   const { addItem, setIsOpen } = useCartStore();
+  const isBlackFriday = useBlackFridayActive();
 
   const defaultVariant =
     product.variants.find((v) => v.available) || product.variants[0] || null;
@@ -458,9 +460,15 @@ export default function ProductUI({
                   </span>
                 )}
                 {variantDiscountPct > 0 && (
-                  <span className="px-2 py-0.5 rounded-[4px] bg-[#B83232] text-white text-[11px] font-bold uppercase tracking-wider">
-                    Save {variantDiscountPct}%
-                  </span>
+                  isBlackFriday ? (
+                    <span className="bf-badge-glow px-2.5 py-0.5 rounded-[4px] bg-[#141210] text-[#D4AF7A] border text-[11px] font-bold uppercase tracking-wider">
+                      Black Friday · Save {variantDiscountPct}%
+                    </span>
+                  ) : (
+                    <span className="px-2 py-0.5 rounded-[4px] bg-[#B83232] text-white text-[11px] font-bold uppercase tracking-wider">
+                      Save {variantDiscountPct}%
+                    </span>
+                  )
                 )}
               </div>
 
@@ -478,7 +486,7 @@ export default function ProductUI({
               <div className="pt-2 border-t border-[#E8E6E1] text-xs text-[#5C5954] flex items-center gap-1.5">
                 <Sparkles size={13} className="text-[#9A7953] shrink-0" />
                 <span>
-                  Use <strong className="text-[#242424]">LUXURY25</strong> for extra 25% OFF on orders above ₹499 · Buy 2 get 15% / 3+ get 33%
+                  Use <strong className="text-[#242424]">OCTOPUS5</strong> for 5% OFF on ₹5,000+ · Buy 2 get 3% / 3+ get 5%
                 </span>
               </div>
             </div>

@@ -18,12 +18,12 @@ export const rakhiConfig: Record<string, {
   },
   "diwali-gifts": {
     title: "Diwali Festive Luxury Fragrances & Gift Boxes",
-    description: "Celebrate Diwali with premium 50ML EDP perfumes by Harsh Beniwal and free 7ML Paradox tester packs. Use code DIWALI20 for 20% OFF.",
-    copy: "Light up Diwali celebrations with meaningful luxury. From high-projection French Eau De Parfums to elegant presentation sets, Octopus curates the finest festive fragrance gifts for family, friends, and colleagues. Enjoy flat 20% OFF with code DIWALI20 and express delivery to every corner of India.",
+    description: "Celebrate Diwali with premium 50ML EDP perfumes by Harsh Beniwal and free 7ML Paradox tester packs. Use code OCTOPUS5 for 5% OFF on ₹5,000+ orders.",
+    copy: "Light up Diwali celebrations with meaningful luxury. From high-projection French Eau De Parfums to elegant presentation sets, Octopus curates the finest festive fragrance gifts for family, friends, and colleagues. Enjoy 5% OFF on ₹5,000+ orders with code OCTOPUS5 and express delivery to every corner of India.",
     faqs: [
       { q: "What are the best-selling Diwali perfumes this year?", a: "Our Harsh Beniwal 50ML Eau De Parfums (Overlord - Dior Sauvage DNA, Paradox - LV Les Sables Roses DNA, and Promised - Baccarat Rouge DNA) are this season's top favorites." },
       { q: "What are the payment options for festive orders?", a: "We support 100% secure prepaid checkout via UPI (Google Pay, PhonePe, Paytm), Credit/Debit cards, and Net Banking." },
-      { q: "Is there a festive discount code?", a: "Yes! Use coupon code DIWALI20 at checkout for an extra 20% discount on all orders." }
+      { q: "Is there a festive discount code?", a: "Yes! Use coupon code OCTOPUS5 at checkout for 5% OFF on minimum orders of ₹5,000+." }
     ]
   },
   "rakhi-gifts": {

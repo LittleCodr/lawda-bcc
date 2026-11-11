@@ -117,7 +117,7 @@ export default async function BrandCollectionPage({
                 <Truck size={14} className="text-[#9A7953]" /> Free India Express Shipping
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <Sparkles size={14} className="text-[#9A7953]" /> Up to 33% Bundle Savings
+                <Sparkles size={14} className="text-[#9A7953]" /> Up to 5% Bundle Savings
               </span>
             </div>
           </div>

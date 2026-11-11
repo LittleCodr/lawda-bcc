@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { db } from "@/lib/firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-import { sendOrderConfirmation } from "@/lib/brevo";
+import { dispatchVerifiedOrderConfirmation } from "@/lib/payu-order-email";
 
 export async function POST(req: Request) {
   try {
@@ -80,7 +80,7 @@ export async function POST(req: Request) {
           updatedAt: new Date(),
         };
 
-        let orderData: any = { ...paymentUpdate };
+        let orderData: Record<string, unknown> = { ...paymentUpdate };
 
         try {
           // 1. Update root orders collection
@@ -131,13 +131,19 @@ export async function POST(req: Request) {
           }
         }
 
-        // Send Brevo Email Confirmation
-        if (customerEmail && customerEmail.includes("@")) {
-          try {
-            await sendOrderConfirmation(orderId, customerName, customerEmail, amount, productInfo);
-          } catch (emailErr) {
-            console.error("Brevo email notification error:", emailErr);
-          }
+        // Send Brevo Email Confirmation (idempotent & reads email fallback from Firestore order)
+        const emailDispatch = await dispatchVerifiedOrderConfirmation({
+          orderId,
+          payuEmail: customerEmail,
+          payuName: customerName,
+          amountPaid: amount,
+          productInfo,
+          paymentMode,
+          transactionId: transaction.mihpayid || rawOrderId,
+          fallbackUserId: typeof orderData.userId === "string" ? orderData.userId : undefined,
+        });
+        if (emailDispatch.sent) {
+          orderData.confirmationEmailSent = true;
         }
 
         return NextResponse.json({ success: true, transaction, order: orderData });
@@ -145,7 +151,7 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ success: false, data: payuData });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error verifying PayU payment:", error);
     return NextResponse.json(
       { success: false, error: "Failed to verify payment" },

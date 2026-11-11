@@ -17,22 +17,22 @@ interface Coupon {
 
 const COUPONS: Coupon[] = [
   {
-    code: "LUXURY25",
-    discount: "25% OFF",
-    title: "Sitewide Luxury Discount",
-    description: "Flat 25% instant discount on all Octopus perfumes by Harsh Beniwal and 130+ designer fragrance houses.",
+    code: "OCTOPUS5",
+    discount: "5% OFF",
+    title: "Prepaid Privilege Discount",
+    description: "Flat 5% instant checkout discount on Octopus Perfumes and 130+ designer fragrance houses on minimum orders of ₹5,000.",
     validUntil: "Verified Active Today",
     isPopular: true,
-    minSpend: "Orders over ₹499"
+    minSpend: "Min. order ₹5,000"
   },
   {
-    code: "OCTOPUS20",
-    discount: "20% OFF",
-    title: "Harsh Beniwal Signature Offer",
-    description: "Flat 20% OFF on all 50ML Eau De Parfum bottles (Overlord, Rhapsody, Mirage, Paradox, Promised, Outlaw).",
-    validUntil: "Verified Active Today",
+    code: "AUTO BUNDLE",
+    discount: "UP TO 5% OFF",
+    title: "Multi-Bottle Cart Tier",
+    description: "Automatic 3% OFF when you add 2 bottles to your bag, or 5% OFF automatically on 3 or more bottles — no code required.",
+    validUntil: "Auto-applied in cart",
     isPopular: false,
-    minSpend: "No minimum spend"
+    minSpend: "2+ bottles in bag"
   },
   {
     code: "FREEDELIVERY",
@@ -41,16 +41,16 @@ const COUPONS: Coupon[] = [
     description: "Free express pan-India air delivery across all 28 states and union territories.",
     validUntil: "Auto-applied at checkout",
     isPopular: false,
-    minSpend: "All orders"
+    minSpend: "All India prepaid orders"
   },
   {
     code: "PARADOXFREE",
     discount: "FREE TESTER PACK",
     title: "Complimentary 7ML Paradox Tester",
-    description: "Every 50ML Eau De Parfum bottle automatically includes a complimentary 7ML Paradox EDP luxury tester pack (worth ₹399).",
+    description: "Every qualifying order automatically includes a complimentary 7ML Paradox EDP luxury pocket tester (worth ₹399).",
     validUntil: "Auto-included with every order",
     isPopular: false,
-    minSpend: "Included with any 50ML EDP"
+    minSpend: "Included automatically"
   }
 ];
 
@@ -61,7 +61,7 @@ const BEST_SELLERS = [
     subtitle: "Smoky Leather & Royal Amber Oud",
     originalPrice: "₹2,099",
     salePrice: "₹1,299",
-    couponPrice: "₹974",
+    couponPrice: "₹1,299",
     image: "/harsh-beniwal/octopus/perfumes/images/overlord_box.png"
   },
   {
@@ -70,7 +70,7 @@ const BEST_SELLERS = [
     subtitle: "Spicy Bergamot & Warm Cashmere",
     originalPrice: "₹2,099",
     salePrice: "₹1,299",
-    couponPrice: "₹974",
+    couponPrice: "₹1,299",
     image: "/harsh-beniwal/octopus/perfumes/images/rhapsody_box.png"
   },
   {
@@ -79,7 +79,7 @@ const BEST_SELLERS = [
     subtitle: "Aquatic Mineral & Fresh Marine",
     originalPrice: "₹2,099",
     salePrice: "₹1,299",
-    couponPrice: "₹974",
+    couponPrice: "₹1,299",
     image: "/harsh-beniwal/octopus/perfumes/images/mirage_box.png"
   },
   {
@@ -88,7 +88,7 @@ const BEST_SELLERS = [
     subtitle: "Bourbon Vanilla & Roasted Tonka",
     originalPrice: "₹2,099",
     salePrice: "₹1,299",
-    couponPrice: "₹974",
+    couponPrice: "₹1,299",
     image: "/harsh-beniwal/octopus/perfumes/images/paradox_box.png"
   }
 ];
@@ -135,7 +135,7 @@ export default function CouponCodeClient() {
               >
                 {coupon.isPopular && (
                   <span className="absolute -top-3 right-6 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-xs">
-                    Most Popular · 25% OFF
+                    Official · 5% OFF ₹5,000+
                   </span>
                 )}
 
@@ -203,10 +203,10 @@ export default function CouponCodeClient() {
               Instant Savings Simulation
             </span>
             <h2 className="text-2xl sm:text-3xl font-serif font-bold text-white mt-1">
-              Popular Octopus Perfumes with Code LUXURY25 Applied
+              Popular Octopus Perfumes + Code OCTOPUS5 Eligibility
             </h2>
             <p className="text-xs sm:text-sm text-stone-300 mt-2">
-              Apply code <span className="font-mono text-amber-300 font-bold">LUXURY25</span> at checkout and grab original 50ML Eau De Parfum by Harsh Beniwal for just ₹974!
+              Build a ₹5,000+ curated collection or bundle with other bottles and apply code <span className="font-mono text-amber-300 font-bold">OCTOPUS5</span> at checkout for an extra 5% OFF!
             </p>
           </div>
 
@@ -242,17 +242,17 @@ export default function CouponCodeClient() {
                       {perfume.originalPrice}
                     </span>
                     <span className="text-[10px] text-emerald-400 font-semibold ml-auto">
-                      Save ₹1,125
+                      Save ₹800 vs MRP
                     </span>
                   </div>
                   <span className="text-[10px] text-stone-400 block mb-3">
-                    Price with code <strong className="text-white font-mono">LUXURY25</strong>
+                    Eligible for extra 5% OFF (₹5,000+ orders) with <strong className="text-white font-mono">OCTOPUS5</strong>
                   </span>
                   <Link
                     href={`/products/${perfume.slug}`}
                     className="w-full py-2 bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-xs uppercase tracking-wider rounded-lg text-center block transition-all"
                   >
-                    Buy with 25% OFF
+                    Shop Bottle
                   </Link>
                 </div>
               </div>
@@ -315,7 +315,7 @@ export default function CouponCodeClient() {
             </span>
             <h3 className="font-serif font-bold text-base text-stone-900">Paste Coupon at Checkout</h3>
             <p className="text-xs text-stone-600">
-              In the order summary section, paste <strong className="font-mono text-stone-900">LUXURY25</strong> or <strong className="font-mono text-stone-900">OCTOPUS20</strong> and click &quot;Apply&quot;.
+              In the order summary section on ₹5,000+ carts, paste <strong className="font-mono text-stone-900">OCTOPUS5</strong> and click &quot;Apply&quot;.
             </p>
           </div>
           <div className="space-y-2">

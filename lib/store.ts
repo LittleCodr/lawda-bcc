@@ -90,8 +90,8 @@ totalPrice: () => {
       },
       autoDiscountPercentage: () => {
         const count = get().totalItems();
-        if (count >= 3) return 33;
-        if (count === 2) return 15;
+        if (count >= 3) return 5;
+        if (count === 2) return 3;
         return 0;
       },
       autoDiscountAmount: () => {

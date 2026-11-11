@@ -74,13 +74,8 @@ export default function CheckoutPage() {
   const cartAutoDiscount = getAutoDiscountAmount ? getAutoDiscountAmount() : 0;
   const cartDiscountPercent = getAutoDiscountPercentage ? getAutoDiscountPercentage() : 0;
   const deliveryFee = deliveryMethod === "international" ? 1500 : 0;
-  const promoDiscountAmount = promoApplied 
-    ? (["LUXURY25", "OCTOPUS25"].includes(promoCode.trim().toUpperCase())
-        ? Math.floor(baseTotal * 0.25)
-        : (["DIWALI20", "OCTOPUS20", "OCTOPUS"].includes(promoCode.trim().toUpperCase()) 
-            ? Math.floor(baseTotal * 0.20) 
-            : Math.floor(baseTotal * 0.15))) 
-    : 0;
+  const promoDiscountAmount =
+    promoApplied && baseTotal >= 5000 ? Math.floor(baseTotal * 0.05) : 0;
   const totalDiscount = cartAutoDiscount + promoDiscountAmount;
   const isAdmin = user?.email && ["littlecodr@gmail.com", "srijanrai966@gmail.com", "coderdracwound@gmail.com"].includes(user.email.toLowerCase());
   const finalTotal = isAdmin ? 1 : Math.max(0, baseTotal - totalDiscount + deliveryFee);
@@ -240,14 +235,19 @@ export default function CheckoutPage() {
         userId: activeUserId,
         status: "pending_payment",
         total: orderTotal,
+        subtotal: baseTotal,
         amountPaid: 0,
         codBalance: 0,
         paymentMethod: "prepaid",
         deliveryMethod: deliveryMethod,
+        shippingFee: deliveryFee,
         items: JSON.parse(JSON.stringify(allDisplayItems)),
         shippingDetails: formData,
         promoCode: promoApplied ? promoCode : null,
+        promoDiscount: promoDiscountAmount,
+        autoDiscount: cartAutoDiscount,
         discountAmount: totalDiscount,
+        confirmationEmailSent: false,
         abandonedEmailSent: false,
         createdAt: new Date(),
       };
@@ -266,9 +266,17 @@ export default function CheckoutPage() {
             orderId,
             items: allDisplayItems,
             total: finalTotal,
-            shipping: formData
+            subtotal: baseTotal,
+            discountAmount: totalDiscount,
+            promoCode: promoApplied ? promoCode : null,
+            shippingFee: deliveryFee,
+            deliveryMethod,
+            shipping: formData,
+            createdAt: new Date().toISOString(),
           }));
-        } catch (e) {}
+        } catch {
+          // Ignore storage fallback error
+        }
       }
 
       // Fetch PayU Hash with userId in udf2
@@ -612,7 +620,7 @@ export default function CheckoutPage() {
                         <div className="mt-1 flex flex-col gap-0.5">
                           {item.customName && <p className="text-[10px] text-stone-500 uppercase tracking-widest">Engraving: {item.customName}</p>}
                           {item.customPhotoUrl && <p className="text-[10px] text-stone-500 uppercase tracking-widest">Photo Included</p>}
-                          {item.isGift && !item.isFree && <p className="text-[10px] text-[#800020] font-bold uppercase tracking-widest">Premium Gift</p>}
+                          {item.isGift && !item.isFree && <p className="text-[10px] text-[#9A7953] font-bold uppercase tracking-widest">Premium Gift</p>}
                         </div>
                       )}
 
@@ -648,19 +656,17 @@ export default function CheckoutPage() {
                       type="button"
                       onClick={() => {
                         const cleanCode = promoCode.trim().toUpperCase();
-                        const valid25 = ["LUXURY25", "OCTOPUS25"];
-                        const valid20 = ["DIWALI20", "OCTOPUS20", "OCTOPUS"];
-                        const valid15 = ["DIWALI15", "FESTIVE15", "OCTOPUS15", "WELCOME15"];
-                        if (valid25.includes(cleanCode) || valid20.includes(cleanCode) || valid15.includes(cleanCode)) {
-                          if (baseTotal <= 499) {
-                            setPromoError("This promo code is only valid on orders above ₹499.");
+                        if (["OCTOPUS5", "LUXURY5"].includes(cleanCode)) {
+                          if (baseTotal < 5000) {
+                            const shortfall = (5000 - baseTotal).toLocaleString("en-IN");
+                            setPromoError(`Minimum order of ₹5,000 required for ${cleanCode}. Add ₹${shortfall} more to unlock 5% OFF.`);
                             return;
                           }
                           setPromoCode(cleanCode);
                           setPromoApplied(true);
                           setPromoError("");
                         } else {
-                          setPromoError("Invalid promo code. Use LUXURY25 for 25% OFF!");
+                          setPromoError("Invalid or expired coupon. Use OCTOPUS5 for 5% OFF on orders of ₹5,000+.");
                         }
                       }}
                       className="bg-[#222222] hover:bg-black text-white rounded-lg px-6 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer"
@@ -684,7 +690,7 @@ export default function CheckoutPage() {
                 {promoApplied && (
                   <p className="text-[#347A54] font-semibold text-xs mt-2 flex items-center gap-1.5 bg-[#F2F8F5] border border-[#CBE4D7] px-3 py-1.5 rounded-[6px] w-fit">
                     <CheckCircle2 size={14} className="text-[#347A54]" />
-                    <span>{promoCode === "DIWALI20" ? "20% OFF Festive Promo Applied!" : "Promo code applied successfully!"}</span>
+                    <span>{baseTotal >= 5000 ? "5% OFF Promo Applied!" : "Apply ₹5,000+ total to activate 5% OFF"}</span>
                   </p>
                 )}
               </div>

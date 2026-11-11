@@ -15,7 +15,7 @@ export default function Marquee() {
           >
             <span className="text-amber-400 font-bold">✨</span>
             <span className="font-bold text-white">
-              Luxury Fragrance Sale: Code <strong className="bg-amber-400 text-stone-950 px-2 py-0.5 rounded font-mono text-[11px] font-extrabold">LUXURY25</strong> for 25% OFF
+              Prepaid Offer: Code <strong className="bg-amber-400 text-stone-950 px-2 py-0.5 rounded font-mono text-[11px] font-extrabold">OCTOPUS5</strong> for 5% OFF ₹5,000+
             </span>
             <span className="text-stone-600">•</span>
             <span className="flex items-center gap-1.5 text-stone-300">

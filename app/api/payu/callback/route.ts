@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { db } from "@/lib/firebase";
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import { sendOrderConfirmation } from "@/lib/brevo";
+import { dispatchVerifiedOrderConfirmation } from "@/lib/payu-order-email";
 
 export async function POST(req: Request) {
   try {
@@ -87,14 +87,17 @@ export async function POST(req: Request) {
         }
       }
 
-      // 5. Brevo Customer Email Confirmation
-      if (email && email.includes("@")) {
-        try {
-          await sendOrderConfirmation(orderId, firstname, email, amount, productinfo);
-        } catch (emailErr) {
-          console.error("Brevo email callback error:", emailErr);
-        }
-      }
+      // 5. Brevo Customer Email Confirmation (idempotent with Firestore email fallback)
+      await dispatchVerifiedOrderConfirmation({
+        orderId,
+        payuEmail: email,
+        payuName: firstname,
+        amountPaid: amount,
+        productInfo: productinfo,
+        paymentMode: mode,
+        transactionId: payuid || txnid,
+        fallbackUserId: udf2,
+      });
     }
 
     // In PayU callback, redirect to origin checkout success page with verified parameters
@@ -116,7 +119,7 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.redirect(redirectUrl.toString(), 302);
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('PayU callback error:', error);
     return NextResponse.json({ error: 'Failed to process callback' }, { status: 500 });
   }

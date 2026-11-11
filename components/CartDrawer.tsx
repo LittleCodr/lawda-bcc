@@ -109,10 +109,10 @@ export default function CartDrawer() {
               <span className="font-semibold flex items-center gap-1.5">
                 <Sparkles size={13} className="text-[#9A7953]" />
                 {count >= 3
-                  ? "33% Mega Bundle Discount Unlocked!"
+                  ? "5% Mega Bundle Discount Unlocked!"
                   : count === 2
-                    ? "15% OFF Unlocked! Add 1 more bottle for 33% OFF"
-                    : "Add 1 more perfume to unlock 15% OFF"}
+                    ? "3% OFF Unlocked! Add 1 more bottle for 5% OFF"
+                    : "Add 1 more perfume to unlock 3% OFF (5% OFF on 3+)"}
               </span>
               <span className="text-[11px] font-bold text-[#9A7953]">
                 {count >= 3 ? "MAX TIER" : `${count}/3`}
@@ -303,7 +303,7 @@ export default function CartDrawer() {
                 </span>
               </div>
               <p className="text-[11px] text-[#777777]">
-                Apply extra coupons like <strong>LUXURY25</strong> at checkout.
+                Spend ₹5,000+ and apply <strong>OCTOPUS5</strong> at checkout for 5% OFF.
               </p>
             </div>
 

@@ -17,8 +17,8 @@ export async function POST(req: Request) {
       body: JSON.stringify({
         app_id: "112b9c69-6c71-44be-8b41-6b47147772ae",
         include_subscription_ids: [subscriptionId],
-        headings: { en: "Here is your 15% OFF! 🎉" },
-        contents: { en: "Use code WELCOME15 on orders above ₹499. Valid for 6 hours only. Shop now!" },
+        headings: { en: "Unlock 5% OFF on ₹5,000+ Orders" },
+        contents: { en: "Use code OCTOPUS5 at checkout on minimum orders of ₹5,000 + free 7ML Paradox tester!" },
         url: "https://www.octopusperfume.in"
       })
     });

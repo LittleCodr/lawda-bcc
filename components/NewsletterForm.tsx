@@ -53,7 +53,7 @@ export default function NewsletterForm() {
           Batch Restocks &amp; Seasonal Releases
         </h2>
         <p className="text-sm text-[#5C5954] leading-relaxed">
-          Receive alerts when rare Middle Eastern batches, niche arrivals, and member-only promotional codes like <strong>LUXURY25</strong> drop.
+          Receive alerts when rare Middle Eastern batches, niche arrivals, and member-only promotional codes like <strong>OCTOPUS5</strong> drop.
         </p>
       </div>
 

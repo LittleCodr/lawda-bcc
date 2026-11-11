@@ -30,7 +30,7 @@ function getHarshPerfumeSEO(slug: string, rawTitle: string) {
   if (slug === "overlord") {
     return {
       title: "Octopus Overlord Perfume by Harsh Beniwal | 50ML EDP Official Store",
-      description: "Buy 100% original Octopus Overlord perfume by Harsh Beniwal on the official store. 25%+ French fragrance oils, 12H+ beast-mode sillage. Use code LUXURY25 for 25% OFF + Free 7ML Paradox tester & express pan-India delivery.",
+      description: "Buy 100% original Octopus Overlord perfume by Harsh Beniwal on the official store. 25%+ French fragrance oils, 12H+ beast-mode sillage. Use code OCTOPUS5 for 5% OFF on ₹5,000+ orders + Free 7ML Paradox tester & express pan-India delivery.",
       keywords: [
         "octopus overlord",
         "octopus overlord perfume",
@@ -64,7 +64,7 @@ function getHarshPerfumeSEO(slug: string, rawTitle: string) {
   if (slug === "rhapsody") {
     return {
       title: "Octopus Rhapsody Perfume by Harsh Beniwal | 50ML EDP Official Store",
-      description: "Buy 100% original Octopus Rhapsody perfume by Harsh Beniwal on the official store. 25%+ French fragrance oils, 12H+ longevity. Use code LUXURY25 for 25% OFF + Free 7ML Paradox tester & express pan-India delivery.",
+      description: "Buy 100% original Octopus Rhapsody perfume by Harsh Beniwal on the official store. 25%+ French fragrance oils, 12H+ longevity. Use code OCTOPUS5 for 5% OFF on ₹5,000+ orders + Free 7ML Paradox tester & express pan-India delivery.",
       keywords: [
         "octopus rhapsody",
         "rhapsody octopus",
@@ -94,7 +94,7 @@ function getHarshPerfumeSEO(slug: string, rawTitle: string) {
   if (slug === "mirage") {
     return {
       title: "Octopus Mirage Perfume by Harsh Beniwal | 50ML EDP Official Store",
-      description: "Buy 100% original Octopus Mirage perfume by Harsh Beniwal on the official store. 25%+ French fragrance oils, 12H+ longevity. Use code LUXURY25 for 25% OFF + Free 7ML Paradox tester & express pan-India delivery.",
+      description: "Buy 100% original Octopus Mirage perfume by Harsh Beniwal on the official store. 25%+ French fragrance oils, 12H+ longevity. Use code OCTOPUS5 for 5% OFF on ₹5,000+ orders + Free 7ML Paradox tester & express pan-India delivery.",
       keywords: [
         "octopus mirage perfume",
         "octopus mirage",
@@ -119,7 +119,7 @@ function getHarshPerfumeSEO(slug: string, rawTitle: string) {
   if (slug === "paradox") {
     return {
       title: "Octopus Paradox Perfume by Harsh Beniwal | 50ML EDP Official Store",
-      description: "Buy 100% original Octopus Paradox perfume by Harsh Beniwal on the official store. 25%+ French fragrance oils, 12H+ longevity. Use code LUXURY25 for 25% OFF + Free 7ML Paradox tester & express pan-India delivery.",
+      description: "Buy 100% original Octopus Paradox perfume by Harsh Beniwal on the official store. 25%+ French fragrance oils, 12H+ longevity. Use code OCTOPUS5 for 5% OFF on ₹5,000+ orders + Free 7ML Paradox tester & express pan-India delivery.",
       keywords: [
         "octopus paradox perfume",
         "octopus paradox",
@@ -144,7 +144,7 @@ function getHarshPerfumeSEO(slug: string, rawTitle: string) {
   if (slug === "promised") {
     return {
       title: "Octopus Promised Perfume by Harsh Beniwal | 50ML EDP Official Store",
-      description: "Buy 100% original Octopus Promised perfume by Harsh Beniwal on the official store. 25%+ French fragrance oils, 12H+ longevity. Use code LUXURY25 for 25% OFF + Free 7ML Paradox tester & express pan-India delivery.",
+      description: "Buy 100% original Octopus Promised perfume by Harsh Beniwal on the official store. 25%+ French fragrance oils, 12H+ longevity. Use code OCTOPUS5 for 5% OFF on ₹5,000+ orders + Free 7ML Paradox tester & express pan-India delivery.",
       keywords: [
         "octopus promised perfume",
         "octopus promised",
@@ -169,7 +169,7 @@ function getHarshPerfumeSEO(slug: string, rawTitle: string) {
   if (slug === "outlaw") {
     return {
       title: "Octopus Outlaw Perfume by Harsh Beniwal | 50ML EDP Official Store",
-      description: "Buy 100% original Octopus Outlaw perfume by Harsh Beniwal on the official store. 25%+ French fragrance oils, 12H+ longevity. Use code LUXURY25 for 25% OFF + Free 7ML Paradox tester & express pan-India delivery.",
+      description: "Buy 100% original Octopus Outlaw perfume by Harsh Beniwal on the official store. 25%+ French fragrance oils, 12H+ longevity. Use code OCTOPUS5 for 5% OFF on ₹5,000+ orders + Free 7ML Paradox tester & express pan-India delivery.",
       keywords: [
         "octopus outlaw perfume",
         "octopus outlaw",
@@ -193,7 +193,7 @@ function getHarshPerfumeSEO(slug: string, rawTitle: string) {
 
   return {
     title: `Octopus ${cleanTitle} Perfume by Harsh Beniwal | 50ML EDP Official Store`,
-    description: `Buy 100% original Octopus ${cleanTitle} perfume by Harsh Beniwal on the official store. 25%+ French oils, 12H+ longevity. Use code LUXURY25 for 25% OFF + Free 7ML tester & pan-India delivery.`,
+    description: `Buy 100% original Octopus ${cleanTitle} perfume by Harsh Beniwal on the official store. 25%+ French oils, 12H+ longevity. Use code OCTOPUS5 for 5% OFF on ₹5,000+ orders + Free 7ML tester & pan-India delivery.`,
     keywords: [
       `octopus ${slug}`,
       `octopus ${slug} perfume`,
@@ -449,7 +449,7 @@ export default async function HarshBeniwalProductDetailPage({ params }: { params
         "name": "What coupon code can I use for Octopus perfumes by Harsh Beniwal?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Use coupon code LUXURY25 at checkout for an instant flat 25% OFF your order. You can also use code OCTOPUS20 for 20% OFF."
+          "text": "Use coupon code OCTOPUS5 at checkout for 5% OFF on minimum orders of ₹5,000+, or unlock automatic 3% (2 bottles) and 5% (3+ bottles) bundle savings in your cart."
         }
       },
       {

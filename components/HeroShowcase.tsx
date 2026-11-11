@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Sparkles, ShieldCheck } from "lucide-react";
+import { useBlackFridayActive } from "@/lib/black-friday";
 
 interface HeroChapter {
   id: string;
@@ -129,6 +130,7 @@ export default function HeroShowcase({
   brandsCount: number;
 }) {
   const [activeIdx, setActiveIdx] = useState(0);
+  const isBlackFriday = useBlackFridayActive();
   const current = CHAPTERS[activeIdx] || CHAPTERS[0];
 
   return (
@@ -182,9 +184,16 @@ export default function HeroShowcase({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Typography Column */}
           <div className="lg:col-span-7 space-y-5 order-2 lg:order-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/8 border border-[#9A7953]/40 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#D4AF7A]">
-              <Sparkles size={12} />
-              <span>{current.eyebrow}</span>
+            <div className="flex flex-wrap items-center gap-2.5">
+              {isBlackFriday && (
+                <span className="bf-badge-glow inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1F1B16] border text-[10px] font-bold uppercase tracking-[0.16em] text-[#D4AF7A]">
+                  Black Friday Reserve
+                </span>
+              )}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/8 border border-[#9A7953]/40 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#D4AF7A]">
+                <Sparkles size={12} />
+                <span>{current.eyebrow}</span>
+              </div>
             </div>
 
             <h1 className="font-serif text-[38px] min-[420px]:text-[44px] sm:text-[54px] lg:text-[64px] font-semibold text-white leading-[1.04] tracking-[-0.02em]">
@@ -239,7 +248,7 @@ export default function HeroShowcase({
                 <strong className="block text-white font-semibold flex items-center gap-1">
                   <ShieldCheck size={13} className="text-[#D4AF7A]" /> Batch Verified
                 </strong>
-                <span>Code LUXURY25 Active</span>
+                <span>Code OCTOPUS5 · 5% OFF ₹5k+</span>
               </div>
             </div>
           </div>

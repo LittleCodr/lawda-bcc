@@ -88,10 +88,10 @@ export default function CartPage() {
                   <Sparkles size={16} className="text-[#9A7953]" />
                   <span className="font-medium">
                     {count >= 3
-                      ? "33% Mega Bundle Discount active across all fragrances."
+                      ? "5% Mega Bundle Discount active across all fragrances."
                       : count === 2
-                        ? "15% Bundle Discount active — add 1 more bottle to unlock 33% OFF."
-                        : "Add 1 more fragrance to unlock 15% OFF automatically (or 2 more for 33% OFF)."}
+                        ? "3% Bundle Discount active — add 1 more bottle to unlock 5% OFF."
+                        : "Add 1 more fragrance to unlock 3% OFF automatically (or 2 more for 5% OFF)."}
                   </span>
                 </div>
                 <Link
@@ -234,8 +234,8 @@ export default function CartPage() {
               </div>
 
               <p className="text-xs text-[#777777] bg-white p-3 rounded-[6px] border border-[#E8E6E1]">
-                Have coupon <strong className="text-[#242424]">LUXURY25</strong> or{" "}
-                <strong className="text-[#242424]">DIWALI20</strong>? Apply it at the next step (for orders above ₹499).
+                Spend ₹5,000+? Apply coupon <strong className="text-[#242424]">OCTOPUS5</strong> at checkout for an extra{" "}
+                <strong className="text-[#242424]">5% OFF</strong>.
               </p>
 
               <Link href="/checkout" className="w-full btn-luxury-primary py-4 text-xs">

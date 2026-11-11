@@ -183,10 +183,10 @@ export default function HomePage() {
       },
       {
         "@type": "Question",
-        name: "How do bundle discounts and coupon codes like LUXURY25 work?",
+        name: "How do bundle discounts and coupon code OCTOPUS5 work?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Adding 2 perfumes triggers an automatic 15% bundle discount, and 3+ items unlock 33% OFF. Prepaid coupon codes like LUXURY25 apply extra savings at checkout on qualifying orders above ₹499.",
+          text: "Adding 2 perfumes triggers an automatic 3% bundle discount, and 3+ items unlock 5% OFF. Prepaid coupon code OCTOPUS5 adds an extra 5% OFF at checkout on orders of ₹5,000 or more.",
         },
       },
     ],
@@ -212,7 +212,7 @@ export default function HomePage() {
             { icon: ShieldCheck, title: "100% Sealed Originals", sub: "Batch codes on every bottle" },
             { icon: Truck, title: "Free Express Shipping", sub: "Insured pan-India dispatch" },
             { icon: Gift, title: "Free 7ML Paradox EDP", sub: "Included automatically on orders" },
-            { icon: Sparkles, title: "Bundle Up to 33% OFF", sub: "+ Code LUXURY25 at checkout" },
+            { icon: Sparkles, title: "Bundle Up to 5% OFF", sub: "+ Code OCTOPUS5 on ₹5,000+" },
           ].map((item) => {
             const Icon = item.icon;
             return (
@@ -412,7 +412,7 @@ export default function HomePage() {
               </div>
               <div className="mt-6 pt-5 border-t border-[#E8E6E1] flex flex-wrap items-center justify-between gap-3">
                 <span className="text-xs font-medium text-[#5C5954]">
-                  Free 7ML Tester Included · Bundle up to 33% OFF
+                  Free 7ML Tester Included · Bundle up to 5% OFF
                 </span>
                 <Link
                   href="/harsh-beniwal/octopus/perfumes"
@@ -728,7 +728,7 @@ export default function HomePage() {
               },
               {
                 q: "How do automatic multi-bottle bundle discounts and coupon codes work?",
-                a: "Adding 2 perfumes applies 15% OFF in your cart, and 3 or more bottles unlock 33% OFF. Prepaid discount codes such as LUXURY25 or DIWALI20 can also be applied at checkout for orders above ₹499.",
+                a: "Adding 2 perfumes applies 3% OFF in your cart, and 3 or more bottles unlock 5% OFF. Prepaid coupon code OCTOPUS5 can also be applied at checkout for an extra 5% OFF on minimum orders of ₹5,000.",
               },
             ].map((faq, idx) => (
               <details key={idx} open={idx === 0} className="py-4">

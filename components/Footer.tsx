@@ -123,8 +123,8 @@ export default function Footer() {
               </p>
               <div className="inline-flex items-center gap-2 px-3 py-2 rounded-[6px] border border-[#35312D] bg-[#282522] text-xs">
                 <span className="text-[#B5B0A8]">Prepaid Code:</span>
-                <strong className="text-white tracking-wider">LUXURY25</strong>
-                <span className="text-[#9A7953]">(25% OFF &gt; ₹499)</span>
+                <strong className="text-white tracking-wider">OCTOPUS5</strong>
+                <span className="text-[#9A7953]">(5% OFF on ₹5,000+)</span>
               </div>
             </div>
 

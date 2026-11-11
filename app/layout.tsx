@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     "diwali gifts for men",
     "diwali perfume gift box",
     "diwali discount luxury perfumes",
-    "diwali coupon code DIWALI20"
+    "octopusperfume coupon code OCTOPUS5"
   ],
   authors: [{ name: "Harsh Beniwal - OCTOPUS Perfumes" }],
   creator: "OCTOPUS Perfumes by Harsh Beniwal",

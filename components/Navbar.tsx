@@ -19,6 +19,7 @@ import { useCartStore } from "@/lib/store";
 import { useAuth } from "@/lib/auth-context";
 import SearchModal from "@/components/SearchModal";
 import type { BrandTier } from "@/lib/catalog-types";
+import { useBlackFridayActive } from "@/lib/black-friday";
 
 export interface NavBrandItem {
   name: string;
@@ -199,6 +200,7 @@ export default function Navbar({ topBrands = [] }: NavbarProps) {
   const [activeMega, setActiveMega] = useState<MegaKey>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<string | null>("shop");
+  const isBlackFriday = useBlackFridayActive();
 
   if (prevPathname !== pathname) {
     setPrevPathname(pathname);
@@ -286,16 +288,29 @@ export default function Navbar({ topBrands = [] }: NavbarProps) {
   return (
     <div ref={navWrapRef} onMouseLeave={scheduleCloseMega}>
       {/* Top Announcement Bar */}
-      <div className="bg-[#141210] text-[#F7F4EE] text-[11px] sm:text-xs border-b border-[#2C2722]">
+      <div
+        className={`${
+          isBlackFriday
+            ? "bf-shimmer-strip border-b border-[#9A7953]/45"
+            : "bg-[#141210] border-b border-[#2C2722]"
+        } text-[#F7F4EE] text-[11px] sm:text-xs`}
+      >
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-center sm:justify-between gap-4">
-          <p className="truncate font-medium tracking-[0.04em]">
-            100% Authentic Sealed Fragrances · Free Express India Shipping
+          <p className="truncate font-medium tracking-[0.04em] flex items-center gap-2">
+            {isBlackFriday && (
+              <span className="bf-badge-glow inline-flex items-center px-2 py-0.5 rounded-[4px] bg-[#1F1B16] border text-[10px] font-bold uppercase tracking-[0.12em] text-[#D4AF7A] shrink-0">
+                Black Friday Edit
+              </span>
+            )}
+            <span className="truncate">
+              100% Authentic Sealed Fragrances · Free Express India Shipping
+            </span>
           </p>
           <p className="hidden md:flex items-center gap-2 shrink-0 text-[#D4CFC7]">
             <Sparkles size={12} className="text-[#D4AF7A]" />
             <span>
-              Complimentary 7ML Paradox EDP Tester on All Orders · Extra 25% OFF Code:{" "}
-              <strong className="text-white font-semibold tracking-wider">LUXURY25</strong>
+              Complimentary 7ML Paradox EDP Tester · 5% OFF ₹5,000+ Code:{" "}
+              <strong className="text-white font-semibold tracking-wider">OCTOPUS5</strong>
             </span>
           </p>
         </div>
@@ -1091,11 +1106,11 @@ export default function Navbar({ topBrands = [] }: NavbarProps) {
                     <Tag size={12} /> Active Prepaid Savings
                   </span>
                   <h3 className="font-serif text-2xl font-semibold text-[#242424] mt-1">
-                    Verified Markdowns &amp; Coupon Code LUXURY25
+                    Verified Markdowns &amp; Code OCTOPUS5
                   </h3>
                   <p className="text-xs text-[#5C5954] mt-1.5 leading-relaxed max-w-md">
-                    Save 15% automatically on 2 perfumes or 33% on 3+, plus apply code{" "}
-                    <strong>LUXURY25</strong> at checkout on qualifying prepaid orders above ₹499.
+                    Save 3% automatically on 2 perfumes or 5% on 3+, plus apply code{" "}
+                    <strong>OCTOPUS5</strong> at checkout for 5% OFF on orders of ₹5,000+.
                   </p>
                 </div>
                 <Link

@@ -21,7 +21,7 @@ import scrapedPerfumes from "@/harsh-beniwal/octopus/perfumes/scraped_products.j
 
 export const metadata: Metadata = {
   title: "Diwali Perfume Gifts 2026 | Luxury Festive Fragrance Hampers | Octopus",
-  description: "Explore 2026's top Diwali perfume gifts and luxury fragrance hampers by Harsh Beniwal. 100% original 50ML EDPs (25%+ French oils, 12H+ sillage). Use code DIWALI20 for 20% OFF + Free 7ML Paradox tester + Deluxe festive gift box.",
+  description: "Explore 2026's top Diwali perfume gifts and luxury fragrance hampers by Harsh Beniwal. 100% original 50ML EDPs (25%+ French oils, 12H+ sillage). Use code OCTOPUS5 for 5% OFF on ₹5,000+ orders + Free 7ML Paradox tester.",
   keywords: [
     "diwali perfume gifts",
     "diwali gift hampers 2026",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     "diwali gifts for men",
     "corporate diwali gifts perfumes",
     "diwali discount luxury perfumes",
-    "coupon code DIWALI20",
+    "coupon code OCTOPUS5",
     "octopus perfumes diwali sale"
   ],
   alternates: {
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Diwali Perfume Gifts 2026 | Luxury Festive Fragrance Hampers",
-    description: "Shop authentic 50ML EDP Diwali perfume gift sets by Harsh Beniwal. Free 7ML Paradox tester + 20% OFF with code DIWALI20.",
+    description: "Shop authentic 50ML EDP Diwali perfume gift sets by Harsh Beniwal. Free 7ML Paradox tester + 5% OFF on ₹5,000+ with code OCTOPUS5.",
     url: "https://www.octopusperfume.in/diwali-gifts",
     siteName: "Octopus Perfumes by Harsh Beniwal",
     images: [
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Diwali Perfume Gifts 2026 | Luxury Festive Fragrance Hampers",
-    description: "Shop authentic 50ML EDP Diwali perfume gift sets by Harsh Beniwal. Code DIWALI20 for 20% OFF.",
+    description: "Shop authentic 50ML EDP Diwali perfume gift sets by Harsh Beniwal. Code OCTOPUS5 for 5% OFF on ₹5,000+.",
     images: ["/harsh-beniwal/octopus/perfumes/images/overlord_box.png"],
   },
 };
@@ -74,14 +74,14 @@ export default function DiwaliGiftsPage() {
       subtitle: "Overlord 50ML (Sauvage DNA) + Darling 50ML (Miss Dior DNA)",
       forWhom: "For Couples & Hosts",
       tag: "His & Her Luxury",
-      price: 1718,
+      price: 2520,
       mrp: 4298,
       link: "/products/darling-women",
       image: "/harsh-beniwal/octopus/perfumes/images/darling_box.png",
       features: [
         "2x Full 50ML EDP Bottles",
         "2x Free 7ML Paradox Testers (₹798 Value)",
-        "Deluxe Dual Festive Gift Packaging",
+        "3% Automatic Duo Bundle Tier",
         "12+ Hours Longevity in Festive Parties"
       ]
     },
@@ -90,13 +90,13 @@ export default function DiwaliGiftsPage() {
       subtitle: "Overlord (Sauvage) + Promised (BR540) + Mirage (Ombre Nomade)",
       forWhom: "The Grand Power Gift",
       tag: "VIP Bestseller",
-      price: 2717,
+      price: 3702,
       mrp: 7397,
       link: "/products/promised",
       image: "/harsh-beniwal/octopus/perfumes/images/promised_box.png",
       features: [
         "3x Full 50ML EDP Fragrances",
-        "Covers Citrus, Sweet Amber & Royal Oud",
+        "5% Automatic Trio Bundle Tier",
         "Free 7ML Paradox Tester Included",
         "Signature Festive Master Box"
       ]
@@ -105,8 +105,8 @@ export default function DiwaliGiftsPage() {
       title: "Signature Solo Gift Box: Overlord",
       subtitle: "Calabrian Bergamot, Ambroxan, Sichuan Pepper (Dior Sauvage DNA)",
       forWhom: "For Him / Brothers / Husband",
-      tag: "Under ₹1,100",
-      price: 1039,
+      tag: "Signature Gift",
+      price: 1299,
       mrp: 2099,
       link: "/products/overlord",
       image: "/harsh-beniwal/octopus/perfumes/images/overlord_box.png",
@@ -122,7 +122,7 @@ export default function DiwaliGiftsPage() {
       subtitle: "Saffron, Jasmine, Amberwood, Cedar Resin (Baccarat Rouge 540 DNA)",
       forWhom: "For Her / Wife / Girlfriend",
       tag: "Magnetic Romance",
-      price: 1039,
+      price: 1299,
       mrp: 2099,
       link: "/products/promised",
       image: "/harsh-beniwal/octopus/perfumes/images/promised_box.png",
@@ -168,10 +168,10 @@ export default function DiwaliGiftsPage() {
       },
       {
         "@type": "Question",
-        "name": "How does the DIWALI20 coupon code work?",
+        "name": "How does the OCTOPUS5 coupon code work?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Enter code DIWALI20 at checkout for an instant flat 20% discount on all perfume bottles and hampers. In addition, every order includes a complimentary 7ML Paradox tester pack (worth ₹399) and free express pan-India delivery."
+          "text": "Enter code OCTOPUS5 at checkout for an instant 5% discount on minimum orders of ₹5,000+. Multi-bottle orders also unlock 3% (2 bottles) and 5% (3+ bottles) automatically, plus a complimentary 7ML Paradox tester and free express pan-India delivery."
         }
       },
       {
@@ -217,11 +217,11 @@ export default function DiwaliGiftsPage() {
 
           {/* Coupon Callout Strip */}
           <div className="inline-flex flex-wrap items-center justify-center gap-3 bg-white border-2 border-amber-300 rounded-2xl px-6 py-3 shadow-sm">
-            <span className="text-sm text-amber-900 font-bold">Diwali Code:</span>
+            <span className="text-sm text-amber-900 font-bold">Prepaid Code:</span>
             <span className="font-mono text-base font-extrabold text-[#222222] bg-amber-100 px-3 py-1 rounded-md border border-amber-300">
-              DIWALI20
+              OCTOPUS5
             </span>
-            <span className="text-sm font-bold text-[#ff385c]">Flat 20% OFF + Free 7ML Paradox Tester + Deluxe Gift Box</span>
+            <span className="text-sm font-bold text-[#9A7953]">5% OFF on Orders ₹5,000+ · Free 7ML Paradox Tester</span>
           </div>
 
         </div>
@@ -285,7 +285,7 @@ export default function DiwaliGiftsPage() {
                 <div>
                   <span className="text-[11px] text-[#6a6a6a] line-through block">MRP ₹{hamper.mrp}</span>
                   <span className="text-[18px] font-bold text-[#222222]">₹{hamper.price}</span>
-                  <span className="text-[10px] text-amber-800 font-bold block">with DIWALI20</span>
+                  <span className="text-[10px] text-amber-800 font-bold block">Multi-bottle Bundle Value</span>
                 </div>
                 <Link
                   href={hamper.link}
@@ -303,7 +303,7 @@ export default function DiwaliGiftsPage() {
       <section className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 py-10 border-t border-[#ebebeb]">
         <div className="mb-8">
           <h2 className="text-[22px] sm:text-[28px] font-bold text-[#222222] tracking-tight">
-            Individual 50ML Eau De Parfums (₹1,039 with Code DIWALI20)
+            Individual 50ML Eau De Parfums (₹1,299 Flagship Price)
           </h2>
           <p className="text-sm text-[#6a6a6a]">
             Every single 50ML EDP bottle purchase includes a complimentary 7ML Paradox discovery tester pack (₹399 value).
@@ -347,7 +347,7 @@ export default function DiwaliGiftsPage() {
                   <div>
                     <span className="text-[11px] text-[#6a6a6a] line-through mr-1">₹2,099</span>
                     <span className="text-[16px] font-bold text-[#222222]">₹{perfume.price}</span>
-                    <span className="text-[10px] text-amber-800 block font-semibold">₹1,039 with DIWALI20</span>
+                    <span className="text-[10px] text-amber-800 block font-semibold">5% OFF ₹5,000+ (OCTOPUS5)</span>
                   </div>
 
                   <Link

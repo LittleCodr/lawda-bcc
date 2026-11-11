@@ -29,9 +29,9 @@ export default function DiwaliPopup() {
   if (!isOpen || (pathname && (pathname.startsWith("/checkout") || pathname.startsWith("/account")))) return null;
 
   const copyCode = () => {
-    navigator.clipboard.writeText("DIWALI20");
+    navigator.clipboard.writeText("OCTOPUS5");
     setCopied(true);
-    toast.success("Coupon code DIWALI20 copied! 20% OFF applied at checkout.", {
+    toast.success("Coupon code OCTOPUS5 copied! Apply at checkout on ₹5,000+ for 5% OFF.", {
       style: {
         borderRadius: "14px",
         padding: "14px 20px",
@@ -91,10 +91,10 @@ export default function DiwaliPopup() {
             <div className="flex items-center justify-between gap-3">
               <div>
                 <span className="text-[11px] font-bold text-amber-800 uppercase tracking-wide block">
-                  Diwali Festive Coupon
+                  Prepaid Privilege Coupon (₹5,000+)
                 </span>
                 <span className="text-2xl font-extrabold text-[#222222] font-mono tracking-wider">
-                  DIWALI20
+                  OCTOPUS5
                 </span>
               </div>
               <button
@@ -111,7 +111,7 @@ export default function DiwaliPopup() {
             <div className="border-t border-amber-200/80 mt-3.5 pt-3 grid grid-cols-1 gap-2 text-[12px] text-[#222222]">
               <div className="flex items-center gap-2">
                 <span className="text-amber-600 font-bold">✓</span>
-                <span><strong>Flat 20% OFF</strong> on all 50ML EDP perfumes</span>
+                <span><strong>Extra 5% OFF</strong> on minimum orders of ₹5,000+</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-amber-600 font-bold">✓</span>
@@ -131,7 +131,7 @@ export default function DiwaliPopup() {
               className="flex-1 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold py-3 px-4 rounded-xl text-[14px] shadow-sm transition-all cursor-pointer flex items-center justify-center gap-2 active:scale-95"
             >
               <span>🪔</span>
-              <span>Claim 20% Diwali Discount</span>
+              <span>Copy Code OCTOPUS5 (5% OFF ₹5,000+)</span>
             </button>
             <button
               onClick={() => setIsOpen(false)}

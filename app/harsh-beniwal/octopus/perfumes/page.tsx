@@ -11,7 +11,7 @@ export const revalidate = 86400;
 export const metadata: Metadata = {
   title: "Octopus Perfume by Harsh Beniwal | Official Brand Store & Prices (50ML EDP)",
   description:
-    "Buy 100% original Octopus perfume by Harsh Beniwal on the official flagship store (BuyOctopus). 50ML EDPs formulated with 25%+ French fragrance oils, 12H+ beast-mode sillage. Use code LUXURY25 for 25% OFF + Free 7ML Paradox tester & express pan-India delivery.",
+    "Buy 100% original Octopus perfume by Harsh Beniwal on the official flagship store (BuyOctopus). 50ML EDPs formulated with 25%+ French fragrance oils, 12H+ beast-mode sillage. Use code OCTOPUS5 for 5% OFF on ₹5,000+ orders + Free 7ML Paradox tester & express pan-India delivery.",
   keywords: [
     "octopus perfume",
     "octopus perfume coupon code",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     "somersault perfume",
     "your move perfume",
     "darling perfume",
-    "coupon code LUXURY25"
+    "coupon code OCTOPUS5"
   ],
   alternates: {
     canonical: PAGE_URL,
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Octopus Perfume by Harsh Beniwal | Official 50ML EDP Flagship Store",
     description:
-      "Buy 100% original Octopus Perfumes by Harsh Beniwal. 25%+ French fragrance oils, 12+ hour beast-mode longevity. 25% OFF with code LUXURY25 + Free 7ML tester.",
+      "Buy 100% original Octopus Perfumes by Harsh Beniwal. 25%+ French fragrance oils, 12+ hour beast-mode longevity. 5% OFF ₹5,000+ with code OCTOPUS5 + Free 7ML tester.",
     url: PAGE_URL,
     siteName: "Octopus Perfumes by Harsh Beniwal",
     images: [
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Octopus Perfume by Harsh Beniwal | Official 50ML EDP Flagship Store",
     description:
-      "Buy 100% original Octopus Perfumes by Harsh Beniwal. 25%+ French oils, 12+ hour sillage. Code LUXURY25 for 25% OFF.",
+      "Buy 100% original Octopus Perfumes by Harsh Beniwal. 25%+ French oils, 12+ hour sillage. Code OCTOPUS5 for 5% OFF on ₹5,000+ orders.",
     images: ["/harsh-beniwal/octopus/perfumes/images/overlord_box.png"],
   },
 };
@@ -153,7 +153,7 @@ export default function HarshBeniwalPerfumesPage() {
         "name": "What is the best Octopus perfume coupon code?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The highest-value official Octopus perfume coupon code is LUXURY25, which gives an instant flat 25% OFF on all 50ML EDP perfumes by Harsh Beniwal (bringing price down to ₹974). You can also use code OCTOPUS20 for 20% OFF. Both include a free 7ML Paradox tester pack and free pan-India delivery."
+          "text": "The active official Octopus perfume coupon code is OCTOPUS5, which gives 5% OFF on minimum orders of ₹5,000+. Multi-bottle bags also unlock 3% OFF on 2 bottles and 5% OFF on 3+ automatically, with a free 7ML Paradox tester and free pan-India delivery."
         }
       },
       {
@@ -177,7 +177,7 @@ export default function HarshBeniwalPerfumesPage() {
         "name": "What is the Octopus perfumes price and Harsh Beniwal perfume price?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The official Octopus perfumes price is ₹1,299 for a 50ML Eau De Parfum (discounted from MRP ₹2,099). When you apply coupon code LUXURY25, the price drops to ₹974 with free express shipping across India."
+          "text": "The official Octopus perfumes price is ₹1,299 for a 50ML Eau De Parfum (discounted from MRP ₹2,099). Qualifying ₹5,000+ prepaid orders can also apply code OCTOPUS5 for an extra 5% OFF with free express shipping across India."
         }
       },
       {

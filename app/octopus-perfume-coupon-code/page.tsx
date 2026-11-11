@@ -8,9 +8,9 @@ const PAGE_URL = "https://www.octopusperfume.in/octopus-perfume-coupon-code";
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-  title: "Octopus Perfume Coupon Code & Discounts (2026) | 25% OFF Harsh Beniwal Perfumes",
+  title: "Octopus Perfume Coupon Code & Discounts (2026) | Code OCTOPUS5 (5% OFF ₹5,000+)",
   description:
-    "Verified Octopus perfume coupon codes & vouchers. Use coupon code LUXURY25 for flat 25% OFF on all 50ML Eau De Parfums by Harsh Beniwal (Overlord, Rhapsody, Mirage, Paradox). Free 7ML tester + free express shipping in India.",
+    "Verified Octopus perfume coupon codes & bundle tiers. Use coupon code OCTOPUS5 for 5% OFF on minimum orders of ₹5,000+ across Harsh Beniwal 50ML EDPs & 130+ luxury houses, plus Free 7ML Paradox tester & express shipping.",
   keywords: [
     "octopus perfume coupon code",
     "harsh beniwal perfume coupon code",
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
     canonical: PAGE_URL,
   },
   openGraph: {
-    title: "Octopus Perfume Coupon Code & Discounts (2026) | 25% OFF Code LUXURY25",
+    title: "Octopus Perfume Coupon Code & Discounts (2026) | 5% OFF ₹5,000+ Code OCTOPUS5",
     description:
-      "Save flat 25% on original Octopus perfumes by Harsh Beniwal with verified promo code LUXURY25. Includes free 7ML Paradox tester pack & pan-India delivery.",
+      "Save 5% on minimum orders of ₹5,000+ with verified promo code OCTOPUS5. Includes automatic bundle savings up to 5%, free 7ML Paradox tester pack & pan-India delivery.",
     url: PAGE_URL,
     siteName: "Octopus Perfumes by Harsh Beniwal",
     images: [
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
         url: "/harsh-beniwal/octopus/perfumes/images/overlord_box.png",
         width: 1200,
         height: 1200,
-        alt: "Octopus Perfume Coupon Code - 25% OFF",
+        alt: "Octopus Perfume Coupon Code - OCTOPUS5",
       },
     ],
     locale: "en_IN",
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Octopus Perfume Coupon Code & Discounts (2026) | 25% OFF Code LUXURY25",
+    title: "Octopus Perfume Coupon Code & Discounts (2026) | 5% OFF Code OCTOPUS5",
     description:
-      "Save flat 25% on original Octopus perfumes by Harsh Beniwal with verified promo code LUXURY25. Includes free 7ML Paradox tester pack & pan-India delivery.",
+      "Save 5% on orders of ₹5,000+ with verified promo code OCTOPUS5. Includes free 7ML Paradox tester pack & pan-India delivery.",
     images: ["/harsh-beniwal/octopus/perfumes/images/overlord_box.png"],
   },
 };
@@ -104,7 +104,7 @@ export default function OctopusPerfumeCouponCodePage() {
         "name": "What is the best working Octopus perfume coupon code?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The best working Octopus perfume coupon code is LUXURY25, which gives you an instant flat 25% OFF on all 50ML Eau De Parfum fragrances (Overlord, Rhapsody, Mirage, Paradox, Promised, Outlaw). You can also use code OCTOPUS20 for flat 20% OFF."
+          "text": "The official prepaid Octopus perfume coupon code is OCTOPUS5, which gives 5% OFF on minimum orders of ₹5,000+. You also unlock automatic 3% OFF on 2 bottles and 5% OFF on 3+ bottles in your bag."
         }
       },
       {
@@ -112,7 +112,7 @@ export default function OctopusPerfumeCouponCodePage() {
         "name": "What is the coupon code for Harsh Beniwal perfume?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The official coupon code for Harsh Beniwal's Octopus perfume collection is LUXURY25. Applying this code reduces the 50ML EDP price from ₹1,299 down to ₹974."
+          "text": "The official coupon code is OCTOPUS5, valid for an extra 5% OFF on orders of ₹5,000 or more across Harsh Beniwal 50ML EDPs (already discounted to ₹1,299 from ₹2,099 MRP) and 130+ luxury houses."
         }
       },
       {
@@ -120,7 +120,7 @@ export default function OctopusPerfumeCouponCodePage() {
         "name": "How much can I save on Octopus perfume with a coupon code?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "With coupon code LUXURY25, you save 25% off the already discounted store price (saving over ₹1,125 compared to the MRP of ₹2,099). Plus, you receive a free 7ML Paradox tester worth ₹399 and free pan-India express shipping."
+          "text": "Harsh Beniwal 50ML EDPs are already discounted by ₹800 below ₹2,099 MRP at ₹1,299. Adding multi-bottle tiers saves up to 5% automatically, and applying OCTOPUS5 on ₹5,000+ orders unlocks an extra 5% OFF plus a free 7ML Paradox tester."
         }
       },
       {
@@ -128,7 +128,7 @@ export default function OctopusPerfumeCouponCodePage() {
         "name": "Do Octopus perfume coupon codes expire?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Coupon codes LUXURY25 and OCTOPUS20 are verified active for all customers. Each order placed through the official website also qualifies for complimentary express shipping and tester packaging."
+          "text": "Coupon code OCTOPUS5 is verified active for qualifying orders of ₹5,000+. Every prepaid order also receives complimentary pan-India air express shipping and a free 7ML Paradox EDP tester."
         }
       },
       {
@@ -136,7 +136,7 @@ export default function OctopusPerfumeCouponCodePage() {
         "name": "How do I apply the coupon code at checkout?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Choose your desired Octopus perfume (e.g. Overlord, Rhapsody, Mirage), proceed to checkout, enter LUXURY25 into the 'Enter code' field, and click 'Apply'. The discount will instantly deduct from your cart total."
+          "text": "Build your bag to ₹5,000 or more, proceed to checkout, enter OCTOPUS5 into the 'Enter code' field, and click 'Apply'. Your 5% prepaid discount will deduct instantly."
         }
       },
       {
@@ -181,12 +181,12 @@ export default function OctopusPerfumeCouponCodePage() {
             </h1>
 
             <p className="max-w-2xl mx-auto text-sm sm:text-base text-stone-300 leading-relaxed font-normal">
-              Get verified, active discount codes for 100% original Octopus Perfumes by Harsh Beniwal. Save flat 25% with code <strong className="font-mono text-amber-300">LUXURY25</strong> + complimentary 7ML Paradox tester pack & free pan-India delivery.
+              Get verified, active discount codes for 100% original Octopus Perfumes by Harsh Beniwal and 130+ luxury houses. Save 5% on minimum orders of ₹5,000+ with code <strong className="font-mono text-amber-300">OCTOPUS5</strong> + complimentary 7ML Paradox tester &amp; free pan-India delivery.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-semibold text-amber-200/90 pt-2">
               <span className="flex items-center gap-1.5">
-                <Tag size={13} className="text-amber-400" /> Code LUXURY25 (25% OFF)
+                <Tag size={13} className="text-amber-400" /> Code OCTOPUS5 (5% OFF ₹5,000+)
               </span>
               <span className="flex items-center gap-1.5">
                 <ShieldCheck size={13} className="text-amber-400" /> 100% Verified Authentic
@@ -233,7 +233,7 @@ export default function OctopusPerfumeCouponCodePage() {
                     What is the best working Octopus perfume coupon code?
                   </h3>
                   <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                    The highest-value official Octopus perfume coupon code is <strong className="font-mono text-stone-900">LUXURY25</strong>, which provides an instant flat 25% OFF on all 50ML Eau De Parfum fragrances (Overlord, Rhapsody, Mirage, Paradox, Promised, Outlaw). You can also use code <strong className="font-mono text-stone-900">OCTOPUS20</strong> for 20% OFF.
+                    The active official prepaid coupon code is <strong className="font-mono text-stone-900">OCTOPUS5</strong>, providing an instant 5% OFF on minimum orders of ₹5,000+ alongside automatic 3% (2 bottles) and 5% (3+ bottles) bundle tiers.
                   </p>
                 </div>
 
@@ -242,7 +242,7 @@ export default function OctopusPerfumeCouponCodePage() {
                     What is the coupon code for Harsh Beniwal perfume?
                   </h3>
                   <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                    The official coupon code for Harsh Beniwal&apos;s Octopus perfume collection is <strong className="font-mono text-stone-900">LUXURY25</strong>. Applying this code drops the 50ML EDP price from ₹1,299 to just ₹974.
+                    You can apply <strong className="font-mono text-stone-900">OCTOPUS5</strong> at checkout whenever your cart total is ₹5,000 or more. Harsh Beniwal 50ML EDPs are already priced at ₹1,299 (down ₹800 from ₹2,099 MRP).
                   </p>
                 </div>
 
@@ -251,7 +251,7 @@ export default function OctopusPerfumeCouponCodePage() {
                     How much can I save on Octopus perfume with a coupon code?
                   </h3>
                   <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                    With coupon code LUXURY25, you save 25% off the already discounted store price (saving over ₹1,125 compared to the MRP of ₹2,099). Plus, you receive a free 7ML Paradox tester worth ₹399 and free pan-India express shipping.
+                    On top of flagship markdowns and automatic bundle tiers (up to 5% OFF), code OCTOPUS5 saves an additional 5% on ₹5,000+ orders, plus every order includes a complimentary 7ML Paradox tester and free pan-India express delivery.
                   </p>
                 </div>
 
@@ -260,7 +260,7 @@ export default function OctopusPerfumeCouponCodePage() {
                     How do I apply the coupon code at checkout?
                   </h3>
                   <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                    Choose your desired Octopus perfume (e.g. Overlord, Rhapsody, Mirage), proceed to checkout, enter <strong className="font-mono text-stone-900">LUXURY25</strong> into the &apos;Enter code&apos; field, and click &apos;Apply&apos;. The discount will instantly deduct from your cart total.
+                    Add ₹5,000+ of fragrances to your bag, proceed to checkout, enter <strong className="font-mono text-stone-900">OCTOPUS5</strong> into the &apos;Enter code&apos; field, and click &apos;Apply&apos;. The 5% discount deducts automatically.
                   </p>
                 </div>
 

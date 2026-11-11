@@ -230,7 +230,7 @@ export default async function CollectionPage({
                 Shopping {def.title} in India
               </h2>
               <p className="text-sm text-[#5C5954] leading-relaxed">
-                {def.seoDescription} Every listing reflects live stocked bottles with original cellophane packaging and matching batch numbers. Combine 2 bottles for an automatic 15% multi-item discount, 3+ items for 33% OFF, or apply prepaid checkout code <strong>LUXURY25</strong> on qualifying orders above ₹499.
+                {def.seoDescription} Every listing reflects live stocked bottles with original cellophane packaging and matching batch numbers. Combine 2 bottles for an automatic 3% multi-item discount, 3+ items for 5% OFF, or apply prepaid checkout code <strong>OCTOPUS5</strong> for 5% OFF on orders of ₹5,000+.
               </p>
               <div className="pt-2 flex flex-wrap gap-3">
                 {EDITORIAL_ARTICLES.slice(0, 2).map((guide) => (

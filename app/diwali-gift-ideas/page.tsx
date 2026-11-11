@@ -15,7 +15,7 @@ import {
 
 export const metadata: Metadata = {
   title: "Ultimate Diwali Fragrance Gift Guide 2026 | Luxury Perfumes by Harsh Beniwal",
-  description: "Discover why 50ML Eau De Parfums by Harsh Beniwal are 2026's #1 luxury Diwali gifts. French oil concentrations, sillage breakdown, couple pairings, and corporate hampers with code DIWALI20 for 20% OFF.",
+  description: "Discover why 50ML Eau De Parfums by Harsh Beniwal are 2026's #1 luxury Diwali gifts. French oil concentrations, sillage breakdown, couple pairings, and corporate hampers with code OCTOPUS5 (5% OFF ₹5,000+).",
   keywords: [
     "diwali fragrance gift guide 2026",
     "diwali perfume gifts",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Ultimate Diwali Fragrance Gift Guide 2026 | Luxury Perfumes by Harsh Beniwal",
-    description: "Discover the top luxury perfume gifts and hampers for Diwali 2026 by Harsh Beniwal. Free 7ML Paradox tester + 20% OFF with code DIWALI20.",
+    description: "Discover the top luxury perfume gifts and hampers for Diwali 2026 by Harsh Beniwal. Free 7ML Paradox tester + 5% OFF on ₹5,000+ orders with code OCTOPUS5.",
     url: "https://www.octopusperfume.in/diwali-gift-ideas",
     siteName: "Octopus Perfumes by Harsh Beniwal",
     images: [
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Ultimate Diwali Fragrance Gift Guide 2026 | Octopus Perfumes",
-    description: "Top luxury fragrance gifts and hampers for Diwali 2026 by Harsh Beniwal. Code DIWALI20 for 20% OFF.",
+    description: "Top luxury fragrance gifts and hampers for Diwali 2026 by Harsh Beniwal. Code OCTOPUS5 for 5% OFF on ₹5,000+ orders.",
     images: ["/harsh-beniwal/octopus/perfumes/images/overlord_box.png"],
   },
 };
@@ -113,7 +113,7 @@ export default function DiwaliGiftIdeasPage() {
             <span>·</span>
             <span>Updated for Diwali 2026</span>
             <span>·</span>
-            <span className="text-amber-800 font-bold">Use Code DIWALI20</span>
+            <span className="text-amber-800 font-bold">Use Code OCTOPUS5 (5% OFF ₹5,000+)</span>
           </div>
         </div>
       </div>
@@ -160,7 +160,7 @@ export default function DiwaliGiftIdeasPage() {
 
           <div className="flex items-center justify-between pt-3 border-t border-[#ebebeb]">
             <span className="text-base font-bold text-[#222222]">
-              ₹1,039 <span className="text-xs text-[#6a6a6a] line-through font-normal">₹2,099</span> (Code: DIWALI20)
+              ₹1,299 <span className="text-xs text-[#6a6a6a] line-through font-normal">₹2,099</span>
             </span>
             <Link
               href="/products/overlord"
@@ -200,7 +200,7 @@ export default function DiwaliGiftIdeasPage() {
 
           <div className="flex items-center justify-between pt-3 border-t border-[#ebebeb]">
             <span className="text-base font-bold text-[#222222]">
-              ₹1,039 <span className="text-xs text-[#6a6a6a] line-through font-normal">₹2,099</span> (Code: DIWALI20)
+              ₹1,299 <span className="text-xs text-[#6a6a6a] line-through font-normal">₹2,099</span>
             </span>
             <Link
               href="/products/promised"
@@ -230,9 +230,9 @@ export default function DiwaliGiftIdeasPage() {
           <div className="flex items-center justify-between pt-3 border-t border-[#ebebeb]">
             <div>
               <span className="text-base font-bold text-[#222222]">
-                ₹1,718 Total <span className="text-xs text-[#6a6a6a] line-through font-normal">₹4,298</span>
+                ₹2,520 Bundle <span className="text-xs text-[#6a6a6a] line-through font-normal">₹4,298</span>
               </span>
-              <span className="text-[11px] text-amber-800 font-bold block">with Code DIWALI20</span>
+              <span className="text-[11px] text-amber-800 font-bold block">3% Auto Duo Tier · Extra 5% on ₹5,000+ (OCTOPUS5)</span>
             </div>
             <Link
               href="/diwali-gifts"
@@ -259,7 +259,7 @@ export default function DiwaliGiftIdeasPage() {
             </li>
             <li className="flex items-start gap-2">
               <span className="text-amber-600 font-bold mt-0.5">•</span>
-              <span><strong>Order Early for Pre-Diwali Arrival:</strong> Express air courier deliveries take 2 to 4 business days. Secure your orders with code <strong>DIWALI20</strong> to guarantee delivery before Diwali day.</span>
+              <span><strong>Order Early for Pre-Diwali Arrival:</strong> Express air courier deliveries take 2 to 4 business days. Apply code <strong>OCTOPUS5</strong> on orders of ₹5,000+ for an extra 5% OFF.</span>
             </li>
           </ul>
         </section>
@@ -271,7 +271,7 @@ export default function DiwaliGiftIdeasPage() {
             className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold py-4 px-8 rounded-xl text-[15px] shadow-sm transition-all"
           >
             <span>🪔</span>
-            <span>Shop All Diwali Perfume Gifts (Code: DIWALI20)</span>
+            <span>Shop All Diwali Perfume Gifts (Code: OCTOPUS5)</span>
             <ArrowRight size={16} />
           </Link>
         </div>

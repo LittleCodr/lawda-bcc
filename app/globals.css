@@ -1,307 +1,270 @@
 @import "tailwindcss";
 
 :root {
-  /* Airbnb Canonical Brand & Accent Tokens */
-  --color-primary: #ff385c; /* Rausch */
-  --color-primary-active: #e00b41;
-  --color-primary-disabled: #ffd1da;
-  --color-luxe: #460479;
-  --color-plus: #92174d;
+  /* FridayCharm-Inspired Quiet Luxury Palette */
+  --bg-canvas: #ffffff;
+  --bg-surface: #f7f6f3;
+  --bg-card-plate: #f2f0eb;
+  --bg-dark-strip: #1f1d1b;
+  --border-subtle: #e8e6e1;
+  --border-strong: #d4cfc7;
 
-  /* Surfaces */
-  --color-canvas: #ffffff; /* Pure White Floor */
-  --color-surface-soft: #f7f7f7;
-  --color-surface-strong: #f2f2f2;
+  /* Text Hierarchy */
+  --color-ink: #242424;
+  --color-body: #3e3c38;
+  --color-muted: #777777;
+  --color-muted-soft: #96928b;
 
-  /* Hairlines & Dividers */
-  --color-hairline: #dddddd;
-  --color-hairline-soft: #ebebeb;
-  --color-border-strong: #c1c1c1;
+  /* Accents & Status */
+  --color-primary: #1f1d1b;
+  --color-primary-active: #35312d;
+  --color-primary-disabled: #c8c3bb;
+  --color-accent: #9a7953;
+  --color-accent-dark: #7f6240;
+  --color-accent-soft: #f5efe6;
+  --color-sale: #b83232;
+  --color-stock: #347a54;
 
-  /* Text & Typography */
-  --color-ink: #222222;
-  --color-body: #3f3f3f;
-  --color-muted: #6a6a6a;
-  --color-muted-soft: #929292;
-  --color-star-rating: #222222;
-  --color-on-primary: #ffffff;
-
-  /* Legacy mappings for seamless app-wide propagation */
-  --color-charcoal: #222222;
-  --color-paper: #ffffff;
-  --color-white: #ffffff;
-  --color-gold: #ff385c;
-  --color-saffron: #ff385c;
-  --color-diwali-gold: #ff385c;
-  --color-rose: #fff0f3;
-  --color-burgundy: #ff385c;
-  --color-emerald: #188038;
-  --color-line: #ebebeb;
+  /* Elevation */
+  --shadow-subtle: 0 2px 10px rgba(31, 29, 27, 0.04);
+  --shadow-hover: 0 12px 28px rgba(31, 29, 27, 0.09);
+  --shadow-mega: 0 18px 42px rgba(31, 29, 27, 0.12);
 }
 
 @theme inline {
-  --color-rausch: var(--color-primary);
-  --color-rausch-active: var(--color-primary-active);
-  --color-rausch-disabled: var(--color-primary-disabled);
-  --color-canvas: var(--color-canvas);
-  --color-surface-soft: var(--color-surface-soft);
-  --color-surface-strong: var(--color-surface-strong);
-  --color-hairline: var(--color-hairline);
-  --color-hairline-soft: var(--color-hairline-soft);
-  --color-border-strong: var(--color-border-strong);
-  --color-ink: var(--color-ink);
-  --color-body: var(--color-body);
-  --color-muted: var(--color-muted);
-  --color-muted-soft: var(--color-muted-soft);
-
-  --color-paper: var(--color-paper);
-  --color-gold: var(--color-gold);
-  --font-serif: "Playfair Display", serif;
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: var(--font-plus-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
 }
 
-html {
-  scroll-behavior: smooth;
-  background: #ffffff;
-  color: #222222;
+@layer base {
+  html {
+    background-color: var(--bg-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background-color: var(--bg-canvas);
+    color: var(--color-ink);
+    overflow-x: clip;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
 }
 
-body {
-  background: #ffffff;
-  color: #222222;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
+/* Smooth Scrollbars */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-::selection {
-  background: #ffd1da;
-  color: #222222;
+/* Carousel Track (scroll-behavior strictly inside motion preference) */
+.carousel-track {
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  overflow-y: hidden;
+  touch-action: manipulation;
+  scroll-behavior: auto;
 }
 
-/* Airbnb Canonical Single Shadow Tier */
+@media (prefers-reduced-motion: no-preference) {
+  .carousel-track {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Restrained Elevation & Button Primitives (plus legacy class bridges) */
+.shadow-luxury,
 .shadow-airbnb {
-  box-shadow: rgba(0, 0, 0, 0.02) 0 0 0 1px, rgba(0, 0, 0, 0.04) 0 2px 6px 0, rgba(0, 0, 0, 0.1) 0 4px 8px 0;
+  box-shadow: var(--shadow-subtle);
 }
 
+.shadow-luxury-hover,
 .shadow-airbnb-hover {
-  box-shadow: rgba(0, 0, 0, 0.04) 0 0 0 1px, rgba(0, 0, 0, 0.08) 0 6px 16px 0, rgba(0, 0, 0, 0.12) 0 10px 24px 0;
+  box-shadow: var(--shadow-hover);
 }
 
-/* Buttons */
-.btn-primary, .btn-rausch, .btn-vibrant-amber, .nb-btn {
-  background-color: #ff385c;
-  color: #ffffff;
-  font-weight: 500;
-  border-radius: 8px;
-  padding: 14px 24px;
-  font-size: 15px;
-  line-height: 1.25;
-  transition: background-color 0.15s ease, transform 0.15s ease;
-  cursor: pointer;
+.btn-luxury-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-}
-.btn-primary:hover, .btn-rausch:hover, .btn-vibrant-amber:hover, .nb-btn:hover {
-  background-color: #e00b41;
-}
-.btn-primary:active, .btn-rausch:active, .btn-vibrant-amber:active, .nb-btn:active {
-  background-color: #c10034;
-  transform: scale(0.98);
-}
-
-.btn-pill-rausch {
-  background-color: #ff385c;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
   color: #ffffff;
+  border-radius: 6px;
   font-weight: 600;
-  border-radius: 9999px;
-  padding: 10px 20px;
-  font-size: 14px;
-  transition: all 0.2s ease;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
   cursor: pointer;
 }
-.btn-pill-rausch:hover {
-  background-color: #e00b41;
+
+.btn-luxury-primary:hover {
+  background-color: var(--color-primary-active);
 }
 
+.btn-luxury-secondary,
 .btn-secondary-airbnb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   background-color: #ffffff;
-  color: #222222;
-  border: 1px solid #222222;
-  font-weight: 500;
-  border-radius: 8px;
-  padding: 12px 22px;
-  font-size: 14px;
-  transition: all 0.15s ease;
+  color: var(--color-ink);
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  padding: 0.6875rem 1.25rem;
+  transition: background-color 180ms ease, border-color 180ms ease;
   cursor: pointer;
 }
+
+.btn-luxury-secondary:hover,
 .btn-secondary-airbnb:hover {
-  background-color: #f7f7f7;
+  background-color: var(--bg-surface);
+  border-color: var(--color-ink);
 }
 
-.btn-tertiary-text {
-  background: transparent;
-  color: #222222;
-  font-weight: 600;
-  text-decoration: underline;
-  padding: 0;
+/* Native Details / Summary Accordion Transitions (modern-web-guidance) */
+.fc-accordion details {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.fc-accordion summary {
+  list-style: none;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
-/* Airbnb Property Card */
-.property-card-container {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  transition: transform 0.2s ease;
+.fc-accordion summary::-webkit-details-marker {
+  display: none;
 }
 
-.property-photo-plate {
-  position: relative;
+@media (prefers-reduced-motion: no-preference) {
+  .fc-accordion details::details-content {
+    interpolate-size: allow-keywords;
+    block-size: 0;
+    opacity: 0;
+    overflow: clip;
+    contain: layout;
+    transition:
+      block-size 300ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 220ms ease,
+      content-visibility 300ms allow-discrete;
+  }
+
+  .fc-accordion details[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+}
+
+/* Native Dialog / Drawer Modal Scroll-Containment (no html/body overflow locks) */
+dialog.fc-dialog:modal {
+  overscroll-behavior: contain;
+  margin: auto;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  max-width: none;
+  max-height: none;
+}
+
+dialog.fc-drawer:modal {
+  overscroll-behavior: contain;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  width: 100%;
+  max-width: 100%;
+  height: 100svh;
+  max-height: 100svh;
+}
+
+dialog.fc-dialog::backdrop,
+dialog.fc-drawer::backdrop {
+  background-color: rgba(31, 29, 27, 0.48);
+  backdrop-filter: blur(2px);
   overflow: hidden;
-  border-radius: 14px;
-  background-color: #f7f7f7;
+  overscroll-behavior: contain;
 }
 
-/* Floating "Guest favorite" Badge */
-.guest-favorite-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  z-index: 10;
+@media (prefers-reduced-motion: no-preference) {
+  dialog.fc-drawer[data-side="right"] .fc-drawer-panel {
+    animation: fcSlideInRight 260ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  dialog.fc-drawer[data-side="left"] .fc-drawer-panel {
+    animation: fcSlideInLeft 260ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+}
+
+@keyframes fcSlideInRight {
+  from {
+    opacity: 0.5;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fcSlideInLeft {
+  from {
+    opacity: 0.5;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Post-Interaction Form Validation (modern-web-guidance) */
+.fc-input {
+  width: 100%;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
   background-color: #ffffff;
-  color: #222222;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 9999px;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 0 0 1px, rgba(0, 0, 0, 0.04) 0 2px 6px 0, rgba(0, 0, 0, 0.1) 0 4px 8px 0;
+  color: var(--color-ink);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 
-/* Heart Save Button */
-.heart-save-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 10;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9999px;
-  transition: transform 0.2s ease;
-}
-.heart-save-btn:hover {
-  transform: scale(1.1);
+.fc-input:focus {
+  outline: none;
+  border-color: var(--color-ink);
+  box-shadow: 0 0 0 1px var(--color-ink);
 }
 
-/* Search Bar Pill */
-.search-bar-pill {
-  background-color: #ffffff;
-  border-radius: 9999px;
-  border: 1px solid #dddddd;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 0 0 1px, rgba(0, 0, 0, 0.04) 0 2px 6px 0, rgba(0, 0, 0, 0.1) 0 4px 8px 0;
-  transition: box-shadow 0.2s ease;
-}
-.search-bar-pill:hover {
-  box-shadow: rgba(0, 0, 0, 0.04) 0 0 0 1px, rgba(0, 0, 0, 0.08) 0 6px 16px 0, rgba(0, 0, 0, 0.12) 0 10px 24px 0;
+.fc-input:is(:user-invalid, .user-invalid-fallback) {
+  border-color: var(--color-sale);
+  background-color: #fff9f9;
 }
 
-/* Search Orb */
-.search-orb {
-  width: 44px;
-  height: 44px;
-  border-radius: 9999px;
-  background-color: #ff385c;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.15s ease;
-}
-.search-orb:hover {
-  background-color: #e00b41;
+.fc-input:is(:user-valid, .user-valid-fallback) {
+  border-color: var(--color-stock);
 }
 
-/* Backward-compatible utility classes mapped to Airbnb tokens */
-.glass, .glass-card, .glass-card-static, .nb-card, .nb-card-static {
-  background: #ffffff;
-  border: 1px solid #ebebeb;
-  border-radius: 14px;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 0 0 1px, rgba(0, 0, 0, 0.04) 0 2px 6px 0, rgba(0, 0, 0, 0.06) 0 4px 8px 0;
-}
-.glass-card:hover, .nb-card:hover {
-  box-shadow: rgba(0, 0, 0, 0.04) 0 0 0 1px, rgba(0, 0, 0, 0.08) 0 6px 16px 0, rgba(0, 0, 0, 0.12) 0 10px 24px 0;
+.fc-field-error {
+  display: none;
+  font-size: 0.75rem;
+  color: var(--color-sale);
+  margin-top: 0.25rem;
+  line-height: 1.4;
 }
 
-.glass-dark, .btn-glass-dark {
-  background: #222222;
-  color: #ffffff;
-  border-radius: 12px;
-}
-
-.glass-blue, .glass-amber, .glass-yellow, .glass-green, .glass-red {
-  background: #f7f7f7;
-  border: 1px solid #ebebeb;
-  border-radius: 12px;
-}
-
-.nb-badge {
-  background: #f7f7f7;
-  color: #222222;
-  border: 1px solid #dddddd;
-  border-radius: 9999px;
-  padding: 4px 10px;
-  font-size: 11px;
-  font-weight: 600;
-}
-
-/* Subtle Shimmer & Glow Animations */
-@keyframes soft-pulse {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 0.9; transform: scale(1.04); }
-}
-.animate-soft-pulse {
-  animation: soft-pulse 4s ease-in-out infinite;
-}
-
-@keyframes float-gentle {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-}
-.animate-float {
-  animation: float-gentle 5s ease-in-out infinite;
-}
-
-.transition-spring {
-  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.active-press {
-  transition: transform 0.15s ease-out;
-}
-.active-press:active {
-  transform: scale(0.96);
-}
-
-.pb-safe {
-  padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-}
-
-/* thin custom scrollbar for horizontal rails */
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-.animate-marquee {
-  animation: marquee 24s linear infinite;
-}
-
-.text-balance {
-  text-wrap: balance;
+.fc-input:is(:user-invalid, .user-invalid-fallback) ~ .fc-field-error {
+  display: block;
 }

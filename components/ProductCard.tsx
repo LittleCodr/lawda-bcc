@@ -1,183 +1,247 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Flame, Hourglass, Star, ShoppingBag, Gem, Sparkles } from "lucide-react";
-import type { Product } from "@/lib/products";
-import { formatINR } from "@/lib/products";
-import { useCart } from "@/lib/cart-context";
+import { ShoppingBag, Check } from "lucide-react";
+import { useState } from "react";
+import type { ProductSummary } from "@/lib/catalog-types";
+import { formatPriceINR } from "@/lib/catalog-types";
+import type { Product as LegacyProduct } from "@/lib/products";
+import { useCartStore } from "@/lib/store";
+import WishlistButton from "@/components/WishlistButton";
+import { trackEcommerceEvent } from "@/lib/analytics";
 
-export default function ProductCard({ product, index = 0 }: { product: Product; index?: number }) {
-  const { addItem } = useCart();
-  const [isHovered, setIsHovered] = useState(false);
-  const [isSaved, setIsSaved] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const allImages = [
-    product.images.hero,
-    product.images.lifestyle,
-    product.images.mood,
-    product.images.box,
-  ].filter(Boolean) as string[];
+type CardInput = ProductSummary | LegacyProduct;
 
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-    if (isHovered && allImages.length > 1) {
-      interval = setInterval(() => {
-        setCurrentImageIndex((prev) => (prev + 1) % allImages.length);
-      }, 1400);
-    } else {
-      setCurrentImageIndex(0);
-    }
-    return () => clearInterval(interval);
-  }, [isHovered, allImages.length]);
+function normalizeCardProduct(input: CardInput) {
+  if ("handle" in input) {
+    const defaultVariant =
+      input.variants.find((v) => v.available) || input.variants[0] || null;
+    return {
+      id: input.id,
+      handle: input.handle,
+      title: input.title,
+      brand: input.brand,
+      brandSlug: input.brandSlug,
+      gender: input.gender,
+      concentrationShort: input.concentrationShort,
+      primarySize: input.primarySize,
+      price: defaultVariant ? defaultVariant.price : input.price,
+      compareAtPrice: defaultVariant
+        ? defaultVariant.compareAtPrice
+        : input.compareAtPrice,
+      discountPct: input.discountPct,
+      available: input.available,
+      isNewArrival: input.isNewArrival,
+      isFlagship: input.isFlagship,
+      image: input.image || "/placeholder.svg",
+      secondaryImage: input.secondaryImage || null,
+      variantId: defaultVariant?.id,
+      variantTitle: defaultVariant?.title || input.primarySize,
+    };
+  }
+
+  const discountPct =
+    input.compareAtPrice > input.price
+      ? Math.round(((input.compareAtPrice - input.price) / input.compareAtPrice) * 100)
+      : 0;
+  const legacyId = input.sku || input.slug;
+  const genderLabel =
+    /her|women/i.test(input.gender)
+      ? "Women"
+      : /him|men/i.test(input.gender)
+        ? "Men"
+        : "Unisex";
+  return {
+    id: legacyId,
+    handle: input.slug,
+    title: input.name,
+    brand: "Octopus Perfumes by Harsh Beniwal",
+    brandSlug: "octopus-perfumes-by-harsh-beniwal",
+    gender: genderLabel,
+    concentrationShort: "EDP",
+    primarySize: "50ML",
+    price: input.price,
+    compareAtPrice: input.compareAtPrice > input.price ? input.compareAtPrice : null,
+    discountPct,
+    available: true,
+    isNewArrival: false,
+    isFlagship: true,
+    image: input.images?.grid || input.images?.hero || "/placeholder.svg",
+    secondaryImage: input.images?.box || input.images?.mood || null,
+    variantId: legacyId,
+    variantTitle: "50ML EDP",
+  };
+}
+
+export default function ProductCard({
+  product,
+  priority = false,
+}: {
+  product: CardInput;
+  index?: number;
+  priority?: boolean;
+}) {
+  const { addItem, setIsOpen } = useCartStore();
+  const [justAdded, setJustAdded] = useState(false);
+
+  const p = normalizeCardProduct(product);
+  const href = `/products/${p.handle}`;
+
+  const handleQuickAdd = () => {
+    if (!p.available || p.price <= 0) return;
+    addItem({
+      id: p.id,
+      title: p.title,
+      price: p.price,
+      image: p.image,
+      quantity: 1,
+      variantId: p.variantId,
+      variantTitle: p.variantTitle,
+    });
+    trackEcommerceEvent("add_to_cart", {
+      value: p.price,
+      items: [
+        {
+          item_id: p.id,
+          item_name: p.title,
+          item_brand: p.brand,
+          item_variant: p.variantTitle,
+          price: p.price,
+          quantity: 1,
+        },
+      ],
+    });
+    setJustAdded(true);
+    setIsOpen(true);
+    setTimeout(() => setJustAdded(false), 1600);
+  };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.4, delay: (index % 4) * 0.06 }}
-      className="group flex flex-col relative"
-    >
-      {/* Photo Plate with 14px corner clipping */}
-      <div 
-        className="relative aspect-square w-full rounded-[14px] overflow-hidden bg-[#f7f7f7] group-hover:shadow-airbnb-hover transition-shadow duration-300"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <Link href={`/products/${product.slug}`} className="block w-full h-full relative">
-          {/* Floating "Guest favorite" Badge top-left */}
-          <span className="guest-favorite-badge flex items-center gap-1.5">
-            <span>Guest favorite</span>
-          </span>
-
-          {/* Images */}
-          {allImages.map((src, idx) => (
-            <Image
-              key={src}
-              src={src}
-              alt={`${product.name} - Harsh Beniwal EDP`}
-              fill
-              unoptimized
-              quality={100}
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-              className={`object-contain p-4 transition-all duration-500 ease-out ${
-                idx === currentImageIndex ? "opacity-100 scale-100" : "opacity-0 scale-105"
-              }`}
+    <article className="group flex flex-col h-full bg-white border border-[#E8E6E1] hover:border-[#D4CFC7] rounded-[8px] overflow-hidden shadow-luxury hover:shadow-luxury-hover transition-all duration-200">
+      {/* Studio Image Container */}
+      <div className="relative aspect-[4/5] w-full bg-[#F7F6F3] overflow-hidden">
+        <Link
+          href={href}
+          className="block w-full h-full p-4 sm:p-5 flex items-center justify-center relative"
+          aria-label={p.title}
+        >
+          <img
+            src={p.image}
+            alt={p.title}
+            loading={priority ? "eager" : "lazy"}
+            className={`w-full h-full object-contain transition-all duration-300 ${
+              p.secondaryImage
+                ? "group-hover:opacity-0 group-hover:scale-[1.03]"
+                : "group-hover:scale-[1.04]"
+            } ${!p.available ? "opacity-55 grayscale-[35%]" : ""}`}
+          />
+          {p.secondaryImage && (
+            <img
+              src={p.secondaryImage}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-contain p-4 sm:p-5 opacity-0 group-hover:opacity-100 group-hover:scale-[1.03] transition-all duration-300"
             />
-          ))}
-
-          {/* Image Dots Indicator */}
-          {allImages.length > 1 && (
-            <div className="absolute bottom-3 inset-x-0 flex justify-center gap-1.5 z-10 pointer-events-none">
-              {allImages.map((_, dotIdx) => (
-                <span
-                  key={dotIdx}
-                  className={`w-1.5 h-1.5 rounded-full transition-all ${
-                    dotIdx === currentImageIndex ? "bg-white scale-125 shadow-xs" : "bg-white/60"
-                  }`}
-                />
-              ))}
-            </div>
           )}
         </Link>
 
-        {/* Heart Wishlist Save Button top-right */}
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            setIsSaved(!isSaved);
-          }}
-          aria-label={isSaved ? "Remove from wishlist" : "Save to wishlist"}
-          className="heart-save-btn cursor-pointer"
-        >
-          <svg
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-            role="presentation"
-            focusable="false"
-            className={`w-6 h-6 stroke-[2] transition-colors ${
-              isSaved
-                ? "fill-[#ff385c] stroke-[#ff385c]"
-                : "fill-black/30 stroke-white hover:fill-black/50"
-            }`}
-          >
-            <path d="M16 28c7-4.73 14-10 14-17a6.98 6.98 0 0 0-7-7c-1.8 0-3.58.68-4.95 2.05L16 8.1l-2.05-2.05A6.98 6.98 0 0 0 9 4a6.98 6.98 0 0 0-7 7c0 7 7 12.27 14 17z"></path>
-          </svg>
-        </button>
+        {/* Top-left Status / Savings Badge */}
+        <div className="absolute top-2.5 left-2.5 flex flex-col gap-1 pointer-events-none">
+          {!p.available ? (
+            <span className="inline-block bg-[#242424] text-white text-[10px] font-semibold uppercase tracking-[0.08em] px-2 py-0.5 rounded-[4px]">
+              Sold Out
+            </span>
+          ) : p.discountPct > 0 ? (
+            <span className="inline-block bg-[#B83232] text-white text-[10px] font-bold uppercase tracking-[0.06em] px-2 py-0.5 rounded-[4px]">
+              -{p.discountPct}% Off
+            </span>
+          ) : p.isFlagship ? (
+            <span className="inline-block bg-[#9A7953] text-white text-[10px] font-semibold uppercase tracking-[0.08em] px-2 py-0.5 rounded-[4px]">
+              25% Oil EDP
+            </span>
+          ) : p.isNewArrival ? (
+            <span className="inline-block bg-[#1F1D1B] text-white text-[10px] font-semibold uppercase tracking-[0.08em] px-2 py-0.5 rounded-[4px]">
+              New
+            </span>
+          ) : null}
+        </div>
 
-        {/* Quick Add Overlay on Hover (Desktop) */}
-        <div className="absolute inset-x-3 bottom-3 translate-y-[120%] group-hover:translate-y-0 transition-transform duration-250 ease-out z-20 hidden sm:block">
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              addItem(product);
-            }}
-            className="w-full bg-[#ff385c] hover:bg-[#e00b41] active:scale-95 text-white py-2.5 rounded-[8px] text-[13px] font-semibold tracking-wide flex items-center justify-center gap-2 shadow-md cursor-pointer transition-all"
-          >
-            <ShoppingBag size={14} strokeWidth={2.2} />
-            Add to Cart
-          </button>
+        {/* Wishlist Action */}
+        <div className="absolute top-2.5 right-2.5 z-10">
+          <WishlistButton handle={p.handle} title={p.title} className="w-8 h-8" />
         </div>
       </div>
 
-      {/* Meta Block Beneath Photo */}
-      <div className="mt-3 flex flex-col gap-0.5">
-        <div className="flex items-baseline justify-between gap-2">
-          <Link href={`/products/${product.slug}`} className="flex-1 truncate">
-            <h3 className="text-[15px] font-semibold text-[#222222] hover:text-[#ff385c] transition-colors truncate">
-              {product.name}
-            </h3>
+      {/* Product Info */}
+      <div className="flex-1 flex flex-col p-3.5 sm:p-4">
+        <div className="flex items-center justify-between gap-2 mb-1">
+          <Link
+            href={`/brands/${p.brandSlug}`}
+            className="text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.11em] text-[#777777] hover:text-[#9A7953] transition-colors truncate"
+          >
+            {p.brand}
           </Link>
-          <div className="flex items-center gap-1 text-[13px] font-semibold text-[#222222] shrink-0">
-            <span className="text-[11px]">★</span>
-            <span>4.92</span>
-          </div>
         </div>
 
-        <p className="text-[14px] text-[#6a6a6a] truncate">
-          25%+ French Oils • 12H Longevity
+        <Link href={href} className="block">
+          <h3 className="text-[13px] sm:text-[14px] font-medium text-[#242424] group-hover:text-[#9A7953] transition-colors leading-[1.38] line-clamp-2 min-h-[2.4rem]">
+            {p.title}
+          </h3>
+        </Link>
+
+        <p className="text-[11px] text-[#777777] mt-1 truncate">
+          {p.primarySize}
+          {p.concentrationShort && !p.primarySize.toLowerCase().includes(p.concentrationShort.toLowerCase())
+            ? ` · ${p.concentrationShort}`
+            : ""}
+          {p.gender ? ` · ${p.gender}` : ""}
         </p>
 
-        <p className="text-[14px] text-[#6a6a6a] truncate">
-          Includes free 7ML Paradox tester
-        </p>
-
-        <div className="flex items-baseline gap-2 mt-1">
-          <span className="text-[15px] font-semibold text-[#222222]">
-            {formatINR(product.price)}
+        {/* Price Row */}
+        <div className="mt-auto pt-3 flex items-baseline gap-2 flex-wrap">
+          <span className="text-[15px] sm:text-[16px] font-bold text-[#242424] tabular-nums">
+            {formatPriceINR(p.price)}
           </span>
-          <span className="text-[13px] text-[#6a6a6a]">total</span>
-          {product.compareAtPrice > product.price && (
-            <span className="text-[12px] text-[#ff385c] font-medium ml-auto">
-              Save {Math.round(((product.compareAtPrice - product.price) / product.compareAtPrice) * 100)}%
+          {p.compareAtPrice && p.compareAtPrice > p.price && (
+            <span className="text-[12px] text-[#96928B] line-through tabular-nums">
+              {formatPriceINR(p.compareAtPrice)}
             </span>
           )}
         </div>
 
-        {/* Mobile Fast Action Buttons */}
-        <div className="mt-2.5 flex items-center gap-2 sm:hidden">
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              addItem(product);
-            }}
-            className="flex-1 bg-[#ff385c] active:bg-[#e00b41] text-white py-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 active:scale-95 transition-all shadow-xs cursor-pointer"
-          >
-            <ShoppingBag size={13} />
-            <span>Add to Cart</span>
-          </button>
-          <Link
-            href={`/products/${product.slug}`}
-            className="px-3.5 py-2 bg-white text-[#222222] border border-[#dddddd] rounded-lg text-xs font-semibold active:scale-95 transition-all text-center"
-          >
-            Details
-          </Link>
+        {/* Quick Add CTA */}
+        <div className="mt-3">
+          {p.available && p.price > 0 ? (
+            <button
+              type="button"
+              onClick={handleQuickAdd}
+              className={`w-full py-2 px-3 rounded-[6px] text-[11px] font-semibold uppercase tracking-[0.08em] inline-flex items-center justify-center gap-1.5 border transition-colors touch-manipulation cursor-pointer ${
+                justAdded
+                  ? "bg-[#347A54] text-white border-[#347A54]"
+                  : "bg-[#F7F6F3] text-[#242424] border-[#E8E6E1] hover:bg-[#1F1D1B] hover:text-white hover:border-[#1F1D1B]"
+              }`}
+            >
+              {justAdded ? (
+                <>
+                  <Check size={13} /> Added
+                </>
+              ) : (
+                <>
+                  <ShoppingBag size={13} /> Quick Add
+                </>
+              )}
+            </button>
+          ) : (
+            <Link
+              href={href}
+              className="w-full py-2 px-3 rounded-[6px] text-[11px] font-semibold uppercase tracking-[0.08em] inline-flex items-center justify-center border border-[#E8E6E1] text-[#777777] bg-white hover:border-[#D4CFC7] transition-colors"
+            >
+              View Details
+            </Link>
+          )}
         </div>
       </div>
-    </motion.div>
+    </article>
   );
 }

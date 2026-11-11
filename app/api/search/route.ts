@@ -1,56 +1,56 @@
-import fs from "fs";
-import path from "path";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import {
+  getAllPerfumeSummaries,
+  getBrandSummaries,
+  filterProducts,
+  sortProducts,
+} from "@/lib/catalog";
 
-let cachedProducts: any[] | null = null;
-
-function getProducts() {
-  if (cachedProducts) return cachedProducts;
+export async function GET(request: NextRequest) {
   try {
-    const dataPath = path.join(process.cwd(), "lib", "data", "products.json");
-    if (fs.existsSync(dataPath)) {
-      const fileContent = fs.readFileSync(dataPath, "utf-8");
-      cachedProducts = JSON.parse(fileContent);
-      return cachedProducts;
-    }
-  } catch (e) {
-    console.error("Error reading products for search:", e);
-  }
-  return [];
-}
+    const q = (request.nextUrl.searchParams.get("q") || "").trim();
+    const limitParam = Number(request.nextUrl.searchParams.get("limit") || "12");
+    const limit = Math.min(Math.max(1, limitParam), 40);
 
-export async function GET(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const query = searchParams.get("q")?.toLowerCase() || "";
-
-  try {
-    const products = getProducts();
-    if (!products || products.length === 0) {
-      return NextResponse.json({ error: "Products not found" }, { status: 404 });
-    }
-
-    if (!query) {
-      return NextResponse.json(products.slice(0, 20), {
-        headers: {
-          "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
-        },
+    if (!q || q.length < 2) {
+      return NextResponse.json({
+        results: [],
+        brands: [],
+        total: 0,
       });
     }
 
-    const results = products.filter((p: any) => 
-      (p.title || "").toLowerCase().includes(query) || 
-      (p.vendor || "").toLowerCase().includes(query) ||
-      (Array.isArray(p.tags) ? p.tags.join(" ") : (p.tags || "")).toLowerCase().includes(query) ||
-      (p.product_type || "").toLowerCase().includes(query)
-    ).slice(0, 10);
+    const qLower = q.toLowerCase();
+    const all = getAllPerfumeSummaries();
+    const matched = filterProducts(all, { query: q });
 
-    return NextResponse.json(results, {
-      headers: {
-        "Cache-Control": "public, s-maxage=1800, stale-while-revalidate=86400",
-      },
+    const scored = sortProducts(matched, "featured").sort((a, b) => {
+      if (a.isMiniature !== b.isMiniature) return a.isMiniature ? 1 : -1;
+      const aTitle = a.title.toLowerCase();
+      const bTitle = b.title.toLowerCase();
+      const aExact = aTitle.includes(qLower) ? 1 : 0;
+      const bExact = bTitle.includes(qLower) ? 1 : 0;
+      if (aExact !== bExact) return bExact - aExact;
+      const aStarts = aTitle.startsWith(qLower) || a.brand.toLowerCase().startsWith(qLower) ? 1 : 0;
+      const bStarts = bTitle.startsWith(qLower) || b.brand.toLowerCase().startsWith(qLower) ? 1 : 0;
+      return bStarts - aStarts;
+    });
+
+    const brands = getBrandSummaries()
+      .filter(
+        (b) =>
+          b.name.toLowerCase().includes(qLower) ||
+          b.slug.includes(qLower.replace(/\s+/g, "-"))
+      )
+      .slice(0, 4);
+
+    return NextResponse.json({
+      results: scored.slice(0, limit).map((r) => ({ ...r, notes: null })),
+      brands,
+      total: matched.length,
     });
   } catch (error) {
-    console.error("Search error:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    console.error("Search API error:", error);
+    return NextResponse.json({ error: "Search failed" }, { status: 500 });
   }
 }

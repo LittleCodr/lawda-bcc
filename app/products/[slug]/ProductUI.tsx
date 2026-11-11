@@ -1,896 +1,1133 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { useCartStore } from "@/lib/store";
-import ProductImageGallery from "@/components/ProductImageGallery";
-import { Gift, ShieldCheck, Truck, Star, Heart, CheckCircle2, ChevronRight, ChevronDown, ShoppingBag, Zap, Clock, Smile, Award, Users, Flame, Sparkles, Gem, Lock } from "lucide-react";
-import { logAppEvent, db } from "@/lib/firebase";
-import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
-import { useAuth } from "@/lib/auth-context";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import {
+  ShoppingBag,
+  Minus,
+  Plus,
+  ShieldCheck,
+  Truck,
+  Sparkles,
+  Gift,
+  ChevronDown,
+  MapPin,
+  Check,
+  Star,
+  Share2,
+  Droplets,
+  Calendar,
+  Compass,
+  Clock,
+} from "lucide-react";
 import toast from "react-hot-toast";
-import ZoomableImage from "@/components/ZoomableImage";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
+  serverTimestamp,
+} from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import { useCartStore } from "@/lib/store";
+import { trackEcommerceEvent } from "@/lib/analytics";
+import {
+  formatPriceINR,
+  type EnrichedProduct,
+  type ProductSummary,
+} from "@/lib/catalog-types";
+import ProductImageGallery from "@/components/ProductImageGallery";
+import WishlistButton from "@/components/WishlistButton";
+import ProductCarousel from "@/components/ProductCarousel";
+import RecentlyViewed from "@/components/RecentlyViewed";
 
-interface ProductUIProps {
-  product: any;
+interface ReviewItem {
+  id: string;
+  author: string;
+  rating: number;
+  title: string;
+  comment: string;
+  createdAt?: string;
 }
 
-export default function ProductUI({ product }: ProductUIProps) {
+interface ProductUIProps {
+  product: EnrichedProduct;
+  summary: ProductSummary;
+  similarProducts: ProductSummary[];
+  sameBrandProducts: ProductSummary[];
+}
+
+export default function ProductUI({
+  product,
+  summary,
+  similarProducts,
+  sameBrandProducts,
+}: ProductUIProps) {
   const router = useRouter();
-  const { addItem } = useCartStore();
-  const [selectedVariantId, setSelectedVariantId] = useState<number | null>(
-    product.variants && product.variants.length > 0 ? product.variants[0].id : null
+  const { addItem, setIsOpen } = useCartStore();
+
+  const defaultVariant =
+    product.variants.find((v) => v.available) || product.variants[0] || null;
+
+  const [selectedVariantId, setSelectedVariantId] = useState<string>(
+    defaultVariant?.id || product.id
   );
+  const [qty, setQty] = useState(1);
+  const [addedFeedback, setAddedFeedback] = useState(false);
 
-  // Marketing & FOMO States
-  const [timeLeft, setTimeLeft] = useState({ hours: "02", minutes: "43", seconds: "19" });
-  const [liveViewers, setLiveViewers] = useState(36);
-  const [copiedCode, setCopiedCode] = useState(false);
+  // Delivery Pincode Estimator state
+  const [pincode, setPincode] = useState("");
+  const [pinTouched, setPinTouched] = useState(false);
+  const [pinLoading, setPinLoading] = useState(false);
+  const [pinResult, setPinResult] = useState<{
+    ok: boolean;
+    message: string;
+  } | null>(null);
+
+  // Sticky mobile purchase bar observer
+  const primaryActionRef = useRef<HTMLDivElement>(null);
+  const [showStickyMobile, setShowStickyMobile] = useState(false);
+
+  // Honest Firestore Customer Reviews (zero fake seeding)
+  const [reviews, setReviews] = useState<ReviewItem[]>([]);
+  const [reviewsLoading, setReviewsLoading] = useState(true);
+  const [reviewFormOpen, setReviewFormOpen] = useState(false);
+  const [revName, setRevName] = useState("");
+  const [revRating, setRevRating] = useState(5);
+  const [revTitle, setRevTitle] = useState("");
+  const [revBody, setRevBody] = useState("");
+  const [revSubmitting, setRevSubmitting] = useState(false);
+
+  const activeVariant =
+    product.variants.find((v) => v.id === selectedVariantId) || defaultVariant;
+
+  const unitPrice = activeVariant ? activeVariant.price : product.price;
+  const compareAt = activeVariant
+    ? activeVariant.compareAtPrice
+    : product.compareAtPrice;
+  const variantDiscountPct =
+    compareAt && compareAt > unitPrice
+      ? Math.round(((compareAt - unitPrice) / compareAt) * 100)
+      : product.discountPct;
+  const inStock = activeVariant ? activeVariant.available : product.available;
+  const primaryImage =
+    activeVariant?.featuredImage || product.image || "/placeholder.svg";
 
   useEffect(() => {
-    router.prefetch("/checkout");
-  }, [router]);
-
-  useEffect(() => {
-    const updateTimer = () => {
-      const now = new Date();
-      const endOfDay = new Date();
-      endOfDay.setHours(23, 59, 59, 999);
-      const diff = Math.max(0, endOfDay.getTime() - now.getTime());
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24).toString().padStart(2, "0");
-      const minutes = Math.floor((diff / (1000 * 60)) % 60).toString().padStart(2, "0");
-      const seconds = Math.floor((diff / 1000) % 60).toString().padStart(2, "0");
-      setTimeLeft({ hours, minutes, seconds });
-    };
-    updateTimer();
-    const interval = setInterval(updateTimer, 1000);
-    return () => clearInterval(interval);
+    const el = primaryActionRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        setShowStickyMobile(!entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
   }, []);
 
   useEffect(() => {
-    const viewerInterval = setInterval(() => {
-      setLiveViewers(Math.floor(Math.random() * 14) + 27);
-    }, 12000);
-    return () => clearInterval(viewerInterval);
-  }, []);
-
-  const copyPromoCode = (code: string) => {
-    if (typeof navigator !== "undefined" && navigator.clipboard) {
-      navigator.clipboard.writeText(code);
-      setCopiedCode(true);
-      toast.success(`Coupon code ${code} copied!`);
-      setTimeout(() => setCopiedCode(false), 2500);
-    }
-  };
-
-  // Personalization State
-  const [customName, setCustomName] = useState("");
-  const [customPhotoUrl, setCustomPhotoUrl] = useState("");
-  const [isUploading, setIsUploading] = useState(false);
-  const [isGift, setIsGift] = useState(false);
-  const [customFont, setCustomFont] = useState("font-italianno");
-  // Tabs state
-  const [activeTab, setActiveTab] = useState("details");
-
-  const { user } = useAuth();
-  const [isFavourite, setIsFavourite] = useState(false);
-  const [isFavLoading, setIsFavLoading] = useState(false);
-  const [isDescOpen, setIsDescOpen] = useState(false);
-
-  useEffect(() => {
-    if (!user) return;
-    const checkFav = async () => {
-      const docRef = doc(db, "users", user.uid, "favourites", product.id.toString());
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) setIsFavourite(true);
-    };
-    checkFav();
-  }, [user, product.id]);
-
-  const toggleFavourite = async () => {
-    if (!user) {
-      toast.error("Please login to save favourites!");
-      return;
-    }
-    setIsFavLoading(true);
-    try {
-      const docRef = doc(db, "users", user.uid, "favourites", product.id.toString());
-      if (isFavourite) {
-        await deleteDoc(docRef);
-        setIsFavourite(false);
-      } else {
-        await setDoc(docRef, {
-          id: product.id.toString(),
-          handle: product.handle,
-          title: product.title,
-          price: currentPrice,
-          image: images.length > 0 ? images[0].src : "/logo.png",
-          addedAt: new Date()
+    let active = true;
+    async function loadReviews() {
+      try {
+        const q = query(
+          collection(db, "reviews"),
+          where("productHandle", "==", product.handle)
+        );
+        const snap = await getDocs(q);
+        if (!active) return;
+        const loaded: ReviewItem[] = [];
+        snap.forEach((doc) => {
+          const d = doc.data();
+          loaded.push({
+            id: doc.id,
+            author: String(d.author || "Verified Collector"),
+            rating: Number(d.rating) || 5,
+            title: String(d.title || ""),
+            comment: String(d.comment || ""),
+            createdAt: d.createdAt?.toDate
+              ? d.createdAt.toDate().toLocaleDateString("en-IN")
+              : undefined,
+          });
         });
-        setIsFavourite(true);
-        toast.success("Added to favourites!");
+        setReviews(loaded);
+      } catch {
+        // Gracefully handle empty/restricted reads with clean state
+        if (active) setReviews([]);
+      } finally {
+        if (active) setReviewsLoading(false);
       }
-    } catch (e) {
-      console.error(e);
-      toast.error("Failed to update favourites.");
-    } finally {
-      setIsFavLoading(false);
     }
-  };
+    loadReviews();
+    return () => {
+      active = false;
+    };
+  }, [product.handle]);
 
-  const selectedVariant = product.variants?.find((v: any) => v.id === selectedVariantId);
-  const isAvailable = true;
-
-  const productTitleLower = (product.title || "").toLowerCase();
-  const perfumeHandles = ['overlord', 'paradox', 'rhapsody', 'your-move', 'somersault', 'promised', 'outlaw', 'mirage', 'darling-women'];
-  const isHarshBeniwal = perfumeHandles.includes(product.handle) || product.vendor === "Octopus Perfumes by Harsh Beniwal";
-  const isEverlasting = (product.vendor || "").toLowerCase().includes("everlasting") || ['925-silver-snake-anklet', 'name-necklace', '12-in-1-jhumkas-box'].includes(product.handle);
-  const isPerfume = isHarshBeniwal || (!isEverlasting && (product.vendor !== "EVERLASTING" && product.vendor !== "Everlasting")) || (product.product_type || '').toLowerCase().includes('perfume') || (product.tags || []).some((t: string) => typeof t === 'string' && (t.toLowerCase().includes('perfume') || t.toLowerCase().includes('harsh beniwal')));
-  const isNamePersonalised = !isPerfume && (productTitleLower.includes('name') || productTitleLower.includes('initial') || product.handle === '12-in-1-jhumkas-box');
-  const isPhotoPersonalised = !isPerfume && (productTitleLower.includes('photo') || productTitleLower.includes('picture'));
-  const isRing = productTitleLower.includes('ring');
-  const showNameInput = !isPerfume && (isNamePersonalised || !isRing);
-
-  const basePrice = selectedVariant ? parseFloat(selectedVariant.price) : 0;
-  const compareAtPrice = selectedVariant?.compare_at_price ? parseFloat(selectedVariant.compare_at_price) : (basePrice * 1.4);
-  const discountPercent = Math.round(((compareAtPrice - basePrice) / compareAtPrice) * 100);
-
-  const currentPrice = basePrice + (isGift ? 249 : 0);
-
-  const activeImageId = selectedVariant?.image_id || null;
-
-  const images = product.images?.map((img: any) => ({
-    src: img.local_src || img.localPath || img.src || img.url,
-    alt: img.alt || product.title,
-    id: img.id
-  })) || [];
-
-  const loggedViewItem = useRef(false);
   useEffect(() => {
-    if (!loggedViewItem.current) {
-      logAppEvent("view_item", {
-        currency: "INR",
-        value: currentPrice,
-        items: [
-          {
-            item_id: product.id.toString(),
-            item_name: product.title,
-            price: currentPrice,
-            item_category: product.product_type,
-          }
-        ]
-      });
-      loggedViewItem.current = true;
-    }
-  }, [product, currentPrice]);
-
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    setIsUploading(true);
-    try {
-      const formData = new FormData();
-      formData.append("image", file);
-
-      const response = await fetch("https://api.imgbb.com/1/upload?key=4709769dff446ed5d0edc22ceff9026c", {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await response.json();
-      if (data.success) {
-        setCustomPhotoUrl(data.data.url);
-        toast.success("Photo uploaded successfully!");
-      } else {
-        toast.error("Failed to upload image. Please try again.");
-      }
-    } catch (error) {
-      console.error("Upload error:", error);
-      toast.error("Failed to upload image. Please try again.");
-    } finally {
-      setIsUploading(false);
-    }
-  };
-
-  const handleAddToCart = () => {
-    if (!selectedVariant) return;
-
-    const variantImage = activeImageId
-      ? images.find((img: any) => img.id === activeImageId)?.src
-      : (images.length > 0 ? images[0].src : "/logo.png");
-
-    addItem({
-      id: product.id.toString(),
-      title: product.title,
-      price: currentPrice,
-      image: variantImage,
-      quantity: 1,
-      variantId: selectedVariant.id.toString(),
-      variantTitle: selectedVariant.title !== "Default Title" ? selectedVariant.title : undefined,
-      customName: showNameInput ? customName : undefined,
-      customPhotoUrl: isPhotoPersonalised ? customPhotoUrl : undefined,
-      customFont: showNameInput ? customFont : undefined,
-      isGift,
-    });
-
-    logAppEvent("add_to_cart", {
-      currency: "INR",
-      value: currentPrice,
+    trackEcommerceEvent("view_item", {
+      value: product.price,
       items: [
         {
-          item_id: product.id.toString(),
+          item_id: product.id,
           item_name: product.title,
-          price: currentPrice,
+          item_brand: product.brand,
+          item_variant: product.primarySize,
+          price: product.price,
           quantity: 1,
-          item_variant: selectedVariant.title !== "Default Title" ? selectedVariant.title : undefined,
-          item_category: product.product_type,
-        }
-      ]
+        },
+      ],
     });
+  }, [product.id, product.title, product.brand, product.primarySize, product.price]);
 
-    setCustomName("");
-    setCustomPhotoUrl("");
-    setIsGift(false);
-
-    toast.success("Added to Cart!");
+  const handleAddToCart = (openDrawer = true) => {
+    if (!inStock || unitPrice <= 0) return;
+    addItem({
+      id: product.id,
+      title: product.title,
+      price: unitPrice,
+      image: primaryImage,
+      quantity: qty,
+      variantId: activeVariant?.id,
+      variantTitle: activeVariant?.title || product.primarySize,
+    });
+    trackEcommerceEvent("add_to_cart", {
+      value: unitPrice * qty,
+      items: [
+        {
+          item_id: product.id,
+          item_name: product.title,
+          item_brand: product.brand,
+          item_variant: activeVariant?.title || product.primarySize,
+          price: unitPrice,
+          quantity: qty,
+        },
+      ],
+    });
+    setAddedFeedback(true);
+    if (openDrawer) setIsOpen(true);
+    setTimeout(() => setAddedFeedback(false), 1800);
   };
 
   const handleBuyNow = () => {
-    if (!selectedVariant || isButtonDisabled) return;
-    handleAddToCart();
+    if (!inStock || unitPrice <= 0) return;
+    addItem({
+      id: product.id,
+      title: product.title,
+      price: unitPrice,
+      image: primaryImage,
+      quantity: qty,
+      variantId: activeVariant?.id,
+      variantTitle: activeVariant?.title || product.primarySize,
+    });
+    trackEcommerceEvent("add_to_cart", {
+      value: unitPrice * qty,
+      items: [
+        {
+          item_id: product.id,
+          item_name: product.title,
+          item_brand: product.brand,
+          item_variant: activeVariant?.title || product.primarySize,
+          price: unitPrice,
+          quantity: qty,
+        },
+      ],
+    });
+    setIsOpen(false);
     router.push("/checkout");
   };
 
-  const isPersonalizationComplete =
-    (!showNameInput || customName.trim().length > 0) &&
-    (!isPhotoPersonalised || customPhotoUrl.length > 0);
+  const handleShare = async () => {
+    const url = window.location.href;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: product.title, url });
+        return;
+      } catch {
+        // Fallback to clipboard copy
+      }
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      toast.success("Product link copied");
+    } catch {
+      toast.error("Unable to copy link");
+    }
+  };
 
-  const isButtonDisabled = !isAvailable || !selectedVariant || !isPersonalizationComplete || isUploading;
+  const checkPincode = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPinTouched(true);
+    const clean = pincode.trim();
+    if (!/^[1-9][0-9]{5}$/.test(clean)) {
+      setPinResult({
+        ok: false,
+        message: "Please enter a valid 6-digit Indian PIN code (e.g., 110001).",
+      });
+      return;
+    }
+
+    setPinLoading(true);
+    try {
+      const res = await fetch(`https://api.postalpincode.in/pincode/${clean}`);
+      const json = await res.json();
+      const first = Array.isArray(json) ? json[0] : null;
+      if (first?.Status === "Success" && first.PostOffice?.length > 0) {
+        const po = first.PostOffice[0];
+        setPinResult({
+          ok: true,
+          message: `Free Express Delivery available to ${po.District}, ${po.State} (2–5 business days via air/surface courier).`,
+        });
+      } else {
+        setPinResult({
+          ok: false,
+          message: "PIN code not found in India Post directory. Double-check digits and retry.",
+        });
+      }
+    } catch {
+      setPinResult({
+        ok: true,
+        message: "Prepaid Express India serviceability covers almost all 19,000+ PIN codes (2–5 business days).",
+      });
+    } finally {
+      setPinLoading(false);
+    }
+  };
+
+  const handleReviewSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!revName.trim() || !revBody.trim()) {
+      toast.error("Please enter your name and review comments.");
+      return;
+    }
+    setRevSubmitting(true);
+    try {
+      const docRef = await addDoc(collection(db, "reviews"), {
+        productHandle: product.handle,
+        productTitle: product.title,
+        author: revName.trim(),
+        rating: revRating,
+        title: revTitle.trim(),
+        comment: revBody.trim(),
+        createdAt: serverTimestamp(),
+      });
+      setReviews((prev) => [
+        {
+          id: docRef.id,
+          author: revName.trim(),
+          rating: revRating,
+          title: revTitle.trim(),
+          comment: revBody.trim(),
+          createdAt: "Just now",
+        },
+        ...prev,
+      ]);
+      setRevName("");
+      setRevTitle("");
+      setRevBody("");
+      setReviewFormOpen(false);
+      toast.success("Thank you! Your review has been published.");
+    } catch {
+      toast.error("Sign in on Account or try again to publish verified reviews.");
+    } finally {
+      setRevSubmitting(false);
+    }
+  };
+
+  const comparePeers = similarProducts.slice(0, 3);
+  const avgRating =
+    reviews.length > 0
+      ? (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length).toFixed(1)
+      : null;
 
   return (
-    <div className="bg-white text-[#222222] min-h-screen">
-      {/* Breadcrumbs - Airbnb Subtle Hairline Path */}
-      <nav className="flex items-center gap-2 text-[13px] text-[#6a6a6a] mb-6 mt-4 flex-wrap">
-        <Link href="/" className="hover:text-[#222222] hover:underline transition-colors">Home</Link>
-        <span>/</span>
-        {isHarshBeniwal ? (
-          <>
-            <Link href="/harsh-beniwal/octopus/perfumes" className="hover:text-[#222222] hover:underline transition-colors">
-              Octopus Perfumes
-            </Link>
-            <span>/</span>
-          </>
-        ) : product.vendor && product.vendor !== "EVERLASTING" && product.vendor !== "Everlasting" ? (
-          <>
-            <Link href="/brands" className="hover:text-[#222222] hover:underline transition-colors">
-              Brands
-            </Link>
-            <span>/</span>
-            <Link 
-              href={`/brands/${product.vendor.toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}`} 
-              className="hover:text-[#222222] hover:underline transition-colors"
-            >
-              {product.vendor}
-            </Link>
-            <span>/</span>
-          </>
-        ) : (
-          <>
-            <Link href="/collections/all" className="hover:text-[#222222] hover:underline transition-colors">
-              Collections
-            </Link>
-            <span>/</span>
-          </>
-        )}
-        <span className="text-[#222222] font-medium truncate max-w-[200px] sm:max-w-xs">{product.title}</span>
-      </nav>
+    <div className="bg-white">
+      {/* Main Product Container */}
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-12">
+        {/* Breadcrumbs */}
+        <nav
+          aria-label="Breadcrumb"
+          className="text-xs text-[#777777] mb-6 flex flex-wrap items-center gap-2"
+        >
+          <Link href="/" className="hover:text-[#242424]">
+            Home
+          </Link>
+          <span>/</span>
+          <Link href="/brands" className="hover:text-[#242424]">
+            Brands
+          </Link>
+          <span>/</span>
+          <Link href={`/brands/${product.brandSlug}`} className="hover:text-[#242424]">
+            {product.brand}
+          </Link>
+          <span>/</span>
+          <span className="text-[#242424] font-medium truncate max-w-[240px] sm:max-w-none">
+            {product.title}
+          </span>
+        </nav>
 
-      {/* Main 2-Column Airbnb Listing Detail Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-
-        {/* Left Column (~64%): Image Gallery & Amenity Rows */}
-        <div className="lg:col-span-7 flex flex-col gap-6">
-          <div className="relative">
-            {/* Floating Guest Favorite Badge */}
-            <div className="guest-favorite-badge">
-              Guest favorite
-            </div>
-            
-            <button
-              onClick={toggleFavourite}
-              disabled={isFavLoading}
-              aria-label="Save to wishlist"
-              className="heart-save-btn disabled:opacity-50"
-            >
-              <Heart size={18} fill={isFavourite ? "#ff385c" : "transparent"} className={isFavourite ? "text-[#ff385c]" : "text-[#222222]"} />
-            </button>
-
-            <ProductImageGallery 
-              images={images} 
-              selectedImageId={activeImageId} 
-              productTitle={product.title} 
-              isPerfume={isPerfume} 
+        {/* ABOVE THE FOLD: 2-Column Asymmetric Gallery + Sticky Buy Box */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          {/* Left Column: Product Gallery (7 cols) */}
+          <div className="lg:col-span-7">
+            <ProductImageGallery
+              images={product.images}
+              productTitle={product.title}
+              discountPct={variantDiscountPct}
+              available={inStock}
+              isFlagship={product.isFlagship}
+              selectedImageSrc={activeVariant?.featuredImage || null}
             />
           </div>
 
-          {/* Airbnb Amenity Rows */}
-          <div className="border-y border-[#ebebeb] py-2 divide-y divide-[#ebebeb]">
-            <div className="flex items-center gap-3.5 py-3.5">
-              <Sparkles size={20} className="text-[#ff385c] shrink-0" />
-              <div>
-                <span className="text-[15px] font-semibold text-[#222222] block">
-                  {isHarshBeniwal ? "25%+ French Fragrance Oils" : (isPerfume ? "100% Original Authentic Fragrance" : "Premium Handcrafted Quality")}
-                </span>
-                <span className="text-[13px] text-[#6a6a6a]">
-                  {isHarshBeniwal ? "Imported perfume essence for rich, all-day drydown" : (isPerfume ? "Directly sourced in original manufacturer packaging with verified batch codes" : "Exquisite craftsmanship & durable finish")}
-                </span>
-              </div>
-            </div>
-            <div className="flex items-center gap-3.5 py-3.5">
-              <Clock size={20} className="text-[#222222] shrink-0" />
-              <div>
-                <span className="text-[15px] font-semibold text-[#222222] block">
-                  {isPerfume ? "12+ Hours Proven Longevity" : "Lifetime Keepsake Quality"}
-                </span>
-                <span className="text-[13px] text-[#6a6a6a]">
-                  {isPerfume ? "Rich projection specially formulated for long-lasting performance" : "Designed to preserve treasured memories forever"}
-                </span>
-              </div>
-            </div>
-            <div className="flex items-center gap-3.5 py-3.5">
-              <Gift size={20} className="text-[#ff385c] shrink-0" />
-              <div>
-                <span className="text-[15px] font-semibold text-[#222222] block">
-                  {isHarshBeniwal ? "Free 7ML Paradox Discovery Tester (Worth ₹399)" : (isPerfume ? "Complimentary Luxury Discovery Sample (Worth ₹399)" : "Complimentary Luxury Keepsake Box")}
-                </span>
-                <span className="text-[13px] text-[#6a6a6a]">Automatically included in every parcel at zero extra charge</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-3.5 py-3.5">
-              <Truck size={20} className="text-[#222222] shrink-0" />
-              <div>
-                <span className="text-[15px] font-semibold text-[#222222] block">Free Pan-India Express Delivery</span>
-                <span className="text-[13px] text-[#6a6a6a]">Dispatched today via BlueDart & Delhivery within 2-4 business days</span>
-              </div>
-            </div>
-          </div>
+          {/* Right Column: Purchase Box (5 cols) */}
+          <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
+            {/* Brand Link + Utility Buttons */}
+            <div className="flex items-center justify-between gap-4">
+              <Link
+                href={`/brands/${product.brandSlug}`}
+                className="text-xs font-semibold uppercase tracking-[0.16em] text-[#9A7953] hover:text-[#242424] transition-colors"
+              >
+                {product.brand}
+              </Link>
 
-          {/* Fragrance Specifications for Perfumes */}
-          {isPerfume && (
-            <div className="bg-[#f7f7f7] text-[#222222] rounded-[14px] p-6 border border-[#ebebeb] shadow-airbnb">
-              {isHarshBeniwal ? (
-                <>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Sparkles size={16} className="text-[#ff385c]" />
-                    <span className="text-[11px] uppercase tracking-wider text-[#ff385c] font-bold">Harsh Beniwal x Octopus • 25%+ French Oil Concentration</span>
-                  </div>
-                  <p className="text-xs text-[#6a6a6a] leading-relaxed mb-4">
-                    {product.tagline || product.scentStory || "Crafted with imported French fragrance oils. 50ML Eau De Parfum formulated for maximum longevity, magnetic sillage, and IFRA skin safety."}
-                  </p>
-                </>
-              ) : (
-                <>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Sparkles size={16} className="text-amber-700" />
-                    <span className="text-[11px] uppercase tracking-wider text-amber-800 font-bold">
-                      100% Original Authentic Guarantee • {product.vendor || "Haute Parfumerie"}
-                    </span>
-                  </div>
-                  <p className="text-xs text-[#6a6a6a] leading-relaxed mb-4">
-                    {product.tagline || product.scentStory || `100% original and genuine fragrance sourced in official sealed brand packaging with verified batch codes, authentic tamper-evident seal, and guaranteed longevity.`}
-                  </p>
-                </>
-              )}
-              
-              {product.notes && (
-                <div className="pt-3 border-t border-[#dddddd] grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-left sm:text-center">
-                  <div className="bg-white p-3 rounded-lg border border-[#ebebeb]">
-                    <span className="text-[10px] uppercase tracking-wider text-[#6a6a6a] font-bold block mb-0.5">Top Notes</span>
-                    <span className="text-[12px] text-[#222222] font-semibold block">{product.notes.top || "Citrus, Fresh Zest"}</span>
-                  </div>
-                  <div className="bg-white p-3 rounded-lg border border-[#ebebeb]">
-                    <span className="text-[10px] uppercase tracking-wider text-[#6a6a6a] font-bold block mb-0.5">Heart Notes</span>
-                    <span className="text-[12px] text-[#222222] font-semibold block">{product.notes.heart || "Aromatic Spices, Florals"}</span>
-                  </div>
-                  <div className="bg-white p-3 rounded-lg border border-[#ebebeb]">
-                    <span className="text-[10px] uppercase tracking-wider text-[#6a6a6a] font-bold block mb-0.5">Base Notes</span>
-                    <span className="text-[12px] text-[#222222] font-semibold block">{product.notes.base || "Amber, Woody Ambroxan"}</span>
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
-
-          {/* Accordion Description */}
-          <div className="border border-[#ebebeb] rounded-[14px] overflow-hidden bg-white">
-            <button
-              onClick={() => setIsDescOpen(!isDescOpen)}
-              className="w-full flex items-center justify-between p-4 bg-[#f7f7f7] hover:bg-[#ebebeb] transition-colors"
-            >
-              <span className="font-semibold text-[#222222] text-xs uppercase tracking-wider">
-                {isPerfume ? "Fragrance Story & Olfactory Notes" : "Product Description"}
-              </span>
-              <ChevronDown size={16} className={`transition-transform duration-300 ${isDescOpen ? 'rotate-180' : ''}`} />
-            </button>
-            <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isDescOpen ? 'max-h-[5000px] opacity-100 border-t border-[#ebebeb]' : 'max-h-0 opacity-0'}`}>
-              <div className="p-6 leading-relaxed">
-                {isPerfume && product.scentStory && (
-                  <div className="mb-4 text-sm text-[#3f3f3f] leading-relaxed font-sans">
-                    <p className="font-semibold text-[#222222] mb-1">The Scent Story:</p>
-                    <p className="text-[#6a6a6a]">{product.scentStory}</p>
-                  </div>
-                )}
-                <div
-                  className="prose prose-sm text-[#6a6a6a] leading-relaxed max-w-none text-justify"
-                  dangerouslySetInnerHTML={{ __html: product.body_html || product.descriptionHtml || product.descriptionText || "" }}
+              <div className="flex items-center gap-2">
+                <WishlistButton
+                  handle={product.handle}
+                  title={product.title}
+                  className="w-9 h-9"
                 />
-                {isPerfume && Array.isArray(product.goodToKnow) && product.goodToKnow.length > 0 && (
-                  <div className="mt-4 pt-4 border-t border-[#ebebeb]">
-                    <p className="font-semibold text-[#222222] text-xs uppercase tracking-wider mb-2">Good To Know:</p>
-                    <ul className="list-disc pl-5 text-xs text-[#6a6a6a] space-y-1">
-                      {product.goodToKnow.map((item: string, i: number) => (
-                        <li key={i}>{item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                <button
+                  type="button"
+                  onClick={handleShare}
+                  aria-label="Share this perfume"
+                  className="w-9 h-9 rounded-full border border-[#E8E6E1] bg-white hover:bg-[#F7F6F3] flex items-center justify-center text-[#5C5954] transition-colors cursor-pointer"
+                >
+                  <Share2 size={15} />
+                </button>
               </div>
             </div>
-          </div>
 
-        </div>
+            {/* Title & Tagline */}
+            <div>
+              <h1 className="font-serif text-[28px] sm:text-[36px] font-semibold text-[#242424] leading-[1.14] tracking-tight">
+                {product.title}
+              </h1>
 
-        {/* Right Column (~36%): Sticky Airbnb Reservation Card */}
-        <div className="lg:col-span-5 lg:sticky top-24">
-          <div className="bg-white border border-[#dddddd] rounded-[14px] p-6 sm:p-7 shadow-airbnb">
-            
-            {/* Price & Rating Header */}
-            <div className="flex items-baseline justify-between mb-4 pb-4 border-b border-[#ebebeb]">
-              <div>
-                <span className="text-[24px] sm:text-[28px] font-bold text-[#222222]">
-                  ₹{currentPrice.toFixed(0)}
+              {product.tagline && (
+                <p className="text-sm text-[#5C5954] mt-2 leading-relaxed">
+                  {product.tagline}
+                </p>
+              )}
+
+              {/* Concise Real Meta Row */}
+              <div className="flex flex-wrap items-center gap-2 mt-3">
+                <span className="px-2.5 py-1 rounded-[4px] bg-[#F7F6F3] border border-[#E8E6E1] text-[11px] font-semibold text-[#242424]">
+                  {product.concentration}
                 </span>
-                <span className="text-[14px] text-[#6a6a6a] font-normal"> / 50ML EDP</span>
-                {compareAtPrice > basePrice && (
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-[13px] text-[#6a6a6a] line-through">₹{compareAtPrice.toFixed(0)}</span>
-                    <span className="text-[11px] font-bold text-[#ff385c] bg-[#fff0f3] px-2 py-0.5 rounded-full">
-                      Save ₹{(compareAtPrice - currentPrice).toFixed(0)} ({discountPercent}% OFF)
-                    </span>
-                  </div>
+                <span className="px-2.5 py-1 rounded-[4px] bg-[#F7F6F3] border border-[#E8E6E1] text-[11px] font-medium text-[#5C5954]">
+                  {product.gender}
+                </span>
+                <span className="px-2.5 py-1 rounded-[4px] bg-[#F7F6F3] border border-[#E8E6E1] text-[11px] font-medium text-[#5C5954]">
+                  {product.primarySize}
+                </span>
+                {avgRating && (
+                  <a
+                    href="#customer-reviews"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-[4px] bg-[#F5EFE6] text-[11px] font-semibold text-[#242424]"
+                  >
+                    <Star size={12} className="fill-[#9A7953] text-[#9A7953]" />
+                    <span>{avgRating}</span>
+                    <span className="text-[#777777] font-normal">({reviews.length})</span>
+                  </a>
+                )}
+              </div>
+            </div>
+
+            {/* Pricing Panel */}
+            <div className="p-4 sm:p-5 rounded-[10px] bg-[#F7F6F3] border border-[#E8E6E1] space-y-2">
+              <div className="flex items-baseline gap-3 flex-wrap">
+                <span className="text-3xl font-bold text-[#242424] tabular-nums">
+                  {formatPriceINR(unitPrice)}
+                </span>
+                {compareAt && compareAt > unitPrice && (
+                  <span className="text-lg text-[#96928B] line-through tabular-nums">
+                    {formatPriceINR(compareAt)}
+                  </span>
+                )}
+                {variantDiscountPct > 0 && (
+                  <span className="px-2 py-0.5 rounded-[4px] bg-[#B83232] text-white text-[11px] font-bold uppercase tracking-wider">
+                    Save {variantDiscountPct}%
+                  </span>
                 )}
               </div>
 
-              <div className="text-right">
-                <div className="flex items-center justify-end gap-1 text-[14px] font-bold text-[#222222]">
-                  <span>★</span>
-                  <span>4.92</span>
-                </div>
-                <span className="text-[12px] text-[#6a6a6a] underline">284 reviews</span>
+              <div className="flex items-center justify-between text-xs">
+                <span className="text-[#5C5954]">Inclusive of all taxes · Free Express Delivery</span>
+                <span
+                  className={`font-semibold ${
+                    inStock ? "text-[#347A54]" : "text-[#B83232]"
+                  }`}
+                >
+                  {inStock ? "In Stock & Ready to Ship" : "Currently Sold Out"}
+                </span>
+              </div>
+
+              <div className="pt-2 border-t border-[#E8E6E1] text-xs text-[#5C5954] flex items-center gap-1.5">
+                <Sparkles size={13} className="text-[#9A7953] shrink-0" />
+                <span>
+                  Use <strong className="text-[#242424]">LUXURY25</strong> for extra 25% OFF on orders above ₹499 · Buy 2 get 15% / 3+ get 33%
+                </span>
               </div>
             </div>
 
-            {/* Listing Title & Category */}
-            <h1 className="text-[20px] font-semibold text-[#222222] mb-1 leading-snug">
-              {product.title}
-            </h1>
-            <p className="text-[13px] text-[#6a6a6a] mb-4">
-              {isHarshBeniwal 
-                ? "Harsh Beniwal 100% Original 50ML Eau De Parfum Collection" 
-                : isPerfume 
-                  ? (product.vendor ? `${product.vendor} • 100% Original Authentic Fragrance` : "100% Original Authentic Fragrance")
-                  : (product.vendor || "Everlasting Luxury Keepsake Collection")}
-            </p>
-
-            {/* Same-day dispatch live ticker */}
-            <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-lg p-3 mb-5 flex items-center justify-between text-xs">
-              <span className="text-[#222222] font-medium flex items-center gap-1.5">
-                <Clock size={14} className="text-[#ff385c]" /> Same-day dispatch
-              </span>
-              <span className="font-mono font-bold text-[#222222]">
-                {timeLeft.hours}h : {timeLeft.minutes}m : {timeLeft.seconds}s
-              </span>
-            </div>
-
-            {/* Option / Variant Selector */}
-            {product.variants && product.variants.length > 1 && (
-              <div className="mb-4">
-                <label className="text-[12px] font-semibold uppercase text-[#222222] block mb-2">Select Variant</label>
+            {/* Bottle Size / Variant Selection */}
+            {product.variants.length > 0 && (
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-semibold uppercase tracking-[0.12em] text-[#242424]">
+                    Bottle Size / Option
+                  </span>
+                  <span className="text-xs text-[#777777]">
+                    {activeVariant?.title || product.primarySize}
+                  </span>
+                </div>
                 <div className="flex flex-wrap gap-2">
-                  {product.variants.map((variant: any) => (
-                    <button
-                      key={variant.id}
-                      onClick={() => setSelectedVariantId(variant.id)}
-                      className={`px-3.5 py-2 text-xs font-medium rounded-lg border transition-all ${
-                        selectedVariantId === variant.id
-                          ? "border-[#222222] bg-[#222222] text-white shadow-sm"
-                          : "border-[#dddddd] text-[#222222] hover:border-[#222222]"
-                      }`}
-                    >
-                      {variant.title}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {showNameInput && (
-              <div className="mb-4 space-y-3">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[12px] font-semibold uppercase text-[#222222] flex justify-between">
-                    <span>{isNamePersonalised ? 'Name to Engrave' : 'Custom Name'}</span>
-                    <span className="text-[#6a6a6a] font-normal">{customName.length}/7</span>
-                  </label>
-                  <input
-                    type="text"
-                    maxLength={7}
-                    value={customName}
-                    onChange={(e) => setCustomName(e.target.value)}
-                    placeholder="e.g. HARSH"
-                    className="border border-[#dddddd] focus:border-[#222222] rounded-lg px-3.5 py-2.5 text-sm text-[#222222] font-semibold outline-none transition-all placeholder:text-[#929292] placeholder:font-normal"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[12px] font-semibold uppercase text-[#222222]">Select Font</label>
-                  <div className="flex flex-wrap gap-2">
-                    {['font-italianno', 'font-alexbrush', 'font-pinyon', 'font-tangerine', 'font-satisfy'].map(fontClass => (
+                  {product.variants.map((v) => {
+                    const selected = v.id === activeVariant?.id;
+                    return (
                       <button
-                        key={fontClass}
-                        onClick={() => setCustomFont(fontClass)}
-                        className={`px-3 py-1.5 border rounded-lg text-center transition-all flex-1 min-w-[28%] ${
-                          customFont === fontClass
-                            ? 'border-[#222222] bg-[#f7f7f7] text-[#222222] font-bold'
-                            : 'border-[#dddddd] text-[#6a6a6a] hover:border-[#222222]'
-                        }`}
+                        key={v.id}
+                        type="button"
+                        onClick={() => setSelectedVariantId(v.id)}
+                        className={`px-4 py-2.5 rounded-[6px] border text-xs font-semibold transition-all cursor-pointer ${
+                          selected
+                            ? "border-[#1F1D1B] bg-[#1F1D1B] text-white"
+                            : "border-[#D4CFC7] bg-white text-[#242424] hover:border-[#242424]"
+                        } ${!v.available ? "opacity-50" : ""}`}
                       >
-                        <span className={`text-xl leading-none ${fontClass}`}>Preview</span>
+                        {v.title} · {formatPriceINR(v.price)}
                       </button>
-                    ))}
-                  </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {/* Quantity & Primary Purchase CTAs */}
+            <div ref={primaryActionRef} className="space-y-3">
+              <div className="flex items-stretch gap-3">
+                <div className="flex items-center border border-[#D4CFC7] rounded-[6px] bg-[#F7F6F3] px-1">
+                  <button
+                    type="button"
+                    onClick={() => setQty((q) => Math.max(1, q - 1))}
+                    aria-label="Decrease quantity"
+                    className="p-2.5 text-[#5C5954] hover:text-[#242424] cursor-pointer"
+                  >
+                    <Minus size={14} />
+                  </button>
+                  <span className="w-9 text-center text-sm font-bold text-[#242424] tabular-nums">
+                    {qty}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setQty((q) => q + 1)}
+                    aria-label="Increase quantity"
+                    className="p-2.5 text-[#5C5954] hover:text-[#242424] cursor-pointer"
+                  >
+                    <Plus size={14} />
+                  </button>
                 </div>
 
-                {customName && (
-                  <div className="bg-[#f7f7f7] border border-[#ebebeb] rounded-lg p-3 text-center">
-                    <span className="text-[10px] uppercase text-[#6a6a6a] block mb-1">Engraving Preview</span>
-                    <p className={`text-2xl text-[#222222] ${customFont}`}>{customName}</p>
-                  </div>
-                )}
+                <button
+                  type="button"
+                  disabled={!inStock}
+                  onClick={() => handleAddToCart(true)}
+                  className="flex-1 btn-luxury-secondary py-3.5 px-5 text-xs uppercase tracking-[0.14em] disabled:opacity-45 disabled:cursor-not-allowed"
+                >
+                  {addedFeedback ? (
+                    <>
+                      <Check size={15} className="text-[#347A54]" /> Added to Bag
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingBag size={15} /> {inStock ? "Add to Cart" : "Out of Stock"}
+                    </>
+                  )}
+                </button>
               </div>
-            )}
 
-            {isPhotoPersonalised && (
-              <div className="mb-4 flex flex-col gap-1.5">
-                <label className="text-[12px] font-semibold uppercase text-[#222222]">Upload Photo</label>
-                {customPhotoUrl ? (
-                  <div className="relative w-20 h-20 rounded-lg overflow-hidden border border-[#dddddd] group">
-                    <img src={customPhotoUrl} alt="Custom Memory" className="w-full h-full object-cover" />
-                    <button 
-                      onClick={() => setCustomPhotoUrl("")} 
-                      className="absolute inset-0 bg-black/60 text-white text-[10px] font-bold flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
-                    >
-                      Remove
-                    </button>
-                  </div>
-                ) : (
-                  <div className="relative border border-dashed border-[#dddddd] hover:border-[#222222] rounded-lg p-4 text-center bg-[#f7f7f7] cursor-pointer">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleFileUpload}
-                      disabled={isUploading}
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
-                    />
-                    <span className="text-xs text-[#6a6a6a] font-medium">
-                      {isUploading ? "Uploading..." : "+ Tap to choose photo"}
-                    </span>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* Free Gift Strip - Haute Parfumerie Edition */}
-            <div className="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-300 rounded-xl p-3.5 mb-4 flex items-center gap-3 shadow-2xs">
-              <span className="text-2xl shrink-0">✨</span>
-              <div className="text-left flex-1 min-w-0">
-                <span className="text-[12px] font-bold text-amber-900 uppercase block">
-                  {isHarshBeniwal 
-                    ? "Complimentary Gift: Free 7ML Paradox Tester Included" 
-                    : isPerfume 
-                      ? "Complimentary Gift: Luxury Discovery Sample Included" 
-                      : "Complimentary Gift: Luxury Keepsake Packaging Included"}
-                </span>
-                <span className="text-[11px] text-[#3f3f3f] block leading-tight">
-                  Worth ₹399 · Deluxe Signature Gift Packaging · Express Pan-India Delivery
-                </span>
-              </div>
-            </div>
-
-            {/* Promo Code Coupon Strip - LUXURY25 */}
-            <div className="bg-white border-2 border-amber-300/80 rounded-xl p-3 mb-5 flex items-center justify-between shadow-2xs">
-              <div>
-                <span className="text-[11px] font-bold text-amber-800 uppercase block">
-                  Exclusive Luxury Coupon
-                </span>
-                <span className="text-[14px] font-extrabold text-[#222222] font-mono">
-                  LUXURY25
-                </span>
-                <span className="text-[11px] font-semibold text-[#ff385c] ml-1.5">(25% Instant OFF)</span>
-              </div>
               <button
                 type="button"
-                onClick={() => copyPromoCode("LUXURY25")}
-                className="px-3.5 py-1.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white rounded-lg text-[11px] font-bold transition-all shadow-xs active:scale-95 cursor-pointer"
-              >
-                {copiedCode ? "Copied! ✓" : "Copy Code"}
-              </button>
-            </div>
-
-            {/* Primary Action Buttons */}
-            <div className="space-y-2.5 mb-5">
-              <button
+                disabled={!inStock}
                 onClick={handleBuyNow}
-                disabled={isButtonDisabled}
-                className="w-full bg-[#ff385c] hover:bg-[#e00b41] active:scale-[0.99] text-white py-3.5 rounded-lg text-[15px] font-semibold shadow-sm hover:shadow-md transition-all disabled:bg-[#ffd1da] disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
+                className="w-full btn-luxury-primary py-4 text-xs tracking-[0.18em] disabled:opacity-45 disabled:cursor-not-allowed"
               >
-                <Zap size={17} className="fill-white" />
-                <span>Buy Now (Instant Checkout)</span>
-              </button>
-
-              <button
-                onClick={handleAddToCart}
-                disabled={isButtonDisabled}
-                className="w-full bg-white text-[#222222] border border-[#222222] hover:bg-[#f7f7f7] active:scale-[0.99] py-3.5 rounded-lg text-[15px] font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
-              >
-                <ShoppingBag size={17} />
-                <span>Add to Cart</span>
+                {inStock
+                  ? `Buy Now — ${formatPriceINR(unitPrice * qty)}`
+                  : "Currently Unavailable"}
               </button>
             </div>
 
-            {/* Fee Breakdown Stack */}
-            <div className="space-y-2 text-[14px] text-[#6a6a6a] pt-4 border-t border-[#ebebeb]">
-              <div className="flex justify-between">
-                <span>₹{currentPrice.toFixed(0)} × 1 {isPerfume ? "bottle" : "item"}</span>
-                <span className="text-[#222222] font-medium">₹{currentPrice.toFixed(0)}</span>
-              </div>
-              <div className="flex justify-between">
-                <span>
-                  {isHarshBeniwal 
-                    ? "7ML Paradox Tester Pack (₹399 value)" 
-                    : isPerfume 
-                      ? "Luxury Discovery Sample (₹399 value)" 
-                      : "Signature Gift Packaging (₹399 value)"}
-                </span>
-                <span className="text-emerald-700 font-semibold">FREE</span>
-              </div>
-              <div className="flex justify-between">
-                <span>Pan-India Express Shipping</span>
-                <span className="text-emerald-700 font-semibold">FREE</span>
-              </div>
-              <div className="flex justify-between pt-3 border-t border-[#ebebeb] text-[16px] font-bold text-[#222222]">
-                <span>Total</span>
-                <span>₹{currentPrice.toFixed(0)}</span>
-              </div>
-            </div>
-
-            {/* 3 Micro Trust Notes */}
-            <div className="grid grid-cols-3 gap-2 mt-5 pt-4 border-t border-[#ebebeb] text-center text-[11px] text-[#6a6a6a]">
-              <div>
-                <Lock size={14} className="mx-auto text-[#222222] mb-1" />
-                <span>100% Original</span>
-              </div>
-              <div>
-                <Clock size={14} className="mx-auto text-[#222222] mb-1" />
-                <span>12H Longevity</span>
-              </div>
-              <div>
-                <Truck size={14} className="mx-auto text-[#222222] mb-1" />
-                <span>Free Express</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-
-      {/* Fragrance Lifestyle Proof Section - Harsh Beniwal Signature Edition */}
-      {isHarshBeniwal && (
-        <div className="mt-16 mb-8 max-w-[1200px] mx-auto">
-          <div className="mb-6">
-            <p className="text-[10px] uppercase tracking-widest font-bold text-[#ff385c] mb-1">THE OCTOPUS LUXURY EXPERIENCE</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#222222]">Crafted for presence, <span className="font-normal italic text-[#6a6a6a]">loved by 50,000+ perfume lovers</span></h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-            {[
-              { src: "/harsh-beniwal/octopus/perfumes/images/overlord_lifestyle.png", title: "Overlord EDP" },
-              { src: "/harsh-beniwal/octopus/perfumes/images/paradox_lifestyle.png", title: "Paradox EDP" },
-              { src: "/harsh-beniwal/octopus/perfumes/images/promised_lifestyle.png", title: "Promised EDP" },
-              { src: "/harsh-beniwal/octopus/perfumes/images/outlaw_lifestyle.png", title: "Outlaw EDP" },
-              { src: "/harsh-beniwal/octopus/perfumes/images/mirage_lifestyle.png", title: "Mirage EDP" },
-              { src: "/harsh-beniwal/octopus/perfumes/images/rhapsody_lifestyle.png", title: "Rhapsody EDP" }
-            ].map((item, index) => (
-              <div key={index} className="aspect-square relative rounded-[14px] overflow-hidden shadow-airbnb bg-[#f7f7f7] border border-[#ebebeb] group">
-                <img src={item.src} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                <div className="absolute bottom-2.5 left-2.5 bg-black/75 backdrop-blur-sm text-white text-[11px] font-bold px-2.5 py-1 rounded-md">
-                  {item.title}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Tabs Section */}
-      <div className="mt-16 max-w-4xl border border-[#ebebeb] rounded-[14px] overflow-hidden shadow-airbnb">
-        <div className="flex items-center border-b border-[#ebebeb] bg-[#f7f7f7]">
-          {['details', 'shipping', 'faqs'].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`flex-1 py-4 text-[11px] uppercase tracking-wider font-bold transition-all ${activeTab === tab
-                ? 'bg-white text-[#ff385c] border-b-2 border-[#ff385c]'
-                : 'text-[#6a6a6a] hover:bg-[#ebebeb] hover:text-[#222222]'
-                }`}
-            >
-              {tab === 'details' ? 'Product Details' :
-                tab === 'shipping' ? 'Shipping & Returns' : 'FAQs'}
-            </button>
-          ))}
-        </div>
-        <div className="p-8 bg-white min-h-[200px]">
-          {activeTab === 'details' && (
-            <div className="animate-in fade-in duration-300">
-              <h4 className="text-sm font-bold text-[#222222] mb-3">Product Details & Specs</h4>
-              <div className="prose prose-sm text-[#3f3f3f] text-justify leading-relaxed" dangerouslySetInnerHTML={{ __html: product.body_html || "" }} />
-            </div>
-          )}
-
-          {activeTab === 'shipping' && (
-            <div className="animate-in fade-in duration-300 space-y-4">
-              <div>
-                <h4 className="text-sm font-bold text-[#222222] mb-1.5">Free Express Pan-India Shipping</h4>
-                <p className="text-sm text-[#3f3f3f] leading-relaxed">
-                  {isHarshBeniwal 
-                    ? "Free express Pan-India shipping on all prepaid orders. Each 50ML Eau De Parfum bottle and free 7ML Paradox tester pack is carefully packaged in our crush-resistant luxury presentation box. Orders placed before 4:00 PM are dispatched same-day via BlueDart / Delhivery / XpressBees air express."
-                    : isPerfume 
-                      ? `Free express Pan-India shipping on all prepaid orders. Each bottle of ${product.title} is carefully packaged in a damage-resistant luxury presentation box along with a complimentary discovery fragrance sample. Orders placed before 4:00 PM are dispatched same-day via BlueDart / Delhivery / XpressBees air express.`
-                      : "Free express Pan-India shipping on all prepaid orders. Each item is carefully packaged in our crush-resistant luxury presentation box. Orders placed before 4:00 PM are dispatched same-day via BlueDart / Delhivery / XpressBees air express."}
-                </p>
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-[#222222] mb-1.5">Transit Times</h4>
-                <p className="text-sm text-[#3f3f3f] leading-relaxed">Metro cities: 2-3 business days. Rest of India: 3-5 business days. You will receive live SMS and WhatsApp tracking updates as soon as your shipment departs our warehouse.</p>
-              </div>
-            </div>
-          )}
-          {activeTab === 'faqs' && (
-            <div className="animate-in fade-in duration-300 space-y-4">
-              {isHarshBeniwal ? (
-                <>
-                  <div>
-                    <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">How long does the fragrance last?</h4>
-                    <p className="text-sm text-[#3f3f3f] leading-relaxed">Our Eau De Parfums are formulated with 25%+ imported French perfume oil concentration, providing 12+ hours of beast-mode longevity on clothes and 8+ hours on skin with magnetic sillage.</p>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">What is the complimentary 7ML Paradox tester?</h4>
-                    <p className="text-sm text-[#3f3f3f] leading-relaxed">Every order comes with a free 7ML Paradox Eau De Parfum discovery tester pack (worth ₹399). It is pocket-friendly, travel-ready, and lets you experience another iconic scent from Harsh Beniwal&apos;s collection!</p>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">Are these 100% authentic Harsh Beniwal perfumes?</h4>
-                    <p className="text-sm text-[#3f3f3f] leading-relaxed">Yes, this is the official Octopus by Harsh Beniwal store. All perfumes are 100% original, IFRA certified, and dermatologist-tested safe for daily skin application.</p>
-                  </div>
-                </>
-              ) : isPerfume ? (
-                <>
-                  <div>
-                    <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">Is this {product.vendor || 'fragrance'} 100% original and authentic?</h4>
-                    <p className="text-sm text-[#3f3f3f] leading-relaxed">Yes, 100% genuine and authentic. Sourced directly from verified authorized distributors in original sealed manufacturer packaging with verifiable batch codes.</p>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">How long does this perfume last?</h4>
-                    <p className="text-sm text-[#3f3f3f] leading-relaxed">Longevity depends on the fragrance family and concentration, typically offering 8 to 12+ hours of performance and distinct sillage formulated for long-lasting wear.</p>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">What is included with my perfume order?</h4>
-                    <p className="text-sm text-[#3f3f3f] leading-relaxed">Each order arrives securely wrapped in damage-resistant luxury packaging and includes a complimentary luxury discovery sample plus free pan-India express delivery.</p>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div>
-                    <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">Is this item 100% genuine?</h4>
-                    <p className="text-sm text-[#3f3f3f] leading-relaxed">Yes, all items in our collection are handcrafted to the highest luxury standards and verified for quality before dispatch.</p>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">What is the return and replacement policy?</h4>
-                    <p className="text-sm text-[#3f3f3f] leading-relaxed">We provide a 7-day hassle-free return and replacement policy. If your package arrives damaged or defective, we provide an immediate free replacement.</p>
-                  </div>
-                </>
-              )}
-              <div>
-                <h4 className="text-xs font-bold text-[#222222] uppercase tracking-wider mb-1">What payment methods do you accept?</h4>
-                <p className="text-sm text-[#3f3f3f] leading-relaxed">We accept 100% secure online prepaid payments including UPI (Google Pay, PhonePe, Paytm), Credit/Debit Cards, and Net Banking with free express shipping across India.</p>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Supercharged Mobile Sticky Pricing & Instant Buy Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-[#dddddd] px-3.5 sm:px-5 py-3 lg:hidden shadow-[0_-8px_30px_rgba(0,0,0,0.12)] pb-[calc(12px+env(safe-area-inset-bottom,0px))]">
-        <div className="flex items-center justify-between gap-3 max-w-2xl mx-auto">
-          
-          {/* Left: Product Thumbnail & Live Price Stack */}
-          <div className="flex items-center gap-2.5 min-w-0">
-            {images.length > 0 && (
-              <div className="relative w-11 h-11 shrink-0 rounded-lg overflow-hidden bg-[#f7f7f7] border border-[#ebebeb]">
-                <Image
-                  src={images[0].src}
-                  alt={product.title}
-                  fill
-                  className="object-contain p-1"
-                  unoptimized
+            {/* Complimentary Tester Highlight */}
+            <div className="p-3.5 rounded-[8px] border border-[#E8E6E1] bg-white flex items-center gap-3">
+              <div className="w-11 h-11 rounded-[6px] bg-[#F7F6F3] p-1 shrink-0 flex items-center justify-center">
+                <img
+                  src="/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png"
+                  alt="Complimentary Paradox 7ML EDP"
+                  className="w-full h-full object-contain"
                 />
               </div>
-            )}
-            <div className="min-w-0 flex flex-col">
-              <div className="flex items-center gap-1.5 truncate">
-                <span className="text-[17px] sm:text-[19px] font-bold text-[#222222] leading-none">
-                  ₹{currentPrice.toFixed(0)}
-                </span>
-                {compareAtPrice > currentPrice && (
-                  <span className="text-[12px] text-[#929292] line-through leading-none">
-                    ₹{compareAtPrice.toFixed(0)}
-                  </span>
-                )}
-                {discountPercent > 0 && (
-                  <span className="text-[10px] font-bold text-[#ff385c] bg-[#fff0f3] px-1.5 py-0.5 rounded leading-none">
-                    {discountPercent}% OFF
-                  </span>
-                )}
+              <div className="min-w-0 flex-1">
+                <p className="text-[11px] font-bold uppercase tracking-wider text-[#9A7953] flex items-center gap-1">
+                  <Gift size={12} /> Complimentary Bonus
+                </p>
+                <p className="text-xs font-medium text-[#242424]">
+                  Free 7ML Paradox EDP pocket spray added automatically with this order.
+                </p>
               </div>
-              <span className="text-[11px] text-[#6a6a6a] truncate mt-0.5 flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                {isHarshBeniwal 
-                  ? "In Stock • Free 7ML Paradox Tester" 
-                  : isPerfume 
-                    ? "In Stock • Free Luxury Discovery Sample" 
-                    : "In Stock • Free Signature Gift Packaging"}
-              </span>
             </div>
-          </div>
 
-          {/* Right: Instant Buy & Add to Cart Buttons */}
-          <div className="flex items-center gap-2 shrink-0">
-            <button
-              onClick={handleAddToCart}
-              disabled={isButtonDisabled}
-              className="bg-white text-[#222222] border border-[#dddddd] hover:border-[#222222] p-2.5 sm:px-3 sm:py-2.5 rounded-lg active:scale-95 transition-all disabled:opacity-50 cursor-pointer flex items-center justify-center gap-1.5 font-medium text-xs shadow-xs"
-              aria-label="Add to Cart"
-              title="Add to Cart"
-            >
-              <ShoppingBag size={17} />
-              <span className="hidden sm:inline">Add</span>
-            </button>
-            <button
-              onClick={handleBuyNow}
-              disabled={isButtonDisabled}
-              className="bg-[#ff385c] hover:bg-[#e00b41] active:scale-95 text-white font-semibold py-2.5 px-4 sm:px-6 rounded-lg text-[13px] sm:text-[14px] shadow-sm hover:shadow-md transition-all disabled:bg-[#ffd1da] cursor-pointer flex items-center gap-1.5"
-            >
-              <Zap size={15} className="fill-white" />
-              <span>Buy Now</span>
-            </button>
+            {/* Real PIN Code Serviceability Estimator */}
+            <div className="p-4 rounded-[8px] border border-[#E8E6E1] bg-white space-y-2.5">
+              <label
+                htmlFor="pdp-pincode"
+                className="block text-xs font-semibold uppercase tracking-[0.12em] text-[#242424] flex items-center gap-1.5"
+              >
+                <MapPin size={14} className="text-[#9A7953]" /> Check India Express Delivery
+              </label>
+              <p className="text-[11px] text-[#777777]">
+                Enter a 6-digit Indian PIN code (e.g. 110001 or 400001).
+              </p>
+              <form onSubmit={checkPincode} className="flex gap-2" noValidate>
+                <input
+                  id="pdp-pincode"
+                  type="text"
+                  inputMode="numeric"
+                  maxLength={6}
+                  pattern="[1-9][0-9]{5}"
+                  autoComplete="postal-code"
+                  value={pincode}
+                  onChange={(e) => {
+                    setPincode(e.target.value.replace(/\D/g, "").slice(0, 6));
+                    if (pinResult) setPinResult(null);
+                  }}
+                  placeholder="Enter 6-digit PIN"
+                  className={`flex-1 fc-input px-3 py-2 text-xs ${
+                    pinTouched && !/^[1-9][0-9]{5}$/.test(pincode)
+                      ? "user-invalid-fallback"
+                      : ""
+                  }`}
+                />
+                <button
+                  type="submit"
+                  disabled={pinLoading}
+                  className="btn-luxury-secondary px-4 py-2 text-xs shrink-0"
+                >
+                  {pinLoading ? "Checking..." : "Check"}
+                </button>
+              </form>
+              {pinResult && (
+                <p
+                  className={`text-xs leading-relaxed ${
+                    pinResult.ok ? "text-[#347A54]" : "text-[#B83232]"
+                  }`}
+                >
+                  {pinResult.message}
+                </p>
+              )}
+            </div>
+
+            {/* Concise Trust & Return Accordions */}
+            <div className="fc-accordion border-t border-[#E8E6E1]">
+              <details className="py-3">
+                <summary className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.1em] text-[#242424] py-1">
+                  <span className="flex items-center gap-2">
+                    <ShieldCheck size={14} className="text-[#347A54]" /> 100% Authenticity Guarantee
+                  </span>
+                  <ChevronDown size={14} className="text-[#777777]" />
+                </summary>
+                <p className="pt-2 text-xs text-[#5C5954] leading-relaxed">
+                  Every unit is factory cellophane sealed with verifiable laser/printed batch codes on box and bottle. We never stock decants passed off as sealed originals or unverified testers.
+                </p>
+              </details>
+
+              <details className="py-3">
+                <summary className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.1em] text-[#242424] py-1">
+                  <span className="flex items-center gap-2">
+                    <Truck size={14} className="text-[#9A7953]" /> Shipping &amp; Unboxing Policy
+                  </span>
+                  <ChevronDown size={14} className="text-[#777777]" />
+                </summary>
+                <p className="pt-2 text-xs text-[#5C5954] leading-relaxed">
+                  Dispatched securely across India free of cost via insured express couriers. Please record a brief single-take unboxing video when opening transit parcels in case of breakage or shortage.
+                </p>
+              </details>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom spacer for mobile sticky bar */}
-      <div className="h-20 lg:hidden"></div>
+      {/* BELOW THE FOLD: Editorial Perfume Breakdown */}
+      <section className="bg-[#F7F6F3] border-y border-[#E8E6E1] py-12">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          {/* Fragrance Pyramid OR Olfactory Character */}
+          {product.notes ? (
+            <div>
+              <div className="text-center max-w-2xl mx-auto mb-8">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9A7953] mb-1">
+                  Olfactory Architecture
+                </p>
+                <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-[#242424]">
+                  Fragrance Notes Pyramid
+                </h2>
+              </div>
 
-    </div >
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {[
+                  {
+                    stage: "Top Notes",
+                    subtitle: "First Impression · 0–20 Mins",
+                    list: product.notes.top,
+                  },
+                  {
+                    stage: "Heart Notes",
+                    subtitle: "Core Signature · 20 Mins–3 Hrs",
+                    list: product.notes.heart,
+                  },
+                  {
+                    stage: "Base Notes",
+                    subtitle: "Dry Down & Trail · 4+ Hours",
+                    list: product.notes.base,
+                  },
+                ].map((tier) => (
+                  <div
+                    key={tier.stage}
+                    className="bg-white border border-[#E8E6E1] rounded-[10px] p-6 shadow-luxury"
+                  >
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#9A7953]">
+                      {tier.subtitle}
+                    </p>
+                    <h3 className="font-serif text-2xl font-semibold text-[#242424] mt-1 mb-4">
+                      {tier.stage}
+                    </h3>
+                    {tier.list.length > 0 ? (
+                      <div className="flex flex-wrap gap-2">
+                        {tier.list.map((note) => (
+                          <span
+                            key={note}
+                            className="px-3 py-1.5 rounded-full bg-[#F7F6F3] border border-[#E8E6E1] text-xs font-medium text-[#242424]"
+                          >
+                            {note}
+                          </span>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-xs text-[#777777]">
+                        Blended seamlessly within the core accord.
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
+
+          {/* Characteristics & Wearing Guide */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Editorial Copy / Sanitized House Narrative */}
+            <div className="lg:col-span-7 bg-white border border-[#E8E6E1] rounded-[10px] p-6 sm:p-8 shadow-luxury space-y-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9A7953]">
+                About {product.brand}
+              </p>
+              <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-[#242424]">
+                The Scent Profile &amp; Craft
+              </h2>
+
+              {product.inspiredBy && (
+                <div className="p-3.5 rounded-[8px] bg-[#F5EFE6] border border-[#E8E6E1] text-xs text-[#242424]">
+                  <strong className="uppercase tracking-wider text-[#9A7953] mr-2">
+                    Fine Fragrance Profile:
+                  </strong>
+                  <span>{product.inspiredBy}</span>
+                </div>
+              )}
+
+              {product.scentStory && (
+                <p className="text-sm text-[#3E3C38] leading-relaxed">
+                  {product.scentStory}
+                </p>
+              )}
+
+              {product.goodToKnow && product.goodToKnow.length > 0 && (
+                <ul className="space-y-1.5 pt-2">
+                  {product.goodToKnow.map((pt) => (
+                    <li
+                      key={pt}
+                      className="text-xs text-[#5C5954] flex items-center gap-2"
+                    >
+                      <Check size={13} className="text-[#347A54] shrink-0" />
+                      <span>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              {product.cleanHtml && !product.isFlagship && (
+                <div
+                  className="prose prose-sm max-w-none text-[#3E3C38] leading-relaxed [&_h1]:text-base [&_h1]:font-semibold [&_h4]:text-xs [&_h4]:uppercase [&_h4]:tracking-wider [&_h4]:text-[#9A7953] [&_h4]:mt-4 [&_table]:w-full [&_td]:py-1 [&_ul]:list-disc [&_ul]:pl-5"
+                  dangerouslySetInnerHTML={{ __html: product.cleanHtml }}
+                />
+              )}
+            </div>
+
+            {/* Wearing Spec Grid */}
+            <div className="lg:col-span-5 bg-white border border-[#E8E6E1] rounded-[10px] p-6 sm:p-8 shadow-luxury space-y-5">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9A7953]">
+                Wearing Guide
+              </p>
+              <h3 className="font-serif text-2xl font-semibold text-[#242424]">
+                At-a-Glance Characteristics
+              </h3>
+
+              <dl className="divide-y divide-[#E8E6E1] text-sm">
+                <div className="py-3 flex items-center justify-between gap-4">
+                  <dt className="text-xs text-[#777777] flex items-center gap-2">
+                    <Droplets size={14} className="text-[#9A7953]" /> Concentration
+                  </dt>
+                  <dd className="font-medium text-[#242424] text-right">
+                    {product.concentration}
+                  </dd>
+                </div>
+                <div className="py-3 flex items-center justify-between gap-4">
+                  <dt className="text-xs text-[#777777] flex items-center gap-2">
+                    <Compass size={14} className="text-[#9A7953]" /> Scent Family
+                  </dt>
+                  <dd className="font-medium text-[#242424] text-right">
+                    {product.families.join(", ")}
+                  </dd>
+                </div>
+                <div className="py-3 flex items-center justify-between gap-4">
+                  <dt className="text-xs text-[#777777] flex items-center gap-2">
+                    <Calendar size={14} className="text-[#9A7953]" /> Recommended Season
+                  </dt>
+                  <dd className="font-medium text-[#242424] text-right">
+                    {product.seasons.join(", ")}
+                  </dd>
+                </div>
+                <div className="py-3 flex items-center justify-between gap-4">
+                  <dt className="text-xs text-[#777777] flex items-center gap-2">
+                    <Clock size={14} className="text-[#9A7953]" /> Best Occasions
+                  </dt>
+                  <dd className="font-medium text-[#242424] text-right">
+                    {product.occasions.join(", ")}
+                  </dd>
+                </div>
+                {product.origin && (
+                  <div className="py-3 flex items-center justify-between gap-4">
+                    <dt className="text-xs text-[#777777]">Origin</dt>
+                    <dd className="font-medium text-[#242424] text-right max-w-[60%]">
+                      {product.origin}
+                    </dd>
+                  </div>
+                )}
+              </dl>
+
+              <p className="text-xs text-[#777777] bg-[#F7F6F3] p-3.5 rounded-[6px] leading-relaxed">
+                Tip: Spray onto moisturized pulse points (wrists, behind ears, and collarbone) without rubbing to keep top-note aromatics crisp.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Side-by-Side Comparison Table */}
+      {comparePeers.length > 0 && (
+        <section className="py-12 border-b border-[#E8E6E1]">
+          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-6">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9A7953] mb-1">
+                Collector Comparison
+              </p>
+              <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-[#242424]">
+                Compare with Similar Scents
+              </h2>
+            </div>
+
+            <div className="overflow-x-auto border border-[#E8E6E1] rounded-[10px]">
+              <table className="w-full text-left border-collapse min-w-[680px]">
+                <thead>
+                  <tr className="bg-[#F7F6F3] border-b border-[#E8E6E1]">
+                    <th className="p-4 text-xs font-semibold uppercase tracking-wider text-[#777777] w-44">
+                      Attribute
+                    </th>
+                    {[summary, ...comparePeers].map((item, idx) => (
+                      <th key={item.id} className="p-4 align-top">
+                        <div className="flex flex-col gap-2">
+                          <div className="w-16 h-16 rounded-[6px] bg-white border border-[#E8E6E1] p-1 flex items-center justify-center">
+                            <img
+                              src={item.image}
+                              alt={item.title}
+                              className="w-full h-full object-contain"
+                            />
+                          </div>
+                          <div>
+                            {idx === 0 && (
+                              <span className="inline-block text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 bg-[#9A7953] text-white rounded-[3px] mb-1">
+                                Current Bottle
+                              </span>
+                            )}
+                            <Link
+                              href={`/products/${item.handle}`}
+                              className="block text-xs font-semibold text-[#242424] hover:text-[#9A7953] line-clamp-2"
+                            >
+                              {item.title}
+                            </Link>
+                          </div>
+                        </div>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#E8E6E1] text-xs">
+                  <tr>
+                    <td className="p-4 font-semibold text-[#5C5954]">Price</td>
+                    {[summary, ...comparePeers].map((item) => (
+                      <td key={item.id} className="p-4 font-bold text-[#242424] tabular-nums">
+                        {formatPriceINR(item.price)}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-semibold text-[#5C5954]">House</td>
+                    {[summary, ...comparePeers].map((item) => (
+                      <td key={item.id} className="p-4 text-[#242424]">
+                        {item.brand}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-semibold text-[#5C5954]">Concentration</td>
+                    {[summary, ...comparePeers].map((item) => (
+                      <td key={item.id} className="p-4 text-[#242424]">
+                        {item.concentration}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-semibold text-[#5C5954]">Size &amp; Gender</td>
+                    {[summary, ...comparePeers].map((item) => (
+                      <td key={item.id} className="p-4 text-[#242424]">
+                        {item.primarySize} · {item.gender}
+                      </td>
+                    ))}
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-semibold text-[#5C5954]">Scent Families</td>
+                    {[summary, ...comparePeers].map((item) => (
+                      <td key={item.id} className="p-4 text-[#5C5954]">
+                        {item.families.slice(0, 2).join(", ")}
+                      </td>
+                    ))}
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Honest Firestore Product Reviews */}
+      <section
+        id="customer-reviews"
+        className="py-12 border-b border-[#E8E6E1] scroll-mt-24"
+      >
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
+            <div>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9A7953] mb-1">
+                Verified Collector Feedback
+              </p>
+              <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-[#242424]">
+                Reviews {reviews.length > 0 ? `(${reviews.length})` : ""}
+              </h2>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setReviewFormOpen((o) => !o)}
+              className="btn-luxury-secondary px-4 py-2 text-xs"
+            >
+              {reviewFormOpen ? "Close Form" : "Write a Review"}
+            </button>
+          </div>
+
+          {reviewFormOpen && (
+            <form
+              onSubmit={handleReviewSubmit}
+              className="mb-8 p-5 sm:p-6 rounded-[10px] border border-[#E8E6E1] bg-[#F7F6F3] space-y-4"
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="rev-name" className="block text-xs font-semibold text-[#242424] mb-1">
+                    Your Name *
+                  </label>
+                  <input
+                    id="rev-name"
+                    type="text"
+                    required
+                    value={revName}
+                    onChange={(e) => setRevName(e.target.value)}
+                    placeholder="e.g. Aarav S."
+                    className="fc-input px-3 py-2 text-xs"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="rev-rating" className="block text-xs font-semibold text-[#242424] mb-1">
+                    Rating
+                  </label>
+                  <select
+                    id="rev-rating"
+                    value={revRating}
+                    onChange={(e) => setRevRating(Number(e.target.value))}
+                    className="fc-input px-3 py-2 text-xs"
+                  >
+                    <option value={5}>5 Stars — Exceptional</option>
+                    <option value={4}>4 Stars — Very Good</option>
+                    <option value={3}>3 Stars — Balanced</option>
+                    <option value={2}>2 Stars — Mild</option>
+                    <option value={1}>1 Star — Not For Me</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="rev-title" className="block text-xs font-semibold text-[#242424] mb-1">
+                  Review Headline
+                </label>
+                <input
+                  id="rev-title"
+                  type="text"
+                  value={revTitle}
+                  onChange={(e) => setRevTitle(e.target.value)}
+                  placeholder="How does the projection and longevity perform?"
+                  className="fc-input px-3 py-2 text-xs"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="rev-body" className="block text-xs font-semibold text-[#242424] mb-1">
+                  Your Review *
+                </label>
+                <textarea
+                  id="rev-body"
+                  rows={3}
+                  required
+                  value={revBody}
+                  onChange={(e) => setRevBody(e.target.value)}
+                  placeholder="Share opening impression, dry-down, and longevity in your climate..."
+                  className="fc-input px-3 py-2 text-xs"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={revSubmitting}
+                className="btn-luxury-primary px-6 py-2.5 text-xs"
+              >
+                {revSubmitting ? "Publishing..." : "Submit Review"}
+              </button>
+            </form>
+          )}
+
+          {reviewsLoading ? (
+            <p className="text-xs text-[#777777]">Loading collector reviews...</p>
+          ) : reviews.length > 0 ? (
+            <div className="space-y-4">
+              {reviews.map((r) => (
+                <article
+                  key={r.id}
+                  className="p-5 rounded-[10px] border border-[#E8E6E1] bg-white space-y-2"
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-1 text-[#9A7953]">
+                      {Array.from({ length: r.rating }).map((_, i) => (
+                        <Star key={i} size={13} className="fill-[#9A7953]" />
+                      ))}
+                    </div>
+                    {r.createdAt && (
+                      <span className="text-[11px] text-[#777777]">{r.createdAt}</span>
+                    )}
+                  </div>
+                  {r.title && (
+                    <h3 className="text-sm font-semibold text-[#242424]">{r.title}</h3>
+                  )}
+                  <p className="text-xs sm:text-sm text-[#5C5954] leading-relaxed">
+                    {r.comment}
+                  </p>
+                  <p className="text-[11px] font-semibold text-[#242424] pt-1">
+                    — {r.author}
+                  </p>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className="p-6 rounded-[10px] border border-[#E8E6E1] bg-[#F7F6F3] text-center space-y-2">
+              <p className="text-sm font-medium text-[#242424]">
+                No reviews published for {product.title} yet.
+              </p>
+              <p className="text-xs text-[#777777]">
+                We only show genuine customer reviews — click &ldquo;Write a Review&rdquo; to share your wearing experience.
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Related Carousels */}
+      {sameBrandProducts.length > 0 && (
+        <ProductCarousel
+          eyebrow={`More from ${product.brand}`}
+          title={`More by ${product.brand}`}
+          viewAllHref={`/brands/${product.brandSlug}`}
+          viewAllLabel={`View All ${product.brand}`}
+          products={sameBrandProducts}
+        />
+      )}
+
+      {similarProducts.length > 0 && (
+        <ProductCarousel
+          eyebrow="Customers Also Explored"
+          title="Similar Scent Profiles"
+          viewAllHref="/collections/all"
+          products={similarProducts}
+        />
+      )}
+
+      <RecentlyViewed currentProduct={summary} />
+
+      {/* Mobile Sticky Bottom Purchase Bar (triggers when main CTA scrolls away) */}
+      {showStickyMobile && inStock && (
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-[#E8E6E1] px-4 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] flex items-center justify-between gap-3 shadow-2xl">
+          <div className="min-w-0">
+            <p className="text-[11px] font-medium text-[#777777] truncate">
+              {activeVariant?.title || product.primarySize}
+            </p>
+            <p className="text-base font-bold text-[#242424] tabular-nums">
+              {formatPriceINR(unitPrice * qty)}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => handleAddToCart(true)}
+            className="btn-luxury-primary px-5 py-2.5 text-xs shrink-0"
+          >
+            <ShoppingBag size={14} /> Add to Cart
+          </button>
+        </div>
+      )}
+    </div>
   );
 }

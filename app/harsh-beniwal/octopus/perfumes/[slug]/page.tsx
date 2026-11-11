@@ -1,6 +1,13 @@
 import { notFound } from "next/navigation";
 import ProductUI from "@/app/products/[slug]/ProductUI";
 import scrapedPerfumes from "@/harsh-beniwal/octopus/perfumes/scraped_products.json";
+import {
+  getAllPerfumeSummaries,
+  getProductByHandle,
+  getSimilarProducts,
+  toGridSummary,
+  toProductSummary,
+} from "@/lib/catalog";
 
 export const revalidate = 86400;
 
@@ -464,6 +471,11 @@ export default async function HarshBeniwalProductDetailPage({ params }: { params
     ]
   };
 
+  const enriched =
+    getProductByHandle(slug) ||
+    getProductByHandle(`${slug}-women`) ||
+    getProductByHandle(product.handle);
+
   return (
     <>
       <script
@@ -478,11 +490,16 @@ export default async function HarshBeniwalProductDetailPage({ params }: { params
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <div className="bg-white min-h-screen pt-12 pb-32">
-        <div className="mx-auto max-w-[1200px] px-6 md:px-12">
-          <ProductUI product={formattedProduct} />
-        </div>
-      </div>
+      {enriched ? (
+        <ProductUI
+          product={enriched}
+          summary={toGridSummary(toProductSummary(enriched))}
+          similarProducts={getSimilarProducts(enriched, 10).map(toGridSummary)}
+          sameBrandProducts={getAllPerfumeSummaries()
+            .filter((p) => p.isFlagship && p.handle !== enriched.handle)
+            .map(toGridSummary)}
+        />
+      ) : null}
     </>
   );
 }

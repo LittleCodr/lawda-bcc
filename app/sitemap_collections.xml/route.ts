@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { getAllCollectionSlugs } from "@/lib/catalog";
 
 export const revalidate = 86400;
 
@@ -7,7 +8,7 @@ export async function GET() {
   const DOMAIN = "https://www.octopusperfume.in";
   const now = new Date().toISOString().split("T")[0];
 
-  let collections: any[] = [];
+  let collections: Array<{ handle?: string }> = [];
   try {
     const colPath = path.join(process.cwd(), "lib", "data", "collections.json");
     if (fs.existsSync(colPath)) {
@@ -17,10 +18,14 @@ export async function GET() {
     console.error("Error reading collections for sitemap:", e);
   }
 
-  // Also include core collections
-  const coreHandles = ["all", "diwali-gifts", "festive-gifts", "luxury-perfumes"];
+  const staticHandles = getAllCollectionSlugs();
+  const coreHandles = ["diwali-gifts", "festive-gifts", "luxury-perfumes"];
   const allHandles = Array.from(
-    new Set([...coreHandles, ...collections.map((c) => c.handle).filter(Boolean)])
+    new Set([
+      ...staticHandles,
+      ...coreHandles,
+      ...collections.map((c) => c.handle).filter((h): h is string => Boolean(h)),
+    ])
   );
 
   const xmlUrls = allHandles.map(
@@ -44,4 +49,3 @@ ${xmlUrls.join("\n")}
     },
   });
 }
-

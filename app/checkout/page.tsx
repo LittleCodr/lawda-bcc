@@ -1,24 +1,39 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useSyncExternalStore } from "react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { ShieldCheck, Lock, CheckCircle2, Sparkles, Clock } from "lucide-react";
+import { ShieldCheck, Lock, CheckCircle2, Sparkles } from "lucide-react";
 import { useCartStore } from "@/lib/store";
 import { useAuth } from "@/lib/auth-context";
 import { logAppEvent, db, auth } from "@/lib/firebase";
+import { trackEcommerceEvent } from "@/lib/analytics";
 import { doc, setDoc } from "firebase/firestore";
+
+const emptySub = () => () => {};
+
+interface DisplayCheckoutItem {
+  id: string;
+  cartItemId?: string;
+  title: string;
+  price: number;
+  image: string;
+  variantId?: string;
+  variantTitle?: string;
+  customName?: string;
+  customPhotoUrl?: string;
+  customFont?: string;
+  isGift?: boolean;
+  isFree?: boolean;
+  quantity: number;
+}
 
 export default function CheckoutPage() {
   const { items, totalPrice, clearCart, autoDiscountAmount: getAutoDiscountAmount, autoDiscountPercentage: getAutoDiscountPercentage } = useCartStore();
   const { user, loading: authLoading, loginAnonymously } = useAuth();
   const router = useRouter();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(emptySub, () => true, () => false);
 
   const freeTesterGift = items.length > 0 ? [
     {
@@ -100,23 +115,24 @@ export default function CheckoutPage() {
       };
       fetchPinDetails();
     }
-  }, [formData.zip]);
+  }, [formData.zip, formData.country]);
 
   useEffect(() => {
     if (items.length > 0 && !loggedBeginCheckout.current) {
-      logAppEvent("begin_checkout", {
+      trackEcommerceEvent("begin_checkout", {
         currency: "INR",
         value: finalTotal,
-        items: allDisplayItems.map((i: any) => ({
+        items: (allDisplayItems as DisplayCheckoutItem[]).map((i) => ({
           item_id: i.id,
           item_name: i.title,
           quantity: i.quantity,
           price: i.price,
-          item_variant: i.variantTitle
-        }))
+          item_variant: i.variantTitle,
+        })),
       });
       loggedBeginCheckout.current = true;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items, finalTotal]);
 
   if (mounted && items.length === 0) {
@@ -135,7 +151,8 @@ export default function CheckoutPage() {
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    let { name, value } = e.target;
+    const { name } = e.target;
+    let value = e.target.value;
     if (name === "phone") {
       value = value.replace(/\D/g, "").slice(0, 10);
     }
@@ -171,16 +188,27 @@ export default function CheckoutPage() {
       }
       const activeUserId = activeUser?.uid || `guest_${Date.now()}`;
 
-      logAppEvent("add_payment_info", {
-        currency: "INR",
+      trackEcommerceEvent("add_shipping_info", {
         value: finalTotal,
-        payment_type: paymentMethod,
-        items: allDisplayItems.map((i: any) => ({
+        shipping_tier: deliveryMethod === "international" ? "International" : "Free Express India",
+        items: (allDisplayItems as DisplayCheckoutItem[]).map((i) => ({
           item_id: i.id,
           item_name: i.title,
           quantity: i.quantity,
           price: i.price,
-        }))
+          item_variant: i.variantTitle,
+        })),
+      });
+      trackEcommerceEvent("add_payment_info", {
+        value: finalTotal,
+        payment_type: paymentMethod,
+        items: (allDisplayItems as DisplayCheckoutItem[]).map((i) => ({
+          item_id: i.id,
+          item_name: i.title,
+          quantity: i.quantity,
+          price: i.price,
+          item_variant: i.variantTitle,
+        })),
       });
 
       const orderId = `ORD-${Date.now()}`;
@@ -286,10 +314,11 @@ export default function CheckoutPage() {
       document.body.appendChild(form);
       form.submit();
 
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error creating order:", error);
+      const errMsg = error instanceof Error ? error.message : "Unknown error generating hash";
       logAppEvent("payment_error", {
-        reason: error.message || "Unknown error generating hash"
+        reason: errMsg
       });
       toast.error("There was an issue processing your order. Please try again.");
       setLoading(false);
@@ -297,47 +326,120 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="bg-stone-50 min-h-screen pt-24 pb-32">
-      <div className="mx-auto max-w-[1200px] px-6 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+    <div className="bg-white min-h-screen py-10 sm:py-14">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
           {/* Main Content Area */}
           <div className="lg:col-span-7">
-            <div className="bg-white p-8 md:p-12 border border-stone-200">
-              <h2 className="font-serif text-3xl mb-10 text-stone-900">Shipping Details</h2>
+            <div className="bg-white p-6 sm:p-10 border border-[#E8E6E1] rounded-[12px] shadow-luxury">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9A7953] mb-1">
+                Step 1 of 1 · Express Checkout
+              </p>
+              <h1 className="font-serif text-3xl sm:text-4xl font-semibold mb-8 text-[#242424]">
+                Shipping Details
+              </h1>
 
-              <form onSubmit={handlePayment} className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="relative">
-                    <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Full Name</label>
-                    <input required minLength={3} type="text" name="name" value={formData.name} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="Priya Sharma" />
+              <form onSubmit={handlePayment} className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="checkout-name" className="block text-xs font-semibold uppercase tracking-wider text-[#242424] mb-1">
+                      Full Name *
+                    </label>
+                    <input
+                      id="checkout-name"
+                      required
+                      minLength={3}
+                      autoComplete="name"
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="fc-input px-3.5 py-2.5 text-sm"
+                      placeholder="Priya Sharma"
+                    />
                   </div>
-                  <div className="relative">
-                    <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Email Address</label>
-                    <input required type="email" pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$" title="Please enter a valid email address (e.g. name@domain.com)" name="email" value={formData.email} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="priya@example.com" />
+                  <div>
+                    <label htmlFor="checkout-email" className="block text-xs font-semibold uppercase tracking-wider text-[#242424] mb-1">
+                      Email Address *
+                    </label>
+                    <input
+                      id="checkout-email"
+                      required
+                      autoComplete="email"
+                      type="email"
+                      pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
+                      title="Please enter a valid email address (e.g. name@domain.com)"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="fc-input px-3.5 py-2.5 text-sm"
+                      placeholder="priya@example.com"
+                    />
                   </div>
                 </div>
 
-                <div className="relative">
-                  <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Phone Number</label>
-                  <input required type="tel" pattern="\d{10}" maxLength={10} title="Please enter a valid 10-digit mobile number" name="phone" value={formData.phone} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="10-digit Mobile Number" />
+                <div>
+                  <label htmlFor="checkout-phone" className="block text-xs font-semibold uppercase tracking-wider text-[#242424] mb-0.5">
+                    Mobile Number *
+                  </label>
+                  <p className="text-[11px] text-[#777777] mb-1.5">
+                    10-digit Indian mobile number for courier SMS &amp; tracking updates
+                  </p>
+                  <input
+                    id="checkout-phone"
+                    required
+                    autoComplete="tel"
+                    type="tel"
+                    inputMode="numeric"
+                    pattern="\d{10}"
+                    maxLength={10}
+                    title="Please enter a valid 10-digit mobile number"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="fc-input px-3.5 py-2.5 text-sm"
+                    placeholder="98XXXXXXXX"
+                  />
                 </div>
 
-                <div className="relative">
-                  <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Street Address</label>
-                  <input required minLength={5} type="text" name="address" value={formData.address} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="House/Flat No., Street" />
+                <div>
+                  <label htmlFor="checkout-address" className="block text-xs font-semibold uppercase tracking-wider text-[#242424] mb-1">
+                    Street Address *
+                  </label>
+                  <input
+                    id="checkout-address"
+                    required
+                    minLength={5}
+                    autoComplete="street-address"
+                    type="text"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleChange}
+                    className="fc-input px-3.5 py-2.5 text-sm"
+                    placeholder="House/Flat No., Building, Street, Landmark"
+                  />
                 </div>
 
-                <div className="relative">
-                  <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">Country</label>
-                  <select name="country" value={formData.country} onChange={(e) => {
-                    handleChange(e);
-                    if (e.target.value !== "India") {
-                      setDeliveryMethod("international");
-                    } else {
-                      setDeliveryMethod("standard");
-                    }
-                  }} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm">
+                <div>
+                  <label htmlFor="checkout-country" className="block text-xs font-semibold uppercase tracking-wider text-[#242424] mb-1">
+                    Country
+                  </label>
+                  <select
+                    id="checkout-country"
+                    autoComplete="country-name"
+                    name="country"
+                    value={formData.country}
+                    onChange={(e) => {
+                      handleChange(e);
+                      if (e.target.value !== "India") {
+                        setDeliveryMethod("international");
+                      } else {
+                        setDeliveryMethod("standard");
+                      }
+                    }}
+                    className="fc-input px-3.5 py-2.5 text-sm"
+                  >
                     <option value="India">India</option>
                     <option value="United States">United States</option>
                     <option value="United Kingdom">United Kingdom</option>
@@ -354,60 +456,117 @@ export default function CheckoutPage() {
                   </select>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-                  <div className="relative order-1 md:order-1">
-                    <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">ZIP Code</label>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                  <div>
+                    <label htmlFor="checkout-zip" className="block text-xs font-semibold uppercase tracking-wider text-[#242424] mb-1">
+                      {formData.country === "India" ? "6-Digit PIN Code *" : "Postal / ZIP Code *"}
+                    </label>
                     <div className="relative">
                       {formData.country === "India" ? (
-                        <input required type="text" pattern="\d{6}" maxLength={6} title="Please enter a valid 6-digit PIN code" name="zip" value={formData.zip} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="6-digit PIN" />
+                        <input
+                          id="checkout-zip"
+                          required
+                          autoComplete="postal-code"
+                          type="text"
+                          inputMode="numeric"
+                          pattern="\d{6}"
+                          maxLength={6}
+                          title="Please enter a valid 6-digit PIN code"
+                          name="zip"
+                          value={formData.zip}
+                          onChange={handleChange}
+                          className="fc-input px-3.5 py-2.5 text-sm"
+                          placeholder="110001"
+                        />
                       ) : (
-                        <input required type="text" minLength={3} name="zip" value={formData.zip} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="ZIP / Postal Code" />
+                        <input
+                          id="checkout-zip"
+                          required
+                          autoComplete="postal-code"
+                          type="text"
+                          minLength={3}
+                          name="zip"
+                          value={formData.zip}
+                          onChange={handleChange}
+                          className="fc-input px-3.5 py-2.5 text-sm"
+                          placeholder="ZIP / Postal Code"
+                        />
                       )}
-                      {fetchingPin && <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 border-2 border-[#E5B8B7] border-t-[#800020] rounded-full animate-spin"></div>}
+                      {fetchingPin && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 border-2 border-[#D4CFC7] border-t-[#1F1D1B] rounded-full animate-spin" />
+                      )}
                     </div>
                   </div>
-                  <div className="relative order-2 md:order-2">
-                    <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">City</label>
-                    <input required minLength={2} type="text" name="city" value={formData.city} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent text-stone-900 focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="Enter City" />
+                  <div>
+                    <label htmlFor="checkout-city" className="block text-xs font-semibold uppercase tracking-wider text-[#242424] mb-1">
+                      City *
+                    </label>
+                    <input
+                      id="checkout-city"
+                      required
+                      minLength={2}
+                      autoComplete="address-level2"
+                      type="text"
+                      name="city"
+                      value={formData.city}
+                      onChange={handleChange}
+                      className="fc-input px-3.5 py-2.5 text-sm"
+                      placeholder="City"
+                    />
                   </div>
-                  <div className="relative order-3 md:order-3">
-                    <label className="block text-xs uppercase tracking-widest text-stone-500 mb-2">State</label>
-                    <input required minLength={2} type="text" name="state" value={formData.state} onChange={handleChange} className="w-full border-b border-stone-300 py-2 bg-transparent text-stone-900 focus:outline-none focus:border-stone-900 transition-colors text-sm" placeholder="Enter State" />
+                  <div>
+                    <label htmlFor="checkout-state" className="block text-xs font-semibold uppercase tracking-wider text-[#242424] mb-1">
+                      State *
+                    </label>
+                    <input
+                      id="checkout-state"
+                      required
+                      minLength={2}
+                      autoComplete="address-level1"
+                      type="text"
+                      name="state"
+                      value={formData.state}
+                      onChange={handleChange}
+                      className="fc-input px-3.5 py-2.5 text-sm"
+                      placeholder="State"
+                    />
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#ebebeb]">
-                  <h3 className="text-[18px] font-semibold mb-4 text-[#222222]">Delivery Method</h3>
+                <div className="pt-5 border-t border-[#E8E6E1]">
+                  <h2 className="font-serif text-2xl font-semibold mb-3 text-[#242424]">
+                    Delivery Method
+                  </h2>
                   <div className="space-y-3">
                     {formData.country === "India" ? (
-                      <label className="flex items-center gap-4 p-4 border rounded-[10px] cursor-pointer transition-colors border-[#222222] bg-[#f7f7f7]">
-                        <input type="radio" name="delivery" value="standard" checked={deliveryMethod === 'standard'} onChange={() => setDeliveryMethod('standard')} className="w-4 h-4 accent-[#ff385c] cursor-pointer" />
+                      <label className="flex items-center gap-4 p-4 border rounded-[8px] cursor-pointer transition-colors border-[#1F1D1B] bg-[#F7F6F3]">
+                        <input type="radio" name="delivery" value="standard" checked={deliveryMethod === "standard"} onChange={() => setDeliveryMethod("standard")} className="w-4 h-4 accent-[#1F1D1B] cursor-pointer" />
                         <div className="flex flex-col">
-                          <span className="font-semibold text-sm text-[#222222]">Free Express Pan-India Delivery</span>
-                          <span className="text-xs text-[#6a6a6a]">2-4 business days with real-time tracking</span>
+                          <span className="font-semibold text-sm text-[#242424]">Free Express Pan-India Delivery</span>
+                          <span className="text-xs text-[#5C5954]">2–5 business days with protective honeycomb packing &amp; tracking</span>
                         </div>
                       </label>
                     ) : (
-                      <label className={`flex items-center gap-4 p-4 border rounded-[10px] cursor-pointer transition-colors ${deliveryMethod === 'international' ? 'border-[#222222] bg-[#f7f7f7]' : 'border-[#ebebeb] hover:border-[#222222]'}`}>
-                        <input type="radio" name="delivery" value="international" checked={deliveryMethod === 'international'} onChange={() => setDeliveryMethod('international')} className="w-4 h-4 accent-[#ff385c] cursor-pointer" />
+                      <label className={`flex items-center gap-4 p-4 border rounded-[8px] cursor-pointer transition-colors ${deliveryMethod === "international" ? "border-[#1F1D1B] bg-[#F7F6F3]" : "border-[#E8E6E1] hover:border-[#1F1D1B]"}`}>
+                        <input type="radio" name="delivery" value="international" checked={deliveryMethod === "international"} onChange={() => setDeliveryMethod("international")} className="w-4 h-4 accent-[#1F1D1B] cursor-pointer" />
                         <div className="flex flex-col">
-                          <span className="font-semibold text-sm text-[#222222]">International Delivery (+₹1500)</span>
-                          <span className="text-xs text-[#6a6a6a]">Within 7 days worldwide</span>
+                          <span className="font-semibold text-sm text-[#242424]">International Insured Delivery (+₹1,500)</span>
+                          <span className="text-xs text-[#5C5954]">7–10 business days worldwide</span>
                         </div>
                       </label>
                     )}
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-[#ebebeb]">
-                  <h3 className="text-[18px] font-semibold mb-4 text-[#222222]">Payment Method</h3>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-4 p-4 border rounded-[10px] border-[#222222] bg-[#f7f7f7]">
-                      <input type="radio" name="payment" value="prepaid" checked readOnly className="w-4 h-4 accent-[#ff385c]" />
-                      <div className="flex flex-col">
-                        <span className="font-semibold text-sm text-[#222222]">100% Secure Online Payment (Prepaid)</span>
-                        <span className="text-xs text-[#6a6a6a]">Instant checkout via UPI (Google Pay, PhonePe, Paytm), Cards & Netbanking.</span>
-                      </div>
+                <div className="pt-5 border-t border-[#E8E6E1]">
+                  <h2 className="font-serif text-2xl font-semibold mb-3 text-[#242424]">
+                    Payment Method
+                  </h2>
+                  <div className="flex items-center gap-4 p-4 border rounded-[8px] border-[#1F1D1B] bg-[#F7F6F3]">
+                    <input type="radio" name="payment" value="prepaid" checked readOnly className="w-4 h-4 accent-[#1F1D1B]" />
+                    <div className="flex flex-col">
+                      <span className="font-semibold text-sm text-[#242424]">100% Secure Online Payment (Prepaid)</span>
+                      <span className="text-xs text-[#5C5954]">Instant checkout via UPI (GPay, PhonePe, Paytm), Cards &amp; NetBanking via PayU.</span>
                     </div>
                   </div>
                 </div>
@@ -415,11 +574,11 @@ export default function CheckoutPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#ff385c] hover:bg-[#e00b41] text-white py-4 rounded-lg text-[15px] font-medium transition-colors disabled:bg-[#ffd1da] mt-6 flex items-center justify-center gap-2 cursor-pointer shadow-none"
+                  className="w-full btn-luxury-primary py-4 text-xs tracking-[0.16em] disabled:opacity-50 mt-4"
                 >
-                  {loading ? "Processing..." : (
+                  {loading ? "Processing Secure Gateway..." : (
                     <>
-                      <Lock size={16} /> Pay ₹{finalTotal} Securely
+                      <Lock size={15} /> Pay ₹{finalTotal.toLocaleString("en-IN")} Securely
                     </>
                   )}
                 </button>
@@ -434,7 +593,7 @@ export default function CheckoutPage() {
 
               {/* Items List */}
               <ul className="space-y-6 mb-8 max-h-[400px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-stone-200">
-                {allDisplayItems.map((item: any) => (
+                {(allDisplayItems as DisplayCheckoutItem[]).map((item) => (
                   <li key={item.cartItemId || `${item.id}-${item.variantId}`} className="flex gap-4">
                     <div className="relative w-20 h-20 bg-stone-50 shrink-0 border border-stone-100">
                       <Image src={item.image || "/logo.png"} alt={item.title} fill unoptimized sizes="80px" className="object-cover" />
@@ -442,7 +601,7 @@ export default function CheckoutPage() {
                     <div className="flex-1 flex flex-col justify-center">
                       <p className="font-serif text-lg leading-tight text-stone-900 mb-0.5">{item.title}</p>
                       {!item.isFree && (
-                        <p className="text-[9px] uppercase tracking-widest text-amber-800 font-bold mb-1">25%+ French Oil EDP • 12H Longevity</p>
+                        <p className="text-[10px] uppercase tracking-widest text-[#9A7953] font-semibold mb-1">Authentic Sealed Fragrance</p>
                       )}
                       {item.variantTitle && (
                         <p className="text-xs text-stone-500">{item.variantTitle}</p>
@@ -515,66 +674,62 @@ export default function CheckoutPage() {
                         setPromoApplied(false);
                         setPromoCode("");
                       }}
-                      className="bg-[#fff0f3] text-[#ff385c] border border-[#ffd1da] rounded-lg px-6 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer"
+                      className="bg-[#FFF5F5] text-[#B83232] border border-[#E8C5C5] rounded-[6px] px-5 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer"
                     >
                       Remove
                     </button>
                   )}
                 </div>
-                {promoError && <p className="text-[#c13515] font-semibold text-xs mt-2">{promoError}</p>}
+                {promoError && <p className="text-[#B83232] font-semibold text-xs mt-2">{promoError}</p>}
                 {promoApplied && (
-                  <p className="text-emerald-700 font-bold text-xs mt-2 flex items-center gap-1.5 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-lg w-fit">
-                    <CheckCircle2 size={14} className="text-emerald-600" /> 
-                    <span>{promoCode === "DIWALI20" ? "🪔 Diwali Festive 20% OFF Applied!" : "Promo code applied successfully!"}</span>
+                  <p className="text-[#347A54] font-semibold text-xs mt-2 flex items-center gap-1.5 bg-[#F2F8F5] border border-[#CBE4D7] px-3 py-1.5 rounded-[6px] w-fit">
+                    <CheckCircle2 size={14} className="text-[#347A54]" />
+                    <span>{promoCode === "DIWALI20" ? "20% OFF Festive Promo Applied!" : "Promo code applied successfully!"}</span>
                   </p>
                 )}
               </div>
 
               {/* Totals */}
-              <div className="border-t border-stone-200 pt-6 space-y-4">
-                <div className="flex justify-between text-sm text-stone-600">
+              <div className="border-t border-[#E8E6E1] pt-6 space-y-3">
+                <div className="flex justify-between text-sm text-[#5C5954]">
                   <span>Subtotal</span>
-                  <span>₹{baseTotal}</span>
+                  <span className="tabular-nums">₹{baseTotal.toLocaleString("en-IN")}</span>
                 </div>
                 {cartAutoDiscount > 0 && (
-                  <div className="flex justify-between text-sm font-bold text-emerald-600">
-                    <span>Auto Discount ({cartDiscountPercent}%)</span>
-                    <span>-₹{cartAutoDiscount}</span>
+                  <div className="flex justify-between text-sm font-semibold text-[#347A54]">
+                    <span>Auto Bundle ({cartDiscountPercent}%)</span>
+                    <span className="tabular-nums">−₹{cartAutoDiscount.toLocaleString("en-IN")}</span>
                   </div>
                 )}
                 {promoApplied && (
-                  <div className="flex justify-between text-sm font-bold text-emerald-600">
-                    <span>Promo Discount ({promoCode})</span>
-                    <span>-₹{promoDiscountAmount}</span>
+                  <div className="flex justify-between text-sm font-semibold text-[#347A54]">
+                    <span>Promo ({promoCode})</span>
+                    <span className="tabular-nums">−₹{promoDiscountAmount.toLocaleString("en-IN")}</span>
                   </div>
                 )}
-                <div className="flex justify-between text-sm text-stone-600">
+                <div className="flex justify-between text-sm text-[#5C5954]">
                   <span>Shipping</span>
-                  <span>{deliveryMethod === 'international' ? '₹1500' : 'Free Express'}</span>
+                  <span className="font-medium text-[#242424]">{deliveryMethod === "international" ? "₹1,500" : "Free Express"}</span>
                 </div>
-                <div className="flex justify-between items-end pt-4 mt-2 border-t border-stone-200">
-                  <span className="font-serif text-2xl text-stone-900">Total</span>
-                  <span className="text-xl font-medium text-stone-900">₹{finalTotal}</span>
+                <div className="flex justify-between items-end pt-4 mt-2 border-t border-[#E8E6E1]">
+                  <span className="font-serif text-2xl text-[#242424]">Total</span>
+                  <span className="text-2xl font-bold text-[#242424] tabular-nums">₹{finalTotal.toLocaleString("en-IN")}</span>
                 </div>
               </div>
 
               {/* Trust Badges */}
-              <div className="mt-10 flex justify-center gap-6 border-t border-stone-100 pt-8 text-stone-400">
-                <div className="flex flex-col items-center gap-2 text-center">
-                  <ShieldCheck size={20} />
-                  <span className="text-[10px] uppercase tracking-widest font-medium">100% Secure<br />Checkout</span>
+              <div className="mt-8 grid grid-cols-3 gap-3 border-t border-[#E8E6E1] pt-6 text-[#5C5954]">
+                <div className="flex flex-col items-center gap-1.5 text-center">
+                  <ShieldCheck size={18} className="text-[#347A54]" />
+                  <span className="text-[10px] uppercase tracking-wider font-semibold">100% Genuine<br />Sealed</span>
                 </div>
-                <div className="flex flex-col items-center gap-2 text-center text-[#800020]">
-                  <Sparkles size={20} />
-                  <span className="text-[10px] uppercase tracking-widest font-bold">25%+ French<br />EDP Oils</span>
+                <div className="flex flex-col items-center gap-1.5 text-center">
+                  <Sparkles size={18} className="text-[#9A7953]" />
+                  <span className="text-[10px] uppercase tracking-wider font-semibold">7ML Bonus<br />Tester Free</span>
                 </div>
-                <div className="flex flex-col items-center gap-2 text-center text-stone-700">
-                  <Clock size={20} />
-                  <span className="text-[10px] uppercase tracking-widest font-bold">12+ Hour<br />Longevity</span>
-                </div>
-                <div className="flex flex-col items-center gap-2 text-center">
-                  <CheckCircle2 size={20} />
-                  <span className="text-[10px] uppercase tracking-widest font-medium">Authentic<br />Guarantee</span>
+                <div className="flex flex-col items-center gap-1.5 text-center">
+                  <CheckCircle2 size={18} className="text-[#242424]" />
+                  <span className="text-[10px] uppercase tracking-wider font-semibold">Encrypted<br />PayU Gateway</span>
                 </div>
               </div>
             </div>

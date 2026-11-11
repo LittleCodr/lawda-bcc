@@ -20,7 +20,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  return { title: `${slug.replace(/-/g, ' ').toUpperCase()} | Octopus Everlasting Gifts` };
+  return { title: `${slug.replace(/-/g, " ").toUpperCase()} | Octopus Perfumes India` };
 }
 
 const SIDEBAR_LINKS = [
@@ -33,8 +33,14 @@ const SIDEBAR_LINKS = [
 ];
 
 export default async function StaticPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  
+  const { slug: rawSlug } = await params;
+  const ALIAS_MAP: Record<string, string> = {
+    "refund-policy": "returns-refund-policy",
+    "terms-of-service": "terms-conditions",
+    "contact-information": "contact",
+  };
+  const slug = ALIAS_MAP[rawSlug] || rawSlug;
+
   const currentLink = SIDEBAR_LINKS.find(link => link.slug === slug);
   const title = currentLink ? currentLink.title : slug.replace(/-/g, ' ');
 
@@ -57,12 +63,12 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
             <div className="bg-[#f7f7f7] p-8 rounded-[14px] border border-[#ebebeb]">
-              <ShieldCheck className="text-[#ff385c] mb-4" size={32} />
+              <ShieldCheck className="text-[#9A7953] mb-4" size={32} />
               <h3 className="font-sans font-bold text-xl text-[#222222] mt-0 mb-2">Our Craftsmanship</h3>
               <p className="text-sm text-[#3f3f3f] mb-0">Our commitment to excellence is unwavering. We collaborate with master artisans and employ cutting-edge engraving and printing technologies to ensure that every personalization detail is executed with flawless precision.</p>
             </div>
             <div className="bg-[#f7f7f7] p-8 rounded-[14px] border border-[#ebebeb]">
-              <Heart className="text-[#ff385c] mb-4" size={32} />
+              <Heart className="text-[#9A7953] mb-4" size={32} />
               <h3 className="font-sans font-bold text-xl text-[#222222] mt-0 mb-2">Customer Delight</h3>
               <p className="text-sm text-[#3f3f3f] mb-0">We do not merely sell gifts; we curate experiences. From the moment you land on our website to the instant our premium, signature packaging is unboxed, every touchpoint is optimized to deliver unparalleled delight.</p>
             </div>
@@ -85,22 +91,22 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           
           <div className="space-y-8">
             <div>
-              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#ff385c] text-white text-sm font-bold">1</span> Comprehensive Introduction</h2>
-              <p>Welcome to Octopus Everlasting Gifts (accessible at octopusperfume.in). These comprehensive Terms and Conditions ("Terms", "Agreement") constitute a legally binding contract between you (the "User", "Customer", "Visitor") and Octopus Everlasting Gifts ("we", "us", "our", "the Company"). By accessing, browsing, registering an account, or placing an order on our platform, you categorically acknowledge that you have read, understood, and unequivocally agreed to be bound by these Terms in their entirety. If you harbor any objections to these Terms, you are explicitly prohibited from using our services and must immediately cease all access to the platform.</p>
+              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#9A7953] text-white text-sm font-bold">1</span> Comprehensive Introduction</h2>
+              <p>Welcome to Octopus Perfumes (accessible at octopusperfume.in). These comprehensive Terms and Conditions (&ldquo;Terms&rdquo;, &ldquo;Agreement&rdquo;) constitute a legally binding contract between you (the &ldquo;User&rdquo;, &ldquo;Customer&rdquo;, &ldquo;Visitor&rdquo;) and Octopus Perfumes (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;, &ldquo;the Company&rdquo;). By accessing, browsing, registering an account, or placing an order on our platform, you categorically acknowledge that you have read, understood, and unequivocally agreed to be bound by these Terms in their entirety. If you harbor any objections to these Terms, you are explicitly prohibited from using our services and must immediately cease all access to the platform.</p>
             </div>
             
             <div>
-              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#ff385c] text-white text-sm font-bold">2</span> Intellectual Property</h2>
+              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#9A7953] text-white text-sm font-bold">2</span> Intellectual Property</h2>
               <p>The entire contents of the Octopus Everlasting Gifts website—including but not limited to textual content, graphical assets, logos, button icons, high-resolution imagery, audio clips, digital downloads, data compilations, and proprietary software—are the exclusive intellectual property of Octopus Everlasting Gifts or its certified content suppliers. These assets are protected under the Indian Copyright Act, 1957, as well as international copyright and trademark laws.</p>
             </div>
             
             <div>
-              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#ff385c] text-white text-sm font-bold">3</span> Detailed Product Descriptions</h2>
+              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#9A7953] text-white text-sm font-bold">3</span> Detailed Product Descriptions</h2>
               <p>While we expend extraordinary effort to ensure the absolute accuracy of all product descriptions, high-definition imagery, and pricing information, the Company does not warrant that product descriptions or other content is completely error-free, current, or reliable. All prices are listed in Indian Rupees (INR) and are inclusive of applicable taxes unless stated otherwise.</p>
             </div>
             
             <div>
-              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#ff385c] text-white text-sm font-bold">4</span> Bespoke Personalization Policies</h2>
+              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#9A7953] text-white text-sm font-bold">4</span> Bespoke Personalization Policies</h2>
               <p>As our core offering relies on customization, you are solely responsible for ensuring the absolute accuracy of all personalization inputs (e.g., names, dates, spelling, grammar) submitted during the checkout process. Octopus Everlasting Gifts will not be held liable for typographical errors submitted by the customer.</p>
             </div>
           </div>
@@ -112,29 +118,29 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
         <>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
             <div className="bg-[#f7f7f7] p-6 rounded-[14px] flex flex-col items-center text-center border border-[#ebebeb]">
-              <Calendar size={32} strokeWidth={1.5} className="text-[#ff385c] mb-3" />
+              <Calendar size={32} strokeWidth={1.5} className="text-[#9A7953] mb-3" />
               <span className="text-[10px] uppercase font-bold text-[#6a6a6a] tracking-wider mb-1">Return Window</span>
               <span className="font-bold text-lg text-[#222222]">1 Day</span>
             </div>
             <div className="bg-[#f7f7f7] p-6 rounded-[14px] flex flex-col items-center text-center border border-[#ebebeb]">
-              <RefreshCcw size={32} strokeWidth={1.5} className="text-[#ff385c] mb-3" />
+              <RefreshCcw size={32} strokeWidth={1.5} className="text-[#9A7953] mb-3" />
               <span className="text-[10px] uppercase font-bold text-[#6a6a6a] tracking-wider mb-1">Exchanges</span>
               <span className="font-bold text-lg text-[#222222]">Accepted</span>
             </div>
             <div className="bg-[#f7f7f7] p-6 rounded-[14px] flex flex-col items-center text-center border border-[#ebebeb]">
-              <Box size={32} strokeWidth={1.5} className="text-[#ff385c] mb-3" />
+              <Box size={32} strokeWidth={1.5} className="text-[#9A7953] mb-3" />
               <span className="text-[10px] uppercase font-bold text-[#6a6a6a] tracking-wider mb-1">Return Label</span>
               <span className="font-bold text-lg text-[#222222]">Included & Free</span>
             </div>
             <div className="bg-[#f7f7f7] p-6 rounded-[14px] flex flex-col items-center text-center border border-[#ebebeb]">
-              <Banknote size={32} strokeWidth={1.5} className="text-[#ff385c] mb-3" />
+              <Banknote size={32} strokeWidth={1.5} className="text-[#9A7953] mb-3" />
               <span className="text-[10px] uppercase font-bold text-[#6a6a6a] tracking-wider mb-1">Restocking Fee</span>
               <span className="font-bold text-lg text-[#222222]">No Cost</span>
             </div>
           </div>
 
           <h2>1. Hassle-Free Returns & Exchanges</h2>
-          <p>At Octopus Everlasting Gifts, your satisfaction is our top priority. We gladly accept returns and exchanges for <strong>both defective and non-defective products</strong>. Whether you changed your mind or received a faulty item, we've made our return process as seamless as possible.</p>
+          <p>At Octopus Perfumes, your satisfaction is our top priority. We gladly accept returns and exchanges for <strong>both defective and non-defective products</strong>. Whether you changed your mind or received a faulty item, we&apos;ve made our return process as seamless as possible.</p>
           
           <h2>2. Return & Exchange Window</h2>
           <p>You have exactly <strong>1 day</strong> from the date of delivery to initiate a return or exchange. Due to the fast-moving nature of our premium inventory, we strictly enforce this 1-day window.</p>
@@ -146,7 +152,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           <p>All returns are processed securely <strong>by post</strong>. To make your experience absolutely frictionless, a pre-paid return shipping label is already <strong>included in the package</strong> you received. Shipping the item back to us is entirely <strong>free of charge</strong>.</p>
           
           <h2>5. Restocking Fees & Refund Processing</h2>
-          <p>We do not believe in penalizing our customers. Therefore, we charge absolutely <strong>no restocking fees</strong>. Once we receive your returned package by post and verify its "New" condition, your refund will be fully processed within <strong>1 day</strong>. The funds will be credited back to your original payment method.</p>
+          <p>We do not believe in penalizing our customers. Therefore, we charge absolutely <strong>no restocking fees</strong>. Once we receive your returned package by post and verify its &ldquo;New&rdquo; condition, your refund will be fully processed within <strong>1 day</strong>. The funds will be credited back to your original payment method.</p>
           
           <h2>6. How to Initiate a Return</h2>
           <div className="bg-stone-50 p-6 rounded-xl border border-stone-200 mt-6">
@@ -166,7 +172,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           <div className="flex flex-col md:flex-row justify-between items-center bg-[#f7f7f7] p-8 rounded-[14px] mb-12 gap-6 relative border border-[#ebebeb]">
              <div className="flex flex-col items-center text-center max-w-[200px] z-10 relative">
                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 border border-[#ebebeb] shadow-airbnb">
-                 <Box size={24} className="text-[#ff385c]" />
+                 <Box size={24} className="text-[#9A7953]" />
                </div>
                <h3 className="font-sans font-bold text-lg text-[#222222] mt-0 mb-2">1. Processing</h3>
                <p className="text-xs text-[#6a6a6a] leading-relaxed mb-0 font-medium">3-5 days for personalized crafting</p>
@@ -176,7 +182,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
              
              <div className="flex flex-col items-center text-center max-w-[200px] z-10 relative">
                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 border border-[#ebebeb] shadow-airbnb">
-                 <Truck size={24} className="text-[#ff385c]" />
+                 <Truck size={24} className="text-[#9A7953]" />
                </div>
                <h3 className="font-sans font-bold text-lg text-[#222222] mt-0 mb-2">2. Dispatch</h3>
                <p className="text-xs text-[#6a6a6a] leading-relaxed mb-0 font-medium">Handed over to top-tier couriers</p>
@@ -184,7 +190,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
              
              <div className="flex flex-col items-center text-center max-w-[200px] z-10 relative">
                <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-4 border border-[#ebebeb] shadow-airbnb">
-                 <CheckCircle2 size={24} className="text-[#ff385c]" />
+                 <CheckCircle2 size={24} className="text-[#9A7953]" />
                </div>
                <h3 className="font-sans font-bold text-lg text-[#222222] mt-0 mb-2">3. Delivery</h3>
                <p className="text-xs text-[#6a6a6a] leading-relaxed mb-0 font-medium">2-7 business days across India</p>
@@ -197,17 +203,17 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           <h2>2. Comprehensive Processing Timelines</h2>
           <p>Unlike off-the-shelf e-commerce, bespoke gifting requires meticulous craftsmanship. When you place an order, it enters our production queue where it undergoes structural drafting, engraving/printing, polishing, quality assurance, and finally, premium gift wrapping.</p>
           
-          <div className="bg-[#f7f7f7] border-l-4 border-[#ff385c] p-6 my-6 rounded-r-[14px]">
+          <div className="bg-[#f7f7f7] border-l-4 border-[#9A7953] p-6 my-6 rounded-r-[14px]">
             <ul className="m-0 p-0 list-none space-y-4">
               <li className="flex items-start gap-3">
-                <div className="mt-1.5 w-2 h-2 rounded-full bg-[#ff385c] shrink-0"></div>
+                <div className="mt-1.5 w-2 h-2 rounded-full bg-[#9A7953] shrink-0"></div>
                 <div>
                   <strong className="block text-[#222222]">Personalized/Customized Orders</strong>
                   <span className="text-[#3f3f3f] text-sm">Require a mandatory processing window of 3 to 5 business days prior to dispatch.</span>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <div className="mt-1.5 w-2 h-2 rounded-full bg-[#ff385c] shrink-0"></div>
+                <div className="mt-1.5 w-2 h-2 rounded-full bg-[#9A7953] shrink-0"></div>
                 <div>
                   <strong className="block text-[#222222]">Non-Personalized Orders</strong>
                   <span className="text-[#3f3f3f] text-sm">Are typically processed and dispatched within 1 to 2 business days.</span>
@@ -234,7 +240,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           <p>If two hours have elapsed since the order timestamp, the order is irrevocably locked into the production phase. At this point, the item has been permanently customized with your specific details, rendering it completely unsellable to any other customer. Therefore, we categorically will not accept, process, or entertain any cancellation requests beyond this 2-hour window under any circumstances.</p>
           
           <h2>2. How to Request a Cancellation</h2>
-          <p>To request a cancellation within the permitted 2-hour window, you must immediately contact our emergency support team via the contact form on our website or reply directly to your order confirmation email with the subject line <strong>"URGENT CANCELLATION: Order #YourOrderID"</strong>.</p>
+          <p>To request a cancellation within the permitted 2-hour window, you must immediately contact our emergency support team via the contact form on our website or reply directly to your order confirmation email with the subject line <strong>&ldquo;URGENT CANCELLATION: Order #YourOrderID&rdquo;</strong>.</p>
         </>
       );
       break;
@@ -269,18 +275,18 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
             <div className="bg-[#f7f7f7] p-8 rounded-[14px] border border-[#ebebeb] flex flex-col items-center text-center">
-              <Mail className="text-[#ff385c] mb-4" size={32} />
+              <Mail className="text-[#9A7953] mb-4" size={32} />
               <h3 className="font-sans font-bold text-xl text-[#222222] mt-0 mb-2">Email Support</h3>
               <p className="text-sm text-[#6a6a6a] mb-4">For order inquiries, cancellations (within 2 hours), and general questions, email us at:</p>
-              <a href="mailto:support@octopusperfume.in" className="font-semibold text-[#ff385c] text-lg hover:underline">support@octopusperfume.in</a>
+              <a href="mailto:support@octopusperfume.in" className="font-semibold text-[#9A7953] text-lg hover:underline">support@octopusperfume.in</a>
               <p className="text-xs text-[#929292] mt-4 mb-0">We aim to reply within 24 hours.</p>
             </div>
             
             <div className="bg-[#f7f7f7] p-8 rounded-[14px] border border-[#ebebeb] flex flex-col items-center text-center">
-              <Phone className="text-[#ff385c] mb-4" size={32} />
+              <Phone className="text-[#9A7953] mb-4" size={32} />
               <h3 className="font-sans font-bold text-xl text-[#222222] mt-0 mb-2">Phone Support</h3>
               <p className="text-sm text-[#6a6a6a] mb-4">Need immediate assistance? Our customer support agents are available Monday to Saturday (10 AM - 6 PM IST):</p>
-              <a href="tel:+919876543210" className="font-semibold text-[#ff385c] text-lg hover:underline">+91 98765 43210</a>
+              <a href="tel:+919876543210" className="font-semibold text-[#9A7953] text-lg hover:underline">+91 98765 43210</a>
               <p className="text-xs text-[#929292] mt-4 mb-0">Standard call rates apply.</p>
             </div>
           </div>
@@ -307,7 +313,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           <p className="text-[#6a6a6a]">
             The requested document could not be located in our directory. If you believe this is an error, please contact Octopus Everlasting Gifts support.
           </p>
-          <Link href="/" className="inline-block mt-8 bg-[#ff385c] hover:bg-[#e00b41] text-white px-8 py-3 text-sm font-semibold rounded-lg shadow-sm transition-colors">
+          <Link href="/" className="inline-block mt-8 bg-[#1F1D1B] hover:bg-[#35312D] text-white px-8 py-3 text-sm font-semibold rounded-lg shadow-sm transition-colors">
             Return to Homepage
           </Link>
         </div>
@@ -330,7 +336,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
                     href={`/pages/${link.slug}`}
                     className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                       slug === link.slug 
-                        ? 'bg-[#ff385c] text-white font-medium shadow-sm' 
+                        ? 'bg-[#9A7953] text-white font-medium shadow-sm' 
                         : 'text-[#222222] hover:bg-[#f7f7f7]'
                     }`}
                   >
@@ -342,7 +348,7 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
               
               <div className="mt-8 pt-6 border-t border-[#ebebeb]">
                 <p className="text-xs text-[#6a6a6a] font-normal leading-relaxed mb-4">Need help? Our support team is available 24/7 to assist you with any policy questions.</p>
-                <Link href="/pages/contact" className="text-xs font-semibold text-[#ff385c] flex items-center gap-1 hover:gap-2 transition-all">
+                <Link href="/pages/contact" className="text-xs font-semibold text-[#9A7953] flex items-center gap-1 hover:gap-2 transition-all">
                   Contact Support <ChevronRight size={14} />
                 </Link>
               </div>

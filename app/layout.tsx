@@ -1,8 +1,24 @@
 import type { Metadata } from "next";
+import { Plus_Jakarta_Sans, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-plus-jakarta",
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
 // import { AuthProvider } from "@/lib/auth-context"; // Keep disabled if not needed
-import Navbar from "@/components/Navbar";
+import Navbar, { type NavBrandItem } from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { getBrandSummaries } from "@/lib/catalog";
 import { Toaster } from "react-hot-toast";
 import Script from "next/script";
 
@@ -119,8 +135,6 @@ import MetaPixel from "@/components/MetaPixel";
 
 import { AuthProvider } from "@/lib/auth-context";
 import { Suspense } from "react";
-import SalesToasts from "@/components/SalesToasts";
-import MobileStickyShopBar from "@/components/MobileStickyShopBar";
 
 export default function RootLayout({
   children,
@@ -128,13 +142,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`font-sans h-full antialiased`}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${plusJakarta.variable} ${cormorant.variable} font-sans h-full antialiased`}
+    >
       <head>
         <meta name="google-site-verification" content="5aIetIuABLCTsPQxJA8B9V2ok8kB2svuMyaziUcrj7I" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
         <Script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" strategy="lazyOnload" />
         <Script id="onesignal-init" strategy="lazyOnload" dangerouslySetInnerHTML={{
           __html: `
@@ -176,7 +190,7 @@ export default function RootLayout({
           `
         }} />
       </head>
-      <body className="min-h-full flex flex-col bg-white text-[#222222] font-sans">
+      <body className="min-h-full flex flex-col bg-white text-[#242424] font-sans">
         <AuthProvider>
           <Suspense fallback={null}>
             <AnalyticsTracker />
@@ -262,7 +276,7 @@ export default function RootLayout({
                       "@type": "SearchAction",
                       "target": {
                         "@type": "EntryPoint",
-                        "urlTemplate": "https://www.octopusperfume.in/api/search?q={search_term_string}"
+                        "urlTemplate": "https://www.octopusperfume.in/search?q={search_term_string}"
                       },
                       "query-input": "required name=search_term_string"
                     }
@@ -273,15 +287,22 @@ export default function RootLayout({
           />
 
           {/* Navbar */}
-          <Navbar />
+          <Navbar
+            topBrands={getBrandSummaries()
+              .slice(0, 60)
+              .map((b): NavBrandItem => ({
+                name: b.name,
+                slug: b.slug,
+                tier: b.tier,
+                count: b.count,
+              }))}
+          />
 
           <main className="flex-1">{children}</main>
 
           {/* Footer */}
           <Footer />
           <CartDrawer />
-          <SalesToasts />
-          <MobileStickyShopBar />
           <Toaster
             position="top-center"
             toastOptions={{

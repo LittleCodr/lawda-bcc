@@ -1,668 +1,679 @@
 "use client";
 
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
-import { useEffect, useState, useRef } from "react";
-import { 
-  Gift, 
-  Sparkles, 
-  Menu, 
-  Search, 
-  ShoppingBag, 
-  X, 
-  ChevronDown, 
-  User, 
-  ArrowRight,
-  ShieldCheck,
-  Flame,
-  Crown
+import { usePathname } from "next/navigation";
+import {
+  Search,
+  ShoppingBag,
+  User,
+  Menu,
+  X,
+  ChevronDown,
+  Heart,
+  Sparkles,
 } from "lucide-react";
 import { useCartStore } from "@/lib/store";
-import SearchModal from "./SearchModal";
-import Marquee from "./Marquee";
+import { useAuth } from "@/lib/auth-context";
+import SearchModal from "@/components/SearchModal";
+import type { BrandTier } from "@/lib/catalog";
 
-interface SubLink {
-  label: string;
-  href: string;
-  tag?: string;
-  desc?: string;
+export interface NavBrandItem {
+  name: string;
+  slug: string;
+  tier: BrandTier;
+  count: number;
 }
 
-interface NavSection {
-  title: string;
-  links: SubLink[];
+interface NavbarProps {
+  topBrands?: NavBrandItem[];
 }
 
-interface NavPromo {
-  badge: string;
-  title: string;
-  desc: string;
-  code?: string;
-  ctaText: string;
-  ctaHref: string;
-}
+type MegaKey = "shop" | "brands" | null;
 
-interface NavItem {
-  label: string;
-  href: string;
-  badge?: string;
-  sections: NavSection[];
-  promo: NavPromo;
-}
-
-const NAV_MENU: NavItem[] = [
-  {
-    label: "All Perfumes",
-    href: "/collections/all",
-    badge: "2,300+ Bottles",
-    sections: [
-      {
-        title: "Curated Collections",
-        links: [
-          { label: "Explore Entire Catalog", href: "/collections/all", tag: "2,300+", desc: "All designer, Middle Eastern & niche EDPs" },
-          { label: "Best-Selling Compliment Pullers", href: "/collections/all?sort=price-desc", tag: "Top Rated", desc: "Most sought-after luxury fragrances" },
-          { label: "Budget Beasts Under ₹1,999", href: "/collections/all?sort=price-asc", tag: "Best Value", desc: "High-sillage everyday signatures" },
-          { label: "High-Concentration Extraits", href: "/collections/all", tag: "30%+ Oil", desc: "Beast-mode 14+ hour longevity" },
-          { label: "New UAE & Paris Restocks", href: "/collections/all", tag: "Just Landed", desc: "Fresh authentic imports from Dubai" },
-        ],
-      },
-      {
-        title: "By Olfactory Family",
-        links: [
-          { label: "Warm Amber & Vanilla Orientals", href: "/collections/all?q=amber", desc: "Rich, decadent & comforting sweetness" },
-          { label: "Smoky Oud, Leather & Dark Woods", href: "/collections/all?q=oud", desc: "Majestic Middle Eastern royal sillage" },
-          { label: "Crisp Citrus & Fresh Aquatics", href: "/collections/all?q=fresh", desc: "Energizing daytime & boardroom staples" },
-          { label: "Seductive Rose & White Musks", href: "/collections/all?q=floral", desc: "Romantic, velvety floral drydowns" },
-          { label: "Boozy Tobacco & Spices", href: "/collections/all?q=wood", desc: "Intoxicating evening & clubbing kings" },
-        ],
-      },
-    ],
-    promo: {
-      badge: "FREE 7ML TESTER",
-      title: "Complimentary Paradox Tester in Box",
-      desc: "Every order automatically includes our 7ML luxury EDP discovery tester in deluxe presentation packaging.",
-      code: "LUXURY25",
-      ctaText: "Shop Entire Catalog",
-      ctaHref: "/collections/all",
-    },
-  },
-  {
-    label: "Fragrance Brands",
-    href: "/brands",
-    badge: "136 Houses",
-    sections: [
-      {
-        title: "Arabian & Dubai Royals",
-        links: [
-          { label: "Lattafa Perfumes", href: "/brands/lattafa", tag: "Dubai Viral", desc: "Khamrah, Yara, Asad & Velvet Oud" },
-          { label: "Armaf & Club De Nuit", href: "/brands/armaf", tag: "Iconic", desc: "CDNIM Pure Parfum & Sillage Series" },
-          { label: "Afnan Perfumery", href: "/brands/afnan", tag: "Beast-Mode", desc: "9PM Eau De Parfum & Supremacy" },
-          { label: "Rasasi Perfumes", href: "/brands/rasasi", tag: "Dubai Royalty", desc: "Hawas for Him & Daarej Classics" },
-          { label: "French Avenue (Paris Corner)", href: "/brands/french-avenue", tag: "Trending", desc: "Amber Empire, Liquid Brun & More" },
-        ],
-      },
-      {
-        title: "Iconic Designer & Haute Parfums",
-        links: [
-          { label: "Christian Dior", href: "/brands/christian-dior", tag: "French Haute", desc: "Sauvage, Fahrenheit & Dior Homme" },
-          { label: "Tom Ford Private Blend", href: "/brands/tom-ford", tag: "Ultra Luxury", desc: "Ombré Leather & Tobacco Vanille" },
-          { label: "Yves Saint Laurent", href: "/brands/yves-saint-laurent", tag: "Designer King", desc: "Y Eau de Parfum & La Nuit" },
-          { label: "Versace Parfums", href: "/brands/versace", tag: "Classics", desc: "Eros Flame, Dylan Blue & Pour Homme" },
-          { label: "Browse All 136 Perfume Houses →", href: "/brands", tag: "Full Index", desc: "Complete A-Z brand directory" },
-        ],
-      },
-    ],
-    promo: {
-      badge: "100% ORIGINAL GUARANTEE",
-      title: "Direct Sourced Packaging",
-      desc: "Imported directly in sealed manufacturer packaging with verifiable batch codes and tamper-evident seals.",
-      code: "LUXURY25",
-      ctaText: "Explore 136 Brands",
-      ctaHref: "/brands",
-    },
-  },
-  {
-    label: "Harsh Beniwal EDPs",
-    href: "/harsh-beniwal/octopus/perfumes",
-    badge: "🔥 In-House",
-    sections: [
-      {
-        title: "Bold & Beast-Mode (Men & Unisex)",
-        links: [
-          { label: "Overlord 50ML EDP", href: "/products/overlord", tag: "Dior Sauvage DNA", desc: "Calabrian Bergamot, Sichuan Pepper & Ambroxan" },
-          { label: "Outlaw 50ML EDP", href: "/products/outlaw", tag: "TF Ombré Leather", desc: "Smoky Black Leather, Cardamom & Dark Amber" },
-          { label: "Somersault 50ML EDP", href: "/products/somersault", tag: "LV Imagination", desc: "Sparkling Citrus, Black Tea & Clean Ambrox" },
-          { label: "Your Move 50ML EDP", href: "/products/your-move", tag: "TF Oud Wood", desc: "Precious Oud, Sandalwood & Tonka Bean" },
-          { label: "Rhapsody 50ML EDP", href: "/products/rhapsody", tag: "Jazz Club DNA", desc: "Aged Boozy Rum, Pink Pepper & Tobacco Leaf" },
-        ],
-      },
-      {
-        title: "Seductive Unisex & Feminine",
-        links: [
-          { label: "Paradox 50ML EDP", href: "/products/paradox", tag: "LV Les Sables Roses", desc: "Grasse Centifolia Rose, Amber & Smoky Oud" },
-          { label: "Promised 50ML EDP", href: "/products/promised", tag: "Baccarat Rouge 540", desc: "Sweet Jasmine, Saffron, Ambergris & Cedar" },
-          { label: "Mirage 50ML EDP", href: "/products/mirage", tag: "LV Ombre Nomade", desc: "Wild Raspberry, Benzoin Tears & Dark Woods" },
-          { label: "Darling Women 50ML EDP", href: "/products/darling-women", tag: "Miss Dior DNA", desc: "Grasse Rose, Peony & Velvety White Musks" },
-        ],
-      },
-    ],
-    promo: {
-      badge: "25%+ FRENCH CONCENTRATION",
-      title: "12+ Hours Proven Longevity",
-      desc: "Formulated with imported French fragrance oils specifically engineered for Indian heat and maximum magnetic sillage.",
-      code: "LUXURY25",
-      ctaText: "Shop Harsh Beniwal Store",
-      ctaHref: "/harsh-beniwal/octopus/perfumes",
-    },
-  },
-  {
-    label: "Perfumes For Him",
-    href: "/collections/all",
-    sections: [
-      {
-        title: "Signatures by Occasion",
-        links: [
-          { label: "Everyday Office & Casual Clean", href: "/collections/all?q=fresh", desc: "Crisp bergamot, sea minerals & vetiver" },
-          { label: "Date Night & Evening Charmers", href: "/collections/all?q=amber", desc: "Warm vanilla, boozy spices & amber" },
-          { label: "Party & Clubbing Projection Kings", href: "/collections/all?q=beast", desc: "High-projection compliment magnets" },
-          { label: "Executive Boardroom Woods", href: "/collections/all?q=wood", desc: "Refined dry cedar, tobacco & dark leather" },
-        ],
-      },
-      {
-        title: "Curated Flagship Picks",
-        links: [
-          { label: "Overlord 50ML EDP (₹1,299)", href: "/products/overlord", tag: "Bestseller", desc: "The ultimate beast-mode fresh signature" },
-          { label: "Armaf Club De Nuit Intense", href: "/brands/armaf", tag: "Aventus DNA", desc: "Smoky birch, blackcurrant & musk" },
-          { label: "Afnan 9PM Eau De Parfum", href: "/brands/afnan", tag: "Party King", desc: "Sweet vanilla apple, lavender & cinnamon" },
-          { label: "Rasasi Hawas for Him", href: "/brands/rasasi", tag: "Aquatic", desc: "Plum, aquatic notes & ambergris" },
-        ],
-      },
-    ],
-    promo: {
-      badge: "MASCULINE ESSENTIALS",
-      title: "Beast-Mode Projection",
-      desc: "Handpicked masculine scents that cut through the day with exceptional projection and compliments.",
-      code: "LUXURY25",
-      ctaText: "Shop Men's Fragrances",
-      ctaHref: "/collections/all",
-    },
-  },
-  {
-    label: "Perfumes For Her",
-    href: "/products/darling-women",
-    sections: [
-      {
-        title: "Fragrance Aesthetics",
-        links: [
-          { label: "Floral Bloom & Grasse Roses", href: "/collections/all?q=floral", desc: "Fresh cut roses, peony & radiant blossoms" },
-          { label: "Sweet Gourmand, Vanilla & Berries", href: "/collections/all?q=vanilla", desc: "Creamy caramel, vanilla pods & fruit nectar" },
-          { label: "Sensual Amber & Evening Luxury", href: "/collections/all?q=amber", desc: "Warm resinous amber & silky skin musks" },
-          { label: "Breezy Daytime & Clean Linen", href: "/collections/all?q=fresh", desc: "Subtle, feminine and upliftingly fresh" },
-        ],
-      },
-      {
-        title: "Most Loved Selections",
-        links: [
-          { label: "Darling Women 50ML EDP", href: "/products/darling-women", tag: "Most Loved", desc: "Floral romance with Grasse rose & peony" },
-          { label: "Paradox 50ML EDP", href: "/products/paradox", tag: "Evening Rose", desc: "Opulent Centifolia rose & smoky amber" },
-          { label: "Promised 50ML EDP", href: "/products/promised", tag: "Sweet Amber", desc: "Sweet Baccarat Rouge 540 floral DNA" },
-          { label: "Lattafa Yara Eau De Parfum", href: "/brands/lattafa", tag: "Viral Dubai", desc: "Fluffy tropical vanilla & heliotrope" },
-        ],
-      },
-    ],
-    promo: {
-      badge: "DELUXE PRESENTATION",
-      title: "Free Paradox Tester Included",
-      desc: "Every bottle arrives in luxury presentation packaging with a free 7ML discovery tester included.",
-      code: "LUXURY25",
-      ctaText: "Shop Women's Scents",
-      ctaHref: "/collections/all",
-    },
-  },
+const SHOP_BY_CATEGORY = [
+  { label: "All Perfumes (1,700+)", href: "/collections/all" },
+  { label: "Perfumes for Men", href: "/collections/men" },
+  { label: "Perfumes for Women", href: "/collections/women" },
+  { label: "Unisex Fragrances", href: "/collections/unisex" },
+  { label: "Middle Eastern Houses", href: "/collections/middle-eastern-perfumes" },
+  { label: "Designer Houses", href: "/collections/designer-perfumes" },
+  { label: "Niche & Haute Parfumerie", href: "/collections/niche-perfumes" },
+  { label: "Miniatures & Discovery Sets", href: "/collections/miniatures" },
+  { label: "Gift Sets & Coffrets", href: "/collections/gift-sets" },
 ];
 
-export default function Navbar() {
-  const { totalItems, setIsOpen } = useCartStore();
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [expandedMobileItem, setExpandedMobileItem] = useState<string | null>("All Perfumes");
-  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+const SHOP_BY_FAMILY_OCCASION = [
+  { label: "Amber, Oud & Resins", href: "/collections/amber-oud" },
+  { label: "Woody & Vetiver", href: "/collections/woody" },
+  { label: "Citrus & Fresh", href: "/collections/citrus-fresh" },
+  { label: "Floral & White Blossom", href: "/collections/floral" },
+  { label: "Gourmand & Vanilla", href: "/collections/gourmand" },
+  { label: "Office & Daily Wear", href: "/collections/office" },
+  { label: "Date Night & Evening", href: "/collections/date-night" },
+  { label: "Wedding & Festive", href: "/collections/wedding-festive" },
+];
 
+const SHOP_BY_BUDGET_SIZE = [
+  { label: "Under ₹1,500", href: "/collections/under-1500" },
+  { label: "₹1,500 – ₹3,000", href: "/collections/1500-to-3000" },
+  { label: "₹3,000 – ₹5,000", href: "/collections/3000-to-5000" },
+  { label: "₹5,000 – ₹9,000", href: "/collections/5000-to-9000" },
+  { label: "Collector & Niche ₹9,000+", href: "/collections/premium" },
+  { label: "30ml & Travel Sizes", href: "/collections/size-30ml" },
+  { label: "50ml Signature Bottles", href: "/collections/size-50ml" },
+  { label: "100ml Full Bottles", href: "/collections/size-100ml" },
+];
+
+const FALLBACK_BRANDS: NavBrandItem[] = [
+  { name: "Lattafa", slug: "lattafa", tier: "middle-eastern", count: 116 },
+  { name: "Rasasi", slug: "rasasi", tier: "middle-eastern", count: 51 },
+  { name: "French Avenue", slug: "french-avenue", tier: "middle-eastern", count: 45 },
+  { name: "Afnan", slug: "afnan", tier: "middle-eastern", count: 37 },
+  { name: "Armaf", slug: "armaf", tier: "middle-eastern", count: 28 },
+  { name: "Christian Dior", slug: "christian-dior", tier: "designer", count: 39 },
+  { name: "Hermes", slug: "hermes", tier: "designer", count: 47 },
+  { name: "Tom Ford", slug: "tom-ford", tier: "designer", count: 36 },
+  { name: "Hugo Boss", slug: "hugo-boss", tier: "designer", count: 38 },
+  { name: "Paco Rabanne", slug: "paco-rabanne", tier: "designer", count: 34 },
+  { name: "Creed", slug: "creed", tier: "niche", count: 18 },
+  { name: "Guerlain", slug: "guerlain", tier: "niche", count: 32 },
+  { name: "Xerjoff", slug: "xerjoff", tier: "niche", count: 28 },
+  { name: "Memo Paris", slug: "memo-paris", tier: "niche", count: 27 },
+  { name: "Parfums de Marly", slug: "parfums-de-marly", tier: "niche", count: 21 },
+];
+
+const subscribeClient = () => () => {};
+function subscribeWishlist(cb: () => void) {
+  window.addEventListener("octopus-wishlist-change", cb);
+  window.addEventListener("storage", cb);
+  return () => {
+    window.removeEventListener("octopus-wishlist-change", cb);
+    window.removeEventListener("storage", cb);
+  };
+}
+function getWishlistSnapshot() {
+  try {
+    const raw = window.localStorage.getItem("octopus_wishlist");
+    const arr = raw ? JSON.parse(raw) : [];
+    return Array.isArray(arr) ? arr.length : 0;
+  } catch {
+    return 0;
+  }
+}
+
+export default function Navbar({ topBrands }: NavbarProps) {
+  const pathname = usePathname();
+  const { totalItems, setIsOpen } = useCartStore();
+  const { user } = useAuth();
+
+  const mounted = useSyncExternalStore(subscribeClient, () => true, () => false);
+  const wishlistCount = useSyncExternalStore(
+    subscribeWishlist,
+    getWishlistSnapshot,
+    () => 0
+  );
+
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [activeMega, setActiveMega] = useState<MegaKey>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileSection, setMobileSection] = useState<string | null>("shop");
+
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    setActiveMega(null);
+    setMobileOpen(false);
+  }
+
+  const navWrapRef = useRef<HTMLDivElement>(null);
+  const drawerRef = useRef<HTMLDialogElement>(null);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const brandSource = topBrands && topBrands.length > 0 ? topBrands : FALLBACK_BRANDS;
+  const designerBrands = brandSource.filter((b) => b.tier === "designer").slice(0, 14);
+  const meBrands = brandSource.filter((b) => b.tier === "middle-eastern").slice(0, 14);
+  const nicheBrands = brandSource.filter((b) => b.tier === "niche").slice(0, 14);
+
+  // Sync mobile native drawer <dialog>
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const dialog = drawerRef.current;
+    if (!dialog) return;
+    if (mobileOpen && !dialog.open) {
+      dialog.showModal();
+    } else if (!mobileOpen && dialog.open) {
+      dialog.close();
+    }
+  }, [mobileOpen]);
+
+  // Esc & outside pointer close for desktop Mega Menu
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setActiveMega(null);
+    };
+    const onPointerDown = (e: PointerEvent) => {
+      if (navWrapRef.current && !navWrapRef.current.contains(e.target as Node)) {
+        setActiveMega(null);
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
   }, []);
 
-  const handleMouseEnter = (label: string) => {
-    if (closeTimeoutRef.current) {
-      clearTimeout(closeTimeoutRef.current);
-      closeTimeoutRef.current = null;
+  const openMegaHover = (key: MegaKey) => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    setActiveMega(key);
+  };
+
+  const scheduleCloseMega = () => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = setTimeout(() => setActiveMega(null), 160);
+  };
+
+  const closeAllDesktop = () => setActiveMega(null);
+
+  const isRouteActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+
+  const handleDrawerBackdropClick = (e: React.MouseEvent<HTMLDialogElement>) => {
+    const panel = drawerRef.current?.firstElementChild;
+    if (!panel) return;
+    const rect = panel.getBoundingClientRect();
+    if (e.clientX > rect.right || e.clientX < rect.left || e.clientY > rect.bottom || e.clientY < rect.top) {
+      setMobileOpen(false);
     }
-    setActiveDropdown(label);
   };
-
-  const handleMouseLeave = () => {
-    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
-    closeTimeoutRef.current = setTimeout(() => {
-      setActiveDropdown(null);
-    }, 150);
-  };
-
-  const toggleMobileItem = (label: string) => {
-    setExpandedMobileItem(prev => (prev === label ? null : label));
-  };
-
-  const currentActiveItem = NAV_MENU.find(m => m.label === activeDropdown);
 
   return (
-    <>
-      {/* Top Brand Notification Hairline */}
-      <div className="w-full bg-stone-900 text-stone-200 py-2 px-3 sm:px-4 flex items-center justify-center gap-2 sm:gap-4 text-[11px] sm:text-[12px] font-medium border-b border-stone-800 relative z-50">
-        <div className="flex items-center gap-1.5 truncate">
-          <Sparkles size={13} className="text-amber-400 shrink-0" />
-          <span className="font-bold tracking-wide text-white truncate">Flat 25% OFF on 130+ Luxury Fragrance Houses</span>
+    <div ref={navWrapRef} onMouseLeave={scheduleCloseMega}>
+      {/* Compact Announcement Bar (Real Store Policies Only) */}
+      <div className="bg-[#1F1D1B] text-[#F7F6F3] text-[11px] sm:text-xs border-b border-[#35312D]">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-center sm:justify-between gap-4">
+          <p className="truncate font-medium tracking-[0.04em]">
+            100% Authentic Sealed Fragrances · Free Express Shipping Across India
+          </p>
+          <p className="hidden sm:flex items-center gap-2 shrink-0 text-[#D4CFC7]">
+            <Sparkles size={12} className="text-[#9A7953]" />
+            <span>
+              Free 7ML Paradox EDP Tester on All Orders · Extra 25% OFF Code:{" "}
+              <strong className="text-white font-semibold tracking-wider">LUXURY25</strong>
+            </span>
+          </p>
         </div>
-        <span className="text-stone-600 hidden md:inline">•</span>
-        <Link href="/octopus-perfume-coupon-code" className="hidden sm:flex items-center gap-1.5 hover:opacity-90 transition-opacity shrink-0">
-          <span className="text-stone-300">Code:</span>
-          <strong className="font-mono bg-amber-400 text-stone-950 px-2 py-0.5 rounded text-[10px] sm:text-[11px] font-bold shadow-xs">
-            LUXURY25
-          </strong>
-        </Link>
-        <span className="text-stone-600 hidden lg:inline">•</span>
-        <div className="text-stone-300 hidden lg:flex items-center gap-1 shrink-0">
-          <Gift size={13} className="text-amber-400 shrink-0" />
-          <span>Free 7ML Paradox Tester Included</span>
-        </div>
-      </div>
-      
-      {/* Mobile Marquee Strip */}
-      <div className="block md:hidden relative z-40">
-        <Link href="/collections/all">
-          <Marquee />
-        </Link>
       </div>
 
-      {/* Full-Page Background Hover Overlay Scrim */}
-      <div 
-        className={`fixed inset-0 top-[116px] bg-stone-950/40 backdrop-blur-[3px] z-30 transition-all duration-300 pointer-events-none ${
-          activeDropdown ? "opacity-100 visible" : "opacity-0 invisible"
-        }`} 
-        aria-hidden="true"
-      />
-      
-      {/* Main Top Navigation Header */}
-      <header
-        className={`sticky top-0 w-full z-40 transition-all duration-200 bg-white/95 backdrop-blur-md border-b border-stone-200/90 ${
-          scrolled ? "shadow-sm" : ""
-        }`}
-        onMouseLeave={handleMouseLeave}
-      >
-        <div className="mx-auto max-w-[1440px] px-3 sm:px-6 md:px-8 h-18 sm:h-20 flex items-center justify-between relative">
-          
-          {/* Flush Left: Brand Wordmark */}
-          <Link
-            href="/"
-            className="flex flex-col items-start group shrink-0 select-none mr-2 sm:mr-4"
-            onClick={() => setActiveDropdown(null)}
-          >
-            <div className="flex items-center gap-1.5 sm:gap-2">
-              <span className="font-serif tracking-[0.2em] sm:tracking-[0.22em] text-xl sm:text-2xl font-bold uppercase text-stone-900 group-hover:text-black transition-colors">
+      {/* Main Sticky Header */}
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[#E8E6E1]">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-[66px] sm:h-[72px] flex items-center justify-between gap-3 sm:gap-5">
+          {/* Left: Mobile Drawer Button + Brand Wordmark */}
+          <div className="flex items-center gap-2.5 shrink-0">
+            <button
+              type="button"
+              onClick={() => setMobileOpen(true)}
+              aria-label="Open navigation menu"
+              className="lg:hidden p-2 -ml-2 rounded-[6px] text-[#242424] hover:bg-[#F7F6F3] transition-colors cursor-pointer"
+            >
+              <Menu size={21} />
+            </button>
+
+            <Link
+              href="/"
+              className="flex flex-col leading-none group py-1"
+              onClick={closeAllDesktop}
+            >
+              <span className="font-serif text-[22px] sm:text-[26px] font-semibold tracking-[0.14em] text-[#242424] group-hover:text-[#9A7953] transition-colors">
                 OCTOPUS
               </span>
-              <span className="text-[9px] bg-amber-50 text-amber-900 font-bold px-1.5 py-0.5 rounded border border-amber-200/80 uppercase tracking-widest hidden sm:inline-block">
-                Luxury
+              <span className="text-[9px] uppercase tracking-[0.26em] text-[#777777] font-medium mt-0.5 hidden sm:block">
+                Fine Fragrances
               </span>
+            </Link>
+          </div>
+
+          {/* Center: Desktop Navigation Links & Mega Menu Triggers */}
+          <nav
+            aria-label="Primary navigation"
+            className="hidden lg:flex items-center justify-center gap-5 xl:gap-7"
+          >
+            <div onMouseEnter={() => openMegaHover("shop")}>
+              <button
+                type="button"
+                aria-expanded={activeMega === "shop"}
+                aria-controls="mega-menu-shop"
+                onClick={() => setActiveMega((m) => (m === "shop" ? null : "shop"))}
+                className={`inline-flex items-center gap-1 py-2 text-[13px] font-medium whitespace-nowrap border-b-2 transition-colors cursor-pointer ${
+                  activeMega === "shop"
+                    ? "border-[#1F1D1B] text-[#1F1D1B] font-semibold"
+                    : "border-transparent text-[#3E3C38] hover:text-[#1F1D1B]"
+                }`}
+              >
+                Shop Perfumes
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform duration-150 ${
+                    activeMega === "shop" ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
             </div>
-            <span className="text-[9px] sm:text-[10px] uppercase font-bold tracking-[0.22em] sm:tracking-[0.25em] text-stone-500 -mt-0.5 group-hover:text-amber-800 transition-colors">
-              HAUTE PARFUMERIE
-            </span>
-          </Link>
 
-          {/* Desktop Center Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2 h-full">
-            {NAV_MENU.map((item) => {
-              const isActive = activeDropdown === item.label;
+            <div onMouseEnter={() => openMegaHover("brands")}>
+              <button
+                type="button"
+                aria-expanded={activeMega === "brands"}
+                aria-controls="mega-menu-brands"
+                onClick={() => setActiveMega((m) => (m === "brands" ? null : "brands"))}
+                className={`inline-flex items-center gap-1 py-2 text-[13px] font-medium whitespace-nowrap border-b-2 transition-colors cursor-pointer ${
+                  activeMega === "brands" || isRouteActive("/brands")
+                    ? "border-[#1F1D1B] text-[#1F1D1B] font-semibold"
+                    : "border-transparent text-[#3E3C38] hover:text-[#1F1D1B]"
+                }`}
+              >
+                Brands A–Z
+                <ChevronDown
+                  size={14}
+                  className={`transition-transform duration-150 ${
+                    activeMega === "brands" ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+            </div>
 
+            {[
+              { label: "Middle East", href: "/collections/middle-eastern-perfumes" },
+              { label: "Designer", href: "/collections/designer-perfumes" },
+              { label: "Niche", href: "/collections/niche-perfumes" },
+              { label: "Miniatures", href: "/collections/miniatures" },
+              { label: "Bestsellers", href: "/collections/bestsellers" },
+              { label: "Journal", href: "/journal" },
+            ].map((item) => {
+              const active = isRouteActive(item.href);
               return (
-                <div 
-                  key={item.label} 
-                  className="h-full flex items-center"
-                  onMouseEnter={() => handleMouseEnter(item.label)}
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onMouseEnter={closeAllDesktop}
+                  onClick={closeAllDesktop}
+                  aria-current={active ? "page" : undefined}
+                  className={`py-2 text-[13px] whitespace-nowrap border-b-2 transition-colors ${
+                    active
+                      ? "border-[#1F1D1B] text-[#1F1D1B] font-semibold"
+                      : "border-transparent font-medium text-[#3E3C38] hover:text-[#1F1D1B]"
+                  }`}
                 >
-                  <Link
-                    href={item.href}
-                    className={`text-[12px] xl:text-[13px] font-semibold tracking-wide px-3 xl:px-3.5 py-2 rounded-full transition-all duration-150 flex items-center gap-1 xl:gap-1.5 cursor-pointer select-none whitespace-nowrap ${
-                      isActive
-                        ? "bg-stone-900 text-white shadow-xs"
-                        : "text-stone-800 hover:text-stone-950 hover:bg-stone-100/90"
-                    }`}
-                  >
-                    <span>{item.label}</span>
-                    {item.badge && (
-                      <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-bold transition-colors hidden xl:inline-block ${
-                        isActive 
-                          ? "bg-amber-400 text-stone-950" 
-                          : "bg-amber-100/90 text-amber-900 border border-amber-200/80"
-                      }`}>
-                        {item.badge}
-                      </span>
-                    )}
-                    <ChevronDown 
-                      size={13} 
-                      className={`transition-transform duration-200 ${
-                        isActive 
-                          ? "rotate-180 text-amber-400" 
-                          : "text-stone-400 group-hover:text-stone-700"
-                      }`} 
-                    />
-                  </Link>
-                </div>
+                  {item.label}
+                </Link>
               );
             })}
           </nav>
 
-          {/* Right Area: Search Trigger, Account, Cart, Mobile Drawer Button */}
+          {/* Right: Utility Actions */}
           <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
-            {/* Search Trigger Button */}
             <button
+              type="button"
               onClick={() => setSearchOpen(true)}
-              className="flex items-center gap-2 sm:gap-2.5 border border-stone-200 hover:border-stone-400/80 bg-stone-50/80 hover:bg-white rounded-full h-9 sm:h-10 px-2.5 sm:px-3.5 xl:px-4 shadow-2xs hover:shadow-xs transition-all duration-200 cursor-pointer text-stone-800"
-              aria-label="Search perfumes"
+              aria-label="Open product search"
+              className="inline-flex items-center gap-2 px-2.5 xl:px-3.5 py-2 rounded-[6px] border border-[#E8E6E1] bg-[#F7F6F3] hover:border-[#D4CFC7] text-[#3E3C38] hover:text-[#242424] transition-colors cursor-pointer"
             >
-              <Search size={15} className="text-stone-700 shrink-0" strokeWidth={2.2} />
-              <span className="text-[12px] xl:text-[13px] font-medium text-stone-600 hidden md:inline whitespace-nowrap">
-                <span className="hidden xl:inline">Search 2,300+ perfumes...</span>
-                <span className="xl:hidden">Search...</span>
+              <Search size={16} />
+              <span className="hidden xl:inline text-xs text-[#777777] pr-3">
+                Search scents &amp; houses...
               </span>
-              <kbd className="hidden 2xl:inline-flex items-center gap-0.5 bg-white text-stone-500 text-[10px] px-1.5 py-0.5 rounded font-mono border border-stone-200 shadow-2xs">
-                ⌘K
-              </kbd>
             </button>
 
-            {/* Account Button */}
-            <Link 
-              href="/account" 
-              aria-label="Account"
-              className="text-stone-700 hover:text-stone-950 w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-full hover:bg-stone-100 transition-colors"
-              title="Your Account"
+            <Link
+              href="/account?tab=favourites"
+              aria-label="Wishlist"
+              className="relative hidden sm:inline-flex items-center justify-center p-2 rounded-[6px] text-[#3E3C38] hover:bg-[#F7F6F3] hover:text-[#242424] transition-colors"
             >
-              <User size={18} strokeWidth={2} />
-            </Link>
-
-            <span className="h-4 w-px bg-stone-200 hidden sm:inline-block"></span>
-
-            {/* Cart Button */}
-            <button
-              onClick={() => setIsOpen(true)}
-              className="flex items-center gap-1.5 bg-stone-900 hover:bg-black text-white h-9 sm:h-10 px-3 sm:px-4 rounded-full text-[12px] font-semibold transition-all cursor-pointer shadow-xs active:scale-95 shrink-0"
-              aria-label="Shopping Cart"
-            >
-              <ShoppingBag size={14} strokeWidth={2.2} />
-              <span className="hidden sm:inline">Cart</span>
-              {totalItems() > 0 && (
-                <span className="w-5 h-5 rounded-full bg-amber-400 text-stone-950 font-bold text-[10px] flex items-center justify-center shadow-xs">
-                  {totalItems()}
+              <Heart size={19} />
+              {mounted && wishlistCount > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 px-1 rounded-full bg-[#9A7953] text-white text-[10px] font-bold flex items-center justify-center tabular-nums">
+                  {wishlistCount}
                 </span>
               )}
-            </button>
+            </Link>
 
-            {/* Mobile Hamburger Drawer Trigger */}
-            <button
-              className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-stone-800 hover:bg-stone-100 rounded-full transition-colors cursor-pointer"
-              aria-label="Open menu"
-              onClick={() => setMobileOpen(true)}
+            <Link
+              href="/account"
+              aria-label={user ? "My account" : "Sign in"}
+              className="inline-flex items-center gap-1.5 p-2 rounded-[6px] text-[#3E3C38] hover:bg-[#F7F6F3] hover:text-[#242424] transition-colors"
             >
-              <Menu size={22} strokeWidth={2.2} />
+              <User size={19} />
+              <span className="hidden xl:inline text-xs font-medium">
+                {user ? "Account" : "Sign in"}
+              </span>
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => setIsOpen(true)}
+              aria-label="Open shopping cart"
+              className="relative inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-[6px] bg-[#1F1D1B] hover:bg-[#35312D] text-white text-xs font-semibold transition-colors cursor-pointer"
+            >
+              <ShoppingBag size={16} />
+              <span className="tabular-nums">{mounted ? totalItems() : 0}</span>
             </button>
           </div>
         </div>
 
-        {/* Global Desktop Mega-Menu Dropdown Panel (Anchored to full header, 100% responsive & centered) */}
-        <div 
-          className={`hidden lg:block absolute top-full left-0 right-0 w-full pt-2 transition-all duration-200 z-50 ${
-            activeDropdown && currentActiveItem
-              ? "opacity-100 translate-y-0 pointer-events-auto visible" 
-              : "opacity-0 translate-y-2 pointer-events-none invisible"
-          }`}
-          onMouseEnter={() => {
-            if (closeTimeoutRef.current) {
-              clearTimeout(closeTimeoutRef.current);
-              closeTimeoutRef.current = null;
-            }
-          }}
-          onMouseLeave={handleMouseLeave}
-        >
-          <div className="mx-auto max-w-[1180px] px-4 sm:px-6 w-full">
-            {currentActiveItem && (
-              <div className="w-full bg-white/98 backdrop-blur-2xl rounded-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.18)] border border-stone-200/90 p-6 xl:p-7 overflow-hidden animate-in fade-in zoom-in-95 duration-150">
-                <div className="grid grid-cols-12 gap-6">
-                  
-                  {/* Left & Middle: Two Category Link Columns */}
-                  <div className="col-span-8 grid grid-cols-2 gap-6">
-                    {currentActiveItem.sections.map((section, sIdx) => (
-                      <div key={sIdx} className="space-y-3">
-                        <div className="flex items-center gap-2 pb-1.5 border-b border-stone-100">
-                          <span className="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-                          <h4 className="text-[11px] font-bold uppercase tracking-wider text-stone-500">
-                            {section.title}
-                          </h4>
-                        </div>
-                        <div className="space-y-1">
-                          {section.links.map((sub, subIdx) => (
-                            <Link
-                              key={subIdx}
-                              href={sub.href}
-                              onClick={() => setActiveDropdown(null)}
-                              className="group/link flex items-start justify-between p-2 rounded-xl hover:bg-stone-50 hover:shadow-2xs transition-all"
-                            >
-                              <div className="min-w-0 pr-2">
-                                <span className="text-[13px] font-semibold text-stone-800 group-hover/link:text-amber-800 transition-colors block leading-snug">
-                                  {sub.label}
-                                </span>
-                                {sub.desc && (
-                                  <span className="text-[11px] text-stone-500 leading-tight block mt-0.5 truncate">
-                                    {sub.desc}
-                                  </span>
-                                )}
-                              </div>
-                              {sub.tag && (
-                                <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-stone-100 text-stone-600 group-hover/link:bg-amber-100 group-hover/link:text-amber-900 shrink-0 mt-0.5">
-                                  {sub.tag}
-                                </span>
-                              )}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Right: Featured Luxury Promo Showcase Card */}
-                  <div className="col-span-4">
-                    <div className="h-full bg-gradient-to-br from-stone-900 via-stone-900 to-stone-950 text-white rounded-xl p-5 flex flex-col justify-between border border-stone-800 shadow-md relative overflow-hidden group/tile">
-                      
-                      {/* Subtle Ambient Glow */}
-                      <div className="absolute -top-12 -right-12 w-32 h-32 bg-amber-500/15 rounded-full blur-2xl pointer-events-none group-hover/tile:bg-amber-500/25 transition-all"></div>
-                      
-                      <div className="relative z-10">
-                        <span className="inline-flex items-center gap-1.5 bg-amber-400/20 text-amber-300 border border-amber-400/30 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider mb-3">
-                          <Sparkles size={11} className="text-amber-400" />
-                          {currentActiveItem.promo.badge}
-                        </span>
-                        <h3 className="font-serif text-lg font-bold text-white mb-2 leading-snug">
-                          {currentActiveItem.promo.title}
-                        </h3>
-                        <p className="text-xs text-stone-300 leading-relaxed mb-4">
-                          {currentActiveItem.promo.desc}
-                        </p>
-                        
-                        {currentActiveItem.promo.code && (
-                          <div className="bg-stone-800/80 border border-stone-700 rounded-lg p-2.5 mb-4 flex items-center justify-between">
-                            <span className="text-[11px] text-stone-400 font-medium">Coupon Code:</span>
-                            <strong className="font-mono text-amber-300 text-xs tracking-wider bg-stone-900 px-2 py-0.5 rounded border border-amber-400/30">
-                              {currentActiveItem.promo.code}
-                            </strong>
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="relative z-10 pt-2 border-t border-stone-800/80">
-                        <Link
-                          href={currentActiveItem.promo.ctaHref}
-                          onClick={() => setActiveDropdown(null)}
-                          className="inline-flex items-center justify-center gap-1.5 w-full py-2.5 px-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-stone-950 font-bold text-xs rounded-lg transition-all shadow-xs active:scale-95"
-                        >
-                          <span>{currentActiveItem.promo.ctaText}</span>
-                          <ArrowRight size={13} />
-                        </Link>
-                      </div>
-
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Mobile Navigation Drawer */}
-        {mobileOpen && (
-          <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex lg:hidden animate-in fade-in duration-200">
-            <div className="w-[88%] max-w-sm bg-white border-r border-[#ebebeb] h-full flex flex-col shadow-2xl overflow-y-auto">
-              
-              {/* Drawer Header */}
-              <div className="h-16 flex items-center justify-between px-5 border-b border-[#ebebeb] bg-stone-900 text-white shrink-0">
-                <div className="flex items-center gap-2">
-                  <span className="font-serif text-xl font-bold uppercase tracking-wider text-white">OCTOPUS</span>
-                  <span className="text-amber-400 text-xs uppercase tracking-widest font-mono font-bold bg-white/10 px-2 py-0.5 rounded">Luxury</span>
-                </div>
-                <button 
-                  onClick={() => setMobileOpen(false)} 
-                  aria-label="Close menu" 
-                  className="w-8 h-8 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center text-white active:scale-95 cursor-pointer transition-colors"
-                >
-                  <X size={18} strokeWidth={2.2} />
-                </button>
-              </div>
-
-              {/* Mobile Quick Search Bar */}
-              <div className="p-3.5 border-b border-stone-200 bg-stone-50/80">
-                <button
-                  onClick={() => {
-                    setMobileOpen(false);
-                    setSearchOpen(true);
-                  }}
-                  className="w-full flex items-center gap-2.5 bg-white border border-stone-300 rounded-xl px-3.5 py-2.5 text-xs text-stone-500 shadow-2xs hover:border-stone-400 transition-colors"
-                >
-                  <Search size={15} className="text-stone-400" />
-                  <span>Search 2,300+ perfumes...</span>
-                </button>
-              </div>
-
-              {/* Mobile Promo Box */}
-              <div className="p-4 bg-gradient-to-r from-stone-50 via-amber-50/40 to-yellow-50/30 border-b border-stone-200">
-                <div className="flex items-center gap-1.5 text-amber-900 font-bold text-xs uppercase tracking-wide mb-1">
-                  <Sparkles size={13} className="text-amber-600" />
-                  <span>Flat 25% OFF Code</span>
-                </div>
-                <p className="text-[12px] text-stone-600 leading-snug mb-2">
-                  Use coupon <strong className="font-mono bg-white px-2 py-0.5 rounded border border-amber-300 text-stone-900">LUXURY25</strong> for 25% OFF + Free 7ML Paradox tester!
+        {/* Desktop Mega Menu Panels */}
+        {activeMega === "shop" && (
+          <div
+            id="mega-menu-shop"
+            onMouseEnter={() => openMegaHover("shop")}
+            className="hidden lg:block absolute left-0 right-0 top-full bg-white border-b border-[#E8E6E1] shadow-[var(--shadow-mega)] z-40"
+          >
+            <div className="max-w-[1400px] mx-auto px-8 py-8 grid grid-cols-12 gap-8">
+              <div className="col-span-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#9A7953] mb-3">
+                  By Category &amp; Tier
                 </p>
-                <Link
-                  href="/collections/all"
-                  onClick={() => setMobileOpen(false)}
-                  className="inline-flex items-center justify-center w-full py-2 bg-stone-900 hover:bg-black text-white font-semibold text-xs rounded-lg shadow-xs"
-                >
-                  Shop Entire Catalog &rarr;
-                </Link>
-              </div>
-
-              {/* Drawer Links Accordion */}
-              <div className="p-4 space-y-2.5 flex-1">
-                {NAV_MENU.map((item) => {
-                  const isExpanded = expandedMobileItem === item.label;
-
-                  return (
-                    <div key={item.label} className="bg-stone-50/90 border border-stone-200/80 rounded-xl overflow-hidden transition-all">
-                      <button
-                        onClick={() => toggleMobileItem(item.label)}
-                        className="w-full text-left p-3.5 flex items-center justify-between cursor-pointer hover:bg-stone-100/60 transition-colors"
+                <ul className="space-y-2">
+                  {SHOP_BY_CATEGORY.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        onClick={closeAllDesktop}
+                        className="text-sm text-[#3E3C38] hover:text-[#1F1D1B] hover:underline underline-offset-4 transition-colors block"
                       >
-                        <div className="flex items-center gap-2">
-                          <span className="text-xs uppercase tracking-wider font-bold text-stone-900">
-                            {item.label}
-                          </span>
-                          {item.badge && (
-                            <span className="text-[9px] bg-stone-900 text-amber-400 px-1.5 py-0.5 rounded-full font-bold">
-                              {item.badge}
-                            </span>
-                          )}
-                        </div>
-                        <ChevronDown 
-                          size={15} 
-                          className={`text-stone-500 transition-transform duration-200 ${
-                            isExpanded ? "rotate-180 text-amber-700" : ""
-                          }`} 
-                        />
-                      </button>
-
-                      {isExpanded && (
-                        <div className="px-3.5 pb-3.5 pt-1 border-t border-stone-200/60 bg-white space-y-3">
-                          {item.sections.map((section, sIdx) => (
-                            <div key={sIdx} className="space-y-1.5">
-                              <span className="text-[10px] uppercase font-bold text-stone-400 tracking-wider block">
-                                {section.title}
-                              </span>
-                              <div className="space-y-1 pl-1">
-                                {section.links.map((sub, subIdx) => (
-                                  <Link
-                                    key={subIdx}
-                                    href={sub.href}
-                                    onClick={() => setMobileOpen(false)}
-                                    className="flex items-center justify-between py-2 px-2.5 rounded-lg hover:bg-stone-50 text-xs font-medium text-stone-700 hover:text-stone-950 transition-colors"
-                                  >
-                                    <span>{sub.label}</span>
-                                    {sub.tag && (
-                                      <span className="text-[8px] font-bold px-1.5 py-0.5 rounded bg-stone-100 text-stone-500">
-                                        {sub.tag}
-                                      </span>
-                                    )}
-                                  </Link>
-                                ))}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              {/* Drawer Footer Account Link */}
-              <div className="p-4 border-t border-stone-200 bg-stone-50 shrink-0">
+              <div className="col-span-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#9A7953] mb-3">
+                  By Family &amp; Occasion
+                </p>
+                <ul className="space-y-2">
+                  {SHOP_BY_FAMILY_OCCASION.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        onClick={closeAllDesktop}
+                        className="text-sm text-[#3E3C38] hover:text-[#1F1D1B] hover:underline underline-offset-4 transition-colors block"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="col-span-3">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#9A7953] mb-3">
+                  By Budget &amp; Bottle Size
+                </p>
+                <ul className="space-y-2">
+                  {SHOP_BY_BUDGET_SIZE.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        onClick={closeAllDesktop}
+                        className="text-sm text-[#3E3C38] hover:text-[#1F1D1B] hover:underline underline-offset-4 transition-colors block"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="col-span-3 bg-[#F7F6F3] border border-[#E8E6E1] rounded-[8px] p-5 flex flex-col justify-between">
+                <div>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#9A7953]">
+                    Signature Series
+                  </span>
+                  <h3 className="font-serif text-xl font-semibold text-[#242424] mt-1 mb-2">
+                    Harsh Beniwal × Octopus
+                  </h3>
+                  <p className="text-xs text-[#5C5954] leading-relaxed">
+                    Nine 50ML Eau de Parfums formulated with 25%+ imported French oils for lasting sillage.
+                  </p>
+                </div>
                 <Link
-                  href="/account"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center gap-2 py-2.5 px-4 bg-white border border-stone-300 rounded-xl text-xs font-bold text-stone-800 hover:bg-stone-100 transition-colors shadow-2xs"
+                  href="/harsh-beniwal/octopus/perfumes"
+                  onClick={closeAllDesktop}
+                  className="mt-5 btn-luxury-primary py-2.5 px-4 text-[11px] w-full"
                 >
-                  <User size={15} />
-                  <span>My Account & Orders</span>
+                  Explore Flagship Line
                 </Link>
               </div>
-
             </div>
-            <div className="flex-1" onClick={() => setMobileOpen(false)}></div>
           </div>
         )}
 
-        <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+        {activeMega === "brands" && (
+          <div
+            id="mega-menu-brands"
+            onMouseEnter={() => openMegaHover("brands")}
+            className="hidden lg:block absolute left-0 right-0 top-full bg-white border-b border-[#E8E6E1] shadow-[var(--shadow-mega)] z-40"
+          >
+            <div className="max-w-[1400px] mx-auto px-8 py-8 grid grid-cols-12 gap-8">
+              <div className="col-span-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#9A7953] mb-3">
+                  Middle Eastern Powerhouses
+                </p>
+                <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+                  {meBrands.map((b) => (
+                    <Link
+                      key={b.slug}
+                      href={`/brands/${b.slug}`}
+                      onClick={closeAllDesktop}
+                      className="text-[13px] text-[#3E3C38] hover:text-[#1F1D1B] hover:underline underline-offset-4 truncate py-0.5"
+                    >
+                      {b.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div className="col-span-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#9A7953] mb-3">
+                  Designer Fragrance Houses
+                </p>
+                <div className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+                  {designerBrands.map((b) => (
+                    <Link
+                      key={b.slug}
+                      href={`/brands/${b.slug}`}
+                      onClick={closeAllDesktop}
+                      className="text-[13px] text-[#3E3C38] hover:text-[#1F1D1B] hover:underline underline-offset-4 truncate py-0.5"
+                    >
+                      {b.name}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              <div className="col-span-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#9A7953] mb-3">
+                  Niche &amp; Haute Parfumerie
+                </p>
+                <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 mb-5">
+                  {nicheBrands.map((b) => (
+                    <Link
+                      key={b.slug}
+                      href={`/brands/${b.slug}`}
+                      onClick={closeAllDesktop}
+                      className="text-[13px] text-[#3E3C38] hover:text-[#1F1D1B] hover:underline underline-offset-4 truncate py-0.5"
+                    >
+                      {b.name}
+                    </Link>
+                  ))}
+                </div>
+
+                <Link
+                  href="/brands"
+                  onClick={closeAllDesktop}
+                  className="btn-luxury-secondary w-full py-2.5 text-xs"
+                >
+                  Browse Full A–Z Directory ({brandSource.length}+ Houses) →
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </header>
-    </>
+
+      {/* Mobile Navigation Drawer (<dialog> modal per modern-web-guidance) */}
+      <dialog
+        ref={drawerRef}
+        closedby="any"
+        data-side="left"
+        onCancel={(e) => {
+          e.preventDefault();
+          setMobileOpen(false);
+        }}
+        onClick={handleDrawerBackdropClick}
+        aria-label="Mobile menu"
+        className="fc-drawer"
+      >
+        <div className="fc-drawer-panel w-[min(88vw,380px)] h-full bg-white flex flex-col border-r border-[#E8E6E1] shadow-2xl">
+          <div className="px-5 py-4 border-b border-[#E8E6E1] flex items-center justify-between bg-[#F7F6F3]">
+            <Link href="/" onClick={() => setMobileOpen(false)} className="font-serif text-xl font-semibold tracking-[0.14em] text-[#242424]">
+              OCTOPUS
+            </Link>
+            <button
+              type="button"
+              onClick={() => setMobileOpen(false)}
+              aria-label="Close navigation menu"
+              className="p-2 rounded-full hover:bg-white text-[#242424] cursor-pointer"
+            >
+              <X size={20} />
+            </button>
+          </div>
+
+          <div className="flex-1 overflow-y-auto px-5 py-4 space-y-2">
+            {/* Direct Quick Links */}
+            <div className="grid grid-cols-2 gap-2 pb-4 border-b border-[#E8E6E1]">
+              <Link
+                href="/collections/bestsellers"
+                onClick={() => setMobileOpen(false)}
+                className="px-3 py-2.5 rounded-[6px] bg-[#F7F6F3] text-xs font-semibold text-[#242424] text-center"
+              >
+                Bestsellers
+              </Link>
+              <Link
+                href="/collections/new-arrivals"
+                onClick={() => setMobileOpen(false)}
+                className="px-3 py-2.5 rounded-[6px] bg-[#F7F6F3] text-xs font-semibold text-[#242424] text-center"
+              >
+                New Arrivals
+              </Link>
+              <Link
+                href="/collections/middle-eastern-perfumes"
+                onClick={() => setMobileOpen(false)}
+                className="px-3 py-2.5 rounded-[6px] bg-[#F7F6F3] text-xs font-semibold text-[#242424] text-center"
+              >
+                Middle East
+              </Link>
+              <Link
+                href="/brands"
+                onClick={() => setMobileOpen(false)}
+                className="px-3 py-2.5 rounded-[6px] bg-[#F7F6F3] text-xs font-semibold text-[#242424] text-center"
+              >
+                Brands A–Z
+              </Link>
+            </div>
+
+            {/* Accordion Groups using <button aria-expanded> (no <details> inside navbar!) */}
+            {[
+              { id: "shop", label: "Shop by Category", links: SHOP_BY_CATEGORY },
+              { id: "families", label: "Notes, Family & Occasion", links: SHOP_BY_FAMILY_OCCASION },
+              { id: "budget", label: "Shop by Budget & Size", links: SHOP_BY_BUDGET_SIZE },
+            ].map((group) => {
+              const expanded = mobileSection === group.id;
+              return (
+                <div key={group.id} className="border-b border-[#E8E6E1] pb-2">
+                  <button
+                    type="button"
+                    aria-expanded={expanded}
+                    aria-controls={`mob-sec-${group.id}`}
+                    onClick={() => setMobileSection(expanded ? null : group.id)}
+                    className="w-full py-3 flex items-center justify-between text-left text-sm font-semibold text-[#242424] cursor-pointer"
+                  >
+                    <span>{group.label}</span>
+                    <ChevronDown
+                      size={16}
+                      className={`text-[#777777] transition-transform ${
+                        expanded ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {expanded && (
+                    <ul id={`mob-sec-${group.id}`} className="space-y-1.5 pb-3 pl-2">
+                      {group.links.map((item) => (
+                        <li key={item.href}>
+                          <Link
+                            href={item.href}
+                            onClick={() => setMobileOpen(false)}
+                            className="block py-1.5 text-[13px] text-[#5C5954] hover:text-[#242424]"
+                          >
+                            {item.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              );
+            })}
+
+            <div className="pt-2 space-y-2">
+              <Link
+                href="/harsh-beniwal/octopus/perfumes"
+                onClick={() => setMobileOpen(false)}
+                className="block py-2 text-sm font-semibold text-[#9A7953]"
+              >
+                Harsh Beniwal × Octopus Signature
+              </Link>
+              <Link
+                href="/journal"
+                onClick={() => setMobileOpen(false)}
+                className="block py-2 text-sm font-medium text-[#242424]"
+              >
+                Fragrance Journal &amp; Guides
+              </Link>
+              <Link
+                href="/cart"
+                onClick={() => setMobileOpen(false)}
+                className="block py-2 text-sm font-medium text-[#242424]"
+              >
+                Shopping Bag
+              </Link>
+              <Link
+                href="/account"
+                onClick={() => setMobileOpen(false)}
+                className="block py-2 text-sm font-medium text-[#242424]"
+              >
+                Account &amp; Orders
+              </Link>
+            </div>
+          </div>
+
+          <div className="p-4 border-t border-[#E8E6E1] bg-[#F7F6F3]">
+            <button
+              type="button"
+              onClick={() => {
+                setMobileOpen(false);
+                setSearchOpen(true);
+              }}
+              className="w-full btn-luxury-primary py-3 text-xs"
+            >
+              <Search size={14} /> Search Catalog
+            </button>
+          </div>
+        </div>
+      </dialog>
+
+      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
+    </div>
   );
 }

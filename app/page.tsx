@@ -4,8 +4,6 @@ import {
   ArrowRight,
   ChevronDown,
   ShieldCheck,
-  Truck,
-  Gift,
   Sparkles,
   Compass,
   BookOpen,
@@ -18,9 +16,11 @@ import {
   sortProducts,
   toGridSummary,
 } from "@/lib/catalog";
+import { buildHeroSlides } from "@/lib/hero-slides";
 import { EDITORIAL_ARTICLES } from "@/lib/editorial";
 import ProductCarousel from "@/components/ProductCarousel";
 import HeroShowcase from "@/components/HeroShowcase";
+import HeroCategoryStrip from "@/components/HeroCategoryStrip";
 import NewsletterForm from "@/components/NewsletterForm";
 
 export const metadata: Metadata = {
@@ -161,6 +161,8 @@ export default function HomePage() {
     .filter((b) => b.name !== "Buy 1 Get 1 Free" && b.name !== "Perfume Network India")
     .slice(0, 18);
 
+  const heroSlides = buildHeroSlides(allPerfumes, allBrands);
+
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -199,37 +201,14 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
-      {/* 1. Luxury Campaign Hero */}
-      <HeroShowcase
-        totalPerfumesCount={allPerfumes.length}
-        brandsCount={allBrands.length}
-      />
+      {/* 1. Luxury Fragrance Hero Carousel */}
+      <HeroShowcase slides={heroSlides} />
 
-      {/* 1b. Trust & Service Bar */}
-      <section aria-label="Service guarantees" className="bg-[#F7F6F3] border-b border-[#E8E6E1]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-4 grid grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-          {[
-            { icon: ShieldCheck, title: "100% Sealed Originals", sub: "Batch codes on every bottle" },
-            { icon: Truck, title: "Free Express Shipping", sub: "Insured pan-India dispatch" },
-            { icon: Gift, title: "Free 7ML Paradox EDP", sub: "Included automatically on orders" },
-            { icon: Sparkles, title: "Bundle Up to 5% OFF", sub: "+ Code OCTOPUS5 on ₹5,000+" },
-          ].map((item) => {
-            const Icon = item.icon;
-            return (
-              <div key={item.title} className="flex items-center gap-2.5">
-                <Icon size={16} className="text-[#9A7953] shrink-0" />
-                <div>
-                  <strong className="block text-[#242424] font-semibold">{item.title}</strong>
-                  <span className="text-[#777777]">{item.sub}</span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+      {/* 1b. Below-Hero Horizontal Category Discovery Strip */}
+      <HeroCategoryStrip />
 
       {/* 2. Shop by Category Tiles */}
-      <section className="py-10 sm:py-12 border-b border-[#E8E6E1]">
+      <section id="shop-by-category" className="py-10 sm:py-12 border-b border-[#E8E6E1] scroll-mt-20">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between gap-4 mb-6">
             <div>
@@ -348,79 +327,95 @@ export default function HomePage() {
         products={middleEastern}
       />
 
-      {/* 6. Harsh Beniwal & Octopus Perfumes Dual Business Highlights */}
-      <section className="py-12 sm:py-14 bg-[#F7F6F3] border-b border-[#E8E6E1]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-          {/* Two Signature Spotlight Cards: Harsh Beniwal & Octopus Perfumes */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Highlight 1: Harsh Beniwal Flagship Edit */}
-            <div className="rounded-[12px] bg-[#141210] text-white p-6 sm:p-8 flex flex-col justify-between border border-[#2C2722]">
-              <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-                <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-[10px] bg-white/6 border border-white/10 p-2 shrink-0 flex items-center justify-center">
-                  <img
-                    src="/harsh-beniwal/octopus/perfumes/images/overlord_hero.png"
-                    alt="Harsh Beniwal Signature Perfumes"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#D4AF7A]">
-                    Creator Collaboration · Flagship Highlight
-                  </p>
-                  <h2 className="font-serif text-3xl font-semibold text-white">
-                    Harsh Beniwal Signature Edit
-                  </h2>
-                  <p className="text-xs sm:text-sm text-[#C7C1B8] leading-relaxed">
-                    Anchored by Overlord, Outlaw, Rhapsody, and Your Move—bold modern accords engineered for unmistakable sillage from morning commute to night events.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-6 pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
-                <span className="text-xs text-[#D4CFC7]">
-                  25%+ French Oil Concentration · 50ML Eau de Parfum
-                </span>
-                <Link
-                  href="/collections/harsh-beniwal"
-                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-[6px] bg-[#D4AF7A] hover:bg-white text-[#141210] text-xs font-semibold uppercase tracking-wider transition-colors"
-                >
-                  Shop Harsh Beniwal <ArrowRight size={14} />
-                </Link>
+      {/* 6A. Dedicated Business Highlight: Harsh Beniwal Flagship Signature Edit */}
+      <section
+        aria-label="Harsh Beniwal Signature Perfumes"
+        className="py-12 sm:py-14 bg-[#141210] text-white border-b border-[#2C2722]"
+      >
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-4 flex justify-center">
+              <div className="w-56 h-56 sm:w-64 sm:h-64 rounded-[14px] bg-white/6 border border-white/12 p-5 flex items-center justify-center">
+                <img
+                  src="/harsh-beniwal/octopus/perfumes/images/overlord_hero.png"
+                  alt="Harsh Beniwal Signature Overlord 50ML EDP"
+                  width={260}
+                  height={260}
+                  loading="lazy"
+                  className="w-full h-full object-contain"
+                />
               </div>
             </div>
 
-            {/* Highlight 2: Octopus Perfumes Brand Standard */}
-            <div className="rounded-[12px] bg-white p-6 sm:p-8 flex flex-col justify-between border border-[#D4CFC7] shadow-luxury">
-              <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-                <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-[10px] bg-[#F7F6F3] border border-[#E8E6E1] p-2 shrink-0 flex items-center justify-center">
-                  <img
-                    src="/harsh-beniwal/octopus/perfumes/images/paradox_box.png"
-                    alt="Octopus Perfumes Official Monocarton Box"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9A7953]">
-                    In-House Perfumery · Core Identity
-                  </p>
-                  <h2 className="font-serif text-3xl font-semibold text-[#242424]">
-                    House of Octopus Perfumes
-                  </h2>
-                  <p className="text-xs sm:text-sm text-[#5C5954] leading-relaxed">
-                    Crafted with IFRA-compliant aromatic compounds and imported French oils. Every online order automatically includes a complimentary 7ML Paradox pocket spray.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-6 pt-5 border-t border-[#E8E6E1] flex flex-wrap items-center justify-between gap-3">
-                <span className="text-xs font-medium text-[#5C5954]">
-                  Free 7ML Tester Included · Bundle up to 5% OFF
-                </span>
+            <div className="lg:col-span-8 space-y-4">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#D4AF7A]">
+                Creator Flagship · Harsh Beniwal
+              </p>
+              <h2 className="font-serif text-3xl sm:text-4xl font-semibold text-white">
+                Harsh Beniwal Signature Edit
+              </h2>
+              <p className="text-sm sm:text-base text-[#D4CFC7] leading-relaxed max-w-2xl">
+                Anchored by Overlord, Outlaw, Rhapsody, and Your Move—bold modern accords formulated with 25%+ imported French oils for unmistakable sillage from morning commute to late evening events.
+              </p>
+              <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
-                  href="/harsh-beniwal/octopus/perfumes"
-                  className="btn-luxury-primary px-5 py-2.5 text-xs"
+                  href="/collections/harsh-beniwal"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#D4AF7A] hover:bg-white text-[#141210] text-xs font-semibold uppercase tracking-wider transition-colors"
                 >
-                  Explore Octopus Hub <ArrowRight size={14} />
+                  Shop Harsh Beniwal <ArrowRight size={14} />
                 </Link>
+                <span className="inline-flex items-center gap-1.5 text-xs text-[#C7C1B8]">
+                  <ShieldCheck size={14} className="text-[#D4AF7A]" />
+                  25%+ French Oil · 50ML Eau de Parfum
+                </span>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6B. Dedicated Business Highlight: House of Octopus Perfumes + Full 9-Bottle Series */}
+      <section
+        aria-label="House of Octopus Perfumes Collection"
+        className="py-12 sm:py-14 bg-[#F7F6F3] border-b border-[#E8E6E1]"
+      >
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          <div className="rounded-[12px] bg-white p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 border border-[#D4CFC7] shadow-luxury">
+            <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
+              <div className="w-28 h-28 sm:w-32 sm:h-32 rounded-[10px] bg-[#F7F6F3] border border-[#E8E6E1] p-2 shrink-0 flex items-center justify-center">
+                <img
+                  src="/harsh-beniwal/octopus/perfumes/images/paradox_box.png"
+                  alt="Octopus Perfumes Official Monocarton Box"
+                  width={128}
+                  height={128}
+                  loading="lazy"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div className="space-y-2 max-w-xl">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#9A7953]">
+                  In-House Perfumery · Core Identity
+                </p>
+                <h2 className="font-serif text-3xl font-semibold text-[#242424]">
+                  House of Octopus Perfumes
+                </h2>
+                <p className="text-xs sm:text-sm text-[#5C5954] leading-relaxed">
+                  Crafted with IFRA-compliant aromatic compounds and imported French oils. Every online order includes a complimentary 7ML Paradox pocket spray and extra 5% OFF on ₹5,000+ orders with code{" "}
+                  <strong className="text-[#242424]">OCTOPUS5</strong>.
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col sm:items-end gap-2.5 shrink-0">
+              <Link
+                href="/harsh-beniwal/octopus/perfumes"
+                className="btn-luxury-primary px-6 py-3 text-xs whitespace-nowrap"
+              >
+                Explore Octopus Hub <ArrowRight size={14} />
+              </Link>
+              <span className="text-xs font-medium text-[#5C5954] flex items-center gap-1.5">
+                <Sparkles size={13} className="text-[#9A7953]" />
+                Free 7ML Tester · Bundle up to 5% OFF
+              </span>
             </div>
           </div>
 

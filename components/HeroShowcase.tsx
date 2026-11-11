@@ -1,321 +1,598 @@
 "use client";
 
-import { useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type PointerEvent,
+} from "react";
 import Link from "next/link";
-import { ArrowRight, Sparkles, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  ShieldCheck,
+  Truck,
+  RotateCcw,
+  Sparkles,
+} from "lucide-react";
+import type { HeroSlideBottle, HeroSlideData } from "@/lib/hero-slides";
+import { formatPriceINR } from "@/lib/catalog-types";
 import { useBlackFridayActive } from "@/lib/black-friday";
 
-interface HeroChapter {
-  id: string;
-  index: string;
-  tabLabel: string;
-  eyebrow: string;
-  headlineTop: string;
-  headlineAccent: string;
-  copy: string;
-  primaryCta: { label: string; href: string };
-  secondaryCta: { label: string; href: string };
-  featuredCard: {
-    name: string;
-    subtitle: string;
-    notesLine: string;
-    image: string;
-    href: string;
-  };
-  companionBottles: {
-    name: string;
-    image: string;
-    href: string;
-  }[];
+const AUTOPLAY_INTERVAL_MS = 5500;
+
+interface PlinthBottleProps {
+  bottle: HeroSlideBottle;
+  slotIndex: number;
+  isCurrentSlide: boolean;
+  isPreloadSlide: boolean;
+  variant: "desktop" | "mobile";
 }
 
-const CHAPTERS: HeroChapter[] = [
-  {
-    id: "flagship",
-    index: "01",
-    tabLabel: "Harsh Beniwal × Octopus",
-    eyebrow: "25%+ Imported French Oils · Signature Atelier",
-    headlineTop: "Not Just a Fragrance.",
-    headlineAccent: "An Impression.",
-    copy: "Command attention with Overlord, Paradox, and Rhapsody—9 signature 50ML Eau de Parfums engineered alongside Harsh Beniwal for relentless projection and 12-hour skin presence in Indian weather.",
-    primaryCta: { label: "Shop Octopus Signature", href: "/harsh-beniwal/octopus/perfumes" },
-    secondaryCta: { label: "Explore Harsh Beniwal Edit", href: "/collections/harsh-beniwal" },
-    featuredCard: {
-      name: "Overlord 50ML EDP",
-      subtitle: "Harsh Beniwal Flagship · Bergamot & Ambroxan",
-      notesLine: "Top: Bergamot, Lemon · Heart: Lavender, Sichuan Pepper · Base: Amber, Vanilla",
-      image: "/harsh-beniwal/octopus/perfumes/images/overlord_bottle.png",
-      href: "/products/overlord",
-    },
-    companionBottles: [
-      {
-        name: "Paradox 50ML",
-        image: "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
-        href: "/products/paradox",
-      },
-      {
-        name: "Rhapsody 50ML",
-        image: "/harsh-beniwal/octopus/perfumes/images/rhapsody_bottle.png",
-        href: "/products/rhapsody",
-      },
-    ],
-  },
-  {
-    id: "middle-east",
-    index: "02",
-    tabLabel: "Middle Eastern Extraits",
-    eyebrow: "UAE Heritage & High-Density Oils",
-    headlineTop: "Gulf Opulence,",
-    headlineAccent: "Sealed & Verified.",
-    copy: "Discover concentrated Extraits and cult-classic Eau de Parfums from Lattafa, Rasasi, Afnan, Armaf, French Avenue, and Paris Corner—crafted around dark agarwood, golden amber, and spiced praline.",
-    primaryCta: { label: "Explore Middle East", href: "/collections/middle-eastern-perfumes" },
-    secondaryCta: { label: "Browse Oud & Amber", href: "/collections/oud" },
-    featuredCard: {
-      name: "Outlaw 50ML EDP",
-      subtitle: "Smoky Spices, Dark Suede & Resin",
-      notesLine: "Top: Cardamom, Clove · Heart: Jasmine, Leather · Base: Oud, Sandalwood",
-      image: "/harsh-beniwal/octopus/perfumes/images/outlaw_bottle.png",
-      href: "/products/outlaw",
-    },
-    companionBottles: [
-      {
-        name: "Mirage 50ML",
-        image: "/harsh-beniwal/octopus/perfumes/images/mirage_bottle.png",
-        href: "/products/mirage",
-      },
-      {
-        name: "Your Move 50ML",
-        image: "/harsh-beniwal/octopus/perfumes/images/your_move_bottle.png",
-        href: "/products/your-move",
-      },
-    ],
-  },
-  {
-    id: "niche-designer",
-    index: "03",
-    tabLabel: "Designer & Niche Vault",
-    eyebrow: "1,700+ Factory-Sealed Global Editions",
-    headlineTop: "Curated Houses,",
-    headlineAccent: "Batch-Code Verified.",
-    copy: "From Creed, Parfums de Marly, and Xerjoff to Christian Dior, Tom Ford, Hermès, and YSL—shop original runway classics, discovery sampling kits, and gift coffrets with complimentary express India delivery.",
-    primaryCta: { label: "Browse All 1,700+ Scents", href: "/collections/all" },
-    secondaryCta: { label: "View Haute Niche", href: "/collections/niche-perfumes" },
-    featuredCard: {
-      name: "Somersault 50ML EDP",
-      subtitle: "Crisp Citrus, Neroli & White Musk",
-      notesLine: "Top: Mandarin, Petitgrain · Heart: Orange Blossom · Base: Clean Cedar & Musk",
-      image: "/harsh-beniwal/octopus/perfumes/images/somersault_bottle.png",
-      href: "/products/somersault",
-    },
-    companionBottles: [
-      {
-        name: "Promised 50ML",
-        image: "/harsh-beniwal/octopus/perfumes/images/promised_bottle.png",
-        href: "/products/promised",
-      },
-      {
-        name: "Darling 50ML",
-        image: "/harsh-beniwal/octopus/perfumes/images/darling_bottle.webp",
-        href: "/products/darling-women",
-      },
-    ],
-  },
-];
+function PlinthBottle({
+  bottle,
+  slotIndex,
+  isCurrentSlide,
+  isPreloadSlide,
+  variant,
+}: PlinthBottleProps) {
+  // Position each genuine bottle cutout onto the three travertine stone pedestals
+  const desktopPlacement =
+    slotIndex === 0
+      ? "left-[6%] xl:left-[8%] bottom-[19.5%] z-10 h-[56%] max-w-[29%]"
+      : slotIndex === 1
+        ? "left-[37%] xl:left-[37%] bottom-[17%] z-20 h-[62%] max-w-[29%]"
+        : "right-[5%] xl:right-[6%] bottom-[14.5%] z-30 h-[57%] max-w-[30%]";
 
-export default function HeroShowcase({
-  totalPerfumesCount,
-  brandsCount,
-}: {
-  totalPerfumesCount: number;
-  brandsCount: number;
-}) {
-  const [activeIdx, setActiveIdx] = useState(0);
-  const isBlackFriday = useBlackFridayActive();
-  const current = CHAPTERS[activeIdx] || CHAPTERS[0];
+  const mobilePlacement =
+    slotIndex === 0
+      ? "h-[154px] sm:h-[202px] -translate-y-2 sm:-translate-y-2.5 z-10"
+      : slotIndex === 1
+        ? "h-[172px] sm:h-[224px] -translate-y-0.5 z-20"
+        : "h-[160px] sm:h-[210px] translate-y-1 z-30";
+
+  const loadingMode: "eager" | "lazy" =
+    isCurrentSlide || isPreloadSlide ? "eager" : "lazy";
+  const fetchPriorityMode = !isCurrentSlide ? "low" : undefined;
 
   return (
-    <section
-      aria-label="Featured fragrance campaigns"
-      className="relative bg-[#12100E] text-[#F7F4EE] overflow-hidden border-b border-[#2C2722]"
+    <Link
+      href={`/products/${bottle.handle}`}
+      tabIndex={isCurrentSlide ? undefined : -1}
+      aria-label={`${bottle.title} — ${formatPriceINR(bottle.price)}`}
+      className={`group flex flex-col items-center justify-end focus-visible:outline-2 focus-visible:outline-[#1F1D1B] focus-visible:outline-offset-4 rounded-[8px] ${
+        variant === "desktop"
+          ? `absolute ${desktopPlacement}`
+          : `relative flex-1 min-w-0 ${mobilePlacement}`
+      }`}
     >
-      {/* Bespoke Obsidian & Amber Studio Campaign Backdrop */}
-      <div className="absolute inset-0 pointer-events-none select-none">
+      <div className="relative h-full w-full flex items-end justify-center">
         <img
-          src="/images/hero-obsidian-campaign.jpg"
-          alt=""
-          fetchPriority="high"
-          className="w-full h-full object-cover object-center opacity-60 sm:opacity-68"
+          src={bottle.image}
+          alt={bottle.title}
+          width={bottle.width}
+          height={bottle.height}
+          loading={loadingMode}
+          fetchPriority={fetchPriorityMode}
+          decoding="async"
+          className={`max-h-full w-auto max-w-full object-contain object-bottom transition-transform duration-300 ease-out motion-reduce:transition-none group-hover:-translate-y-1 ${
+            bottle.isCutout
+              ? "drop-shadow-[0_14px_20px_rgba(32,24,16,0.22)]"
+              : "mix-blend-multiply rounded-[6px]"
+          }`}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0E0C0B]/95 via-[#12100E]/78 to-[#12100E]/45" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0E0C0B] via-transparent to-[#0E0C0B]/40" />
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-[72%] h-3 rounded-full bg-[#2B2016]/28 blur-[5px]"
+        />
       </div>
 
-      {/* Main Responsive Campaign Frame */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 pt-8 pb-10 sm:py-14 lg:py-16">
-        {/* Chapter Selector Strip (Desktop & Mobile Horizontal Scroll) */}
-        <div
-          role="tablist"
-          aria-label="Campaign highlights"
-          className="flex items-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar pb-6 sm:pb-8"
-        >
-          {CHAPTERS.map((chap, idx) => {
-            const active = idx === activeIdx;
-            return (
-              <button
-                key={chap.id}
-                type="button"
-                role="tab"
-                aria-selected={active}
-                onClick={() => setActiveIdx(idx)}
-                className={`shrink-0 px-3.5 py-2 rounded-full text-[11px] font-semibold uppercase tracking-[0.12em] border transition-colors cursor-pointer ${
-                  active
-                    ? "bg-[#D4AF7A] text-[#141210] border-[#D4AF7A]"
-                    : "bg-black/35 text-[#D4CFC7] border-[#3B342C] hover:border-[#9A7953] hover:text-white"
-                }`}
-              >
-                <span className="opacity-75 mr-1.5">{chap.index}</span>
-                {chap.tabLabel}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Asymmetric Editorial Composition */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Typography Column */}
-          <div className="lg:col-span-7 space-y-5 order-2 lg:order-1">
-            <div className="flex flex-wrap items-center gap-2.5">
-              {isBlackFriday && (
-                <span className="bf-badge-glow inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1F1B16] border text-[10px] font-bold uppercase tracking-[0.16em] text-[#D4AF7A]">
-                  Black Friday Reserve
-                </span>
-              )}
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/8 border border-[#9A7953]/40 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#D4AF7A]">
-                <Sparkles size={12} />
-                <span>{current.eyebrow}</span>
-              </div>
-            </div>
-
-            <h1 className="font-serif text-[38px] min-[420px]:text-[44px] sm:text-[54px] lg:text-[64px] font-semibold text-white leading-[1.04] tracking-[-0.02em]">
-              {current.headlineTop}{" "}
-              <span className="block text-[#D4AF7A] font-normal italic">
-                {current.headlineAccent}
-              </span>
-            </h1>
-
-            <p className="text-[14px] sm:text-[16px] text-[#D4CFC7] leading-[1.65] max-w-xl">
-              {current.copy}
-            </p>
-
-            {/* Primary & Secondary CTAs */}
-            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 pt-1">
-              <Link
-                href={current.primaryCta.href}
-                className="inline-flex items-center justify-center gap-2 bg-[#F7F4EE] hover:bg-[#D4AF7A] text-[#141210] font-semibold text-xs uppercase tracking-[0.12em] px-6 py-4 rounded-[6px] transition-colors"
-              >
-                <span>{current.primaryCta.label}</span>
-                <ArrowRight size={15} />
-              </Link>
-              <Link
-                href={current.secondaryCta.href}
-                className="inline-flex items-center justify-center gap-2 bg-white/8 hover:bg-white/14 text-white border border-[#9A7953]/60 font-semibold text-xs uppercase tracking-[0.12em] px-6 py-4 rounded-[6px] transition-colors"
-              >
-                <span>{current.secondaryCta.label}</span>
-              </Link>
-            </div>
-
-            {/* Grounded Storefront Commitments */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 pt-5 border-t border-white/12 text-xs text-[#C7C1B8]">
-              <div>
-                <strong className="block text-white font-semibold">
-                  {totalPerfumesCount.toLocaleString("en-IN")}+ Bottles
-                </strong>
-                <span>Verified Stocked Vault</span>
-              </div>
-              <div>
-                <strong className="block text-white font-semibold">
-                  {brandsCount}+ Houses
-                </strong>
-                <span>Designer, Niche &amp; Gulf</span>
-              </div>
-              <div>
-                <strong className="block text-white font-semibold">
-                  Free 7ML Tester
-                </strong>
-                <span>Paradox EDP Included</span>
-              </div>
-              <div>
-                <strong className="block text-white font-semibold flex items-center gap-1">
-                  <ShieldCheck size={13} className="text-[#D4AF7A]" /> Batch Verified
-                </strong>
-                <span>Code OCTOPUS5 · 5% OFF ₹5k+</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Spotlight Sculpture / Studio Product Composition */}
-          <div className="lg:col-span-5 order-1 lg:order-2">
-            <div className="bg-black/45 backdrop-blur-sm border border-[#9A7953]/35 rounded-[12px] p-4 sm:p-6 space-y-4">
-              {/* Main Spotlight Flacon */}
-              <Link
-                href={current.featuredCard.href}
-                className="group block relative rounded-[10px] bg-gradient-to-b from-white/8 to-black/40 border border-white/10 p-5 sm:p-6 overflow-hidden"
-              >
-                <div className="aspect-[16/11] sm:aspect-[4/3] flex items-center justify-center">
-                  <img
-                    src={current.featuredCard.image}
-                    alt={current.featuredCard.name}
-                    fetchPriority="high"
-                    className="w-full h-full object-contain drop-shadow-[0_24px_34px_rgba(0,0,0,0.85)] group-hover:scale-[1.04] transition-transform duration-300"
-                  />
-                </div>
-                <div className="mt-4 pt-3.5 border-t border-white/10 flex items-end justify-between gap-3">
-                  <div className="min-w-0">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#D4AF7A]">
-                      {current.featuredCard.subtitle}
-                    </p>
-                    <h2 className="font-serif text-xl sm:text-2xl font-semibold text-white truncate">
-                      {current.featuredCard.name}
-                    </h2>
-                    <p className="text-[11px] text-[#B8B2A9] mt-0.5 line-clamp-1">
-                      {current.featuredCard.notesLine}
-                    </p>
-                  </div>
-                  <span className="shrink-0 w-9 h-9 rounded-full bg-white/10 group-hover:bg-[#D4AF7A] group-hover:text-[#141210] flex items-center justify-center text-white transition-colors">
-                    <ArrowRight size={15} />
-                  </span>
-                </div>
-              </Link>
-
-              {/* Companion Pedestals Row */}
-              <div className="grid grid-cols-2 gap-3">
-                {current.companionBottles.map((bot) => (
-                  <Link
-                    key={bot.href}
-                    href={bot.href}
-                    className="group flex items-center gap-3 p-2.5 sm:p-3 rounded-[8px] bg-white/6 hover:bg-white/12 border border-white/10 hover:border-[#D4AF7A]/50 transition-colors"
-                  >
-                    <div className="w-12 h-12 rounded-[6px] bg-black/45 p-1 shrink-0 flex items-center justify-center">
-                      <img
-                        src={bot.image}
-                        alt={bot.name}
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-xs font-semibold text-white group-hover:text-[#D4AF7A] transition-colors truncate">
-                        {bot.name}
-                      </p>
-                      <p className="text-[10px] text-[#B8B2A9]">View Flacon →</p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+      <span className="pointer-events-none mt-1.5 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200 motion-reduce:transition-none bg-white/95 backdrop-blur-xs border border-[#DFD7CA] rounded-full px-2.5 py-0.5 text-[10px] font-medium text-[#24211E] shadow-xs whitespace-nowrap max-w-[175px] truncate hidden sm:inline-block">
+        {bottle.shortTitle} · {formatPriceINR(bottle.price)}
+      </span>
+    </Link>
   );
 }
 
+function SlideCopy({
+  slide,
+  isPrimarySlide,
+  isActive,
+  isBlackFriday,
+  compact,
+}: {
+  slide: HeroSlideData;
+  isPrimarySlide: boolean;
+  isActive: boolean;
+  isBlackFriday: boolean;
+  compact: boolean;
+}) {
+  return (
+    <div className={compact ? "space-y-3" : "space-y-4"}>
+      <div className="flex flex-wrap items-center gap-2">
+        {isBlackFriday && (
+          <span className="bf-badge-glow inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#1F1D1B] text-[#D4AF7A] text-[10px] font-semibold uppercase tracking-[0.14em]">
+            <Sparkles size={10} aria-hidden="true" />
+            Black Friday
+          </span>
+        )}
+        <p className="text-[10.5px] sm:text-[11px] font-semibold uppercase tracking-[0.2em] sm:tracking-[0.22em] text-[#5C4E3C]">
+          {slide.eyebrow}
+        </p>
+      </div>
+
+      {isPrimarySlide ? (
+        <h1
+          className={`font-serif font-semibold text-[#1E1B18] tracking-[-0.02em] ${
+            compact
+              ? "text-[32px] sm:text-[40px] leading-[1.08]"
+              : "text-[42px] xl:text-[52px] leading-[1.06]"
+          }`}
+        >
+          {slide.headlineTop}{" "}
+          <span className="block">{slide.headlineAccent}</span>
+        </h1>
+      ) : (
+        <h2
+          className={`font-serif font-semibold text-[#1E1B18] tracking-[-0.02em] ${
+            compact
+              ? "text-[32px] sm:text-[40px] leading-[1.08]"
+              : "text-[42px] xl:text-[52px] leading-[1.06]"
+          }`}
+        >
+          {slide.headlineTop}{" "}
+          <span className="block">{slide.headlineAccent}</span>
+        </h2>
+      )}
+
+      <p
+        className={`text-[#464038] leading-[1.6] ${
+          compact ? "text-[13.5px] sm:text-[14.5px]" : "text-[14.5px] xl:text-[15.5px] max-w-md"
+        }`}
+      >
+        {slide.description}
+      </p>
+
+      {slide.featuredBrands.length > 0 && (
+        <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+          {(compact ? slide.featuredBrands.slice(0, 6) : slide.featuredBrands).map((brand) => (
+            <Link
+              key={brand.slug}
+              href={brand.href}
+              tabIndex={isActive ? undefined : -1}
+              className="px-2.5 py-0.5 sm:py-1 rounded-full bg-white/75 hover:bg-white border border-[#DCD4C8] hover:border-[#9A7953] text-[10.5px] sm:text-[11px] font-medium text-[#3F3A33] hover:text-[#1E1B18] transition-colors"
+            >
+              {brand.label}
+            </Link>
+          ))}
+        </div>
+      )}
+
+      <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-1">
+        <Link
+          href={slide.ctaHref}
+          tabIndex={isActive ? undefined : -1}
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-[#24211E] hover:bg-[#141210] text-white text-xs font-semibold tracking-[0.03em] px-5 sm:px-6 py-3 sm:py-3.5 transition-colors shadow-xs focus-visible:outline-2 focus-visible:outline-[#1F1D1B] focus-visible:outline-offset-2"
+        >
+          <span>{slide.ctaLabel}</span>
+          <ArrowRight size={14} aria-hidden="true" />
+        </Link>
+        <Link
+          href={slide.secondaryCtaHref}
+          tabIndex={isActive ? undefined : -1}
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-white/80 hover:bg-white text-[#24211E] border border-[#C6BCB0] hover:border-[#9A7953] text-xs font-semibold tracking-[0.03em] px-4 sm:px-5 py-3 sm:py-3.5 transition-colors focus-visible:outline-2 focus-visible:outline-[#1F1D1B] focus-visible:outline-offset-2"
+        >
+          <span>{slide.secondaryCtaLabel}</span>
+        </Link>
+      </div>
+
+      {/* Verified Store Trust Indicators */}
+      <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-3.5 max-w-[360px] sm:max-w-sm border-t border-[#DED6CA]/90">
+        <Link
+          href="/collections/all"
+          tabIndex={isActive ? undefined : -1}
+          className="flex items-center gap-1.5 sm:gap-2 text-[#2E2923] hover:text-[#9A7953] transition-colors"
+        >
+          <ShieldCheck
+            size={15}
+            strokeWidth={1.6}
+            className="text-[#8A6B46] shrink-0"
+            aria-hidden="true"
+          />
+          <span className="text-[10.5px] sm:text-[11px] leading-tight font-medium">
+            Authentic
+            <span className="block text-[9.5px] sm:text-[10px] text-[#564E43]">
+              Products
+            </span>
+          </span>
+        </Link>
+        <Link
+          href="/pages/shipping-policy"
+          tabIndex={isActive ? undefined : -1}
+          className="flex items-center gap-1.5 sm:gap-2 text-[#2E2923] hover:text-[#9A7953] transition-colors"
+        >
+          <Truck
+            size={15}
+            strokeWidth={1.6}
+            className="text-[#8A6B46] shrink-0"
+            aria-hidden="true"
+          />
+          <span className="text-[10.5px] sm:text-[11px] leading-tight font-medium">
+            Pan-India
+            <span className="block text-[9.5px] sm:text-[10px] text-[#564E43]">
+              Shipping
+            </span>
+          </span>
+        </Link>
+        <Link
+          href="/pages/returns-refund-policy"
+          tabIndex={isActive ? undefined : -1}
+          className="flex items-center gap-1.5 sm:gap-2 text-[#2E2923] hover:text-[#9A7953] transition-colors"
+        >
+          <RotateCcw
+            size={15}
+            strokeWidth={1.6}
+            className="text-[#8A6B46] shrink-0"
+            aria-hidden="true"
+          />
+          <span className="text-[10.5px] sm:text-[11px] leading-tight font-medium">
+            Easy
+            <span className="block text-[9.5px] sm:text-[10px] text-[#564E43]">
+              Returns
+            </span>
+          </span>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default function HeroShowcase({
+  slides,
+}: {
+  slides: HeroSlideData[];
+}) {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [liveMessage, setLiveMessage] = useState("");
+  const [isPaused, setIsPaused] = useState(false);
+
+  const isBlackFriday = useBlackFridayActive();
+  const pointerStartXRef = useRef<number | null>(null);
+  const pointerStartYRef = useRef<number | null>(null);
+
+  const slideCount = slides.length;
+  const safeActiveIdx = slideCount > 0 ? activeIdx % slideCount : 0;
+  const currentSlide = slides[safeActiveIdx];
+  const nextSlideIdx = slideCount > 0 ? (safeActiveIdx + 1) % slideCount : 0;
+
+  const selectSlide = useCallback(
+    (nextIndex: number, announce = true) => {
+      if (slideCount === 0) return;
+      const wrapped = ((nextIndex % slideCount) + slideCount) % slideCount;
+      setActiveIdx(wrapped);
+      if (announce) {
+        const target = slides[wrapped];
+        setLiveMessage(
+          `Slide ${wrapped + 1} of ${slideCount}: ${target.tabLabel} — ${target.headlineTop} ${target.headlineAccent}`
+        );
+      }
+    },
+    [slideCount, slides]
+  );
+
+  const goPrev = useCallback(() => {
+    selectSlide(safeActiveIdx - 1, true);
+  }, [safeActiveIdx, selectSlide]);
+
+  const goNext = useCallback(() => {
+    selectSlide(safeActiveIdx + 1, true);
+  }, [safeActiveIdx, selectSlide]);
+
+  // Autoplay: respects prefers-reduced-motion, hover/focus pause, and tab visibility
+  useEffect(() => {
+    if (slideCount <= 1 || isPaused) return;
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    let timerId: number | null = null;
+
+    const startTimer = () => {
+      if (timerId !== null) window.clearInterval(timerId);
+      if (document.visibilityState === "hidden") return;
+      timerId = window.setInterval(() => {
+        setActiveIdx((prev) => (prev + 1) % slideCount);
+      }, AUTOPLAY_INTERVAL_MS);
+    };
+
+    const handleVisibility = () => {
+      if (document.visibilityState === "hidden") {
+        if (timerId !== null) {
+          window.clearInterval(timerId);
+          timerId = null;
+        }
+      } else {
+        startTimer();
+      }
+    };
+
+    startTimer();
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => {
+      if (timerId !== null) window.clearInterval(timerId);
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, [slideCount, isPaused, safeActiveIdx]);
+
+  const handlePointerDown = (e: PointerEvent<HTMLElement>) => {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    pointerStartXRef.current = e.clientX;
+    pointerStartYRef.current = e.clientY;
+  };
+
+  const handlePointerUp = (e: PointerEvent<HTMLElement>) => {
+    const startX = pointerStartXRef.current;
+    const startY = pointerStartYRef.current;
+    pointerStartXRef.current = null;
+    pointerStartYRef.current = null;
+    if (startX === null || startY === null) return;
+
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    if (Math.abs(dx) >= 44 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+      if (dx < 0) goNext();
+      else goPrev();
+    }
+  };
+
+  if (!currentSlide) return null;
+
+  return (
+    <section
+      aria-roledescription="carousel"
+      aria-label="Featured fragrance collections"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+          setIsPaused(false);
+        }
+      }}
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
+      className="relative w-full overflow-hidden bg-[#F3EEE6] border-b border-[#E6DFD3] touch-pan-y select-none lg:select-text"
+    >
+      {/* DESKTOP VIEWPORT (lg+: Full-width sunlit architectural backdrop) */}
+      <div className="hidden lg:block relative w-full min-h-[540px] xl:min-h-[590px]">
+        <button
+          type="button"
+          onClick={goPrev}
+          aria-label="Previous fragrance category"
+          className="inline-flex items-center justify-center absolute left-4 xl:left-6 top-1/2 -translate-y-1/2 z-40 w-10 h-10 rounded-full bg-white/85 hover:bg-white text-[#24211E] border border-[#DDD5C7] shadow-xs transition-all cursor-pointer touch-manipulation active:scale-95 focus-visible:outline-2 focus-visible:outline-[#1F1D1B] focus-visible:outline-offset-2"
+        >
+          <ChevronLeft size={18} strokeWidth={1.75} aria-hidden="true" />
+        </button>
+
+        <button
+          type="button"
+          onClick={goNext}
+          aria-label="Next fragrance category"
+          className="inline-flex items-center justify-center absolute right-4 xl:right-6 top-1/2 -translate-y-1/2 z-40 w-10 h-10 rounded-full bg-white/85 hover:bg-white text-[#24211E] border border-[#DDD5C7] shadow-xs transition-all cursor-pointer touch-manipulation active:scale-95 focus-visible:outline-2 focus-visible:outline-[#1F1D1B] focus-visible:outline-offset-2"
+        >
+          <ChevronRight size={18} strokeWidth={1.75} aria-hidden="true" />
+        </button>
+
+        <picture className="pointer-events-none select-none">
+          <source srcSet="/images/fragrance-hero-bg.webp" type="image/webp" />
+          <img
+            src="/images/fragrance-hero-bg.png"
+            alt=""
+            width={1024}
+            height={512}
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+          />
+        </picture>
+
+        <div className="relative z-10 max-w-[1440px] mx-auto px-14 xl:px-20 min-h-[540px] xl:min-h-[590px] grid grid-cols-12 items-center gap-6">
+          {/* Left 42% Editorial Copy */}
+          <div className="col-span-5 py-12 relative">
+            <div className="relative min-h-[370px] flex items-center">
+              {slides.map((slide, idx) => {
+                const isActive = idx === safeActiveIdx;
+                return (
+                  <div
+                    key={slide.id}
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label={`${idx + 1} of ${slideCount}: ${slide.tabLabel}`}
+                    aria-hidden={!isActive}
+                    inert={!isActive ? true : undefined}
+                    className={`w-full transition-all duration-500 ease-out motion-reduce:transition-none ${
+                      isActive
+                        ? "relative opacity-100 translate-x-0 z-10"
+                        : "absolute inset-0 opacity-0 translate-x-3 pointer-events-none z-0"
+                    }`}
+                  >
+                    <SlideCopy
+                      slide={slide}
+                      isPrimarySlide={idx === 0}
+                      isActive={isActive}
+                      isBlackFriday={isBlackFriday}
+                      compact={false}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Right 58% Stone Plinth Composition */}
+          <div className="col-span-7 relative h-[490px] xl:h-[540px] self-end">
+            {slides.map((slide, idx) => {
+              const isActive = idx === safeActiveIdx;
+              const isPreload = idx === nextSlideIdx;
+              return (
+                <div
+                  key={slide.id}
+                  aria-hidden={!isActive}
+                  inert={!isActive ? true : undefined}
+                  className={`absolute inset-0 transition-all duration-500 ease-out motion-reduce:transition-none ${
+                    isActive
+                      ? "opacity-100 translate-x-0 z-10"
+                      : "opacity-0 translate-x-4 pointer-events-none z-0"
+                  }`}
+                >
+                  {slide.bottles.map((bottle, bIdx) => (
+                    <PlinthBottle
+                      key={bottle.id}
+                      bottle={bottle}
+                      slotIndex={bIdx}
+                      isCurrentSlide={isActive}
+                      isPreloadSlide={isPreload}
+                      variant="desktop"
+                    />
+                  ))}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* MOBILE & TABLET VIEWPORT (< lg: Headline First + Full-Detail Stone Plinth Stage) */}
+      <div className="lg:hidden">
+        <div className="px-4 sm:px-8 pt-6 pb-5 bg-[#F4EFE7]">
+          <div className="max-w-xl mx-auto relative">
+            {slides.map((slide, idx) => {
+              const isActive = idx === safeActiveIdx;
+              return (
+                <div
+                  key={slide.id}
+                  aria-hidden={!isActive}
+                  inert={!isActive ? true : undefined}
+                  className={`transition-all duration-400 ease-out motion-reduce:transition-none ${
+                    isActive
+                      ? "relative opacity-100 translate-x-0 z-10"
+                      : "absolute inset-0 opacity-0 translate-x-3 pointer-events-none z-0"
+                  }`}
+                >
+                  <SlideCopy
+                    slide={slide}
+                    isPrimarySlide={idx === 0}
+                    isActive={isActive}
+                    isBlackFriday={isBlackFriday}
+                    compact
+                  />
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Dedicated Stone Plinth Stage */}
+        <div className="relative w-full h-[245px] sm:h-[305px] overflow-hidden border-t border-[#E7E0D4]">
+          <picture className="pointer-events-none select-none">
+            <source srcSet="/images/fragrance-hero-bg.webp" type="image/webp" />
+            <img
+              src="/images/fragrance-hero-bg.png"
+              alt=""
+              width={1024}
+              height={512}
+              loading="eager"
+              decoding="async"
+              className="absolute inset-0 w-full h-full object-cover object-[72%_65%]"
+            />
+          </picture>
+
+          <button
+            type="button"
+            onClick={goPrev}
+            aria-label="Previous fragrance category"
+            className="inline-flex items-center justify-center absolute left-2.5 sm:left-4 top-1/2 -translate-y-1/2 z-40 w-9 h-9 rounded-full bg-white/85 hover:bg-white text-[#24211E] border border-[#DDD5C7] shadow-xs touch-manipulation focus-visible:outline-2 focus-visible:outline-[#1F1D1B] focus-visible:outline-offset-2"
+          >
+            <ChevronLeft size={16} aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={goNext}
+            aria-label="Next fragrance category"
+            className="inline-flex items-center justify-center absolute right-2.5 sm:right-4 top-1/2 -translate-y-1/2 z-40 w-9 h-9 rounded-full bg-white/85 hover:bg-white text-[#24211E] border border-[#DDD5C7] shadow-xs touch-manipulation focus-visible:outline-2 focus-visible:outline-[#1F1D1B] focus-visible:outline-offset-2"
+          >
+            <ChevronRight size={16} aria-hidden="true" />
+          </button>
+
+          {slides.map((slide, idx) => {
+            const isActive = idx === safeActiveIdx;
+            const isPreload = idx === nextSlideIdx;
+            return (
+              <div
+                key={slide.id}
+                aria-hidden={!isActive}
+                inert={!isActive ? true : undefined}
+                className={`absolute inset-0 max-w-lg mx-auto px-10 sm:px-14 flex items-end justify-center gap-2 sm:gap-5 pb-9 sm:pb-10 transition-all duration-400 ease-out motion-reduce:transition-none ${
+                  isActive
+                    ? "opacity-100 translate-x-0 z-10"
+                    : "opacity-0 translate-x-4 pointer-events-none z-0"
+                }`}
+              >
+                {slide.bottles.map((bottle, bIdx) => (
+                  <PlinthBottle
+                    key={bottle.id}
+                    bottle={bottle}
+                    slotIndex={bIdx}
+                    isCurrentSlide={isActive}
+                    isPreloadSlide={isPreload}
+                    variant="mobile"
+                  />
+                ))}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Screen-reader polite status announcement on user-initiated navigation */}
+      <p className="sr-only" role="status" aria-live="polite">
+        {liveMessage}
+      </p>
+
+      {/* Bottom Center Pagination Indicators */}
+      <nav
+        aria-label="Choose featured fragrance category slide"
+        className="absolute bottom-2.5 sm:bottom-3.5 left-1/2 -translate-x-1/2 z-40 flex items-center gap-1"
+      >
+        {slides.map((slide, idx) => {
+          const isCurrent = idx === safeActiveIdx;
+          return (
+            <button
+              key={slide.id}
+              type="button"
+              onClick={() => selectSlide(idx, true)}
+              aria-label={`Go to ${slide.tabLabel} (slide ${idx + 1} of ${slideCount})`}
+              aria-current={isCurrent ? "true" : undefined}
+              className="w-7 h-7 flex items-center justify-center rounded-full cursor-pointer touch-manipulation focus-visible:outline-2 focus-visible:outline-[#1F1D1B] focus-visible:outline-offset-1"
+            >
+              <span
+                aria-hidden="true"
+                className={`block rounded-full transition-all duration-300 motion-reduce:transition-none ${
+                  isCurrent
+                    ? "w-5 h-2 bg-[#24211E]"
+                    : "w-2 h-2 bg-white/90 border border-[#8E8171]"
+                }`}
+              />
+            </button>
+          );
+        })}
+      </nav>
+    </section>
+  );
+}

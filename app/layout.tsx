@@ -288,14 +288,12 @@ export default function RootLayout({
 
           {/* Navbar */}
           <Navbar
-            topBrands={getBrandSummaries()
-              .slice(0, 60)
-              .map((b): NavBrandItem => ({
-                name: b.name,
-                slug: b.slug,
-                tier: b.tier,
-                count: b.count,
-              }))}
+            topBrands={getBrandSummaries().map((b): NavBrandItem => ({
+              name: b.name,
+              slug: b.slug,
+              tier: b.tier,
+              count: b.count,
+            }))}
           />
 
           <main className="flex-1">{children}</main>

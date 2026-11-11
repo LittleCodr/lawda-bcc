@@ -1,4 +1,5 @@
 import rawProductsData from "./data/products.json";
+import rawEnrichmentProvenance from "./data/enrichment_provenance.json";
 import { products as flagshipCatalog, type Product as FlagshipProduct } from "./products";
 import {
   formatPriceINR,
@@ -600,7 +601,7 @@ function buildCatalog(): EnrichedProduct[] {
 
     const cleanHtml = sanitizeProductHtml(raw.body_html);
     const plainDescription = stripTags(cleanHtml);
-    const notes = flagship?.notes
+    const extractedLocalNotes = flagship?.notes
       ? {
           top: Array.isArray(flagship.notes.top)
             ? flagship.notes.top
@@ -613,6 +614,15 @@ function buildCatalog(): EnrichedProduct[] {
             : parseNoteList(flagship.notes.base),
         }
       : extractNotesFromHtml(raw.body_html);
+
+    const provenanceRecord = (
+      rawEnrichmentProvenance as Record<
+        string,
+        { notes?: FragranceNotes; inferred_concentration?: string; inferred_gender?: string }
+      >
+    )[raw.handle];
+
+    const notes = extractedLocalNotes || provenanceRecord?.notes || null;
 
     const isGiftSet = /\bgift set\b|\bdiscovery set\b|\bsampling set\b|\bcombo\b|\btrio\b|\bduo\b/i.test(
       raw.title || ""
@@ -1339,6 +1349,202 @@ const STATIC_COLLECTIONS: Record<string, Omit<CollectionMeta, "slug">> = {
     description: "Original sealed fragrances and official travel formats priced cleanly under ₹3,000.",
     seoDescription: "Buy affordable 100% original perfumes in India under ₹3,000.",
     filters: { maxPrice: 3000, sort: "price-asc" },
+  },
+  "under-999": {
+    title: "Signatures Under ₹999",
+    eyebrow: "Price Edit",
+    description: "Harsh Beniwal × Octopus Pocket & Signature EDPs, vials, and official travel formats under ₹999.",
+    seoDescription: "Shop original perfumes and miniatures under ₹999 in India.",
+    filters: { maxPrice: 999, sort: "price-asc" },
+  },
+  "1000-to-1999": {
+    title: "Curated Fragrances ₹1,000 – ₹1,999",
+    eyebrow: "Price Edit",
+    description: "Accessible Eau de Parfums, daily staples, and Middle Eastern signatures priced ₹1,000 to ₹1,999.",
+    seoDescription: "Best original perfumes in India from ₹1,000 to ₹1,999.",
+    filters: { minPrice: 1000, maxPrice: 1999 },
+  },
+  "2000-to-2999": {
+    title: "High-Longevity Scents ₹2,000 – ₹2,999",
+    eyebrow: "Price Edit",
+    description: "Heavy-hitter Middle Eastern bottles from Lattafa, Armaf, French Avenue, Afnan, and Paris Corner.",
+    seoDescription: "Shop authentic Dubai & designer fragrances ₹2,000 to ₹2,999 in India.",
+    filters: { minPrice: 2000, maxPrice: 2999 },
+  },
+  "3000-to-4999": {
+    title: "Classic Signatures ₹3,000 – ₹4,999",
+    eyebrow: "Price Edit",
+    description: "Timeless designer EDTs & EDPs from Hugo Boss, Versace, Burberry, Davidoff, and Rasasi.",
+    seoDescription: "Original designer perfumes priced ₹3,000 to ₹4,999 in India.",
+    filters: { minPrice: 3000, maxPrice: 4999 },
+  },
+  "5000-to-9999": {
+    title: "Luxury Perfumes ₹5,000 – ₹9,999",
+    eyebrow: "Price Edit",
+    description: "Signature prestige lines from Christian Dior, YSL, Armani, Prada, Carolina Herrera, and Mancera.",
+    seoDescription: "Buy original designer luxury perfumes ₹5,000 to ₹9,999 in India.",
+    filters: { minPrice: 5000, maxPrice: 9999 },
+  },
+  "above-10000": {
+    title: "Haute Parfumerie Above ₹10,000",
+    eyebrow: "Collector Vault",
+    description: "Creed, Parfums de Marly, Xerjoff, Tom Ford Private Blend, Initio, and Memo Paris reserve bottles.",
+    seoDescription: "Shop rare niche and collector fragrances above ₹10,000 in India.",
+    filters: { minPrice: 10000 },
+  },
+  oud: {
+    title: "Oud & Agarwood Fragrances",
+    eyebrow: "Fragrance Family",
+    description: "Smoky, spiced, and resinous oud creations from Middle Eastern and niche maisons.",
+    seoDescription: "Buy original oud perfumes in India from Lattafa, Rasasi, Tom Ford & Creed.",
+    filters: { families: ["Amber & Oud"] },
+  },
+  amber: {
+    title: "Amber & Golden Resin Perfumes",
+    eyebrow: "Fragrance Family",
+    description: "Velvety benzoin, labdanum, warm spice, and glowing amber trails.",
+    seoDescription: "Shop original amber and oriental fragrances in India.",
+    filters: { families: ["Amber & Oud"] },
+  },
+  oriental: {
+    title: "Oriental & Spiced Amber Scents",
+    eyebrow: "Fragrance Family",
+    description: "Rich cardamom, saffron, resin, and velvety woods steeped in warm evening elegance.",
+    seoDescription: "Explore oriental perfumes for men and women in India.",
+    filters: { families: ["Amber & Oud", "Spicy & Aromatic"] },
+  },
+  aquatic: {
+    title: "Aquatic & Marine Perfumes",
+    eyebrow: "Fragrance Family",
+    description: "Sea salt, cooling mint, watery aldehydes, and crisp Mediterranean blues.",
+    seoDescription: "Best aquatic and marine perfumes for Indian heat.",
+    filters: { families: ["Aquatic & Marine"] },
+  },
+  aromatic: {
+    title: "Aromatic & Green Fougère",
+    eyebrow: "Fragrance Family",
+    description: "Crushed lavender, rosemary, sage, and herbaceous green classics.",
+    seoDescription: "Shop aromatic and lavender fougère perfumes in India.",
+    filters: { families: ["Spicy & Aromatic"] },
+  },
+  spicy: {
+    title: "Spicy & Vibrant Signature Perfumes",
+    eyebrow: "Fragrance Family",
+    description: "Pink pepper, cinnamon, nutmeg, and cardamom accents with bold presence.",
+    seoDescription: "Buy original spicy perfumes for men and women in India.",
+    filters: { families: ["Spicy & Aromatic"] },
+  },
+  fruity: {
+    title: "Fruity, Citrus & Bright Blends",
+    eyebrow: "Fragrance Family",
+    description: "Sunlit bergamot, juicy plum, blackcurrant, pear, and crisp fruit openings.",
+    seoDescription: "Shop vibrant citrus and fruity perfumes online in India.",
+    filters: { families: ["Citrus & Fresh"] },
+  },
+  musky: {
+    title: "Clean Musk & Ambroxan Skin Scents",
+    eyebrow: "Fragrance Family",
+    description: "Second-skin white musk, velvety ambroxan, and airy clean dry-downs.",
+    seoDescription: "Discover long-lasting musk and ambroxan perfumes in India.",
+    filters: { families: ["Musk"] },
+  },
+  trending: {
+    title: "Trending Fragrances Right Now",
+    eyebrow: "In High Demand",
+    description: "Viral Gulf Extraits, standout designer flankers, and flagship releases across India.",
+    seoDescription: "Discover trending designer and Middle Eastern perfumes in India.",
+    filters: { discountedOnly: true, sort: "discount" },
+  },
+  exclusive: {
+    title: "Octopus Exclusive & Signature Edits",
+    eyebrow: "House Flagship",
+    description: "Curated rare niche releases alongside the 25%+ French oil Harsh Beniwal × Octopus collection.",
+    seoDescription: "Explore exclusive fine fragrances at Octopus Perfumes India.",
+    filters: { tiers: ["in-house", "niche"] },
+  },
+  "discovery-sets": {
+    title: "Discovery Sets & Sampling Kits",
+    eyebrow: "Sample Multiple Houses",
+    description: "Official curated sampling sets across Creed, Parfums de Marly, Xerjoff, Byredo, Afnan, and Lattafa.",
+    seoDescription: "Buy authentic perfume discovery kits and sample sets in India.",
+    filters: { miniaturesOnly: true },
+  },
+  everyday: {
+    title: "Everyday Versatile Signatures",
+    eyebrow: "Shop by Occasion",
+    description: "Effortless all-day reach bottles built for classes, errands, and casual outings.",
+    seoDescription: "Best everyday versatile perfumes in India.",
+    filters: { occasions: ["Daily & Office"] },
+  },
+  weddings: {
+    title: "Wedding & Grand Celebration Perfumes",
+    eyebrow: "Shop by Occasion",
+    description: "Rich saffron, Damascus rose, oud, and luxury extraits suited for ethnic wear and receptions.",
+    seoDescription: "Shop wedding and bridal/groom luxury perfumes in India.",
+    filters: { occasions: ["Wedding & Festive"] },
+  },
+  parties: {
+    title: "Party & Late-Night Clubbing Perfumes",
+    eyebrow: "Shop by Occasion",
+    description: "High-projection crowd-pleasers crafted to project cleanly in festive venues and night outs.",
+    seoDescription: "Top party and clubbing perfumes for men and women in India.",
+    filters: { occasions: ["Party & Clubbing"] },
+  },
+  "special-occasions": {
+    title: "Special Occasion & Milestone Editions",
+    eyebrow: "Shop by Occasion",
+    description: "Unforgettable extraits and signature flacons reserved for milestones and black-tie evenings.",
+    seoDescription: "Luxury perfumes for special occasions and milestone celebrations in India.",
+    filters: { occasions: ["Evening & Date Night", "Wedding & Festive"] },
+  },
+  evening: {
+    title: "Evening & Sunset Wear",
+    eyebrow: "Shop by Occasion",
+    description: "Smooth amber, vanilla, iris, and suede compositions balanced for cooler hours.",
+    seoDescription: "Shop evening luxury perfumes in India.",
+    filters: { occasions: ["Evening & Date Night"] },
+  },
+  travel: {
+    title: "Travel Sprays, Pocket Sizes & 30ml",
+    eyebrow: "Shop by Occasion",
+    description: "Airline-friendly compact bottles, pocket Extraits, and vials built for transit.",
+    seoDescription: "Buy compact travel perfumes and pocket bottles in India.",
+    filters: { sizes: ["30ml", "Miniature (<30ml)"] },
+  },
+  gifting: {
+    title: "Luxury Perfume Gifting Edit",
+    eyebrow: "Shop by Occasion",
+    description: "Boxed coffrets, signature sets, and universally acclaimed crowd-pleasers wrapped for gifting.",
+    seoDescription: "Best perfume gifts and presentation sets in India.",
+    filters: { giftSetsOnly: true },
+  },
+  monsoon: {
+    title: "Monsoon & Rain-Ready Scents",
+    eyebrow: "Shop by Season",
+    description: "Vetiver, white floral, petrichor wood, and balanced aromatics that bloom in humid rain.",
+    seoDescription: "Best perfumes for Indian monsoon weather.",
+    filters: { seasons: ["Monsoon & Spring"] },
+  },
+  spring: {
+    title: "Spring Blossom & Green Scents",
+    eyebrow: "Shop by Season",
+    description: "Luminous neroli, airy iris, blooming rose, and fresh aromatic woods.",
+    seoDescription: "Shop spring floral and fresh perfumes in India.",
+    filters: { seasons: ["Monsoon & Spring"] },
+  },
+  "all-season": {
+    title: "All-Season Daily Signatures",
+    eyebrow: "Shop by Season",
+    description: "Balanced multi-season crowd-pleasers reliable from January through December.",
+    seoDescription: "All-season signature perfumes for men and women in India.",
+    filters: { seasons: ["All-Season"] },
+  },
+  "octopus-perfumes": {
+    title: "Octopus Perfumes Official Flagship",
+    eyebrow: "In-House Craft",
+    description: "Our signature 25%+ imported French oil 50ML Eau de Parfum collection crafted with Harsh Beniwal.",
+    seoDescription: "Shop Official Octopus Perfumes 50ML EDPs in India.",
+    filters: { brands: [slugifyBrandName(IN_HOUSE_BRAND)] },
   },
 };
 

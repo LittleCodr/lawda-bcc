@@ -1,0 +1,443 @@
+{
+  "stats": {
+    "runAt": "2026-11-11T20:06:07.758Z",
+    "discoveredFromPerfumePalace": 7942,
+    "discoveredFromBelvish": 3233,
+    "totalDiscoveredRaw": 11175,
+    "totalUniqueAcrossBoth": 10619,
+    "localExistingProducts": 2333,
+    "localExistingPerfumes": 1708,
+    "existingMatchedSkippedDuplicate": 580,
+    "existingProductsEnrichedTotal": 480,
+    "newlyEnrichedThisRun": 0,
+    "existingVariantsDetected": 94,
+    "possibleDuplicatesForReview": 257,
+    "newCompetitorProductsResearchedNotAutoSellable": 9688,
+    "invalidProductsSkipped": 0,
+    "competitorMissingImages": 1,
+    "competitorIncompleteAttributes": 0,
+    "failedUrls": []
+  },
+  "sampleReportRows": [
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Rasasi Aged Infusion By Im Rasasi Extrait De Parfum For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Armaf Eter Desert Star Eau De Parfum 100ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Armaf Club De Nuit Elite Eau De Parfum 100ml For Men (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Surrati Rawda Eau De Parfum 140ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Carolina Herrera Cedar Chic Eau De Parfum 100ml For Men (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Burned Sugar By Im Rasasi Eau De Parfum 100ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Euphoria Blend By Im Rasasi Eau De Parfum For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Jawhara Golden Nectar Eau De Parfum 100ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Bujairami Too Damn Good Extrait De Parfum 100ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Rasasi Hawas Private Luceo Extrait De Parfum For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Rasasi Hawas Private Terra Extrait De Parfum 100ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Rasasi Hawas Private Dulce Extrait De Parfum 100ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Jawhara Sultan Rose Eau De Parfum 100ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Jawhara Sweet Dates Eau De Parfum 100ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Jawhara Oud Velvet Eau De Parfum 100ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Jawhara Amberwood Nomad Eau De Parfum 100ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "XLNC Rose Imperiale Extrait De Parfum 100ml For Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Ajmal Aurum Elixir Eau De Parfum 75ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Naseem Asmira Rouge Eau De Parfum 100ml For Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Armaf Odyssey French Kiss Limited Edition Eau de Parfum 100ml For Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Armaf Sawdaa Sehr Aleuyun Eau De Parfum 75ML For Men (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "Carolina Herrera 212 VIP Black Eau de Parfum for Men",
+      "existingHandle": "carolina-herrera-212-vip-black",
+      "sourceProduct": "Carolina Herrera 212 VIP Black Elixir Eau de Parfum 100ml For Men (perfumepalace.in)",
+      "confidence": "82%",
+      "decision": "Possible duplicate / Review"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Armaf Club De Nuit Woman Deodorant Stick 75g For Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Armaf Club De Nuit Sillage Deodorant Stick 75g For Men (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Armaf Club De Nuit Untold Deodorant Stick 75g For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Armaf Club De Nuit Milestone Deodorant Stick 75g For Men (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Armaf Club De Nuit Urban Man Elixir Deodorant Stick 75g For Men (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Armaf Club De Nuit Intense Women Deodorant Stick 75g For Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Bla Bli Blu Be My Cookie Parfum 100ml For Woman (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Decant/Sample Zimaya Impulse Oud Eau De Parfum 10ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Decant/Sample Al Majed Oud Noir Parfum 10ml For Man & Woman (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Decant/Sample Mykonos Untamed Extrait de Parfum 10ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Decant/Sample Al Ezz Oud Hersh Lahab Eau De Parfum 10ml For Man & Woman (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "United Colors Of Benetton Hot Eau De Toilette 100ml For Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Parisbelle Ambargh Extrait De Parfum 100ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Burberry Brit by Burberry Eau de Toilette for Her 100ml (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Nina Ricci Premier Jour Eau De Parfum For Women 100ml (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Chanel Coco Mademoiselle Eau De Parfum 100ml For Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Mercedes Benz Perfume EDT for Men 120ml (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Decant/Sample Riiffs Zenith Extrait De Parfum 10ml For Man & Woman (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Decant/Sample Hawas Blanche By I'm Rasasi Eau De Parfum 10ml For Man & Woman (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Assaf Frankel Imagination Eau De Parfum 200ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "Rasasi Hawas Boa Eau de Parfum for Men",
+      "existingHandle": "rasasi-hawas-boa-eau-de-parfum-for-men",
+      "sourceProduct": "Rasasi Hawas Boa Eau De Parfum 100ml For Men (perfumepalace.in)",
+      "confidence": "100%",
+      "decision": "Existing product, enriched missing notes"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Mykonos Nautilus Extrait de Parfum 100ml For Man & Woman (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Decant/Sample Rasasi Hawas Boa Eau De Parfum 10ml For Men (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "Paco Rabanne Phantom Deodorant Spray for Men",
+      "existingHandle": "paco-rabanne-phantom-deodorant-spray-for-men",
+      "sourceProduct": "Paco Rabanne Phantom Deodorant Body Spray 150ml For Men (perfumepalace.in)",
+      "confidence": "91%",
+      "decision": "Existing product, skipped duplicate"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Fragrance World Barakkat Rouge Red 540 Eau De Parfum 100ml For Man & Woman (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Swiss Arabian Kashkha Concentrated Perfum 0il 20ml For Men (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Kilian Paris Smoking Hot Eau De Parfum 50ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Kilian Paris Angels Share Eau De Parfum 50ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Kilian Paris Black Phantom Memento Mori Eau De Parfum For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "Thomas Kosmala Après L'Amour No.4 Eau de Parfum for Unisex",
+      "existingHandle": "thomas-kosmala-apres-lamour-no-4",
+      "sourceProduct": "Thomas Kosmala No. 4 Après l’Amour Eau De Parfum For Men & Women (perfumepalace.in)",
+      "confidence": "91%",
+      "decision": "Existing product, enriched missing notes"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Bravo Paradise Extrait De Parfum 100ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Bravo Absolute Extrait De Parfum 100ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Bravo Addict Extrait De Parfum 100ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Bravo Element Extrait De Parfum 100ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Decant/Sample Reef Volcano Parfum 10ml For Man & Woman (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Afnan Stardust Extrait De Parfum 100ml For Man & Woman (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Maison Alhambra Jean Lowe Fantasme Eau De Parfum 100ml For Man & Woman (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    },
+    {
+      "existingProduct": "No match",
+      "existingHandle": null,
+      "sourceProduct": "Rayhaan Amazonica Eau De Parfum 100ml For Men & Women (perfumepalace.in)",
+      "confidence": "100% distinct",
+      "decision": "New candidate (research staging only — unstocked)"
+    }
+  ]
+}

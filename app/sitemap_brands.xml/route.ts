@@ -1,25 +1,26 @@
-import { getAllBrands } from "@/lib/brands";
+import { SITE_URL, escapeXml, getVerifiedBrandEntries } from "@/lib/sitemap-helpers";
 
 export const revalidate = 86400;
 
 export async function GET() {
-  const DOMAIN = "https://www.octopusperfume.in";
-  const brands = getAllBrands();
+  const brands = getVerifiedBrandEntries();
   const now = new Date().toISOString().split("T")[0];
 
   const brandUrls = [
     `  <url>
-    <loc>${DOMAIN}/brands</loc>
+    <loc>${SITE_URL}/brands</loc>
     <lastmod>${now}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>`,
-    ...brands.map((b) => `  <url>
-    <loc>${DOMAIN}/brands/${b.slug}</loc>
+    ...brands.map(
+      (b) => `  <url>
+    <loc>${SITE_URL}/brands/${escapeXml(b.slug)}</loc>
     <lastmod>${now}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
-  </url>`),
+  </url>`
+    ),
   ];
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -34,4 +35,3 @@ ${brandUrls.join("\n")}
     },
   });
 }
-

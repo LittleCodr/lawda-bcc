@@ -20,7 +20,7 @@ const COUPONS: Coupon[] = [
     code: "OCTOPUS5",
     discount: "5% OFF",
     title: "Prepaid Privilege Discount",
-    description: "Flat 5% instant checkout discount on Octopus Perfumes and 130+ designer fragrance houses on minimum orders of ₹5,000.",
+    description: "Flat 5% instant checkout discount on Octopus Perfumes and 430+ designer fragrance houses on minimum orders of ₹5,000.",
     validUntil: "Verified Active Today",
     isPopular: true,
     minSpend: "Min. order ₹5,000"

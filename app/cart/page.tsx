@@ -67,7 +67,7 @@ export default function CartPage() {
               Your fragrance bag is empty
             </h2>
             <p className="text-sm text-[#5C5954] max-w-md mx-auto mb-7 leading-relaxed">
-              Explore over 1,700 factory-sealed designer, niche, and Middle Eastern creations. Orders include free pan-India express shipping and a complimentary 7ML Paradox tester.
+              Explore over 16,000 factory-sealed designer, niche, and Middle Eastern creations. Orders include free pan-India express shipping and a complimentary 7ML Paradox tester.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               <Link href="/collections/bestsellers" className="btn-luxury-primary px-6 py-3 text-xs">

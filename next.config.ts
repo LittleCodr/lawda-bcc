@@ -63,6 +63,36 @@ const nextConfig: NextConfig = {
         hostname: "perfumenetwork.in",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "perfumepalace.in",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.perfumepalace.in",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "belvish.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.belvish.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "fridaycharm.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.fridaycharm.com",
+        pathname: "/**",
+      },
     ],
   },
   async redirects() {

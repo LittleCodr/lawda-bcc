@@ -10,7 +10,7 @@ export const revalidate = 86400;
 export const metadata: Metadata = {
   title: "Octopus Perfume Coupon Code & Discounts (2026) | Code OCTOPUS5 (5% OFF ₹5,000+)",
   description:
-    "Verified Octopus perfume coupon codes & bundle tiers. Use coupon code OCTOPUS5 for 5% OFF on minimum orders of ₹5,000+ across Harsh Beniwal 50ML EDPs & 130+ luxury houses, plus Free 7ML Paradox tester & express shipping.",
+    "Verified Octopus perfume coupon codes & bundle tiers. Use coupon code OCTOPUS5 for 5% OFF on minimum orders of ₹5,000+ across Harsh Beniwal 50ML EDPs & 430+ luxury houses, plus Free 7ML Paradox tester & express shipping.",
   keywords: [
     "octopus perfume coupon code",
     "harsh beniwal perfume coupon code",
@@ -112,7 +112,7 @@ export default function OctopusPerfumeCouponCodePage() {
         "name": "What is the coupon code for Harsh Beniwal perfume?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The official coupon code is OCTOPUS5, valid for an extra 5% OFF on orders of ₹5,000 or more across Harsh Beniwal 50ML EDPs (already discounted to ₹1,299 from ₹2,099 MRP) and 130+ luxury houses."
+          "text": "The official coupon code is OCTOPUS5, valid for an extra 5% OFF on orders of ₹5,000 or more across Harsh Beniwal 50ML EDPs (already discounted to ₹1,299 from ₹2,099 MRP) and 430+ luxury houses."
         }
       },
       {
@@ -181,7 +181,7 @@ export default function OctopusPerfumeCouponCodePage() {
             </h1>
 
             <p className="max-w-2xl mx-auto text-sm sm:text-base text-stone-300 leading-relaxed font-normal">
-              Get verified, active discount codes for 100% original Octopus Perfumes by Harsh Beniwal and 130+ luxury houses. Save 5% on minimum orders of ₹5,000+ with code <strong className="font-mono text-amber-300">OCTOPUS5</strong> + complimentary 7ML Paradox tester &amp; free pan-India delivery.
+              Get verified, active discount codes for 100% original Octopus Perfumes by Harsh Beniwal and 430+ luxury houses. Save 5% on minimum orders of ₹5,000+ with code <strong className="font-mono text-amber-300">OCTOPUS5</strong> + complimentary 7ML Paradox tester &amp; free pan-India delivery.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-semibold text-amber-200/90 pt-2">

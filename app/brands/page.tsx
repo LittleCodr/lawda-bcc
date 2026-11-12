@@ -6,7 +6,7 @@ import BrandDirectoryClient from "@/components/BrandDirectoryClient";
 export const metadata: Metadata = {
   title: "All Luxury & Middle Eastern Perfume Brands A–Z | Octopus Perfumes India",
   description:
-    "Explore 130+ original fragrance houses: Lattafa, Rasasi, Afnan, Christian Dior, Hermès, Tom Ford, Creed, Xerjoff, Parfums de Marly & Harsh Beniwal × Octopus.",
+    "Explore 430+ original fragrance houses: Lattafa, Rasasi, Afnan, Christian Dior, Hermès, Tom Ford, Creed, Xerjoff, Parfums de Marly & Harsh Beniwal × Octopus.",
   alternates: {
     canonical: "https://www.octopusperfume.in/brands",
   },

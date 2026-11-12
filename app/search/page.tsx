@@ -4,6 +4,8 @@ import {
   getAllPerfumeSummaries,
   filterProducts,
   getBrandSummaries,
+  getFacetCounts,
+  sortProducts,
   toGridSummary,
 } from "@/lib/catalog";
 import CatalogExplorer from "@/components/CatalogExplorer";
@@ -11,7 +13,7 @@ import CatalogExplorer from "@/components/CatalogExplorer";
 export const metadata: Metadata = {
   title: "Search Perfumes & Fragrance Houses | Octopus Perfumes",
   description:
-    "Search over 1,700 authentic designer, niche, and Middle Eastern fragrances by house, note, concentration, or bottle size.",
+    "Search over 16,000 authentic designer, niche, and Middle Eastern fragrances by house, note, concentration, or bottle size.",
   robots: { index: false, follow: true },
 };
 
@@ -25,6 +27,12 @@ export default async function SearchPage({
 
   const allPerfumes = getAllPerfumeSummaries();
   const matched = query ? filterProducts(allPerfumes, { query }) : allPerfumes;
+  const useServerPagination = matched.length > 400;
+  const sortedMatched = useServerPagination ? sortProducts(matched, "featured") : matched;
+  const explorerProducts = (useServerPagination ? sortedMatched.slice(0, 48) : matched).map(
+    toGridSummary
+  );
+  const serverFacets = useServerPagination ? getFacetCounts(matched) : undefined;
   const matchingBrands = query
     ? getBrandSummaries()
         .filter((b) => b.name.toLowerCase().includes(query.toLowerCase()))
@@ -79,7 +87,10 @@ export default async function SearchPage({
         </div>
 
         <CatalogExplorer
-          products={matched.map(toGridSummary)}
+          products={explorerProducts}
+          totalCount={useServerPagination ? matched.length : undefined}
+          serverFacets={serverFacets}
+          serverSearchQuery={useServerPagination ? query : undefined}
           emptyTitle={query ? `No perfumes matched "${query}"` : "No perfumes found"}
           emptyDescription="Try searching a single brand name (Lattafa, Rasasi, Creed, Dior), concentration (EDP, Extrait), or browse one of our curated collections."
         />

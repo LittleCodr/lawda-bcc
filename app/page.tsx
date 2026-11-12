@@ -26,7 +26,7 @@ import NewsletterForm from "@/components/NewsletterForm";
 export const metadata: Metadata = {
   title: "Octopus Perfumes | Buy 100% Authentic Designer, Niche & Middle Eastern Perfumes in India",
   description:
-    "Shop 1,700+ original sealed perfumes in India: Rasasi, Lattafa, Dior, Tom Ford, Creed, Afnan, French Avenue & Harsh Beniwal × Octopus 25% French oil EDPs. Free pan-India express shipping.",
+    "Shop 16,000+ original sealed perfumes in India: Rasasi, Lattafa, Dior, Tom Ford, Creed, Afnan, French Avenue & Harsh Beniwal × Octopus 25% French oil EDPs. Free pan-India express shipping.",
   alternates: {
     canonical: "https://www.octopusperfume.in",
   },

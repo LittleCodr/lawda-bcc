@@ -3,22 +3,55 @@ import productsData from "@/lib/data/products.json";
 // Revalidate once every 24 hours to cache on Vercel Edge CDN and eliminate function CPU & Fast Origin Transfer costs
 export const revalidate = 86400;
 
+interface FeedVariant {
+  id: string | number;
+  title?: string | null;
+  price?: string | number | null;
+  compare_at_price?: string | number | null;
+  available?: boolean;
+  barcode?: string | null;
+  sku?: string | null;
+}
+
+interface FeedImage {
+  src?: string | null;
+  local_src?: string | null;
+  localPath?: string | null;
+}
+
+interface FeedProduct {
+  id: string | number;
+  title?: string;
+  handle?: string;
+  body_html?: string | null;
+  vendor?: string | null;
+  variants?: FeedVariant[];
+  images?: FeedImage[];
+}
+
 export async function GET(request: Request) {
   const host = request?.headers?.get("x-forwarded-host") || request?.headers?.get("host");
   const proto = request?.headers?.get("x-forwarded-proto") || (host?.includes("localhost") ? "http" : "https");
   const DOMAIN = host && !host.includes("vercel.app") ? `${proto}://${host}` : "https://www.octopusperfume.in";
 
-  // Filter out any invalid items
-  const validProducts = (productsData as any[]).filter(
-    (p) => p && p.title && p.handle && p.variants && p.variants.length > 0 && Number(p.variants[0].price) > 0
-  );
+  const url = new URL(request.url);
+  const page = Math.max(1, Number(url.searchParams.get("page") || "1") || 1);
+  const limit = Math.min(1200, Math.max(1, Number(url.searchParams.get("limit") || "1000") || 1000));
+
+  // Filter valid products, keeping flagship Harsh Beniwal & high-priority SKUs first, paginated under 4.5 MB Vercel limit
+  const validProducts = (productsData as FeedProduct[])
+    .filter(
+      (p) => p && p.title && p.handle && p.variants && p.variants.length > 0 && Number(p.variants[0].price) > 0
+    )
+    .slice((page - 1) * limit, page * limit);
 
   const itemsXml = validProducts
     .map((product) => {
-      const isMultiVariant = product.variants && product.variants.length > 1;
+      const variants = product.variants || [];
+      const isMultiVariant = variants.length > 1;
 
-      return product.variants
-        .map((variant: any) => {
+      return variants
+        .map((variant) => {
           const currentPrice = Number(variant.price || 0);
           const comparePrice = Number(variant.compare_at_price || 0);
           const hasDiscount = comparePrice > currentPrice;
@@ -32,10 +65,10 @@ export async function GET(request: Request) {
             .replace(/<[^>]*>?/gm, " ")
             .replace(/\s+/g, " ")
             .trim()
-            .substring(0, 1500) || `${product.title} 100% authentic fragrance with free shipping across India.`;
+            .substring(0, 500) || `${product.title} 100% authentic fragrance with free shipping across India.`;
 
           const allImages = (product.images || [])
-            .map((img: any) => {
+            .map((img) => {
               const src = img.local_src || img.localPath || img.src || "";
               return src.startsWith("http") ? src : `${DOMAIN}${src}`;
             })
@@ -50,7 +83,7 @@ export async function GET(request: Request) {
 
           const isHarshBeniwal =
             product.vendor === "Octopus Perfumes by Harsh Beniwal" ||
-            ["overlord", "paradox", "rhapsody", "your-move", "somersault", "promised", "outlaw", "mirage", "darling-women"].includes(product.handle);
+            ["overlord", "paradox", "rhapsody", "your-move", "somersault", "promised", "outlaw", "mirage", "darling-women"].includes(product.handle || "");
 
           const brand = product.vendor || (isHarshBeniwal ? "Octopus Perfumes by Harsh Beniwal" : "Octopus Perfumes");
 

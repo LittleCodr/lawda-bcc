@@ -7,7 +7,9 @@ import {
   getAllPerfumeSummaries,
   getAllProducts,
   getCollectionDefinition,
+  getFacetCounts,
   filterProducts,
+  sortProducts,
   toGridSummary,
   toProductSummary,
 } from "@/lib/catalog";
@@ -91,6 +93,15 @@ export default async function CollectionPage({
     if (slug === "bestsellers") {
       scoped = scoped.filter((p) => p.isBestseller || p.isFlagship || p.discountPct >= 30);
     }
+
+    const useServerPagination = scoped.length > 400;
+    const sortedScoped = useServerPagination
+      ? sortProducts(scoped, def.filters.sort || "featured")
+      : scoped;
+    const explorerProducts = (useServerPagination ? sortedScoped.slice(0, 48) : scoped).map(
+      toGridSummary
+    );
+    const serverFacets = useServerPagination ? getFacetCounts(scoped) : undefined;
 
     const baseUrl = "https://www.octopusperfume.in";
 
@@ -216,8 +227,11 @@ export default async function CollectionPage({
           </header>
 
           <CatalogExplorer
-            products={scoped.map(toGridSummary)}
+            products={explorerProducts}
             initialFilters={def.filters.sort ? { sort: def.filters.sort } : {}}
+            totalCount={useServerPagination ? scoped.length : undefined}
+            serverFacets={serverFacets}
+            serverCollectionSlug={useServerPagination ? slug : undefined}
           />
 
           {/* Editorial SEO & Collection FAQs */}

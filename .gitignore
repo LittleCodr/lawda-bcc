@@ -45,6 +45,7 @@ next-env.d.ts
 
 # temporary catalog enrichment caches & raw staging dumps
 scripts/catalog-enrichment/.cache_raw_sources.json
+scripts/catalog-enrichment/.cache_all_3_sources.json
 scripts/catalog-enrichment/competitor_research_staging.json
 
 

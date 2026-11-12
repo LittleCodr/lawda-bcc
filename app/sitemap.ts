@@ -6,7 +6,6 @@ import {
   getValidCollectionSlugs,
   getVerifiedBrandEntries,
   getVerifiedCatalogProducts,
-  toAbsoluteSiteUrl,
   toSafeDate,
 } from "@/lib/sitemap-helpers";
 
@@ -118,15 +117,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // 7. Deduplicated catalog product pages (/products/[slug])
   for (const product of getVerifiedCatalogProducts(true)) {
-    const firstImage = product.images[0]?.src || product.image;
     upsert({
       url: `${SITE_URL}/products/${product.handle}`,
       lastModified: toSafeDate(product.createdAt),
       changeFrequency: product.isFlagship ? "daily" : "weekly",
       priority: product.isFlagship ? 0.95 : 0.85,
-      images: firstImage && !firstImage.includes("/placeholder.svg")
-        ? [toAbsoluteSiteUrl(firstImage)]
-        : undefined,
     });
   }
 

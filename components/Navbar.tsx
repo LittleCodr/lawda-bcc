@@ -43,7 +43,7 @@ type MegaKey =
   | null;
 
 const SHOP_COLLECTIONS = [
-  { label: "All Perfumes (1,700+)", href: "/collections/all" },
+  { label: "All Perfumes (16,000+)", href: "/collections/all" },
   { label: "New Arrivals", href: "/collections/new-arrivals" },
   { label: "Bestsellers", href: "/collections/bestsellers" },
   { label: "Trending Scents", href: "/collections/trending" },
@@ -1169,7 +1169,7 @@ export default function Navbar({ topBrands = [] }: NavbarProps) {
               className="w-full flex items-center gap-2.5 px-3.5 py-2.5 rounded-[6px] bg-[#F7F6F3] border border-[#E8E6E1] text-xs font-medium text-[#5C5954] cursor-pointer"
             >
               <Search size={15} />
-              <span>Search 1,700+ scents, notes, brands...</span>
+              <span>Search 16,000+ scents, notes, brands...</span>
             </button>
 
             {/* Prominent Business Identity Shortcuts */}

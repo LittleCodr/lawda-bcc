@@ -172,6 +172,14 @@ export interface CollectionMeta {
 
 export const BRAND_ALIASES: Record<string, string> = {
   Bvlagri: "Bvlgari",
+  Dior: "Christian Dior",
+  Montblanc: "Mont Blanc",
+  "Im Rasasi": "Rasasi",
+  Riiffs: "RiiFFS",
+  "Ibraheem Al Qurashi": "Ibraheem al Qurashi",
+  "Maison Fragrance World": "Fragrance World",
+  Memo: "Memo Paris",
+  Roja: "Roja Parfums",
 };
 
 export function formatPriceINR(amount: number): string {

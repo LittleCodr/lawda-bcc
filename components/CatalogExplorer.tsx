@@ -5,6 +5,7 @@ import { SlidersHorizontal, X, ChevronDown, RotateCcw } from "lucide-react";
 import type {
   BrandTier,
   CatalogFilters,
+  FacetCounts,
   FragranceGender,
   ProductSummary,
   SizeBucket,
@@ -18,6 +19,10 @@ interface CatalogExplorerProps {
   hideBrandFilter?: boolean;
   emptyTitle?: string;
   emptyDescription?: string;
+  totalCount?: number;
+  serverFacets?: FacetCounts;
+  serverCollectionSlug?: string;
+  serverSearchQuery?: string;
 }
 
 const PAGE_SIZE = 24;
@@ -115,12 +120,25 @@ export default function CatalogExplorer({
   hideBrandFilter = false,
   emptyTitle = "No matching fragrances found",
   emptyDescription = "Try removing a filter or widening your price bracket.",
+  totalCount,
+  serverFacets,
+  serverCollectionSlug,
+  serverSearchQuery,
 }: CatalogExplorerProps) {
+  const isServerBacked =
+    typeof totalCount === "number" &&
+    (Boolean(serverCollectionSlug) || serverSearchQuery !== undefined);
+
   const [filters, setFilters] = useState<CatalogFilters>(initialFilters);
   const [sort, setSort] = useState<SortKey>(initialFilters.sort || "featured");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [brandSearch, setBrandSearch] = useState("");
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const [serverItems, setServerItems] = useState<ProductSummary[]>(products);
+  const [serverTotal, setServerTotal] = useState<number>(totalCount ?? products.length);
+  const [loadingServer, setLoadingServer] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   const mobileDialogRef = useRef<HTMLDialogElement>(null);
 
@@ -131,8 +149,66 @@ export default function CatalogExplorer({
     else if (!mobileOpen && dialog.open) dialog.close();
   }, [mobileOpen]);
 
-  // Build facet options strictly from incoming collection pool so counts match real items
+  const buildCatalogUrl = (
+    activeFilters: CatalogFilters,
+    activeSort: SortKey,
+    offset: number,
+    limit: number
+  ) => {
+    const sp = new URLSearchParams();
+    if (serverCollectionSlug) sp.set("collection", serverCollectionSlug);
+    if (serverSearchQuery) sp.set("q", serverSearchQuery);
+    else if (activeFilters.query) sp.set("q", activeFilters.query);
+    if (activeSort) sp.set("sort", activeSort);
+    if (activeFilters.brands?.length) sp.set("brands", activeFilters.brands.join(","));
+    if (activeFilters.tiers?.length) sp.set("tiers", activeFilters.tiers.join(","));
+    if (activeFilters.genders?.length) sp.set("genders", activeFilters.genders.join(","));
+    if (activeFilters.concentrations?.length)
+      sp.set("concentrations", activeFilters.concentrations.join(","));
+    if (activeFilters.sizes?.length) sp.set("sizes", activeFilters.sizes.join(","));
+    if (activeFilters.families?.length) sp.set("families", activeFilters.families.join(","));
+    if (activeFilters.occasions?.length) sp.set("occasions", activeFilters.occasions.join(","));
+    if (activeFilters.seasons?.length) sp.set("seasons", activeFilters.seasons.join(","));
+    if (activeFilters.minPrice !== undefined) sp.set("minPrice", String(activeFilters.minPrice));
+    if (activeFilters.maxPrice !== undefined) sp.set("maxPrice", String(activeFilters.maxPrice));
+    if (activeFilters.inStockOnly) sp.set("inStockOnly", "1");
+    if (activeFilters.discountedOnly) sp.set("discountedOnly", "1");
+    sp.set("offset", String(offset));
+    sp.set("limit", String(limit));
+    return `/api/catalog?${sp.toString()}`;
+  };
+
+  useEffect(() => {
+    if (!isServerBacked || !hasInteracted) return;
+    const controller = new AbortController();
+    const timer = setTimeout(async () => {
+      setLoadingServer(true);
+      try {
+        const res = await fetch(buildCatalogUrl(filters, sort, 0, 48), {
+          signal: controller.signal,
+        });
+        if (!res.ok) return;
+        const data = (await res.json()) as { items?: ProductSummary[]; total?: number };
+        setServerItems(Array.isArray(data.items) ? data.items : []);
+        setServerTotal(typeof data.total === "number" ? data.total : 0);
+        setVisibleCount(PAGE_SIZE);
+      } catch {
+        // Ignore aborted fetches
+      } finally {
+        setLoadingServer(false);
+      }
+    }, 120);
+
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters, sort, isServerBacked, serverCollectionSlug, serverSearchQuery]);
+
+  // Build facet options strictly from incoming collection pool or precomputed server facets
   const facets = useMemo(() => {
+    if (serverFacets) return serverFacets;
     const brandMap = new Map<string, { label: string; count: number }>();
     const genderMap = new Map<FragranceGender, number>();
     const concMap = new Map<string, number>();
@@ -170,21 +246,53 @@ export default function CatalogExplorer({
       occasions: toSorted(occMap),
       tiers: toSorted(tierMap),
     };
-  }, [products]);
+  }, [products, serverFacets]);
 
-  const filteredProducts = useMemo(
-    () => applyClientFilters(products, filters, sort),
-    [products, filters, sort]
+  const localFilteredProducts = useMemo(
+    () => (isServerBacked ? serverItems : applyClientFilters(products, filters, sort)),
+    [isServerBacked, serverItems, products, filters, sort]
   );
 
-  const visibleProducts = filteredProducts.slice(0, visibleCount);
+  const totalMatchingCount = isServerBacked ? serverTotal : localFilteredProducts.length;
+  const visibleProducts = localFilteredProducts.slice(0, visibleCount);
+
+  const handleLoadMore = async () => {
+    const nextVisible = visibleCount + PAGE_SIZE;
+    if (!isServerBacked || nextVisible <= localFilteredProducts.length || localFilteredProducts.length >= serverTotal) {
+      setVisibleCount(nextVisible);
+      return;
+    }
+    setLoadingServer(true);
+    try {
+      const res = await fetch(
+        buildCatalogUrl(filters, sort, localFilteredProducts.length, 48)
+      );
+      if (res.ok) {
+        const data = (await res.json()) as { items?: ProductSummary[]; total?: number };
+        if (Array.isArray(data.items) && data.items.length > 0) {
+          setServerItems((prev) => [...prev, ...data.items!]);
+          if (typeof data.total === "number") setServerTotal(data.total);
+        }
+      }
+      setVisibleCount(nextVisible);
+    } finally {
+      setLoadingServer(false);
+    }
+  };
 
   const updateFilters = (patch: Partial<CatalogFilters>) => {
+    setHasInteracted(true);
     setFilters((prev) => ({ ...prev, ...patch }));
     setVisibleCount(PAGE_SIZE);
   };
 
+  const handleSortChange = (nextSort: SortKey) => {
+    setHasInteracted(true);
+    setSort(nextSort);
+  };
+
   const resetFilters = () => {
+    setHasInteracted(true);
     setFilters(initialFilters);
     setSort(initialFilters.sort || "featured");
     setBrandSearch("");
@@ -369,9 +477,11 @@ export default function CatalogExplorer({
                 <span className="flex items-center gap-2">
                   <input
                     type="checkbox"
-                    checked={filters.genders?.includes(g.value) || false}
+                    checked={filters.genders?.includes(g.value as FragranceGender) || false}
                     onChange={() =>
-                      updateFilters({ genders: toggleArrayValue(filters.genders, g.value) })
+                      updateFilters({
+                        genders: toggleArrayValue(filters.genders, g.value as FragranceGender),
+                      })
                     }
                     className="rounded border-[#D4CFC7] accent-[#1F1D1B]"
                   />
@@ -466,9 +576,9 @@ export default function CatalogExplorer({
                 <span className="flex items-center gap-2">
                   <input
                     type="checkbox"
-                    checked={filters.sizes?.includes(s.value) || false}
+                    checked={filters.sizes?.includes(s.value as SizeBucket) || false}
                     onChange={() =>
-                      updateFilters({ sizes: toggleArrayValue(filters.sizes, s.value) })
+                      updateFilters({ sizes: toggleArrayValue(filters.sizes, s.value as SizeBucket) })
                     }
                     className="rounded border-[#D4CFC7] accent-[#1F1D1B]"
                   />
@@ -522,13 +632,13 @@ export default function CatalogExplorer({
                 <span className="flex items-center gap-2">
                   <input
                     type="checkbox"
-                    checked={filters.tiers?.includes(t.value) || false}
+                    checked={filters.tiers?.includes(t.value as BrandTier) || false}
                     onChange={() =>
-                      updateFilters({ tiers: toggleArrayValue(filters.tiers, t.value) })
+                      updateFilters({ tiers: toggleArrayValue(filters.tiers, t.value as BrandTier) })
                     }
                     className="rounded border-[#D4CFC7] accent-[#1F1D1B]"
                   />
-                  <span>{TIER_LABELS[t.value]}</span>
+                  <span>{TIER_LABELS[t.value as BrandTier] || t.value}</span>
                 </span>
                 <span className="text-[11px] text-[#96928B] tabular-nums">{t.count}</span>
               </label>
@@ -608,8 +718,9 @@ export default function CatalogExplorer({
             </button>
 
             <p className="text-xs sm:text-sm text-[#5C5954]">
-              Showing <strong className="text-[#242424] tabular-nums">{filteredProducts.length}</strong>{" "}
-              {filteredProducts.length === 1 ? "perfume" : "perfumes"}
+              Showing <strong className="text-[#242424] tabular-nums">{totalMatchingCount.toLocaleString("en-IN")}</strong>{" "}
+              {totalMatchingCount === 1 ? "perfume" : "perfumes"}
+              {loadingServer ? <span className="ml-2 text-[#9A7953]">Updating…</span> : null}
             </p>
           </div>
 
@@ -620,7 +731,7 @@ export default function CatalogExplorer({
             <select
               id="catalog-sort"
               value={sort}
-              onChange={(e) => setSort(e.target.value as SortKey)}
+              onChange={(e) => handleSortChange(e.target.value as SortKey)}
               className="px-3 py-2 rounded-[6px] border border-[#D4CFC7] bg-white text-xs sm:text-[13px] font-medium text-[#242424] cursor-pointer"
             >
               {SORT_OPTIONS.map((opt) => (
@@ -665,14 +776,17 @@ export default function CatalogExplorer({
               ))}
             </div>
 
-            {visibleCount < filteredProducts.length && (
+            {visibleCount < totalMatchingCount && (
               <div className="mt-10 text-center space-y-2">
                 <button
                   type="button"
-                  onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
-                  className="btn-luxury-secondary px-8 py-3 text-xs uppercase tracking-[0.12em]"
+                  disabled={loadingServer}
+                  onClick={handleLoadMore}
+                  className="btn-luxury-secondary px-8 py-3 text-xs uppercase tracking-[0.12em] disabled:opacity-60"
                 >
-                  Load More ({filteredProducts.length - visibleCount} remaining)
+                  {loadingServer
+                    ? "Loading..."
+                    : `Load More (${(totalMatchingCount - visibleCount).toLocaleString("en-IN")} remaining)`}
                 </button>
               </div>
             )}
@@ -752,8 +866,8 @@ export default function CatalogExplorer({
               onClick={() => setMobileOpen(false)}
               className="w-full btn-luxury-primary py-3 text-xs"
             >
-              Show {filteredProducts.length}{" "}
-              {filteredProducts.length === 1 ? "Perfume" : "Perfumes"}
+              Show {totalMatchingCount.toLocaleString("en-IN")}{" "}
+              {totalMatchingCount === 1 ? "Perfume" : "Perfumes"}
             </button>
           </div>
         </div>

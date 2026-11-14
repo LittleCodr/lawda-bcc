@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useSyncExternalStore } from "react";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { ShieldCheck, Lock, CheckCircle2, Sparkles } from "lucide-react";
+import { ShieldCheck, Lock, CheckCircle2, Sparkles, ChevronUp, ChevronDown, ShoppingBag, X } from "lucide-react";
 import { useCartStore } from "@/lib/store";
 import { useAuth } from "@/lib/auth-context";
 import { logAppEvent, db, auth } from "@/lib/firebase";
@@ -69,6 +69,7 @@ export default function CheckoutPage() {
   const [promoCode, setPromoCode] = useState("");
   const [promoApplied, setPromoApplied] = useState(false);
   const [promoError, setPromoError] = useState("");
+  const [mobileSummaryOpen, setMobileSummaryOpen] = useState(false);
 
   const baseTotal = totalPrice();
   const cartAutoDiscount = getAutoDiscountAmount ? getAutoDiscountAmount() : 0;
@@ -334,7 +335,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen py-10 sm:py-14">
+    <div className="bg-white min-h-screen pt-10 pb-36 sm:py-14">
       <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
@@ -348,7 +349,7 @@ export default function CheckoutPage() {
                 Shipping Details
               </h1>
 
-              <form onSubmit={handlePayment} className="space-y-6">
+              <form id="checkout-form" onSubmit={handlePayment} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="checkout-name" className="block text-xs font-semibold uppercase tracking-wider text-[#242424] mb-1">
@@ -741,6 +742,172 @@ export default function CheckoutPage() {
             </div>
           </div>
 
+        </div>
+      </div>
+
+      {/* Mobile Slide-Up Order Summary Drawer */}
+      {mobileSummaryOpen && (
+        <div className="lg:hidden fixed inset-0 z-50 flex flex-col justify-end">
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+            onClick={() => setMobileSummaryOpen(false)}
+          />
+
+          {/* Drawer Sheet */}
+          <div className="relative z-10 bg-white rounded-t-2xl max-h-[82vh] flex flex-col shadow-2xl border-t border-[#E8E6E1] overflow-hidden">
+            {/* Header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-[#E8E6E1] bg-[#FAF9F6]">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-full bg-[#141210] text-[#D4AF7A] flex items-center justify-center">
+                  <ShoppingBag size={15} />
+                </div>
+                <div>
+                  <h3 className="font-serif text-base font-semibold text-[#242424] leading-tight">Order Summary</h3>
+                  <p className="text-[11px] text-[#777777]">
+                    {items.reduce((acc, i) => acc + i.quantity, 0)} {items.reduce((acc, i) => acc + i.quantity, 0) === 1 ? "bottle" : "bottles"} + 1 complimentary tester
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setMobileSummaryOpen(false)}
+                className="w-8 h-8 rounded-full bg-stone-100 hover:bg-stone-200 text-stone-600 flex items-center justify-center transition-colors cursor-pointer"
+                aria-label="Close summary"
+              >
+                <X size={16} />
+              </button>
+            </div>
+
+            {/* Items Scrollable List */}
+            <div className="px-5 py-4 overflow-y-auto max-h-[42vh] divide-y divide-[#E8E6E1]">
+              {(allDisplayItems as DisplayCheckoutItem[]).map((item) => (
+                <div key={item.cartItemId || `${item.id}-${item.variantId}`} className="py-3 flex gap-3.5 first:pt-0 last:pb-0 items-center">
+                  <div className="relative w-14 h-14 bg-stone-50 shrink-0 border border-stone-200 rounded-md overflow-hidden">
+                    <Image src={item.image || "/logo.png"} alt={item.title} fill unoptimized sizes="56px" className="object-cover" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-serif text-sm font-semibold text-[#242424] truncate leading-tight">{item.title}</p>
+                    {item.variantTitle && (
+                      <p className="text-[11px] text-[#777777] truncate">{item.variantTitle}</p>
+                    )}
+                    <p className="text-[11px] text-stone-400 mt-0.5">Qty: {item.quantity}</p>
+                  </div>
+                  <div className="text-right shrink-0">
+                    {item.isFree ? (
+                      <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">FREE</span>
+                    ) : (
+                      <span className="text-sm font-bold text-[#242424] tabular-nums">₹{item.price.toLocaleString("en-IN")}</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Price Breakdown Footer */}
+            <div className="px-5 py-3.5 bg-[#FAF9F6] border-t border-[#E8E6E1] space-y-2 text-xs">
+              <div className="flex justify-between text-[#5C5954]">
+                <span>Subtotal</span>
+                <span className="tabular-nums">₹{baseTotal.toLocaleString("en-IN")}</span>
+              </div>
+              {cartAutoDiscount > 0 && (
+                <div className="flex justify-between font-semibold text-[#347A54]">
+                  <span>Auto Bundle ({cartDiscountPercent}%)</span>
+                  <span className="tabular-nums">−₹{cartAutoDiscount.toLocaleString("en-IN")}</span>
+                </div>
+              )}
+              {promoApplied && (
+                <div className="flex justify-between font-semibold text-[#347A54]">
+                  <span>Promo Discount ({promoCode})</span>
+                  <span className="tabular-nums">−₹{promoDiscountAmount.toLocaleString("en-IN")}</span>
+                </div>
+              )}
+              <div className="flex justify-between text-[#5C5954]">
+                <span>Shipping</span>
+                <span className="font-semibold text-emerald-700">
+                  {deliveryMethod === "international" ? "₹1,500" : "FREE Express Pan-India"}
+                </span>
+              </div>
+              <div className="flex justify-between items-baseline pt-2 border-t border-[#E8E6E1] text-sm">
+                <span className="font-serif text-base font-semibold text-[#242424]">Total Payable</span>
+                <span className="text-base font-bold text-[#242424] tabular-nums">₹{finalTotal.toLocaleString("en-IN")}</span>
+              </div>
+            </div>
+
+            {/* Quick Action in Drawer */}
+            <div className="p-4 bg-white border-t border-[#E8E6E1]">
+              <button
+                type="submit"
+                form="checkout-form"
+                onClick={() => setMobileSummaryOpen(false)}
+                disabled={loading}
+                className="w-full btn-luxury-primary py-3.5 text-xs tracking-[0.14em] cursor-pointer flex items-center justify-center gap-2"
+              >
+                <Lock size={13} /> Continue to Pay ₹{finalTotal.toLocaleString("en-IN")}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Sticky Bottom Bar */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-[#E8E6E1] shadow-[0_-6px_25px_rgba(0,0,0,0.12)]">
+        {/* Security / Perks micro-banner */}
+        <div className="bg-[#141210] text-[#D4AF7A] px-4 py-1 text-[10px] font-semibold tracking-wider flex items-center justify-between uppercase">
+          <span className="flex items-center gap-1.5 text-stone-200">
+            <Lock size={10} className="text-[#D4AF7A]" /> 100% Encrypted Checkout
+          </span>
+          <span className="text-emerald-400 font-bold flex items-center gap-1">
+            <Sparkles size={10} /> Free 7ML Tester Included
+          </span>
+        </div>
+
+        <div className="px-4 py-2.5 pb-[calc(0.75rem+env(safe-area-inset-bottom))] flex items-center justify-between gap-3">
+          {/* Left: Total & Details Toggle */}
+          <button
+            type="button"
+            onClick={() => setMobileSummaryOpen(!mobileSummaryOpen)}
+            className="text-left flex flex-col justify-center min-w-0 group cursor-pointer"
+            aria-label="Toggle order summary"
+          >
+            <div className="flex items-center gap-1 text-[10.5px] font-semibold uppercase tracking-wider text-[#9A7953]">
+              <span>Total</span>
+              {mobileSummaryOpen ? <ChevronDown size={12} /> : <ChevronUp size={12} />}
+              {totalDiscount > 0 && (
+                <span className="text-[9.5px] bg-emerald-50 text-emerald-700 font-bold px-1.5 py-0.2 rounded border border-emerald-200">
+                  Save ₹{totalDiscount.toLocaleString("en-IN")}
+                </span>
+              )}
+            </div>
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-lg font-bold text-[#242424] tabular-nums leading-tight">
+                ₹{finalTotal.toLocaleString("en-IN")}
+              </span>
+              <span className="text-[11px] text-[#777777] underline decoration-stone-300 group-hover:text-stone-900 transition-colors">
+                View items
+              </span>
+            </div>
+          </button>
+
+          {/* Right: Primary Pay CTA */}
+          <button
+            type="submit"
+            form="checkout-form"
+            disabled={loading}
+            className="btn-luxury-primary px-5 py-3 text-xs tracking-[0.12em] shrink-0 disabled:opacity-50 flex items-center justify-center gap-2 shadow-md cursor-pointer"
+          >
+            {loading ? (
+              <span className="flex items-center gap-2">
+                <span className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                Processing...
+              </span>
+            ) : (
+              <>
+                <Lock size={13} />
+                Pay ₹{finalTotal.toLocaleString("en-IN")}
+              </>
+            )}
+          </button>
         </div>
       </div>
     </div>

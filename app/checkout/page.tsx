@@ -739,6 +739,16 @@ export default function CheckoutPage() {
                   <span className="text-[10px] uppercase tracking-wider font-semibold">Encrypted<br />PayU Gateway</span>
                 </div>
               </div>
+
+              {/* Support Contact */}
+              <div className="mt-6 pt-4 border-t border-[#E8E6E1] text-center">
+                <p className="text-[11.5px] text-[#777777]">
+                  Need order assistance? Support:{" "}
+                  <a href="mailto:hurkinds@gmail.com" className="font-semibold text-[#9A7953] hover:underline">
+                    hurkinds@gmail.com
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
 
@@ -835,7 +845,7 @@ export default function CheckoutPage() {
             </div>
 
             {/* Quick Action in Drawer */}
-            <div className="p-4 bg-white border-t border-[#E8E6E1]">
+            <div className="p-4 bg-white border-t border-[#E8E6E1] space-y-2">
               <button
                 type="submit"
                 form="checkout-form"
@@ -845,6 +855,12 @@ export default function CheckoutPage() {
               >
                 <Lock size={13} /> Continue to Pay ₹{finalTotal.toLocaleString("en-IN")}
               </button>
+              <p className="text-center text-[10.5px] text-[#777777]">
+                Concierge Support:{" "}
+                <a href="mailto:hurkinds@gmail.com" className="text-[#9A7953] font-semibold hover:underline">
+                  hurkinds@gmail.com
+                </a>
+              </p>
             </div>
           </div>
         </div>

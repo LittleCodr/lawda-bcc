@@ -57,7 +57,7 @@ export async function sendBrevoEmail(
     } = {
       sender: { name: "Octopus Perfumes", email: "orders@octopusperfume.in" },
       to: [{ email: toEmail, name: toName || "Valued Customer" }],
-      replyTo: { name: "Octopus Perfumes Concierge", email: "orders@octopusperfume.in" },
+      replyTo: { name: "Octopus Perfumes Concierge", email: "hurkinds@gmail.com" },
       subject,
       htmlContent,
     };
@@ -234,14 +234,14 @@ export async function sendOrderConfirmation(
               </div>
 
               <p style="margin:24px 0 0 0;font-size:13px;line-height:1.6;color:#5C5954;">
-                You will receive your AWB tracking update shortly after dispatch. For any assistance, simply reply to this email or view your order inside your Octopus Perfumes account.
+                You will receive your AWB tracking update shortly after dispatch. For any assistance, write to support at <strong>hurkinds@gmail.com</strong> or reply directly to this email.
               </p>
             </td>
           </tr>
           <tr>
             <td style="background-color:#F7F6F3;padding:18px 32px;border-top:1px solid #E8E6E1;text-align:center;font-size:12px;color:#777777;">
               <div>100% Genuine Sealed Fragrances · Batch-Verified Dispatch</div>
-              <div style="margin-top:4px;">© ${new Date().getFullYear()} Octopus Perfumes · orders@octopusperfume.in</div>
+              <div style="margin-top:4px;">© ${new Date().getFullYear()} Octopus Perfumes · Support: hurkinds@gmail.com</div>
             </td>
           </tr>
         </table>
@@ -276,7 +276,7 @@ export async function sendOrderConfirmation(
     details?.shippingAddress ? `Shipping To: ${details.shippingAddress}` : "",
     ``,
     `View your order & download your invoice at: https://www.octopusperfume.in/account?tab=orders`,
-    `Need help? Reply directly to orders@octopusperfume.in`,
+    `Need help? Contact concierge support at hurkinds@gmail.com or reply directly to this email`,
   ]
     .filter(Boolean)
     .join("\n");

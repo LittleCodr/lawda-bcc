@@ -136,7 +136,7 @@ export async function downloadOrderInvoicePDF(order: InvoiceOrderInput): Promise
   doc.setTextColor(212, 175, 122);
   doc.text("AUTHENTIC DESIGNER & NICHE FRAGRANCE HOUSE  |  INDIA", margin, 27);
   doc.setTextColor(190, 185, 178);
-  doc.text("octopusperfume.in   |   orders@octopusperfume.in", margin, 33);
+  doc.text("octopusperfume.in   |   Support: hurkinds@gmail.com", margin, 33);
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(13);
@@ -325,7 +325,7 @@ export async function downloadOrderInvoicePDF(order: InvoiceOrderInput): Promise
   doc.setFontSize(7.5);
   doc.setTextColor(119, 119, 119);
   doc.text(
-    "This is a computer-generated order invoice from Octopus Perfumes and requires no physical signature.",
+    "Computer-generated invoice. For order inquiries or customer assistance, contact hurkinds@gmail.com",
     pageWidth / 2,
     footerY + 13,
     { align: "center" }

@@ -162,6 +162,7 @@ const DISCOVER_LINKS = [
     href: "/journal/how-to-verify-sealed-authentic-bottles",
   },
   { label: "Verified Markdowns & Bundle Offers", href: "/collections/deals" },
+  { label: "Contact & Client Support", href: "/pages/contact" },
 ];
 
 const subscribeClient = () => () => {};
@@ -1291,6 +1292,10 @@ export default function Navbar({ topBrands = [] }: NavbarProps) {
               >
                 Cart ({mounted ? totalItems() : 0})
               </Link>
+            </div>
+
+            <div className="pt-3 pb-1 text-center text-xs text-[#777777] border-t border-[#E8E6E1]">
+              Support: <a href="mailto:hurkinds@gmail.com" className="font-semibold text-[#9A7953] hover:underline">hurkinds@gmail.com</a>
             </div>
           </div>
         </div>

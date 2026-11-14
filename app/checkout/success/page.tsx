@@ -670,6 +670,16 @@ function SuccessContent() {
                 Continue Exploring Fragrances
               </Link>
             </div>
+
+            <div className="bg-[#FAF9F6] rounded-[12px] border border-[#E8E6E1] p-5 text-center">
+              <p className="text-xs font-semibold text-[#242424] mb-1">Need Order Assistance?</p>
+              <p className="text-xs text-[#777777] mb-2 leading-relaxed">
+                Our concierge team is at your service for any shipping, batch, or delivery inquiries.
+              </p>
+              <a href="mailto:hurkinds@gmail.com" className="text-xs font-bold text-[#9A7953] hover:underline">
+                hurkinds@gmail.com
+              </a>
+            </div>
           </aside>
         </div>
       </div>

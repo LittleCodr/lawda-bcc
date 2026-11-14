@@ -253,6 +253,13 @@ export default function CartPage() {
                   <span>Insured Pan-India Prepaid Dispatch</span>
                 </div>
               </div>
+
+              <div className="pt-3 border-t border-[#E8E6E1] text-[11.5px] text-[#777777] text-center">
+                Need guidance or advice? Concierge Support:{" "}
+                <a href="mailto:hurkinds@gmail.com" className="font-semibold text-[#9A7953] hover:underline">
+                  hurkinds@gmail.com
+                </a>
+              </div>
             </aside>
           </div>
         )}

@@ -109,6 +109,11 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
               <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#9A7953] text-white text-sm font-bold">4</span> Bespoke Personalization Policies</h2>
               <p>As our core offering relies on customization, you are solely responsible for ensuring the absolute accuracy of all personalization inputs (e.g., names, dates, spelling, grammar) submitted during the checkout process. Octopus Everlasting Gifts will not be held liable for typographical errors submitted by the customer.</p>
             </div>
+            
+            <div>
+              <h2 className="flex items-center gap-3"><span className="flex items-center justify-center w-8 h-8 rounded-full bg-[#9A7953] text-white text-sm font-bold">5</span> Customer Support & Contact</h2>
+              <p>For any inquiries, feedback, or assistance regarding our terms or services, please contact our support team at <a href="mailto:hurkinds@gmail.com" className="font-semibold text-[#9A7953] underline">hurkinds@gmail.com</a>.</p>
+            </div>
           </div>
         </>
       );
@@ -161,7 +166,10 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
               <li>Attach the included pre-paid return label to the outside of the box.</li>
               <li>Drop it off at your nearest authorized postal or courier center.</li>
             </ol>
-            <p className="mt-4 text-sm text-stone-500 italic mb-0">If you lost your return label, please contact our support team immediately.</p>
+            <p className="mt-4 text-sm text-stone-500 italic mb-0">
+              If you lost your return label or need return assistance, please contact our support team at{" "}
+              <a href="mailto:hurkinds@gmail.com" className="font-semibold text-[#9A7953] underline">hurkinds@gmail.com</a>.
+            </p>
           </div>
         </>
       );
@@ -240,7 +248,11 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           <p>If two hours have elapsed since the order timestamp, the order is irrevocably locked into the production phase. At this point, the item has been permanently customized with your specific details, rendering it completely unsellable to any other customer. Therefore, we categorically will not accept, process, or entertain any cancellation requests beyond this 2-hour window under any circumstances.</p>
           
           <h2>2. How to Request a Cancellation</h2>
-          <p>To request a cancellation within the permitted 2-hour window, you must immediately contact our emergency support team via the contact form on our website or reply directly to your order confirmation email with the subject line <strong>&ldquo;URGENT CANCELLATION: Order #YourOrderID&rdquo;</strong>.</p>
+          <p>
+            To request a cancellation within the permitted 2-hour window, you must immediately contact our emergency support team at{" "}
+            <a href="mailto:hurkinds@gmail.com" className="font-semibold text-[#9A7953] underline">hurkinds@gmail.com</a>{" "}
+            or reply directly to your order confirmation email with the subject line <strong>&ldquo;URGENT CANCELLATION: Order #YourOrderID&rdquo;</strong>.
+          </p>
         </>
       );
       break;
@@ -265,6 +277,12 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
 
           <h2>4. Data Security Infrastructure</h2>
           <p>We have implemented an array of robust, enterprise-grade security measures to prevent your personal data from being accidentally lost, altered, disclosed, or accessed in an unauthorized manner. Our databases are secured behind complex firewalls, and all data transmitted between your browser and our servers is encrypted using industry-standard SSL/TLS protocols.</p>
+
+          <h2>5. Privacy Support & Grievance Redressal</h2>
+          <p>
+            If you have questions, concerns, or requests regarding this Privacy Policy or your personal information, please reach out directly to our dedicated support team at{" "}
+            <a href="mailto:hurkinds@gmail.com" className="font-semibold text-[#9A7953] underline">hurkinds@gmail.com</a>.
+          </p>
         </>
       );
       break;
@@ -278,8 +296,8 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
               <Mail className="text-[#9A7953] mb-4" size={32} />
               <h3 className="font-sans font-bold text-xl text-[#222222] mt-0 mb-2">Email Support</h3>
               <p className="text-sm text-[#6a6a6a] mb-4">For order inquiries, cancellations (within 2 hours), and general questions, email us at:</p>
-              <a href="mailto:support@octopusperfume.in" className="font-semibold text-[#9A7953] text-lg hover:underline">support@octopusperfume.in</a>
-              <p className="text-xs text-[#929292] mt-4 mb-0">We aim to reply within 24 hours.</p>
+              <a href="mailto:hurkinds@gmail.com" className="font-semibold text-[#9A7953] text-lg hover:underline">hurkinds@gmail.com</a>
+              <p className="text-xs text-[#929292] mt-4 mb-0">We aim to reply promptly within 24 hours.</p>
             </div>
             
             <div className="bg-[#f7f7f7] p-8 rounded-[14px] border border-[#ebebeb] flex flex-col items-center text-center">
@@ -311,7 +329,8 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
           <FileText size={48} className="mx-auto text-[#6a6a6a] mb-6" />
           <h2 className="text-2xl font-bold text-[#222222] mb-4">Legal Document Not Found</h2>
           <p className="text-[#6a6a6a]">
-            The requested document could not be located in our directory. If you believe this is an error, please contact Octopus Everlasting Gifts support.
+            The requested document could not be located in our directory. If you believe this is an error, please contact Octopus support at{" "}
+            <a href="mailto:hurkinds@gmail.com" className="font-semibold text-[#9A7953] underline">hurkinds@gmail.com</a>.
           </p>
           <Link href="/" className="inline-block mt-8 bg-[#1F1D1B] hover:bg-[#35312D] text-white px-8 py-3 text-sm font-semibold rounded-lg shadow-sm transition-colors">
             Return to Homepage
@@ -347,8 +366,11 @@ export default async function StaticPage({ params }: { params: Promise<{ slug: s
               </nav>
               
               <div className="mt-8 pt-6 border-t border-[#ebebeb]">
-                <p className="text-xs text-[#6a6a6a] font-normal leading-relaxed mb-4">Need help? Our support team is available 24/7 to assist you with any policy questions.</p>
-                <Link href="/pages/contact" className="text-xs font-semibold text-[#9A7953] flex items-center gap-1 hover:gap-2 transition-all">
+                <p className="text-xs text-[#6a6a6a] font-normal leading-relaxed mb-2">Need help? Our support team is available to assist you with any questions.</p>
+                <a href="mailto:hurkinds@gmail.com" className="text-xs font-semibold text-[#9A7953] block mb-3 hover:underline">
+                  hurkinds@gmail.com
+                </a>
+                <Link href="/pages/contact" className="text-xs font-semibold text-[#242424] flex items-center gap-1 hover:gap-2 transition-all">
                   Contact Support <ChevronRight size={14} />
                 </Link>
               </div>

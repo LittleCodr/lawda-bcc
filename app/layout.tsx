@@ -246,6 +246,7 @@ export default function RootLayout({
                     "contactPoint": {
                       "@type": "ContactPoint",
                       "telephone": "+91-9876543210",
+                      "email": "hurkinds@gmail.com",
                       "contactType": "customer service",
                       "areaServed": "IN",
                       "availableLanguage": ["English", "Hindi"]

@@ -43,6 +43,8 @@ const FOOTER_COLUMNS = [
   {
     heading: "Client Care",
     links: [
+      { label: "Contact & Support", href: "/pages/contact" },
+      { label: "Support (hurkinds@gmail.com)", href: "mailto:hurkinds@gmail.com" },
       { label: "Fragrance Journal", href: "/journal" },
       { label: "About Octopus", href: "/pages/about-us" },
       { label: "My Account & Orders", href: "/account" },
@@ -126,6 +128,12 @@ export default function Footer() {
                 <strong className="text-white tracking-wider">OCTOPUS5</strong>
                 <span className="text-[#9A7953]">(5% OFF on ₹5,000+)</span>
               </div>
+              <div className="pt-2 flex flex-col gap-0.5 text-xs text-[#B5B0A8]">
+                <span className="text-[10px] uppercase tracking-[0.18em] text-[#9A7953] font-semibold">Concierge Support Desk</span>
+                <a href="mailto:hurkinds@gmail.com" className="text-white hover:text-[#D4AF7A] font-medium transition-colors">
+                  hurkinds@gmail.com
+                </a>
+              </div>
             </div>
 
             {FOOTER_COLUMNS.map((col) => (
@@ -152,6 +160,7 @@ export default function Footer() {
           <div className="mt-12 pt-6 border-t border-[#35312D] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#96928B]">
             <p>© {new Date().getFullYear()} Octopus Perfumes India. All rights reserved.</p>
             <div className="flex flex-wrap items-center gap-4">
+              <span>Support: <a href="mailto:hurkinds@gmail.com" className="text-[#D4AF7A] hover:underline font-medium">hurkinds@gmail.com</a></span>
               <Link href="/sitemap.xml" className="hover:text-white transition-colors">
                 Sitemap
               </Link>

@@ -330,6 +330,9 @@ function AccountContent() {
               {profile?.name || user.displayName || "My Account"}
             </h1>
             <p className="text-sm text-[#C8C2B8] mt-1">{user.email}</p>
+            <p className="text-xs text-[#D4AF7A] mt-1">
+              Support Desk: <a href="mailto:hurkinds@gmail.com" className="underline hover:text-white">hurkinds@gmail.com</a>
+            </p>
           </div>
           <button
             type="button"
@@ -760,6 +763,14 @@ function AccountContent() {
                 })}
               </div>
             )}
+            <div className="pt-6 text-center">
+              <p className="text-xs text-[#777777]">
+                Need help or tracking assistance with any order? Email concierge support at{" "}
+                <a href="mailto:hurkinds@gmail.com" className="font-semibold text-[#9A7953] hover:underline">
+                  hurkinds@gmail.com
+                </a>
+              </p>
+            </div>
           </div>
         )}
 

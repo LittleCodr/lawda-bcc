@@ -112,7 +112,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const applyCoupon = useCallback((code: string) => {
     const codeUpper = code.toUpperCase();
-    if (["OCTOPUS5", "LUXURY5"].includes(codeUpper)) {
+    if (["OCTOPUS5", "LUXURY5", "GARVIT250", "SECRET250", "VIP250"].includes(codeUpper)) {
       setCouponCode(codeUpper);
       return true;
     }
@@ -218,10 +218,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return 0;
   }, [couponCode, subtotal]);
 
-  const discount = useMemo(
-    () => Math.floor(subtotal * (discountPercentage / 100)),
-    [subtotal, discountPercentage]
-  );
+  const discount = useMemo(() => {
+    if (["GARVIT250", "SECRET250", "VIP250"].includes(couponCode || "")) {
+      return Math.min(250, subtotal);
+    }
+    return Math.floor(subtotal * (discountPercentage / 100));
+  }, [subtotal, discountPercentage, couponCode]);
   const total = useMemo(
     () => subtotal - discount,
     [subtotal, discount]

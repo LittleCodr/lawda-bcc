@@ -75,12 +75,34 @@ export default function CheckoutPage() {
   const cartAutoDiscount = getAutoDiscountAmount ? getAutoDiscountAmount() : 0;
   const cartDiscountPercent = getAutoDiscountPercentage ? getAutoDiscountPercentage() : 0;
   const deliveryFee = deliveryMethod === "international" ? 1500 : 0;
-  const promoDiscountAmount =
-    promoApplied && baseTotal >= 5000 ? Math.floor(baseTotal * 0.05) : 0;
+  const isFlat250Coupon = ["GARVIT250", "SECRET250", "VIP250"].includes(promoCode.trim().toUpperCase());
+  const promoDiscountAmount = promoApplied
+    ? isFlat250Coupon
+      ? Math.min(250, baseTotal)
+      : baseTotal >= 5000
+      ? Math.floor(baseTotal * 0.05)
+      : 0
+    : 0;
   const totalDiscount = cartAutoDiscount + promoDiscountAmount;
   const isAdmin = user?.email && ["littlecodr@gmail.com", "srijanrai966@gmail.com", "coderdracwound@gmail.com"].includes(user.email.toLowerCase());
   const finalTotal = isAdmin ? 1 : Math.max(0, baseTotal - totalDiscount + deliveryFee);
   const loggedBeginCheckout = useRef(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const urlCode = (params.get("coupon") || params.get("code") || "").trim().toUpperCase();
+      if (["GARVIT250", "SECRET250", "VIP250"].includes(urlCode)) {
+        setPromoCode(urlCode);
+        setPromoApplied(true);
+        setPromoError("");
+      } else if (["OCTOPUS5", "LUXURY5"].includes(urlCode) && baseTotal >= 5000) {
+        setPromoCode(urlCode);
+        setPromoApplied(true);
+        setPromoError("");
+      }
+    }
+  }, [baseTotal]);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -657,7 +679,11 @@ export default function CheckoutPage() {
                       type="button"
                       onClick={() => {
                         const cleanCode = promoCode.trim().toUpperCase();
-                        if (["OCTOPUS5", "LUXURY5"].includes(cleanCode)) {
+                        if (["GARVIT250", "SECRET250", "VIP250"].includes(cleanCode)) {
+                          setPromoCode(cleanCode);
+                          setPromoApplied(true);
+                          setPromoError("");
+                        } else if (["OCTOPUS5", "LUXURY5"].includes(cleanCode)) {
                           if (baseTotal < 5000) {
                             const shortfall = (5000 - baseTotal).toLocaleString("en-IN");
                             setPromoError(`Minimum order of ₹5,000 required for ${cleanCode}. Add ₹${shortfall} more to unlock 5% OFF.`);
@@ -667,7 +693,7 @@ export default function CheckoutPage() {
                           setPromoApplied(true);
                           setPromoError("");
                         } else {
-                          setPromoError("Invalid or expired coupon. Use OCTOPUS5 for 5% OFF on orders of ₹5,000+.");
+                          setPromoError("Invalid or expired coupon. Please check the code and try again.");
                         }
                       }}
                       className="bg-[#222222] hover:bg-black text-white rounded-lg px-6 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer"
@@ -691,7 +717,13 @@ export default function CheckoutPage() {
                 {promoApplied && (
                   <p className="text-[#347A54] font-semibold text-xs mt-2 flex items-center gap-1.5 bg-[#F2F8F5] border border-[#CBE4D7] px-3 py-1.5 rounded-[6px] w-fit">
                     <CheckCircle2 size={14} className="text-[#347A54]" />
-                    <span>{baseTotal >= 5000 ? "5% OFF Promo Applied!" : "Apply ₹5,000+ total to activate 5% OFF"}</span>
+                    <span>
+                      {isFlat250Coupon
+                        ? "₹250 Secret VIP Discount Applied!"
+                        : baseTotal >= 5000
+                        ? "5% OFF Promo Applied!"
+                        : "Apply ₹5,000+ total to activate 5% OFF"}
+                    </span>
                   </p>
                 )}
               </div>

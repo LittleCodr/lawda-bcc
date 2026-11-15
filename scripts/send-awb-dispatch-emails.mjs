@@ -13,7 +13,7 @@ if (!apiKey && fs.existsSync(envPath)) {
   const content = fs.readFileSync(envPath, "utf8");
   for (const line of content.split("\n")) {
     if (line.trim().startsWith("BREVO_API_KEY=")) {
-      apiKey = line.split("=")[1].trim();
+      apiKey = line.split("=")[1].trim().replace(/^["']|["']$/g, "");
       break;
     }
   }

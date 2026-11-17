@@ -47,6 +47,7 @@ const FOOTER_COLUMNS = [
       { label: "Support (hurkinds@gmail.com)", href: "mailto:hurkinds@gmail.com" },
       { label: "Fragrance Journal", href: "/journal" },
       { label: "About Octopus", href: "/pages/about-us" },
+      { label: "Track Your Order", href: "/track" },
       { label: "My Account & Orders", href: "/account" },
       { label: "Shopping Bag", href: "/cart" },
       { label: "Search Perfumes", href: "/search" },

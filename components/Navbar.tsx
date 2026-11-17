@@ -14,6 +14,7 @@ import {
   Sparkles,
   ArrowRight,
   Tag,
+  Truck,
 } from "lucide-react";
 import { useCartStore } from "@/lib/store";
 import { useAuth } from "@/lib/auth-context";
@@ -296,7 +297,7 @@ export default function Navbar({ topBrands = [] }: NavbarProps) {
             : "bg-[#141210] border-b border-[#2C2722]"
         } text-[#F7F4EE] text-[11px] sm:text-xs`}
       >
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-center sm:justify-between gap-4">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-9 flex items-center justify-between gap-3 sm:gap-4">
           <p className="truncate font-medium tracking-[0.04em] flex items-center gap-2">
             {isBlackFriday && (
               <span className="bf-badge-glow inline-flex items-center px-2 py-0.5 rounded-[4px] bg-[#1F1B16] border text-[10px] font-bold uppercase tracking-[0.12em] text-[#D4AF7A] shrink-0">
@@ -307,13 +308,23 @@ export default function Navbar({ topBrands = [] }: NavbarProps) {
               100% Authentic Sealed Fragrances · Free Express India Shipping
             </span>
           </p>
-          <p className="hidden md:flex items-center gap-2 shrink-0 text-[#D4CFC7]">
-            <Sparkles size={12} className="text-[#D4AF7A]" />
-            <span>
-              Complimentary 7ML Paradox EDP Tester · 5% OFF ₹5,000+ Code:{" "}
-              <strong className="text-white font-semibold tracking-wider">OCTOPUS5</strong>
-            </span>
-          </p>
+          <div className="flex items-center gap-3 shrink-0">
+            <p className="hidden md:flex items-center gap-2 shrink-0 text-[#D4CFC7]">
+              <Sparkles size={12} className="text-[#D4AF7A]" />
+              <span>
+                Complimentary 7ML Paradox EDP Tester · Code:{" "}
+                <strong className="text-white font-semibold tracking-wider">OCTOPUS5</strong>
+              </span>
+            </p>
+            <Link
+              href="/track"
+              onClick={closeAllDesktop}
+              className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-white/10 hover:bg-white/20 border border-white/25 text-[#F7F4EE] hover:text-white font-semibold text-[11px] tracking-wide transition-colors shrink-0"
+            >
+              <Truck size={12} className="text-[#D4AF7A]" />
+              <span>Track Order</span>
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -513,6 +524,16 @@ export default function Navbar({ topBrands = [] }: NavbarProps) {
                 Search scents...
               </span>
             </button>
+
+            <Link
+              href="/track"
+              onClick={closeAllDesktop}
+              aria-label="Track Order"
+              className="inline-flex items-center gap-1.5 px-2.5 py-2 rounded-[6px] border border-[#E8E6E1] bg-[#F7F6F3] hover:border-[#9A7953] text-[#3E3C38] hover:text-[#1F1D1B] text-xs font-semibold transition-colors cursor-pointer"
+            >
+              <Truck size={15} className="text-[#9A7953]" />
+              <span className="hidden xl:inline">Track</span>
+            </Link>
 
             <Link
               href="/account?tab=favourites"
@@ -1198,6 +1219,19 @@ export default function Navbar({ topBrands = [] }: NavbarProps) {
                 <span className="text-xs font-bold mt-1">Octopus Perfumes →</span>
               </Link>
             </div>
+
+            {/* Track Order Direct Mobile Card */}
+            <Link
+              href="/track"
+              onClick={() => setMobileOpen(false)}
+              className="p-3 rounded-[8px] bg-[#141210] text-[#D4AF7A] border border-[#9A7953]/40 flex items-center justify-between text-xs font-bold uppercase tracking-wider shadow-xs"
+            >
+              <span className="flex items-center gap-2">
+                <Truck size={16} className="text-[#D4AF7A]" />
+                <span>Track Your Order</span>
+              </span>
+              <span className="text-[10px] text-white/80 font-normal">Live Status →</span>
+            </Link>
 
             {/* Direct Core Destinations */}
             <div className="grid grid-cols-3 gap-2 pb-3 border-b border-[#E8E6E1] text-center">

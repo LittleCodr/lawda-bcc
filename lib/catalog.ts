@@ -611,6 +611,13 @@ function buildCatalog(): EnrichedProduct[] {
 
     const flagship = flagshipBySlug.get(raw.handle);
 
+    const isEverlastingOrKeepsake =
+      brandTier === "keepsakes" ||
+      /everlasting|buy 1 get 1 free/i.test(rawVendor) ||
+      !isPerfume ||
+      /necklace|bracelet|chain|mangalsutra|pendant|earring|anklet|ring \(adjustable\)/i.test(raw.title || "") ||
+      /necklace|bracelet|chain|mangalsutra|pendant|earring|anklet|ring-adjustable/i.test(raw.handle || "");
+
     const rawVariants = Array.isArray(raw.variants) && raw.variants.length > 0 ? raw.variants : [];
     const variants: ProductVariantSummary[] = rawVariants.map((v, idx) => {
       const priceNum = Number(v.price) || (flagship ? flagship.price : 0);
@@ -622,7 +629,7 @@ function buildCatalog(): EnrichedProduct[] {
         option1: v.option1 ?? null,
         price: priceNum,
         compareAtPrice,
-        available: v.available !== false,
+        available: isEverlastingOrKeepsake ? false : v.available !== false,
         featuredImage: v.featured_image?.src || undefined,
       };
     });

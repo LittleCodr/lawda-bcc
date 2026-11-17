@@ -125,7 +125,11 @@ export const metadata: Metadata = {
     "distribution": "Global",
   },
   verification: {
-    google: ["5aIetIuABLCTsPQxJA8B9V2ok8kB2svuMyaziUcrj7I", "maTiFe5ozIb-1qh8nZ1u6Ac4DuTJAOdJsc82OhScfpE"],
+    google: [
+      "XQaAb9-zmptsXukJTTJVgCRaHZqgXc--RDKB95cdUzA",
+      "5aIetIuABLCTsPQxJA8B9V2ok8kB2svuMyaziUcrj7I",
+      "maTiFe5ozIb-1qh8nZ1u6Ac4DuTJAOdJsc82OhScfpE"
+    ],
   },
 };
 
@@ -148,6 +152,7 @@ export default function RootLayout({
       className={`${plusJakarta.variable} ${cormorant.variable} font-sans h-full antialiased`}
     >
       <head>
+        <meta name="google-site-verification" content="XQaAb9-zmptsXukJTTJVgCRaHZqgXc--RDKB95cdUzA" />
         <meta name="google-site-verification" content="5aIetIuABLCTsPQxJA8B9V2ok8kB2svuMyaziUcrj7I" />
         <Script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" strategy="lazyOnload" />
         <Script id="onesignal-init" strategy="lazyOnload" dangerouslySetInnerHTML={{

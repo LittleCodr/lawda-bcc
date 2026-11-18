@@ -127,6 +127,7 @@ const FEATURED_POPULAR_SLUGS = [
   "giorgio-armani",
   "tom-ford",
   "yves-saint-laurent",
+  "eze-perfume",
   "lattafa",
   "rasasi",
   "afnan",

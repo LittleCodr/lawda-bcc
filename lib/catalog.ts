@@ -75,6 +75,20 @@ interface RawProduct {
   tags?: string[] | string | null;
   variants?: RawVariant[];
   images?: RawImage[];
+  source_metadata?: {
+    source?: string;
+    source_url?: string;
+    source_id?: string | number;
+    imported_currency?: string;
+    validation_status?: string;
+    verified_for_sale?: boolean;
+    in_stock?: boolean;
+    rating?: number;
+    review_count?: number;
+    notes_top?: string;
+    notes_middle?: string;
+    notes_base?: string;
+  };
 }
 
 const MIDDLE_EASTERN_BRANDS = new Set([
@@ -198,6 +212,8 @@ const NICHE_BRANDS = new Set([
   "Franck Boclet",
   "Goutal Paris",
   "Eight&Bob",
+  "Eze Perfume",
+  "Eze",
 ]);
 
 const IN_HOUSE_BRAND = "Octopus Perfumes by Harsh Beniwal";
@@ -700,7 +716,16 @@ function buildCatalog(): EnrichedProduct[] {
       >
     )[raw.handle];
 
-    const notes = extractedLocalNotes || provenanceRecord?.notes || null;
+    const metadataNotes: FragranceNotes | null =
+      raw.source_metadata?.notes_top || raw.source_metadata?.notes_middle || raw.source_metadata?.notes_base
+        ? {
+            top: parseNoteList(raw.source_metadata.notes_top || ""),
+            heart: parseNoteList(raw.source_metadata.notes_middle || ""),
+            base: parseNoteList(raw.source_metadata.notes_base || ""),
+          }
+        : null;
+
+    const notes = extractedLocalNotes || metadataNotes || provenanceRecord?.notes || null;
 
     const isGiftSet = /\bgift set\b|\bdiscovery set\b|\bsampling set\b|\bcombo\b|\btrio\b|\bduo\b/i.test(
       raw.title || ""

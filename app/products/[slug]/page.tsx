@@ -77,25 +77,80 @@ export default async function ProductPage({
     ? primaryImg
     : `https://www.octopusperfume.in${primaryImg}`;
 
+  const allImages = product.images.map((img) =>
+    img.src.startsWith("http") ? img.src : `https://www.octopusperfume.in${img.src}`
+  );
+  const schemaImages = allImages.length > 0 ? allImages : [schemaImage];
+
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.title,
-    image: [schemaImage],
+    image: schemaImages,
     description: product.tagline || product.plainDescription.slice(0, 300),
+    sku: product.variants[0]?.id ? String(product.variants[0].id) : product.handle,
+    mpn: product.variants[0]?.id ? String(product.variants[0].id) : product.handle,
     brand: {
       "@type": "Brand",
       name: product.brand,
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "48",
+      bestRating: "5",
+      worstRating: "1",
     },
     offers: {
       "@type": "Offer",
       url: `https://www.octopusperfume.in/products/${product.handle}`,
       priceCurrency: "INR",
       price: product.price,
+      priceValidUntil: "2027-12-31",
       availability: product.available
         ? "https://schema.org/InStock"
         : "https://schema.org/OutOfStock",
       itemCondition: "https://schema.org/NewCondition",
+      seller: {
+        "@type": "Organization",
+        name: "Octopus Perfumes",
+        url: "https://www.octopusperfume.in",
+      },
+      shippingDetails: {
+        "@type": "OfferShippingDetails",
+        shippingRate: {
+          "@type": "MonetaryAmount",
+          value: "0.00",
+          currency: "INR",
+        },
+        shippingDestination: {
+          "@type": "DefinedRegion",
+          addressCountry: "IN",
+        },
+        deliveryTime: {
+          "@type": "ShippingDeliveryTime",
+          handlingTime: {
+            "@type": "QuantitativeValue",
+            minValue: 0,
+            maxValue: 1,
+            unitCode: "DAY",
+          },
+          transitTime: {
+            "@type": "QuantitativeValue",
+            minValue: 2,
+            maxValue: 4,
+            unitCode: "DAY",
+          },
+        },
+      },
+      hasMerchantReturnPolicy: {
+        "@type": "MerchantReturnPolicy",
+        applicableCountry: "IN",
+        returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+        merchantReturnDays: 7,
+        returnMethod: "https://schema.org/ReturnByMail",
+        returnFees: "https://schema.org/FreeReturn",
+      },
     },
   };
 

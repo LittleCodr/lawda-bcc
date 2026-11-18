@@ -12,6 +12,9 @@ export interface BrandInfo {
 
 const BRAND_ALIASES: Record<string, string> = {
   Bvlagri: "Bvlgari",
+  Eze: "Eze Perfume",
+  "EZE Perfume": "Eze Perfume",
+  "IncredibleIndriya Beauty Essentials PVT LTD.": "Eze Perfume",
 };
 
 function normalizeName(vendor?: string | null): string {
@@ -88,9 +91,12 @@ export function getAllBrands(): BrandInfo[] {
 }
 
 export function getBrandBySlug(slug: string): BrandInfo | null {
+  const clean = slug.toLowerCase().trim();
   const normalized =
-    slug.toLowerCase().trim() === "bvlagri"
+    clean === "bvlagri"
       ? "bvlgari"
-      : slug.toLowerCase().trim();
+      : clean === "eze"
+        ? "eze-perfume"
+        : clean;
   return getAllBrands().find((b) => b.slug === normalized) || null;
 }

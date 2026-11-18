@@ -180,6 +180,9 @@ export const BRAND_ALIASES: Record<string, string> = {
   "Maison Fragrance World": "Fragrance World",
   Memo: "Memo Paris",
   Roja: "Roja Parfums",
+  Eze: "Eze Perfume",
+  "EZE Perfume": "Eze Perfume",
+  "IncredibleIndriya Beauty Essentials PVT LTD.": "Eze Perfume",
 };
 
 export function formatPriceINR(amount: number): string {

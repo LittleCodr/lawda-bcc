@@ -76,8 +76,11 @@ export default function CheckoutPage() {
   const cartDiscountPercent = getAutoDiscountPercentage ? getAutoDiscountPercentage() : 0;
   const deliveryFee = deliveryMethod === "international" ? 1500 : 0;
   const isFlat250Coupon = ["GARVIT250", "SECRET250", "VIP250"].includes(promoCode.trim().toUpperCase());
+  const isFlat1000Coupon = ["TF1000", "VISHWAJEET1000", "OUDWOOD1000", "LUXURY1000"].includes(promoCode.trim().toUpperCase());
   const promoDiscountAmount = promoApplied
-    ? isFlat250Coupon
+    ? isFlat1000Coupon
+      ? Math.min(1000, baseTotal)
+      : isFlat250Coupon
       ? Math.min(250, baseTotal)
       : baseTotal >= 5000
       ? Math.floor(baseTotal * 0.05)
@@ -92,7 +95,11 @@ export default function CheckoutPage() {
     if (typeof window !== "undefined") {
       const params = new URLSearchParams(window.location.search);
       const urlCode = (params.get("coupon") || params.get("code") || "").trim().toUpperCase();
-      if (["GARVIT250", "SECRET250", "VIP250"].includes(urlCode)) {
+      if (["TF1000", "VISHWAJEET1000", "OUDWOOD1000", "LUXURY1000"].includes(urlCode) && baseTotal >= 10000) {
+        setPromoCode(urlCode);
+        setPromoApplied(true);
+        setPromoError("");
+      } else if (["GARVIT250", "SECRET250", "VIP250"].includes(urlCode)) {
         setPromoCode(urlCode);
         setPromoApplied(true);
         setPromoError("");
@@ -679,7 +686,15 @@ export default function CheckoutPage() {
                       type="button"
                       onClick={() => {
                         const cleanCode = promoCode.trim().toUpperCase();
-                        if (["GARVIT250", "SECRET250", "VIP250"].includes(cleanCode)) {
+                        if (["TF1000", "VISHWAJEET1000", "OUDWOOD1000", "LUXURY1000"].includes(cleanCode)) {
+                          if (baseTotal < 10000) {
+                            setPromoError(`Code ${cleanCode} is an exclusive voucher for full luxury bottles (minimum order ₹10,000).`);
+                            return;
+                          }
+                          setPromoCode(cleanCode);
+                          setPromoApplied(true);
+                          setPromoError("");
+                        } else if (["GARVIT250", "SECRET250", "VIP250"].includes(cleanCode)) {
                           setPromoCode(cleanCode);
                           setPromoApplied(true);
                           setPromoError("");
@@ -718,7 +733,9 @@ export default function CheckoutPage() {
                   <p className="text-[#347A54] font-semibold text-xs mt-2 flex items-center gap-1.5 bg-[#F2F8F5] border border-[#CBE4D7] px-3 py-1.5 rounded-[6px] w-fit">
                     <CheckCircle2 size={14} className="text-[#347A54]" />
                     <span>
-                      {isFlat250Coupon
+                      {isFlat1000Coupon
+                        ? "₹1,000 Luxury Bottle Discount Applied!"
+                        : isFlat250Coupon
                         ? "₹250 Secret VIP Discount Applied!"
                         : baseTotal >= 5000
                         ? "5% OFF Promo Applied!"

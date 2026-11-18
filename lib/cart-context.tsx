@@ -219,6 +219,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [couponCode, subtotal]);
 
   const discount = useMemo(() => {
+    if (["TF1000", "VISHWAJEET1000", "OUDWOOD1000", "LUXURY1000"].includes(couponCode || "") && subtotal >= 10000) {
+      return Math.min(1000, subtotal);
+    }
     if (["GARVIT250", "SECRET250", "VIP250"].includes(couponCode || "")) {
       return Math.min(250, subtotal);
     }

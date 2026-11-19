@@ -76,7 +76,7 @@ export default function CheckoutPage() {
   const cartAutoDiscount = getAutoDiscountAmount ? getAutoDiscountAmount() : 0;
   const cartDiscountPercent = getAutoDiscountPercentage ? getAutoDiscountPercentage() : 0;
   const deliveryFee = deliveryMethod === "international" ? 1500 : 0;
-  const isFlat250Coupon = ["GARVIT250", "SECRET250", "VIP250"].includes(promoCode.trim().toUpperCase());
+  const isFlat250Coupon = ["GARVIT250", "SECRET250", "VIP250", "HAWAS250", "PORTBLAIR250"].includes(promoCode.trim().toUpperCase());
   const isFlat1000Coupon = ["TF1000", "VISHWAJEET1000", "OUDWOOD1000", "LUXURY1000"].includes(promoCode.trim().toUpperCase());
   const promoDiscountAmount = promoApplied
     ? isFlat1000Coupon
@@ -100,7 +100,7 @@ export default function CheckoutPage() {
         setPromoCode(urlCode);
         setPromoApplied(true);
         setPromoError("");
-      } else if (["GARVIT250", "SECRET250", "VIP250"].includes(urlCode)) {
+      } else if (["GARVIT250", "SECRET250", "VIP250", "HAWAS250", "PORTBLAIR250"].includes(urlCode)) {
         setPromoCode(urlCode);
         setPromoApplied(true);
         setPromoError("");
@@ -717,7 +717,7 @@ export default function CheckoutPage() {
                           setPromoCode(cleanCode);
                           setPromoApplied(true);
                           setPromoError("");
-                        } else if (["GARVIT250", "SECRET250", "VIP250"].includes(cleanCode)) {
+                        } else if (["GARVIT250", "SECRET250", "VIP250", "HAWAS250", "PORTBLAIR250"].includes(cleanCode)) {
                           setPromoCode(cleanCode);
                           setPromoApplied(true);
                           setPromoError("");

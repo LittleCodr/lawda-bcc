@@ -59,45 +59,54 @@ export async function POST(req: Request) {
         console.error("Error writing payment to Firestore in callback:", dbErr);
       }
 
-      // 4. Telegram Notification (keeps existing format exactly as requested)
-      try {
-        const botToken = process.env.TELEGRAM_BOT_TOKEN || "8878473167:AAH0MBRxFDUc7qbged9fMlypBapGu4QBovk";
-        const chatId = process.env.TELEGRAM_CHAT_ID || "5804733110";
-        const message = `✅ *New Order Paid (PayU Callback)*\n\n` +
-          `*Order ID:* \`${orderId}\`\n` +
-          `*Amount:* ₹${amount}\n` +
-          `*Payment ID:* \`${payuid}\`\n` +
-          `*Mode:* ${mode} (${bank_ref_num})\n\n` +
-          `*Customer Details:*\n` +
-          `*Name:* ${firstname}\n` +
-          `*Email:* ${email || 'N/A'}\n` +
-          `*Phone:* ${phone || 'N/A'}\n\n` +
-          `*Product:* ${productinfo}`;
+      // 4. Telegram Notification
+      if (udf1 !== "namonarayanaghee") {
+        try {
+          const isUnderneat = udf1 === "underneat" || udf1 === "underneatbykusha";
+          const botToken = isUnderneat
+            ? "9151093535:AAGH4WqU_QHGgLaKUvnn_-hFGG81dsQclAI"
+            : process.env.TELEGRAM_BOT_TOKEN || "8878473167:AAH0MBRxFDUc7qbged9fMlypBapGu4QBovk";
+          const chatId = process.env.TELEGRAM_CHAT_ID || "5804733110";
+          const brandTitle = isUnderneat ? "Underneat by Kusha" : "Octopus Perfumes";
+          const message = `✅ *New Order Paid (PayU Callback)*\n\n` +
+            `*Brand:* ${brandTitle}\n` +
+            `*Order ID:* \`${orderId}\`\n` +
+            `*Amount:* ₹${amount}\n` +
+            `*Payment ID:* \`${payuid}\`\n` +
+            `*Mode:* ${mode} (${bank_ref_num})\n\n` +
+            `*Customer Details:*\n` +
+            `*Name:* ${firstname}\n` +
+            `*Email:* ${email || 'N/A'}\n` +
+            `*Phone:* ${phone || 'N/A'}\n\n` +
+            `*Product:* ${productinfo}`;
 
-        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            chat_id: chatId,
-            text: message,
-            parse_mode: "Markdown",
-          }),
-        });
-      } catch (tgErr) {
-        console.error("Telegram callback notification error:", tgErr);
+          await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: message,
+              parse_mode: "Markdown",
+            }),
+          });
+        } catch (tgErr) {
+          console.error("Telegram callback notification error:", tgErr);
+        }
       }
 
       // 5. Brevo Customer Email Confirmation (idempotent with Firestore email fallback)
-      await dispatchVerifiedOrderConfirmation({
-        orderId,
-        payuEmail: email,
-        payuName: firstname,
-        amountPaid: amount,
-        productInfo: productinfo,
-        paymentMode: mode,
-        transactionId: payuid || txnid,
-        fallbackUserId: udf2,
-      });
+      if (udf1 !== "underneat" && udf1 !== "underneatbykusha" && udf1 !== "namonarayanaghee") {
+        await dispatchVerifiedOrderConfirmation({
+          orderId,
+          payuEmail: email,
+          payuName: firstname,
+          amountPaid: amount,
+          productInfo: productinfo,
+          paymentMode: mode,
+          transactionId: payuid || txnid,
+          fallbackUserId: udf2,
+        });
+      }
     }
 
     // In PayU callback, redirect to origin checkout success page with verified parameters
@@ -108,9 +117,12 @@ export async function POST(req: Request) {
     let redirectUrlStr = `${origin}/checkout/success`;
     if (udf1 === 'namonarayanaghee') {
       redirectUrlStr = 'https://namonarayanaghee.store/checkout/success';
+    } else if (udf1 === 'underneat' || udf1 === 'underneatbykusha') {
+      redirectUrlStr = 'https://underneatbykusha.in/order-success';
     }
     const redirectUrl = new URL(redirectUrlStr);
     redirectUrl.searchParams.set('order_id', orderId);
+    redirectUrl.searchParams.set('orderId', orderId);
     redirectUrl.searchParams.set('txnid', txnid);
     redirectUrl.searchParams.set('status', status);
     redirectUrl.searchParams.set('payuid', payuid);

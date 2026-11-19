@@ -85,10 +85,27 @@ export async function POST(req: Request) {
       `📍 *Location:* ${deviceInfo.locationDisplay}\n` +
       `⏱ *Time:* ${timeIST}`;
 
-    // Fire Telegram message asynchronously
-    sendTelegramMessage(tgMessage).catch((err) =>
-      console.error("Failed to send payment initiated Telegram alert:", err)
-    );
+    const isUnderneat = udf1 === "underneat" || udf1 === "underneatbykusha";
+    if (isUnderneat) {
+      const underneatBot = "9151093535:AAGH4WqU_QHGgLaKUvnn_-hFGG81dsQclAI";
+      const chatId = "5804733110";
+      fetch(`https://api.telegram.org/bot${underneatBot}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: `🟠 *Payment Initiated on Underneat (PayU Gateway)*\n\n🆔 *Order ID:* \`${txnid}\`\n💵 *Amount:* ₹${numAmount}\n👤 *Customer:* ${firstname} (${phone})\n📧 *Email:* ${email}\n🛍 *Items:* ${productinfo}`,
+          parse_mode: "Markdown",
+        }),
+      }).catch((e) => console.error("Underneat TG alert error:", e));
+    } else if (udf1 === "namonarayanaghee") {
+      // Namo Narayana dispatches its dedicated brand alerts from namonarayanaghee.store
+    } else {
+      // Fire Telegram message asynchronously for default store
+      sendTelegramMessage(tgMessage).catch((err) =>
+        console.error("Failed to send payment initiated Telegram alert:", err)
+      );
+    }
 
     // 3. Update Firestore cart session to payment_initiated (forced single write for this milestone)
     if (sessionId) {

@@ -136,7 +136,7 @@ function ProxyForm() {
         </div>
 
       {payuParams && (
-        <form ref={formRef} action={payuParams.action || "https://secure.payu.in/_payment"} method="POST" className="hidden">
+        <form ref={formRef} action={payuParams.action || "https://secure.payu.in/_payment"} method="POST" target="_top" className="hidden">
           {Object.entries(payuParams).map(([name, val]) => (
             name !== "action" && <input key={name} type="hidden" name={name} value={String(val ?? '')} />
           ))}

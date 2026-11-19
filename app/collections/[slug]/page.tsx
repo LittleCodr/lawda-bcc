@@ -24,6 +24,9 @@ interface RawCollection {
   description?: string;
 }
 
+// Cache collections for 24 hours on Vercel CDN
+export const revalidate = 86400;
+
 export async function generateStaticParams() {
   return getAllCollectionSlugs().map((slug) => ({ slug }));
 }

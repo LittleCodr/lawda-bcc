@@ -5,13 +5,20 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       { userAgent: "*", allow: "/", disallow },
-      { userAgent: "GPTBot", allow: "/", disallow },
-      { userAgent: "ChatGPT-User", allow: "/", disallow },
-      { userAgent: "PerplexityBot", allow: "/", disallow },
-      { userAgent: "ClaudeBot", allow: "/", disallow },
-      { userAgent: "Google-Extended", allow: "/", disallow },
-      { userAgent: "Applebot-Extended", allow: "/", disallow },
-      { userAgent: "CCBot", allow: "/", disallow },
+      {
+        userAgent: [
+          "GPTBot",
+          "ChatGPT-User",
+          "PerplexityBot",
+          "ClaudeBot",
+          "Google-Extended",
+          "Applebot-Extended",
+          "CCBot",
+          "Bytespider",
+          "Diffbot",
+        ],
+        disallow: ["/"],
+      },
     ],
     sitemap: [
       "https://www.octopusperfume.in/sitemap.xml",

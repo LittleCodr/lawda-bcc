@@ -99,36 +99,36 @@ export async function POST(req: Request) {
           console.error("Error updating Firestore in verify route:", dbErr);
         }
 
-        // Send Telegram Notification
-        if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
-          try {
-            const message = `✅ *New Order Paid & Verified!*\n\n` +
-              `*Order ID:* \`${orderId}\`\n` +
-              `*Amount:* ₹${amount}\n` +
-              `*Payment ID:* \`${transaction.mihpayid}\`\n` +
-              `*Mode:* ${paymentMode}\n\n` +
-              `*Customer Details:*\n` +
-              `*Name:* ${customerName}\n` +
-              `*Email:* ${customerEmail}\n` +
-              `*Phone:* ${customerPhone}\n\n` +
-              `*Product Details:*\n` +
-              `${productInfo}`;
+        // Send Telegram Notification (keeps existing format exactly as requested)
+        try {
+          const botToken = process.env.TELEGRAM_BOT_TOKEN || "8878473167:AAH0MBRxFDUc7qbged9fMlypBapGu4QBovk";
+          const chatId = process.env.TELEGRAM_CHAT_ID || "5804733110";
+          const message = `✅ *New Order Paid & Verified!*\n\n` +
+            `*Order ID:* \`${orderId}\`\n` +
+            `*Amount:* ₹${amount}\n` +
+            `*Payment ID:* \`${transaction.mihpayid}\`\n` +
+            `*Mode:* ${paymentMode}\n\n` +
+            `*Customer Details:*\n` +
+            `*Name:* ${customerName}\n` +
+            `*Email:* ${customerEmail}\n` +
+            `*Phone:* ${customerPhone}\n\n` +
+            `*Product Details:*\n` +
+            `${productInfo}`;
 
-            await fetch(
-              `https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`,
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  chat_id: process.env.TELEGRAM_CHAT_ID,
-                  text: message,
-                  parse_mode: "Markdown",
-                }),
-              }
-            );
-          } catch (telegramErr) {
-            console.error("Telegram notification error:", telegramErr);
-          }
+          await fetch(
+            `https://api.telegram.org/bot${botToken}/sendMessage`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                chat_id: chatId,
+                text: message,
+                parse_mode: "Markdown",
+              }),
+            }
+          );
+        } catch (telegramErr) {
+          console.error("Telegram notification error:", telegramErr);
         }
 
         // Send Brevo Email Confirmation (idempotent & reads email fallback from Firestore order)

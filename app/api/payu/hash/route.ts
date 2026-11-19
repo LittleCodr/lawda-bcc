@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
+import { parseRequestDevice } from "@/lib/device-info";
+import { saveCartSessionQuotaOptimized } from "@/lib/cart-session";
+import { sendTelegramMessage, formatISTDate } from "@/lib/telegram";
 
 // Hardcoded verified PayU credentials to guarantee consistent hash generation across environments
 const PAYU_KEY = "BfDKZe";
@@ -45,6 +48,68 @@ export async function POST(req: Request) {
     const surl = `${origin}/api/payu/callback`;
     const furl = `${origin}/api/payu/callback`;
     const action = "https://secure.payu.in/_payment";
+
+    // 1. Parse client device & location from request headers
+    const deviceInfo = parseRequestDevice(req, body.clientInfo);
+    const shipping = body.shipping || {};
+    const items = body.items || [];
+    const sessionId = body.sessionId;
+
+    // 2. Format Telegram Notification for Payment Initiated (Proceeded to Pay)
+    const timeIST = formatISTDate();
+    const addressLine = [
+      shipping.address,
+      shipping.city,
+      shipping.state,
+      shipping.pincode ? `PIN: ${shipping.pincode}` : ""
+    ].filter(Boolean).join(", ");
+
+    const itemsSummary = items.length > 0
+      ? items.map((i: any) => `• ${i.title}${i.variantTitle ? ` (${i.variantTitle})` : ""} x ${i.quantity} - ₹${i.price * i.quantity}`).join("\n")
+      : `• ${productinfo}`;
+
+    const tgMessage = `🟠 *Payment Initiated! (Proceeded to Pay)*\n\n` +
+      `🆔 *Order ID:* \`${txnid}\`\n` +
+      `💵 *Payable Amount:* ₹${numAmount.toLocaleString("en-IN")}\n` +
+      `💳 *Mode:* PayU Secure Gateway (UPI / Cards / NetBanking)\n\n` +
+      `👤 *Customer Details:*\n` +
+      `• *Name:* ${firstname}\n` +
+      `• *Phone:* ${phone}\n` +
+      `• *Email:* ${email}\n` +
+      (addressLine ? `• *Destination:* ${addressLine}\n\n` : `\n`) +
+      `🛍 *Products:*\n` +
+      `${itemsSummary}\n\n` +
+      `📱 *Device:* ${deviceInfo.deviceDisplay}\n` +
+      `📐 *Screen:* ${deviceInfo.screen || "N/A"}\n` +
+      `🌐 *IP:* \`${deviceInfo.ip}\`\n` +
+      `📍 *Location:* ${deviceInfo.locationDisplay}\n` +
+      `⏱ *Time:* ${timeIST}`;
+
+    // Fire Telegram message asynchronously
+    sendTelegramMessage(tgMessage).catch((err) =>
+      console.error("Failed to send payment initiated Telegram alert:", err)
+    );
+
+    // 3. Update Firestore cart session to payment_initiated (forced single write for this milestone)
+    if (sessionId) {
+      saveCartSessionQuotaOptimized({
+        sessionId,
+        items,
+        totalItems: items.reduce((acc: number, i: any) => acc + (i.quantity || 1), 0),
+        subtotal: numAmount,
+        deviceInfo,
+        status: "payment_initiated",
+        orderId: txnid,
+        customer: {
+          name: firstname,
+          phone,
+          email,
+          city: shipping.city,
+          state: shipping.state,
+          pincode: shipping.pincode,
+        },
+      }, true).catch((err) => console.error("Firestore payment session update error:", err));
+    }
 
     return NextResponse.json({
       action,

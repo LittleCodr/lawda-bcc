@@ -59,32 +59,32 @@ export async function POST(req: Request) {
         console.error("Error writing payment to Firestore in callback:", dbErr);
       }
 
-      // 4. Telegram Notification
-      if (process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID) {
-        try {
-          const message = `✅ *New Order Paid (PayU Callback)*\n\n` +
-            `*Order ID:* \`${orderId}\`\n` +
-            `*Amount:* ₹${amount}\n` +
-            `*Payment ID:* \`${payuid}\`\n` +
-            `*Mode:* ${mode} (${bank_ref_num})\n\n` +
-            `*Customer Details:*\n` +
-            `*Name:* ${firstname}\n` +
-            `*Email:* ${email || 'N/A'}\n` +
-            `*Phone:* ${phone || 'N/A'}\n\n` +
-            `*Product:* ${productinfo}`;
+      // 4. Telegram Notification (keeps existing format exactly as requested)
+      try {
+        const botToken = process.env.TELEGRAM_BOT_TOKEN || "8878473167:AAH0MBRxFDUc7qbged9fMlypBapGu4QBovk";
+        const chatId = process.env.TELEGRAM_CHAT_ID || "5804733110";
+        const message = `✅ *New Order Paid (PayU Callback)*\n\n` +
+          `*Order ID:* \`${orderId}\`\n` +
+          `*Amount:* ₹${amount}\n` +
+          `*Payment ID:* \`${payuid}\`\n` +
+          `*Mode:* ${mode} (${bank_ref_num})\n\n` +
+          `*Customer Details:*\n` +
+          `*Name:* ${firstname}\n` +
+          `*Email:* ${email || 'N/A'}\n` +
+          `*Phone:* ${phone || 'N/A'}\n\n` +
+          `*Product:* ${productinfo}`;
 
-          await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              chat_id: process.env.TELEGRAM_CHAT_ID,
-              text: message,
-              parse_mode: "Markdown",
-            }),
-          });
-        } catch (tgErr) {
-          console.error("Telegram callback notification error:", tgErr);
-        }
+        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message,
+            parse_mode: "Markdown",
+          }),
+        });
+      } catch (tgErr) {
+        console.error("Telegram callback notification error:", tgErr);
       }
 
       // 5. Brevo Customer Email Confirmation (idempotent with Firestore email fallback)

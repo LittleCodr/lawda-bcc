@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { Cashfree, CFEnvironment } from "cashfree-pg";
+import { parseRequestDevice } from "@/lib/device-info";
+import { sendTelegramMessage, formatISTDate } from "@/lib/telegram";
 
 const cashfreeEnvironment = process.env.CASHFREE_ENVIRONMENT === "SANDBOX" ? CFEnvironment.SANDBOX : CFEnvironment.PRODUCTION;
 const cashfree = new Cashfree(
@@ -35,10 +37,37 @@ export async function POST(req: Request) {
         return_url: `${origin}/checkout/success?order_id=${orderId}`,
         notify_url: `${origin}/api/cashfree/webhook`,
       },
-      order_note: "Order from Octopus Everlasting Gifts"
+      order_note: "Order from Octopus Perfumes"
     };
 
     const response = await cashfree.PGCreateOrder(request);
+
+    // Send Telegram alert for Payment Initiated
+    const deviceInfo = parseRequestDevice(req, body.clientInfo);
+    const timeIST = formatISTDate();
+    const addressLine = shipping ? [shipping.address, shipping.city, shipping.state, shipping.pincode].filter(Boolean).join(", ") : "";
+
+    const itemsSummary = Array.isArray(items) && items.length > 0
+      ? items.map((i: any) => `• ${i.title || i.name} x ${i.quantity || 1} - ₹${(i.price || 0) * (i.quantity || 1)}`).join("\n")
+      : "• Fragrance Order";
+
+    const tgMessage = `🟠 *Payment Initiated! (Proceeded to Pay)*\n\n` +
+      `🆔 *Order ID:* \`${orderId}\`\n` +
+      `💵 *Payable Amount:* ₹${parseFloat(amount.toString()).toLocaleString("en-IN")}\n` +
+      `💳 *Mode:* Cashfree Gateway\n\n` +
+      `👤 *Customer Details:*\n` +
+      `• *Name:* ${name || "Customer"}\n` +
+      `• *Phone:* ${phone || "N/A"}\n` +
+      `• *Email:* ${email || "N/A"}\n` +
+      (addressLine ? `• *Destination:* ${addressLine}\n\n` : `\n`) +
+      `🛍 *Products:*\n` +
+      `${itemsSummary}\n\n` +
+      `📱 *Device:* ${deviceInfo.deviceDisplay}\n` +
+      `🌐 *IP:* \`${deviceInfo.ip}\`\n` +
+      `📍 *Location:* ${deviceInfo.locationDisplay}\n` +
+      `⏱ *Time:* ${timeIST}`;
+
+    sendTelegramMessage(tgMessage).catch((e) => console.error("Cashfree TG notify error:", e));
     
     return NextResponse.json({
       order_id: response.data.order_id,
@@ -48,13 +77,10 @@ export async function POST(req: Request) {
     console.error("Error creating Cashfree order:", error?.response?.data || error);
 
     const errorData = error?.response?.data;
-    
-    // Check if Cashfree returned a specific error response
     if (errorData) {
-      // Return 400 for Cashfree API errors to allow the frontend to display them
       return NextResponse.json(
         { error: errorData.message || "Failed to create order", details: errorData },
-        { status: 400 } // Use 400 instead of 500 so it can be handled as a validation/client configuration issue
+        { status: 400 }
       );
     }
 

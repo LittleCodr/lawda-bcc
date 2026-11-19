@@ -9,6 +9,7 @@ import { useCartStore } from "@/lib/store";
 import { useAuth } from "@/lib/auth-context";
 import { logAppEvent, db, auth } from "@/lib/firebase";
 import { trackEcommerceEvent } from "@/lib/analytics";
+import { getCartSessionId } from "@/lib/cart-tracker";
 import { doc, setDoc } from "firebase/firestore";
 
 const emptySub = () => () => {};
@@ -309,8 +310,15 @@ export default function CheckoutPage() {
         }
       }
 
-      // Fetch PayU Hash with userId in udf2
+      // Fetch PayU Hash with userId in udf2 and client/shipping metadata for Telegram & Firestore tracking
       const cartSummary = items.map(i => `${i.title} (${i.quantity})`).join(", ");
+      const clientInfo = typeof window !== "undefined" ? {
+        screen: `${window.screen.width}x${window.screen.height}`,
+        referrer: document.referrer || "Direct",
+        page: window.location.pathname,
+      } : undefined;
+      const currentSessionId = getCartSessionId();
+
       const hashRes = await fetch("/api/payu/hash", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -324,6 +332,21 @@ export default function CheckoutPage() {
           productinfo: cartSummary,
           cartSummary: cartSummary,
           userId: activeUserId,
+          sessionId: currentSessionId,
+          clientInfo,
+          shipping: {
+            address: formData.address,
+            city: formData.city,
+            state: formData.state,
+            pincode: formData.zip,
+          },
+          items: items.map(i => ({
+            id: i.id,
+            title: i.title,
+            price: i.price,
+            quantity: i.quantity,
+            variantTitle: i.variantTitle,
+          })),
         }),
       });
 

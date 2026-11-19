@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { trackAddToCart } from './cart-tracker';
 
 export interface CartItem {
   id: string;
@@ -38,6 +39,7 @@ export const useCartStore = create<CartState>()(
       isOpen: false,
       setIsOpen: (isOpen) => set({ isOpen }),
       addItem: (item) => {
+        let updatedItems: CartItem[] = [];
         set((state) => {
           // Check if an EXACT same item exists (same id, variant, name, photo, gift)
           const existingItemIndex = state.items.findIndex(
@@ -53,13 +55,24 @@ export const useCartStore = create<CartState>()(
           if (existingItemIndex !== -1) {
             const newItems = [...state.items];
             newItems[existingItemIndex].quantity += item.quantity;
+            updatedItems = newItems;
             return { items: newItems, isOpen: true };
           }
           
           // Generate a unique ID for this specific cart entry if not provided
           const newItem = { ...item, cartItemId: item.cartItemId || `${item.id}-${item.variantId || 'default'}-${Date.now()}` };
-          return { items: [...state.items, newItem], isOpen: true };
+          updatedItems = [...state.items, newItem];
+          return { items: updatedItems, isOpen: true };
         });
+
+        // Trigger real-time tracking (Telegram alert with device info & rate-limited Firestore session write)
+        try {
+          const totalItems = updatedItems.reduce((acc, i) => acc + i.quantity, 0);
+          const totalPrice = updatedItems.reduce((acc, i) => acc + i.price * i.quantity, 0);
+          trackAddToCart(item, { items: updatedItems, totalItems, totalPrice });
+        } catch {
+          // Ignore tracking error
+        }
       },
       removeItem: (cartItemId) => {
         set((state) => ({

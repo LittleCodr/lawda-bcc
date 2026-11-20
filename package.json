@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "generate:feed": "node scripts/generate-feed-csv.mjs",
+    "prebuild": "node scripts/generate-feed-csv.mjs",
     "build": "next build",
     "dev": "next dev",
     "start": "next start",

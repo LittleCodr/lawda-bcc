@@ -98,8 +98,6 @@ export async function POST(req: Request) {
           parse_mode: "Markdown",
         }),
       }).catch((e) => console.error("Underneat TG alert error:", e));
-    } else if (udf1 === "namonarayanaghee") {
-      // Namo Narayana dispatches its dedicated brand alerts from namonarayanaghee.store
     } else {
       // Fire Telegram message asynchronously for default store
       sendTelegramMessage(tgMessage).catch((err) =>

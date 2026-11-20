@@ -60,42 +60,40 @@ export async function POST(req: Request) {
       }
 
       // 4. Telegram Notification
-      if (udf1 !== "namonarayanaghee") {
-        try {
-          const isUnderneat = udf1 === "underneat" || udf1 === "underneatbykusha";
-          const botToken = isUnderneat
-            ? "9151093535:AAGH4WqU_QHGgLaKUvnn_-hFGG81dsQclAI"
-            : process.env.TELEGRAM_BOT_TOKEN || "8878473167:AAH0MBRxFDUc7qbged9fMlypBapGu4QBovk";
-          const chatId = process.env.TELEGRAM_CHAT_ID || "5804733110";
-          const brandTitle = isUnderneat ? "Underneat by Kusha" : "Octopus Perfumes";
-          const message = `✅ *New Order Paid (PayU Callback)*\n\n` +
-            `*Brand:* ${brandTitle}\n` +
-            `*Order ID:* \`${orderId}\`\n` +
-            `*Amount:* ₹${amount}\n` +
-            `*Payment ID:* \`${payuid}\`\n` +
-            `*Mode:* ${mode} (${bank_ref_num})\n\n` +
-            `*Customer Details:*\n` +
-            `*Name:* ${firstname}\n` +
-            `*Email:* ${email || 'N/A'}\n` +
-            `*Phone:* ${phone || 'N/A'}\n\n` +
-            `*Product:* ${productinfo}`;
+      try {
+        const isUnderneat = udf1 === "underneat" || udf1 === "underneatbykusha";
+        const botToken = isUnderneat
+          ? "9151093535:AAGH4WqU_QHGgLaKUvnn_-hFGG81dsQclAI"
+          : process.env.TELEGRAM_BOT_TOKEN || "8878473167:AAH0MBRxFDUc7qbged9fMlypBapGu4QBovk";
+        const chatId = process.env.TELEGRAM_CHAT_ID || "5804733110";
+        const brandTitle = isUnderneat ? "Underneat by Kusha" : "Octopus Perfumes";
+        const message = `✅ *New Order Paid (PayU Callback)*\n\n` +
+          `*Brand:* ${brandTitle}\n` +
+          `*Order ID:* \`${orderId}\`\n` +
+          `*Amount:* ₹${amount}\n` +
+          `*Payment ID:* \`${payuid}\`\n` +
+          `*Mode:* ${mode} (${bank_ref_num})\n\n` +
+          `*Customer Details:*\n` +
+          `*Name:* ${firstname}\n` +
+          `*Email:* ${email || 'N/A'}\n` +
+          `*Phone:* ${phone || 'N/A'}\n\n` +
+          `*Product:* ${productinfo}`;
 
-          await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              chat_id: chatId,
-              text: message,
-              parse_mode: "Markdown",
-            }),
-          });
-        } catch (tgErr) {
-          console.error("Telegram callback notification error:", tgErr);
-        }
+        await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: message,
+            parse_mode: "Markdown",
+          }),
+        });
+      } catch (tgErr) {
+        console.error("Telegram callback notification error:", tgErr);
       }
 
       // 5. Brevo Customer Email Confirmation (idempotent with Firestore email fallback)
-      if (udf1 !== "underneat" && udf1 !== "underneatbykusha" && udf1 !== "namonarayanaghee") {
+      if (udf1 !== "underneat" && udf1 !== "underneatbykusha") {
         await dispatchVerifiedOrderConfirmation({
           orderId,
           payuEmail: email,

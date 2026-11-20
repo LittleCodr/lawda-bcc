@@ -48,4 +48,8 @@ scripts/catalog-enrichment/.cache_raw_sources.json
 scripts/catalog-enrichment/.cache_all_3_sources.json
 scripts/catalog-enrichment/competitor_research_staging.json
 
+# generated Google Merchant feeds (auto-generated during prebuild)
+public/feed.csv
+
+
 

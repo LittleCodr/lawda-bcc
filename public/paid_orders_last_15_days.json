@@ -1,0 +1,1084 @@
+[
+  {
+    "id": "ORD-1794674278670",
+    "subtotal": 13400,
+    "deliveryMethod": "standard",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794674278,
+      "nanoseconds": 915000000
+    },
+    "shippingFee": 0,
+    "codBalance": 0,
+    "paidAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794674717,
+      "nanoseconds": 25000000
+    },
+    "abandonedEmailSent": false,
+    "amountPaid": 13400,
+    "paymentMethod": "payu",
+    "confirmationEmailSent": true,
+    "shippingDetails": {
+      "email": "manmeet.kalia@yahoo.com",
+      "city": "Chandigarh",
+      "zip": "160047",
+      "address": "HOUSE NO 3262 SECTOR 49 D Customs and Excise Officers House Building Society ",
+      "phone": "9876693551",
+      "country": "India",
+      "name": "Manmeet Kalia",
+      "state": "Chandigarh"
+    },
+    "total": 13400,
+    "bankRefNum": "631822068788",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794674717,
+      "nanoseconds": 25000000
+    },
+    "orderId": "ORD-1794674278670",
+    "paymentMode": "CC",
+    "autoDiscount": 0,
+    "promoDiscount": 0,
+    "promoCode": null,
+    "mihpayid": "31841138146",
+    "items": [
+      {
+        "cartItemId": "7332313563311-41905985585327-1794674158059",
+        "variantId": "41905985585327",
+        "title": "Montale Black Aoud Eau de Parfum",
+        "id": "7332313563311",
+        "quantity": 1,
+        "image": "https://cdn.shopify.com/s/files/1/0572/8183/9279/files/1GuerlainMonBloomofRoseEaudeParfum_7e1e4d43-d73a-4320-9309-522367af481b.png?v=1705741251",
+        "variantTitle": "100ml",
+        "price": 13400
+      },
+      {
+        "id": "free-tester-paradox",
+        "variantTitle": "Harsh Beniwal 7ML Luxury Pocket Tester (Worth ₹399)",
+        "image": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+        "price": 0,
+        "isFree": true,
+        "isGift": false,
+        "quantity": 1,
+        "title": "FREE 7ML Paradox EDP Tester Pack",
+        "cartItemId": "free-tester-paradox"
+      }
+    ],
+    "userId": "FcB8z3Mu7CeGpsbz0ZSjZzzd3EF2",
+    "discountAmount": 0,
+    "payuTxnId": "ORD-1794674278670",
+    "confirmationEmailSentAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794674722,
+      "nanoseconds": 415000000
+    },
+    "status": "Paid",
+    "orderDate": "2026-11-14T16:45:17.025Z"
+  },
+  {
+    "id": "ORD-1794670371488",
+    "shippingDetails": {
+      "city": "Dindigul",
+      "email": "jayasankar1194@gmail.com",
+      "address": "Raju Nivaz, muthamil Nagar, chinnalapatty ",
+      "country": "India",
+      "name": "Jaya sankar",
+      "state": "Tamil Nadu",
+      "phone": "8637413498",
+      "zip": "624301"
+    },
+    "items": [
+      {
+        "price": 2750,
+        "image": "https://cdn.shopify.com/s/files/1/0572/8183/9279/files/Snapinst.app_360087501_18220497613241493_4532488325618289974_n_1080.jpg?v=1742299804",
+        "quantity": 1,
+        "variantTitle": "100ml",
+        "title": "Lattafa Maahir Legacy Eau de Parfum for Men",
+        "id": "8182013788335",
+        "cartItemId": "8182013788335-44977617273007-1794670316060",
+        "variantId": "44977617273007"
+      },
+      {
+        "quantity": 1,
+        "variantTitle": "Harsh Beniwal 7ML Luxury Pocket Tester (Worth ₹399)",
+        "title": "FREE 7ML Paradox EDP Tester Pack",
+        "cartItemId": "free-tester-paradox",
+        "isGift": false,
+        "isFree": true,
+        "id": "free-tester-paradox",
+        "price": 0,
+        "image": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png"
+      }
+    ],
+    "orderId": "ORD-1794670371488",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794670371,
+      "nanoseconds": 950000000
+    },
+    "status": "Paid",
+    "subtotal": 2750,
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794670398,
+      "nanoseconds": 519000000
+    },
+    "confirmationEmailSentAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794670402,
+      "nanoseconds": 8000000
+    },
+    "discountAmount": 0,
+    "abandonedEmailSent": false,
+    "userId": "I2q7ja2Kiqh6c9yVUP9kZ4sbhRR2",
+    "paymentMethod": "payu",
+    "paidAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794670398,
+      "nanoseconds": 519000000
+    },
+    "codBalance": 0,
+    "amountPaid": 2750,
+    "shippingFee": 0,
+    "autoDiscount": 0,
+    "deliveryMethod": "standard",
+    "promoCode": null,
+    "confirmationEmailSent": true,
+    "bankRefNum": "631825580021",
+    "promoDiscount": 0,
+    "total": 2750,
+    "payuTxnId": "ORD-1794670371488",
+    "paymentMode": "UPI",
+    "mihpayid": "31840203765",
+    "orderDate": "2026-11-14T15:33:18.519Z"
+  },
+  {
+    "id": "ORD-1794664978047",
+    "paymentMode": "UPI",
+    "discountAmount": 0,
+    "mihpayid": "31838698894",
+    "promoDiscount": 0,
+    "bankRefNum": "631846333334",
+    "confirmationEmailSentAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794665142,
+      "nanoseconds": 849000000
+    },
+    "paidAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794665137,
+      "nanoseconds": 925000000
+    },
+    "promoCode": null,
+    "total": 3000,
+    "autoDiscount": 0,
+    "shippingFee": 0,
+    "amountPaid": 3000,
+    "confirmationEmailSent": true,
+    "shippingDetails": {
+      "state": "Haryana",
+      "phone": "7060211195",
+      "name": "Chandan kumar",
+      "country": "India",
+      "address": "21 A, 2nd floor , rajpal house , mian wali colony .",
+      "zip": "122001",
+      "city": "Gurgaon",
+      "email": "starseve1@gmail.com"
+    },
+    "payuTxnId": "ORD-1794664978047",
+    "codBalance": 0,
+    "abandonedEmailSent": false,
+    "paymentMethod": "payu",
+    "items": [
+      {
+        "variantId": "44476903653551",
+        "quantity": 1,
+        "id": "8092377088175",
+        "price": 3000,
+        "image": "https://cdn.shopify.com/s/files/1/0572/8183/9279/files/AIEnhancer_Generated_Image_February_03_2_1.jpg?v=1770125316",
+        "variantTitle": "100ml",
+        "cartItemId": "8092377088175-44476903653551-1794664667403",
+        "title": "Rasasi Hawas Black Eau de Parfum for Men"
+      },
+      {
+        "id": "free-tester-paradox",
+        "variantTitle": "Harsh Beniwal 7ML Luxury Pocket Tester (Worth ₹399)",
+        "image": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+        "cartItemId": "free-tester-paradox",
+        "price": 0,
+        "isFree": true,
+        "isGift": false,
+        "quantity": 1,
+        "title": "FREE 7ML Paradox EDP Tester Pack"
+      }
+    ],
+    "subtotal": 3000,
+    "orderId": "ORD-1794664978047",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794664978,
+      "nanoseconds": 400000000
+    },
+    "deliveryMethod": "standard",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794665137,
+      "nanoseconds": 925000000
+    },
+    "userId": "0LjVlXH3fdZL4XmzRo8cJ5W8CBY2",
+    "status": "Paid",
+    "orderDate": "2026-11-14T14:05:37.925Z"
+  },
+  {
+    "id": "ORD-1794661036502",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794661036,
+      "nanoseconds": 779000000
+    },
+    "paymentMode": "UPI",
+    "total": 2716,
+    "abandonedEmailSent": false,
+    "discountAmount": 83,
+    "paymentMethod": "payu",
+    "orderId": "ORD-1794661036502",
+    "mihpayid": "31837537915",
+    "status": "Paid",
+    "autoDiscount": 83,
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794661057,
+      "nanoseconds": 988000000
+    },
+    "shippingFee": 0,
+    "userId": "5Sxvo1b9JZNKyv07XgCL9nNc8PV2",
+    "promoDiscount": 0,
+    "promoCode": null,
+    "paidAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794661057,
+      "nanoseconds": 988000000
+    },
+    "shippingDetails": {
+      "state": "Uttar Pradesh",
+      "name": "Mohsin Sharif",
+      "phone": "9839069190",
+      "zip": "208002",
+      "address": "Habib lodge 7/94 Tilak Nagar",
+      "city": "Kanpur Nagar",
+      "email": "mohsinsharif9@gmail.com",
+      "country": "India"
+    },
+    "confirmationEmailSentAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794661061,
+      "nanoseconds": 482000000
+    },
+    "bankRefNum": "668494564572",
+    "payuTxnId": "ORD-1794661036502",
+    "items": [
+      {
+        "cartItemId": "8711840366807-45668979310807-1794660848476",
+        "id": "8711840366807",
+        "variantTitle": "Default Title",
+        "quantity": 1,
+        "title": "Decant/Sample Of Nusuk Ana Al Awwal Silver Eau De Parfum For Men 10ml",
+        "image": "https://cdn.shopify.com/s/files/1/0268/8267/0792/products/31_fb1e63e5-3cba-45cc-8bef-10a260104369.png?v=1680349717",
+        "variantId": "45668979310807",
+        "price": 299
+      },
+      {
+        "quantity": 1,
+        "variantTitle": "100ml",
+        "id": "8183505518767",
+        "title": "Ahmed al Maghribi Blu Oud Eau de Parfum for Men",
+        "cartItemId": "8183505518767-44983639310511-1794660995984",
+        "variantId": "44983639310511",
+        "price": 2500,
+        "image": "https://cdn.shopify.com/s/files/1/0572/8183/9279/files/perfume-165.png?v=1741978118"
+      },
+      {
+        "isFree": true,
+        "cartItemId": "free-tester-paradox",
+        "title": "FREE 7ML Paradox EDP Tester Pack",
+        "isGift": false,
+        "quantity": 1,
+        "id": "free-tester-paradox",
+        "price": 0,
+        "image": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+        "variantTitle": "Harsh Beniwal 7ML Luxury Pocket Tester (Worth ₹399)"
+      }
+    ],
+    "confirmationEmailSent": true,
+    "amountPaid": 2716,
+    "subtotal": 2799,
+    "deliveryMethod": "standard",
+    "codBalance": 0,
+    "orderDate": "2026-11-14T12:57:37.988Z"
+  },
+  {
+    "id": "ORD-1794660599358",
+    "total": 6500,
+    "autoDiscount": 0,
+    "confirmationEmailSent": true,
+    "promoCode": null,
+    "mihpayid": "31837413427",
+    "paymentMode": "UPI",
+    "promoDiscount": 0,
+    "shippingFee": 0,
+    "paidAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794660623,
+      "nanoseconds": 210000000
+    },
+    "discountAmount": 0,
+    "payuTxnId": "ORD-1794660599358",
+    "subtotal": 6500,
+    "userId": "5Sxvo1b9JZNKyv07XgCL9nNc8PV2",
+    "deliveryMethod": "standard",
+    "codBalance": 0,
+    "orderId": "ORD-1794660599358",
+    "amountPaid": 6500,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794660599,
+      "nanoseconds": 766000000
+    },
+    "status": "Paid",
+    "items": [
+      {
+        "id": "9213270884598",
+        "variantId": "49280682393846",
+        "title": "Abdul Samad Al Qurashi The Black Parfum For Men",
+        "price": 6500,
+        "image": "https://cdn.shopify.com/s/files/1/0069/4471/8937/files/black1_315cec74-6908-4c46-b9ee-bd019176c680.jpg?v=1762951124",
+        "variantTitle": "100ml",
+        "quantity": 1,
+        "cartItemId": "9213270884598-49280682393846-1794660582403"
+      },
+      {
+        "title": "FREE 7ML Paradox EDP Tester Pack",
+        "variantTitle": "Harsh Beniwal 7ML Luxury Pocket Tester (Worth ₹399)",
+        "quantity": 1,
+        "cartItemId": "free-tester-paradox",
+        "id": "free-tester-paradox",
+        "price": 0,
+        "image": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+        "isGift": false,
+        "isFree": true
+      }
+    ],
+    "confirmationEmailSentAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794660626,
+      "nanoseconds": 584000000
+    },
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794660623,
+      "nanoseconds": 210000000
+    },
+    "abandonedEmailSent": false,
+    "shippingDetails": {
+      "city": "Kanpur Nagar",
+      "state": "Uttar Pradesh",
+      "phone": "9839069190",
+      "email": "mohsinsharif9@gmail.com",
+      "name": "Mohsin Sharif",
+      "address": "Habib lodge 7/94 Tilak Nagar",
+      "zip": "208002",
+      "country": "India"
+    },
+    "paymentMethod": "payu",
+    "bankRefNum": "668451863819",
+    "orderDate": "2026-11-14T12:50:23.210Z"
+  },
+  {
+    "id": "ORD-1794650001083",
+    "codBalance": 0,
+    "abandonedEmailSent": false,
+    "amountPaid": 399,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794650001,
+      "nanoseconds": 245000000
+    },
+    "discountAmount": 0,
+    "autoDiscount": 0,
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794650304,
+      "nanoseconds": 725000000
+    },
+    "confirmationEmailSentAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794650308,
+      "nanoseconds": 138000000
+    },
+    "paidAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794650304,
+      "nanoseconds": 725000000
+    },
+    "bankRefNum": "980915460927",
+    "promoDiscount": 0,
+    "subtotal": 399,
+    "shippingDetails": {
+      "country": "India",
+      "city": "MahesanaMahesana ",
+      "phone": "7041102755",
+      "state": "Gujarat",
+      "address": "Radhanpur road opp nilkanth  resturant Jenus salon f 32 33 34",
+      "zip": "384002",
+      "email": "dhavalparekh02765@gmail.com",
+      "name": "Dhaval parekh"
+    },
+    "items": [
+      {
+        "cartItemId": "9124724506839-47916961628375-1794649830634",
+        "variantId": "47916961628375",
+        "quantity": 1,
+        "id": "9124724506839",
+        "image": "https://cdn.shopify.com/s/files/1/0268/8267/0792/files/2_e43e1496-1eb9-4eea-bc2a-4bfbd6034ffa.png?v=1739875437",
+        "variantTitle": "Default Title",
+        "price": 399,
+        "title": "Decant/Sample Of Lattafa Ana Abiyedh Coral Eau De Parfum 10ml For Men & Women"
+      },
+      {
+        "variantTitle": "Harsh Beniwal 7ML Luxury Pocket Tester (Worth ₹399)",
+        "id": "free-tester-paradox",
+        "quantity": 1,
+        "title": "FREE 7ML Paradox EDP Tester Pack",
+        "image": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+        "isFree": true,
+        "price": 0,
+        "cartItemId": "free-tester-paradox",
+        "isGift": false
+      }
+    ],
+    "status": "Paid",
+    "confirmationEmailSent": true,
+    "promoCode": null,
+    "userId": "wh6qR0FGKlXBUgAYB0P9OQLcV2X2",
+    "orderId": "ORD-1794650001083",
+    "total": 399,
+    "paymentMode": "UPI",
+    "mihpayid": "31834850276",
+    "shippingFee": 0,
+    "paymentMethod": "payu",
+    "payuTxnId": "ORD-1794650001083",
+    "deliveryMethod": "standard",
+    "orderDate": "2026-11-14T09:58:24.725Z"
+  },
+  {
+    "id": "ORD-1794555879899",
+    "status": "Paid",
+    "orderId": "ORD-1794555879899",
+    "userId": "gWpi0K07wXWddTZzIhf2dx3q4wx1",
+    "payuTxnId": "ORD-1794555879899",
+    "shippingFee": 0,
+    "shippingDetails": {
+      "city": "Bangalore",
+      "address": "No.74,2nd main,Wilson Garden Society layout,JP Nagar 7th phase",
+      "state": "Karnataka",
+      "country": "India",
+      "phone": "9739628452",
+      "name": "Veena D",
+      "email": "veenadharsha@gmail.com",
+      "zip": "560078"
+    },
+    "paymentMethod": "payu",
+    "paymentMode": "UPI",
+    "mihpayid": "31817612565",
+    "total": 699,
+    "discountAmount": 0,
+    "promoCode": null,
+    "autoDiscount": 0,
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794555912,
+      "nanoseconds": 556000000
+    },
+    "abandonedEmailSent": false,
+    "confirmationEmailSent": true,
+    "items": [
+      {
+        "title": "Parfums De Marly Delina Exclusif Eau De Parfum Vial 1.5ml",
+        "variantId": "44420663378166",
+        "cartItemId": "7835608187126-44420663378166-1794555805587",
+        "id": "7835608187126",
+        "variantTitle": "Default Title",
+        "price": 699,
+        "image": "https://cdn.shopify.com/s/files/1/0069/4471/8937/products/10-01-Delina-Exclusif.jpg?v=1663587890",
+        "quantity": 1
+      },
+      {
+        "title": "FREE 7ML Paradox EDP Tester Pack",
+        "cartItemId": "free-tester-paradox",
+        "id": "free-tester-paradox",
+        "variantTitle": "Harsh Beniwal 7ML Luxury Pocket Tester (Worth ₹399)",
+        "isFree": true,
+        "quantity": 1,
+        "image": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+        "price": 0,
+        "isGift": false
+      }
+    ],
+    "deliveryMethod": "standard",
+    "confirmationEmailSentAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794555916,
+      "nanoseconds": 58000000
+    },
+    "amountPaid": 699,
+    "codBalance": 0,
+    "paidAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794555912,
+      "nanoseconds": 556000000
+    },
+    "subtotal": 699,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794555883,
+      "nanoseconds": 23000000
+    },
+    "bankRefNum": "631732170711",
+    "promoDiscount": 0,
+    "orderDate": "2026-11-13T07:45:12.556Z"
+  },
+  {
+    "id": "ORD-1794486588632",
+    "autoDiscount": 0,
+    "amountPaid": 1,
+    "deliveryMethod": "standard",
+    "codBalance": 0,
+    "payuTxnId": "ORD-1794486588632",
+    "paidAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794486640,
+      "nanoseconds": 967000000
+    },
+    "abandonedEmailSent": false,
+    "subtotal": 849,
+    "total": 1,
+    "promoDiscount": 0,
+    "promoCode": null,
+    "bankRefNum": "495564364810",
+    "shippingDetails": {
+      "address": "Ranchi",
+      "zip": "834001",
+      "phone": "6200502358",
+      "country": "India",
+      "city": "Ranchi",
+      "state": "Jharkhand",
+      "email": "coderdracwound@gmail.com",
+      "name": "Coder DracWound"
+    },
+    "items": [
+      {
+        "title": "Darling - 50ML EDP Octopus Perfumes By Harsh Beniwal",
+        "price": 849,
+        "variantTitle": "50ML - Eau De Parfum",
+        "variantId": "10315734319399",
+        "image": "/harsh-beniwal/octopus/perfumes/images/darling_bottle.webp",
+        "id": "10315734319398",
+        "quantity": 1,
+        "cartItemId": "10315734319398-10315734319399-1794486576031"
+      },
+      {
+        "variantTitle": "Harsh Beniwal 7ML Luxury Pocket Tester (Worth ₹399)",
+        "quantity": 1,
+        "id": "free-tester-paradox",
+        "image": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+        "price": 0,
+        "isFree": true,
+        "isGift": false,
+        "title": "FREE 7ML Paradox EDP Tester Pack",
+        "cartItemId": "free-tester-paradox"
+      }
+    ],
+    "confirmationEmailSentAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794486645,
+      "nanoseconds": 785000000
+    },
+    "paymentMode": "UPI",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794486640,
+      "nanoseconds": 967000000
+    },
+    "discountAmount": 0,
+    "shippingFee": 0,
+    "userId": "jPQW2VZugOdHioBmWIh9wmiubN33",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794486589,
+      "nanoseconds": 356000000
+    },
+    "confirmationEmailSent": true,
+    "status": "Paid",
+    "orderId": "ORD-1794486588632",
+    "mihpayid": "31805292902",
+    "paymentMethod": "payu",
+    "orderDate": "2026-11-12T12:30:40.967Z"
+  },
+  {
+    "id": "ORD-1794429099271",
+    "paymentMethod": "payu",
+    "promoCode": null,
+    "paymentMode": "UPI",
+    "abandonedEmailSent": false,
+    "autoDiscount": 262,
+    "payuTxnId": "ORD-1794429099271",
+    "items": [
+      {
+        "title": "Lattafa Azeezah Eau de Parfum for Men",
+        "cartItemId": "7011653648559-40883938492591-1794426835973",
+        "variantTitle": "100ml",
+        "price": 1750,
+        "quantity": 1,
+        "image": "https://cdn.shopify.com/s/files/1/0572/8183/9279/products/Azeezah.png?v=1637837503",
+        "variantId": "40883938492591",
+        "isGift": false,
+        "id": "7011653648559"
+      },
+      {
+        "id": "8248519950511",
+        "variantTitle": "5 x 2ml",
+        "price": 750,
+        "cartItemId": "8248519950511-45483716182191-1794427576478",
+        "image": "https://cdn.shopify.com/s/files/1/0572/8183/9279/files/UPTO50_10_OFF-71.png?v=1751103784",
+        "quantity": 1,
+        "variantId": "45483716182191",
+        "title": "Afnan 9 Series Discovery Set"
+      },
+      {
+        "title": "Rasasi Hawas Elixir Eau de Parfum for Men",
+        "image": "https://cdn.shopify.com/s/files/1/0572/8183/9279/files/UPTO50_10_OFF-109.png?v=1751646405",
+        "variantTitle": "100ml",
+        "price": 2750,
+        "variantId": "45504009568431",
+        "id": "8251391082671",
+        "quantity": 1,
+        "cartItemId": "8251391082671-45504009568431-1794429085683"
+      },
+      {
+        "title": "FREE 7ML Paradox EDP Tester Pack",
+        "quantity": 1,
+        "variantTitle": "Harsh Beniwal 7ML Luxury Pocket Tester (Worth ₹399)",
+        "isFree": true,
+        "cartItemId": "free-tester-paradox",
+        "id": "free-tester-paradox",
+        "price": 0,
+        "isGift": false,
+        "image": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png"
+      }
+    ],
+    "userId": "tQI2MexVlUODfiiBq4s1kIzQXhM2",
+    "shippingFee": 0,
+    "mihpayid": "31794548523",
+    "deliveryMethod": "standard",
+    "status": "Paid",
+    "total": 1,
+    "confirmationEmailSentAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794429122,
+      "nanoseconds": 978000000
+    },
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794429099,
+      "nanoseconds": 467000000
+    },
+    "discountAmount": 262,
+    "promoDiscount": 0,
+    "shippingDetails": {
+      "phone": "9087659658",
+      "state": "Uttar Pradesh",
+      "country": "India",
+      "name": "Mayank",
+      "zip": "281001",
+      "address": "uyighjugy",
+      "city": "Mathura",
+      "email": "adas@sad.dsa"
+    },
+    "amountPaid": 1,
+    "codBalance": 0,
+    "orderId": "ORD-1794429099271",
+    "paidAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794429119,
+      "nanoseconds": 384000000
+    },
+    "subtotal": 5250,
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794429119,
+      "nanoseconds": 384000000
+    },
+    "confirmationEmailSent": true,
+    "bankRefNum": "631679721895",
+    "orderDate": "2026-11-11T20:31:59.384Z"
+  },
+  {
+    "id": "ORD-1794426877173",
+    "total": 1,
+    "deliveryMethod": "standard",
+    "promoCode": null,
+    "userId": "tQI2MexVlUODfiiBq4s1kIzQXhM2",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794426877,
+      "nanoseconds": 411000000
+    },
+    "paymentMethod": "payu",
+    "bankRefNum": "631679667881",
+    "status": "Paid",
+    "discountAmount": 788,
+    "amountPaid": 1,
+    "codBalance": 0,
+    "items": [
+      {
+        "image": "https://cdn.shopify.com/s/files/1/0572/8183/9279/products/SauvageDeodorant.png?v=1636805878",
+        "variantTitle": "150ml",
+        "id": "7033706512559",
+        "price": 3960,
+        "title": "Dior Sauvage Deodorant",
+        "cartItemId": "7033706512559-40965240389807-1794425810603",
+        "quantity": 1,
+        "variantId": "40965240389807"
+      },
+      {
+        "cartItemId": "10329407881510-10329407881511-1794426842675",
+        "id": "10329407881510",
+        "variantId": "10329407881511",
+        "title": "Overlord - 50ML EDP Octopus Perfumes By Harsh Beniwal",
+        "price": 1299,
+        "quantity": 1,
+        "image": "/harsh-beniwal/octopus/perfumes/images/overlord_box.png",
+        "variantTitle": "50ML - Eau De Parfum"
+      },
+      {
+        "isFree": true,
+        "id": "free-tester-paradox",
+        "isGift": false,
+        "image": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+        "price": 0,
+        "quantity": 1,
+        "cartItemId": "free-tester-paradox",
+        "variantTitle": "Harsh Beniwal 7ML Luxury Pocket Tester (Worth ₹399)",
+        "title": "FREE 7ML Paradox EDP Tester Pack"
+      }
+    ],
+    "paymentMode": "UPI",
+    "payuTxnId": "ORD-1794426877173",
+    "abandonedEmailSent": false,
+    "shippingDetails": {
+      "address": "sdadsadasd",
+      "name": "mayank",
+      "email": "kasda@faf.sada",
+      "country": "India",
+      "state": "Uttar Pradesh",
+      "zip": "281001",
+      "phone": "1231321382",
+      "city": "Mathura"
+    },
+    "mihpayid": "31794402270",
+    "orderId": "ORD-1794426877173",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794426918,
+      "nanoseconds": 546000000
+    },
+    "paidAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794426918,
+      "nanoseconds": 546000000
+    },
+    "orderDate": "2026-11-11T19:55:18.546Z"
+  },
+  {
+    "id": "ORD-1794397522626",
+    "status": "Paid",
+    "payuTxnId": "ORD-1794397522626",
+    "paymentMode": "UPI",
+    "codBalance": 0,
+    "amountPaid": 375,
+    "discountAmount": 125,
+    "items": [
+      {
+        "title": "Swiss Arabian City Sampling Set ( Enigma of Taif, Essence of Casablanca, Soul of Bali) 3 x 1ml",
+        "variantId": "46462576427183",
+        "quantity": 1,
+        "variantTitle": "3 x 1ml",
+        "price": 500,
+        "image": "https://cdn.shopify.com/s/files/1/0572/8183/9279/files/Untitleddesign_15.png?v=1774632938",
+        "isGift": false,
+        "cartItemId": "8460601327791-46462576427183-1794397406934",
+        "id": "8460601327791"
+      },
+      {
+        "title": "FREE 7ML Paradox EDP Tester Pack",
+        "quantity": 1,
+        "isGift": false,
+        "variantTitle": "Harsh Beniwal 7ML Luxury Pocket Tester (Worth ₹399)",
+        "isFree": true,
+        "price": 0,
+        "image": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+        "id": "free-tester-paradox",
+        "cartItemId": "free-tester-paradox"
+      }
+    ],
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794398299,
+      "nanoseconds": 635000000
+    },
+    "userId": "EsAA5rfuOaWlKkHs8qaEMhKgxGG2",
+    "promoCode": "LUXURY25",
+    "bankRefNum": "726206024689",
+    "paidAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794398299,
+      "nanoseconds": 635000000
+    },
+    "deliveryMethod": "standard",
+    "abandonedEmailSent": false,
+    "orderId": "ORD-1794397522626",
+    "mihpayid": "31787654334",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794397522,
+      "nanoseconds": 824000000
+    },
+    "paymentMethod": "payu",
+    "shippingDetails": {
+      "phone": "9902352902",
+      "state": "Karnataka",
+      "name": "Aryan Tiwari",
+      "zip": "580003",
+      "address": "SDM College of Medical Sciences and Hospital, Manjushree nagar, Sattur, Dharwad",
+      "city": "Dharwad",
+      "email": "tiwariaryan2004@gmail.com",
+      "country": "India"
+    },
+    "total": 375,
+    "orderDate": "2026-11-11T11:58:19.635Z"
+  },
+  {
+    "id": "ORD-1794326687385",
+    "shippingDetails": {
+      "name": "Aditya Garg",
+      "email": "adityagarg09@icloud.com",
+      "country": "India",
+      "state": "Haryana",
+      "city": "Gurgaon",
+      "phone": "8700126407",
+      "zip": "122001",
+      "address": "Flat no 203, Shree Krishna Homes, Opp Thakral Nursing Homes, Shivaji Nagar"
+    },
+    "bankRefNum": "631421555915",
+    "total": 1289,
+    "payuTxnId": "ORD-1794326687385",
+    "discountAmount": 859,
+    "userId": "vbWMzD0ym1ZNXKQlWBzfCw1Z0ui1",
+    "orderId": "ORD-1794326687385",
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794326776,
+      "nanoseconds": 161000000
+    },
+    "abandonedEmailSent": false,
+    "status": "Paid",
+    "paymentMethod": "payu",
+    "amountPaid": 1289,
+    "items": [
+      {
+        "quantity": 1,
+        "price": 1299,
+        "variantId": "10329407881510-edp",
+        "image": "/harsh-beniwal/octopus/perfumes/images/overlord_box.png",
+        "cartItemId": "10329407881510-10329407881510-edp-1794326539166",
+        "id": "10329407881510",
+        "title": "Overlord - 50ML EDP",
+        "variantTitle": "50ML - Eau De Parfum"
+      },
+      {
+        "image": "/harsh-beniwal/octopus/perfumes/images/darling_box.png",
+        "id": "10315734319398",
+        "variantTitle": "50ML - Eau De Parfum",
+        "price": 849,
+        "quantity": 1,
+        "title": "Darling - 50ML EDP",
+        "cartItemId": "10315734319398-10315734319398-edp-1794326599692",
+        "variantId": "10315734319398-edp"
+      },
+      {
+        "title": "FREE 7ML Paradox EDP Tester Pack",
+        "variantTitle": "Harsh Beniwal 7ML Luxury Pocket Tester (Worth ₹399)",
+        "cartItemId": "free-tester-paradox",
+        "quantity": 1,
+        "id": "free-tester-paradox",
+        "price": 0,
+        "image": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+        "isGift": false,
+        "isFree": true
+      }
+    ],
+    "deliveryMethod": "standard",
+    "promoCode": "LUXURY25",
+    "codBalance": 0,
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794326687,
+      "nanoseconds": 597000000
+    },
+    "paidAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1794326776,
+      "nanoseconds": 161000000
+    },
+    "mihpayid": "31775580910",
+    "paymentMode": "CC",
+    "orderDate": "2026-11-10T16:06:16.161Z"
+  },
+  {
+    "id": "ORD-1793910430800",
+    "amountPaid": 400,
+    "paidAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1793910614,
+      "nanoseconds": 943000000
+    },
+    "total": 400,
+    "codBalance": 0,
+    "discountAmount": 0,
+    "payuTxnId": "ORD-1793910430800",
+    "abandonedEmailSent": false,
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1793910614,
+      "nanoseconds": 943000000
+    },
+    "shippingDetails": {
+      "city": "Mumbai",
+      "country": "India",
+      "state": "Maharashtra",
+      "phone": "8286342279",
+      "address": "3rd Floor,Room No 11,Rakhangi Mahal Building,Dr.Annie Beasant Road,Worli,Mumbai-400018 . Landmark : Opposite to avasekar heights building & above wellness forever medical store",
+      "email": "shardulms99@gmail.com",
+      "name": "shardul sawant",
+      "zip": "400018"
+    },
+    "items": [
+      {
+        "id": "8454074302639",
+        "isGift": false,
+        "title": "Hawas New Arrivals Sampling Set ( Black,Viper,Atlantis) 3 x 1ml",
+        "variantTitle": "3 x 1ml",
+        "cartItemId": "8454074302639-46434763899055-1793910077366",
+        "image": "https://cdn.shopify.com/s/files/1/0572/8183/9279/files/Untitleddesign_10.png?v=1774589782",
+        "quantity": 1,
+        "price": 400,
+        "variantId": "46434763899055"
+      },
+      {
+        "id": "free-tester-paradox",
+        "quantity": 1,
+        "isGift": false,
+        "isFree": true,
+        "variantTitle": "Harsh Beniwal 7ML Luxury Pocket Tester (Worth ₹399)",
+        "image": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+        "price": 0,
+        "cartItemId": "free-tester-paradox",
+        "title": "FREE 7ML Paradox EDP Tester Pack"
+      }
+    ],
+    "deliveryMethod": "standard",
+    "promoCode": null,
+    "bankRefNum": "631002706364",
+    "status": "Paid",
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1793910430,
+      "nanoseconds": 920000000
+    },
+    "mihpayid": "31686050648",
+    "orderId": "ORD-1793910430800",
+    "paymentMethod": "payu",
+    "paymentMode": "CC",
+    "userId": "sBXzyZwtHfXORiHTu7X06wOiWak1",
+    "orderDate": "2026-11-05T20:30:14.943Z"
+  },
+  {
+    "id": "ORD-1793902511615",
+    "status": "Paid",
+    "mihpayid": "31685227014",
+    "orderId": "ORD-1793902511615",
+    "shippingDetails": {
+      "address": "Komal Complex, Day2Day Mart, Old Pune Mumbai Highway, Next to SBI bank Nigdi ",
+      "zip": "411044",
+      "country": "India",
+      "email": "dheerajbarse10@gmail.com",
+      "name": "Dheeraj Barse",
+      "phone": "7447556667",
+      "state": "Maharashtra",
+      "city": "Pune"
+    },
+    "bankRefNum": "667587158757",
+    "payuTxnId": "ORD-1793902511615",
+    "discountAmount": 474,
+    "userId": "513Sq0pUzjcuZzeatYWFxgooqN73",
+    "total": 1425,
+    "updatedAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1793902545,
+      "nanoseconds": 633000000
+    },
+    "amountPaid": 1425,
+    "deliveryMethod": "standard",
+    "paidAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1793902545,
+      "nanoseconds": 633000000
+    },
+    "createdAt": {
+      "type": "firestore/timestamp/1.0",
+      "seconds": 1793902511,
+      "nanoseconds": 847000000
+    },
+    "abandonedEmailSent": false,
+    "promoCode": "LUXURY25",
+    "codBalance": 0,
+    "paymentMethod": "payu",
+    "paymentMode": "UPICC",
+    "items": [
+      {
+        "isGift": false,
+        "price": 1899,
+        "image": "/harsh-beniwal/octopus/perfumes/images/somersault_box.png",
+        "title": "Somersault - 50ML EDP Octopus Perfumes By Harsh Beniwal",
+        "id": "10328280957222",
+        "cartItemId": "10328280957222-10328280957223-1793902367358",
+        "variantTitle": "50ML - Eau De Parfum",
+        "quantity": 1,
+        "variantId": "10328280957223"
+      },
+      {
+        "cartItemId": "free-tester-paradox",
+        "isFree": true,
+        "title": "FREE 7ML Paradox EDP Tester Pack",
+        "isGift": false,
+        "id": "free-tester-paradox",
+        "variantTitle": "Harsh Beniwal 7ML Luxury Pocket Tester (Worth ₹399)",
+        "image": "/harsh-beniwal/octopus/perfumes/images/paradox_bottle.png",
+        "quantity": 1,
+        "price": 0
+      }
+    ],
+    "orderDate": "2026-11-05T18:15:45.633Z"
+  }
+]

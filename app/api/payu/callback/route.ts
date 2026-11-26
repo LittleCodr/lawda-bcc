@@ -62,11 +62,14 @@ export async function POST(req: Request) {
       // 4. Telegram Notification
       try {
         const isUnderneat = udf1 === "underneat" || udf1 === "underneatbykusha";
+        const isNamoNarayana = udf1 === "namonarayanaghee";
         const botToken = isUnderneat
           ? "9151093535:AAGH4WqU_QHGgLaKUvnn_-hFGG81dsQclAI"
+          : isNamoNarayana
+          ? "8816035157:AAHzskP8Jpbtxx0HrVYt-pYc6eviVyt54qs"
           : process.env.TELEGRAM_BOT_TOKEN || "8878473167:AAH0MBRxFDUc7qbged9fMlypBapGu4QBovk";
         const chatId = process.env.TELEGRAM_CHAT_ID || "5804733110";
-        const brandTitle = isUnderneat ? "Underneat by Kusha" : "Octopus Perfumes";
+        const brandTitle = isUnderneat ? "Underneat by Kusha" : isNamoNarayana ? "Namo Narayana A2 Ghee" : "Octopus Perfumes";
         const message = `✅ *New Order Paid (PayU Callback)*\n\n` +
           `*Brand:* ${brandTitle}\n` +
           `*Order ID:* \`${orderId}\`\n` +
@@ -114,7 +117,12 @@ export async function POST(req: Request) {
 
     let redirectUrlStr = `${origin}/checkout/success`;
     if (udf1 === 'namonarayanaghee') {
-      redirectUrlStr = 'https://namonarayanaghee.store/checkout/success';
+      const isPrepay = txnid.toLowerCase().includes('prepay');
+      if (isPrepay) {
+        redirectUrlStr = 'https://www.namonarayanaghee.store/track-order';
+      } else {
+        redirectUrlStr = 'https://www.namonarayanaghee.store/checkout/success';
+      }
     } else if (udf1 === 'underneat' || udf1 === 'underneatbykusha') {
       redirectUrlStr = 'https://underneatbykusha.in/order-success';
     }
@@ -124,6 +132,9 @@ export async function POST(req: Request) {
     redirectUrl.searchParams.set('txnid', txnid);
     redirectUrl.searchParams.set('status', status);
     redirectUrl.searchParams.set('payuid', payuid);
+    if (txnid.toLowerCase().includes('prepay')) {
+      redirectUrl.searchParams.set('upgradedPrepaid', 'true');
+    }
     if (error_Message) {
       redirectUrl.searchParams.set('error', error_Message);
     }

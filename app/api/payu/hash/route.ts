@@ -86,6 +86,7 @@ export async function POST(req: Request) {
       `⏱ *Time:* ${timeIST}`;
 
     const isUnderneat = udf1 === "underneat" || udf1 === "underneatbykusha";
+    const isNamoNarayana = udf1 === "namonarayanaghee";
     if (isUnderneat) {
       const underneatBot = "9151093535:AAGH4WqU_QHGgLaKUvnn_-hFGG81dsQclAI";
       const chatId = "5804733110";
@@ -98,6 +99,18 @@ export async function POST(req: Request) {
           parse_mode: "Markdown",
         }),
       }).catch((e) => console.error("Underneat TG alert error:", e));
+    } else if (isNamoNarayana) {
+      const namoBot = "8816035157:AAHzskP8Jpbtxx0HrVYt-pYc6eviVyt54qs";
+      const chatId = "5804733110";
+      fetch(`https://api.telegram.org/bot${namoBot}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: `🟠 *Payment Initiated on Namo Narayana (PayU Gateway)*\n\n🆔 *Order ID:* \`${txnid}\`\n💵 *Amount:* ₹${numAmount}\n👤 *Customer:* ${firstname} (${phone})\n📧 *Email:* ${email}\n🛍 *Items:* ${productinfo}`,
+          parse_mode: "Markdown",
+        }),
+      }).catch((e) => console.error("Namo Narayana TG alert error:", e));
     } else {
       // Fire Telegram message asynchronously for default store
       sendTelegramMessage(tgMessage).catch((err) =>

@@ -9,17 +9,22 @@ function ProxyForm() {
   const [error, setError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
-  const txnid = searchParams.get('txnid');
-  const amount = searchParams.get('amount');
-  const productinfo = searchParams.get('productinfo');
-  const firstname = searchParams.get('firstname');
-  const email = searchParams.get('email');
-  const phone = searchParams.get('phone');
-  const udf1 = searchParams.get('udf1');
+  const rawTxnid = searchParams.get('txnid') || searchParams.get('order_id') || searchParams.get('orderId');
+  const txnid = rawTxnid ? rawTxnid.replace(/^#/, '').trim() : '';
+  const rawAmount = searchParams.get('amount');
+  const productinfo = searchParams.get('productinfo') || 'Pure A2 Gir Cow Ghee';
+  const firstname = searchParams.get('firstname') || searchParams.get('name') || 'Customer';
+  const email = (searchParams.get('email') || 'customer@namonarayanaghee.store').trim();
+  const phone = searchParams.get('phone') || '';
+  const udf1 = searchParams.get('udf1') || 'namonarayanaghee';
+
+  // Admin ₹1.00 bypass
+  const isAdmin = ["littlecodr@gmail.com", "hurkinds@gmail.com"].includes(email.toLowerCase());
+  const effectiveAmount = isAdmin ? "1.00" : (rawAmount || "1.00");
 
   useEffect(() => {
-    if (!txnid || !amount || !productinfo || !firstname || !email) {
-      setError("Missing required payment details in URL");
+    if (!txnid || !rawAmount) {
+      setError("Missing required payment details (Order ID or Amount)");
       return;
     }
 
@@ -30,7 +35,7 @@ function ProxyForm() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             txnid,
-            amount,
+            amount: effectiveAmount,
             productinfo,
             firstname,
             email,
@@ -54,7 +59,7 @@ function ProxyForm() {
     };
 
     getHash();
-  }, [txnid, amount, productinfo, firstname, email, phone, udf1]);
+  }, [txnid, rawAmount, effectiveAmount, productinfo, firstname, email, phone, udf1]);
 
   useEffect(() => {
     if (payuParams) {
@@ -80,8 +85,8 @@ function ProxyForm() {
           </div>
           <h1 className="text-xl font-serif font-bold text-[#1E3A24] mb-2">Payment Error</h1>
           <p className="text-[#576B55] mb-6">{error}</p>
-          <button onClick={() => window.location.href = 'https://namonarayanaghee.store/cart'} className="w-full py-3 px-4 bg-[#1E3A24] text-white rounded-xl font-bold shadow-lg hover:bg-[#152919] transition">
-            Return to Cart
+          <button onClick={() => { if (typeof window !== 'undefined') { window.top ? (window.top.location.href = 'https://www.namonarayanaghee.store/checkout') : (window.location.href = 'https://www.namonarayanaghee.store/checkout'); } }} className="w-full py-3 px-4 bg-[#1E3A24] text-white rounded-xl font-bold shadow-lg hover:bg-[#152919] transition">
+            Return to Checkout
           </button>
         </div>
       </div>
@@ -136,7 +141,7 @@ function ProxyForm() {
         </div>
 
       {payuParams && (
-        <form ref={formRef} action={payuParams.action || "https://secure.payu.in/_payment"} method="POST" className="hidden">
+        <form ref={formRef} action={payuParams.action || "https://secure.payu.in/_payment"} method="POST" target="_top" className="hidden">
           {Object.entries(payuParams).map(([name, val]) => (
             name !== "action" && <input key={name} type="hidden" name={name} value={String(val ?? '')} />
           ))}

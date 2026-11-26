@@ -113,6 +113,7 @@ export async function POST(req: Request) {
       if (
         udf1 !== "underneat" &&
         udf1 !== "underneatbykusha" &&
+        udf1 !== "namonarayanaghee" &&
         udf1 !== "internshipshub" &&
         udf1 !== "internships-hub" &&
         !isMyInternships

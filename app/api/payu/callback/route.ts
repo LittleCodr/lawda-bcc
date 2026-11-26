@@ -21,6 +21,7 @@ export async function POST(req: Request) {
     const udf2 = formData.get('udf2')?.toString() || ''; // userId
     const udf3 = formData.get('udf3')?.toString() || ''; // plan
     const udf4 = formData.get('udf4')?.toString() || ''; // from/slug
+    const isMyInternships = udf1 === "myinternships" || udf1 === "myinternships.online" || udf1.startsWith("myinternship");
 
     const baseOrderIdMatch = txnid.match(/(ORD-\d{13})/);
     const orderId = baseOrderIdMatch ? baseOrderIdMatch[1] : txnid;
@@ -108,6 +109,7 @@ export async function POST(req: Request) {
       }
 
       // 5. Brevo Customer Email Confirmation (idempotent with Firestore email fallback)
+      const isMyInternships = udf1 === "myinternships" || udf1 === "myinternships.online" || udf1.startsWith("myinternship");
       if (
         udf1 !== "underneat" &&
         udf1 !== "underneatbykusha" &&

@@ -175,6 +175,24 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        source: "/payu-proxy/:path*",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'self' https://myinternships.online https://www.myinternships.online https://internshipshub.in https://www.internshipshub.in https://underneatbykusha.in https://namonarayanaghee.store http://localhost:*",
+          },
+        ],
+      },
+      {
+        source: "/payu-proxy",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors 'self' https://myinternships.online https://www.myinternships.online https://internshipshub.in https://www.internshipshub.in https://underneatbykusha.in https://namonarayanaghee.store http://localhost:*",
+          },
+        ],
+      },
+      {
         source: '/:all*(svg|jpg|jpeg|png|webp|avif|ico|woff2)',
         headers: [
           {

@@ -19,6 +19,8 @@ export async function POST(req: Request) {
     const error_Message = formData.get('error_Message')?.toString() || '';
     const udf1 = formData.get('udf1')?.toString() || '';
     const udf2 = formData.get('udf2')?.toString() || ''; // userId
+    const udf3 = formData.get('udf3')?.toString() || ''; // plan
+    const udf4 = formData.get('udf4')?.toString() || ''; // from/slug
 
     const baseOrderIdMatch = txnid.match(/(ORD-\d{13})/);
     const orderId = baseOrderIdMatch ? baseOrderIdMatch[1] : txnid;
@@ -63,13 +65,23 @@ export async function POST(req: Request) {
       try {
         const isUnderneat = udf1 === "underneat" || udf1 === "underneatbykusha";
         const isNamoNarayana = udf1 === "namonarayanaghee";
+        const isInternshipsHub = udf1 === "internshipshub" || udf1 === "internships-hub";
+        const isMyInternships = udf1 === "myinternships" || udf1 === "myinternships.online" || udf1.startsWith("myinternship");
         const botToken = isUnderneat
           ? "9151093535:AAGH4WqU_QHGgLaKUvnn_-hFGG81dsQclAI"
           : isNamoNarayana
           ? "8816035157:AAHzskP8Jpbtxx0HrVYt-pYc6eviVyt54qs"
           : process.env.TELEGRAM_BOT_TOKEN || "8878473167:AAH0MBRxFDUc7qbged9fMlypBapGu4QBovk";
         const chatId = process.env.TELEGRAM_CHAT_ID || "5804733110";
-        const brandTitle = isUnderneat ? "Underneat by Kusha" : isNamoNarayana ? "Namo Narayana A2 Ghee" : "Octopus Perfumes";
+        const brandTitle = isMyInternships
+          ? "myinternships.online (PayU)"
+          : isUnderneat
+          ? "Underneat by Kusha"
+          : isNamoNarayana
+          ? "Namo Narayana A2 Ghee"
+          : isInternshipsHub
+          ? "InternshipsHub"
+          : "Octopus Perfumes";
         const message = `✅ *New Order Paid (PayU Callback)*\n\n` +
           `*Brand:* ${brandTitle}\n` +
           `*Order ID:* \`${orderId}\`\n` +
@@ -96,7 +108,13 @@ export async function POST(req: Request) {
       }
 
       // 5. Brevo Customer Email Confirmation (idempotent with Firestore email fallback)
-      if (udf1 !== "underneat" && udf1 !== "underneatbykusha") {
+      if (
+        udf1 !== "underneat" &&
+        udf1 !== "underneatbykusha" &&
+        udf1 !== "internshipshub" &&
+        udf1 !== "internships-hub" &&
+        !isMyInternships
+      ) {
         await dispatchVerifiedOrderConfirmation({
           orderId,
           payuEmail: email,
@@ -125,13 +143,21 @@ export async function POST(req: Request) {
       }
     } else if (udf1 === 'underneat' || udf1 === 'underneatbykusha') {
       redirectUrlStr = 'https://underneatbykusha.in/order-success';
+    } else if (udf1 === 'internshipshub' || udf1 === 'internships-hub') {
+      redirectUrlStr = 'https://internshipshub.in/payment-success';
+    } else if (udf1 === 'myinternships' || udf1 === 'myinternships.online' || udf1.startsWith('myinternship')) {
+      redirectUrlStr = 'https://myinternships.online/thank-you';
     }
     const redirectUrl = new URL(redirectUrlStr);
+    redirectUrl.searchParams.set('id', orderId);
     redirectUrl.searchParams.set('order_id', orderId);
     redirectUrl.searchParams.set('orderId', orderId);
     redirectUrl.searchParams.set('txnid', txnid);
     redirectUrl.searchParams.set('status', status);
     redirectUrl.searchParams.set('payuid', payuid);
+    redirectUrl.searchParams.set('amount', amount);
+    if (udf3) redirectUrl.searchParams.set('plan', udf3);
+    if (udf4) redirectUrl.searchParams.set('from', udf4);
     if (txnid.toLowerCase().includes('prepay')) {
       redirectUrl.searchParams.set('upgradedPrepaid', 'true');
     }

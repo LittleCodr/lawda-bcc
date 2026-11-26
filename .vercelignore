@@ -1,6 +1,7 @@
 # Exclude scratch, scripts and media
 /scratch/
 /scripts/
+!scripts/generate-feed-csv.mjs
 /data/migration/
 *.mp4
 

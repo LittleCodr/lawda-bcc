@@ -130,6 +130,19 @@ function ProxyForm() {
           Please do not refresh or close this page
         </div>
 
+        {payuParams && (
+          <button
+            type="button"
+            onClick={() => { if (formRef.current) formRef.current.submit(); }}
+            className="w-full mt-3 py-2.5 px-4 bg-[#1E3A24] text-white rounded-xl font-bold text-xs shadow-md hover:bg-[#152919] transition flex items-center justify-center gap-1.5 cursor-pointer"
+          >
+            <span>Click here to Proceed to Pay</span>
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </button>
+        )}
+
         {/* Powered by footer */}
         <div className="mt-8 pt-6 border-t border-[#E9E5D9] w-full">
           <p className="text-[11px] text-[#576B55] font-medium flex justify-center items-center gap-1.5">

@@ -179,7 +179,11 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Content-Security-Policy",
-            value: "frame-ancestors 'self' https://myinternships.online https://www.myinternships.online https://internshipshub.in https://www.internshipshub.in https://underneatbykusha.in https://namonarayanaghee.store http://localhost:*",
+            value: "frame-ancestors 'self' * https://*.namonarayanaghee.store https://namonarayanaghee.store https://www.namonarayanaghee.store https://*.underneatbykusha.in https://underneatbykusha.in https://www.underneatbykusha.in https://*.myinternships.online https://myinternships.online https://www.myinternships.online https://*.internshipshub.in https://internshipshub.in https://www.internshipshub.in http://localhost:*",
+          },
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "*",
           },
         ],
       },
@@ -188,7 +192,11 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Content-Security-Policy",
-            value: "frame-ancestors 'self' https://myinternships.online https://www.myinternships.online https://internshipshub.in https://www.internshipshub.in https://underneatbykusha.in https://namonarayanaghee.store http://localhost:*",
+            value: "frame-ancestors 'self' * https://*.namonarayanaghee.store https://namonarayanaghee.store https://www.namonarayanaghee.store https://*.underneatbykusha.in https://underneatbykusha.in https://www.underneatbykusha.in https://*.myinternships.online https://myinternships.online https://www.myinternships.online https://*.internshipshub.in https://internshipshub.in https://www.internshipshub.in http://localhost:*",
+          },
+          {
+            key: "Access-Control-Allow-Origin",
+            value: "*",
           },
         ],
       },

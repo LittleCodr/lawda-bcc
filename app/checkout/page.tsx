@@ -77,10 +77,13 @@ export default function CheckoutPage() {
   const cartDiscountPercent = getAutoDiscountPercentage ? getAutoDiscountPercentage() : 0;
   const deliveryFee = deliveryMethod === "international" ? 1500 : 0;
   const isFlat250Coupon = ["GARVIT250", "SECRET250", "VIP250", "HAWAS250", "PORTBLAIR250", "VENOM250", "DELHI250", "LION250", "RAYHAAN250", "KHRISH250", "MUSAMAM250", "YASEEN250", "BINSHAIKH250", "AHMED250"].includes(promoCode.trim().toUpperCase());
+  const isFlat500Coupon = ["SORRY500", "APOLOGY500", "GOODWILL500", "VIP500", "PATRON500"].includes(promoCode.trim().toUpperCase());
   const isFlat1000Coupon = ["TF1000", "VISHWAJEET1000", "OUDWOOD1000", "LUXURY1000"].includes(promoCode.trim().toUpperCase());
   const promoDiscountAmount = promoApplied
     ? isFlat1000Coupon
       ? Math.min(1000, baseTotal)
+      : isFlat500Coupon
+      ? Math.min(500, baseTotal)
       : isFlat250Coupon
       ? Math.min(250, baseTotal)
       : baseTotal >= 5000
@@ -97,6 +100,10 @@ export default function CheckoutPage() {
       const params = new URLSearchParams(window.location.search);
       const urlCode = (params.get("coupon") || params.get("code") || "").trim().toUpperCase();
       if (["TF1000", "VISHWAJEET1000", "OUDWOOD1000", "LUXURY1000"].includes(urlCode) && baseTotal >= 10000) {
+        setPromoCode(urlCode);
+        setPromoApplied(true);
+        setPromoError("");
+      } else if (["SORRY500", "APOLOGY500", "GOODWILL500", "VIP500", "PATRON500"].includes(urlCode)) {
         setPromoCode(urlCode);
         setPromoApplied(true);
         setPromoError("");
@@ -714,6 +721,10 @@ export default function CheckoutPage() {
                             setPromoError(`Code ${cleanCode} is an exclusive voucher for full luxury bottles (minimum order ₹10,000).`);
                             return;
                           }
+                          setPromoCode(cleanCode);
+                          setPromoApplied(true);
+                          setPromoError("");
+                        } else if (["SORRY500", "APOLOGY500", "GOODWILL500", "VIP500", "PATRON500"].includes(cleanCode)) {
                           setPromoCode(cleanCode);
                           setPromoApplied(true);
                           setPromoError("");

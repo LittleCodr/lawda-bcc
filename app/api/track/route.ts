@@ -317,19 +317,26 @@ export async function GET(req: Request) {
       let computedStatus = "Order Confirmed & Processing";
       let stepIndex = 1;
 
-      if (data.status === "Paid" || !data.status || data.status === "confirmed") {
-        if (diffInHours < 8) {
+      if (data.status === "Delivered" || data.delivered === true) {
+        computedStatus = "Delivered";
+        stepIndex = 4;
+      } else if (data.status === "In Transit" || data.status === "Dispatched") {
+        computedStatus = "In Transit - Out for Delivery";
+        stepIndex = 3;
+      } else {
+        // Dynamic status based on order age, but NEVER prematurely mark Delivered
+        if (diffInHours < 12) {
           computedStatus = "Order Confirmed & Quality Check in Progress";
           stepIndex = 1;
-        } else if (diffInHours >= 8 && diffInDays < 2) {
-          computedStatus = "Dispatched via Express Air";
+        } else if (diffInHours >= 12 && diffInDays < 2) {
+          computedStatus = "Dispatched - Handed Over to Express Logistics";
           stepIndex = 2;
-        } else if (diffInDays >= 2 && diffInDays < 4) {
-          computedStatus = "In Transit - Out for Delivery";
-          stepIndex = 3;
+        } else if (diffInDays >= 2 && diffInDays < 5) {
+          computedStatus = "In Transit to Regional Delivery Hub";
+          stepIndex = 2;
         } else {
-          computedStatus = "Delivered";
-          stepIndex = 4;
+          computedStatus = "In Regional Logistics Hub - Scheduled for Delivery";
+          stepIndex = 3;
         }
       }
 
@@ -366,7 +373,7 @@ export async function GET(req: Request) {
             month: "short",
             year: "numeric",
           }),
-          trackingUrl: data.trackingUrl || `https://www.dtdc.in/tracking/shipment-tracking.asp`,
+          trackingUrl: data.trackingUrl || (data.trackingId ? `https://www.dtdc.in/tracking/shipment-tracking.asp` : undefined),
         },
       });
     }

@@ -8,6 +8,16 @@ import { sendTelegramMessage, formatISTDate } from "@/lib/telegram";
 const PAYU_KEY = "BfDKZe";
 const PAYU_SALT = "iQ7BOSg394ZQQKY2Mu5evsBnwobF4shg";
 
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+};
+
+export async function OPTIONS() {
+  return new Response(null, { status: 204, headers: corsHeaders });
+}
+
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -184,9 +194,9 @@ export async function POST(req: Request) {
       udf4,
       udf5,
       service_provider: "payu_paisa",
-    });
+    }, { headers: corsHeaders });
   } catch (error: any) {
     console.error("PayU hash error:", error);
-    return NextResponse.json({ error: error.message || "Internal server error" }, { status: 500 });
+    return NextResponse.json({ error: error.message || "Internal server error" }, { status: 500, headers: corsHeaders });
   }
 }

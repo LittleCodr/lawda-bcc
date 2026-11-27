@@ -2,8 +2,7 @@ import fs from "fs";
 import path from "path";
 import { Readable } from "stream";
 
-// Revalidate once every 24 hours to cache on Vercel Edge CDN
-export const revalidate = 86400;
+export const dynamic = "force-dynamic";
 
 export async function GET() {
   const filePath = path.join(process.cwd(), "public", "feed.csv");

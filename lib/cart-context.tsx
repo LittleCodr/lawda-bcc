@@ -112,7 +112,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const applyCoupon = useCallback((code: string) => {
     const codeUpper = code.toUpperCase();
-    if (["OCTOPUS5", "LUXURY5", "GARVIT250", "SECRET250", "VIP250", "HAWAS250", "PORTBLAIR250", "VENOM250", "DELHI250", "LION250", "RAYHAAN250", "KHRISH250", "MUSAMAM250", "YASEEN250"].includes(codeUpper)) {
+    if (["OCTOPUS5", "LUXURY5", "GARVIT250", "SECRET250", "VIP250", "HAWAS250", "PORTBLAIR250", "VENOM250", "DELHI250", "LION250", "RAYHAAN250", "KHRISH250", "MUSAMAM250", "YASEEN250", "BINSHAIKH250", "AHMED250"].includes(codeUpper)) {
       setCouponCode(codeUpper);
       return true;
     }
@@ -222,7 +222,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     if (["TF1000", "VISHWAJEET1000", "OUDWOOD1000", "LUXURY1000"].includes(couponCode || "") && subtotal >= 10000) {
       return Math.min(1000, subtotal);
     }
-    if (["GARVIT250", "SECRET250", "VIP250", "HAWAS250", "PORTBLAIR250", "VENOM250", "DELHI250", "LION250", "RAYHAAN250", "KHRISH250", "MUSAMAM250", "YASEEN250"].includes(couponCode || "")) {
+    if (["GARVIT250", "SECRET250", "VIP250", "HAWAS250", "PORTBLAIR250", "VENOM250", "DELHI250", "LION250", "RAYHAAN250", "KHRISH250", "MUSAMAM250", "YASEEN250", "BINSHAIKH250", "AHMED250"].includes(couponCode || "")) {
       return Math.min(250, subtotal);
     }
     return Math.floor(subtotal * (discountPercentage / 100));

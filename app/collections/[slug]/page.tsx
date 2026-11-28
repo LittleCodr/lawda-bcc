@@ -24,8 +24,9 @@ interface RawCollection {
   description?: string;
 }
 
-// Cache collections for 24 hours on Vercel CDN
-export const revalidate = 86400;
+// Pure Static Site Generation (SSG) - Serves 100% from Vercel Global Edge CDN with zero ISR cost
+export const dynamicParams = true;
+export const revalidate = false;
 
 export async function generateStaticParams() {
   return getAllCollectionSlugs().map((slug) => ({ slug }));

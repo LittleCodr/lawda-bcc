@@ -9,7 +9,9 @@ import {
   toProductSummary,
 } from "@/lib/catalog";
 
-export const revalidate = 86400;
+// Pure Static Site Generation (SSG)
+export const dynamicParams = true;
+export const revalidate = false;
 
 export function generateStaticParams() {
   return (scrapedPerfumes as any[]).map((p) => ({

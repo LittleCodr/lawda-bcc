@@ -5,7 +5,8 @@ import CouponCodeClient from "@/components/CouponCodeClient";
 
 const PAGE_URL = "https://www.octopusperfume.in/octopus-perfume-coupon-code";
 
-export const revalidate = 86400;
+// Pure Static Site Generation (SSG)
+export const revalidate = false;
 
 export const metadata: Metadata = {
   title: "Octopus Perfume Coupon Code & Discounts (2026) | Code OCTOPUS5 (5% OFF ₹5,000+)",

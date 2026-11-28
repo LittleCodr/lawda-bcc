@@ -5,7 +5,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ChevronRight, ShieldCheck, Truck, RefreshCcw, Heart, Info, FileText, Lock, Box, Banknote, Calendar, CheckCircle2, Mail, Phone } from "lucide-react";
 
-export const revalidate = 86400;
+// Pure Static Site Generation (SSG)
+export const dynamicParams = true;
+export const revalidate = false;
 
 export function generateStaticParams() {
   return [

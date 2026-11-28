@@ -10,8 +10,9 @@ import {
 } from "@/lib/catalog";
 import ProductUI from "@/app/products/[slug]/ProductUI";
 
-// Cache product pages for 24 hours to prevent runaway ISR writes from bot crawls
-export const revalidate = 86400;
+// Pure Static Site Generation (SSG) - Serves 100% from Vercel Global Edge CDN with zero ISR cost
+export const dynamicParams = true;
+export const revalidate = false;
 
 export async function generateStaticParams() {
   return getAllProducts(true)
